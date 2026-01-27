@@ -3,7 +3,7 @@ function root = Root_Secant(x0, x1, tol, maxIter)
     
     % Default Values..
     if nargin < 3 || isempty(tol)
-        tol = 1e-6;
+        tol = 1e-10;
     end
     if nargin < 4 || isempty(maxIter)
         maxIter = 100;
@@ -12,14 +12,16 @@ function root = Root_Secant(x0, x1, tol, maxIter)
     % Actual Method..
     for i = 1:maxIter
         if f(x1) - f(x0) == 0
-            error('Division by zero in secant method');
+            root = x1;
+            fprintf('Secant root = %.10f after %d iterations\n', root, i);
+            return;
         end
     
         x2 = x1 - f(x1)*(x1 - x0)/(f(x1) - f(x0));
     
         if abs(x2 - x1) < tol
             root = x2;
-            fprintf('Secant root = %.6f after %d iterations\n', root, i);
+            fprintf('Secant root = %.10f after %d iterations\n', root, i);
             return
         end
     
@@ -28,5 +30,5 @@ function root = Root_Secant(x0, x1, tol, maxIter)
     end
     
     root = x1;
-    fprintf('Secant root (max iterations reached) = %.6f\n', root);
+    fprintf('Secant root (max iterations reached) = %.10f\n', root);
 end

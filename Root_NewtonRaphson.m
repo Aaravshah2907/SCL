@@ -3,7 +3,7 @@ function root = Root_NewtonRaphson(x0, tol, maxIter)
     
     % Default Checks
     if nargin < 2 || isempty(tol)
-        tol = 1e-6;
+        tol = 1e-14;
     end
     if nargin < 3 || isempty(maxIter)
         maxIter = 250;
@@ -17,7 +17,7 @@ function root = Root_NewtonRaphson(x0, tol, maxIter)
     
         if abs(x_new - x) < tol
             root = x_new;
-            fprintf('NR root = %.6f after %d iterations\n', root, i);
+            fprintf('NR root = %.14f after %d iterations\n', root, i);
             return
         end
     
@@ -25,5 +25,5 @@ function root = Root_NewtonRaphson(x0, tol, maxIter)
     end
     
     root = x;
-    fprintf('NR root (max iterations reached) = %.6f\n', root);
+    fprintf('NR root (max iterations reached) = %.14f\n', root);
 end
