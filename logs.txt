@@ -8632,3 +8632,1764 @@ NR_PLOTS =
 
          0         0
 
+% Today we will do..
+% Something related to Gradient
+x = -3:3
+
+x =
+
+    -3    -2    -1     0     1     2     3
+
+y = x';
+y
+
+y =
+
+    -3
+    -2
+    -1
+     0
+     1
+     2
+     3
+
+func_f1 = x.^2.*y + sin(x.*y)
+
+func_f1 =
+
+  -26.5879  -12.2794   -2.8589         0   -3.1411  -11.7206  -27.4121
+  -18.2794   -8.7568   -1.0907         0   -2.9093   -7.2432  -17.7206
+   -8.8589   -3.0907   -0.1585         0   -1.8415   -4.9093   -9.1411
+         0         0         0         0         0         0         0
+    8.8589    3.0907    0.1585         0    1.8415    4.9093    9.1411
+   18.2794    8.7568    1.0907         0    2.9093    7.2432   17.7206
+   26.5879   12.2794    2.8589         0    3.1411   11.7206   27.4121
+
+[fx, fy] = gradient(func_f1)
+
+fx =
+
+   14.3085   11.8645    6.1397   -0.1411   -5.8603  -12.1355  -15.6915
+    9.5226    8.5944    4.3784   -0.9093   -3.6216   -7.4056  -10.4774
+    5.7682    4.3502    1.5454   -0.8415   -2.4546   -3.6498   -4.2318
+         0         0         0         0         0         0         0
+   -5.7682   -4.3502   -1.5454    0.8415    2.4546    3.6498    4.2318
+   -9.5226   -8.5944   -4.3784    0.9093    3.6216    7.4056   10.4774
+  -14.3085  -11.8645   -6.1397    0.1411    5.8603   12.1355   15.6915
+
+
+fy =
+
+    8.3085    3.5226    1.7682         0    0.2318    4.4774    9.6915
+    8.8645    4.5944    1.3502         0    0.6498    3.4056    9.1355
+    9.1397    4.3784    0.5454         0    1.4546    3.6216    8.8603
+    8.8589    3.0907    0.1585         0    1.8415    4.9093    9.1411
+    9.1397    4.3784    0.5454         0    1.4546    3.6216    8.8603
+    8.8645    4.5944    1.3502         0    0.6498    3.4056    9.1355
+    8.3085    3.5226    1.7682         0    0.2318    4.4774    9.6915
+
+fx_at_11 = fx(5)(5)
+{Error:  Invalid array indexing.
+} 
+fx_at_11 = fx(5,5)
+
+fx_at_11 =
+
+    2.4546
+
+fy_at_11 = fy(5,5)
+
+fy_at_11 =
+
+    1.4546
+
+% NOTE : But this is numerical method
+syms x y
+func_f = x^2.y + sin(x.y)
+ func_f = x^2.y + sin(x.y)
+              ↑
+{Invalid expression. Check for missing multiplication operator, missing or unbalanced delimiters, or
+other syntax error. To construct matrices, use brackets instead of parentheses.
+} 
+func_f = (x^2)*y + sin(x*y)
+ 
+func_f =
+ 
+sin(x*y) + x^2*y
+ 
+grad_f = gradient(func_f, [x,y])
+ 
+grad_f =
+ 
+2*x*y + y*cos(x*y)
+  x*cos(x*y) + x^2
+ 
+point = [1,1]
+
+point =
+
+     1     1
+
+grad_at_point = subs(grad_f, [x,y], point)
+ 
+grad_at_point =
+ 
+cos(1) + 2
+cos(1) + 1
+ 
+double(grad_at_point)
+
+ans =
+
+    2.5403
+    1.5403
+
+val_grad_at_point = double(grad_at_point)
+
+val_grad_at_point =
+
+    2.5403
+    1.5403
+
+directional_derivative = val_grad_at_point*[2,1]
+
+directional_derivative =
+
+    5.0806    2.5403
+    3.0806    1.5403
+
+directional_derivative = transpose(val_grad_at_point)*[2,1]
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix
+matches the number of rows in the second matrix. To operate on each element of the matrix individually,
+use TIMES (.*) for elementwise multiplication.
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+directional_derivative = transpose(val_grad_at_point).*[2,1]
+
+directional_derivative =
+
+    5.0806    1.5403
+
+directional_derivative = transpose(val_grad_at_point)*[2;1]
+
+directional_derivative =
+
+    6.6209
+
+func_f2 = x^3 - 3*x*y
+ 
+func_f2 =
+ 
+x^3 - 3*y*x
+ 
+grad_f2 = gradient(func_f2, [x , y])
+ 
+grad_f2 =
+ 
+3*x^2 - 3*y
+       -3*x
+ 
+grad_f2_at_1_1 = gradient(func_f2, [x , y], [1, 1])
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/gradient')" style="font-weight:bold">sym/gradient</a>
+Too many input arguments.
+} 
+grad_f2_at_1_1 = subs(grad_f2, [x , y], [1, 1])
+ 
+grad_f2_at_1_1 =
+ 
+ 0
+-3
+ 
+dd = transpose(grad_f2_at_1_1)*[2;1]
+ 
+dd =
+ 
+-3
+ 
+f3 = (x+y)*exp(-(x^2 + y^2))
+ 
+f3 =
+ 
+exp(- x^2 - y^2)*(x + y)
+ 
+grad_3 = gradient(f3, [x,y])
+ 
+grad_3 =
+ 
+exp(- x^2 - y^2) - 2*x*exp(- x^2 - y^2)*(x + y)
+exp(- x^2 - y^2) - 2*y*exp(- x^2 - y^2)*(x + y)
+ 
+val_3 = subs(grad_3, [x,y], [0.5, -0.5])
+ 
+val_3 =
+ 
+exp(-1/2)
+exp(-1/2)
+ 
+fsurf(f3)
+fsurf(f3) % To plt 3D surface
+fsurf(f3) % To plt 3D surface
+f4 = x^2 + y^2 = y  sin(x)
+ f4 = x^2 + y^2 = y  sin(x)
+                ↑
+{Incorrect use of '=' operator. Assign a value to a variable using '=' and compare values for equality
+using '=='.
+} 
+f4 = x^2 + y^2 + x*y + sin(x)
+ 
+f4 =
+ 
+sin(x) + x*y + x^2 + y^2
+ 
+fsurf(f4)
+fcontour(f4) % To plt countour of the function
+plotGradientAnalysis(f4,[1, 0], [1, 2])
+{Error using mupadengine/evalin2double
+Computation aborted.
+
+Error in mupadengine/feval2double
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/double', 'C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\sym.m', 745)" style="font-weight:bold">sym/double</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\sym.m',745,0)">line 745</a>)
+                X = feval2double(symengine, "symobj::doubleDirect", S);
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientAnalysis', 'C:\Users\user\Documents\Aarav\plotGradientAnalysis.m', 30)" style="font-weight:bold">plotGradientAnalysis</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientAnalysis.m',30,0)">line 30</a>)
+    Z = double(subs(func, {x, y}, {X, Y}));
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientAnalysis(f4,[1, 0], [1, 2])
+{Operation terminated by user during mupadengine/feval2sym_NaNsingularity
+
+
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/subsref', 'C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\sym.m', 958)" style="font-weight:bold">indexing</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\sym.m',958,0)">line 958</a>)
+            B = feval2sym_NaNsingularity(symengine, 'symobj::subsref',L.s,privformat(R_tilde));
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/subs>normalize', 'C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m', 238)" style="font-weight:bold">sym/subs>normalize</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m',238,0)">line 238</a>)
+    Y = arrayfun(@(x) x,Y{1},UniformOutput=false);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/subs>mupadsubs', 'C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m', 172)" style="font-weight:bold">sym/subs>mupadsubs</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m',172,0)">line 172</a>)
+[X2,Y2,symX,symY] = normalize(X,Y); %#ok
+                    ^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('sym/subs', 'C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m', 154)" style="font-weight:bold">sym/subs</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\symbolic\symbolic\@sym\subs.m',154,0)">line 154</a>)
+        G = mupadsubs(F,X,Y);
+            ^^^^^^^^^^^^^^^^
+In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientAnalysis', 'C:\Users\user\Documents\Aarav\plotGradientAnalysis.m', 30)" style="font-weight:bold">plotGradientAnalysis</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientAnalysis.m',30,0)">line 30</a>)
+    [X, Y] = meshgrid(x_range, y_range);
+               ^
+} 
+plotGradientAnalysis(f4,[1, 0], [1, 2])
+f5 = x^4 + y^4 -4*x*y
+ 
+f5 =
+ 
+x^4 - 4*x*y + y^4
+ 
+[critPoints, types] = criticalPoints2D(f5)
+
+Critical points:
+(0, 0) → Saddle point
+(-1, -1) → Local minimum
+(1, 1) → Local minimum
+
+critPoints =
+
+     0     0
+    -1    -1
+     1     1
+
+
+types =
+
+  3×1 <a href="matlab:helpPopup('cell')" style="font-weight:bold">cell</a> array
+
+    {'Saddle point' }
+    {'Local minimum'}
+    {'Local minimum'}
+
+directionalDerivativeMap(f5,[0,0])
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('contourf', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\contourf.m', 57)" style="font-weight:bold">contourf</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\contourf.m',57,0)">line 57</a>)
+Z must be at least a 2x2 matrix.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('directionalDerivativeMap', 'C:\Users\user\Documents\Aarav\directionalDerivativeMap.m', 30)" style="font-weight:bold">directionalDerivativeMap</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\directionalDerivativeMap.m',30,0)">line 30</a>)
+    contourf(X, Y, Z, 30, 'LineColor', 'none');
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+directionalDerivativeMap(f5,[0 0])
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('contourf', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\contourf.m', 57)" style="font-weight:bold">contourf</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\contourf.m',57,0)">line 57</a>)
+Z must be at least a 2x2 matrix.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('directionalDerivativeMap', 'C:\Users\user\Documents\Aarav\directionalDerivativeMap.m', 30)" style="font-weight:bold">directionalDerivativeMap</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\directionalDerivativeMap.m',30,0)">line 30</a>)
+    contourf(X, Y, Z, 30, 'LineColor', 'none');
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+directionalDerivativeMap(f5,[1 1])
+directionalDerivativeMap(f5,[1 1])
+directionalDerivativeMap(f5)
+directionalDerivativeMap(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of Y must match the size of U or the number of rows of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('directionalDerivativeMap', 'C:\Users\user\Documents\Aarav\directionalDerivativeMap.m', 51)" style="font-weight:bold">directionalDerivativeMap</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\directionalDerivativeMap.m',51,0)">line 51</a>)
+        quiver(X, Y, scale*Dv*vx, scale*Dv*vy, 0, 'k');
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+directionalDerivativeMap(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of Y must match the size of U or the number of rows of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('directionalDerivativeMap', 'C:\Users\user\Documents\Aarav\directionalDerivativeMap.m', 53)" style="font-weight:bold">directionalDerivativeMap</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\directionalDerivativeMap.m',53,0)">line 53</a>)
+        quiver(X, Y, U, V, 0, 'k');
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of Y must match the size of U or the number of rows of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 25)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',25,0)">line 25</a>)
+    quiver(X, Y, Gx, Gy, 0.5, 'r', 'LineWidth', 1.5, 'MaxHeadSize', 0.5);
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of X must match the size of U or the number of columns of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 25)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',25,0)">line 25</a>)
+    quiver(X, Y, Gx, Gy, 0.5, 'r', 'LineWidth', 1.5, 'MaxHeadSize', 0.5);
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of X must match the size of U or the number of columns of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 25)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',25,0)">line 25</a>)
+    quiver(x_range, y_range, Gx, Gy, 0.5, 'r', 'LineWidth', 1.5, 'MaxHeadSize', 0.5);
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Unrecognized function or variable 'printf'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    printf(size(x_range), size(X));
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using checkArgsForHandleToPrint
+Invalid graphics object.
+
+Error in checkArgsForHandleToPrint
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print>LocalCreatePrintJob', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 108)" style="font-weight:bold">print>LocalCreatePrintJob</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',108,0)">line 108</a>)
+handles = checkArgsForHandleToPrint(0, varargin{:});
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 38)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',38,0)">line 38</a>)
+[pj, inputargs] = LocalCreatePrintJob(varargin{:});
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    print(size(x_range), size(X));
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Unrecognized function or variable 'fprint'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    fprint(size(x_range), size(X));
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using checkArgsForHandleToPrint
+Invalid graphics object.
+
+Error in checkArgsForHandleToPrint
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print>LocalCreatePrintJob', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 108)" style="font-weight:bold">print>LocalCreatePrintJob</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',108,0)">line 108</a>)
+handles = checkArgsForHandleToPrint(0, varargin{:});
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 38)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',38,0)">line 38</a>)
+[pj, inputargs] = LocalCreatePrintJob(varargin{:});
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    print(size(x_range), size(X));
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using checkArgsForHandleToPrint
+Invalid graphics object.
+
+Error in checkArgsForHandleToPrint
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print>LocalCreatePrintJob', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 108)" style="font-weight:bold">print>LocalCreatePrintJob</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',108,0)">line 108</a>)
+handles = checkArgsForHandleToPrint(0, varargin{:});
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('print', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m', 38)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\printing\print.m',38,0)">line 38</a>)
+[pj, inputargs] = LocalCreatePrintJob(varargin{:});
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    print(size(x_range));
+    ^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Unrecognized function or variable 'dim'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 17)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',17,0)">line 17</a>)
+    print(dim(x_range));
+    ^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('quiver', 'C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m', 61)" style="font-weight:bold">quiver</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2024b\toolbox\matlab\graphics\graphics\specgraph\quiver.m',61,0)">line 61</a>)
+The size of X must match the size of U or the number of columns of U.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotGradientField', 'C:\Users\user\Documents\Aarav\plotGradientField.m', 25)" style="font-weight:bold">plotGradientField</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotGradientField.m',25,0)">line 25</a>)
+    quiver(X, Y, Gx, Gy, 0.5, 'r', 'LineWidth', 1.5, 'MaxHeadSize', 0.5);
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+plotGradientField(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotDirectionalDerivative(f5)
+plotGradientFlow(f5)
+plotGradientFlow(f5)
+plotGradientFlow(f5)
+criticalPoints2D(f5)
+
+Critical points:
+(0, 0) → Saddle point
+(-1, -1) → Local minimum
+(1, 1) → Local minimum
+
+ans =
+
+     0     0
+    -1    -1
+     1     1
+
+criticalPoints2D(f3)
+
+Critical points:
+(-0.5, -0.5) → Local minimum
+(0.5, 0.5) → Local maximum
+
+ans =
+
+   -0.5000   -0.5000
+    0.5000    0.5000
+
+f7 = x^4 - 4*x^3 + 6*x^2 -4*x + 1
+ 
+f7 =
+ 
+x^4 - 4*x^3 + 6*x^2 - 4*x + 1
+ 
+criticalPoints1D(f7)
+
+Critical points:
+x = 1 → Inflection point
+x = 1 → Inflection point
+x = 1 → Inflection point
+
+ans =
+
+     1
+     1
+     1
+
+f8 = x^4 + y^4 -4*x^2 -4*y^2 +x*y
+ 
+f8 =
+ 
+x^4 - 4*x^2 + x*y + y^4 - 4*y^2
+ 
+criticalPoints2D(f8)
+
+Critical points:
+(-1.40294, -0.178197) → Saddle point
+(-0.178197, -1.40294) → Saddle point
+(0, 0) → Local maximum
+(1.5, -1.5) → Local minimum
+(-1.5, 1.5) → Local minimum
+(-1.32288, -1.32288) → Local minimum
+(1.32288, 1.32288) → Local minimum
+(1.40294, 0.178197) → Saddle point
+(0.178197, 1.40294) → Saddle point
+
+ans =
+
+   -1.4029   -0.1782
+   -0.1782   -1.4029
+         0         0
+    1.5000   -1.5000
+   -1.5000    1.5000
+   -1.3229   -1.3229
+    1.3229    1.3229
+    1.4029    0.1782
+    0.1782    1.4029
+
+fsurf(f8)
+fcontour(f8)
+plotGradientFlow(f8)
+plotGradientFlow(f8)
+plotGradientFlow(f8)
+plotGradientFlow(f8)
+diary off
+% Guassian Elimination
+A = [3,-1,-1;3,6,2; 3,3,7]
+
+A =
+
+     3    -1    -1
+     3     6     2
+     3     3     7
+
+A = [3,-1,1;3,6,2; 3,3,7]
+
+A =
+
+     3    -1     1
+     3     6     2
+     3     3     7
+
+b = [1;0;4]
+
+b =
+
+     1
+     0
+     4
+
+[U, c] = scaledPartialPivoting(A,b)
+
+U =
+
+    3.0000   -1.0000    1.0000
+         0    7.0000    1.0000
+         0         0    5.4286
+
+
+c =
+
+    1.0000
+   -1.0000
+    3.5714
+
+x = backwardSubstitution(U,c)
+{Unrecognized function or variable 'c'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('backwardSubstitution', 'C:\Users\user\Documents\Aarav\backwardSubstitution.m', 2)" style="font-weight:bold">backwardSubstitution</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\backwardSubstitution.m',2,0)">line 2</a>)
+    n = length(c);
+               ^
+} 
+x = backwardSubstitution(U,c)
+{Unrecognized function or variable 'U'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('backwardSubstitution', 'C:\Users\user\Documents\Aarav\backwardSubstitution.m', 5)" style="font-weight:bold">backwardSubstitution</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\backwardSubstitution.m',5,0)">line 5</a>)
+    x(n) = b(n) / U(n,n);
+    ^^^^^^^^^^^^^^^^^^^^^
+} 
+x = backwardSubstitution(U,c)
+
+x =
+
+         0
+         0
+    0.6579
+
+A/b
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('mrdivide')" style="font-weight:bold"> / </a>
+Matrix dimensions must agree.
+} 
+A\b
+
+ans =
+
+    0.0351
+   -0.2368
+    0.6579
+
+A
+
+A =
+
+     3    -1     1
+     3     6     2
+     3     3     7
+
+b
+
+b =
+
+     1
+     0
+     4
+
+x = A \ b
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+U
+
+U =
+
+    3.0000   -1.0000    1.0000
+         0    7.0000    1.0000
+         0         0    5.4286
+
+c
+
+c =
+
+    1.0000
+   -1.0000
+    3.5714
+
+[U, c] = scaledPartialPivoting(A,b)
+
+U =
+
+    3.0000   -1.0000    1.0000
+         0    7.0000    1.0000
+         0         0    5.4286
+
+
+c =
+
+    1.0000
+   -1.0000
+    3.5714
+
+[U, c] = scaledPartialPivoting(A,b)
+
+U =
+
+    3.0000   -1.0000    1.0000
+         0    7.0000    1.0000
+         0         0    5.4286
+
+
+c =
+
+    1.0000
+   -1.0000
+    3.5714
+
+x = backwardSubstitution(U,c)
+
+x =
+
+         0
+         0
+    0.6579
+
+x = backwardSubstitution(U,c)
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+x = backwardSubstitution(U,c)
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+x = A \b
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+% for i = start:step:stop
+A = [2,-1,1;3,3,9;3,3,5]
+
+A =
+
+     2    -1     1
+     3     3     9
+     3     3     5
+
+b = [2,-1,4]
+
+b =
+
+     2    -1     4
+
+b = [2;-1;4]
+
+b =
+
+     2
+    -1
+     4
+
+[L,U] = lu(A)
+
+L =
+
+    0.6667    1.0000         0
+    1.0000         0         0
+    1.0000         0    1.0000
+
+
+U =
+
+     3     3     9
+     0    -3    -5
+     0     0    -4
+
+[L,U,P] = lu(A)
+
+L =
+
+    1.0000         0         0
+    0.6667    1.0000         0
+    1.0000         0    1.0000
+
+
+U =
+
+     3     3     9
+     0    -3    -5
+     0     0    -4
+
+
+P =
+
+     0     1     0
+     1     0     0
+     0     0     1
+
+[L,U] = lu(A)
+
+L =
+
+    0.6667    1.0000         0
+    1.0000         0         0
+    1.0000         0    1.0000
+
+
+U =
+
+     3     3     9
+     0    -3    -5
+     0     0    -4
+
+L*U
+
+ans =
+
+     2    -1     1
+     3     3     9
+     3     3     5
+
+[L, U] = lu_nopivot(A)
+
+L =
+
+    1.0000         0         0
+    1.5000    1.0000         0
+    1.5000    1.0000    1.0000
+
+
+U =
+
+    2.0000   -1.0000    1.0000
+         0    4.5000    7.5000
+         0         0   -4.0000
+
+L*U
+
+ans =
+
+     2    -1     1
+     3     3     9
+     3     3     5
+
+y = forwardSubstitution(L,b)
+
+y =
+
+     2
+    -4
+     5
+
+x = backwardSubstitution(U,y)
+
+x =
+
+    2.2222
+    1.1944
+   -1.2500
+
+A \b
+{Unrecognized function or variable 'A'.
+} 
+A \ b
+
+ans =
+
+    2.2222
+    1.1944
+   -1.2500
+
+[x, err, iter] = Gauss_Jacobi_Iterative_Elimination(A,b)
+{Unrecognized function or variable 'zeroes'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Gauss_Jacobi_Iterative_Elimination', 'C:\Users\user\Documents\Aarav\Gauss_Jacobi_Iterative_Elimination.m', 6)" style="font-weight:bold">Gauss_Jacobi_Iterative_Elimination</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Gauss_Jacobi_Iterative_Elimination.m',6,0)">line 6</a>)
+        x0 = zeroes(length(b),1);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+[x, err, iter] = Gauss_Jacobi_Iterative_Elimination(A,b)
+
+x =
+
+  -31.0156
+  -58.2665
+   36.4658
+
+
+err =
+
+    1.0000
+    3.4000
+    2.3800
+    5.6400
+    3.5680
+    7.9640
+    5.6128
+   12.2704
+    9.6837
+   20.9078
+
+
+iter =
+
+    10
+
+[x, err, iter] = Gauss_Jacobi_Iterative_Elimination(A,b)
+
+x =
+
+   1.0e+15 *
+
+   -1.9428
+   -3.3092
+    2.2161
+
+
+err =
+
+   1.0e+14 *
+
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0001
+    0.0001
+    0.0001
+    0.0002
+    0.0003
+    0.0004
+    0.0005
+    0.0007
+    0.0010
+    0.0015
+    0.0021
+    0.0030
+    0.0043
+    0.0060
+    0.0086
+    0.0122
+    0.0174
+    0.0247
+    0.0352
+    0.0500
+    0.0711
+    0.1011
+    0.1437
+    0.2043
+    0.2906
+    0.4132
+    0.5875
+    0.8354
+    1.1879
+    1.6892
+    2.4019
+    3.4154
+    4.8565
+    6.9058
+    9.8197
+
+
+iter =
+
+   100
+
+c
+
+c =
+
+    1.0000
+   -1.0000
+    3.5714
+
+x
+
+x =
+
+   1.0e+15 *
+
+   -1.9428
+   -3.3092
+    2.2161
+
+A \ b
+
+ans =
+
+    2.2222
+    1.1944
+   -1.2500
+
+[x, err, iter] = Gauss_Jacobi_Iterative_Elimination(A,b)
+[Warning: Maximum iterations reached without convergence] 
+[> In <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Gauss_Jacobi_Iterative_Elimination', 'C:\Users\user\Documents\Aarav\Gauss_Jacobi_Iterative_Elimination.m', 52)" style="font-weight:bold">Gauss_Jacobi_Iterative_Elimination</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Gauss_Jacobi_Iterative_Elimination.m',52,0)">line 52</a>)] 
+
+x =
+
+   1.0e+15 *
+
+   -1.9428
+   -3.3092
+    2.2161
+
+
+err =
+
+   1.0e+14 *
+
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0001
+    0.0001
+    0.0001
+    0.0002
+    0.0003
+    0.0004
+    0.0005
+    0.0007
+    0.0010
+    0.0015
+    0.0021
+    0.0030
+    0.0043
+    0.0060
+    0.0086
+    0.0122
+    0.0174
+    0.0247
+    0.0352
+    0.0500
+    0.0711
+    0.1011
+    0.1437
+    0.2043
+    0.2906
+    0.4132
+    0.5875
+    0.8354
+    1.1879
+    1.6892
+    2.4019
+    3.4154
+    4.8565
+    6.9058
+    9.8197
+
+
+iter =
+
+   100
+
+x
+
+x =
+
+   1.0e+15 *
+
+   -1.9428
+   -3.3092
+    2.2161
+
+A \ b
+
+ans =
+
+    2.2222
+    1.1944
+   -1.2500
+
+err(-1)
+{Array indices must be positive integers or logical values.
+} 
+err(100)
+
+ans =
+
+   9.8197e+14
+
+A
+
+A =
+
+     2    -1     1
+     3     3     9
+     3     3     5
+
+b
+
+b =
+
+     2
+    -1
+     4
+
+A = [3 -1 1; 3 6 2; 3 3 7]
+
+A =
+
+     3    -1     1
+     3     6     2
+     3     3     7
+
+b = [1;0;4]
+
+b =
+
+     1
+     0
+     4
+
+[x, err, iter] = Gauss_Jacobi_Iterative_Elimination(A,b)
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+
+err =
+
+    0.5714
+    0.3571
+    0.2347
+    0.0425
+    0.0313
+    0.0092
+    0.0045
+    0.0018
+    0.0008
+    0.0003
+    0.0001
+    0.0001
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+    0.0000
+
+
+iter =
+
+    17
+
+A \ b
+
+ans =
+
+    0.0351
+   -0.2368
+    0.6579
+
+x
+
+x =
+
+    0.0351
+   -0.2368
+    0.6579
+
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+plotJacobiErrors(A ,b)
+    0.0100
+
+   1.0000e-04
+
+   1.0000e-06
+
+   1.0000e-08
+
+plotJacobiErrors(A ,b)
+   1.0000e-05
+
+   1.0000e-06
+
+   1.0000e-07
+
+   1.0000e-08
+
+plotJacobiErrors(A ,b)
+   1.0000e-05
+
+   1.0000e-06
+
+   1.0000e-07
+
+   1.0000e-08
+
+   1.0000e-10
+
+{Index exceeds the number of array elements. Index must not exceed 4.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('plotJacobiErrors', 'C:\Users\user\Documents\Aarav\plotJacobiErrors.m', 25)" style="font-weight:bold">plotJacobiErrors</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\plotJacobiErrors.m',25,0)">line 25</a>)
+        semilogy(1:length(err), err, ['-' colors(k)], 'LineWidth', 1.5);
+                                          ^^^^^^^^^
+} 
+plotJacobiErrors(A ,b)
+   1.0000e-05
+
+   1.0000e-06
+
+   1.0000e-07
+
+   1.0000e-08
+
+   1.0000e-10
+
+plotJacobiErrors(A ,b)
+Running for epsilon = 1e-05
+Running for epsilon = 1e-06
+Running for epsilon = 1e-07
+Running for epsilon = 1e-08
+Running for epsilon = 1e-10
+Error matrix (rows = iterations, columns = eps values):
+    0.5714    0.5714    0.5714    0.5714    0.5714
+    0.3571    0.3571    0.3571    0.3571    0.3571
+    0.2347    0.2347    0.2347    0.2347    0.2347
+    0.0425    0.0425    0.0425    0.0425    0.0425
+    0.0313    0.0313    0.0313    0.0313    0.0313
+    0.0092    0.0092    0.0092    0.0092    0.0092
+    0.0045    0.0045    0.0045    0.0045    0.0045
+    0.0018    0.0018    0.0018    0.0018    0.0018
+    0.0008    0.0008    0.0008    0.0008    0.0008
+    0.0003    0.0003    0.0003    0.0003    0.0003
+    0.0001    0.0001    0.0001    0.0001    0.0001
+    0.0001    0.0001    0.0001    0.0001    0.0001
+    0.0000    0.0000    0.0000    0.0000    0.0000
+    0.0000    0.0000    0.0000    0.0000    0.0000
+       NaN    0.0000    0.0000    0.0000    0.0000
+       NaN    0.0000    0.0000    0.0000    0.0000
+       NaN    0.0000    0.0000    0.0000    0.0000
+       NaN       NaN    0.0000    0.0000    0.0000
+       NaN       NaN    0.0000    0.0000    0.0000
+       NaN       NaN    0.0000    0.0000    0.0000
+       NaN       NaN       NaN    0.0000    0.0000
+       NaN       NaN       NaN    0.0000    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN    0.0000
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+       NaN       NaN       NaN       NaN       NaN
+
+A
+
+A =
+
+     2     1    -1
+    -3    -1     2
+    -2     1     2
+
+b
+{Unrecognized function or variable 'b'.
+} 
+A = [4 1 1; 1 5 2; 2 1 6]
+
+A =
+
+     4     1     1
+     1     5     2
+     2     1     6
+
+b = [7; -8; 6]
+
+b =
+
+     7
+    -8
+     6
+
+[x, err, iter] = Gauss_Seidel_Iterative_Elimination(A, b, [0 ; 0; 0])
+
+x =
+
+    2.1584
+   -2.2970
+    0.6634
+
+
+err =
+
+    1.9500
+    0.3571
+    0.0996
+    0.0112
+    0.0023
+    0.0006
+    0.0001
+    0.0000
+    0.0000
+    0.0000
+
+
+iter =
+
+    10
+
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(f, 0, 2, 1e-5)
+{Not enough input arguments.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('f', 'C:\Users\user\Documents\Aarav\f.m', 2)" style="font-weight:bold">f</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\f.m',2,0)">line 2</a>)
+    y = x.^3 - 3*x + 1; % Calculates f(x)
+        ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(f, 0, 2, 1e-5)
+{Not enough input arguments.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('f', 'C:\Users\user\Documents\Aarav\f.m', 2)" style="font-weight:bold">f</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\f.m',2,0)">line 2</a>)
+    y = x.^3 - 3.*x + 1; % Calculates f(x)
+        ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(f, 0, 2, 1e-5)
+{Not enough input arguments.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('f', 'C:\Users\user\Documents\Aarav\f.m', 2)" style="font-weight:bold">f</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\f.m',2,0)">line 2</a>)
+    y = x.^3 - 3.*x + 1; % Calculates f(x)
+        ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Unrecognized function or variable 'n'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 12)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',12,0)">line 12</a>)
+    x1 = a + (F(n-2)/F(n))*(b-a);
+                ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Unrecognized function or variable 'N'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 18)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',18,0)">line 18</a>)
+    for iter = 1:N-2
+                 ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Unrecognized function or variable 'f2'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 22)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',22,0)">line 22</a>)
+            fx1 = f2;
+                  ^^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Unrecognized function or variable 'k'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 23)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',23,0)">line 23</a>)
+            x2 = a + (F(n-k -1)/F(n))*(b-a);
+                          ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Unrecognized function or variable 'k'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 30)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',30,0)">line 30</a>)
+            x1 = a + (F(n- iter -2)/F(n-k))*(b-a);
+                                        ^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Array indices must be positive integers or logical values.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 30)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',30,0)">line 30</a>)
+            x1 = a + (F(n- iter -2)/F(n-iter))*(b-a);
+                      ^^^^^^^^^^^^^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+
+Fibonacci Search Results:
+---------------------------
+Number of iterations: 26
+Final interval: [0.0000000000 , 1.2360679775]
+Approximate minimizer: 0.6180339888
+Function value at minimizer: -0.6180339888
+
+a =
+
+     0
+
+
+b =
+
+    1.2361
+
+
+iter =
+
+    26
+
+
+app_min =
+
+    0.6180
+
+
+min_val =
+
+   -0.6180
+
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+
+Fibonacci Search Results:
+---------------------------
+Number of iterations: 26
+Final interval: [0.0000000000 , 1.2360679775]
+Approximate minimizer: 0.6180339888
+Function value at minimizer: -0.6180339888
+
+a =
+
+     0
+
+
+b =
+
+    1.2361
+
+
+iter =
+
+    26
+
+
+app_min =
+
+    0.6180
+
+
+min_val =
+
+   -0.6180
+
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Array indices must be positive integers or logical values.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 30)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',30,0)">line 30</a>)
+            x1 = a + (F(n- iter -2)/F(n-iter))*(b-a);
+                      ^^^^^^^^^^^^^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Array indices must be positive integers or logical values.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 29)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',29,0)">line 29</a>)
+            x1 = a + (F(n- iter -2)/F(n-iter))*(b-a);
+                      ^^^^^^^^^^^^^
+} 
+clear
+clc
+load('matlab.mat')
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+{Array indices must be positive integers or logical values.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 29)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',29,0)">line 29</a>)
+            x1 = a + (F(n-k-2)/F(n-k))*(b-a);
+                      ^^^^^^^^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+
+Fibonacci Search Results:
+---------------------------
+{Unrecognized function or variable 'iter'.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Fibonnaci_Search_method', 'C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m', 40)" style="font-weight:bold">Fibonnaci_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Fibonnaci_Search_method.m',40,0)">line 40</a>)
+    fprintf('Number of iterations: %d\n', iter);
+                                          ^^^^
+} 
+[a, b, iter, app_min, min_val] = Fibonnaci_Search_method(@f, 0, 2, 1e-5)
+
+Fibonacci Search Results:
+---------------------------
+Number of iterations: 25
+Final interval: [0.9999905604 , 1.0000031465]
+Approximate minimizer: 0.9999968535
+Function value at minimizer: -1.0000000000
+
+a =
+
+    1.0000
+
+
+b =
+
+    1.0000
+
+
+iter =
+
+    25
+
+
+app_min =
+
+    1.0000
+
+
+min_val =
+
+   -1.0000
+
+[a, b, iter, app_min, min_val] = Bisection_Search_method(@f, 0, 2, 1e-5, 5, delta)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('mrdivide')" style="font-weight:bold"> / </a>
+Arguments must be numeric, char, or logical.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Bisection_Search_method', 'C:\Users\user\Documents\Aarav\Bisection_Search_method.m', 13)" style="font-weight:bold">Bisection_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Bisection_Search_method.m',13,0)">line 13</a>)
+        x1 = a + (b-a)/2 - delta/2;
+                                ^
+} 
+[a, b, iter, app_min, min_val] = Bisection_Search_method(@f, 0, 2, 1e-5, 5)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('exp')" style="font-weight:bold">exp</a>
+Not enough input arguments.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('f', 'C:\Users\user\Documents\Aarav\f.m', 2)" style="font-weight:bold">f</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\f.m',2,0)">line 2</a>)
+    y = exp.^x  - 4.*x; % Calculates f(x)
+        ^^^
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Bisection_Search_method', 'C:\Users\user\Documents\Aarav\Bisection_Search_method.m', 16)" style="font-weight:bold">Bisection_Search_method</a> (<a href="matlab: opentoline('C:\Users\user\Documents\Aarav\Bisection_Search_method.m',16,0)">line 16</a>)
+        fx1 = f(x1);
+              ^^^^^
+} 
+[a, b, iter, app_min, min_val] = Bisection_Search_method(@f, 0, 2, 1e-5, 5)
+
+Bisection Search Results:
+---------------------------
+Number of iterations: 5
+Final interval: [1.3736250000 , 1.4380625000]
+Approximate minimizer: 1.4058437500
+Function value at minimizer: -1.5444080819
+
+a =
+
+    1.3736
+
+
+b =
+
+    1.4381
+
+
+iter =
+
+     5
+
+
+app_min =
+
+    1.4058
+
+
+min_val =
+
+   -1.5444
+
+[a, b, iter, app_min, min_val] = Bisection_Search_method(@f, 0, 2, 1e-5, 5)
+
+Bisection Search Results:
+---------------------------
+Number of iterations: 5
+Number of iterations required for max precision: 1.760964e+01
+Final interval: [1.3736250000 , 1.4380625000]
+Approximate minimizer: 1.4058437500
+Function value at minimizer: -1.5444080819
+
+a =
+
+    1.3736
+
+
+b =
+
+    1.4381
+
+
+iter =
+
+     5
+
+
+app_min =
+
+    1.4058
+
+
+min_val =
+
+   -1.5444
+
+[a, b, iter, app_min, min_val] = Bisection_Search_method(@f, 0, 2, 1e-5, 5)
+
+Bisection Search Results:
+---------------------------
+Number of iterations: 5
+Number of iterations required for max precision: 18
+Final interval: [1.3736250000 , 1.4380625000]
+Approximate minimizer: 1.4058437500
+Function value at minimizer: -1.5444080819
+
+a =
+
+    1.3736
+
+
+b =
+
+    1.4381
+
+
+iter =
+
+     5
+
+
+app_min =
+
+    1.4058
+
+
+min_val =
+
+   -1.5444
+
+diary off

@@ -1,0 +1,45 @@
+function [a, b, iter, app_min, min_val] = Fibonnaci_Search_method(f, a, b, eps)
+    if nargin < 4 || isempty(eps)
+        eps = 1e-6;
+    end
+
+    F = [1 1];
+    while F(end) < (b-a)/eps
+        F(end+1) = F(end) + F(end-1);
+    end
+
+    N = length(F);
+    x1 = a + (F(n-2)/F(n))*(b-a);
+    x2 = b - (F(n-2)/F(n))*(b-a);
+
+    fx1 = f(x1);
+    fx2 = f(x2);
+
+    for iter = 1:N-2
+        if fx1 > fx2
+            a = x1;
+            x1 = x2;
+            f1 = f2;
+            x2 = a + (F(n-k -1)/F(n))*(b-a);
+            f2 = f(x2);
+        end
+        if fx1 < fx2
+            b = x2;
+            x2 = x1;
+            fx2 = fx1;
+            x1 = (F(n-2)/F(n))*(b-a);
+            fx1 = f(x1);
+        end
+    end
+
+    app_min = (a+b)/2;
+    min_val = f(app_min);
+
+    fprintf('\nFibonacci Search Results:\n');
+    fprintf('---------------------------\n');
+    fprintf('Number of iterations: %d\n', iterations);
+    fprintf('Final interval: [%.10f , %.10f]\n', a_final, b_final);
+    fprintf('Approximate minimizer: %.10f\n', xmin);
+    fprintf('Function value at minimizer: %.10f\n', fmin);
+
+end

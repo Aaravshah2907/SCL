@@ -1,0 +1,33 @@
+function plotJacobiErrors(A, b, x0, eps_values, maxIter)
+    if nargin < 3 || isempty(x0)
+        x0 = zeros(length(b),1);
+    end
+    if nargin < 4 || isempty(eps_values)
+        eps_values = [1e-2 1e-4 1e-6 1e-8];
+    end
+    if nargin < 5 || isempty(maxIter)
+        maxIter = 100;
+    end
+
+    colors = ['r','g','b','k'];  % optional
+    
+    figure; 
+    hold on;  % important to plot all curves
+    grid on;
+    
+    for k = 1:length(eps_values)
+        fpri
+        eps = eps_values(k);
+        
+        % Use the actual function inputs for x0 and maxIter
+        [~, err, ~] = Gauss_Jacobi_Iterative_Elimination(A, b, x0, eps, maxIter*k);
+        
+        semilogy(1:length(err), err, ['-' colors(k)], 'LineWidth', 1.5);
+    end
+    
+    xlabel('Iteration');
+    ylabel('Error (||x^{k+1}-x^k||_\infty)');
+    legend(arrayfun(@(e) ['\epsilon = ' num2str(e)], eps_values,'UniformOutput',false));
+    title('Gauss-Jacobi Convergence for Various \epsilon');
+    hold off;
+end
