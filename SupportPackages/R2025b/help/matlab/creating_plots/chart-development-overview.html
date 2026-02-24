@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Chart Development Overview</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../graphics-objects.html",
+          "name": "Graphics Objects"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../developing-chart-classes.html",
+          "name": "Developing Chart Classes"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-chart-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn the basic steps for authoring a class of chart objects."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics-objects.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics Objects</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-chart-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_3030590a-11cb-455b-92cb-5856db5c8caf"><span itemprop="title">Developing Chart Classes</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Chart Development Overview</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_87b1144a-0187-49ab-a47e-d486ac062e11" class="nav-link intrnllnk">Structure of a Chart Class</a></li><li class="nav-item"><a href="#mw_5d7dd29e-ee22-40b2-b46e-bc209cd5e294" class="nav-link intrnllnk">Implicit Constructor Method</a></li><li class="nav-item"><a href="#mw_dd047308-3650-47f8-bd72-f939ba8b461b" class="nav-link intrnllnk">Public and Private Property Blocks</a></li><li class="nav-item"><a href="#mw_27d057a6-0c0a-4499-9e0f-413d66df7695" class="nav-link intrnllnk">Setup Method</a></li><li class="nav-item"><a href="#mw_ab41219a-1850-480b-bcc0-24749208228b" class="nav-link intrnllnk">Update Method</a></li><li class="nav-item"><a href="#mw_8cf83106-e1cc-4ac5-aaa4-6fce3aa90eff" class="nav-link intrnllnk">Example: Confidence Bounds Chart</a></li><li class="nav-item"><a href="#mw_4e83cbdb-0709-41f6-b1e4-de4a6d3d3d17" class="nav-link intrnllnk">Support Common Graphics Features</a></li><li class="nav-item"><a href="#d126e31586" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_0d19701b-cc27-4237-888b-054912401d51">Chart Development Overview</h2><p>Charting functions such as <code class="function">plot</code>, <code class="function">scatter</code>,
+            and <code class="function">bar</code> enable you to quickly visualize your data with basic
+            control over aspects such as color and line style. To create custom charts, you can
+            combine multiple graphics objects, set properties on those objects, or call additional
+            functions. A common way to store your customization code and share it with others is to
+            write a script or a function. However, other people might have to be to be familiar with
+            your code if they want to use it and make customizations of their own.</p><p>As an alternative, you can create a class implementation for your charts by defining a
+            subclass of the <code class="literal">ChartContainer</code> base class. Creating a class enables
+            you to:</p>
+<div class="itemizedlist"><ul><li><p>Provide a convenient interface for your users &#8212; When users want to
+                        customize an aspect of your chart, they can set a property rather than
+                        having to modify and rerun your graphics code. Users can modify properties
+                        at the command line or inspect them in the Property Inspector.</p></li><li><p>Encapsulate algorithms and primitive graphics objects &#8212; You implement
+                        methods that perform calculations and manage the underlying graphics
+                        objects. Organizing your code in this way allows you to hide implementation
+                        details from your users.</p></li></ul></div><p>
+</p><p>When you define a chart that derives from this base class, instances of your chart are
+            members of the graphics object hierarchy. As a result, your charts are compatible with
+            many aspects of the graphics system. For example, the <a href="../ref/gca.html"><code class="function">gca</code></a> and <a href="../ref/findobj.html"><code class="function">findobj</code></a> functions can return instances of
+            your chart.</p><section><h3 class="title" id="mw_87b1144a-0187-49ab-a47e-d486ac062e11">Structure of a Chart Class</h3><p>The first line of a chart class specifies the <a href="../ref/matlab.graphics.chartcontainer.chartcontainer-class.html"><code class="class">matlab.graphics.chartcontainer.ChartContainer</code></a> class as the superclass.
+                For example, the first line of a class called <code class="literal">ConfidenceChart</code>
+                looks like
+                this:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ConfidenceChart &lt; matlab.graphics.chartcontainer.ChartContainer</pre></div></div></div></p><p>In addition to specifying the superclass, include the following components in your
+                class definition. </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Component</th><th>Description</th></tr></thead><tbody><tr><td><p><a href="chart-development-overview.html#mw_dd047308-3650-47f8-bd72-f939ba8b461b" class="intrnllnk">Public property block</a><br/>
+
+                                        (recommended)</p></td><td><p>This block defines all the properties that you want
+                                        your users to have access to. Together, these properties
+                                        make up the user interface of your chart.</p></td></tr><tr><td><p><a href="chart-development-overview.html#mw_dd047308-3650-47f8-bd72-f939ba8b461b" class="intrnllnk">Private property block</a><br/>
+
+                                        (recommended)</p></td><td><p>This block stores the underlying graphics objects and
+                                        other implementation details that you do not want your users
+                                        to access.</p><p>In this block, set these attribute
+                                        values:</p><p>
+                                        </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Access = private</code></p></li><li><p><code class="literal">Transient</code></p></li><li><p><code class="literal">NonCopyable</code></p></li></ul></div><p>
+
+                                    </p></td></tr><tr><td><p><a href="chart-development-overview.html#mw_27d057a6-0c0a-4499-9e0f-413d66df7695" class="intrnllnk"><code class="literal">setup</code>
+                                        method</a><br/>
+ (required)</p></td><td><p>This method sets the initial state of the chart. It
+                                        executes once when MATLAB<sup>&#x00AE;</sup> constructs the object.</p><p>Define this
+                                        method in a protected block.</p></td></tr><tr><td><p><a href="chart-development-overview.html#mw_ab41219a-1850-480b-bcc0-24749208228b" class="intrnllnk"><code class="literal">update</code>
+                                        method</a><br/>
+ (required)</p></td><td><p>This method updates the underlying objects in your
+                                        chart. It executes during the next
+                                            <code class="function">drawnow</code> execution, after the user
+                                        changes one or more property values.</p><p>Define this
+                                        method in the same protected block as the
+                                            <code class="literal">setup</code> method.</p></td></tr></tbody></table></div><p>
+</p></section><section><h3 class="title" id="mw_5d7dd29e-ee22-40b2-b46e-bc209cd5e294">Implicit Constructor Method</h3><p>You do not have to write a constructor method for your class because a constructor
+                is inherited from the <code class="literal">ChartContainer</code> base class. The constructor
+                accepts optional input arguments: a parent container and any number of name-value
+                pair arguments for setting properties on the chart. For example, if you define a
+                class called <code class="literal">ConfidenceChart</code> that has the public properties
+                    <code class="literal">XData</code> and <code class="literal">YData</code>, you can create an
+                instance of your class using either of these
+                commands:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = ConfidenceChart(gcf,<span style="color:#A020F0">'XData'</span>,[1 2 3],<span style="color:#A020F0">'YData'</span>,[4 5 6])
+c = ConfidenceChart(<span style="color:#A020F0">'XData'</span>,[1 2 3],<span style="color:#A020F0">'YData'</span>,[4 5 6])</pre></div></div></div></p><p>If you want to provide an interface that accepts input arguments in the same way
+                as a typical function does, you can define a custom constructor method. See <a href="writing-constructors-for-chart-classes.html" class="a">Write Constructors for Chart Classes</a> for more
+                information.</p></section><section><h3 class="title" id="mw_dd047308-3650-47f8-bd72-f939ba8b461b">Public and Private Property Blocks</h3><p>Divide your class properties between at least two blocks: </p>
+<div class="itemizedlist"><ul><li><p>A public block for storing the components of the user-facing
+                            interface</p></li><li><p>A private block for storing the implementation details that you want
+                            to hide</p></li></ul></div><p>
+</p><p>The properties that go in the public block store the input values provided by the
+                user. For example, a chart that displays a line might store the
+                <em class="varname">x</em>- and <em class="varname">y</em>-coordinate vectors in two public
+                properties. Since the property name-value pair arguments are optional inputs to the
+                implicit constructor method, the recommended approach is to initialize the public
+                properties to default values. If you define public properties that store coordinate
+                values, initializing them to <code class="literal">NaN</code> values or empty arrays
+                constructs an empty chart if the user calls the constructor without any
+                inputs.</p><p>The properties that go in the private block store the underlying graphics objects
+                that make up your chart, in addition to any calculated values you want to store.
+                Eventually, your class will use the data in the public properties to configure the
+                underlying objects. By including the <code class="literal">Transient</code> and
+                    <code class="literal">NonCopyable</code> attributes for the private block, you avoid
+                storing redundant information if the user copies or saves an instance of the
+                chart.</p><p>For example, here are the property blocks for a chart that displays a
+                    <code class="literal">Line</code> object and a <code class="literal">Patch</code> object. The public
+                property block stores values that the user can control: the <em class="varname">x</em>-
+                and <em class="varname">y</em>-coordinates of the line, a confidence margin value, a
+                marker symbol, and a color value. The private property block stores the
+                    <code class="literal">Line</code> and <code class="literal">Patch</code>
+                objects.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">properties</span>
+    XData = NaN
+    YData = NaN
+    ConfidenceMargin = 0.15
+    MarkerSymbol = <span style="color:#A020F0">'o'</span>
+    Color = [1 0 0]    
+<span style="color:#0000FF">end</span>
+    
+<span style="color:#0000FF">properties</span>(Access = private,Transient,NonCopyable)
+    LineObject
+    PatchObject
+<span style="color:#0000FF">end</span>  </pre></div></div></div></p></section><section><h3 class="title" id="mw_27d057a6-0c0a-4499-9e0f-413d66df7695">Setup Method</h3><p>The <a href="../ref/matlab.graphics.chartcontainer.chartcontainer.setup.html"><code class="method">setup</code></a>
+                method executes once when MATLAB constructs the chart object. Any property values passed as name-value
+                pair arguments to the constructor method are assigned after this method
+                executes.</p><p>Use the <code class="method">setup</code> method to:</p>
+<div class="itemizedlist"><ul><li><p>Call plotting functions to create the primitive graphics objects you
+                            want to use in the chart.</p></li><li><p>Store the primitive objects returned by the plotting functions as
+                            private properties on the chart object.</p></li><li><p>Configure the primitive graphics objects.</p></li><li><p>Configure the axes.</p></li></ul></div><p>
+</p><p>Many graphics functions have an optional input argument for specifying the target
+                axes object. These functions include plotting functions (such as
+                    <code class="function">plot</code>, <code class="function">scatter</code>, and
+                    <code class="function">bar</code>) and functions that modify the axes (such as
+                    <code class="function">hold</code>, <code class="function">grid</code>, and
+                    <code class="function">title</code>). When you call these types of functions from within
+                a class method, you must specify the target axes object. You can access the axes
+                object by calling the <a href="../ref/matlab.graphics.chartcontainer.chartcontainer.getaxes.html"><code class="method">getAxes</code></a>
+                method. This method returns the axes object, or it creates a Cartesian axes object
+                if the chart does not already contain an axes object.</p><div class="alert alert-warning d-inline-block"><span class="alert_icon icon-alert-warning"></span><p class="alert_heading"><strong>Caution</strong></p><p>Calling plotting functions, or functions that modify the axes, without
+                    specifying the target axes might produce unexpected results.</p></div><p>When you call plotting functions in the <code class="literal">setup</code> method, specify
+                temporary values (such as <code class="literal">NaN</code>) for the coordinate data. Also,
+                specify temporary values for other arguments that correspond to public properties of
+                your class. Doing so avoids setting the same property values in both the
+                    <code class="method">setup</code> and the <code class="method">update</code> methods.</p><p>If you want to display multiple primitive objects in the axes, call the
+                    <code class="literal">hold</code> function between plotting commands. Set the hold state
+                back to <code class="literal">'off'</code> after your last plotting command. </p><p>For example, consider a chart that displays a line and a patch. It has these properties:</p>
+<div class="itemizedlist"><ul><li><p>Two public properties called <code class="literal">XData</code> and
+                                <code class="literal">YData</code> for storing the <em class="varname">x</em>- and
+                                <em class="varname">y</em>-coordinates of the line</p></li><li><p>Two private properties called <code class="literal">LineObject</code> and
+                                <code class="literal">PatchObject</code></p></li></ul></div><p>
+The <code class="method">setup</code> method gets the axes object by calling the
+                    <code class="method">getAxes</code> method. Then it calls the <code class="function">patch</code>
+                function and stores the output in the <code class="literal">PatchObject</code> property. The
+                next line of code set the hold state of the axes to <code class="literal">'on'</code> before
+                calling the <code class="function">plot</code> function to create the
+                    <code class="literal">LineObject</code> property. The last line of code sets the axes hold
+                state back to <code class="literal">'off'</code>.
+                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> setup(obj)
+    <span style="color:#228B22">% Get the axes</span>
+    ax = getAxes(obj);
+            
+    <span style="color:#228B22">% Create Patch and Line objects</span>
+    obj.PatchObject = patch(ax,NaN,NaN,<span style="color:#A020F0">'r'</span>,<span style="color:#A020F0">'FaceAlpha'</span>,0.2,<span style="color:#0000FF">...</span>
+        <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'none'</span>);
+    hold(ax,<span style="color:#A020F0">'on'</span>)
+    obj.LineObject = plot(ax,NaN,NaN);
+            
+    <span style="color:#228B22">% Turn hold state off</span>
+    hold(ax,<span style="color:#A020F0">'off'</span>)
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h3 class="title" id="mw_ab41219a-1850-480b-bcc0-24749208228b">Update Method</h3><p>When the user changes one or more property values on the chart object, MATLAB marks the chart object for updating. The <a href="../ref/matlab.graphics.chartcontainer.chartcontainer.update.html"><code class="method">update</code></a>
+                method runs for the first time after the <code class="literal">setup</code> method runs. Then
+                it runs the next time <a href="../ref/drawnow.html"><code class="function">drawnow</code></a> executes. The
+                    <code class="function">drawnow</code> function automatically executes periodically, based
+                on the state of the graphics environment in the user's MATLAB session. Thus, there might be a delay between changing property values
+                and seeing the results of those changes.</p><p>Use the <code class="literal">update</code> method to reconfigure the underlying graphics
+                objects in your chart based on the new values of the properties. Typically, this
+                method does not distinguish which of the properties changed. It reconfigures all
+                aspects of the underlying graphics objects that depend on the properties.</p><p>For example, consider a chart that has these properties:</p>
+<div class="itemizedlist"><ul><li><p>Two public properties called <code class="literal">XData</code> and
+                                <code class="literal">Color</code></p></li><li><p>Two private properties called <code class="literal">LineObject</code> and
+                                <code class="literal">PatchObject</code></p></li></ul></div><p>
+The <code class="literal">update</code> method updates the
+                    <code class="literal">XData</code> and <code class="literal">Color</code> properties of the
+                    <code class="literal">Line</code> and <code class="literal">Patch</code>
+                objects.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> update(obj)
+            
+    <span style="color:#228B22">% Update XData of line object</span>
+    obj.LineObject.XData = obj.XData;
+            
+    <span style="color:#228B22">% Update patch XData </span>
+    x = obj.XData;
+    obj.PatchObject.XData = [x x(end:-1:1)];
+            
+    <span style="color:#228B22">% Update line object colors</span>
+    obj.LineObject.Color = obj.Color;
+    obj.PatchObject.FaceColor = obj.Color;
+           
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h3 class="title" id="mw_8cf83106-e1cc-4ac5-aaa4-6fce3aa90eff">Example: Confidence Bounds Chart</h3><p>This example shows how to create a chart for plotting a line with confidence
+                bounds. Create a class definition file named <code class="literal">ConfidenceChart.m</code> in
+                a folder that is on the MATLAB path. Define the class by following these steps.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Step</th><th>Implementation</th></tr></thead><tbody><tr><td><p>Derive from the <code class="literal">ChartContainer</code> base
+                                    class.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ConfidenceChart &lt; matlab.graphics.chartcontainer.ChartContainer</pre></div></div></div>
+                                </p></td></tr><tr><td><p>Define public properties.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">properties</span>
+        XData = NaN
+        YData = NaN
+        ConfidenceMargin = 0.15
+        MarkerSymbol = <span style="color:#A020F0">'o'</span>
+        Color = [1 0 0]
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Define private properties.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">properties</span>(Access = private,Transient,NonCopyable)
+        LineObject
+        PatchObject
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Implement the <code class="literal">setup</code> method. In this
+                                    case, call the <code class="function">plot</code> and
+                                        <code class="function">patch</code> functions to create the
+                                        <code class="literal">Patch</code> and <code class="literal">Line</code> objects
+                                    respectively. Store those objects in the corresponding private
+                                    properties.</p><p>Turn the hold state of the axes back to
+                                        <code class="literal">'off'</code> before exiting the
+                                method.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">methods</span>(Access = protected)
+        <span style="color:#0000FF">function</span> setup(obj)
+            <span style="color:#228B22">% get the axes</span>
+            ax = getAxes(obj);
+
+            <span style="color:#228B22">% Create Patch and Line objects</span>
+            obj.PatchObject = patch(ax,NaN,NaN,<span style="color:#A020F0">'r'</span>,<span style="color:#A020F0">'FaceAlpha'</span>,0.2,<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'none'</span>);
+            hold(ax,<span style="color:#A020F0">'on'</span>)
+            obj.LineObject = plot(ax,NaN,NaN);
+
+            <span style="color:#228B22">% Turn hold state off</span>
+            hold(ax,<span style="color:#A020F0">'off'</span>)
+        <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Implement the <code class="literal">update</code> method. In this
+                                    case, update the <em class="varname">x</em>- and
+                                    <em class="varname">y</em>-coordinates, color, and marker symbol of
+                                    the underlying objects.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+        <span style="color:#0000FF">function</span> update(obj)
+            <span style="color:#228B22">% Update XData and YData of Line</span>
+            obj.LineObject.XData = obj.XData;
+            obj.LineObject.YData = obj.YData;
+
+            <span style="color:#228B22">% Update patch XData and YData</span>
+            x = obj.XData;
+            obj.PatchObject.XData = [x x(end:-1:1)];
+            y = obj.YData;
+            c = obj.ConfidenceMargin;
+            obj.PatchObject.YData = [y+c y(end:-1:1)-c];
+
+            <span style="color:#228B22">% Update colors</span>
+            obj.LineObject.Color = obj.Color;
+            obj.PatchObject.FaceColor = obj.Color;
+
+            <span style="color:#228B22">% Update markers</span>
+            obj.LineObject.Marker = obj.MarkerSymbol;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr></tbody></table></div><p>Next, create an instance of the chart by calling the implicit constructor method
+                with a few of the public properties:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0:0.2:10;
+y = besselj(0,x);
+c = ConfidenceChart(<span style="color:#A020F0">'XData'</span>,x,<span style="color:#A020F0">'YData'</span>,y,<span style="color:#A020F0">'ConfidenceMargin'</span>,0.15);</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e31474" class="mediaobject"><p><img src="chart_authoring_confidence.png" height="308" width="387"></p></div></div><p></p><p>Change the color.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c.Color = [0 0 1];</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e31482" class="mediaobject"><p><img src="chart_authoring_confidence_blue.png" height="311" width="391"></p></div></div><p></p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>In addition to the examples provided in the documentation, you can find a
+                    variety of community authored examples on <a href="https://www.mathworks.com/matlabcentral/fileexchange/?term=tag:%22chartcontainer%22&amp;s_tid=OIT_25512">File Exchange</a> at <span class="entity">MATLAB
+            Central&#x2122;</span>.</p></div></section><section><h3 class="title" id="mw_4e83cbdb-0709-41f6-b1e4-de4a6d3d3d17">Support Common Graphics Features</h3><p>By default, instances of your charts support much of the functionality that is
+                common to all MATLAB charts. For example, the <code class="function">gca</code> and
+                    <code class="function">findobj</code> functions can return instances of your chart. You
+                can also pass instances of your chart to the <code class="function">set</code> and
+                    <code class="function">get</code> functions, and you can configure the properties of the
+                chart in the Property Inspector.</p><p>The features described in this table are supported only if you enable them for
+                your chart.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="55%"><col class="tcol3" width="27%"></colgroup><thead><tr><th>Feature</th><th>Description</th><th>More Information</th></tr></thead><tbody><tr><td>Legend</td><td><p>Enable the <code class="function">legend</code> function and the
+                                        legend tool in the figure toolbar.</p></td><td><a href="../ref/matlab.graphics.chartcontainer.mixin.legend-class.html"><code class="class">matlab.graphics.chartcontainer.mixin.Legend</code></a></td></tr><tr><td>Colorbar</td><td><p>Enable the <code class="function">colorbar</code> function and
+                                        the colorbar tool in the figure toolbar.</p></td><td><a href="../ref/matlab.graphics.chartcontainer.mixin.colorbar-class.html"><code class="class">matlab.graphics.chartcontainer.mixin.Colorbar</code></a></td></tr><tr><td>Different types of axes, or multiple axes</td><td><p>Display one or more Cartesian, polar, or geographic
+                                        plots.</p></td><td><a href="develop-charts-with-polar-axes-geographic-axes-or-multiple-axes.html" class="a">Develop Charts With Polar Axes, Geographic Axes, or Multiple Axes</a></td></tr><tr><td> functions</td><td><p>Enable functions that set properties on the axes, such
+                                        as <code class="function">title</code>, <code class="function">xlim</code>,
+                                        and <code class="function">ylim</code> functions.</p></td><td><a href="enabling-convenience-functions-for-setting-properties-on-chart-objects.html" class="a">Enabling Convenience Functions for Setting Axes Properties</a></td></tr><tr><td>Saving and loading</td><td><p>Store changes after users interact with the chart, so
+                                        that they can save the chart and restore its state when they
+                                        load it back into MATLAB.</p></td><td><a href="saving-and-loading-instances-of-chart-classes.html" class="a">Saving and Loading Instances of Chart Classes</a></td></tr></tbody></table></div><p>
+</p></section>
+            <h2 id="d126e31586">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chartcontainer.chartcontainer-class.html"><span itemprop="name"><code class="class">matlab.graphics.chartcontainer.ChartContainer</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/plot.html"><span itemprop="name"><code class="function">plot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/patch.html"><span itemprop="name"><code class="function">patch</code></span></a></span></li></ul><h3>Properties</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chart.primitive.line-properties.html"><span itemprop="name"><span class="property">Line Properties</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.primitive.patch-properties.html"><span itemprop="name"><span class="property">Patch Properties</span></span></a></span></li></ul>
+            <h3 id="d126e31613">Topics</h3><ul class="list-unstyled"><li><a href="../object-oriented-programming-in-matlab.html" class="a">Define Classes</a></li><li><a href="develop-charts-with-polar-axes-geographic-axes-or-multiple-axes.html" class="a">Develop Charts With Polar Axes, Geographic Axes, or Multiple Axes</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

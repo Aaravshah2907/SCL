@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Representing Structured Data with Classes</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../sample-classes.html",
+          "name": "Sample Class Implementations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sample-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Classes enable you to define specialized data structures."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sample-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="buo11mr"><span itemprop="title">Sample Class Implementations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Representing Structured Data with Classes</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brfypq0" class="nav-link intrnllnk">Objects as Data Structures</a><ul class="nav"><li class="nav-item"><a href="#brfyqq3" class="nav-link intrnllnk">Background for the Example</a></li></ul></li><li class="nav-item"><a href="#f2-84646" class="nav-link intrnllnk">Structure of the Data</a></li><li class="nav-item"><a href="#f2-84553" class="nav-link intrnllnk">The TensileData Class</a></li><li class="nav-item"><a href="#f2-74210" class="nav-link intrnllnk">Create an Instance and Assign Data</a><ul class="nav"><li class="nav-item"><a href="#f2-74218" class="nav-link intrnllnk">Advantages of a Class vs. a Structure</a></li></ul></li><li class="nav-item"><a href="#f2-74243" class="nav-link intrnllnk">Restrict Properties to Specific Values</a><ul class="nav"><li class="nav-item"><a href="#f2-85348" class="nav-link intrnllnk">Material Property Set Function</a></li></ul></li><li class="nav-item"><a href="#f2-74277" class="nav-link intrnllnk">Simplifying the Interface with a Constructor</a></li><li class="nav-item"><a href="#f2-85430" class="nav-link intrnllnk">Calculate Data on Demand</a><ul class="nav"><li class="nav-item"><a href="#buo6wa0-1" class="nav-link intrnllnk">Calculating Modulus</a></li><li class="nav-item"><a href="#f2-85300" class="nav-link intrnllnk">Modulus Property Get Method</a></li><li class="nav-item"><a href="#br_01hs" class="nav-link intrnllnk">Modulus Property Set Method</a></li></ul></li><li class="nav-item"><a href="#f2-85393" class="nav-link intrnllnk">Displaying TensileData Objects</a></li><li class="nav-item"><a href="#f2-74305" class="nav-link intrnllnk">Method to Plot Stress vs. Strain</a></li><li class="nav-item"><a href="#buo68rh-1" class="nav-link intrnllnk">TensileData Class Synopsis</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f2-74190">Representing Structured Data with Classes</h2><section><h3 class="title" id="brfypq0">Objects as Data Structures</h3><p>This example defines a class for storing data with a specific structure. Using a consistent structure for data storage makes it easier to create functions that operate on the data. A MATLAB<sup>&#x00AE;</sup>
+            <a href="../ref/struct.html"><code class="function">struct</code></a> with field names describing the particular data element is a useful way to organize data. However, a class can define both the data storage (properties) and operations that you can perform on that data (methods). This example illustrates these advantages.</p><section><h4 class="title" id="brfyqq3">Background for the Example</h4><p>For this example, the data represents tensile stress/strain measurements. These data are used to calculate the elastic modulus of various materials. In simple terms, stress is the force applied to a material and strain is the resulting deformation. Their ratio defines a characteristic of the material. While this approach is an over simplification of the process, it suffices for this example.</p></section></section><section><h3 class="title" id="f2-84646">Structure of the Data</h3><p>This table describes the structure of the data. </p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="37%"><col class="tcol2" width="63%"></colgroup><thead><tr><th><p>Data</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">Material</code></p></td><td><p><code class="literal">char</code> vector identifying the type of material tested</p></td></tr><tr><td><p><code class="literal">SampleNumber</code></p></td><td><p>Number of a particular test sample</p></td></tr><tr><td><p><code class="literal">Stress</code></p></td><td><p>Vector of numbers representing the stress applied to the sample during the test.</p></td></tr><tr><td><p><code class="literal">Strain</code></p></td><td><p>Vector of numbers representing the strain at the corresponding values of the applied stress.</p></td></tr><tr><td><p><code class="literal">Modulus</code></p></td><td><p>Number defining an elastic modulus of the material under test, which is calculated from the stress and strain data</p></td></tr></tbody></table></div></section><section><h3 class="title" id="f2-84553">The <code class="class">TensileData</code> Class</h3><span id="defining_tensiledata_class" class="anchor_target"></span><p>This example begins with a simple implementation of the class and builds on this implementation to illustrate how features enhance the usefulness of the class.</p><p>The first version of the class provides only data storage. The class defines a property for each of the required data elements. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> TensileData
+   <span style="color:#0000FF">properties</span>
+      Material
+      SampleNumber
+      Stress
+      Strain
+      Modulus
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></section><section><h3 class="title" id="f2-74210">Create an Instance and Assign Data</h3><p>The following statements create a <code class="literal">TensileData</code> object and assign data to it:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>td = TensileData;
+td.Material = <span style="color:#A020F0">'Carbon Steel'</span>;
+td.SampleNumber = 001;
+td.Stress = [2e4 4e4 6e4 8e4];
+td.Strain = [.12 .20 .31 .40];
+td.Modulus = mean(td.Stress./td.Strain);
+</pre></div></div></div><section><h4 class="title" id="f2-74218">Advantages of a Class vs. a Structure</h4><p>Treat the <code class="literal">TensileData</code> object (<code class="literal">td</code> in the previous statements) much as you would any MATLAB structure. However, defining a specialized data structure as a class has advantages over using a general-purpose data structure, like a MATLAB
+               <a href="../ref/struct.html"><code class="function">struct</code></a>:</p><div class="itemizedlist"><ul><li><p>Users cannot accidentally misspell a field name without getting an error. For example, typing the following:</p><div class="code_responsive"><pre class="programlisting">td.Modulus = ...
+</pre></div><p>would simply add a field to a structure. However, it returns an error when <code class="literal">td</code> is an instance of the <code class="literal">TensileData</code> class.</p></li><li><p>A class is easy to reuse. Once you have defined the class, you can easily extend it with subclasses that add new properties.</p></li><li><p>A class is easy to identify. A class has a name so that you can identify
+                     objects with the <a href="../ref/whos.html"><code class="function">whos</code></a> and <a href="../ref/class.html"><code class="function">class</code></a> functions and the Workspace
+                     panel. The class name makes it easy to refer to records with a meaningful name.
+                  </p></li><li><p>A class can validate individual field values when assigned, including class or value. </p></li><li><p>A class can restrict access to fields, for example, allowing a particular field to be read, but not changed.</p></li></ul></div></section></section><section><h3 class="title" id="f2-74243">Restrict Properties to Specific Values</h3><span id="restricting_properties_to_specific_values" class="anchor_target"></span><p>Restrict properties to specific values by defining a property set access method. MATLAB calls the set access method whenever setting a value for a property.</p><section><h4 class="title" id="f2-85348">Material Property Set Function</h4><p>The <code class="literal">Material</code> property set method restricts the assignment of the property to one of the following strings: <code class="literal">aluminum</code>, <code class="literal">stainless steel</code>, or <code class="literal">carbon steel</code>. </p><p>Add this function definition to the methods block.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> TensileData
+   <span style="color:#0000FF">properties</span>
+      Material
+      SampleNumber
+      Stress
+      Strain
+      Modulus
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = set.Material(obj,material)
+         <span style="color:#0000FF">if</span> (strcmpi(material,<span style="color:#A020F0">'aluminum'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(material,<span style="color:#A020F0">'stainless steel'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(material,<span style="color:#A020F0">'carbon steel'</span>))
+            obj.Material = material;
+         <span style="color:#0000FF">else</span>
+            error(<span style="color:#A020F0">'Invalid Material'</span>)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>When there is an attempt to set the <code class="literal">Material</code> property, MATLAB calls the <code class="literal">set.Material</code> method before setting the property value.</p><p>If the value matches the acceptable values, the function set the property to that value. The code within set method can access the property directly to avoid calling the property set method recursively.</p><p>For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>td = TensileData;
+td.Material = <span style="color:#A020F0">'brass'</span>;</pre></div></div></div><div class="code_responsive"><pre class="programlisting">Error using TensileData/set.Material
+Invalid Material</pre></div></section></section><section><h3 class="title" id="f2-74277">Simplifying the Interface with a Constructor</h3><span id="simplifying_interface_with_constructor" class="anchor_target"></span><p>Simplify the interface to the <code class="literal">TensileData</code> class by adding a constructor that:</p><div class="itemizedlist"><ul><li><p>Enables you to pass the data as arguments to the constructor</p></li><li><p>Assigns values to properties</p></li></ul></div><p>The constructor is a method having the same name as the class. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> td = TensileData(material,samplenum,stress,strain)
+      <span style="color:#0000FF">if</span> nargin &gt; 0
+         td.Material = material;
+         td.SampleNumber = samplenum;
+         td.Stress = stress;
+         td.Strain = strain;
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create a <code class="literal">TensileData</code> object fully populated with data using the following statement:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>td = TensileData(<span style="color:#A020F0">'carbon steel'</span>,1,<span style="color:#0000FF">...</span>
+      [2e4 4e4 6e4 8e4],<span style="color:#0000FF">...</span>
+      [.12 .20 .31 .40]);
+</pre></div></div></div></section><section><h3 class="title" id="f2-85430">Calculate Data on Demand</h3><span id="dependent_properties" class="anchor_target"></span><p>If the value of a property depends on the values of other properties, define that property using the <code class="literal">Dependent</code> attribute. MATLAB does not store the values of dependent properties. The dependent property get method determines the property value when the property is accessed. Access can occur when displaying object properties or as the result of an explicit query.</p><section><h4 class="title" id="buo6wa0-1">Calculating Modulus</h4><p><code class="literal">TensileData</code> objects do not store the value of the <code class="literal">Modulus</code> property. The constructor does not have an input argument for the value of the <code class="literal">Modulus</code> property. The value of the <code class="literal">Modulus</code>:</p><div class="itemizedlist"><ul><li><p>Is calculated from the <code class="literal">Stress</code> and <code class="literal">Strain</code> property values</p></li><li><p>Must change if the value of the <code class="literal">Stress</code> or <code class="literal">Strain</code> property changes</p></li></ul></div><p>Therefore, it is better to calculate the value of the <code class="literal">Modulus</code> property only when its value is requested. Use a property <code class="literal">get</code> access method to calculate the value of the <code class="literal">Modulus</code>.</p></section><section><h4 class="title" id="f2-85300">Modulus Property Get Method</h4><span id="defining_modulus_property_get_function" class="anchor_target"></span><p>The <code class="literal">Modulus</code> property depends on <code class="literal">Stress</code> and <code class="literal">Strain</code>, so its <code class="literal">Dependent</code> attribute is <code class="literal">true</code>. Place the <code class="literal">Modulus</code> property in a separate <code class="literal">properties</code> block and set the <code class="literal">Dependent</code> attribute.</p><p>The <code class="literal">get.Modulus</code> method calculates and returns the value of the <code class="literal">Modulus</code> property. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>properties (Dependent)
+   Modulus
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Define the property get method in a <code class="literal">methods</code> block using only default attributes.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> modulus = get.Modulus(obj)
+      ind = find(obj.Strain &gt; 0);
+      modulus = mean(obj.Stress(ind)./obj.Strain(ind));
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This method calculates the average ratio of stress to strain data after eliminating zeros in the denominator data. </p><p>MATLAB calls the <code class="literal">get.Modulus</code> method when the property is queried. For example,</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>td = TensileData(<span style="color:#A020F0">'carbon steel'</span>,1,<span style="color:#0000FF">...</span>
+      [2e4 4e4 6e4 8e4],<span style="color:#0000FF">...</span>
+      [.12 .20 .31 .40]);
+td.Modulus
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+  1.9005e+005</pre></div></div></div></section><section><h4 class="title" id="br_01hs">Modulus Property Set Method</h4><p>To set the value of a <code class="literal">Dependent</code> property, the class must implement a property set method. There is no need to allow explicit setting of the <code class="literal">Modulus</code> property. However, a set method enables you to provide a customized error message. The <code class="literal">Modulus</code> set method references the current property value and then returns an error:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> obj = set.Modulus(obj,~)
+      fprintf(<span style="color:#A020F0">'%s%d\n'</span>,<span style="color:#A020F0">'Modulus is: '</span>,obj.Modulus)
+      error(<span style="color:#A020F0">'You cannot set the Modulus property'</span>);
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section><section><h3 class="title" id="f2-85393">Displaying <code class="literal">TensileData</code> Objects</h3><span id="displaying_tensiledata_objects" class="anchor_target"></span><p>The <code class="literal">TensileData</code> class overloads the <code class="literal">disp</code> method. This method controls object display in the command window.</p><p>The <code class="literal">disp</code> method displays the value of the <code class="literal">Material</code>, <code class="literal">SampleNumber</code>, and <code class="literal">Modulus</code> properties. It does not display the <code class="literal">Stress</code> and <code class="literal">Strain</code> property data. These properties contain raw data that is not easily viewed in the command window. </p><p>The <code class="literal">disp</code> method uses <a href="../ref/fprintf.html"><code class="function">fprintf</code></a> to display formatted text in the command window:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> disp(td)
+      fprintf(1,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Material: %s\nSample Number: %g\nModulus: %1.5g\n'</span>,<span style="color:#0000FF">...</span>
+         td.Material,td.SampleNumber,td.Modulus);
+   <span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h3 class="title" id="f2-74305">Method to Plot Stress vs. Strain</h3><span id="method_to_plot_stress_strain" class="anchor_target"></span><p>It is useful to view a graph of the stress/strain data to determine the behavior of the material over a range of applied tension. The <code class="literal">TensileData</code> class overloads the MATLAB
+            <a href="../ref/plot.html"><code class="function">plot</code></a> function.</p><p>The <code class="literal">plot</code> method creates a linear graph of the stress versus strain data and adds a title and axis labels to produce a standardized graph for the tensile data records:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> plot(td,varargin)
+      plot(td.Strain,td.Stress,varargin{:})
+      title([<span style="color:#A020F0">'Stress/Strain plot for Sample'</span>,<span style="color:#0000FF">...</span>
+         num2str(td.SampleNumber)])
+      ylabel(<span style="color:#A020F0">'Stress (psi)'</span>)
+      xlabel(<span style="color:#A020F0">'Strain %'</span>)
+   <span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The first argument to this method is a <code class="literal">TensileData</code> object, which contains the data.</p><p>The method passes a variable list of arguments (<a href="../ref/varargin.html"><code class="function">varargin</code></a>) directly to the built-in <code class="function">plot</code> function. The <code class="literal">TensileData</code>
+            <code class="literal">plot</code> method allows you to pass line specifier arguments or property name-value pairs. </p><p>For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>td = TensileData(<span style="color:#A020F0">'carbon steel'</span>,1,<span style="color:#0000FF">...</span>
+      [2e4 4e4 6e4 8e4],[.12 .20 .31 .40]);
+plot(td,<span style="color:#A020F0">'-+b'</span>,<span style="color:#A020F0">'LineWidth'</span>,2)
+</pre></div></div></div><div class="informalfigure"><div id="d126e2198" class="mediaobject"><p><img src="tensile1.png" alt="Stress graphed as function of strain" height="420" width="560"></p></div></div></section><section><h3 class="title" id="buo68rh-1"><code class="literal">TensileData</code> Class Synopsis</h3><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="52%"><col class="tcol2" width="48%"></colgroup><thead><tr><th>Example Code</th><th>Discussion</th></tr></thead><tbody><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> TensileData</pre></div></div></div>
+                        </td><td><p>Value class enables independent copies of object. For more information, see <a href="comparing-handle-and-value-classes.html" class="a">Comparison of Handle and Value Classes</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties
+      Material
+      SampleNumber
+      Stress
+      Strain
+   <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                        </td><td><p>See <a href="example-representing-structured-data.html#f2-84646" class="intrnllnk">Structure of the Data</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties (Dependent)
+      Modulus
+   <span style="color:#0000FF">end</span> </pre></div></div></div>
+                        </td><td><p>Calculate <code class="literal">Modulus</code> when queried. For information about this code, see <a href="example-representing-structured-data.html#f2-85430" class="intrnllnk">Calculate Data on Demand</a>.</p><p>For general information, see <a href="access-methods-for-dependent-properties.html" class="a">Get and Set Methods for Dependent Properties</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods
+</pre></div></div></div>
+                        </td><td><p>For general information about methods, see <a href="ordinary-methods.html" class="a">Ordinary Methods</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> td = TensileData(material,samplenum,<span style="color:#0000FF">...</span>
+      stress,strain)
+      <span style="color:#0000FF">if</span> nargin &gt; 0
+         td.Material = material;
+         td.SampleNumber = samplenum;
+         td.Stress = stress;
+         td.Strain = strain;
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                        </td><td><p>For information about this code, see <a href="example-representing-structured-data.html#f2-74277" class="intrnllnk">Simplifying the Interface with a Constructor</a>.</p><p>For general information about constructors, see <a href="class-constructor-methods.html" class="a">Class Constructor Methods</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> obj = set.Material(obj,material)
+      <span style="color:#0000FF">if</span> (strcmpi(material,<span style="color:#A020F0">'aluminum'</span>) ||<span style="color:#0000FF">...</span>
+         strcmpi(material,<span style="color:#A020F0">'stainless steel'</span>) ||<span style="color:#0000FF">...</span>
+         strcmpi(material,<span style="color:#A020F0">'carbon steel'</span>))
+         obj.Material = material;
+      <span style="color:#0000FF">else</span>
+         error(<span style="color:#A020F0">'Invalid Material'</span>)
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td><p>Restrict possible values for <code class="literal">Material</code> property.</p><p>For information about this code, see <a href="example-representing-structured-data.html#f2-74243" class="intrnllnk">Restrict Properties to Specific Values</a>.</p><p>For general information about property set methods, see <a href="property-set-methods.html" class="a">Property Get and Set Methods</a>.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> m = get.Modulus(obj)
+      ind = find(obj.Strain &gt; 0); 
+      m = mean(obj.Stress(ind)./obj.Strain(ind)); 
+   <span style="color:#0000FF">end</span> 
+</pre></div></div></div>
+                        </td><td><p>Calculate <code class="literal">Modulus</code> property when
+                              queried.</p><p>For information about this code, see <a href="example-representing-structured-data.html#f2-85300" class="intrnllnk">Modulus Property Get Method</a>.</p><p>For general information about property get methods,
+                              see <a href="property-set-methods.html" class="a">Property Get and Set Methods</a>.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> obj = set.Modulus(obj,~)
+      fprintf(<span style="color:#A020F0">'%s%d\n'</span>,<span style="color:#A020F0">'Modulus is: '</span>,obj.Modulus)
+      error(<span style="color:#A020F0">'You cannot set Modulus property'</span>); 
+   <span style="color:#0000FF">end</span> 
+</pre></div></div></div>
+                        </td><td><p>Add set method for <code class="literal">Dependent</code>
+                              <code class="literal">Modulus</code> property. For information about this code, see <a href="example-representing-structured-data.html#br_01hs" class="intrnllnk">Modulus Property Set Method</a>.</p><p>For general information about property set methods, see <a href="property-set-methods.html" class="a">Property Get and Set Methods</a>.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> disp(td)
+      fprintf(1,<span style="color:#A020F0">'Material: %s\nSample Number: %g\nModulus: %1.5g\n'</span>,<span style="color:#0000FF">...</span>
+      td.Material,td.SampleNumber,td.Modulus)
+   <span style="color:#0000FF">end</span> 
+</pre></div></div></div>
+                        </td><td><p>Overload <code class="literal">disp</code> method to display certain properties.</p><p>For information about this code, see <a href="example-representing-structured-data.html#f2-85393" class="intrnllnk">Displaying TensileData Objects</a></p><p>For general information about overloading disp, see <a href="displaying-objects-in-the-command-window.html" class="a">Overloading the disp Function</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> plot(td,varargin)
+      plot(td.Strain,td.Stress,varargin{:})
+      title([<span style="color:#A020F0">'Stress/Strain plot for Sample'</span>,<span style="color:#0000FF">...</span>
+         num2str(td.SampleNumber)])
+      ylabel(<span style="color:#A020F0">'Stress (psi)'</span>)
+      xlabel(<span style="color:#A020F0">'Strain %'</span>)
+   <span style="color:#0000FF">end</span> 
+</pre></div></div></div>
+                        </td><td><p>Overload <a href="../ref/plot.html"><code class="function">plot</code></a> function to accept <code class="literal">TensileData</code> objects and graph stress vs. strain.</p><p>
+                              <a href="example-representing-structured-data.html#f2-74305" class="intrnllnk">Method to Plot Stress vs. Strain</a>
+                           </p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td><p><code class="literal">end</code> statements for <code class="literal">methods</code> and for <code class="literal">classdef</code>.</p></td></tr></tbody></table></div><p>
+
+         </p><p><a href="#" onclick="return toggleexpander('d126e2386_block','d126e2386_expandable_text');"><img style="border:0;" id="d126e2386_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e2386_block','d126e2386_expandable_text');">Expand for Class Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e2386_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> TensileData
+   <span style="color:#0000FF">properties</span>
+      Material
+      SampleNumber
+      Stress
+      Strain
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">properties</span> (Dependent)
+      Modulus
+   <span style="color:#0000FF">end</span>
+   
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> td = TensileData(material,samplenum,stress,strain)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            td.Material = material;
+            td.SampleNumber = samplenum;
+            td.Stress = stress;
+            td.Strain = strain;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> obj = set.Material(obj,material)
+         <span style="color:#0000FF">if</span> (strcmpi(material,<span style="color:#A020F0">'aluminum'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(material,<span style="color:#A020F0">'stainless steel'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(material,<span style="color:#A020F0">'carbon steel'</span>))
+            obj.Material = material;
+         <span style="color:#0000FF">else</span>
+            error(<span style="color:#A020F0">'Invalid Material'</span>)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> m = get.Modulus(obj)
+         ind = find(obj.Strain &gt; 0);
+         m = mean(obj.Stress(ind)./obj.Strain(ind));
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> obj = set.Modulus(obj,~)
+         fprintf(<span style="color:#A020F0">'%s%d\n'</span>,<span style="color:#A020F0">'Modulus is: '</span>,obj.Modulus)
+         error(<span style="color:#A020F0">'You cannot set Modulus property'</span>);
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> disp(td)
+         sprintf(<span style="color:#A020F0">'Material: %s\nSample Number: %g\nModulus: %1.5g\n'</span>,<span style="color:#0000FF">...</span>
+            td.Material,td.SampleNumber,td.Modulus)
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> plot(td,varargin)
+         plot(td.Strain,td.Stress,varargin{:})
+         title([<span style="color:#A020F0">'Stress/Strain plot for Sample '</span>,<span style="color:#0000FF">...</span>
+            num2str(td.SampleNumber)])
+         xlabel(<span style="color:#A020F0">'Strain %'</span>)
+         ylabel(<span style="color:#A020F0">'Stress (psi)'</span>)
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div></section>
+         <h2 id="seealsoref">See Also</h2><h3 id="d126e2395">Topics</h3><ul class="list-unstyled"><li><a href="class-components.html" class="a">Components of a Class</a></li></ul>
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

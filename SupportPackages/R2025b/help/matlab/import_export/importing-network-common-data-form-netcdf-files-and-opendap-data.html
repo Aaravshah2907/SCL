@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Import NetCDF Files and OPeNDAP Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../network-common-data-form.html",
+          "name": "NetCDF Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "network-common-data-form"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read data from a netCDF file using the high-level functions, the low-level functions, and the Import Data Live Editor task."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../network-common-data-form.html?s_tid=CRUX_lftnav" itemprop="url" id="network-common-data-form"><span itemprop="title">NetCDF Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Import NetCDF Files and OPeNDAP Data</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#btij_w4" class="nav-link intrnllnk">MATLAB NetCDF Capabilities</a></li><li class="nav-item"><a href="#mw_0099a51a-40a0-4b15-be0b-cd44e402ba14" class="nav-link intrnllnk">Security Considerations When Connecting to an OPeNDAP Server</a></li><li class="nav-item"><a href="#bsxaikx-1" class="nav-link intrnllnk">Read from NetCDF File Using High-Level Functions</a></li><li class="nav-item"><a href="#bum88jv-1" class="nav-link intrnllnk">Find All Unlimited Dimensions in NetCDF File</a></li><li class="nav-item"><a href="#bsxaik1-1" class="nav-link intrnllnk">Read from NetCDF File Using Low-Level Functions</a><ul class="nav"><li class="nav-item"><a href="#ReadFromNetCDFFileUsingLowLevelFunctionsExample-1" class="nav-link intrnllnk">Open NetCDF File</a></li><li class="nav-item"><a href="#ReadFromNetCDFFileUsingLowLevelFunctionsExample-2" class="nav-link intrnllnk">Get Information About NetCDF File</a></li><li class="nav-item"><a href="#ReadFromNetCDFFileUsingLowLevelFunctionsExample-3" class="nav-link intrnllnk">Read Data from NetCDF File</a></li><li class="nav-item"><a href="#ReadFromNetCDFFileUsingLowLevelFunctionsExample-4" class="nav-link intrnllnk">Close NetCDF File</a></li></ul></li><li class="nav-item"><a href="#mw_c71ee4a2-189c-4577-8b07-c369b2438429" class="nav-link intrnllnk">Interactively Read Data from NetCDF File</a><ul class="nav"><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-1" class="nav-link intrnllnk">Download Dataset</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-2" class="nav-link intrnllnk">Explore and Import Data</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-3" class="nav-link intrnllnk">Organize and Prepare Data</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-4" class="nav-link intrnllnk">Plot Data</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-5" class="nav-link intrnllnk">Find Time of Maximum Snow Cover</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-6" class="nav-link intrnllnk">Find Locations of Maximum Snow Cover</a></li><li class="nav-item"><a href="#ExploreAnalyzeAndVisualizeNetCDFDataExample-7" class="nav-link intrnllnk">Credits</a></li></ul></li><li class="nav-item"><a href="#d126e12708" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=network-common-data-form&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=network-common-data-form&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brrbr9v-1">Import NetCDF Files and OPeNDAP Data</h2>
+            <p class="shortdesc">You can read data from a netCDF file in several ways.
+                Programmatically, you can use the MATLAB<sup>&#x00AE;</sup> high-level netCDF functions or the netCDF library namespace of
+                low-level functions. Interactively, you can use the <a href="../ref/importdatatask.html"><span class="liveeditortask">Import
+                    Data</span></a> Live Editor task or (in <span class="entity">MATLAB
+            Online&#x2122;</span>) the <a href="../ref/importtool.html"><span class="app">Import Tool</span></a> app.</p>
+        <section><h3 class="title" id="btij_w4"><span class="trademark entity">MATLAB</span> NetCDF Capabilities</h3><p>Network Common Data Form (NetCDF) is a set of software libraries and
+                machine-independent data formats that support the creation, access, and sharing of
+                array-oriented scientific data. NetCDF is used by a wide range of engineering and
+                scientific fields that want a standard way to store data so that it can be shared. </p><p>MATLAB high-level functions simplify the process of importing data from a
+                NetCDF file or an OPeNDAP NetCDF data source. MATLAB low-level functions enable more control over the importing process, by
+                providing access to the routines in the NetCDF C library. To use the low-level
+                functions effectively, you should be familiar with the NetCDF C Interface. The
+                NetCDF documentation is available at the <a href="https://www.unidata.ucar.edu/software/netcdf/" target="_blank">Unidata
+                    website</a>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>For information about importing Common Data Format (CDF) files, which have a
+                    separate, incompatible format, see <a href="importing-common-data-file-format-cdf-files.html" class="a">Import CDF Files Using Low-Level Functions</a>.</p></div></section><section><h3 class="title" id="mw_0099a51a-40a0-4b15-be0b-cd44e402ba14">Security Considerations When Connecting to an OPeNDAP Server</h3><p>It is highly recommended that you connect only to trusted OPeNDAP servers. Since
+                R2020b, the MATLAB NetCDF interface connects only to trusted data access protocol (DAP)
+                endpoints by default by performing server certificate and host name validations.
+                Previously, when you accessed an OPeNDAP server, both the server certificate and
+                host name validation were disabled by default.</p><p>If you would like to disable the server certificate and host name validation, add
+                the following line in a <code class="literal">.dodsrc</code> file in the current
+                directory:</p><p><code class="literal">[mylocaltestserver.lab] HTTP.SSL.VALIDATE=0</code></p><p>This makes the MATLAB NetCDF interface connect to the OPeNDAP server whose name is specified
+                in the URI <code class="literal">mylocaltestserver.lab</code> without performing any
+                validations on the server certificate or host name. This change persists in future
+                    MATLAB sessions.</p></section><section><h3 class="title" id="bsxaikx-1">Read from NetCDF File Using High-Level Functions</h3>
+                <p class="shortdesc">This example shows how to display and read the contents of a
+                    NetCDF file, using high-level functions.</p>
+            <div class="procedure"><p>Display the contents of the sample NetCDF file,
+                            <code class="literal">example.nc</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ncdisp(<span style="color:#A020F0">'example.nc'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Source:
+           \\<em class="replaceable">matlabroot</em>\toolbox\matlab\demos\example.nc
+Format:
+           netcdf4
+Global Attributes:
+           creation_date = '29-Mar-2010'
+Dimensions:
+           x = 50
+           y = 50
+           z = 5
+Variables:
+    avagadros_number
+           Size:       1x1
+           Dimensions: 
+           Datatype:   double
+           Attributes:
+                       description = 'this variable has no dimensions'
+    temperature     
+           Size:       50x1
+           Dimensions: x
+           Datatype:   int16
+           Attributes:
+                       scale_factor = 1.8
+                       add_offset   = 32
+                       units        = 'degrees_fahrenheit'
+    peaks           
+           Size:       50x50
+           Dimensions: x,y
+           Datatype:   int16
+           Attributes:
+                       description = 'z = peaks(50);'
+Groups:
+    /grid1/
+        Attributes:
+                   description = 'This is a group attribute.'
+        Dimensions:
+                   x    = 360
+                   y    = 180
+                   time = 0     (UNLIMITED)
+        Variables:
+            temp
+                   Size:       []
+                   Dimensions: x,y,time
+                   Datatype:   int16
+    
+    /grid2/
+        Attributes:
+                   description = 'This is another group attribute.'
+        Dimensions:
+                   x    = 360
+                   y    = 180
+                   time = 0     (UNLIMITED)
+        Variables:
+            temp
+                   Size:       []
+                   Dimensions: x,y,time
+                   Datatype:   int16</pre></div></div></div><p><code class="function">ncdisp</code> displays all the groups, dimensions, and
+                        variable definitions in the file. Unlimited dimensions are identified with
+                        the label, <code class="literal">UNLIMITED</code>.</p><p>Read data from the <code class="literal">peaks</code> variable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>peaksData  = ncread(<span style="color:#A020F0">'example.nc'</span>,<span style="color:#A020F0">'peaks'</span>);</pre></div></div></div><p>Display information about the <code class="literal">peaksData</code> output.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>whos <span style="color:#A020F0">peaksData</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name            Size            Bytes  Class    Attributes
+
+  peaksData      50x50             5000  int16  </pre></div></div></div><p>Read the <code class="literal">description</code> attribute associated with the
+                        variable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>peaksDesc  = ncreadatt(<span style="color:#A020F0">'example.nc'</span>,<span style="color:#A020F0">'peaks'</span>,<span style="color:#A020F0">'description'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>peaksDesc =
+
+z = peaks(50);</pre></div></div></div><p>Create a three-dimensional surface plot of the variable data. Use the
+                        value of the <code class="literal">description</code> attribute as the title of the
+                        figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>surf(double(peaksData))
+title(peaksDesc);</pre></div></div></div><p>Read the <code class="literal">description</code> attribute associated with the
+                            <code class="literal">/grid1/</code> group. Specify the group name as the second
+                        input to the <code class="function">ncreadatt</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>g = ncreadatt(<span style="color:#A020F0">'example.nc'</span>,<span style="color:#A020F0">'/grid1/'</span>,<span style="color:#A020F0">'description'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>g =
+
+This is a group attribute.</pre></div></div></div><p>Read the global attribute, <code class="literal">creation_date</code>. For global
+                        attributes, specify the second input argument to
+                            <code class="function">ncreadatt</code> as <code class="literal">'/'</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>creation_date = ncreadatt(<span style="color:#A020F0">'example.nc'</span>,<span style="color:#A020F0">'/'</span>,<span style="color:#A020F0">'creation_date'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>creation_date =
+
+29-Mar-2010</pre></div></div></div></div></section><section><h3 class="title" id="bum88jv-1">Find All Unlimited Dimensions in NetCDF File</h3>
+                <p class="shortdesc">This example shows how to find all unlimited dimensions in a
+                    group in a NetCDF file, using high-level functions.</p>
+            <div class="procedure"><p>Get information about the <code class="literal">/grid2/</code> group in the sample
+                        file, <code class="literal">example.nc</code>, using the <code class="function">ncinfo</code>
+                        function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ginfo = ncinfo(<span style="color:#A020F0">'example.nc'</span>,<span style="color:#A020F0">'/grid2/'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ginfo = 
+
+      Filename: '\\<em class="replaceable">matlabroot</em>\toolbox\matlab\demos\example.nc'
+          Name: 'grid2'
+    Dimensions: [1x3 struct]
+     Variables: [1x1 struct]
+    Attributes: [1x1 struct]
+        Groups: []
+        Format: 'netcdf4'
+</pre></div></div></div><p><code class="function">ncinfo</code> returns a structure array containing
+                        information about the group.</p><p>Get a vector of the Boolean values that indicate the unlimited dimensions
+                        for this group.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>unlimDims = [ginfo.Dimensions.Unlimited]
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>unlimDims =
+
+     0     0     1</pre></div></div></div><p>Use the <code class="literal">unlimDims</code> vector to display the unlimited
+                        dimension.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>disp(ginfo.Dimensions(unlimDims))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>         Name: 'time'
+       Length: 0
+    Unlimited: 1
+</pre></div></div></div></div></section><section><h3 class="title" id="bsxaik1-1">Read from NetCDF File Using Low-Level Functions</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ReadFromNetCDFFileUsingLowLevelFunctionsExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read from NetCDF File Using Low-Level Functions",
+          "description": "Get information about the dimensions, variables, and attributes in a netCDF file using MATLAB low-level functions in the netcdf namespace. To use these functions effectively, you should be familiar with the netCDF C Interface.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "importing-network-common-data-form-netcdf-files-and-opendap-data.html"
+
+        },
+          "identifier": "matlab.ReadFromNetCDFFileUsingLowLevelFunctionsExample",
+          "name": "ReadFromNetCDFFileUsingLowLevelFunctionsExample",
+          "url": "importing-network-common-data-form-netcdf-files-and-opendap-data.html#bsxaik1-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ReadFromNetCDFFileUsingLowLevelFunctionsExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadFromNetCDFFileUsingLowLevelFunctionsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ReadFromNetCDFFileUsingLowLevelFunctionsExample"><meta itemprop="exampletitle" content="Read from NetCDF File Using LowLevel Functions"></div><span id="ReadFromNetCDFFileUsingLowLevelFunctionsExample" class="anchor_target"></span><p class="shortdesc">This example shows how to get information about the dimensions, variables, and attributes in a netCDF file using MATLAB low-level functions in the <code class="literal">netcdf</code> namespace. To use these functions effectively, you should be familiar with the netCDF C Interface.</p><div class="procedure"><span id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-1" class="anchor_target"></span><p class="title" id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-1"><b>Open NetCDF File</b></p><p>Open the sample netCDF file, <code class="literal">example.nc</code>, using the <code class="literal">netcdf.open</code> function, with read-only access.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ncid = netcdf.open(<span style="color:#A020F0">"example.nc"</span>,<span style="color:#A020F0">"NC_NOWRITE"</span>);</pre></div></div></div><p><code class="literal">netcdf.open</code> returns a file identifier.</p><span id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-2" class="anchor_target"></span><p class="title" id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-2"><b>Get Information About NetCDF File</b></p><p>Get information about the contents of the file using the <code class="literal">netcdf.inq</code> function. This function corresponds to the <code class="literal">nc_inq</code> function in the netCDF library C API.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[ndims,nvars,natts,unlimdimID] = netcdf.inq(ncid)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ndims = 
+3
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>nvars = 
+3
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>natts = 
+1
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>unlimdimID = 
+-1
+</pre></div></div></div><p><code class="literal">netcdf.inq</code> returns the number of dimensions, variables, and global attributes in the file, and returns the identifier of the unlimited dimension in the file. An unlimited dimension can grow.</p><p>Get the name of the global attribute in the file using the <code class="literal">netcdf.inqAttName</code> function. This function corresponds to the <code class="literal">nc_inq_attname</code> function in the netCDF library C API. To get the name of an attribute, you must specify the ID of the variable the attribute is associated with and the attribute number. To access a global attribute, which is not associated with a particular variable, use the constant <code class="literal">"NC_GLOBAL"</code> as the variable ID.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>global_att_name = netcdf.inqAttName(ncid,<span style="color:#0000FF">...</span>
+    netcdf.getConstant(<span style="color:#A020F0">"NC_GLOBAL"</span>),0)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>global_att_name = 
+'creation_date'
+</pre></div></div></div><p>Get information about the data type and length of the attribute using the <code class="literal">netcdf.inqAtt</code> function. This function corresponds to the <code class="literal">nc_inq_att</code> function in the netCDF library C API. Again, specify the variable ID using <code class="literal">netcdf.getConstant("NC_GLOBAL")</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[xtype,attlen] = netcdf.inqAtt(ncid,<span style="color:#0000FF">...</span>
+    netcdf.getConstant(<span style="color:#A020F0">"NC_GLOBAL"</span>),global_att_name)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>xtype = 
+2
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>attlen = 
+11
+</pre></div></div></div><p>Get the value of the attribute, using the <code class="literal">netcdf.getAtt</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>global_att_value = netcdf.getAtt(ncid,<span style="color:#0000FF">...</span>
+    netcdf.getConstant(<span style="color:#A020F0">"NC_GLOBAL"</span>),global_att_name)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>global_att_value = 
+'29-Mar-2010'
+</pre></div></div></div><p>Get information about the first dimension in the file, using the <code class="literal">netcdf.inqDim</code> function. This function corresponds to the <code class="literal">nc_inq_dim</code> function in the netCDF library C API. The second input to <code class="literal">netcdf.inqDim</code> is the dimension ID, which is a zero-based index that identifies the dimension. The first dimension has the index value <code class="literal">0</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[dimname,dimlen] = netcdf.inqDim(ncid,0)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dimname = 
+'x'
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dimlen = 
+50
+</pre></div></div></div><p><code class="literal">netcdf.inqDim</code> returns the name and length of the dimension.</p><p>Get information about the first variable in the file using the <code class="literal">netcdf.inqVar</code> function. This function corresponds to the <code class="literal">nc_inq_var</code> function in the netCDF library C API. The second input to <code class="literal">netcdf.inqVar</code> is the variable ID, which is a zero-based index that identifies the variable. The first variable has the index value <code class="literal">0</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[varname,vartype,dimids,natts] = netcdf.inqVar(ncid,0)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>varname = 
+'avagadros_number'
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vartype = 
+6
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dimids =
+
+     []
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>natts = 
+1
+</pre></div></div></div><p><code class="literal">netcdf.inqVar</code> returns the name, data type, dimension ID, and the number of attributes associated with the variable. The data type information returned in <code class="literal">vartype</code> is the numeric value of the netCDF data type constants, such as <code class="literal">NC_INT</code> and <code class="literal">NC_BYTE</code>. See the netCDF documentation for information about these constants.</p><span id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-3" class="anchor_target"></span><p class="title" id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-3"><b>Read Data from NetCDF File</b></p><p>Read the data associated with the variable, <code class="literal">avagadros_number</code>, in the example file, using the <code class="literal">netcdf.getVar</code> function. The second input to <code class="literal">netcdf.getVar</code> is the variable ID, which is a zero-based index that identifies the variable. The <code class="literal">avagadros_number</code> variable has the index value <code class="literal">0</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A_number = netcdf.getVar(ncid,0)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A_number = 
+6.0221e+23
+</pre></div></div></div><p>View the data type of <code class="literal">A_number</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>whos <span style="color:#A020F0">A_number</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name          Size            Bytes  Class     Attributes
+
+  A_number      1x1                 8  double              
+</pre></div></div></div><p>The functions in the <code class="literal">netcdf</code> namespace automatically choose the MATLAB class that best matches the NetCDF data type, but you can also specify the class of the return data by using an optional argument to <code class="literal">netcdf.getVar</code>.</p><p>Read the data associated with <code class="literal">avagadros_number</code> and return the data as class <code class="literal">single</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A_number = netcdf.getVar(ncid,0,<span style="color:#A020F0">"single"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A_number = <span class="emphasis"><em>single</em></span>
+
+6.0221e+23
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>whos <span style="color:#A020F0">A_number</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name          Size            Bytes  Class     Attributes
+
+  A_number      1x1                 4  single              
+</pre></div></div></div><span id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-4" class="anchor_target"></span><p class="title" id="ReadFromNetCDFFileUsingLowLevelFunctionsExample-4"><b>Close NetCDF File</b></p><p>Close the netCDF file, <code class="literal">example.nc</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>netcdf.close(ncid)</pre></div></div></div></div></section><section><h3 class="title" id="mw_c71ee4a2-189c-4577-8b07-c369b2438429">Interactively Read Data from NetCDF File</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ExploreAnalyzeAndVisualizeNetCDFDataExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interactively Read Data from NetCDF File",
+          "description": "Use the Import Data task to explore the structure of a netCDF file, import data from the file, and then analyze and visualize the data.",
+          "thumbnailURL": "../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_05.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "importing-network-common-data-form-netcdf-files-and-opendap-data.html"
+
+        },
+          "identifier": "matlab.ExploreAnalyzeAndVisualizeNetCDFDataExample",
+          "name": "ExploreAnalyzeAndVisualizeNetCDFDataExample",
+          "url": "importing-network-common-data-form-netcdf-files-and-opendap-data.html#mw_c71ee4a2-189c-4577-8b07-c369b2438429"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ExploreAnalyzeAndVisualizeNetCDFDataExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ExploreAnalyzeAndVisualizeNetCDFDataExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ExploreAnalyzeAndVisualizeNetCDFDataExample"><meta itemprop="exampletitle" content="Interactively Read Data from NetCDF File"></div><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use the <strong class="emphasis bold">Import Data</strong> task to explore the structure of a netCDF file, import data from the file, and then analyze and visualize the data.</p><div class="procedure"><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-1" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-1"><b>Download Dataset</b></p><p>The US National Oceanic and Atmospheric Administration Physical Sciences Laboratory (NOAA PSL) hosts a dataset of interpolated snow cover data for the Northern Hemisphere that was compiled by the National Snow and Ice Data Center (NSIDC). Download this dataset to your current folder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>filename = <span style="color:#A020F0">"snowcover.mon.mean.nc"</span>;
+url = <span style="color:#A020F0">"https://downloads.psl.noaa.gov/Datasets/snowcover/snowcover.mon.mean.nc"</span>;
+fullLocalPath = websave(filename,url);</pre></div></div></div><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-2" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-2"><b>Explore and Import Data</b></p><p>Open the <strong class="emphasis bold">Import Data</strong> task in the Live Editor by selecting <strong class="emphasis bold">Task &gt; Import Data</strong> on the <strong class="emphasis bold">Live Editor</strong> tab. Enter the filename of the netCDF dataset, <code class="literal">snowcover.mon.mean.nc</code>, in the <strong class="emphasis bold">File</strong> field. Use the task to explore the structure of the data, including the variables and their attributes:</p><div class="itemizedlist"><ul><li><p>The global attributes give a general sense of the data contained in the file, including references.</p></li><li><p>The dataset contains three dimensions: two spatial (<code class="literal">lat</code> and <code class="literal">lon</code>) and one temporal (<code class="literal">time</code>).</p></li><li><p>The <code class="literal">lat</code> variable has a size of 90 and an attribute named <code class="literal">units</code>, which has value <code class="literal">'degrees_north'</code>. This variable represents the latitude, measured in degrees north of the equator, of a point at which a measurement is made.</p></li><li><p>The <code class="literal">lon</code> variable has a size of 360 and an attribute named <code class="literal">units</code>, which has value <code class="literal">'degrees_east'</code>. This variable represents the longitude, measured in degrees east of the prime meridian, of a point at which a measurement is made.</p></li><li><p>The <code class="literal">time</code> variable has a size of 297 with an unlimited dimension and an attribute named <code class="literal">units</code>, which has value <code class="literal">'hours since 1800-01-01 00:00:0.0'</code>. This variable represents the time at which a measurement is made.</p></li><li><p>The <code class="literal">snowcover</code> variable has a size of 360-by-90-by-297 with the third dimension unlimited, an attribute named <code class="literal">units</code>, which has value <code class="literal">'%'</code>, and an attribute named <code class="literal">long_name</code>, which has value <code class="literal">'Monthly Means Snowcover Extent'</code>. The <code class="literal">snowcover</code> variable unites the <code class="literal">lat</code>, <code class="literal">lon</code>, and <code class="literal">time</code> variables. It represents the monthly mean of snow cover at a particular point in the Northern Hemisphere, at a particular month, measured in percentage of ground covered by snow.</p></li></ul></div><p>Select and import the data from the <code class="literal">lat</code>, <code class="literal">lon</code>, <code class="literal">time</code>, and <code class="literal">snowcover</code> variables.</p><div class="informalfigure"><div id="d126e12592" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_01.png" alt="Import Data Live Editor task with the snowcover.mon.mean.nc file imported, showing all variables selected for import" height="1137" width="953"></p></div></div><p>To see the code that this task generates, expand the task display by clicking <strong class="emphasis bold">Show code</strong> at the bottom of the task parameter area.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a structure to store imported netCDF data</span>
+snowcover_mon_mean = struct();
+
+filename = <span style="color:#A020F0">"snowcover.mon.mean.nc"</span>;
+snowcover_mon_mean.Variables(1).Name = <span style="color:#A020F0">"lat"</span>;
+snowcover_mon_mean.Variables(2).Name = <span style="color:#A020F0">"lon"</span>;
+snowcover_mon_mean.Variables(3).Name = <span style="color:#A020F0">"time"</span>;
+snowcover_mon_mean.Variables(4).Name = <span style="color:#A020F0">"snowcover"</span>;
+
+snowcover_mon_mean.Variables(1).Value = ncread(filename, <span style="color:#A020F0">"/lat"</span>);
+
+snowcover_mon_mean.Variables(2).Value = ncread(filename, <span style="color:#A020F0">"/lon"</span>);
+
+snowcover_mon_mean.Variables(3).Value = ncread(filename, <span style="color:#A020F0">"/time"</span>);
+
+snowcover_mon_mean.Variables(4).Value = ncread(filename, <span style="color:#A020F0">"/snowcover"</span>);
+
+clear <span style="color:#A020F0">filename</span></pre></div></div></div><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-3" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-3"><b>Organize and Prepare Data</b></p><p>Make local variables for each of the variables from the dataset.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lats = snowcover_mon_mean.Variables(1).Value;
+lons = snowcover_mon_mean.Variables(2).Value;
+times = snowcover_mon_mean.Variables(3).Value;
+snows = snowcover_mon_mean.Variables(4).Value;</pre></div></div></div><p>Make display versions of <code class="literal">lats</code> and <code class="literal">lons</code> to prepare for plotting the data. Choose a display scale that shows ten labels on each axis.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numLabels = 10;
+
+latDisps = strings(length(lats),1);
+latsLabelInterval = length(lats)/numLabels;
+latLabelInds = latsLabelInterval:latsLabelInterval:length(lats);
+latDisps(latLabelInds) = lats(latLabelInds);
+
+lonDisps = strings(length(lons),1);
+lonsLabelInterval = length(lons)/numLabels;
+lonLabelInds = lonsLabelInterval:lonsLabelInterval:length(lons);
+lonDisps(lonLabelInds) = lons(lonLabelInds);</pre></div></div></div><p>The <code class="literal">units</code> attribute of the <code class="literal">time</code> variable indicates that <code class="literal">time</code> is measured in hours since the beginning of the year 1800. Further, the <code class="literal">long_name</code> attribute of the <code class="literal">snowcover</code> variable indicates that the values are monthly means. Use this information to convert the <code class="literal">times</code> vector into corresponding <code class="literal">datetime</code> values and also to make a display version of <code class="literal">times</code> that includes the month and year but suppresses the day.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sampTimes = datetime(<span style="color:#A020F0">"1800-01-01 00:00:00"</span>) + hours(times);
+sampTimes.Format = <span style="color:#A020F0">"MMM-yyyy"</span>;
+sampTimeDisps = string(sampTimes);</pre></div></div></div><p>The first dimension of <code class="literal">snows</code> represents a latitude and the second a longitude. To make a heatmap of this data, the first dimension should correspond to a column (longitude) and the second to a row (latitude). Permute these two dimensions of <code class="literal">snows</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>snows = permute(snows,[2 1 3]);</pre></div></div></div><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-4" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-4"><b>Plot Data</b></p><p>Create a heatmap for the first month of data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h = heatmap(lons,lats,snows(:,:,1));
+h.XLabel = <span style="color:#A020F0">"Longitude (°E)"</span>;
+h.YLabel = <span style="color:#A020F0">"Latitude (°N)"</span>;
+h.XDisplayLabels = lonDisps;
+h.YDisplayLabels = latDisps;
+h.Colormap = winter;
+h.GridVisible = <span style="color:#A020F0">"off"</span>;</pre></div></div></div><p>Animate the heatmap by looping through the data for all available times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> i = 1:numel(sampTimeDisps)
+    h.ColorData = snows(:,:,i);
+    h.Title = <span style="color:#A020F0">"Percent Snow Cover vs. Location ("</span> + sampTimeDisps(i) + <span style="color:#A020F0">")"</span>;
+    pause(0.1)
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="informalfigure"><div id="d126e12654" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_02.png" alt="Figure contains an object of type heatmap. The chart of type heatmap has title Percent Snow Cover vs. Location (Sep-1995)." width="560"></p></div></div><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-5" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-5"><b>Find Time of Maximum Snow Cover</b></p><p>Compute and plot the total snow cover as a function of time.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cumSnowsbyTime = squeeze(sum(snows,[1 2])) / (length(lats)*length(lons));
+
+plot(sampTimes,cumSnowsbyTime)
+xlabel(<span style="color:#A020F0">"Date"</span>)
+ylabel(<span style="color:#A020F0">"Total Snow Cover (%)"</span>)
+title(<span style="color:#A020F0">"Total Snow Cover vs. Date"</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e12664" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_03.png" alt="Figure contains an axes object. The axes object with title Total Snow Cover vs. Date, xlabel Date, ylabel Total Snow Cover (%) contains an object of type line." width="560"></p></div></div><p>Find and plot the time of maximum snow cover.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[maxSnowsbyTime,maxSnowsbyTimeInd] = max(cumSnowsbyTime);
+
+h = heatmap(lons,lats,snows(:,:,maxSnowsbyTimeInd));
+h.XLabel = <span style="color:#A020F0">"Longitude (°E)"</span>;
+h.YLabel = <span style="color:#A020F0">"Latitude (°N)"</span>;
+h.Title = <span style="color:#A020F0">"Percent Snow Cover vs. Location ("</span> + sampTimeDisps(maxSnowsbyTimeInd) + <span style="color:#A020F0">")"</span>;
+h.XDisplayLabels = lonDisps;
+h.YDisplayLabels = latDisps;
+h.Colormap = winter;
+h.GridVisible = <span style="color:#A020F0">"off"</span>;</pre></div></div></div><div class="informalfigure"><div id="d126e12672" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_04.png" alt="Figure contains an object of type heatmap. The chart of type heatmap has title Percent Snow Cover vs. Location (Feb-1978)." width="560"></p></div></div><p>The month of maximal snow cover was February 1978.</p><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-6" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-6"><b>Find Locations of Maximum Snow Cover</b></p><p>Compute and plot the average snow cover as a function of location.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cumSnowsbyLoc = sum(snows,3) / length(times);
+
+h = heatmap(lons,lats,cumSnowsbyLoc);
+h.XLabel = <span style="color:#A020F0">"Longitude (°E)"</span>;
+h.YLabel = <span style="color:#A020F0">"Latitude (°N)"</span>;
+h.Title = <span style="color:#A020F0">"Average Percent Snow Cover vs. Location"</span>;
+h.XDisplayLabels = lonDisps;
+h.YDisplayLabels = latDisps;
+h.Colormap = winter;
+h.GridVisible = <span style="color:#A020F0">"off"</span>;</pre></div></div></div><div class="informalfigure"><div id="d126e12683" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_05.png" alt="Figure contains an object of type heatmap. The chart of type heatmap has title Average Percent Snow Cover vs. Location." width="560"></p></div></div><p>Find and plot the locations of maximum snow cover.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>maxSnowsbyLocVal = max(cumSnowsbyLoc,[],<span style="color:#A020F0">"all"</span>);
+maxSnowsbyLoc = maxSnowsbyLocVal*(cumSnowsbyLoc == maxSnowsbyLocVal);
+
+h = heatmap(lons,lats,maxSnowsbyLoc);
+h.XLabel = <span style="color:#A020F0">"Longitude (°E)"</span>;
+h.YLabel = <span style="color:#A020F0">"Latitude (°N)"</span>;
+h.Title = <span style="color:#A020F0">"Locations of Maximum Snow Cover"</span>;
+h.XDisplayLabels = lonDisps;
+h.YDisplayLabels = latDisps;
+h.Colormap = winter;
+h.GridVisible = <span style="color:#A020F0">"off"</span>;</pre></div></div></div><div class="informalfigure"><div id="d126e12691" class="mediaobject"><p><img src="../../examples/matlab/win64/ExploreAnalyzeAndVisualizeNetCDFDataExample_06.png" alt="Figure contains an object of type heatmap. The chart of type heatmap has title Locations of Maximum Snow Cover." width="560"></p></div></div><p>The locations of maximum snow cover include most of Greenland, and parts of Svalbard and Franz Josef Land.</p><span id="ExploreAnalyzeAndVisualizeNetCDFDataExample-7" class="anchor_target"></span><p class="title" id="ExploreAnalyzeAndVisualizeNetCDFDataExample-7"><b>Credits</b></p><p>NH Ease-Grid Snow Cover data provided by the NOAA PSL, Boulder, Colorado, USA, from their website at <a href="https://psl.noaa.gov/" target="_blank"><span class="emphasis underline"><code class="literal">https://psl.noaa.gov</code></span></a><span class="emphasis underline">.</span></p></div></section>
+            <h2 id="d126e12708">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncread.html"><span itemprop="name"><code class="function">ncread</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncreadatt.html"><span itemprop="name"><code class="function">ncreadatt</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncdisp.html"><span itemprop="name"><code class="function">ncdisp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncinfo.html"><span itemprop="name"><code class="function">ncinfo</code></span></a></span></li></ul><h3>Live Editor Tasks</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/importdatatask.html"><span itemprop="name"><span class="liveeditortask">Import
+                        Data</span></span></a></span></li></ul>
+            <h3 id="d126e12732">Topics</h3><ul class="list-unstyled"><li><a href="map-netcdf-api-syntax-to-matlab-syntax.html" class="a">Map NetCDF API Syntax to MATLAB Syntax</a></li><li><a href="https://in.mathworks.com/videos/import-and-visualize-netcdf-data-1718086646953.html" class="video">Import and Visualize NetCDF Data</a></li></ul>
+            <h3 id="d126e12740">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.unidata.ucar.edu/software/netcdf/" target="_blank">NetCDF C
+                    Interface</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

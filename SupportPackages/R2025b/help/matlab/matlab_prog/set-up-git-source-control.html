@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Set Up Git Source Control</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../source-control.html",
+          "name": "Source Control"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../matlab-git-source-control.html",
+          "name": "Git in MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../source-control.html",
+          "name": "Source Control"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "matlab-git-source-control",
+        "source-control"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Set up Git source control for use in MATLAB, including registering your binary files to avoid file corruption and setting up SSH Authentication to prevent frequent login prompts."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../source-control.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Source Control</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-git-source-control.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_d61eb1b4-5403-40c9-b348-a8a62f0056ea"><span itemprop="title">Git in MATLAB</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../software-development.html?s_tid=CRUX_lftnav">Software Development Tools</a></li><li><a href="../source-control.html?s_tid=CRUX_lftnav" id="source-control">Source Control</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Set Up Git Source Control</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#buhx2d6-1_3" class="nav-link intrnllnk">Register Binary Files with Git</a></li><li class="nav-item"><a href="#mw_4e40b00a-d620-4cda-97f1-01589bd41cc6" class="nav-link intrnllnk">Enable Support for Long Paths</a></li><li class="nav-item"><a href="#mw_e108aa2a-fd83-4a3d-9e9a-5884bb1669c9" class="nav-link intrnllnk">Enable Signing Commits</a></li><li class="nav-item"><a href="#use_ssh_authentication" class="nav-link intrnllnk">Configure MATLAB to Use Git SSH Authentication</a></li><li class="nav-item"><a href="#mw_779634a2-7613-4f1d-9ef0-e791c35ca19b" class="nav-link intrnllnk">Manage Git Credentials</a></li><li class="nav-item"><a href="#mw_f78c949c-dba2-4275-b3d9-0fb439722b3e" class="nav-link intrnllnk">Configure Git to Use Git LFS</a></li><li class="nav-item"><a href="#mw_e019e97c-6dda-4cb0-83ce-8efd34c4d9ab" class="nav-link intrnllnk">Additional Setup</a></li><li class="nav-item"><a href="#d126e83999" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-git-source-control&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt523ej-1">Set Up <span class="trademark entity">Git</span> Source Control</h2><div class="doc_topic_desc"><div class="purpose_container"><em>Since R2025a. Replaces <a href="https://www.mathworks.com/help/releases/R2024b/matlab/matlab_prog/set-up-git-source-control.html">Set Up Git Source Control</a><span role="archived_release_number"> (R2024b)</span>. </em></div></div><p>You can use Git&#x2122; source control in MATLAB<sup>&#x00AE;</sup> to manage your files and collaborate with others. Using Git, you can track changes to your files and recall specific versions later. For
+        more information, see <a href="track-work-locally-with-git.html" class="a">Track Work Locally with Git in MATLAB</a> and <a href="collaborate-using-git-in-matlab.html" class="a">Collaborate Using Git in MATLAB</a>.</p><p>Before using Git, follow these steps to set it up for MATLAB:</p>
+<div class="itemizedlist"><ul><li><p>(Required for all systems) Register your binary files with Git to avoid file corruption. For more information, see <a href="set-up-git-source-control.html#buhx2d6-1_3" class="intrnllnk">Register Binary Files with Git</a>.</p></li><li><p>(Recommended for Windows<sup>&#x00AE;</sup> systems) Enable support for long paths for Git on a Windows system. For more information, see <a href="set-up-git-source-control.html#mw_4e40b00a-d620-4cda-97f1-01589bd41cc6" class="intrnllnk">Enable Support for Long Paths</a>.</p></li><li><p>(Recommended for all systems) Configure MATLAB to automatically merge model files. For more information, see
+                        <a href="../../simulink/ug/enable-matlab-automerge.html" class="a">Automatically Merge Models Locally and in CI Pipeline</a><span role="cross_prod"> (Simulink)</span>.</p></li><li><p>(Optional) Configure MATLAB to sign commits. For more information, see <a href="set-up-git-source-control.html#mw_e108aa2a-fd83-4a3d-9e9a-5884bb1669c9" class="intrnllnk">Enable Signing Commits</a>.</p></li><li><p>(Optional) Configure MATLAB to use Git SSH authentication or install a Git credential helper to prevent frequent login prompts. For more
+                    information, see <a href="set-up-git-source-control.html#use_ssh_authentication" class="intrnllnk">Configure MATLAB to Use Git SSH Authentication</a>.</p></li><li><p>(Optional) Configure MATLAB to manage Git credentials. For more information, see <a href="set-up-git-source-control.html#mw_779634a2-7613-4f1d-9ef0-e791c35ca19b" class="intrnllnk">Manage Git Credentials</a>.</p></li><li><p>(Optional) Configure Git to use Git LFS if you are working with large files. For more information, see
+                        <a href="set-up-git-source-control.html#mw_f78c949c-dba2-4275-b3d9-0fb439722b3e" class="intrnllnk">Configure Git to Use Git LFS</a>.</p></li><li><p>(Optional) Configure external Git tools to use MATLAB for Diff and Merge. For more information, see <a href="customize-external-source-control-to-use-matlab-for-comparison-and-merge.html" class="a">Customize External Source Control to Use MATLAB for Diff and Merge</a>.</p></li></ul></div><p>
+</p><p>Starting in R2024a, you can run Git hooks from within MATLAB. Supported hooks are <code class="literal">pre-commit</code>,
+            <code class="literal">commit-msg</code>, <code class="literal">post-commit</code>,
+            <code class="literal">prepare-commit-msg</code>, <code class="literal">pre-push</code>,
+            <code class="literal">pre-merge-commit</code>, <code class="literal">post-checkout</code>, and
+            <code class="literal">post-merge</code>. For an example, see <a href="use-git-hooks-in-matlab.html" class="a">Use Git Hooks in MATLAB</a>.</p><section><h3 class="title" id="buhx2d6-1_3">Register Binary Files with <span class="trademark entity">Git</span></h3><p>If you use third-party source control tools, you must register your MATLAB and Simulink<sup>&#x00AE;</sup> file extensions such as <code class="literal">.mlx</code>, <code class="literal">.mat</code>,
+            <code class="literal">.fig</code>, <code class="literal">.mlapp</code>, <code class="literal">.mdl</code>,
+            <code class="literal">.slx</code>, <code class="literal">.mdlp</code>, <code class="literal">.slxp</code>,
+            <code class="literal">.sldd</code>, and <code class="literal">.p</code> as binary formats. Also register
+        extensions for MEX files, such as <code class="literal">.mexa64</code>, <code class="literal">.mexmaci64</code>,
+            <code class="literal">.mexmaca64</code>, and <code class="literal">.mexw64</code>. If you do not register
+        the extensions, these tools can corrupt your files when you submit them by changing
+        end-of-line characters, expanding tokens, substituting keywords, or attempting to automerge.
+        Corruption can occur if you use the source control tools outside of MATLAB or if you try submitting files from MATLAB without first registering your file formats.</p><p>Also register other file extensions, such as <code class="literal">.xlsx</code>,
+        <code class="literal">.jpg</code>, <code class="literal">.pdf</code>, and <code class="literal">.docx</code>, as binary
+        formats to avoid corruption during the check-in operation.</p><p>To register your binary file extensions with Git, add them to the <code class="literal">.gitattributes</code> file in your
+            repository. If you create a new project that uses Git source control or switch an existing project from another source control
+            system to Git source control, MATLAB automatically creates a <code class="literal">.gitattributes</code> file and
+            populates it with a list of common binary files to register.</p><p>If a <code class="literal">.gitattributes</code> file is not automatically created, you can
+            create one that contains the list of common binary files to register. In the MATLAB Command Window,
+            enter:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>copyfile(fullfile(matlabroot,<span style="color:#A020F0">'toolbox'</span>,<span style="color:#A020F0">'shared'</span>,<span style="color:#A020F0">'cmlink'</span>,<span style="color:#A020F0">'git'</span>,<span style="color:#A020F0">'auxiliary_files'</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'mwgitattributes'</span>),fullfile(pwd,<span style="color:#A020F0">'.gitattributes'</span>))</pre></div></div></div></p><p>Alternatively, create a blank <code class="literal">.gitattributes</code> file in your
+            repository and populate its content.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Add <code class="literal">* text=auto</code> to the top of the
+                            <code class="literal">.gitattributes</code> file.</p></li><li><p>For every binary file extension <em class="replaceable"><code>ext</code></em>, add
+                                <code class="literal">*.<em class="replaceable"><code>ext</code></em> binary</code>. For
+                        example, <code class="literal">*.mlapp binary</code>. </p></li></ol></div><p>
+</p></section><section><h3 class="title" id="mw_4e40b00a-d620-4cda-97f1-01589bd41cc6">Enable Support for Long Paths</h3><p>Enable support for long paths on a Windows system by following these steps.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                            <strong class="guilabel">Environment</strong> section, click
+                            <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">Git</strong>.</p></li><li><p>In the <strong class="guilabel">Windows</strong> section, select <strong class="guilabel">Enable
+                            support for long paths</strong>. Doing so sets the value of
+                            <code class="literal">core.longpaths</code> to <code class="literal">true</code> in your
+                        global Git configuration file.</p></li></ol></div><p>
+</p><p>For more information, see <a href="set-source-control-preferences.html#mw_1901e8df-bcd1-4a62-a149-7239b27383e8" class="a">Configure Git Settings</a>.</p></section><section><h3 class="title" id="mw_e108aa2a-fd83-4a3d-9e9a-5884bb1669c9">Enable Signing Commits</h3><p>Configure your source control settings to enable MATLAB to sign Git commits automatically  by following these steps. When MATLAB verifies a commit signature, a green verification icon <span class="inlinemediaobject"><img src="verified_commit_signing.png" alt="" height="19" width="21"></span> appears next to your avatar and username in both the <a href="../ref/branchmanager.html"><span class="tool">Branch
+                Manager</span></a> and the line annotations in the MATLAB Editor.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                            <strong class="guilabel">Environment</strong> section, click
+                            <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">Git</strong>.</p></li><li><p>In the <strong class="guilabel">Commit Signing</strong> section, set the signing key,
+                        the signing key format, and the signing program. For more information, see
+                            <a href="set-source-control-preferences.html#mw_1901e8df-bcd1-4a62-a149-7239b27383e8" class="a">Configure Git Settings</a>.</p></li></ol></div><p>
+</p></section><section><h3 class="title" id="use_ssh_authentication">Configure <span class="trademark entity">MATLAB</span> to Use <span class="trademark entity">Git</span> SSH Authentication</h3><span id="ssh_authentication" class="anchor_target"></span><p>To prevent frequent login prompts when you interact with your remote repository using
+            HTTPS, add a new public key and clone the repository using SSH instead. Configure
+                MATLAB to use SSH authentication by following these steps.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Generate an SSH key using the <code class="literal">ssh-keygen</code> command. For
+                    example, at a command prompt, enter this
+                        command:<div class="code_responsive"><pre class="programlisting">ssh-keygen -t ed25519 -C "your_email@example.com"</pre></div><code class="literal">ssh-keygen</code>
+                    prompts you to confirm where to save the key and asks for a pass-phrase. If you
+                    do not want to type a password when you use the key, leave the pass-phrase
+                    empty.</p><p>If you already have keys in the specified folder,
+                        <code class="literal">ssh-keygen</code> asks if you want to override them.</p></li><li><p>Set up the use of SSH keys in MATLAB. On the <strong class="guilabel">Home</strong> tab, in the
+                        <strong class="guilabel">Environment</strong> section, click
+                        <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">Git</strong>. Then, configure your settings.</p><p>
+                    </p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>In the <strong class="guilabel">SSH</strong> section, if not enabled, select
+                                    <strong class="guilabel">Enable SSH</strong>.</p><p>By default, MATLAB looks for keys in an SSH agent. On Windows, use OpenSSH as the SSH agent. For more information,
+                                see <a href="https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement" target="_blank">Key-based authentication in OpenSSH for Windows</a>.</p><p>Using an SSH agent enables you to store and use multiple
+                                keys.</p></li><li><p>If you are not using an SSH agent to store your keys, you can
+                                enter them manually. Clear the <strong class="guilabel">Use SSH agent</strong>
+                                checkbox. Then, specify the path to your public and private key
+                                files in <strong class="guilabel">Public key file</strong> and <strong class="guilabel">Private
+                                    key file</strong>. For more information, see <a href="set-source-control-preferences.html#mw_1901e8df-bcd1-4a62-a149-7239b27383e8" class="a">Configure Git Settings</a>.</p><p>To enable the use of a pass-phrase and receive a prompt once per
+                                session, select <strong class="guilabel">Key is pass-phrase
+                                protected</strong>.</p></li></ol></div><p>
+
+                </p></li><li><p>Configure your GitHub<sup>&#x00AE;</sup> or GitLab<sup>&#x00AE;</sup> account to use the SSH keys. To do so, go to the
+                        <code class="literal">.ssh</code> folder and copy the contents of the
+                        <code class="literal">.pub</code> file. Then, go to your account settings, and in the
+                        <strong class="guilabel">SSH keys</strong> section, paste the contents of the
+                        <code class="literal">.pub</code> file into the <strong class="guilabel">Add SSH key</strong>
+                    field.</p></li></ol></div></section><section><h3 class="title" id="mw_779634a2-7613-4f1d-9ef0-e791c35ca19b">Manage <span class="trademark entity">Git</span> Credentials</h3><span id="gitcredentials" class="anchor_target"></span><p>By default, MATLAB remembers your user names and tokens when you interact with Git repositories. To change the default credentials preference, on the
+                <strong class="guilabel">Home</strong> tab, in the <strong class="guilabel">Environment</strong> section,
+            click <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">Git</strong>. In the <strong class="guilabel">Credentials</strong> section, choose one of the
+            available options. For more information, see <a href="set-source-control-preferences.html#mw_1901e8df-bcd1-4a62-a149-7239b27383e8" class="a">Configure Git Settings</a>.</p><p>Alternatively, you can install an external Git credential helper and configure MATLAB to use it instead. The recommended credential helper for all platforms is
+            Git Credential Manager Core. For more information, see Configure MATLAB to Use Git Credential Helper in <a href="set-up-git-source-control.html#mw_e019e97c-6dda-4cb0-83ce-8efd34c4d9ab" class="intrnllnk">Additional Setup</a>.</p><p>To delete saved login information for a Git repository, in MATLAB,
+            enter:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>matlab.git.clearCredential(<span style="color:#A020F0">"https://github.com/myrepo.git"</span>)</pre></div></div></div></p></section><section><h3 class="title" id="mw_f78c949c-dba2-4275-b3d9-0fb439722b3e">Configure <span class="trademark entity">Git</span> to Use <span class="trademark entity">Git</span> LFS</h3><p>If you are working with large files, configure Git to use Git Large File Storage (LFS) by installing command-line Git and setting up LFS.</p><p>For example, to use Git LFS on a Windows system, download and run the Git for Windows installer using the
+            instructions described under Install Command-Line Git Client in <a href="set-up-git-source-control.html#mw_e019e97c-6dda-4cb0-83ce-8efd34c4d9ab" class="intrnllnk">Additional Setup</a>. In the <strong class="guilabel">Select Components</strong> section of
+            the Git for Windows installer, select the <strong class="emphasis bold">Git LFS (Large File
+                Support)</strong> and <strong class="emphasis bold">Associate .sh files to be run with
+                Bash</strong> options.</p></section><section><h3 class="title" id="mw_e019e97c-6dda-4cb0-83ce-8efd34c4d9ab">Additional Setup</h3><div class="itemizedlist"><ul><li id="bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147"><p>To use Git LFS or a credential helper, you must install a command-line Git
+                    client and make it available system-wide.</p><p><a href="#" onclick="return toggleexpander('bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_block','bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_expandable_text');"><img style="border:0;" id="bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_block','bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_expandable_text');">Install Command-Line Git Client</a></p><div class="expander" style="display:none; padding-left:4px;" id="bt523ej-1.mw_b5884d8b-7c3e-4c38-b055-28e39b604147_block"><p>To check if Git is installed, enter the command <code class="literal">!git</code> in the
+                            MATLAB Command Window. If the command does not return an output, you
+                        need to install a command-line Git client. This table provides instructions on how to install a
+                        command-line Git client based on your operating system.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="67%"></colgroup><thead><tr><th>Operating System</th><th>Instructions</th></tr></thead><tbody><tr><td>Windows</td><td>
+                                        <div class="orderedlist"><ol style="list-style: decimal;"><li><p>Download and run the installer from <a href="https://gitforwindows.org/" target="_blank">https://gitforwindows.org/</a>.</p></li><li><p>In the <strong class="guilabel">Select Components</strong>
+                                                  sections, make sure you select <strong class="guilabel">Git
+                                                  LFS</strong> and <strong class="guilabel">Associate .sh file to
+                                                  be run with Bash</strong>. </p>
+<div class="itemizedlist"><ul><li><p>Selecting <strong class="guilabel">Git LFS</strong>
+                                                  enables you to use Git LFS on Windows.</p></li><li><p>Selecting <strong class="guilabel">Associate .sh file to be
+                                                  run with Bash</strong> enables you to use
+                                                  Git hooks on Windows. For an example on how to use
+                                                  Git hooks, see <a href="use-git-hooks-in-matlab.html" class="a">Use Git Hooks in MATLAB</a>.</p></li><li><p>By default, Git command-line installation includes
+                                                  Git bash that provides shell utilities.
+                                                  When you configure MATLAB to automatically merge Simulink models, Git bash enables you to run
+                                                  <code class="literal">mlAutoMerge.bat</code> on Windows. See
+                                                  <a href="../../simulink/ug/enable-matlab-automerge.html" class="a">Automatically Merge Models Locally and in CI Pipeline</a><span role="cross_prod"> (Simulink)</span></p></li></ul></div><p>
+</p></li><li><p>In the <strong class="guilabel">Adjusting your PATH
+                                                  environment</strong> section, choose the install
+                                                  option <strong class="guilabel">Git from the command line and
+                                                  also from 3rd-party software</strong>. This
+                                                  option adds Git to your <code class="literal">PATH</code>
+                                                  variable and makes it available system-wide so
+                                                  that MATLAB can communicate with Git.</p></li><li><p>In the section for configuring the line-ending
+                                                  conversions, choose the <strong class="guilabel">Checkout
+                                                  Windows-style, commit Unix-style line
+                                                  endings</strong> option. The line-ending format
+                                                  is not enforceable between machines and users, but
+                                                  you can support consistent line endings for text
+                                                  files in the <code class="literal">.gitattributes</code>
+                                                  file of each repository.</p></li><li><p>Restart your system for the changes to take
+                                                  effect.</p></li></ol></div>
+                                    </td></tr><tr><td>Linux<sup>&#x00AE;</sup></td><td><p>Git is available for most distributions.
+                                            Install Git for your distribution. For example, on
+                                                Debian<sup>&#x00AE;</sup>, install Git by entering this
+                                        command:</p><div class="code_responsive"><pre class="programlisting">sudo apt-get install git</pre></div></td></tr><tr><td><span class="entity">macOS</span></td><td>On Mavericks (10.9) or above, run Git from a Terminal window. If you do not have
+                                            Git installed already, it will prompt you to
+                                        install Xcode Command Line Tools. For more information, see
+                                            <a href="https://git-scm.com/doc" target="_blank">https://git-scm.com/doc</a>.</td></tr></tbody></table></div></div></li><li><p>MATLAB remembers your usernames and tokens when you interact with
+                        Git repositories. You can use an external Git credential helper to store your Git credentials instead. The Git Credential Manager Core is the
+                    recommended credential helper for all platforms.</p><p><a href="#" onclick="return toggleexpander('mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_block','mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_expandable_text');"><img style="border:0;" id="mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_block','mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_expandable_text');">Configure <span class="trademark entity">MATLAB</span> to Use <span class="trademark entity">Git</span> Credential Helper</a></p><div class="expander" style="display:none; padding-left:4px;" id="mw_79398096-07d0-4b4a-bb23-b096c2a4a55d_block"><p>To install Git Credential Manager Core on a Windows system and configure MATLAB to use it to store Git credentials, follow these steps:</p><p>
+                        </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Download and run the Git for Windows installer using the
+                                    instructions described in the above section.</p></li><li><p>In the <strong class="emphasis bold">Choose a credential
+                                        helper</strong> section of the installer, select <strong class="emphasis bold">Git Credential Manager Core</strong> as the
+                                    credential helper. This defines the value of
+                                        <code class="literal">credential.helper</code> in your global
+                                        <code class="literal">.gitconfig</code> file.</p><p>Alternatively, you can set the value of
+                                        <code class="literal">credential.helper</code> in your global
+                                        <code class="literal">.gitconfig</code> file manually.</p></li></ol></div><p>
+
+                    </p></div></li></ul></div></section>
+        <h2 id="d126e83999">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/gitclone.html"><span itemprop="name"><code class="function">gitclone</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/gitrepo.html"><span itemprop="name"><code class="function">gitrepo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/gitinit.html"><span itemprop="name"><code class="function">gitinit</code></span></a></span></li></ul>
+        <h3 id="d126e84014">Topics</h3><ul class="list-unstyled"><li><a href="set-source-control-preferences.html" class="a">Configure Source Control Settings</a></li><li><a href="create-local-git-repository.html" class="a">Create Local Git Repository in MATLAB</a></li><li><a href="clone-git-repository.html" class="a">Clone Git Repository in MATLAB</a></li><li><a href="create-manage-and-merge-git-branches.html" class="a">Create, Manage, and Merge Git Branches</a></li><li><a href="customize-external-source-control-to-use-matlab-for-comparison-and-merge.html" class="a">Customize External Source Control to Use MATLAB for Diff and Merge</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

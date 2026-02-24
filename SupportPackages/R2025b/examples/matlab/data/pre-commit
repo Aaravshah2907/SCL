@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check for 'TODO' in staged files.
+FILES=$(git diff --name-only --diff-filter=ACMR | grep -E '\.(m|cpp)$')
+TODO_FOUND=0
+
+for FILE in $FILES; do
+  if grep -q "TODO" $FILE; then
+    exec 1>&2
+    echo "TODO found in $FILE. Please address before committing."
+    TODO_FOUND=1
+  fi
+done
+
+if [ "$TODO_FOUND" -ne 0 ]; then
+  exit 1
+fi
+
+exit 0

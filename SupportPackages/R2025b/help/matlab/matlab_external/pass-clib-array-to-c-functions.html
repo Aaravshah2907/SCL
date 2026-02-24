@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Pass clib.array to C++ Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../use-prebuilt-matlab-interface-to-c-library.html",
+          "name": "Use Prebuilt MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "use-prebuilt-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The term clib array is the MATLAB object representation of C++ native arrays and std::vector types."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../use-prebuilt-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_3d27c21a-5812-42a3-a2e1-0a91d8651b07"><span itemprop="title">Use Prebuilt MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Pass clib.array to C++ Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_8ea1b154-dd59-4053-b822-1ef347a93101" class="nav-link intrnllnk">MATLAB C++ Object Array Properties</a></li><li class="nav-item"><a href="#mw_0d548afc-5c5a-4402-a1ea-df7e8f9c8817" class="nav-link intrnllnk">MATLAB C++ Object Array Methods</a></li><li class="nav-item"><a href="#mw_40efb8c0-83d3-4a1c-9c35-e2379cfc92c6" class="nav-link intrnllnk">Memory Management</a></li><li class="nav-item"><a href="#d126e21553" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_520b3345-3273-4fbf-9cc4-bc0ff6a803b5">Pass <code class="literal">clib.array</code> to C++ Functions</h2><p>MATLAB<sup>&#x00AE;</sup> provides the <code class="literal">clib.array</code> interface to wrap C++ native
+            arrays and <code class="literal">std::vector</code> types in MATLAB objects. The term <em class="firstterm">clib array</em> refers to the
+                MATLAB object representation of these C++ types.</p><p>A MATLAB clib array is defined only when the corresponding C++ native array or
+                <code class="literal">std::vector</code> type is used by supported C++ constructs&#8212;function
+            input and output arguments and data members. The library header files must contain the
+            definition of the array element type. The constructs must be supported by MATLAB and included when building the MATLAB interface to the C++ library.</p><p>For information about creating a MATLAB array of C++ objects or converting an MATLAB array to a C++ array object, see <a href="create-matlab-array-of-c-objects.html" class="a">Create MATLAB Array of C++ Objects</a>.</p><section><h3 class="title" id="mw_8ea1b154-dd59-4053-b822-1ef347a93101"><span class="trademark entity">MATLAB</span> C++ Object Array Properties</h3><p>MATLAB arrays created with <a href="../ref/clibarray.html"><code class="function">clibArray</code></a> or <a href="../ref/clibconvertarray.html"><code class="function">clibConvertArray</code></a> have these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="17%"><col class="tcol3" width="19%"><col class="tcol4" width="46%"></colgroup><thead><tr><th><p>Property</p></th><th>Type</th><th>Access</th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">Dimensions</code></p></td><td><code class="literal">double</code> vector</td><td>Read-only</td><td><p>Dimensions of the C++ array. For example, <code class="literal">[2 5
+                                        3]</code> specifies a 2-by-5-by-3 array.</p></td></tr><tr><td><p><code class="literal">Resizable</code></p></td><td><code class="literal">logical</code> scalar</td><td>Read-only</td><td><p>
+                                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">true</code> &#8212; You can add or remove
+                                                elements.</p></li><li><p><code class="literal">false</code> &#8212; You cannot add or
+                                                remove elements.</p></li></ul></div><p>
+
+                                </p></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_0d548afc-5c5a-4402-a1ea-df7e8f9c8817"><span class="trademark entity">MATLAB</span> C++ Object Array Methods</h3><p>MATLAB arrays created with <code class="function">clibArray</code> or
+                    <code class="function">clibConvertArray</code> have these methods.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"><col class="tcol2" width="20%"><col class="tcol3" width="57%"></colgroup><thead><tr><th><p>Method</p></th><th>Syntax</th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">append</code></p></td><td><code class="literal">append([element])</code></td><td><p>Add an optionally specified element to the end of the
+                                    array.</p><p>For a primitive MATLAB clib array, if you do not specify an input
+                                    argument, then the method appends a zero value.</p><p>For
+                                    a class-type MATLAB clib array, if you do not specify an input
+                                    argument, then the method appends an object created by the
+                                    class-type default constructor. If the class-type default
+                                    constructor is deleted, a run-time error occurs.</p></td></tr><tr><td><p><code class="literal">removeLast</code></p></td><td><code class="literal">removeLast</code></td><td><p>Remove the last element of the array. If the MATLAB clib array is empty, a run-time error
+                                    occurs.</p></td></tr><tr><td><p><code class="literal">double</code></p></td><td><code class="literal">double</code></td><td><p>Convert to double precision.</p></td></tr><tr><td><p><code class="literal">int8</code></p></td><td><p><code class="literal">int8</code></p></td><td><p>Convert to <code class="literal">int8</code>.</p></td></tr><tr><td><p><code class="literal">uint8</code></p></td><td><p><code class="literal">uint8</code></p></td><td><p>Convert to <code class="literal">uint8</code>.</p></td></tr><tr><td><p><code class="literal">int16</code></p></td><td><p><code class="literal">int16</code></p></td><td><p>Convert to <code class="literal">int16</code>.</p></td></tr><tr><td><p><code class="literal">uint16</code></p></td><td><p><code class="literal">uint16</code></p></td><td><p>Convert to <code class="literal">uint16</code>.</p></td></tr><tr><td><p><code class="literal">int32</code></p></td><td><p><code class="literal">int32</code></p></td><td><p>Convert to <code class="literal">int32</code>.</p></td></tr><tr><td><p><code class="literal">uint32</code></p></td><td><p><code class="literal">uint32</code></p></td><td><p>Convert to <code class="literal">uint32</code>.</p></td></tr><tr><td><p><code class="literal">int64</code></p></td><td><p><code class="literal">int64</code></p></td><td><p>Convert to <code class="literal">int64</code>.</p></td></tr><tr><td><p><code class="literal">uint64</code></p></td><td><p><code class="literal">uint64</code></p></td><td><p>Convert to <code class="literal">uint64</code>.</p></td></tr><tr><td><p><code class="literal">logical</code></p></td><td><code class="literal">logical</code></td><td><p>Convert to <code class="literal">logical</code>.</p></td></tr><tr><td><p><code class="literal">struct</code><em> (since R2024b)</em></p></td><td><code class="literal">struct</code></td><td><p>Convert to structure.</p></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_40efb8c0-83d3-4a1c-9c35-e2379cfc92c6">Memory Management</h3><p>The memory for MATLAB arrays created with <code class="function">clibArray</code> or
+                    <code class="function">clibConvertArray</code> is managed by
+                    MATLAB. You do not need to explicitly release the memory for clib arrays. For
+                more information about releasing memory for C++ objects from MATLAB, see <a href="../ref/clibrelease.html"><code class="function">clibRelease</code></a>. </p></section>
+            <h2 id="d126e21553">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibarray.html"><span itemprop="name"><code class="function">clibArray</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibconvertarray.html"><span itemprop="name"><code class="function">clibConvertArray</code></span></a></span></p>
+            <h3 id="d126e21562">Topics</h3><ul class="list-unstyled"><li><a href="create-matlab-array-of-c-objects.html" class="a">Create MATLAB Array of C++ Objects</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

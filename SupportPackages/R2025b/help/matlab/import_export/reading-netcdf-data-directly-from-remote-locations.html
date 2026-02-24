@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Read NetCDF Data Directly from Remote Locations</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../network-common-data-form.html",
+          "name": "NetCDF Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "network-common-data-form"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read netCDF data directly from remote locations without local download."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../network-common-data-form.html?s_tid=CRUX_lftnav" itemprop="url" id="network-common-data-form"><span itemprop="title">NetCDF Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Read NetCDF Data Directly from Remote Locations</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_4ec78dac-8920-4f47-ab52-674245de2785" class="nav-link intrnllnk">Read Cloud-Based NetCDF Data Using HDF5 Interface</a></li><li class="nav-item"><a href="#mw_52bbe02b-b465-445e-9037-9055ce8eefc2" class="nav-link intrnllnk">Read Remote NetCDF Data Using Byte-Range Reading</a></li><li class="nav-item"><a href="#mw_b2b95cb8-d257-4289-84a9-0756967e3ad4" class="nav-link intrnllnk">Read Remote NetCDF Data from OPeNDAP Server</a></li><li class="nav-item"><a href="#mw_0bd6e6c4-2bb4-4293-8558-48045f1b12a5" class="nav-link intrnllnk">Supported Cloud Platforms</a></li><li class="nav-item"><a href="#d126e13360" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=network-common-data-form&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=network-common-data-form&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=network-common-data-form&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_7e96e56d-5c1c-4be9-929d-d0558e27fa99">Read NetCDF Data Directly from Remote Locations</h2>
+            <p class="shortdesc">MATLAB<sup>&#x00AE;</sup> supports reading and writing netCDF data on local file systems.
+                    MATLAB also supports reading netCDF data directly from remote file systems in
+                these ways:</p>
+            <p>
+                </p>
+<div class="itemizedlist"><ul><li><p>You can use the MATLAB HDF5 interfaces with the URL of the file when these two
+                            conditions hold:</p>
+<div class="itemizedlist"><ul><li><p>The file has format <code class="literal">netcdf4</code>.</p></li><li><p>The file is hosted on one of the platforms that
+                                            MATLAB supports. For more information, see <a href="reading-netcdf-data-directly-from-remote-locations.html#mw_0bd6e6c4-2bb4-4293-8558-48045f1b12a5" class="intrnllnk">Supported Cloud Platforms</a>.</p></li></ul></div><p>
+</p></li><li><p>You can use the MATLAB netCDF interfaces with the URL of the file (with
+                                <code class="literal">#mode=bytes</code> appended to the end) when these two
+                            conditions hold:</p>
+<div class="itemizedlist"><ul><li><p>The file is publicly hosted.</p></li><li><p>The file is hosted on a server that supports byte-range
+                                        reading.</p></li></ul></div><p>
+</p></li><li><p>You can use the MATLAB netCDF interfaces with the URL of the file when the file
+                            is hosted on an OPeNDAP server.</p></li></ul></div><p>
+
+            </p>
+        <section><h3 class="title" id="mw_4ec78dac-8920-4f47-ab52-674245de2785">Read Cloud-Based NetCDF Data Using HDF5 Interface</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/UseHDF5InterfaceToReadRemoteNetCDFDataExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read Cloud-Based NetCDF Data Using HDF5 Interface",
+          "description": "The MATLAB high- and low-level HDF5 interfaces are cloud enabled, while the high- and low-level netCDF interfaces are not. However, because netCDF-4 files are based on the HDF5 format, you can use the MATLAB HDF5 interfaces to read netCDF-4 files on the cloud as well. The cloud storage location can be public or private. If the cloud storage location is private, follow the relevant authentication procedures.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html"
+
+        },
+          "identifier": "matlab.UseHDF5InterfaceToReadRemoteNetCDFDataExample",
+          "name": "UseHDF5InterfaceToReadRemoteNetCDFDataExample",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html#mw_4ec78dac-8920-4f47-ab52-674245de2785"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/UseHDF5InterfaceToReadRemoteNetCDFDataExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "UseHDF5InterfaceToReadRemoteNetCDFDataExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-UseHDF5InterfaceToReadRemoteNetCDFDataExample"><meta itemprop="exampletitle" content="Read CloudBased NetCDF Data Using HDF5 Interface"></div><span id="UseHDF5InterfaceToReadRemoteNetCDFDataExample" class="anchor_target"></span><p class="shortdesc">The MATLAB high- and low-level HDF5 interfaces are cloud enabled, while the high- and low-level netCDF interfaces are not. However, because netCDF-4 files are based on the HDF5 format, you can use the MATLAB HDF5 interfaces to read netCDF-4 files on the cloud as well. The cloud storage location can be public or private. If the cloud storage location is private, follow the relevant authentication procedures.</p><p>This example shows how to read data from a remote netCDF-4 file that is publicly hosted on Amazon S3 using the MATLAB high-level HDF5 interface.</p><p>Get information about a netCDF-4 file using the <code class="literal">h5info</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>urlFilePath = <span style="color:#A020F0">"s3://noaa-goes16/ABI-L1b-RadC/2017/242/00/"</span>;
+urlFileName = <span style="color:#A020F0">"OR_ABI-L1b-RadC-M3C01_G16_s20172420002168_e20172420004540_c20172420004583.nc"</span>;
+url = urlFilePath + urlFileName;
+
+info = h5info(url)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>info = <span class="emphasis"><em>struct with fields:</em></span>
+      Filename: 's3://noaa-goes16/ABI-L1b-RadC/2017/242/00/OR_ABI-L1b-RadC-M3C01_G16_s20172420002168_e20172420004540_c20172420004583.nc'
+          Name: '/'
+        Groups: []
+      Datasets: [44×1 struct]
+     Datatypes: []
+         Links: []
+    Attributes: [29×1 struct]
+
+</pre></div></div></div><p>Select a variable to investigate from the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>varName = info.Datasets(7).Name</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>varName = 
+'band_wavelength'
+</pre></div></div></div><p>Get a descriptive name of this variable using the <code class="literal">h5readatt</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>varPath = <span style="color:#A020F0">"/"</span> + varName;
+longName = h5readatt(url,varPath,info.Datasets(7).Attributes(1).Name)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>longName = 
+'ABI band central wavelength'
+</pre></div></div></div><p>Alternatively, you can get this descriptive name from the <code class="literal">info</code> structure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>info.Datasets(7).Attributes(1).Value</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+'ABI band central wavelength'
+</pre></div></div></div><p>Read the value of this variable using the <code class="literal">h5read</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bandWavelength = h5read(url,varPath)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>bandWavelength = <span class="emphasis"><em>single</em></span>
+    0.4700
+</pre></div></div></div><p>These caveats apply to using the HDF5 interfaces to read data from netCDF-4 files.</p><div class="itemizedlist"><ul><li><p>This workflow involves using one interface (HDF5) to read data from a file of a different format (netCDF). You should have expertise in both netCDF and HDF5 file formats and their programmatic interfaces to use this workflow.</p></li><li><p>The MATLAB HDF5 interfaces may not read data correctly for all netCDF-4 files.</p></li></ul></div><div class="procedure"></div></section><section><h3 class="title" id="mw_52bbe02b-b465-445e-9037-9055ce8eefc2">Read Remote NetCDF Data Using Byte-Range Reading</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ReadRemoteNetCDFDataUsingByteRangeReadingExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read Remote NetCDF Data Using Byte-Range Reading",
+          "description": "Read data from a remote netCDF file using the MATLAB high-level netCDF interface and byte-range reading. Byte-range reading is slower than other methods for reading from remote sources.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html"
+
+        },
+          "identifier": "matlab.ReadRemoteNetCDFDataUsingByteRangeReadingExample",
+          "name": "ReadRemoteNetCDFDataUsingByteRangeReadingExample",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html#mw_52bbe02b-b465-445e-9037-9055ce8eefc2"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ReadRemoteNetCDFDataUsingByteRangeReadingExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadRemoteNetCDFDataUsingByteRangeReadingExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ReadRemoteNetCDFDataUsingByteRangeReadingExample"><meta itemprop="exampletitle" content="Read Remote NetCDF Data Using ByteRange Reading"></div><span id="ReadRemoteNetCDFDataUsingByteRangeReadingExample" class="anchor_target"></span><p class="shortdesc">This example shows how to read data from a remote netCDF file using the MATLAB high-level netCDF interface and byte-range reading. Byte-range reading is slower than other methods for reading from remote sources.</p><p>Get information about a netCDF file using the <code class="literal">ncinfo</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>urlFilePath = <span style="color:#A020F0">"https://remotetest.unidata.ucar.edu/thredds/fileServer/testdata/"</span>;
+urlFileName = <span style="color:#A020F0">"2004050300_eta_211.nc"</span>;
+url = urlFilePath + urlFileName + <span style="color:#A020F0">"#mode=bytes"</span>;
+
+info = ncinfo(url)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>info = <span class="emphasis"><em>struct with fields:</em></span>
+      Filename: 'https://remotetest.unidata.ucar.edu/thredds/fileServer/testdata/2004050300_eta_211.nc#mode=bytes'
+          Name: '/'
+    Dimensions: [1×8 struct]
+     Variables: [1×23 struct]
+    Attributes: [1×5 struct]
+        Groups: []
+        Format: 'classic'
+     Datatypes: []
+
+</pre></div></div></div><p>Select a variable to investigate from the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>varName = info.Variables(3).Name</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>varName = 
+'datetime'
+</pre></div></div></div><p>Read the value of the selected variable using the <code class="literal">ncread</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dateChars = ncread(url,varName)'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dateChars = 
+'2003-09-25 00:00:00Z '
+</pre></div></div></div><div class="procedure"></div></section><section><h3 class="title" id="mw_b2b95cb8-d257-4289-84a9-0756967e3ad4">Read Remote NetCDF Data from OPeNDAP Server</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ReadRemoteNetCDFDataFromOPeNDAPServerExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read Remote NetCDF Data from OPeNDAP Server",
+          "description": "Read data from a remote netCDF file that is hosted on an OPeNDAP server using the MATLAB high-level netCDF interface. Reading netCDF data from an OPeNDAP server can be slower than reading from other sources if the data is stored on the server in a compressed format.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html"
+
+        },
+          "identifier": "matlab.ReadRemoteNetCDFDataFromOPeNDAPServerExample",
+          "name": "ReadRemoteNetCDFDataFromOPeNDAPServerExample",
+          "url": "reading-netcdf-data-directly-from-remote-locations.html#mw_b2b95cb8-d257-4289-84a9-0756967e3ad4"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ReadRemoteNetCDFDataFromOPeNDAPServerExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadRemoteNetCDFDataFromOPeNDAPServerExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ReadRemoteNetCDFDataFromOPeNDAPServerExample"><meta itemprop="exampletitle" content="Read Remote NetCDF Data from OPeNDAP Server"></div><span id="ReadRemoteNetCDFDataFromOPeNDAPServerExample" class="anchor_target"></span><p class="shortdesc">This example shows how to read data from a remote netCDF file that is hosted on an OPeNDAP server using the MATLAB high-level netCDF interface. Reading netCDF data from an OPeNDAP server can be slower than reading from other sources if the data is stored on the server in a compressed format.</p><p>Get information about a netCDF file using the <code class="literal">ncinfo</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>urlFilePath = <span style="color:#A020F0">"http://test.opendap.org/dap/data/nc/"</span>;
+urlFileName = <span style="color:#A020F0">"bears_comp.nc.gz"</span>;
+url = urlFilePath + urlFileName;
+
+info = ncinfo(url)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>info = <span class="emphasis"><em>struct with fields:</em></span>
+      Filename: 'http://test.opendap.org/dap/data/nc/bears_comp.nc.gz'
+          Name: '/'
+    Dimensions: [1×4 struct]
+     Variables: [1×8 struct]
+    Attributes: [1×2 struct]
+        Groups: []
+        Format: 'classic'
+     Datatypes: []
+
+</pre></div></div></div><p>Select a variable to investigate from the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>varName = info.Variables(5).Name</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>varName = 
+'order'
+</pre></div></div></div><p>Read the value of the selected variable using the <code class="literal">ncread</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>order = ncread(url,varName)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>order = <span class="emphasis"><em>3×2 int16 matrix</em></span>
+
+   1   4
+   2   5
+   3   6
+
+</pre></div></div></div><div class="procedure"></div></section><section><h3 class="title" id="mw_0bd6e6c4-2bb4-4293-8558-48045f1b12a5">Supported Cloud Platforms</h3><p>MATLAB supports these cloud platforms:</p>
+<div class="itemizedlist"><ul><li><p>Amazon S3&#x2122; (Simple Storage Service)</p></li><li><p>Azure<sup>&#x00AE;</sup> Blob Storage (previously known as Windows Azure<sup>&#x00AE;</sup> Storage Blob (WASB))</p></li><li><p>Hadoop<sup>&#x00AE;</sup> Distributed File System (HDFS&#x2122;)</p></li></ul></div><p>
+</p><p>For more information about supported cloud platforms, see <a href="work-with-remote-data.html" class="a">Work with Remote Data</a>.</p><p>
+                </p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Using <a href="../ref/copyfile.html"><code class="function">copyfile</code></a> to make a local
+                        copy of a remote netCDF file before working with it can be inefficient,
+                        especially if you want to read a small amount of data from a large
+                        file.</p></div><p>
+
+            </p></section>
+            <h2 id="d126e13360">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncread.html"><span itemprop="name"><code class="function">ncread</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncreadatt.html"><span itemprop="name"><code class="function">ncreadatt</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncdisp.html"><span itemprop="name"><code class="function">ncdisp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ncinfo.html"><span itemprop="name"><code class="function">ncinfo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5read.html"><span itemprop="name"><code class="function">h5read</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5readatt.html"><span itemprop="name"><code class="function">h5readatt</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5disp.html"><span itemprop="name"><code class="function">h5disp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5info.html"><span itemprop="name"><code class="function">h5info</code></span></a></span></li></ul>
+            <h3 id="d126e13391">Topics</h3><ul class="list-unstyled"><li><a href="work-with-remote-data.html" class="a">Work with Remote Data</a></li><li><a href="importing-network-common-data-form-netcdf-files-and-opendap-data.html" class="a">Import NetCDF Files and OPeNDAP Data</a></li><li><a href="import-hdf5-files.html" class="a">Import HDF5 Files</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

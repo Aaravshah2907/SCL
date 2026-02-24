@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Update Code for R2019b Changes to Function Precedence Order</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../functions.html",
+          "name": "Functions"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../function-basics.html",
+          "name": "Function Creation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "function-basics"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="MATLAB Version 9.7 (R2019b) changes rules for resolving names and importing classes."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Functions</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../function-basics.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_a4f6673c-ec4b-427c-b6d2-62135c59e628"><span itemprop="title">Function Creation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Update Code for R2019b Changes to Function Precedence Order</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_52d137e1-8101-4a12-a323-482b29628c95" class="nav-link intrnllnk">Identifiers cannot be used for two purposes inside a function</a></li><li class="nav-item"><a href="#mw_f2ba270c-5bb2-4861-9358-31f6dfbaa02c" class="nav-link intrnllnk">Identifiers without explicit declarations might not be treated as variables</a></li><li class="nav-item"><a href="#mw_7ebfa1a0-75c5-4815-8029-836113ceb19f" class="nav-link intrnllnk">Variables cannot be implicitly shared between parent and nested functions</a></li><li class="nav-item"><a href="#mw_c3bee363-94d3-4dc3-aabe-ce225a4f78a6" class="nav-link intrnllnk">Change in precedence of wildcard-based imports</a></li><li class="nav-item"><a href="#mw_8a31cdce-6dc1-4ae0-ae4a-ca0fbae7d1ff" class="nav-link intrnllnk">Fully qualified import functions cannot have the same name as nested functions</a></li><li class="nav-item"><a href="#mw_eb8c582c-731e-4791-9376-3f3863af988c" class="nav-link intrnllnk">Fully qualified imports shadow outer scope definitions of the same name</a></li><li class="nav-item"><a href="#mw_d44ed6d5-65f1-4e8c-8157-c9cbb80c7403" class="nav-link intrnllnk">Error handling when import not found</a></li><li class="nav-item"><a href="#mw_2934c766-e115-4d22-9abf-eb46a1415f2c" class="nav-link intrnllnk">Nested functions inherit import statements from parent functions</a></li><li class="nav-item"><a href="#mw_2de79091-6104-424d-8221-c5e90c656ec4" class="nav-link intrnllnk">Change in precedence of compound name resolution</a></li><li class="nav-item"><a href="#mw_a1f24d01-d35a-4fc5-b5bd-9f27052d76cb" class="nav-link intrnllnk">Anonymous functions can include resolved and unresolved identifiers</a></li><li class="nav-item"><a href="#d126e52456" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=function-basics&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=function-basics&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=function-basics&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=function-basics&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=function-basics&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=function-basics&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_2a7ff350-d279-4236-9a53-6a11bbaeb0af">Update Code for R2019b Changes to Function Precedence Order</h2><p>Starting in R2019b, MATLAB changes the rules for name resolution, impacting the precedence order of variables, nested functions, local functions, and external functions. The new rules simplify and standardize name resolution. For more information, see <a href="function-precedence-order.html" class="a">Function Precedence Order</a>.</p><p>These changes impact the behavior of the <a href="../ref/import.html"><code class="function">import</code></a> function. You should analyze and possibly update your code. To start, search your code for import statements. For example, use <a href="../matlab_env/finding-files-and-folders.html" class="a">Find Files</a> to search for <code class="literal">.m</code> and <code class="literal">.mlx</code> files containing text <code class="literal">import</code>. Refer to these search results when evaluating the effects of the following changes.</p><section><h3 class="title" id="mw_52d137e1-8101-4a12-a323-482b29628c95">Identifiers cannot be used for two purposes inside a function</h3><p>Starting in R2019b, an error results if you use an identifier, first as a local or imported function, and then as a variable. In previous releases, an identifier could be used for different purposes within the scope of a function, which resulted in ambiguous code.</p><p>If this behavior change impacts your code, rename either the variable or the function so that they have different names.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Starting in R2019b</th><th>Updated Code</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td><p>The name <code class="literal">local</code> is used as the <code class="literal">local</code> function and then a variable. This code errors.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+<span style="color:#228B22">% local is an undefined variable</span>
+local(1); <span style="color:#228B22">% Errors</span>
+local = 2; 
+disp(local);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> local(x)
+disp(x)
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td><td><p>Rename the function <code class="literal">local</code> to <code class="literal">localFcn</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+localFcn(1);
+local = 2; 
+disp(local);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> localFcn(x)
+disp(x)
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td><td><p>This code displays <code class="literal">1</code> then <code class="literal">2</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+local(1); <span style="color:#228B22">% local is a function</span>
+local = 2; 
+disp(local);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> local(x)
+disp(x)
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_f2ba270c-5bb2-4861-9358-31f6dfbaa02c">Identifiers without explicit declarations might not be treated as variables</h3><span id="CA_IDISVARLOW" class="anchor_target"></span><span id="CA_IDISVARHIGH" class="anchor_target"></span><p>Starting in R2019b, MATLAB<sup>&#x00AE;</sup> does not use indexing operators to identify the variables in your program. Previously, an identifier without an explicit declaration was treated as a variable when it was indexed with a colon, <code class="literal">end</code>, or curly braces. For example, <code class="literal">x</code> was treated as a variable in <code class="literal">x(a,b,:)</code>, <code class="literal">x(end)</code>, and <code class="literal">x{a}</code>.</p><p>Consider the following code. MATLAB used to treat <code class="literal">x</code> as a variable because of colon-indexing. Starting in R2019b, if a function of the same name exists on the path, MATLAB treats <code class="literal">x</code> as a function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+load <span style="color:#A020F0">data.mat</span>; <span style="color:#228B22">% data.mat contains variable x</span>
+disp(x(:))
+<span style="color:#0000FF">end</span></pre></div></div></div><p>If you intend to use <code class="literal">x</code> as a variable from <code class="literal">data.mat</code> instead of a function, explicitly declare it. Similarly, to use an identifier <code class="literal">x</code> as a variable obtained from a script, declare it before invoking the script. This new behavior also applies if the variable is implicitly introduced by the functions <code class="literal">sim</code>, <code class="literal">eval</code>, <code class="literal">evalc</code>, and <code class="literal">assignin</code>. </p><p>This table shows some examples of how you can update your code.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+load <span style="color:#A020F0">data.mat</span>;
+disp(x(:))
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+load <span style="color:#A020F0">data.mat</span> <span style="color:#A020F0">x</span>;
+disp(x(:))
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td></tr><tr><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc2
+myscript; <span style="color:#228B22">% Contains variable x</span>
+disp(x(:))
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc2
+x = [];
+myscript;
+disp(x(:))
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_7ebfa1a0-75c5-4815-8029-836113ceb19f">Variables cannot be implicitly shared between parent and nested functions</h3><span id="CA_SHVAI" class="anchor_target"></span><p>Starting in R2019b, sharing an identifier as a variable between a <a href="nested-functions.html#f4-73993" class="a">nested function</a> and its parent function is possible only if the identifier
+            is explicitly declared as a variable in the parent function. </p><p> For example, in the following code, identifier <code class="literal">x</code> in
+                <code class="literal">myfunc</code> is different from variable <code class="literal">x</code> in the
+            nested function. If <code class="literal">x</code> is a function on the path, MATLAB treats <code class="literal">x</code> in <code class="literal">myfunc</code> as a function and
+            the code runs. Otherwise, MATLAB throws an error.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+nested;
+x(3) <span style="color:#228B22">% x is not a shared variable</span>
+    <span style="color:#0000FF">function</span> nested
+    x = [1 2 3];
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>In previous releases, if <code class="literal">x</code> was a function on the path, MATLAB treated it as a function in <code class="literal">myfunc</code> and as a variable in
+                <code class="literal">nested</code>. If <code class="literal">x</code> was not a function on the path,
+                MATLAB treated it as a variable shared between <code class="literal">myfunc</code> and
+                <code class="literal">nested</code>. This resulted in code whose output was dependent on the
+            state of the path.</p><p>To use an identifier as a variable shared between parent and nested functions, you might need to update your code. For example, you can initialize the identifier to an empty array in the parent function.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+nested;
+x(3)
+    <span style="color:#0000FF">function</span> nested
+    x = [1 2 3];
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+x = [];
+nested;
+x(3)
+    <span style="color:#0000FF">function</span> nested
+    x = [1 2 3];
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_c3bee363-94d3-4dc3-aabe-ce225a4f78a6">Change in precedence of wildcard-based imports</h3><p>Starting in R2019b, imported functions from wildcard-based imports have lower precedence than variables, nested functions, and local functions. In R2019a and earlier, imports in a function shadowed local functions and nested functions.</p><p>For example, in this code, the statement <code class="literal">local()</code> calls <code class="literal">myfunc/local</code> instead of <code class="literal">pkg1.local</code> in the wildcard-based import. The statement <code class="literal">nest()</code> calls <code class="literal">myfunc/nest</code> instead of <code class="literal">pkg1.nest</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Starting in R2019b</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td>
+                            <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+<span style="color:#228B22">% Import includes functions local and nest</span>
+import <span style="color:#A020F0">pkg1.*</span> 
+local()   <span style="color:#228B22">% Calls myfunc/local </span>
+
+    <span style="color:#0000FF">function</span> nest
+    <span style="color:#0000FF">end</span>
+
+nest();   <span style="color:#228B22">% Calls myfunc/nest </span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> local
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td>
+                            <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+<span style="color:#228B22">% Import includes functions local and nest</span>
+import <span style="color:#A020F0">pkg1.*</span> 
+local()   <span style="color:#228B22">% Calls pkg1.local and </span>
+          <span style="color:#228B22">% displays warning since R2018a</span>
+
+    <span style="color:#0000FF">function</span> nest
+    <span style="color:#0000FF">end</span>
+
+nest();   <span style="color:#228B22">% Calls pkg1.nest</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> local
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td></tr></tbody></table></div><p>In the search results for <code class="literal">import</code>, look for statements that include the wildcard character (<code class="literal">*</code>).</p></section><section><h3 class="title" id="mw_8a31cdce-6dc1-4ae0-ae4a-ca0fbae7d1ff">Fully qualified import functions cannot have the same name as nested functions</h3><p>Starting in R2019b, fully qualified imports that share a name with a nested function in the same scope throw an error.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Starting in R2019b</th><th>Updated Code</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td><p>This function errors because it shares a name with a nested function in the same scope.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+import <span style="color:#A020F0">pkg.nest</span>  <span style="color:#228B22">% Errors </span>
+nest();          
+
+    <span style="color:#0000FF">function</span> nest
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>To call function <code class="literal">nest</code> from the <code class="literal">import</code> statement, rename local function <code class="literal">myfunc/nest</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+import <span style="color:#A020F0">pkg.nest</span> 
+nest();          
+
+    <span style="color:#0000FF">function</span> newNest
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>This function calls function <code class="literal">nest</code> from the <code class="literal">import</code>
+                                statement.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+import <span style="color:#A020F0">pkg.nest</span>   
+nest();  <span style="color:#228B22">% Calls pkg.nest</span>
+
+    <span style="color:#0000FF">function</span> nest
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr><tr><td><p>This function errors because declaring a variable with the same name as the imported function <code class="literal">nest</code> is not supported.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myvarfunc
+import <span style="color:#A020F0">pkg.nest</span>  <span style="color:#228B22">% Errors </span>
+nest = 1
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>Rename variable <code class="literal">nest</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myvarfunc
+import <span style="color:#A020F0">pkg.nest</span>  <span style="color:#228B22">% Errors </span>
+thisNest = 1
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>This function modifies variable
+                            <code class="literal">nest</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myvarfunc
+import <span style="color:#A020F0">pkg.nest</span>
+nest = 1  <span style="color:#228B22">% Modifies variable nest and</span>
+          <span style="color:#228B22">% displays warning since R2018a</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_eb8c582c-731e-4791-9376-3f3863af988c">Fully qualified imports shadow outer scope definitions of the same name</h3><p>Starting in R2019b, fully qualified imports always shadow outer scope definitions of the same name. In R2019a and earlier, a fully qualified import was ignored when it shadowed an identifier in the outer scope.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Starting in R2019b</th><th>Updated Code</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td><p>Local function <code class="literal">nest</code> calls function <code class="literal">x</code> from
+                                imported
+                            package.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+x = 1;
+
+    <span style="color:#0000FF">function</span> nest
+        <span style="color:#228B22">% Import function x</span>
+        import <span style="color:#A020F0">pkg1.x</span> 
+        <span style="color:#228B22">% Calls pkg1.x </span>
+        x()
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>To use variable <code class="literal">x</code> in local function <code class="literal">nest</code>, pass
+                                the variable as an
+                            argument.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+x = 1;
+nest(x)
+
+    <span style="color:#0000FF">function</span> nest(x1)
+        <span style="color:#228B22">% Import function x</span>
+        import <span style="color:#A020F0">pkg1.x</span> 
+        <span style="color:#228B22">% Calls pkg1.x with </span>
+        <span style="color:#228B22">% variable x1</span>
+        x(x1)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>In this code, function <code class="literal">nest</code> ignores imported function
+                                    <code class="literal">x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+x = 1;
+
+    <span style="color:#0000FF">function</span> nest
+        <span style="color:#228B22">% Import function x</span>
+        import <span style="color:#A020F0">pkg1.x</span>
+        <span style="color:#228B22">% x is a variable</span>
+        x()
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_d44ed6d5-65f1-4e8c-8157-c9cbb80c7403">Error handling when import not found</h3><p>Starting in R2019b, fully qualified imports that cannot be resolved throw an error with or without Java<sup>&#x00AE;</sup>. In R2019a and earlier, MATLAB behaved differently depending on whether you started MATLAB with the <code class="literal remove_text_wrapping">-nojvm</code> option. Do not use functions like <code class="function">javachk</code> and <code class="function">usejava</code> to customize error messages.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Starting in R2019b</th><th>Updated Code</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td><p>This code throws an error when starting MATLAB with the <code class="literal remove_text_wrapping">-nojvm</code>
+                            option.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc 
+import <span style="color:#A020F0">java.lang.String</span> <span style="color:#228B22">% Errors</span>
+
+<span style="color:#0000FF">if</span> ~usejava(<span style="color:#A020F0">'jvm'</span>) 
+    <span style="color:#228B22">% Statement never executes</span>
+    disp(<span style="color:#A020F0">'This function requires Java'</span>); 
+<span style="color:#0000FF">else</span> 
+    <span style="color:#228B22">% Do something with Java String class </span>
+<span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>Remove call to
+                            <code class="literal">usejava</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc 
+import <span style="color:#A020F0">java.lang.String</span> <span style="color:#228B22">% Errors</span>
+<span style="color:#228B22">% Do something with java String class </span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td><td><p>This code displays a message when starting MATLAB with the <code class="literal remove_text_wrapping">-nojvm</code>
+                            option.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc 
+import <span style="color:#A020F0">java.lang.String</span> 
+
+<span style="color:#0000FF">if</span> ~usejava(<span style="color:#A020F0">'jvm'</span>) 
+    <span style="color:#228B22">% Display message</span>
+    disp(<span style="color:#A020F0">'This function requires Java'</span>); 
+<span style="color:#0000FF">else</span> 
+    <span style="color:#228B22">% Do something with Java String class </span>
+<span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_2934c766-e115-4d22-9abf-eb46a1415f2c">Nested functions inherit import statements from parent functions</h3><span id="CA_NSTIMP" class="anchor_target"></span><p>Starting in R2019b, nested functions inherit <code class="literal">import</code> statements from
+            the parent function. In R2019a and earlier, nested functions did not inherit import
+            statements from their parent functions.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Starting in R2019b</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td>
+                            <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+
+<span style="color:#228B22">% Package p1 has functions plot and bar</span>
+import <span style="color:#A020F0">p1.plot</span> 
+import <span style="color:#A020F0">p1.*</span>
+nest
+
+    <span style="color:#0000FF">function</span> nest
+        plot   <span style="color:#228B22">% Calls p1.plot</span>
+        bar    <span style="color:#228B22">% Calls p1.bar</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td>
+                            <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfunc
+
+<span style="color:#228B22">% Package p1 has functions plot and bar</span>
+import <span style="color:#A020F0">p1.plot</span> 
+import <span style="color:#A020F0">p1.*</span>
+nest
+
+    <span style="color:#0000FF">function</span> nest
+        plot   <span style="color:#228B22">% Calls plot function on path</span>
+        bar    <span style="color:#228B22">% Calls bar function on path</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_2de79091-6104-424d-8221-c5e90c656ec4">Change in precedence of compound name resolution</h3><p>Starting in R2019b, MATLAB resolves compound names differently. A compound name is comprised of
+            several parts joined by a dot (for example, <code class="literal">a.b.c</code>), which can be used
+            to reference <a href="../matlab_oop/namespaces.html#brf5mx8" class="a">package members</a>. With R2019b, MATLAB resolves compound names by giving precedence to the longest matching
+            prefix. In previous releases, the precedence order followed a more complex set of
+            rules.</p><p>For example, suppose a package <code class="literal">pkg</code> contains a class
+                <code class="literal">foo</code> with a static method <code class="literal">bar</code> and also a
+            subpackage <code class="literal">foo</code> with a function <code class="literal">bar</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>+pkg/@foo/bar.m <span style="color:#228B22">% bar is a static method of class foo</span>
++pkg/+foo/bar.m <span style="color:#228B22">% bar is a function in subpackage foo</span>
+</pre></div></div></div><p>In R2019b, a call to <code class="literal">which pkg.foo.bar</code> returns the path to the
+            package function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>which <span style="color:#A020F0">pkg.foo.bar</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>+pkg/+foo/bar.m</pre></div></div></div><p>Previously, a static method took precedence over a package function in cases where a
+            package and a class had the same name.</p></section><section><h3 class="title" id="mw_a1f24d01-d35a-4fc5-b5bd-9f27052d76cb">Anonymous functions can include resolved and unresolved identifiers</h3><p>Starting in R2019b, anonymous functions can include both resolved and unresolved
+            identifiers. In previous releases, if any identifiers in an anonymous function were not
+            resolved at creation time, all identifiers in that anonymous function were
+            unresolved.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Starting in R2019b</th><th>R2019a and Earlier</th></tr></thead><tbody><tr><td><p>To evaluate the anonymous function, MATLAB calls the local function <code class="literal">lf</code> with
+                                    <code class="literal">x</code> defined in <code class="literal">myscript</code>
+                                because <code class="literal">lf</code> in the anonymous function resolves to
+                                the local
+                            function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfun
+myscript; <span style="color:#228B22">% Includes x = 1 and lf = 10</span>
+f = @()lf(x);
+f()       <span style="color:#228B22">% Displays 'Inside lf'</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Local function to myfun</span>
+<span style="color:#0000FF">function</span> lf(y) 
+disp(<span style="color:#A020F0">'Inside lf'</span>);
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div></td><td><p>MATLAB considers <code class="literal">lf</code> as an unresolved
+                                identifier along with <code class="literal">x</code>, and used
+                                    <code class="literal">x</code> to index into the variable
+                                    <code class="literal">lf</code> from
+                            <code class="literal">myscript</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myfun
+myscript; <span style="color:#228B22">% Includes x = 1 and lf = 10</span>
+f = @()lf(x);
+f()       <span style="color:#228B22">% Displays 10</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Local function to myfun</span>
+<span style="color:#0000FF">function</span> lf(y) 
+disp(<span style="color:#A020F0">'Inside lf'</span>);
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div></td></tr></tbody></table></div></section><h2 id="d126e52456">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/import.html"><span itemprop="name"><code class="function">import</code></span></a></span></p><h3 id="d126e52459">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_oop/importing-classes.html" class="a">Import Namespace Members into Functions</a></li></ul></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

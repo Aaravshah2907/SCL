@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write Plugins to Extend TestRunner</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../extend-testing-frameworks.html",
+          "name": "Extend Testing Frameworks"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "extend-testing-frameworks"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the TestRunnerPlugin class to extend the test runner."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../extend-testing-frameworks.html?s_tid=CRUX_lftnav" itemprop="url" id="butj3cg-8"><span itemprop="title">Extend Testing Frameworks</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write Plugins to Extend TestRunner</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bt81de1-2" class="nav-link intrnllnk">Custom Plugins Overview</a></li><li class="nav-item"><a href="#mw_6542681f-9d97-4be5-818d-fcc67b8d4025" class="nav-link intrnllnk">Extending Test Session Level Plugin Methods</a></li><li class="nav-item"><a href="#bt81de1-5" class="nav-link intrnllnk">Extending Test Suite Level Plugin Methods</a></li><li class="nav-item"><a href="#bt81de1-4" class="nav-link intrnllnk">Extending Test Class Level Plugin Methods</a></li><li class="nav-item"><a href="#bt81de1-3" class="nav-link intrnllnk">Extending Test Level Plugin Methods</a></li><li class="nav-item"><a href="#d126e94186" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt81de1-1">Write Plugins to Extend <code class="class">TestRunner</code></h2><section><h3 class="title" id="bt81de1-2">Custom Plugins Overview</h3><p><code class="class">TestRunnerPlugin</code> methods have four levels: test session, test
+                suite, test class, and test. At each level, you implement methods to extend the
+                running of tests. Additionally, you implement methods at the test suite, test class,
+                and test levels to extend the creation, setup, and teardown of tests or test
+                fixtures.</p><p>At the test suite, test class, and test levels, the <a href="../ref/matlab.unittest.plugins.testrunnerplugin.reportfinalizedresult.html"><code class="method">reportFinalizedResult</code></a> method enables the test runner to report
+                finalized test results. A test result is finalized when no remaining test content
+                can modify it. The test runner determines if it invokes the
+                    <code class="method">reportFinalizedResult</code> method at each level. At the test session
+                level, the <a href="../ref/matlab.unittest.plugins.testrunnerplugin.reportfinalizedsuite.html"><code class="method">reportFinalizedSuite</code></a> method enables the test runner to report test
+                results once the test suite is finalized.</p><p>The test runner runs different methods as shown in the figure.</p><div class="informalfigure"><div id="d126e93936" class="mediaobject centerimg"><p><img src="custompluginscope.png" alt="TestRunnerPlugin methods organized into the test session, test suite, test class, and test levels" height="404" width="390"></p></div></div><p>The creation methods are the only set of <code class="class">TestRunnerPlugin</code> methods
+                with an output argument. Typically, you extend the creation methods to listen for
+                various events originating from the test content at the corresponding level. Since
+                both <a href="../ref/matlab.unittest.testcase-class.html"><code class="class">TestCase</code></a> and <a href="../ref/matlab.unittest.fixtures.fixture-class.html"><code class="class">Fixture</code></a> instances inherit from the
+                    <code class="class">handle</code> class, you add listeners using the <a href="../ref/handle.addlistener.html"><code class="method">addlistener</code></a> method. The methods that
+                set up, run, and tear down test content extend the way the test runner evaluates the
+                test content.</p></section><section><h3 class="title" id="mw_6542681f-9d97-4be5-818d-fcc67b8d4025">Extending Test Session Level Plugin Methods</h3><p>The <code class="class">TestRunnerPlugin</code> methods at the test session level extend the
+                running and reporting of the test suite passed to the test runner. These methods
+                fall within the scope of the <a href="../ref/matlab.unittest.plugins.testrunnerplugin.runsession.html"><code class="method">runSession</code></a> method.</p><p>The run method at this level, <a href="../ref/matlab.unittest.plugins.testrunnerplugin.runtestsuite.html"><code class="method">runTestSuite</code></a>, extends the running of a portion of the entire
+                    <code class="literal">TestSuite</code> array that the testing framework passes to the test
+                runner. The <code class="method">reportFinalizedSuite</code> method extends the reporting of a
+                test suite that has been finalized by <code class="method">runTestSuite</code>. </p></section><section><h3 class="title" id="bt81de1-5">Extending Test Suite Level Plugin Methods</h3><p>The <code class="class">TestRunnerPlugin</code> methods at the test suite level extend the
+                creation, setup, running, and teardown of shared test fixtures. These methods fall
+                within the scope of the <code class="method">runTestSuite</code> method.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="24%"><col class="tcol2" width="76%"></colgroup><thead><tr><th>Type of Method</th><th>Test Level Falls Within Scope of
+                                    <code class="method">runTestSuite</code></th></tr></thead><tbody><tr><td>creation method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.createsharedtestfixture.html"><code class="method">createSharedTestFixture</code></a></td></tr><tr><td>setup method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.setupsharedtestfixture.html"><code class="method">setupSharedTestFixture</code></a></td></tr><tr><td>run method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.runtestclass.html"><code class="method">runTestClass</code></a></td></tr><tr><td>teardown method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.teardownsharedtestfixture.html"><code class="method">teardownSharedTestFixture</code></a></td></tr></tbody></table></div><p>At this level, the <code class="method">createSharedTestFixture</code> method is the only
+                plugin method with an output argument. It returns the <code class="class">Fixture</code>
+                instances for each shared fixture required by a test class. These
+                    <code class="class">Fixture</code> instances are available to the test through the
+                    <code class="method">getSharedTestFixtures</code> method of <code class="class">TestCase</code>.</p><p>The run method at this level, <code class="method">runTestClass</code>, extends the running
+                of tests that belong to the same test class or the same function-based test, and
+                incorporates the functionality described for the test class level plugin
+                methods.</p></section><section><h3 class="title" id="bt81de1-4">Extending Test Class Level Plugin Methods</h3><p>The <code class="class">TestRunnerPlugin</code> methods at the test class level extend the
+                creation, setup, running, and teardown of test suite elements that belong to the
+                same test class or the same function-based test. These methods apply to a subset of
+                the full <code class="literal">TestSuite</code> array that the test runner runs.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="24%"><col class="tcol2" width="76%"></colgroup><thead><tr><th>Type of Method</th><th>Test Level Falls Within Scope of
+                                    <code class="method">runTestClass</code></th></tr></thead><tbody><tr><td>creation method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.createtestclassinstance.html"><code class="method">createTestClassInstance</code></a></td></tr><tr><td>setup method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.setuptestclass.html"><code class="method">setupTestClass</code></a></td></tr><tr><td>run method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.runtest.html"><code class="method">runTest</code></a></td></tr><tr><td>teardown method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.teardowntestclass.html"><code class="method">teardownTestClass</code></a></td></tr></tbody></table></div><p>At this level, the <code class="method">createTestClassInstance</code> method is the only
+                plugin method with an output argument. It returns the <code class="class">TestCase</code>
+                instances created at the class level. For each class, the testing framework passes
+                the instance into any methods with the <code class="literal">TestClassSetup</code> or
+                    <code class="literal">TestClassTeardown</code> attribute.</p><p>A test class setup is parameterized if it contains properties with the
+                    <code class="literal">ClassSetupParameter</code> attribute. In this case, the testing
+                framework evaluates the <code class="method">setupTestClass</code> and
+                    <code class="method">teardownTestClass</code> methods as many times as the class setup
+                parameterization dictates.</p><p>The run method at this level, <code class="method">runTest</code>, extends the running of a
+                single <code class="literal">TestSuite</code> element, and incorporates the functionality
+                described for the test level plugin methods.</p><p>The testing framework evaluates methods at the test class level within the scope
+                of the <code class="method">runTestClass</code> method. If the
+                    <code class="literal">TestClassSetup</code> code completes successfully, it invokes the
+                    <code class="method">runTest</code> method one time for each element in the
+                    <code class="literal">TestSuite</code> array. Each <code class="literal">TestClassSetup</code>
+                parameterization invokes the creation, setup, and teardown methods a single
+                time.</p></section><section><h3 class="title" id="bt81de1-3">Extending Test Level Plugin Methods</h3><p>The <code class="class">TestRunnerPlugin</code> methods at the test level extend the creation,
+                setup, running, and teardown of a single test suite element. A single
+                    <code class="literal">Test</code> element consists of one <code class="literal">Test</code> method
+                or, if the test is parameterized, one instance of the test parameterization.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="24%"><col class="tcol2" width="76%"></colgroup><thead><tr><th>Type of Method</th><th>Test Level Falls Within Scope of
+                                    <code class="method">runTest</code></th></tr></thead><tbody><tr><td>creation method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.createtestmethodinstance.html"><code class="method">createTestMethodInstance</code></a></td></tr><tr><td>setup method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.setuptestmethod.html"><code class="method">setupTestMethod</code></a></td></tr><tr><td>run method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.runtestmethod.html"><code class="method">runTestMethod</code></a></td></tr><tr><td>teardown method</td><td><a href="../ref/matlab.unittest.plugins.testrunnerplugin.teardowntestmethod.html"><code class="method">teardownTestMethod</code></a></td></tr></tbody></table></div><p>At this level, the <code class="method">createTestMethodInstance</code> method is the only
+                plugin method with an output argument. It returns the <code class="class">TestCase</code>
+                instances created for each <code class="literal">Test</code> element. The testing framework
+                passes each of these instances into the corresponding <code class="literal">Test</code>
+                methods, and into any methods with the <code class="literal">TestMethodSetup</code> or
+                    <code class="literal">TestMethodTeardown</code> attribute.</p><p>The testing framework evaluates methods at the test level within the scope of the
+                    <code class="method">runTest</code> method. Provided the framework completes all
+                    <code class="literal">TestMethodSetup</code> work, it invokes the plugin methods at this
+                level a single time per <code class="literal">Test</code> element.</p></section>
+            <h2 id="d126e94186">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/handle.addlistener.html"><span itemprop="name"><code class="function">addlistener</code></span></a></span></li></ul><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.plugins.testrunnerplugin-class.html"><span itemprop="name"><code class="class">matlab.unittest.plugins.TestRunnerPlugin</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testrunner-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestRunner</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testcase-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestCase</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.fixtures.fixture-class.html"><span itemprop="name"><code class="class">matlab.unittest.fixtures.Fixture</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testsuite-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestSuite</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.plugins.parallelizable-class.html"><span itemprop="name"><code class="class">matlab.unittest.plugins.Parallelizable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.automation.streams.outputstream-class.html"><span itemprop="name"><code class="class">matlab.automation.streams.OutputStream</code></span></a></span></li></ul>
+            <h3 id="d126e94220">Topics</h3><ul class="list-unstyled"><li><a href="create-custom-plugin.html" class="a">Create Custom Plugin</a></li><li><a href="run-tests-in-parallel-with-custom-plugin.html" class="a">Run Tests in Parallel with Custom Plugin</a></li><li><a href="generate-custom-output-format.html" class="a">Plugin to Generate Custom Test Output Format</a></li><li><a href="write-custom-plugin-to-save-diagnostic-details.html" class="a">Write Plugin to Save Diagnostic Details</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

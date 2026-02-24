@@ -1,0 +1,874 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Access Data in Tables</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matrices-and-arrays.html",
+          "name": "Matrices and Arrays"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-types.html",
+          "name": "Data Types"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../tables.html",
+          "name": "Tables"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-types.html",
+          "name": "Data Types"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../timetables.html",
+          "name": "Timetables"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "matrices-and-arrays",
+        "tables",
+        "timetables"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Indexing into tables with parentheses, dot notation, and curly braces accesses table data in different ways."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../language-fundamentals.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Language Fundamentals</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matrices-and-arrays.html?s_tid=CRUX_lftnav" itemprop="url" id="bvevvcg-1"><span itemprop="title">Matrices and Arrays</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../language-fundamentals.html?s_tid=CRUX_lftnav">Language Fundamentals</a></li><li><a href="../data-types.html?s_tid=CRUX_lftnav">Data Types</a></li><li><a href="../tables.html?s_tid=CRUX_lftnav" id="btzmn1p">Tables</a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../language-fundamentals.html?s_tid=CRUX_lftnav">Language Fundamentals</a></li><li><a href="../data-types.html?s_tid=CRUX_lftnav">Data Types</a></li><li><a href="../timetables.html?s_tid=CRUX_lftnav" id="bvdhhum-1">Timetables</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Access Data in Tables</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bt0ysyl-2" class="nav-link intrnllnk">Table Indexing Syntaxes</a></li><li class="nav-item"><a href="#mw_646a2661-12e3-4b42-9ce2-30c67e9e635c" class="nav-link intrnllnk">Recommended Indexing Syntaxes</a></li><li class="nav-item"><a href="#mw_741a017c-be24-42b5-946a-68280493acac" class="nav-link intrnllnk">Index by Specifying Rows and Variables</a><ul class="nav"><li class="nav-item"><a href="#IndexBySpecifyingRowsAndVariablesExample-1" class="nav-link intrnllnk">Index by Position</a></li><li class="nav-item"><a href="#IndexBySpecifyingRowsAndVariablesExample-2" class="nav-link intrnllnk">Index by Variable Names</a></li><li class="nav-item"><a href="#IndexBySpecifyingRowsAndVariablesExample-3" class="nav-link intrnllnk">Index by Row Names</a></li><li class="nav-item"><a href="#IndexBySpecifyingRowsAndVariablesExample-4" class="nav-link intrnllnk">Index into One Element</a></li><li class="nav-item"><a href="#IndexBySpecifyingRowsAndVariablesExample-5" class="nav-link intrnllnk">Index by Variable Data Type</a></li></ul></li><li class="nav-item"><a href="#mw_a40e9c3e-5c7b-40e1-8cd6-2461cfd98cd2" class="nav-link intrnllnk">Assign Values to Table</a><ul class="nav"><li class="nav-item"><a href="#AssignValuesToTableExample-1" class="nav-link intrnllnk">Assign Values to Variables</a></li><li class="nav-item"><a href="#AssignValuesToTableExample-2" class="nav-link intrnllnk">Assign Values to Rows</a></li><li class="nav-item"><a href="#AssignValuesToTableExample-3" class="nav-link intrnllnk">Assign Values to Elements</a></li></ul></li><li class="nav-item"><a href="#mw_77d04ebd-b6f7-4ee9-93ac-1cc1fd7bc735" class="nav-link intrnllnk">Find Table Rows Where Values Meet Conditions</a></li><li class="nav-item"><a href="#mw_af1d23bb-61c5-4723-b23a-a90f22421303" class="nav-link intrnllnk">Summary of Table Indexing Syntaxes</a></li><li class="nav-item"><a href="#d126e27705" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matrices-and-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt0ysyl-1">Access Data in Tables</h2><p>A table is a container that stores column-oriented data in variables. To access the data
+        in a table, you can index into the table by specifying rows and variables, just as you can
+        index into a matrix by specifying rows and columns. Table variables have names, just as the
+        fields of a structure have names. The rows of a table also can have names, but row names are
+        not required. To index into a table, specify rows and variables using either positions,
+        names, or data types. The result can be either an array or a table.</p><p>This topic describes the different table indexing syntaxes and when to use each type.
+        Additional examples show the different ways to apply these table indexing types. The table
+        at the end of the topic summarizes the indexing syntaxes, how to specify rows and variables,
+        and the resulting outputs.</p><section><h3 class="title" id="bt0ysyl-2">Table Indexing Syntaxes</h3><p>Depending on the type of indexing you use, the result is either an array extracted
+          from the table or a new table. Indexing with:</p><p>
+          </p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Dot notation,</strong> as in
+                    <code class="literal">T.<em class="replaceable"><code>varname</code></em></code> or
+                    <code class="literal">T.(<em class="replaceable"><code>expression</code></em>)</code>, extracts an array
+                from one table variable.</p></li><li><p><strong class="emphasis bold">Curly braces,</strong> as in
+                    <code class="literal">T{<em class="replaceable"><code>rows</code></em>,<em class="replaceable"><code>vars</code></em>}</code>,
+                extract an array from the specified rows and variables. The variables must have
+                compatible data types so that they can be concatenated into one array.</p></li><li><p><strong class="emphasis bold">Parentheses,</strong> as in
+                    <code class="literal">T(<em class="replaceable"><code>rows</code></em>,<em class="replaceable"><code>vars</code></em>)</code>,
+                return a table that has only the specified rows and variables.</p></li></ul></div><p>
+
+        </p><p>This diagram shows the three types of table indexing.</p><div class="informalfigure"><div id="d126e26779" class="mediaobject"><p><img src="table_indexing.png" alt="To extract an array from one table variable, use dot notation. To extract an array from multiple table variables, use curly braces. To return a table that has only the specified rows and variables, use parentheses." height="412" width="470"></p></div></div></section><section><h3 class="title" id="mw_646a2661-12e3-4b42-9ce2-30c67e9e635c">Recommended Indexing Syntaxes</h3><p>The recommended way to access the contents of a table depends on the result you want
+          and the number of variables that you specify. In these syntax examples,
+            <code class="literal">T</code> is a table that has variables named <code class="literal">Var1</code>,
+            <code class="literal">Var2</code>, and <code class="literal">Var3</code>. (If you do not specify variable
+          names when calling the <code class="function">table</code> function, then these names are the
+          default names.)</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = table([1;2;3;4;5],[5;10;15;20;25],[150;300;450;600;750])
+</pre></div></div></div><div class="itemizedlist"><ul><li><p><strong class="emphasis bold">To access one table variable, use dot notation.</strong>
+              Specify a variable name or an expression that matches the name or position of a
+              variable.</p><p>Using literal names of variables is faster than using expressions. For example,
+                <code class="literal">T.Var1</code> and <code class="literal">T.(1)</code> both access the first
+              variable of <code class="literal">T</code>, but using the expression is slower.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = T.Var1
+Y = T.Var1(1:3)
+Z = T.(1)
+T.Var1 = T.Var1 .* 10
+</pre></div></div></div><p>You can also specify one variable using curly braces. However, accessing a
+              variable using dot notation is faster than accessing a variable using curly
+              braces.</p></li><li><p class="bold"><strong class="emphasis bold">To access multiple table variables, use curly
+                braces.</strong></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = T{:,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>]}
+Y = T{1:3,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>]}
+T{:,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>]} = T{:,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>]} .* 10
+</pre></div></div></div></li><li><p><strong class="emphasis bold">To return a table that has only specified rows and
+                variables, use parentheses.</strong></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T2 = T(:,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>])
+T2 = T(1:3,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>])
+
+A = rand(5,1)
+B = rand(5,1)
+T(:,[<span style="color:#A020F0">"Var1"</span>,<span style="color:#A020F0">"Var2"</span>]) = table(A,B)
+</pre></div></div></div></li></ul></div></section><section><h3 class="title" id="mw_741a017c-be24-42b5-946a-68280493acac">Index by Specifying Rows and Variables</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/IndexBySpecifyingRowsAndVariablesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Index by Specifying Rows and Variables",
+          "description": "You can index into tables by specifying numeric indices, row and variable names, or variable data types.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "access-data-in-a-table.html"
+
+        },
+          "identifier": "matlab.IndexBySpecifyingRowsAndVariablesExample",
+          "name": "IndexBySpecifyingRowsAndVariablesExample",
+          "url": "access-data-in-a-table.html#mw_741a017c-be24-42b5-946a-68280493acac"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/IndexBySpecifyingRowsAndVariablesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "IndexBySpecifyingRowsAndVariablesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-IndexBySpecifyingRowsAndVariablesExample"><meta itemprop="exampletitle" content="Index by Specifying Rows and Variables"></div><span id="IndexBySpecifyingRowsAndVariablesExample" class="anchor_target"></span><p class="shortdesc">You can index into tables by specifying numeric indices, row and variable names, or variable data types.</p><p>Create a table. Load arrays of data from the sample <code class="literal">patients.mat</code> file. Then create a table from these arrays using the <code class="literal">table</code> function. The names of the input arrays become the names of the table variables. Row names are optional. To specify row names, use the <code class="literal">RowNames</code> name-value argument.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">patients.mat</span> <span style="color:#A020F0">Age</span> <span style="color:#A020F0">Height</span> <span style="color:#A020F0">Weight</span> <span style="color:#A020F0">Smoker</span> <span style="color:#A020F0">LastName</span>
+T = table(Age,Height,Weight,Smoker,RowNames=LastName)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>T=<span class="emphasis"><em>100×4 table</em></span>
+                Age    Height    Weight    Smoker
+                ___    ______    ______    ______
+
+    Smith       38       71       176      true  
+    Johnson     43       69       163      false 
+    Williams    38       64       131      false 
+    Jones       40       67       133      false 
+    Brown       49       64       119      false 
+    Davis       46       68       142      false 
+    Miller      33       64       142      true  
+    Wilson      40       68       180      false 
+    Moore       28       68       183      false 
+    Taylor      31       66       132      false 
+    Anderson    45       68       128      false 
+    Thomas      42       66       137      false 
+    Jackson     25       71       174      false 
+    White       39       72       202      true  
+    Harris      36       65       129      false 
+    Martin      48       71       181      true  
+      &#x22EE;
+
+</pre></div></div></div><div class="procedure"><span id="IndexBySpecifyingRowsAndVariablesExample-1" class="anchor_target"></span><p class="title" id="IndexBySpecifyingRowsAndVariablesExample-1"><b>Index by Position</b></p><p>You can index into tables by specifying positions as numeric indices. You can also use colons and the <code class="literal">end</code> keyword.</p><p>For example, index into the first three rows of <code class="literal">T</code>. This syntax is a compact way to return a table with the specified number of rows.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>firstRows = T(1:3,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>firstRows=<span class="emphasis"><em>3×4 table</em></span>
+                Age    Height    Weight    Smoker
+                ___    ______    ______    ______
+
+    Smith       38       71       176      true  
+    Johnson     43       69       163      false 
+    Williams    38       64       131      false 
+
+</pre></div></div></div><p>Return a table with the first two variables and the last three rows of <code class="literal">T</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lastRows = T(end-2:end,1:2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>lastRows=<span class="emphasis"><em>3×2 table</em></span>
+               Age    Height
+               ___    ______
+
+    Griffin    49       70  
+    Diaz       45       68  
+    Hayes      48       66  
+
+</pre></div></div></div><p>If the variables have compatible data types, then you can use curly braces to return the extracted data as an array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lastRowsAsArray = T{end-2:end,1:2}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>lastRowsAsArray = <span class="emphasis"><em>3×2</em></span>
+
+    49    70
+    45    68
+    48    66
+
+</pre></div></div></div><span id="IndexBySpecifyingRowsAndVariablesExample-2" class="anchor_target"></span><p class="title" id="IndexBySpecifyingRowsAndVariablesExample-2"><b>Index by Variable Names</b></p><p>You can index into tables by specifying variable names using a string array. Table variable names do not have to be valid MATLAB&#174; identifiers. They can include spaces and non-ASCII characters, and can start with any character.</p><p>For example, return a table that has only the first three rows of <code class="literal">T</code> and the <code class="literal">Height</code> and <code class="literal">Weight</code> variables.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>variablesByName = T(1:3,[<span style="color:#A020F0">"Height"</span>,<span style="color:#A020F0">"Weight"</span>])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>variablesByName=<span class="emphasis"><em>3×2 table</em></span>
+                Height    Weight
+                ______    ______
+
+    Smith         71       176  
+    Johnson       69       163  
+    Williams      64       131  
+
+</pre></div></div></div><p>Use curly braces to return the data as an array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>arraysFromVariables = T{1:3,[<span style="color:#A020F0">"Height"</span>,<span style="color:#A020F0">"Weight"</span>]}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>arraysFromVariables = <span class="emphasis"><em>3×2</em></span>
+
+    71   176
+    69   163
+    64   131
+
+</pre></div></div></div><p>You can also use dot notation to index into one variable. In fact, dot notation is more efficient when you access just one variable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>heightAsArray = T.Height</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>heightAsArray = <span class="emphasis"><em>100×1</em></span>
+
+    71
+    69
+    64
+    67
+    64
+    68
+    64
+    68
+    68
+    66
+    68
+    66
+    71
+    72
+    65
+      &#x22EE;
+
+</pre></div></div></div><p>Use dot notation to return the first three rows of the <code class="literal">Height</code> variable as an array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>firstHeights = T.Height(1:3)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>firstHeights = <span class="emphasis"><em>3×1</em></span>
+
+    71
+    69
+    64
+
+</pre></div></div></div><span id="IndexBySpecifyingRowsAndVariablesExample-3" class="anchor_target"></span><p class="title" id="IndexBySpecifyingRowsAndVariablesExample-3"><b>Index by Row Names</b></p><p>If a table has row names, you can index into it by row name, not just by row number. For example, return rows of <code class="literal">T</code> for three specific patients.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rowsByName = T([<span style="color:#A020F0">"Griffin"</span>,<span style="color:#A020F0">"Diaz"</span>,<span style="color:#A020F0">"Hayes"</span>],:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rowsByName=<span class="emphasis"><em>3×4 table</em></span>
+               Age    Height    Weight    Smoker
+               ___    ______    ______    ______
+
+    Griffin    49       70       186      false 
+    Diaz       45       68       172      true  
+    Hayes      48       66       177      false 
+
+</pre></div></div></div><p>You can also use curly braces to return the data as an array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>arraysFromRows = T{[<span style="color:#A020F0">"Griffin"</span>,<span style="color:#A020F0">"Diaz"</span>,<span style="color:#A020F0">"Hayes"</span>],:}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>arraysFromRows = <span class="emphasis"><em>3×4</em></span>
+
+    49    70   186     0
+    45    68   172     1
+    48    66   177     0
+
+</pre></div></div></div><span id="IndexBySpecifyingRowsAndVariablesExample-4" class="anchor_target"></span><p class="title" id="IndexBySpecifyingRowsAndVariablesExample-4"><b>Index into One Element</b></p><p>To index into one element of a table, specify one row and one variable. Use curly braces to return the element as an array, a scalar value in this case.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>oneElement = T{<span style="color:#A020F0">"Diaz"</span>,<span style="color:#A020F0">"Height"</span>}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>oneElement = 
+68
+</pre></div></div></div><p>To return that element as a table with one row and one variable, use parentheses.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>oneElementTable = T(<span style="color:#A020F0">"Diaz"</span>,<span style="color:#A020F0">"Height"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>oneElementTable=<span class="emphasis"><em>table</em></span>
+            Height
+            ______
+
+    Diaz      68  
+
+</pre></div></div></div><span id="IndexBySpecifyingRowsAndVariablesExample-5" class="anchor_target"></span><p class="title" id="IndexBySpecifyingRowsAndVariablesExample-5"><b>Index by Variable Data Type</b></p><p>To index into a table by specifying variables that have the same data type, create a data type subscript using the <code class="literal">vartype</code> function.</p><p>For example, create a data type subscript to match numeric table variables.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numSubscript = vartype(<span style="color:#A020F0">"numeric"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>numSubscript = 
+	table vartype subscript:
+
+		Select table variables matching the type 'numeric'
+
+	See Access Data in a Table.
+
+</pre></div></div></div><p>Return a table that has only the numeric variables of <code class="literal">T</code>. The <code class="literal">Smoker</code> variable is not included because it is a logical variable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>onlyNumVariables = T(:,numSubscript)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>onlyNumVariables=<span class="emphasis"><em>100×3 table</em></span>
+                Age    Height    Weight
+                ___    ______    ______
+
+    Smith       38       71       176  
+    Johnson     43       69       163  
+    Williams    38       64       131  
+    Jones       40       67       133  
+    Brown       49       64       119  
+    Davis       46       68       142  
+    Miller      33       64       142  
+    Wilson      40       68       180  
+    Moore       28       68       183  
+    Taylor      31       66       132  
+    Anderson    45       68       128  
+    Thomas      42       66       137  
+    Jackson     25       71       174  
+    White       39       72       202  
+    Harris      36       65       129  
+    Martin      48       71       181  
+      &#x22EE;
+
+</pre></div></div></div></div></section><section><h3 class="title" id="mw_a40e9c3e-5c7b-40e1-8cd6-2461cfd98cd2">Assign Values to Table</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/AssignValuesToTableExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Assign Values to Table",
+          "description": "You can use any indexing syntax to assign values to a table. You can assign values to variables, rows, or individual elements.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "access-data-in-a-table.html"
+
+        },
+          "identifier": "matlab.AssignValuesToTableExample",
+          "name": "AssignValuesToTableExample",
+          "url": "access-data-in-a-table.html#mw_a40e9c3e-5c7b-40e1-8cd6-2461cfd98cd2"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/AssignValuesToTableExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AssignValuesToTableExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-AssignValuesToTableExample"><meta itemprop="exampletitle" content="Assign Values to Table"></div><span id="AssignValuesToTableExample" class="anchor_target"></span><p class="shortdesc">You can use any indexing syntax to assign values to a table. You can assign values to variables, rows, or individual elements.</p><div class="procedure"><span id="AssignValuesToTableExample-1" class="anchor_target"></span><p class="title" id="AssignValuesToTableExample-1"><b>Assign Values to Variables</b></p><p>Import power outage data from a spreadsheet into a table using the <code class="literal">readtable</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages = readtable(<span style="color:#A020F0">"outages.csv"</span>,TextType=<span style="color:#A020F0">"string"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>outages=<span class="emphasis"><em>1468×6 table</em></span>
+      Region          OutageTime        Loss     Customers     RestorationTime           Cause      
+    ___________    ________________    ______    __________    ________________    _________________
+
+    "SouthWest"    2002-02-01 12:18    458.98    1.8202e+06    2002-02-07 16:50    "winter storm"   
+    "SouthEast"    2003-01-23 00:49    530.14    2.1204e+05                 NaT    "winter storm"   
+    "SouthEast"    2003-02-07 21:15     289.4    1.4294e+05    2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44    434.81    3.4037e+05    2004-04-06 06:10    "equipment fault"
+    "MidWest"      2002-03-16 06:18    186.44    2.1275e+05    2002-03-18 23:23    "severe storm"   
+    "West"         2003-06-18 02:49         0             0    2003-06-18 10:54    "attack"         
+    "West"         2004-06-20 14:39    231.29           NaN    2004-06-20 19:16    "equipment fault"
+    "West"         2002-06-06 19:28    311.86           NaN    2002-06-07 00:51    "equipment fault"
+    "NorthEast"    2003-07-16 16:23    239.93         49434    2003-07-17 01:12    "fire"           
+    "MidWest"      2004-09-27 11:09    286.72         66104    2004-09-27 16:37    "equipment fault"
+    "SouthEast"    2004-09-05 17:48    73.387         36073    2004-09-05 20:46    "equipment fault"
+    "West"         2004-05-21 21:45    159.99           NaN    2004-05-22 04:23    "equipment fault"
+    "SouthEast"    2002-09-01 18:22    95.917         36759    2002-09-01 19:12    "severe storm"   
+    "SouthEast"    2003-09-27 07:32       NaN    3.5517e+05    2003-10-04 07:02    "severe storm"   
+    "West"         2003-11-12 06:12    254.09    9.2429e+05    2003-11-17 02:04    "winter storm"   
+    "NorthEast"    2004-09-18 05:54         0             0                 NaT    "equipment fault"
+      &#x22EE;
+
+</pre></div></div></div><p>To assign values to one variable, use dot notation. For example, scale the <code class="literal">Loss</code> variable by a factor of 100.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages.Loss = outages.Loss .* 100</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>outages=<span class="emphasis"><em>1468×6 table</em></span>
+      Region          OutageTime        Loss     Customers     RestorationTime           Cause      
+    ___________    ________________    ______    __________    ________________    _________________
+
+    "SouthWest"    2002-02-01 12:18     45898    1.8202e+06    2002-02-07 16:50    "winter storm"   
+    "SouthEast"    2003-01-23 00:49     53014    2.1204e+05                 NaT    "winter storm"   
+    "SouthEast"    2003-02-07 21:15     28940    1.4294e+05    2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44     43481    3.4037e+05    2004-04-06 06:10    "equipment fault"
+    "MidWest"      2002-03-16 06:18     18644    2.1275e+05    2002-03-18 23:23    "severe storm"   
+    "West"         2003-06-18 02:49         0             0    2003-06-18 10:54    "attack"         
+    "West"         2004-06-20 14:39     23129           NaN    2004-06-20 19:16    "equipment fault"
+    "West"         2002-06-06 19:28     31186           NaN    2002-06-07 00:51    "equipment fault"
+    "NorthEast"    2003-07-16 16:23     23993         49434    2003-07-17 01:12    "fire"           
+    "MidWest"      2004-09-27 11:09     28672         66104    2004-09-27 16:37    "equipment fault"
+    "SouthEast"    2004-09-05 17:48    7338.7         36073    2004-09-05 20:46    "equipment fault"
+    "West"         2004-05-21 21:45     15999           NaN    2004-05-22 04:23    "equipment fault"
+    "SouthEast"    2002-09-01 18:22    9591.7         36759    2002-09-01 19:12    "severe storm"   
+    "SouthEast"    2003-09-27 07:32       NaN    3.5517e+05    2003-10-04 07:02    "severe storm"   
+    "West"         2003-11-12 06:12     25409    9.2429e+05    2003-11-17 02:04    "winter storm"   
+    "NorthEast"    2004-09-18 05:54         0             0                 NaT    "equipment fault"
+      &#x22EE;
+
+</pre></div></div></div><p>You can also assign data to multiple variables by using curly braces. The variables must have compatible data types. For example, scale <code class="literal">Loss</code> and <code class="literal">Customers</code> by a factor of 1/10,000.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages{:,[<span style="color:#A020F0">"Loss"</span>,<span style="color:#A020F0">"Customers"</span>]} = outages{:,[<span style="color:#A020F0">"Loss"</span>,<span style="color:#A020F0">"Customers"</span>]} ./ 10000</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>outages=<span class="emphasis"><em>1468×6 table</em></span>
+      Region          OutageTime        Loss      Customers    RestorationTime           Cause      
+    ___________    ________________    _______    _________    ________________    _________________
+
+    "SouthWest"    2002-02-01 12:18     4.5898     182.02      2002-02-07 16:50    "winter storm"   
+    "SouthEast"    2003-01-23 00:49     5.3014     21.204                   NaT    "winter storm"   
+    "SouthEast"    2003-02-07 21:15      2.894     14.294      2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44     4.3481     34.037      2004-04-06 06:10    "equipment fault"
+    "MidWest"      2002-03-16 06:18     1.8644     21.275      2002-03-18 23:23    "severe storm"   
+    "West"         2003-06-18 02:49          0          0      2003-06-18 10:54    "attack"         
+    "West"         2004-06-20 14:39     2.3129        NaN      2004-06-20 19:16    "equipment fault"
+    "West"         2002-06-06 19:28     3.1186        NaN      2002-06-07 00:51    "equipment fault"
+    "NorthEast"    2003-07-16 16:23     2.3993     4.9434      2003-07-17 01:12    "fire"           
+    "MidWest"      2004-09-27 11:09     2.8672     6.6104      2004-09-27 16:37    "equipment fault"
+    "SouthEast"    2004-09-05 17:48    0.73387     3.6073      2004-09-05 20:46    "equipment fault"
+    "West"         2004-05-21 21:45     1.5999        NaN      2004-05-22 04:23    "equipment fault"
+    "SouthEast"    2002-09-01 18:22    0.95917     3.6759      2002-09-01 19:12    "severe storm"   
+    "SouthEast"    2003-09-27 07:32        NaN     35.517      2003-10-04 07:02    "severe storm"   
+    "West"         2003-11-12 06:12     2.5409     92.429      2003-11-17 02:04    "winter storm"   
+    "NorthEast"    2004-09-18 05:54          0          0                   NaT    "equipment fault"
+      &#x22EE;
+
+</pre></div></div></div><span id="AssignValuesToTableExample-2" class="anchor_target"></span><p class="title" id="AssignValuesToTableExample-2"><b>Assign Values to Rows</b></p><p>To assign one row to a table, you can use either a one-row table or a cell array. In this case, using a cell array can be more convenient than creating and assigning a one-row table.</p><p>For example, assign data to a new row at the end of <code class="literal">outages</code>. Display the end of the table.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages(end+1,:) = {<span style="color:#A020F0">"East"</span>,datetime(<span style="color:#A020F0">"now"</span>),17.3,325,datetime(<span style="color:#A020F0">"tomorrow"</span>),<span style="color:#A020F0">"unknown"</span>};
+outages(end-2:end,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>3×6 table</em></span>
+      Region          OutageTime         Loss      Customers    RestorationTime           Cause      
+    ___________    ________________    ________    _________    ________________    _________________
+
+    "SouthEast"    2013-12-20 19:52    0.023096     0.10382     2013-12-20 23:29    "thunder storm"  
+    "SouthEast"    2011-09-14 11:55     0.45042      1.1835     2011-09-14 13:28    "equipment fault"
+    "East"         2025-08-09 12:26        17.3         325     2025-08-10 00:00    "unknown"        
+
+</pre></div></div></div><p>To assign data to multiple rows, assign values from another table that has variables with the same names and data types. For example, create a new two-row table.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>newOutages = table([<span style="color:#A020F0">"West"</span>;<span style="color:#A020F0">"North"</span>], <span style="color:#0000FF">...</span>
+                   datetime(2024,1,1:2)', <span style="color:#0000FF">...</span>
+                   [3;4], <span style="color:#0000FF">...</span>
+                   [300;400], <span style="color:#0000FF">...</span>
+                   datetime(2024,1,3:4)',[<span style="color:#A020F0">"unknown"</span>;<span style="color:#A020F0">"unknown"</span>], <span style="color:#0000FF">...</span>
+                   VariableNames=outages.Properties.VariableNames)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>newOutages=<span class="emphasis"><em>2×6 table</em></span>
+    Region     OutageTime     Loss    Customers    RestorationTime      Cause  
+    _______    ___________    ____    _________    _______________    _________
+
+    "West"     01-Jan-2024     3         300         03-Jan-2024      "unknown"
+    "North"    02-Jan-2024     4         400         04-Jan-2024      "unknown"
+
+</pre></div></div></div><p>Assign the two-row table to the first two rows of <code class="literal">outages</code>. Then display the first four rows of <code class="literal">outages</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages(1:2,:) = newOutages;
+outages(1:4,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>4×6 table</em></span>
+      Region          OutageTime        Loss     Customers    RestorationTime           Cause      
+    ___________    ________________    ______    _________    ________________    _________________
+
+    "West"         2024-01-01 00:00         3        300      2024-01-03 00:00    "unknown"        
+    "North"        2024-01-02 00:00         4        400      2024-01-04 00:00    "unknown"        
+    "SouthEast"    2003-02-07 21:15     2.894     14.294      2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44    4.3481     34.037      2004-04-06 06:10    "equipment fault"
+
+</pre></div></div></div><span id="AssignValuesToTableExample-3" class="anchor_target"></span><p class="title" id="AssignValuesToTableExample-3"><b>Assign Values to Elements</b></p><p>To assign values to elements of a table, use curly braces. For example, assign causes for the first two outages.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages{1,<span style="color:#A020F0">"Cause"</span>} = <span style="color:#A020F0">"severe storm"</span>;
+outages{2,<span style="color:#A020F0">"Cause"</span>} = <span style="color:#A020F0">"attack"</span>;
+outages(1:4,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>4×6 table</em></span>
+      Region          OutageTime        Loss     Customers    RestorationTime           Cause      
+    ___________    ________________    ______    _________    ________________    _________________
+
+    "West"         2024-01-01 00:00         3        300      2024-01-03 00:00    "severe storm"   
+    "North"        2024-01-02 00:00         4        400      2024-01-04 00:00    "attack"         
+    "SouthEast"    2003-02-07 21:15     2.894     14.294      2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44    4.3481     34.037      2004-04-06 06:10    "equipment fault"
+
+</pre></div></div></div></div></section><section><h3 class="title" id="mw_77d04ebd-b6f7-4ee9-93ac-1cc1fd7bc735">Find Table Rows Where Values Meet Conditions</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ContentIndexingWithDotNotationAndLogicalValuesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Find Table Rows Where Values Meet Conditions",
+          "description": "To find the rows of a table where values meet conditions, use logical indexing. Specify the table variables that have values of interest and create an array of row indices where values in those variables meet conditions that you specify. Index into the table using the row indices.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "access-data-in-a-table.html"
+
+        },
+          "identifier": "matlab.ContentIndexingWithDotNotationAndLogicalValuesExample",
+          "name": "ContentIndexingWithDotNotationAndLogicalValuesExample",
+          "url": "access-data-in-a-table.html#mw_77d04ebd-b6f7-4ee9-93ac-1cc1fd7bc735"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ContentIndexingWithDotNotationAndLogicalValuesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ContentIndexingWithDotNotationAndLogicalValuesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ContentIndexingWithDotNotationAndLogicalValuesExample"><meta itemprop="exampletitle" content="Find Table Rows Where Values Meet Conditions"></div><span id="ContentIndexingWithDotNotationAndLogicalValuesExample" class="anchor_target"></span><p class="shortdesc">To find the rows of a table where values meet conditions, use logical indexing. Specify the table variables that have values of interest and create an array of row indices where values in those variables meet conditions that you specify. Index into the table using the row indices.</p><p>First, import power outage data from a spreadsheet into a table.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages = readtable(<span style="color:#A020F0">"outages.csv"</span>,TextType=<span style="color:#A020F0">"string"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>outages=<span class="emphasis"><em>1468×6 table</em></span>
+      Region          OutageTime        Loss     Customers     RestorationTime           Cause      
+    ___________    ________________    ______    __________    ________________    _________________
+
+    "SouthWest"    2002-02-01 12:18    458.98    1.8202e+06    2002-02-07 16:50    "winter storm"   
+    "SouthEast"    2003-01-23 00:49    530.14    2.1204e+05                 NaT    "winter storm"   
+    "SouthEast"    2003-02-07 21:15     289.4    1.4294e+05    2003-02-17 08:14    "winter storm"   
+    "West"         2004-04-06 05:44    434.81    3.4037e+05    2004-04-06 06:10    "equipment fault"
+    "MidWest"      2002-03-16 06:18    186.44    2.1275e+05    2002-03-18 23:23    "severe storm"   
+    "West"         2003-06-18 02:49         0             0    2003-06-18 10:54    "attack"         
+    "West"         2004-06-20 14:39    231.29           NaN    2004-06-20 19:16    "equipment fault"
+    "West"         2002-06-06 19:28    311.86           NaN    2002-06-07 00:51    "equipment fault"
+    "NorthEast"    2003-07-16 16:23    239.93         49434    2003-07-17 01:12    "fire"           
+    "MidWest"      2004-09-27 11:09    286.72         66104    2004-09-27 16:37    "equipment fault"
+    "SouthEast"    2004-09-05 17:48    73.387         36073    2004-09-05 20:46    "equipment fault"
+    "West"         2004-05-21 21:45    159.99           NaN    2004-05-22 04:23    "equipment fault"
+    "SouthEast"    2002-09-01 18:22    95.917         36759    2002-09-01 19:12    "severe storm"   
+    "SouthEast"    2003-09-27 07:32       NaN    3.5517e+05    2003-10-04 07:02    "severe storm"   
+    "West"         2003-11-12 06:12    254.09    9.2429e+05    2003-11-17 02:04    "winter storm"   
+    "NorthEast"    2004-09-18 05:54         0             0                 NaT    "equipment fault"
+      &#x22EE;
+
+</pre></div></div></div><p>Next, create row indices that match the rows where a variable meets a condition. For example, create indices for rows where the region is <code class="literal">West</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rows = matches(outages.Region,<span style="color:#A020F0">"West"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>rows = <span class="emphasis"><em>1468×1 logical array</em></span>
+
+   0
+   0
+   0
+   1
+   0
+   1
+   1
+   1
+   0
+   0
+   0
+   1
+   0
+   0
+   1
+      &#x22EE;
+
+</pre></div></div></div><p>You can index into a table with logical indices. Display the rows of the table for the outages that occur in the <code class="literal">West</code> region.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outages(rows,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>354×6 table</em></span>
+    Region       OutageTime        Loss     Customers     RestorationTime           Cause      
+    ______    ________________    ______    __________    ________________    _________________
+
+    "West"    2004-04-06 05:44    434.81    3.4037e+05    2004-04-06 06:10    "equipment fault"
+    "West"    2003-06-18 02:49         0             0    2003-06-18 10:54    "attack"         
+    "West"    2004-06-20 14:39    231.29           NaN    2004-06-20 19:16    "equipment fault"
+    "West"    2002-06-06 19:28    311.86           NaN    2002-06-07 00:51    "equipment fault"
+    "West"    2004-05-21 21:45    159.99           NaN    2004-05-22 04:23    "equipment fault"
+    "West"    2003-11-12 06:12    254.09    9.2429e+05    2003-11-17 02:04    "winter storm"   
+    "West"    2004-12-21 18:50    112.05     7.985e+05    2004-12-29 03:46    "winter storm"   
+    "West"    2002-12-16 13:43    70.752    4.8193e+05    2002-12-19 09:38    "winter storm"   
+    "West"    2005-06-29 08:37    601.13         32005    2005-06-29 08:57    "equipment fault"
+    "West"    2003-04-14 07:11    276.41        1.5647    2003-04-14 08:52    "equipment fault"
+    "West"    2003-10-21 17:25    235.12         51496    2003-10-21 19:43    "equipment fault"
+    "West"    2005-10-21 08:33       NaN         52639    2005-11-22 22:10    "fire"           
+    "West"    2003-08-28 23:46    172.01    1.6964e+05    2003-09-03 02:10    "wind"           
+    "West"    2005-03-01 14:39    115.47         82611    2005-03-03 05:58    "equipment fault"
+    "West"    2005-09-26 06:32    258.18    1.3996e+05    2005-09-26 06:33    "earthquake"     
+    "West"    2003-12-22 03:40    232.26    3.9462e+05    2003-12-24 16:32    "winter storm"   
+      &#x22EE;
+
+</pre></div></div></div><p>You can match multiple conditions with one logical expression. For example, find the rows where outages affected more than one million customers in the <code class="literal">West</code> or <code class="literal">MidWest</code> regions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rows = (outages.Customers &gt; 1e6 &amp; (matches(outages.Region,<span style="color:#A020F0">"West"</span>) | matches(outages.Region,<span style="color:#A020F0">"MidWest"</span>)));
+outages(rows,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>10×6 table</em></span>
+     Region         OutageTime        Loss     Customers     RestorationTime           Cause      
+    _________    ________________    ______    __________    ________________    _________________
+
+    "MidWest"    2002-12-10 10:45     14493    3.0879e+06    2002-12-11 18:06    "unknown"        
+    "West"       2007-10-20 20:56    3537.5    1.3637e+06    2007-10-20 22:08    "equipment fault"
+    "West"       2006-12-28 14:04    804.05    1.5486e+06    2007-01-04 14:26    "severe storm"   
+    "MidWest"    2006-07-16 00:05    1817.9     3.295e+06    2006-07-27 14:42    "severe storm"   
+    "West"       2006-01-01 11:54    734.11      4.26e+06    2006-01-11 01:21    "winter storm"   
+    "MidWest"    2008-09-19 23:31    4801.1    1.2151e+06    2008-10-03 14:04    "severe storm"   
+    "MidWest"    2008-09-07 23:35       NaN     3.972e+06    2008-09-19 17:19    "severe storm"   
+    "West"       2011-07-24 02:54    483.37    1.1212e+06    2011-07-24 12:18    "wind"           
+    "West"       2010-01-24 18:47    348.91    1.8865e+06    2010-01-30 01:43    "severe storm"   
+    "West"       2010-05-17 09:10    8496.6    2.0768e+06    2010-05-18 22:43    "equipment fault"
+
+</pre></div></div></div><div class="procedure"></div></section><section><h3 class="title" id="mw_af1d23bb-61c5-4723-b23a-a90f22421303">Summary of Table Indexing Syntaxes</h3><p>This table lists every table indexing syntax with every type of index and the
+          resulting outputs. You can specify rows and variables by position, name, or data
+          type.</p><div class="itemizedlist"><ul><li><p>Linear indexing is not supported. When you index with curly braces or parentheses,
+              you must specify both rows and variables.</p></li><li><p>Variable names and row names can include any
+              characters, including spaces and non-ASCII characters. Also, they can start with any
+              character, not just letters. Variable and row names do not have to be valid MATLAB
+              identifiers (as determined by the <code class="function">isvarname</code> function).</p></li><li><p>When you specify rows or variables by name,
+              you can use a <a href="../ref/pattern.html"><code class="object">pattern</code></a>
+              object to specify names. For example, <code class="literal">"Var" + digitsPattern</code> matches
+              all names that start with <code class="literal">Var</code> and end with any number of
+              digits.<em> (since R2022a)</em></p></li></ul></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="20%"><col class="tcol2" width="20%"><col class="tcol3" width="20%"><col class="tcol4" width="20%"><col class="tcol5" width="20%"></colgroup><thead><tr><th><p>Output</p></th><th><p>Syntax</p></th><th><p>Rows</p></th><th><p>Variables</p></th><th><p>Examples</p></th></tr></thead><tbody><tr><td><p><strong class="emphasis bold">Array, with data  extracted from one
+                      variable</strong></p></td><td><p><code class="literal">T.<em class="replaceable"><code>var</code></em></code></p><p><code class="literal">T.(<em class="replaceable"><code>expression</code></em>)</code></p></td><td><p>Not specified</p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>A variable name (without quotation marks)</p></li><li><p>An expression inside parentheses that returns a variable name or
+                          number</p></li></ul></div><p>
+
+                  </p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">T.Date</code></p><p>Array extracted from table variable named <code class="literal">Date</code>
+                        </p></li><li><p><code class="literal">T.("2019-06-30")</code></p><p>Array extracted from table variable named
+                            <code class="literal">2019-06-30</code></p></li><li><p><code class="literal">T.(1)</code></p><p>Array extracted from the first table variable</p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p><strong class="emphasis bold">Array, with specified elements of data extracted
+                      from one variable</strong></p></td><td><p><code class="literal">T.<em class="replaceable"><code>var</code></em>(<em class="replaceable"><code>i</code></em>,<em class="replaceable"><code>j</code></em>,...)</code></p><p><code class="literal">T.(<em class="replaceable"><code>expression</code></em>)(<em class="replaceable"><code>i</code></em>,<em class="replaceable"><code>j</code></em>,...)</code></p></td><td><p>Not specified</p><p>The indices
+                        <code class="literal"><em class="replaceable"><code>i</code></em>,<em class="replaceable"><code>j</code></em>,...</code>
+                    do not specify rows of the table, but rather elements of the extracted
+                    array.</p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>A variable name (without quotation marks)</p></li><li><p>An expression inside parentheses that returns a variable name or
+                          number</p></li></ul></div><p>
+
+                  </p></td><td><p>Specify array elements using numeric or logical indices.</p><p>If
+                    the extracted array is a matrix or multidimensional array, you can specify
+                    multiple numeric indices.</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">T.Date(1:5)</code></p><p>First five elements of array extracted from table variable named
+                            <code class="literal">Date</code>
+                        </p></li><li><p><code class="literal">T.("2019-06-30")(1:5)</code></p><p>First five elements of array extracted from table variable named
+                            <code class="literal">2019-06-30</code></p></li><li><p><code class="literal">T.(1)(1:5)</code></p><p>First five elements of array extracted from the first table
+                          variable</p></li><li><p><code class="literal">T.Var1(1:5,1:3)</code></p><p>First five rows and first three columns of matrix or multidimensional
+                          array extracted from table variable named <code class="literal">Var1</code></p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p><strong class="emphasis bold">Array, with data concatenated from specified rows
+                      and variables</strong></p></td><td><p><code class="literal">T{<em class="replaceable"><code>rows</code></em>,<em class="replaceable"><code>vars</code></em>}</code></p></td><td><p> Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Row numbers (between <code class="literal">1</code> and
+                          <code class="literal">m</code>)</p></li><li><p>Logical array that has <code class="literal">m</code> elements</p></li><li><p>Names, if <code class="literal">T</code> has row names</p></li><li><p>Times, if <code class="literal">T</code> is a timetable</p></li><li><p>Colon (<code class="literal">:</code>), meaning all rows</p></li><li><p><code class="literal">end</code> keyword, meaning last row</p></li></ul></div><p>
+
+                  </p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Variable numbers (between <code class="literal">1</code> and
+                            <code class="literal">n</code>)</p></li><li><p>Logical array that has <code class="literal">n</code> elements</p></li><li><p>Names</p></li><li><p>Colon (<code class="literal">:</code>), meaning all variables</p></li><li><p><code class="literal">end</code> keyword, meaning last variable</p></li></ul></div><p>
+
+                  </p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">T{1:5,[1 4 5]}</code></p><p>Array concatenated from the first five rows and the first, fourth, and
+                          fifth variables of <code class="literal">T</code></p></li><li><p><code class="literal">T{1:5,[true false false true true]}</code></p><p>Array concatenated from the first five rows and the first, fourth, and
+                          fifth variables of <code class="literal">T</code></p></li><li><p><code class="literal">T{:,["A","B"]}</code></p><p>Array concatenated from all rows and the variables named
+                            <code class="literal">A</code> and <code class="literal">B</code></p></li><li><p><code class="literal">T{:,"A" + wildcardPattern}</code></p><p>Array concatenated from all rows and the variables whose names start
+                          with <code class="literal">A</code></p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p><strong class="emphasis bold">Array, with data concatenated from specified rows
+                      and variables that have a specified data type</strong></p></td><td><p><code class="literal">S =
+                        vartype(<em class="replaceable"><code>type</code></em>);</code></p><p><code class="literal">T{<em class="replaceable"><code>rows</code></em>,S}</code></p></td><td><p> Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Row numbers (between <code class="literal">1</code> and
+                          <code class="literal">m</code>)</p></li><li><p>Logical array that has <code class="literal">m</code> elements</p></li><li><p>Names, if <code class="literal">T</code> has row names</p></li><li><p>Times, if <code class="literal">T</code> is a timetable</p></li><li><p>Colon (<code class="literal">:</code>), meaning all rows</p></li><li><p><code class="literal">end</code> keyword, meaning last row</p></li></ul></div><p>
+
+                  </p></td><td><p>Specified as a data type subscript, such as
+                      <code class="literal">vartype("numeric")</code>,
+                      <code class="literal">vartype("categorical")</code>, or
+                      <code class="literal">vartype("datetime")</code></p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">S = vartype("numeric");</code></p><p><code class="literal">T{1:5,S}</code></p><p>Array concatenated from the first five rows and the numeric variables
+                          of <code class="literal">T</code></p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p><strong class="emphasis bold">Array, with data concatenated from all rows and
+                      variables</strong></p></td><td><p><code class="literal">T.Variables</code></p></td><td><p>Not specified</p></td><td><p>Not specified</p></td><td>
+                  <div class="itemizedlist"><ul><li><p><code class="literal">T.Variables</code></p><p>Identical to array returned by <code class="literal">T{:,:}</code></p></li></ul></div>
+                </td></tr><tr><td><p><strong class="emphasis bold">Table, with specified rows and
+                      variables</strong></p></td><td><p><code class="literal">T(<em class="replaceable"><code>rows</code></em>,<em class="replaceable"><code>vars</code></em>)</code></p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Row numbers (between <code class="literal">1</code> and
+                          <code class="literal">m</code>)</p></li><li><p>Logical array that has <code class="literal">m</code> elements</p></li><li><p>Names, if <code class="literal">T</code> has row names</p></li><li><p>Times, if <code class="literal">T</code> is a timetable</p></li><li><p>Colon (<code class="literal">:</code>), meaning all rows</p></li><li><p><code class="literal">end</code> keyword, meaning last row</p></li></ul></div><p>
+
+                  </p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Variable numbers (between <code class="literal">1</code> and
+                            <code class="literal">n</code>)</p></li><li><p>Logical array that has <code class="literal">n</code> elements</p></li><li><p>Names</p></li><li><p>Colon (<code class="literal">:</code>), meaning all variables</p></li><li><p><code class="literal">end</code> keyword, meaning last variable</p></li></ul></div><p>
+
+                  </p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">T(1:5,[1 4 5])</code></p><p>Table that has the first five rows and the first, fourth, and fifth
+                          variables of <code class="literal">T</code></p></li><li><p><code class="literal">T(1:5,[true false false true true])</code></p><p>Table that has the first five rows and the first, fourth, and fifth
+                          variables of <code class="literal">T</code></p></li><li><p><code class="literal">T(:,["A","B"])</code></p><p>Table that has all rows and the variables named <code class="literal">A</code>
+                          and <code class="literal">B</code></p></li><li><p><code class="literal">T(:,"A" + wildcardPattern)</code></p><p>Table that has all rows and the variables whose names start with
+                            <code class="literal">A</code></p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p><strong class="emphasis bold">Table, with specified rows and variables that
+                      have a specified data type</strong></p></td><td><p><code class="literal">S =
+                        vartype(<em class="replaceable"><code>type</code></em>);</code></p><p><code class="literal">T(<em class="replaceable"><code>rows</code></em>,S)</code></p></td><td><p>Specified as:</p><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p>Row numbers (between <code class="literal">1</code> and
+                          <code class="literal">m</code>)</p></li><li><p>Logical array that has <code class="literal">m</code> elements</p></li><li><p>Names, if <code class="literal">T</code> has row names</p></li><li><p>Times, if <code class="literal">T</code> is a timetable</p></li><li><p>Colon (<code class="literal">:</code>), meaning all rows</p></li><li><p><code class="literal">end</code> keyword, meaning last row</p></li></ul></div><p>
+
+                  </p></td><td><p>Specified as a data type subscript, such as
+                      <code class="literal">vartype("numeric")</code>,
+                      <code class="literal">vartype("categorical")</code>, or
+                      <code class="literal">vartype("datetime")</code></p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">S = vartype("numeric");</code></p><p><code class="literal">T(1:5,S)</code></p><p>Table that has the first five rows and the numeric variables of
+                            <code class="literal">T</code></p></li></ul></div><p>
+
+                  </p></td></tr></tbody></table></div></section>
+        <h2 id="d126e27705">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/table.html"><span itemprop="name"><code class="function">table</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/readtable.html"><span itemprop="name"><code class="function">readtable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/vartype.html"><span itemprop="name"><code class="function">vartype</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/string.matches.html"><span itemprop="name"><code class="function">matches</code></span></a></span></p>
+        <h3 id="d126e27720">Topics</h3><ul class="list-unstyled"><li><a href="tables-of-mixed-data.html" class="a">Tables of Mixed Data</a></li><li><a href="create-a-table.html" class="a">Create Tables and Assign Data to Them</a></li><li><a href="rename-and-describe-table-variables.html" class="a">Rename and Describe Table Variables</a></li><li><a href="calculations-when-tables-have-both-numeric-and-nonnumeric-data.html" class="a">Calculations When Tables Have Both Numeric and Nonnumeric Data</a></li><li><a href="computations-with-numeric-data-in-table-or-timetable.html" class="a">Data Cleaning and Calculations in Tables</a></li><li><a href="grouped-calculations-in-tables-and-timetables.html" class="a">Grouped Calculations in Tables and Timetables</a></li><li><a href="find-array-elements-that-meet-a-condition.html" class="a">Find Array Elements That Meet Conditions</a></li></ul>
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

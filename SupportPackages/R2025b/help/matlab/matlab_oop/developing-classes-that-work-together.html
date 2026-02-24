@@ -1,0 +1,513 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Developing Classes That Work Together</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../sample-classes.html",
+          "name": "Sample Class Implementations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sample-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Classes implement your object-oriented design."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sample-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="buo11mr"><span itemprop="title">Sample Class Implementations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Developing Classes That Work Together</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brhztvn" class="nav-link intrnllnk">Formulating a Class</a></li><li class="nav-item"><a href="#buo3hbx" class="nav-link intrnllnk">Specifying Class Components</a><ul class="nav"><li class="nav-item"><a href="#buo3hfz-1" class="nav-link intrnllnk">Class Data</a></li><li class="nav-item"><a href="#buo3hgd-1" class="nav-link intrnllnk">Class Operations</a></li><li class="nav-item"><a href="#buo3hg0-1" class="nav-link intrnllnk">Class Events</a></li></ul></li><li class="nav-item"><a href="#brhzucu" class="nav-link intrnllnk">BankAccount Class Implementation</a><ul class="nav"><li class="nav-item"><a href="#buo16u4" class="nav-link intrnllnk">BankAccount Class Synopsis</a></li></ul></li><li class="nav-item"><a href="#brh045e" class="nav-link intrnllnk">Formulating the AccountManager Class</a><ul class="nav"><li class="nav-item"><a href="#buo43_4" class="nav-link intrnllnk">Class Components</a></li></ul></li><li class="nav-item"><a href="#buo452x" class="nav-link intrnllnk">Implementing the AccountManager Class</a></li><li class="nav-item"><a href="#buo46qs-1" class="nav-link intrnllnk">AccountManager Class Synopsis</a></li><li class="nav-item"><a href="#brh1ej5" class="nav-link intrnllnk">Using BankAccount Objects</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brhzttf">Developing Classes That Work Together</h2><a class="indexterm" name="d126e1179"></a><section><h3 class="title" id="brhztvn">Formulating a Class</h3><p>This example discusses how to approach the design and implementation of two classes
+            that interact through events and listeners. The two classes represent a bank account and
+            an account manager.</p><p>To design a class that represents a bank account, first determine the elements of
+            data and the operations that form your abstraction of a bank account. For example, a
+            bank account has:</p><div class="itemizedlist"><ul><li><p>An account number</p></li><li><p>An account balance</p></li><li><p>A status (open, closed, etc.)</p></li></ul></div><p>You must perform certain operations on a bank account:</p><div class="itemizedlist"><ul><li><p>Create an object for each bank account</p></li><li><p>Deposit money</p></li><li><p>Withdraw money</p></li><li><p>Generate a statement</p></li><li><p>Save and load the <code class="literal">BankAccount</code> object</p></li></ul></div><p>If the balance is too low and you attempt to withdraw money, the bank account
+            broadcasts a notice. When this event occurs, the bank account broadcasts a notice to
+            other entities that are designed to listen for these notices. In this example, a
+            simplified version of an account manager program performs this task. </p><p>In this example, an account manager program determines the status of all bank
+            accounts. This program monitors the account balance and assigns one of three
+            values:</p><div class="itemizedlist"><ul><li><p><code class="literal">open</code> &#8212; Account balance is a positive value</p></li><li><p><code class="literal">overdrawn</code> &#8212; Account balance is overdrawn, but by $200
+                  or less.</p></li><li><p><code class="literal">closed</code> &#8212; Account balance is overdrawn by more than
+                  $200.</p></li></ul></div><p>These features define the requirements of the <code class="literal">BankAccount</code> and
+               <code class="literal">AccountManager</code> classes. Include only what functionality is
+            required to meet your specific objectives. Support special types of accounts by
+            subclassing <code class="literal">BankAccount</code> and adding more specific features to the
+            subclasses. Extend the <code class="literal">AccountManager</code> as required to support new
+            account types.</p></section><section><h3 class="title" id="buo3hbx">Specifying Class Components</h3><p>Classes store data in properties, implement operations with methods, and support
+            notifications with events and listeners. Here is how the <code class="literal">BankAccount</code>
+            and <code class="literal">AccountManager</code> classes define these components.</p><section><h4 class="title" id="buo3hfz-1">Class Data</h4><p>The class defines these properties to store the account number, account balance,
+               and the account status:</p><div class="itemizedlist"><ul><li><p><code class="literal">AccountNumber</code> &#8212; A property to store the number
+                     identifying the specific account. MATLAB<sup>&#x00AE;</sup> assigns a value to this property when you create an instance of
+                     the class. Only <code class="literal">BankAccount</code> class methods can set this
+                     property. The <code class="literal">SetAccess</code> attribute is
+                        <code class="literal">private</code>.</p></li><li><p><code class="literal">AccountBalance</code> &#8212; A property to store the current
+                     balance of the account. The class operation of depositing and withdrawing money
+                     assigns values to this property. Only <code class="literal">BankAccount</code> class
+                     methods can set this property. The <code class="literal">SetAccess</code> attribute is
+                        <code class="literal">private</code>.</p></li><li><p><code class="literal">AccountStatus</code> &#8212; The <code class="literal">BankAccount</code>
+                     class defines a default value for this property. The
+                        <code class="literal">AccountManager</code> class methods change this value whenever
+                     the value of the <code class="literal">AccountBalance</code> falls below
+                        <code class="literal">0</code>. The <code class="literal">Access</code> attribute specifies that
+                     only the <code class="literal">AccountManager</code> and <code class="literal">BankAccount</code>
+                     classes have access to this property.</p></li><li><p><code class="literal">AccountListener</code> &#8212; Storage for the
+                        <code class="literal">InsufficientFunds</code> event listener. Saving a
+                        <code class="literal">BankAccount</code> object does not save this property because
+                     you must recreate the listener when loading the object.</p></li></ul></div></section><section><h4 class="title" id="buo3hgd-1">Class Operations</h4><p>These methods implement the operations defined in the class formulation:</p><div class="itemizedlist"><ul><li><p><code class="literal">BankAccount</code> &#8212; Accepts an account number and an
+                     initial balance to create an object that represents an account.</p></li><li><p><code class="literal">deposit</code> &#8212; Updates the
+                        <code class="literal">AccountBalance</code> property when a deposit transaction
+                     occurs</p></li><li><p><code class="literal">withdraw</code> &#8212; Updates the
+                        <code class="literal">AccountBalance</code> property when a withdrawal transaction
+                     occurs</p></li><li><p><code class="literal">getStatement</code> &#8212; Displays information about the
+                     account</p></li><li><p><code class="literal">loadobj</code> &#8212; Recreates the account manager listener
+                     when you load the object from a MAT-file.</p></li></ul></div></section><section><h4 class="title" id="buo3hg0-1">Class Events</h4><p>The account manager program changes the status of bank accounts that have negative
+               balances. To implement this action, the <code class="literal">BankAccount</code> class triggers
+               an event when a withdrawal results in a negative balance. Therefore, the triggering
+               of the <code class="literal">InsufficientFunds</code> event occurs from within the
+                  <code class="literal">withdraw</code> method.</p><p>To define an event, specify a name within an <code class="literal">events</code> block.
+               Trigger the event by a call to the <code class="literal">notify</code> handle class method.
+               Because <code class="literal">InsufficientFunds</code> is not a predefined event, you can name
+               it with any <code class="literal">char</code> vector and trigger it with any action.</p></section></section><section><h3 class="title" id="brhzucu"><code class="literal">BankAccount</code> Class Implementation</h3><p>It is important to ensure that there is only one set of data associated with any
+            object of a <code class="literal">BankAccount</code> class. You would not want independent copies
+            of the object that could have, for example, different values for the account balance.
+            Therefore, implement the <code class="literal">BankAccount</code> class as a handle class. All
+            copies of a given handle object refer to the same data.</p><section><h4 class="title" id="buo16u4"><code class="literal">BankAccount</code> Class Synopsis</h4><p>
+               </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="53%"><col class="tcol2" width="47%"></colgroup><thead><tr><th><code class="class">BankAccount</code> Class</th><th>Discussion</th></tr></thead><tbody><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> BankAccount &lt; handle
+</pre></div></div></div>
+                           </td><td><p>Handle class because there should be only one copy of any
+                                 instance of <code class="literal">BankAccount</code>.<a href="comparing-handle-and-value-classes.html" class="a">Comparison of Handle and Value Classes</a></p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties (Access = ?AccountManager)
+        AccountStatus = <span style="color:#A020F0">'open'</span>
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p><code class="literal">AccountStatus</code> contains the status of the
+                                 account determined by the current balance. Access is limited to the
+                                    <code class="literal">BankAccount</code> and
+                                    <code class="literal">AccountManager</code> classes. <a href="selective-access-to-class-methods.html" class="a">Class Members Access</a></p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties (SetAccess = private)
+      AccountNumber
+      AccountBalance
+   <span style="color:#0000FF">end</span>
+   properties (Transient)
+      AccountListener
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p><code class="literal">AccountStatus</code> property access by
+                                    <code class="literal">AccountManager</code> class
+                                    methods.</p><p><code class="literal">AccountNumber</code> and
+                                    <code class="literal">AccountBalance</code> properties have private set
+                                 access.</p><p><code class="literal">AccountListener property</code> is
+                                 transient so the listener handle is not saved.</p><p>See
+                                    <a href="property-attributes.html" class="a">Property Attributes</a>.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   events
+      InsufficientFunds
+   <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                           </td><td><p>Class defines event called
+                                    <code class="literal">InsufficientFunds</code>.
+                                    <code class="literal">withdraw</code> method triggers event when account
+                                 balance becomes negative.</p><p>For information on events and
+                                 listeners, see <a href="../events-sending-and-responding-to-messages.html" class="a">Events</a>.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods
+</pre></div></div></div>
+                           </td><td><p>Block of ordinary methods. See <a href="specifying-methods-and-functions.html" class="a">Method Syntax</a> for syntax.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> BA = BankAccount(AccountNumber,InitialBalance)
+         BA.AccountNumber = AccountNumber;
+         BA.AccountBalance = InitialBalance;
+         BA.AccountListener = AccountManager.addAccount(BA);
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                           </td><td><p>Constructor initializes property values with input
+                                 arguments.
+                                    </p><p><code class="literal">AccountManager.addAccount</code> is
+                                 static method of <code class="literal">AccountManager</code> class. Creates
+                                 listener for <code class="literal">InsufficientFunds</code> event and stores
+                                 listener handle in <code class="literal">AccountListener</code>
+                                 property.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> deposit(BA,amt)
+         BA.AccountBalance = BA.AccountBalance + amt;
+         <span style="color:#0000FF">if</span> BA.AccountBalance &gt; 0
+            BA.AccountStatus = <span style="color:#A020F0">'open'</span>;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p><code class="literal">deposit</code> adjusts value of
+                                    <code class="literal">AccountBalance</code> property.</p><p>If
+                                    <code class="literal">AccountStatus</code> is <code class="literal">closed</code>
+                                 and subsequent deposit brings <code class="literal">AccountBalance</code>
+                                 into positive range, then <code class="literal">AccountStatus</code> is reset
+                                 to <code class="literal">open</code>.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> withdraw(BA,amt)
+         <span style="color:#0000FF">if</span> (strcmp(BA.AccountStatus,<span style="color:#A020F0">'closed'</span>)&amp;&amp; <span style="color:#0000FF">...</span>
+            BA.AccountBalance &lt; 0)
+            disp([<span style="color:#A020F0">'Account '</span>,num2str(BA.AccountNumber),<span style="color:#0000FF">...</span>
+               <span style="color:#A020F0">' has been closed.'</span>])
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">end</span>
+         newbal = BA.AccountBalance - amt;
+         BA.AccountBalance = newbal;
+         <span style="color:#0000FF">if</span> newbal &lt; 0
+            notify(BA,<span style="color:#A020F0">'InsufficientFunds'</span>)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p>Updates <code class="literal">AccountBalance</code> property. If value
+                                 of account balance is negative as a result of the withdrawal,
+                                    <code class="literal">notify</code> triggers
+                                    <code class="literal">InsufficientFunds</code> event.</p><p>For more
+                                 information on listeners, see <a href="events-and-listeners-syntax-and-techniques.html" class="a">Events and Listeners Syntax</a>.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> getStatement(BA)
+         disp(<span style="color:#A020F0">'-------------------------'</span>)
+         disp([<span style="color:#A020F0">'Account: '</span>,num2str(BA.AccountNumber)])
+         ab = sprintf(<span style="color:#A020F0">'%0.2f'</span>,BA.AccountBalance);
+         disp([<span style="color:#A020F0">'CurrentBalance: '</span>,ab])
+         disp([<span style="color:#A020F0">'Account Status: '</span>,BA.AccountStatus])
+         disp(<span style="color:#A020F0">'-------------------------'</span>)
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p>Display selected information about the account. This section
+                                 also ends the ordinary methods block.</p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods (Static)</pre></div></div></div>
+                           </td><td><p>Beginning of static methods block. See <a href="static-methods.html" class="a">Static Methods</a></p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> obj = loadobj(s)
+         <span style="color:#0000FF">if</span> isstruct(s)
+            accNum = s.AccountNumber;
+            initBal = s.AccountBalance;
+            obj = BankAccount(accNum,initBal);
+         <span style="color:#0000FF">else</span>
+            obj.AccountListener = AccountManager.addAccount(s);
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                           </td><td><p><a href="../ref/loadobj.html"><code class="function">loadobj</code></a>
+                                 method:</p><div class="itemizedlist"><ul><li><p>If the load operation fails, create the object from a
+                                          <a href="../ref/struct.html"><code class="function">struct</code></a>.</p></li><li><p>Recreates the listener using the newly created
+                                          <code class="literal">BankAccount</code> object as the
+                                       source.</p></li></ul></div><p>For more information on saving and loading
+                                 objects, see <a href="understanding-the-save-and-load-process.html" class="a">Default Save and Load Process for Objects</a></p></td></tr><tr><td>
+                              <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                           </td><td><p>End of static methods block</p><p>End of
+                                    <code class="literal">classdef</code></p></td></tr></tbody></table></div><p>
+
+            </p><p><a href="#" onclick="return toggleexpander('d126e1568_block','d126e1568_expandable_text');"><img style="border:0;" id="d126e1568_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e1568_block','d126e1568_expandable_text');">Expand for Class Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e1568_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> BankAccount &lt; handle
+   <span style="color:#0000FF">properties</span> (Access = ?AccountManager)
+      AccountStatus = <span style="color:#A020F0">'open'</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">properties</span> (SetAccess = private)
+      AccountNumber
+      AccountBalance
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">properties</span> (Transient)
+      AccountListener
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">events</span>
+      InsufficientFunds
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> BA = BankAccount(accNum,initBal)
+         BA.AccountNumber = accNum;
+         BA.AccountBalance = initBal;
+         BA.AccountListener =  AccountManager.addAccount(BA);
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> deposit(BA,amt)
+         BA.AccountBalance = BA.AccountBalance + amt;
+         <span style="color:#0000FF">if</span> BA.AccountBalance &gt; 0
+            BA.AccountStatus = <span style="color:#A020F0">'open'</span>;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> withdraw(BA,amt)
+         <span style="color:#0000FF">if</span> (strcmp(BA.AccountStatus,<span style="color:#A020F0">'closed'</span>)&amp;&amp; BA.AccountBalance &lt;= 0)
+            disp([<span style="color:#A020F0">'Account '</span>,num2str(BA.AccountNumber),<span style="color:#A020F0">' has been closed.'</span>])
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">end</span>
+         newbal = BA.AccountBalance - amt;
+         BA.AccountBalance = newbal;
+         <span style="color:#0000FF">if</span> newbal &lt; 0
+            notify(BA,<span style="color:#A020F0">'InsufficientFunds'</span>)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> getStatement(BA)
+         disp(<span style="color:#A020F0">'-------------------------'</span>)
+         disp([<span style="color:#A020F0">'Account: '</span>,num2str(BA.AccountNumber)])
+         ab = sprintf(<span style="color:#A020F0">'%0.2f'</span>,BA.AccountBalance);
+         disp([<span style="color:#A020F0">'CurrentBalance: '</span>,ab])
+         disp([<span style="color:#A020F0">'Account Status: '</span>,BA.AccountStatus])
+         disp(<span style="color:#A020F0">'-------------------------'</span>)
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span> (Static)
+      <span style="color:#0000FF">function</span> obj = loadobj(s)
+         <span style="color:#0000FF">if</span> isstruct(s)
+            accNum = s.AccountNumber;
+            initBal = s.AccountBalance;
+            obj = BankAccount(accNum,initBal);
+         <span style="color:#0000FF">else</span>
+            obj.AccountListener = AccountManager.addAccount(s);
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div></section></section><section><h3 class="title" id="brh045e">Formulating the <code class="literal">AccountManager</code> Class</h3><p>The purpose of the <code class="literal">AccountManager</code> class is to provide services to
+            accounts. For the <code class="literal">BankAccount</code> class, the
+               <code class="literal">AccountManager</code> class listens for withdrawals that cause the
+            balance to drop into the negative range. When the <code class="literal">BankAccount</code> object
+            triggers the <code class="literal">InsufficientFunds</code> event, the
+               <code class="literal">AccountManager</code> resets the account status.</p><p>The <code class="literal">AccountManager</code> class stores no data so it does not need
+            properties. The <code class="literal">BankAccount</code> object stores the handle of the listener
+            object.</p><p>The <code class="literal">AccountManager</code> performs two operations:</p><div class="itemizedlist"><ul><li><p>Assign a status to each account as a result of a withdrawal</p></li><li><p>Adds an account to the system by monitoring account balances. </p></li></ul></div><section><h4 class="title" id="buo43_4">Class Components</h4><p>The <code class="literal">AccountManager</code> class implements two methods:</p><div class="itemizedlist"><ul><li><p><code class="literal">assignStatus</code> &#8212; Method that assigns a status to a
+                        <code class="literal">BankAccount</code> object. Serves as the listener
+                     callback.</p></li><li><p><code class="literal">addAccount</code> &#8212; Method that creates the
+                        <code class="literal">InsufficientFunds</code> listener.</p></li></ul></div></section></section><section><h3 class="title" id="buo452x">Implementing the <code class="literal">AccountManager</code> Class</h3><p>The <code class="literal">AccountManager</code> class implements both methods as static because
+            there is no need for an <code class="literal">AccountManager</code> object. These methods operate
+            on <code class="literal">BankAccount</code> objects.</p><p>The <code class="literal">AccountManager</code> is not intended to be instantiated. Separating
+            the functionality of the <code class="literal">AccountManager</code> class from the
+               <code class="literal">BankAccount</code> class provides greater flexibility and extensibility.
+            For example, doing so enables you to:</p><div class="itemizedlist"><ul><li><p>Extend the <code class="literal">AccountManager</code> class to support other types of
+                  accounts while keeping the individual account classes simple and
+                  specialized.</p></li><li><p>Change the criteria for the account status without affecting the compatibility
+                  of saved and loaded <code class="literal">BankAccount</code> objects.</p></li><li><p>Develop an <code class="literal">Account</code> superclass that factors out what is
+                  common to all accounts without requiring each subclass to implement the account
+                  management functionality</p></li></ul></div></section><section><h3 class="title" id="buo46qs-1"><code class="literal">AccountManager</code> Class Synopsis</h3><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="52%"><col class="tcol2" width="48%"></colgroup><thead><tr><th><code class="class">AccountManager</code> Class</th><th>Discussion</th></tr></thead><tbody><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> AccountManager
+</pre></div></div></div>
+                        </td><td><p>This class defines the <code class="literal">InsufficentFunds</code>
+                              event listener and the listener callback.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods (Static)
+</pre></div></div></div>
+                        </td><td><p>There is no need to create an instance of this class so the
+                              methods defined are static. See <a href="static-methods.html" class="a">Static Methods</a>.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> assignStatus(BA)
+      <span style="color:#0000FF">if</span> BA.AccountBalance &lt; 0
+         <span style="color:#0000FF">if</span> BA.AccountBalance &lt; -200
+            BA.AccountStatus = <span style="color:#A020F0">'closed'</span>;
+         <span style="color:#0000FF">else</span>
+            BA.AccountStatus = <span style="color:#A020F0">'overdrawn'</span>;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td><p>The <code class="literal">assignStatus</code> method is the callback for
+                              the <code class="literal">InsufficentFunds</code> event listener. It determines
+                              the value of a <code class="literal">BankAccount</code> object
+                                 <code class="literal">AccountStatus</code> property based on the value of the
+                                 <code class="literal">AccountBalance</code> property.</p><p>The
+                                 <code class="literal">BankAccount</code> class constructor calls the
+                                 <code class="literal">AccountManager</code>
+                              <code class="literal">addAccount</code> method to create and store this
+                              listener.</p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">function</span> lh = addAccount(BA)
+      lh = addlistener(BA, <span style="color:#A020F0">'InsufficientFunds'</span>, <span style="color:#0000FF">...</span>
+         @(src, ~)AccountManager.assignStatus(src));
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td><p><code class="literal">addAccount</code> creates the listener for the
+                                 <code class="literal">InsufficentFunds</code> event that the
+                                 <code class="literal">BankAccount</code> class defines.</p><p>See <a href="listener-lifecycle.html#brb6soq" class="a">Control Listener Lifecycle</a></p></td></tr><tr><td>
+                           <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                        </td><td><p><code class="literal">end</code> statements for
+                                 <code class="literal">methods</code> and for
+                              <code class="literal">classdef</code>.</p></td></tr></tbody></table></div><p>
+
+         </p><p><a href="#" onclick="return toggleexpander('d126e1765_block','d126e1765_expandable_text');"><img style="border:0;" id="d126e1765_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e1765_block','d126e1765_expandable_text');">Expand for Class Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e1765_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> AccountManager
+   <span style="color:#0000FF">methods</span> (Static)
+      <span style="color:#0000FF">function</span> assignStatus(BA)
+         <span style="color:#0000FF">if</span> BA.AccountBalance &lt; 0
+            <span style="color:#0000FF">if</span> BA.AccountBalance &lt; -200
+               BA.AccountStatus = <span style="color:#A020F0">'closed'</span>;
+            <span style="color:#0000FF">else</span>
+               BA.AccountStatus = <span style="color:#A020F0">'overdrawn'</span>;
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> lh = addAccount(BA)
+         lh = addlistener(BA, <span style="color:#A020F0">'InsufficientFunds'</span>, <span style="color:#0000FF">...</span>
+            @(src, ~)AccountManager.assignStatus(src));
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div></section><section><h3 class="title" id="brh1ej5">Using <code class="class">BankAccount</code> Objects</h3><p>The <code class="literal">BankAccount</code> class, while overly simple, demonstrates how
+               MATLAB classes behave. For example, create a <code class="literal">BankAccount</code>
+            object with an account number and an initial deposit of $500:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>BA = BankAccount(1234567,500)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>BA = 
+
+  BankAccount with properties:
+
+      AccountNumber: 1234567
+     AccountBalance: 500
+    AccountListener: [1x1 event.listener]</pre></div></div></div><p>Use the <code class="literal">getStatement</code> method to check the status:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>getStatement(BA)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>-------------------------
+Account: 1234567
+CurrentBalance: 500.00
+Account Status: open
+-------------------------</pre></div></div></div><p>Make a withdrawal of $600, which results in a negative account balance:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>withdraw(BA,600)
+getStatement(BA)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>-------------------------
+Account: 1234567
+CurrentBalance: -100.00
+Account Status: overdrawn
+-------------------------</pre></div></div></div><p>The $600 withdrawal triggered the <code class="literal">InsufficientFunds</code> event. The
+            current criteria defined by the <code class="class">AccountManager</code> class results in a status
+            of <code class="literal">overdrawn</code>. </p><p>Make another withdrawal of $200:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>withdraw(BA,200)
+getStatement(BA)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>-------------------------
+Account: 1234567
+CurrentBalance: -300.00
+Account Status: closed
+-------------------------</pre></div></div></div><p>Now the <code class="literal">AccountStatus</code> has been set to <code class="literal">closed</code> by
+            the listener and further attempts to make withdrawals are blocked without triggering the
+            event:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>withdraw(BA,100)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Account 1234567 has been closed.</pre></div></div></div><p>If the <code class="literal">AccountBalance</code> is returned to a positive value by a
+            deposit, then the <code class="literal">AccountStatus</code> is returned to open and withdrawals
+            are allowed again:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>deposit(BA,700)
+getStatement(BA)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>-------------------------
+Account: 1234567
+CurrentBalance: 400.00
+Account Status: open
+-------------------------</pre></div></div></div></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

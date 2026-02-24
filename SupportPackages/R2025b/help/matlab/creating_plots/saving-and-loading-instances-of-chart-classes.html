@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Saving and Loading Instances of Chart Classes</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../graphics-objects.html",
+          "name": "Graphics Objects"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../developing-chart-classes.html",
+          "name": "Developing Chart Classes"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-chart-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Develop chart that preserves interactive changes when you save it."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics-objects.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics Objects</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-chart-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_3030590a-11cb-455b-92cb-5856db5c8caf"><span itemprop="title">Developing Chart Classes</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Saving and Loading Instances of Chart Classes</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_56b5d72b-963f-4d91-b5ea-78040e79a30f" class="nav-link intrnllnk">Coding Pattern for Saving and Loading Axes Changes</a></li><li class="nav-item"><a href="#mw_3f686aab-0482-4d7b-8121-ca3b26d2c738" class="nav-link intrnllnk">Define a Protected Property for Storing the Chart State</a></li><li class="nav-item"><a href="#mw_968fef93-c880-410e-8d53-6ec543023cfd" class="nav-link intrnllnk">Define a get Method for Retrieving the Chart State</a></li><li class="nav-item"><a href="#mw_9f19b077-88b1-4948-ab67-c6399a0be0ab" class="nav-link intrnllnk">Define a Protected Method That Updates the Axes</a></li><li class="nav-item"><a href="#mw_41922d4a-5a25-4a35-a137-5cfb0e10c5e8" class="nav-link intrnllnk">Example: 3-D Plot That Stores Axis Limits and View</a><ul class="nav"><li class="nav-item"><a href="#mw_ebab673c-11a4-4b43-a49c-5b44854767dd" class="nav-link intrnllnk">Create an instance of the chart</a></li><li class="nav-item"><a href="#mw_83ca0ff1-6fe9-4c88-aa4d-97235a301417" class="nav-link intrnllnk">Rotate or zoom into the chart and save it</a></li><li class="nav-item"><a href="#mw_de98e6b3-7b27-4c8b-b312-18e5bcca5265" class="nav-link intrnllnk">Load the chart that you saved</a></li></ul></li><li class="nav-item"><a href="#d126e33477" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_5da55b8a-013d-46b0-a5cd-894a58327dd1">Saving and Loading Instances of Chart Classes</h2><p>Charts that inherit from the <code class="literal">ChartContainer</code> base class follow the
+            same rules for saving and loading as other MATLAB<sup>&#x00AE;</sup> objects. However in some cases, you might want your objects to save and
+            load additional information. For example, to provide support for saving and loading the
+            result of interactive changes, such as rotating or zooming, you must store the modified
+            view of the axes in a property on your class. By defining properties and methods for
+            storing and retrieving these kinds of changes, you enable users to save and reload
+            instances of your chart with their changes preserved.</p><section><h3 class="title" id="mw_56b5d72b-963f-4d91-b5ea-78040e79a30f">Coding Pattern for Saving and Loading Axes Changes</h3><p>The built-in axes interactions change certain properties on the axes. For example,
+                dragging to rotate a 3-D chart changes the <code class="argument">View</code> property.
+                Similarly, scrolling to zoom within a chart changes the <code class="argument">XLim</code>,
+                    <code class="argument">YLim</code>, (and possibly <code class="argument">ZLim</code>) properties
+                on the axes. To preserve the changes when the user saves and reloads the chart, add
+                these components to your class:</p>
+<div class="itemizedlist"><ul><li><p><a href="saving-and-loading-instances-of-chart-classes.html#mw_3f686aab-0482-4d7b-8121-ca3b26d2c738" class="intrnllnk">Define a protected property for storing the chart state</a> &#8212;
+                            This property provides a place to store the axes changes when
+                                MATLAB saves the chart object. For example, you might name this
+                            property <code class="literal">ChartState</code>.</p></li><li><p><a href="saving-and-loading-instances-of-chart-classes.html#mw_968fef93-c880-410e-8d53-6ec543023cfd" class="intrnllnk">Define a
+                                    <code class="literal">get</code> method for retrieving the chart
+                                state</a> &#8212; This method does either of two things depending on
+                            whether MATLAB is saving or loading the chart object. When MATLAB saves the chart object, the method returns the relevant
+                            axes changes so they can be saved. When MATLAB loads the chart object, the method returns the axes
+                            changes that are stored in the <code class="literal">ChartState</code>
+                            property.</p></li><li><p><a href="saving-and-loading-instances-of-chart-classes.html#mw_9f19b077-88b1-4948-ab67-c6399a0be0ab" class="intrnllnk">Define a protected
+                                method that updates the axes</a> &#8212; When the chart object loads
+                            into MATLAB, this method calls the <code class="literal">get</code> method for
+                            the <code class="literal">ChartState</code> property and then updates the relevant
+                            axes properties for the chart.</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="mw_3f686aab-0482-4d7b-8121-ca3b26d2c738">Define a Protected Property for Storing the Chart State</h3><p>Define a protected property to store the relevant axes information. This property
+                is empty except when MATLAB sets its value during the save process, or when MATLAB loads a saved instance of the chart. Define the property with a name
+                that is useful and easy to recognize. For example, define a property called
+                    <code class="literal">ChartState</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">properties</span> (Access = protected)
+    ChartState = []
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h3 class="title" id="mw_968fef93-c880-410e-8d53-6ec543023cfd">Define a <code class="literal">get</code> Method for Retrieving the Chart State</h3><p>Define a public <code class="literal">get</code> method for the
+                    <code class="literal">ChartState</code> property. Like all <code class="literal">set</code> and
+                    <code class="literal">get</code> methods, this method automatically inherits the access
+                permissions of the <code class="literal">ChartState</code> property. MATLAB calls this method when it saves an instance of the chart.</p><p>Within this method, create a variable called
+                    <code class="literal">isLoadedStateAvailable</code> that stores a
+                    <code class="literal">logical</code> value. This value is <code class="literal">true</code> when the
+                    <code class="literal">ChartState</code> property is not empty.</p><p>Next, write a conditional statement that checks the value of
+                    <code class="literal">isLoadedStateAvailable</code>. Divide the statement into clauses:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">if...then</code> clause &#8212; The
+                                <code class="literal">isLoadedStateAvailable</code> value is
+                                <code class="literal">true</code>. Return the contents of the
+                                <code class="literal">ChartState</code> property.</p></li><li><p><code class="literal">else</code> clause &#8212; The
+                                <code class="literal">isLoadedStateAvailable</code> value is
+                                <code class="literal">false</code>. Create a structure and get the axes
+                            object. Add the <code class="literal">XLim</code>, <code class="literal">YLim</code>, and
+                                <code class="literal">ZLim</code> fields to the structure only if the
+                                <code class="literal">XLim</code>, <code class="literal">YLim</code>, and
+                                <code class="literal">ZLim</code> properties on the axes changed. To test
+                            whether the axes properties changed, check to see if the corresponding
+                            mode properties are set to <code class="literal">'manual'</code>. Since there is
+                            no mode property associated with the axes <code class="literal">View</code>
+                            property, add the <code class="literal">View</code> field to the structure without
+                            checking anything.</p></li></ul></div><p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+    <span style="color:#0000FF">function</span> data = get.ChartState(obj)
+        isLoadedStateAvailable = ~isempty(obj.ChartState);
+            
+         <span style="color:#0000FF">if</span> isLoadedStateAvailable
+             data = obj.ChartState;
+         <span style="color:#0000FF">else</span>
+             data = struct;
+             ax = getAxes(obj);
+                
+             <span style="color:#228B22">% Get axis limits only if mode is manual.</span>
+             <span style="color:#0000FF">if</span> strcmp(ax.XLimMode,<span style="color:#A020F0">'manual'</span>)
+                 data.XLim = ax.XLim;
+             <span style="color:#0000FF">end</span>
+             <span style="color:#0000FF">if</span> strcmp(ax.YLimMode,<span style="color:#A020F0">'manual'</span>)
+                 data.YLim = ax.YLim;
+             <span style="color:#0000FF">end</span>
+             <span style="color:#0000FF">if</span> strcmp(ax.ZLimMode,<span style="color:#A020F0">'manual'</span>)
+                 data.ZLim = ax.ZLim;
+             <span style="color:#0000FF">end</span>
+                
+             <span style="color:#228B22">% No ViewMode to check. Store the view anyway.</span>
+             data.View = ax.View;
+         <span style="color:#0000FF">end</span>
+     <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h3 class="title" id="mw_9f19b077-88b1-4948-ab67-c6399a0be0ab">Define a Protected Method That Updates the Axes</h3><p>Define a protected method called <code class="literal">loadstate</code>. In this method,
+                perform these steps:</p>
+<div class="itemizedlist"><ul><li><p>Query the <code class="literal">ChartState</code> property and store the
+                            returned value as <code class="literal">data</code>.</p></li><li><p>Check for the existence of the <code class="literal">XLim</code>,
+                                <code class="literal">YLim</code>, <code class="literal">ZLim</code>, and
+                                <code class="literal">View</code> fields before updating the corresponding
+                            properties on the axes.</p></li><li><p>Clear the contents of the <code class="literal">ChartState</code>
+                            property.</p></li></ul></div><p>
+After you create this method, call it near the end of the
+                    <code class="literal">setup</code> method (after creating the graphics objects that make
+                up your chart). The <code class="literal">setup</code> method executes when MATLAB creates a new instance of the chart or when it loads an instance of a
+                chart.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> loadstate(obj)
+    data=obj.ChartState;
+    ax = getAxes(obj);
+            
+    <span style="color:#228B22">% Look for states that changed</span>
+    <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'XLim'</span>)
+        ax.XLim=data.XLim;
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'YLim'</span>)
+        ax.YLim=data.YLim;
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'ZLim'</span>)
+        ax.ZLim=data.ZLim;
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'View'</span>)
+        ax.View=data.View;
+    <span style="color:#0000FF">end</span>
+            
+    <span style="color:#228B22">% Reset ChartState to empty</span>
+    obj.ChartState=[];
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></p></section><section><h3 class="title" id="mw_41922d4a-5a25-4a35-a137-5cfb0e10c5e8">Example: 3-D Plot That Stores Axis Limits and View</h3><p>Define a <code class="literal">MeshGradientChart</code> class for displaying a mesh plot
+                with <em class="varname">x</em> and <em class="varname">y</em> gradient vectors at the grid
+                points. Design this class so that the <code class="argument">XLim</code>,
+                    <code class="argument">YLim</code>, <code class="argument">ZLim</code>, and
+                    <code class="argument">View</code> properties of the axes are preserved when the user
+                saves and reloads an instance of the chart.</p><p>To define this class, create a program file named
+                    <code class="literal">MeshGradientChart.m</code> in a folder that is on the MATLAB path. Then implement the class by following the steps in the
+                    table.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Step</th><th>Implementation</th></tr></thead><tbody><tr><td><p>Derive from the <code class="literal">ChartContainer</code> base
+                                        class.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> MeshGradientChart &lt; matlab.graphics.chartcontainer.ChartContainer</pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Define the public properties.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    properties
+        XData (:,:) double = []
+        YData (:,:) double = []
+        ZData (:,:) double = []
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Define the private properties. One property stores a
+                                            <code class="literal">Surface</code> object, and the other stores
+                                        a <code class="literal">Quiver</code> object.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    properties (Access = private,Transient,NonCopyable)
+        SurfaceObject (1,1) matlab.graphics.chart.primitive.Surface
+        QuiverObject (1,1) matlab.graphics.chart.primitive.Quiver
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Define a protected <code class="literal">ChartState</code>
+                                        property for storing the axes state.</p></td><td>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    properties (Access = protected)
+        ChartState = []
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </td></tr><tr><td><p>Implement the <code class="literal">setup</code> method. In this
+                                        case, call the <code class="function">mesh</code> and
+                                            <code class="function">quiver3</code> functions to create the
+                                            <code class="literal">Surface</code> and <code class="literal">Quiver</code>
+                                        objects respectively. Store the objects in the corresponding
+                                        properties, and turn the hold state of the axes to
+                                            <code class="literal">'off'</code>. Then call the
+                                            <code class="literal">loadstate</code> method to update the state
+                                        of the axes.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    methods(Access = protected)
+        <span style="color:#0000FF">function</span> setup(obj)
+            ax = getAxes(obj);
+            
+            <span style="color:#228B22">% Create Mesh and Quiver objects.</span>
+            obj.SurfaceObject=mesh(ax,[],[],[],<span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'none'</span>);
+            hold(ax,<span style="color:#A020F0">'on'</span>)
+            obj.QuiverObject=quiver3(ax,[],[],[],[],<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'r'</span>,<span style="color:#A020F0">'LineWidth'</span>,2);
+            hold(ax,<span style="color:#A020F0">'off'</span>)
+            
+            <span style="color:#228B22">% Load state of the axes.</span>
+            loadstate(obj);
+        <span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Implement the <code class="literal">update</code> method. In this
+                                        case, update the <em class="varname">x</em>- and
+                                            <em class="varname">y</em>-coordinates of the mesh plot and
+                                        the tails of the gradient vectors. Then update the lengths
+                                        and directions of the vectors.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>        <span style="color:#0000FF">function</span> update(obj)
+            <span style="color:#228B22">% Update Mesh data.</span>
+            obj.SurfaceObject.XData = obj.XData;
+            obj.SurfaceObject.YData = obj.YData;
+            obj.SurfaceObject.ZData = obj.ZData;
+            
+            <span style="color:#228B22">% Update locations of vector tails.</span>
+            obj.QuiverObject.XData = obj.XData;
+            obj.QuiverObject.YData = obj.YData;
+            obj.QuiverObject.ZData = obj.ZData;
+            
+            <span style="color:#228B22">% Update lengths and directions of vectors.</span>
+            [gradx,grady] = gradient(obj.ZData);
+            obj.QuiverObject.UData = gradx;
+            obj.QuiverObject.VData = grady;
+            obj.QuiverObject.WData = zeros(size(obj.ZData));
+        <span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Implement the <code class="literal">loadstate</code> method,
+                                        which updates the axes and resets the
+                                            <code class="literal">ChartState</code> property to an empty
+                                        array.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>        <span style="color:#0000FF">function</span> loadstate(obj)
+            data=obj.ChartState;
+            ax = getAxes(obj);
+            
+            <span style="color:#228B22">% Look for states that changed.</span>
+            <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'XLim'</span>)
+                ax.XLim=data.XLim;
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'YLim'</span>)
+                ax.YLim=data.YLim;
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'ZLim'</span>)
+                ax.ZLim=data.ZLim;
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> isfield(data, <span style="color:#A020F0">'View'</span>)
+                ax.View=data.View;
+            <span style="color:#0000FF">end</span>
+            
+            <span style="color:#228B22">% Reset ChartState to empty.</span>
+            obj.ChartState=[];
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr><tr><td><p>Implement the <code class="literal">ChartState</code>
+                                        <code class="literal">get</code> method, which returns the axes state
+                                        information.</p></td><td><p>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    methods
+        <span style="color:#0000FF">function</span> data = get.ChartState(obj)
+            isLoadedStateAvailable = ~isempty(obj.ChartState);
+            
+            <span style="color:#228B22">% Return ChartState content if loaded state is available.</span>
+            <span style="color:#228B22">% Otherwise, return current axes state.</span>
+            <span style="color:#0000FF">if</span> isLoadedStateAvailable
+                data = obj.ChartState;
+            <span style="color:#0000FF">else</span>
+                data = struct;
+                ax = getAxes(obj);
+                
+                <span style="color:#228B22">% Get axis limits only if mode is manual.</span>
+                <span style="color:#0000FF">if</span> strcmp(ax.XLimMode,<span style="color:#A020F0">'manual'</span>)
+                    data.XLim = ax.XLim;
+                <span style="color:#0000FF">end</span>
+                <span style="color:#0000FF">if</span> strcmp(ax.YLimMode,<span style="color:#A020F0">'manual'</span>)
+                    data.YLim = ax.YLim;
+                <span style="color:#0000FF">end</span>
+                <span style="color:#0000FF">if</span> strcmp(ax.ZLimMode,<span style="color:#A020F0">'manual'</span>)
+                    data.ZLim = ax.ZLim;
+                <span style="color:#0000FF">end</span>
+                
+                <span style="color:#228B22">% No ViewMode to check. Store the view anyway.</span>
+                data.View = ax.View;
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </p></td></tr></tbody></table></div><p>
+</p><p>Next, create an instance of the chart. Then rotate or zoom into the chart and save
+                it. The object preserves the interactive changes when you load the chart back into
+                    MATLAB.</p><section><h4 class="title" id="mw_ebab673c-11a4-4b43-a49c-5b44854767dd">Create an instance of the chart</h4><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[X,Y] = meshgrid(-5:5);
+Z = X.^2 + Y.^2;
+c = MeshGradientChart(<span style="color:#A020F0">'XData'</span>,X,<span style="color:#A020F0">'YData'</span>,Y,<span style="color:#A020F0">'ZData'</span>,Z);</pre></div></div></div><div class="informalfigure"><div id="d126e33357" class="mediaobject"><p><img src="chart_authoring_saveload.png" height="310" width="410"></p></div></div><p>When you create the chart:</p>
+<div class="itemizedlist"><ul><li><p>The <code class="literal">setup</code> method calls the
+                                    <code class="literal">loadstate</code> method.</p></li><li><p>The <code class="literal">loadstate</code> method performs these tasks,
+                                which ultimately have no effect on the chart object or the
+                                underlying axes object.</p>
+<div class="itemizedlist"><ul><li><p>Call the <code class="literal">get.ChartState</code> method,
+                                            which returns a structure containing the current value
+                                            of the axes <code class="literal">View</code> property.</p></li><li><p>Reset the <code class="literal">View</code> property on the axes
+                                            to the value stored in the structure.</p></li><li><p>Clear the contents of the
+                                                <code class="literal">ChartState</code> property.</p></li></ul></div><p>
+</p></li></ul></div><p>
+</p></section><section><h4 class="title" id="mw_83ca0ff1-6fe9-4c88-aa4d-97235a301417">Rotate or zoom into the chart and save it</h4><p>
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>savefig(gcf,<span style="color:#A020F0">'mychart.fig'</span>)</pre></div></div></div>
+                </p><p>When you save the chart, MATLAB calls the <code class="literal">get.ChartState</code> method, which returns
+                    a structure containing:</p>
+<div class="itemizedlist"><ul><li><p>The values of the <code class="literal">XLim</code>,
+                                <code class="literal">YLim</code>, or <code class="literal">ZLim</code> properties on
+                                the axes, but only if they changed</p></li><li><p>The value of the <code class="literal">View</code> property on the
+                                axes</p></li></ul></div><p>
+After MATLAB retrieves the structure, it stores the structure in the
+                        <code class="literal">ChartState</code> property of the chart object that is being
+                    saved.</p></section><section><h4 class="title" id="mw_de98e6b3-7b27-4c8b-b312-18e5bcca5265">Load the chart that you saved</h4><p>
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>openfig(<span style="color:#A020F0">'mychart.fig'</span>)</pre></div></div></div>
+                </p><p>When you load the chart:</p>
+<div class="itemizedlist"><ul><li><p>The <code class="literal">setup</code> method calls the
+                                    <code class="literal">loadstate</code> method.</p></li><li><p>The <code class="literal">loadstate</code> method performs these tasks:</p>
+<div class="itemizedlist"><ul><li><p>Call the <code class="literal">get.ChartState</code> method,
+                                            which returns the structure from the
+                                                <code class="literal">ChartState</code> property.</p></li><li><p>Reset the <code class="argument">XLim</code>,
+                                                <code class="argument">YLim</code>,
+                                            <code class="argument">ZLim</code>, and <code class="argument">View</code>
+                                            properties on the axes, but only if the structure
+                                            contains the corresponding fields.</p></li><li><p>Clear the contents of the
+                                                <code class="literal">ChartState</code> property.</p></li></ul></div><p>
+</p></li></ul></div><p>
+
+                </p></section></section>
+            <h2 id="d126e33477">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chartcontainer.chartcontainer-class.html"><span itemprop="name"><code class="class">matlab.graphics.chartcontainer.ChartContainer</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mesh.html"><span itemprop="name"><code class="function">mesh</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quiver3.html"><span itemprop="name"><code class="function">quiver3</code></span></a></span></li></ul><h3>Properties</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.axis.axes-properties.html"><span itemprop="name"><span class="property">Axes Properties</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chart.primitive.surface-properties.html"><span itemprop="name"><span class="property">Surface Properties</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chart.primitive.quiver-properties.html"><span itemprop="name"><span class="property">Quiver Properties</span></span></a></span></li></ul>
+            <h3 id="d126e33507">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_oop/understanding-the-save-and-load-process.html" class="a">Default Save and Load Process for Objects</a></li><li><a href="chart-development-overview.html" class="a">Chart Development Overview</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

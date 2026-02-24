@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Computing the Convex Hull</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../computational-geometry.html",
+          "name": "Computational Geometry"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../2-d-and-3-d-bounding-regions.html",
+          "name": "Bounding Regions"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "2-d-and-3-d-bounding-regions"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This topic explains several methods for computing the convex hull using convhull, convhulln, delaunayTriangulation, and alphaShape."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../computational-geometry.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Computational Geometry</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../2-d-and-3-d-bounding-regions.html?s_tid=CRUX_lftnav" itemprop="url" id="convex-hull"><span itemprop="title">Bounding Regions</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Computing the Convex Hull</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsp2xwr" class="nav-link intrnllnk">Computing the Convex Hull Using convhull and convhulln</a></li><li class="nav-item"><a href="#bsp2xwu-1" class="nav-link intrnllnk">Convex Hull Computation Using the delaunayTriangulation Class</a></li><li class="nav-item"><a href="#bujc691" class="nav-link intrnllnk">Convex Hull Computation Using alphaShape</a></li><li class="nav-item"><a href="#d126e22266" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=2-d-and-3-d-bounding-regions&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bsp2xgl">Computing the Convex Hull</h2><p>MATLAB<sup>&#x00AE;</sup> provides several ways to compute the convex hull:</p>
+<div class="itemizedlist"><ul><li><p>Using the MATLAB functions <a href="../ref/convhull.html"><code class="function">convhull</code></a> and <a href="../ref/convhulln.html"><code class="function">convhulln</code></a></p></li><li><p>Using the <a href="../ref/delaunaytriangulation.convexhull.html"><code class="method">convexHull</code></a> method provided
+by the <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> class</p></li><li><p>Using the <a href="../ref/alphashape.html"><code class="function">alphaShape</code></a> function
+with an alpha radius of <code class="literal">Inf</code>.</p></li></ul></div><p>
+</p><p>The <code class="function">convhull</code> function supports the computation
+of convex hulls in 2-D and 3-D. The <code class="function">convhulln</code> function
+supports the computation of convex hulls in N-D (<span class="inlineequation">N
+≥ 2</span>). The <code class="function">convhull</code> function
+is recommended for 2-D or 3-D computations due to better robustness
+and performance.</p><p>The <code class="object">delaunayTriangulation</code> class
+supports 2-D or 3-D computation of the convex hull from the Delaunay
+triangulation. This computation is not as efficient as the dedicated <code class="function">convhull</code> and <code class="function">convhulln</code> functions.
+However, if you have a <code class="object">delaunayTriangulation</code> of
+a point set and require the convex hull, the <code class="method">convexHull</code> method
+can compute the convex hull more efficiently from the existing triangulation. </p><p>The <code class="function">alphaShape</code> function also supports the
+2-D or 3-D computation of the convex hull by setting the alpha radius
+input parameter to <code class="literal">Inf</code>. Like <code class="function">delaunayTriangulation</code>,
+however, computing the convex hull using <code class="function">alphaShape</code> is
+less efficient than using <code class="function">convhull</code> or <code class="function">convhulln</code> directly.
+The exception is when you are working with a previously created alpha
+shape object.</p><section><h3 class="title" id="bsp2xwr">Computing the Convex Hull Using convhull and convhulln</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ComputingTheConvexHullUsingConvhullAndConvhullnExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Computing the Convex Hull Using convhull and convhulln",
+          "description": "The convhull and convhulln functions take a set of points and output the indices of the points that lie on the boundary of the convex hull. The point index-based representation of the convex hull supports plotting and convenient data access. The following examples illustrate the computation and representation of the convex hull.",
+          "thumbnailURL": "../../examples/matlab/win64/ComputingTheConvexHullUsingConvhullAndConvhullnExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "computing-the-convex-hull.html"
+
+        },
+          "identifier": "matlab.ComputingTheConvexHullUsingConvhullAndConvhullnExample",
+          "name": "ComputingTheConvexHullUsingConvhullAndConvhullnExample",
+          "url": "computing-the-convex-hull.html#bsp2xwr"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ComputingTheConvexHullUsingConvhullAndConvhullnExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ComputingTheConvexHullUsingConvhullAndConvhullnExample.mlx",
+        "seamount.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ComputingTheConvexHullUsingConvhullAndConvhullnExample"><meta itemprop="exampletitle" content="Computing the Convex Hull Using convhull and convhulln"></div><span id="ComputingTheConvexHullUsingConvhullAndConvhullnExample" class="anchor_target"></span><p class="shortdesc">The <code class="literal">convhull</code> and <code class="literal">convhulln</code> functions take a set of points and output the indices of the points that lie on the boundary of the convex hull. The point index-based representation of the convex hull supports plotting and convenient data access. The following examples illustrate the computation and representation of the convex hull.</p><p>The first example uses a 2-D point set from the seamount dataset as input to the convhull function.</p><p>Load the data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">seamount</span></pre></div></div></div><p>Compute the convex hull of the point set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>K = convhull(x,y);</pre></div></div></div><p><code class="literal">K</code> represents the indices of the points arranged in a counter-clockwise cycle around the convex hull.</p><p>Plot the data and its convex hull.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(x,y,<span style="color:#A020F0">'.'</span>,<span style="color:#A020F0">'markersize'</span>,12)
+xlabel(<span style="color:#A020F0">'Longitude'</span>)
+ylabel(<span style="color:#A020F0">'Latitude'</span>)
+hold <span style="color:#A020F0">on</span>
+
+plot(x(K),y(K),<span style="color:#A020F0">'r'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e22100" class="mediaobject"><p><img src="../../examples/matlab/win64/ComputingTheConvexHullUsingConvhullAndConvhullnExample_01.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>Add point labels to the points on the convex hull to observe the structure of <code class="literal">K</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[K,A] = convhull(x,y);</pre></div></div></div><p><code class="literal">convhull</code> can compute the convex hull of both 2-D and 3-D point sets. You can reuse the seamount dataset to illustrate the computation of the 3-D convex hull.</p><p>Include the seamount z-coordinate data elevations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close(gcf)
+K = convhull(x,y,z);</pre></div></div></div><p>In 3-D the boundary of the convex hull, <code class="literal">K</code>, is represented by a triangulation. This is a set of triangular facets in matrix format that is indexed with respect to the point array. Each row of the matrix <code class="literal">K</code> represents a triangle.</p><p>Since the boundary of the convex hull is represented as a triangulation, you can use the triangulation plotting function <code class="literal">trisurf</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>trisurf(K,x,y,z,<span style="color:#A020F0">'Facecolor'</span>,<span style="color:#A020F0">'cyan'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e22130" class="mediaobject"><p><img src="../../examples/matlab/win64/ComputingTheConvexHullUsingConvhullAndConvhullnExample_02.png" alt="Figure contains an axes object. The axes object contains an object of type patch." width="560"></p></div></div><p>The volume bounded by the 3-D convex hull can optionally be returned by <code class="literal">convhull</code>, the syntax is as follows.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[K,V] = convhull(x,y,z);</pre></div></div></div><p>The <code class="literal">convhull</code> function also provides the option of simplifying the representation of the convex hull by removing vertices that do not contribute to the area or volume. For example, if boundary facets of the convex hull are collinear or coplanar, you can merge them to give a more concise representation. The following example illustrates use of this option.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[x,y,z] = meshgrid(-2:1:2,-2:1:2,-2:1:2);
+x = x(:);
+y = y(:); 
+z = z(:);
+
+K1 = convhull(x,y,z);
+subplot(1,2,1)
+defaultFaceColor  = [0.6875 0.8750 0.8984];
+trisurf(K1,x,y,z,<span style="color:#A020F0">'Facecolor'</span>,defaultFaceColor)
+axis <span style="color:#A020F0">equal</span>
+title(sprintf(<span style="color:#A020F0">'Convex hull with simplify\nset to false'</span>))
+
+K2 = convhull(x,y,z,<span style="color:#A020F0">'simplify'</span>,true);
+subplot(1,2,2)
+trisurf(K2,x,y,z,<span style="color:#A020F0">'Facecolor'</span>,defaultFaceColor)
+axis <span style="color:#A020F0">equal</span>
+title(sprintf(<span style="color:#A020F0">'Convex hull with simplify\nset to true'</span>))</pre></div></div></div><div class="informalfigure"><div id="d126e22148" class="mediaobject"><p><img src="../../examples/matlab/win64/ComputingTheConvexHullUsingConvhullAndConvhullnExample_03.png" alt="Figure contains 2 axes objects. Axes object 1 with title Convex hull with simplify set to false contains an object of type patch. Axes object 2 with title Convex hull with simplify set to true contains an object of type patch." width="560"></p></div></div><p>MATLAB provides the <code class="literal">convhulln</code> function to support the computation of convex hulls and hypervolumes in higher dimensions. Though <code class="literal">convhulln</code> supports N-D, problems in more than 10 dimensions present challenges due to the rapidly growing memory requirements.</p><p>The <code class="literal">convhull</code> function is superior to <code class="literal">convhulln</code> in 2-D and 3-D as it is more robust and gives better performance.</p><div class="procedure"></div></section><section><h3 class="title" id="bsp2xwu-1">Convex Hull Computation Using the <code class="literal">delaunayTriangulation</code> Class</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ConvexHullComputationUsingTheDelaunayTriangulationClassExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Convex Hull Computation Using the delaunayTriangulation Class",
+          "description": "The relationship between a Delaunay triangulation of a set of points in 2-D and the convex hull of that set of points.",
+          "thumbnailURL": "../../examples/matlab/win64/ConvexHullComputationUsingTheDelaunayTriangulationClassExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "computing-the-convex-hull.html"
+
+        },
+          "identifier": "matlab.ConvexHullComputationUsingTheDelaunayTriangulationClassExample",
+          "name": "ConvexHullComputationUsingTheDelaunayTriangulationClassExample",
+          "url": "computing-the-convex-hull.html#bsp2xwu-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ConvexHullComputationUsingTheDelaunayTriangulationClassExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ConvexHullComputationUsingTheDelaunayTriangulationClassExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ConvexHullComputationUsingTheDelaunayTriangulationClassExample"><meta itemprop="exampletitle" content="Convex Hull Computation Using the delaunayTriangulation Class"></div><span id="ConvexHullComputationUsingTheDelaunayTriangulationClassExample" class="anchor_target"></span><p class="shortdesc">This example shows the relationship between a Delaunay triangulation of a set of points in 2-D and the convex hull of that set of points.</p><p>The <code class="literal">delaunayTriangulation</code> class supports computation of Delaunay triangulations in 2-D and 3-D space. This class also provides a <code class="literal">convexHull</code> method to derive the convex hull from the triangulation.</p><p>Create a Delaunay triangulation of a set of points in 2-D.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [-1.5 3.2; 1.8 3.3; -3.7 1.5; -1.5 1.3; 0.8 1.2; <span style="color:#0000FF">...</span>
+      3.3 1.5; -4.0 -1.0; -2.3 -0.7; 0 -0.5; 2.0 -1.5; <span style="color:#0000FF">...</span>
+      3.7 -0.8; -3.5 -2.9; -0.9 -3.9; 2.0 -3.5; 3.5 -2.25];
+
+dt = delaunayTriangulation(X);</pre></div></div></div><p>Plot the triangulation and highlight the edges that are shared only by a single triangle to reveal the convex hull.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>triplot(dt)
+
+fe = freeBoundary(dt)';
+hold <span style="color:#A020F0">on</span>
+plot(X(fe,1), X(fe,2), <span style="color:#A020F0">'-r'</span>, <span style="color:#A020F0">'LineWidth'</span>,2)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e22201" class="mediaobject"><p><img src="../../examples/matlab/win64/ConvexHullComputationUsingTheDelaunayTriangulationClassExample_01.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line." width="560"></p></div></div><p>In 3-D, the facets of the triangulation that are shared only by one tetrahedron represent the boundary of the convex hull.</p><p>The dedicated <code class="literal">convhull</code> function is generally more efficient than a computation based on the <code class="literal">convexHull</code> method. However, the triangulation based approach is appropriate if:</p><div class="itemizedlist"><ul><li><p>You have a <code class="literal">delaunayTriangulation</code> of the point set already and the convex hull is also required.</p></li><li><p>You need to add or remove points from the set incrementally and need to recompute the convex hull frequently after you have edited the points.</p></li></ul></div><div class="procedure"></div></section><section><h3 class="title" id="bujc691">Convex Hull Computation Using alphaShape</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ConvexHullComputationUsingAlphaShapeExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Convex Hull Computation Using alphaShape",
+          "description": "Compute the convex hull of a 2-D point set using the alphaShape function.",
+          "thumbnailURL": "../../examples/matlab/win64/ConvexHullComputationUsingAlphaShapeExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "computing-the-convex-hull.html"
+
+        },
+          "identifier": "matlab.ConvexHullComputationUsingAlphaShapeExample",
+          "name": "ConvexHullComputationUsingAlphaShapeExample",
+          "url": "computing-the-convex-hull.html#bujc691"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ConvexHullComputationUsingAlphaShapeExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ConvexHullComputationUsingAlphaShapeExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ConvexHullComputationUsingAlphaShapeExample"><meta itemprop="exampletitle" content="Convex Hull Computation Using alphaShape"></div><span id="ConvexHullComputationUsingAlphaShapeExample" class="anchor_target"></span><p class="shortdesc">This example shows how to compute the convex hull of a 2-D point set using the <code class="literal">alphaShape</code> function.</p><p><code class="literal">alphaShape</code> computes a regularized alpha shape from a set of 2-D or 3-D points. You can specify the alpha radius, which determines how tightly or loosely the alpha shape envelops the point set. When the alpha radius is set to <code class="literal">Inf</code>, the resulting alpha shape is the convex hull of the point set. </p><p>Create a set of 2-D points. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [-1.5 3.2; 1.8 3.3; -3.7 1.5; -1.5 1.3; 0.8 1.2; <span style="color:#0000FF">...</span>
+      3.3 1.5; -4.0 -1.0; -2.3 -0.7; 0 -0.5; 2.0 -1.5; <span style="color:#0000FF">...</span>
+      3.7 -0.8; -3.5 -2.9; -0.9 -3.9; 2.0 -3.5; 3.5 -2.25];</pre></div></div></div><p>Compute and plot the convex hull of the point set using an alpha shape with alpha radius equal to <code class="literal">Inf</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>shp = alphaShape(X,Inf);
+plot(shp)</pre></div></div></div><div class="informalfigure"><div id="d126e22258" class="mediaobject"><p><img src="../../examples/matlab/win64/ConvexHullComputationUsingAlphaShapeExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type patch." width="560"></p></div></div><div class="procedure"></div></section>
+      <h2 id="d126e22266">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/convhull.html"><span itemprop="name"><code class="function">convhull</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/convhulln.html"><span itemprop="name"><code class="function">convhulln</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/delaunaytriangulation.convexhull.html"><span itemprop="name"><code class="method">convexHull</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/delaunaytriangulation.html"><span itemprop="name"><code class="object">delaunayTriangulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/alphashape.html"><span itemprop="name"><code class="function">alphaShape</code></span></a></span></p>
+      <h3 id="d126e22284">Topics</h3><ul class="list-unstyled"><li><a href="delaunay-triangulation.html" class="a">Working with Delaunay Triangulations</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

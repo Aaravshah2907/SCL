@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Read and Plot Real-Time Data from BNO055 Sensor in NDOF Mode</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../hardware-network-comm.html",
+          "name": "Hardware and Network Communication"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../hardware-boards-and-kits.html",
+          "name": "Hardware Boards and Kits"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../arduinoio.html",
+          "name": "Arduino Hardware"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 7,
+
+          "item": {
+          "@id": "../arduinoio-sensors.html",
+          "name": "Sensors"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "arduinoio-sensors"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fe">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows you how to read and plot calibrated data from a Bosch Sensortec BNO055 a 9-axis absolute orientation sensor in real time."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-network-comm.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware and Network Communication</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-boards-and-kits.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware Boards and Kits</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Arduino Hardware</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio-sensors.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_a50129d8-52cc-41a2-a650-07e612c999b7"><span itemprop="title">Sensors</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Read and Plot Real-Time Data from BNO055 Sensor in NDOF Mode</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_c7cb4103-523a-41d8-bf25-3d37f9b40b47" class="nav-link intrnllnk">Required Products</a></li><li class="nav-item"><a href="#mw_030ca814-0914-4a54-bc62-4482cbd4df2b" class="nav-link intrnllnk">Required Hardware</a></li><li class="nav-item"><a href="#mw_2195a5b1-dde9-447d-8119-a1746a890943" class="nav-link intrnllnk">Hardware Connection</a></li><li class="nav-item"><a href="#mw_13c2fe5b-ef1d-4e6e-93b0-d03a2e2964ab" class="nav-link intrnllnk">Create Connection to BNO055 Sensor in NDOF Mode</a></li><li class="nav-item"><a href="#mw_fc4a81f3-8e25-4a64-a7cc-8ad8aed65b91" class="nav-link intrnllnk">Calibrate BNO055 Sensor</a></li><li class="nav-item"><a href="#mw_37162aa1-cc4e-47df-a301-56b500a1bd43" class="nav-link intrnllnk">Read Sensor Data</a></li><li class="nav-item"><a href="#mw_51035421-58d2-46b2-a584-7bd840b998f0" class="nav-link intrnllnk">Clean Up</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-example">
+<section><div class="example_icon"></div><h2 class="title r2025b example" itemprop="title content" id="mw_a98a9455-5653-4fa5-b10c-0cd18cbfa30a">Read and Plot Real-Time Data from BNO055 Sensor in NDOF Mode</h2><p>This example shows you how to read and plot calibrated data from a Bosch Sensortec
+            BNO055 a 9-axis absolute orientation sensor in real time. To read the orientation values
+            directly from the BNO055 sensor, configure the sensor in the NDOF operating mode. </p><p>BNO055 is a 9-axis sensor with an integrated accelerometer, gyroscope, and
+            magnetometer. The accelerometer measures acceleration, the gyroscope measures angular
+            velocity, and the magnetometer measures the magnetic field along x-, y-, and z-axis. The
+            axis of the sensor depends on the make of the sensor.</p><section><h3 class="title" id="mw_c7cb4103-523a-41d8-bf25-3d37f9b40b47">Required Products</h3><div class="itemizedlist"><ul><li><p>MATLAB<sup>&#x00AE;</sup></p></li><li><p><span class="entity">MATLAB Support Package for Arduino<sup>&#x00AE;</sup> Hardware</span></p></li></ul></div></section><section><h3 class="title" id="mw_030ca814-0914-4a54-bc62-4482cbd4df2b">Required Hardware</h3><div class="itemizedlist"><ul><li><p>Arduino Uno</p></li><li><p>Bosch BNO055 Sensor</p></li></ul></div></section><section><h3 class="title" id="mw_2195a5b1-dde9-447d-8119-a1746a890943">Hardware Connection</h3><p><span class="guiicon"><span class="inlinemediaobject"><img src="hardware_connection_bno055_uno.png" height="517" width="423"></span></span></p><p>Connect the SDA, SCL, GND, and the VCC pins of the BNO055 sensor to the
+                corresponding pins on the Arduino hardware. This example uses an Arduino Uno board with the following connections:</p><div class="itemizedlist"><ul><li><p>SDA &#8212; A4</p></li><li><p>SCL &#8212; A5</p></li><li><p>VCC &#8212; +5V</p></li><li><p>GND &#8212; GND</p></li></ul></div><p>Ensure that the connections to the sensor is intact. We recommended that you use a
+                prototype shield and solder the sensor to it to avoid loose connections when moving
+                the sensor. For information on debugging sensor related issues, see <a href="troubleshoot-sensors.html" class="a">Troubleshooting Sensors</a>.</p></section><section><h3 class="title" id="mw_13c2fe5b-ef1d-4e6e-93b0-d03a2e2964ab">Create Connection to BNO055 Sensor in NDOF Mode</h3><p>Create a connection to the BNO055 sensor in the NDOF mode. Ensure that you create
+                the <a href="arduino.html"><code class="object">arduino</code></a> object with the library set
+                to
+                <code class="literal">'I2C'</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>arduinoObj = arduino(<span style="color:#A020F0">'COM7'</span>, <span style="color:#A020F0">'Uno'</span>, <span style="color:#A020F0">'Libraries'</span>, <span style="color:#A020F0">'I2C'</span>);
+bno = bno055(arduinoObj, <span style="color:#A020F0">'OperatingMode'</span>, <span style="color:#A020F0">'ndof'</span>);</pre></div></div></div></p></section><section><h3 class="title" id="mw_fc4a81f3-8e25-4a64-a7cc-8ad8aed65b91">Calibrate BNO055 Sensor</h3><p>Calibrate the sensor using the steps described in <a href="calibrate-sensors.html" class="a">Calibrate BNO055 Sensors</a>.
+                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Accelerometer calibration flag</span>
+accCalib = 0; 
+<span style="color:#228B22">% Gyroscope calibration flag</span>
+gyrCalib = 0; 
+<span style="color:#228B22">% Magnetometer calibration flag</span>
+magCalib = 0; 
+fprintf(<span style="color:#A020F0">'Calibrating the BNO055 sensor . . . \n'</span>);
+<span style="color:#0000FF">while</span>(prod([accCalib, gyrCalib, magCalib]) ~= 1)
+    <span style="color:#0000FF">if</span> strcmpi(bno.readCalibrationStatus.Accelerometer, <span style="color:#A020F0">"full"</span>) &amp;&amp; isequal(accCalib, 0)
+        accCalib = 1;
+        fprintf(<span style="color:#A020F0">'Accelerometer is calibrated! . . .\n'</span>);
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span> strcmpi(bno.readCalibrationStatus.Gyroscope, <span style="color:#A020F0">"full"</span>) &amp;&amp; isequal(gyrCalib, 0)
+        gyrCalib = 1;
+        fprintf(<span style="color:#A020F0">'Gyroscope is calibrated! . . .\n'</span>);
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">if</span>(strcmpi(bno.readCalibrationStatus.Magnetometer, <span style="color:#A020F0">"full"</span>))&amp;&amp; isequal(magCalib, 0)
+        magCalib = 1;
+        fprintf(<span style="color:#A020F0">'Magnetometer is calibrated! . . .\n'</span>);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+fprintf(<span style="color:#A020F0">'BNO055 sensor is fully calibrated!\n'</span>);
+</pre></div></div></div></p></section><section><h3 class="title" id="mw_37162aa1-cc4e-47df-a301-56b500a1bd43">Read Sensor Data</h3><p>Read the orientation, acceleration, angular velocity, and magnetic field strength
+                from the BNO055 sensor.</p><p>Estimate the time between consecutive read cycles.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Provide time frame in seconds</span>
+senseFrame = 60; 
+<span style="color:#228B22">% Measure approximate execution time of a single read cycle</span>
+tic;
+readOrientation(bno);
+readAcceleration(bno);
+readAngularVelocity(bno);
+readMagneticField(bno);
+tDelta = toc;
+<span style="color:#228B22">% Number of samples to be collected in the senseFrame time frame</span>
+numSamples = floor(senseFrame/tDelta); 
+<span style="color:#228B22">% Time vector</span>
+tVector = linspace(0, senseFrame, numSamples); 
+tCorrection = 0;
+recordedData = zeros(numSamples, 3, 4);
+</pre></div></div></div><p>Set up the figure handles to plot the change in orientation, acceleration, and
+                magnetic field strength as the device
+                moves.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>subplot(4, 1, 1)
+hold <span style="color:#A020F0">on</span>
+<span style="color:#228B22">% Create handle to Azimuth animatedline object</span>
+hAzimuth = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'r'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Pitch animatedline object</span>
+  hPitch = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'k'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Roll animatedline object</span>
+   hRoll = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'b'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+legend(<span style="color:#A020F0">'Azimuth (rad)'</span>,<span style="color:#A020F0">'Pitch (rad)'</span>,<span style="color:#A020F0">'Roll (rad)'</span>);
+ylabel(<span style="color:#A020F0">'Euler Angles (rad)'</span>);xlabel(<span style="color:#A020F0">'Time (s)'</span>);
+title(<span style="color:#A020F0">'Reading Orientation of the BNO055 sensor'</span>, <span style="color:#A020F0">'fontsize'</span>, 12);
+axis([0 senseFrame -6.5 6.5])
+grid <span style="color:#A020F0">minor</span>
+hold <span style="color:#A020F0">off</span>
+
+subplot(4, 1, 2)
+hold <span style="color:#A020F0">on</span>
+<span style="color:#228B22">% Create handle to X-axis acceleration animatedline object</span>
+hAx = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'r'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Y-axis acceleration animatedline object</span>
+hAy = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'k'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Z-axis acceleration animatedline object</span>
+hAz = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'b'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+legend(<span style="color:#A020F0">'A_x (m/s^2)'</span>,<span style="color:#A020F0">'A_y (m/s^2)'</span>,<span style="color:#A020F0">'A_z (m/s^2)'</span>);
+ylabel(<span style="color:#A020F0">'Acceleration (m/s^2)'</span>);xlabel(<span style="color:#A020F0">'Time (s)'</span>);
+title(<span style="color:#A020F0">'Reading Accelerometer values from BNO055 sensor'</span>, <span style="color:#A020F0">'fontsize'</span>, 12);
+axis([0 senseFrame -30 30]);
+hold <span style="color:#A020F0">off</span>
+grid <span style="color:#A020F0">minor</span>
+
+subplot(4, 1, 3)
+<span style="color:#228B22">% Create handle to X-axis angular velocity animatedline object</span>
+hVx = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'r'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Y-axis angular velocity animatedline object</span>
+hVy = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'k'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Z-axis angular velocity animatedline object</span>
+hVz = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'b'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+legend(<span style="color:#A020F0">'\omega_x (rad/s)'</span>,<span style="color:#A020F0">'\omega_y (rad/s)'</span>,<span style="color:#A020F0">'\omega_z (rad/s)'</span>);
+ylabel(<span style="color:#A020F0">'Angular Velocity (rad/s)'</span>);xlabel(<span style="color:#A020F0">'Time (s)'</span>);
+title(<span style="color:#A020F0">'Reading Angular velocity values from BNO055 sensor'</span>, <span style="color:#A020F0">'fontsize'</span>, 12);
+axis([0 senseFrame -10 10]);
+hold <span style="color:#A020F0">off</span>
+grid <span style="color:#A020F0">minor</span>
+
+subplot(4, 1, 4)
+<span style="color:#228B22">% Create handle to X-axis magnetic field animatedline object</span>
+hMagx = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'r'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Y-axis magnetic field animatedline object</span>
+hMagy = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'k'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.25); 
+<span style="color:#228B22">% Create handle to Z-axis magnetic field animatedline object</span>
+hMagz = animatedline(<span style="color:#A020F0">'color'</span>, <span style="color:#A020F0">'b'</span>, <span style="color:#A020F0">'linewidth'</span>, 1.5); 
+legend(<span style="color:#A020F0">'\mu_x (\muT)'</span>,<span style="color:#A020F0">'\mu_y (\muT)'</span>,<span style="color:#A020F0">'\mu_z (\muT)'</span>);
+ylabel(<span style="color:#A020F0">'Magnetic Field (\muT)'</span>);xlabel(<span style="color:#A020F0">'Time (s)'</span>);
+title(<span style="color:#A020F0">'Reading Magnetometer values from BNO055 sensor'</span>, <span style="color:#A020F0">'fontsize'</span>, 12);
+axis([0 senseFrame -50 50]);
+hold <span style="color:#A020F0">off</span>
+grid <span style="color:#A020F0">minor</span>
+</pre></div></div></div></p><p>Read and plot the calibrated data from the sensor.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> i = 1:numSamples
+    <span style="color:#228B22">% Read Orientation values (Euler angles) from the sensor</span>
+    [sensorVal, ~] = readOrientation(bno);
+    <span style="color:#228B22">% Read Acceleration values from the sensor</span>
+    [AccelVal, ~] = readAcceleration(bno);
+    <span style="color:#228B22">% Read Angular velocity values from the sensor</span>
+    [AngVelVal, ~] = readAngularVelocity(bno);
+    <span style="color:#228B22">% Read Magnetic field strength values from the sensor</span>
+    [MagVal, ~] = readMagneticField(bno);
+
+    tic;
+    addpoints(hAzimuth, tVector(i) + tCorrection,sensorVal(1));
+    addpoints(hPitch, tVector(i) + tCorrection,sensorVal(2));
+    addpoints(hRoll, tVector(i) + tCorrection,sensorVal(3));
+
+    addpoints(hAx, tVector(i) + tCorrection, AccelVal(1));
+    addpoints(hAy, tVector(i) + tCorrection, AccelVal(2));
+    addpoints(hAz, tVector(i) + tCorrection, AccelVal(3));
+
+    addpoints(hVx, tVector(i) + tCorrection, AngVelVal(1));
+    addpoints(hVy, tVector(i) + tCorrection, AngVelVal(2));
+    addpoints(hVz, tVector(i) + tCorrection, AngVelVal(3));
+
+    addpoints(hMagx, tVector(i) + tCorrection, MagVal(1));
+    addpoints(hMagy, tVector(i) + tCorrection, MagVal(2));
+    addpoints(hMagz, tVector(i) + tCorrection, MagVal(3));
+
+    recordedData(i, :, 1) = sensorVal;
+    recordedData(i, :, 2) = AccelVal;
+    recordedData(i, :, 3) = AngVelVal;
+    recordedData(i, :, 4) = MagVal;
+
+    tCorrection = toc;
+
+    drawnow;
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><span class="guiicon"><span class="inlinemediaobject"><img src="real_time_plot_bno_ndof.png" height="867" width="1681"></span></span></p></section><section><h3 class="title" id="mw_51035421-58d2-46b2-a584-7bd840b998f0">Clean Up</h3><p>When the connection is no longer needed, release and clear the
+                objects.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>release(bno);
+clear <span style="color:#A020F0">arduinoObj</span>;
+clear <span style="color:#A020F0">bno</span>;</pre></div></div></div></p></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Find Text in Command Window or History</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../entering-commands.html",
+          "name": "Entering Commands"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "entering-commands"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Search text currently in the Command Window or Command History."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../language-fundamentals.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Language Fundamentals</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../entering-commands.html?s_tid=CRUX_lftnav" itemprop="url" id="syntax-basics"><span itemprop="title">Entering Commands</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Find Text in Command Window or History</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#f0-23165" class="nav-link intrnllnk">Find Text in the Command Window</a></li><li class="nav-item"><a href="#f0-23178" class="nav-link intrnllnk">Find Text in the Command History</a></li><li class="nav-item"><a href="#d126e8503" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=entering-commands&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=entering-commands&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=entering-commands&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=entering-commands&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=entering-commands&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=entering-commands&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="btevr4j">Find Text in Command Window or History</h2><section><h3 class="title" id="f0-23165">Find Text in the Command Window</h3><p>You can search for text in the Command Window, on the Command Window title bar,
+                click the Command Window actions button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_12_px"><img src="actions_16.png" alt="" height="12" width="12"></span></span>, and then select <strong class="guimenuitem">Find</strong>.
+                You also can use the <strong class="keycap">Ctrl+F</strong> keyboard shortcut. </p><p>In the Find dialog box, enter the text that you want to search for. The search
+                begins at the current cursor position. To search backward or forward through the
+                text in the Command Window, use the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="find_previous_icon.png" alt="Find previous" height="16" width="20"></span></span> and <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="find_next_icon.png" alt="Find next" height="16" width="20"></span></span> buttons You also can use the
+                    <strong class="keycap">Shift+F3</strong> and <strong class="keycap">F3</strong> keyboard shortcuts. To show a
+                list of previous searches, use the <strong class="keycap">Down Arrow</strong> key.</p><p>
+                MATLAB<sup>&#x00AE;</sup> finds the text you specified and highlights it.</p><div class="informalfigure"><div id="d126e8332" class="mediaobject"><p><img src="find_and_replace_dialog.png" alt="Find and Replace dialog box with a box for entering the text to search for" height="35" width="454"></p></div></div><p>Select a search option to change how the Command Window search for
+                    text.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="50%"><col class="tcol3" width="25%"></colgroup><thead><tr><th>Option</th><th>Description</th><th>Keyboard Shortcut</th></tr></thead><tbody><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="match_case_icon.png" alt="" height="16" width="16"></span></span> Match case</td><td>Search only for text with the precise case of the search
+                                    text.</td><td><strong class="keycap">Alt+M</strong></td></tr><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="match_whole_word_icon.png" alt="" height="16" width="16"></span></span> Whole word</td><td>Search only for exact full-word matches.</td><td><strong class="keycap">Alt+W</strong></td></tr><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="find_regular_expression.png" alt="" height="16" width="16"></span></span> Regular expression</td><td><p>Search using a regular expression. For example, to find
+                                        all the words in a file that contain the letter
+                                            <code class="literal">x</code>, enter the expression
+                                            <code class="literal">\w*x\w*</code> and select the Regular
+                                        Expression button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="find_regular_expression.png" alt="" height="16" width="16"></span></span>. To access the match
+                                        within a replacement pattern, use the format
+                                            <code class="literal">$&amp;</code>. For example, to add the
+                                        character <code class="literal">*</code> to all the words in a file
+                                        that contain the letter <code class="literal">x</code>, enter the
+                                        expression <code class="literal">$&amp;*</code>.</p><p>To create
+                                        a capture group, surround the characters that you want to
+                                        group with parentheses. Then, to access the capture group
+                                        within the regular expression, use the format
+                                                <code class="literal">\<em class="replaceable"><code>number</code></em></code>,
+                                        where <code class="literal"><em class="replaceable"><code>number</code></em></code>
+                                        refers to the capture group number. Capture groups are
+                                        numbered automatically from left to right based on the
+                                        position of the opening parenthesis in the regular
+                                        expression. To access the capture group within a replacement
+                                        pattern, use the format
+                                                <code class="literal">$<em class="replaceable"><code>number</code></em></code>.
+                                        For example, to find duplicate words in a file using capture
+                                        groups, use the expression <code class="literal">(\w+)\s\1</code>.
+                                        Then, to replace the two words with just one of the words,
+                                        use the expression <code class="literal">$1</code>.</p><p>To
+                                        create a named capture group, use the format
+                                                <code class="literal">?&lt;<em class="replaceable"><code>name</code></em>&gt;</code>,
+                                        where <code class="literal"><em class="replaceable"><code>name</code></em></code> is
+                                        the name of the capture group. Then, to access the named
+                                        capture group, use the format
+                                                <code class="literal">\k&lt;<em class="replaceable"><code>name</code></em>&gt;</code>
+                                        within the regular expression, or
+                                                <code class="literal">$&lt;<em class="replaceable"><code>name</code></em>&gt;</code>
+                                        within a replacement pattern. For example, to find duplicate
+                                        words using a named capture group, use the expression
+                                            <code class="literal">(?&lt;myword&gt;\w+)\s\k&lt;myword&gt;</code>. To
+                                        replace the two words with just one word, use the expression
+                                            <code class="literal">$&lt;myword&gt;</code>. </p><p>Multiline
+                                        search, including the use of the control characters
+                                            <code class="literal">\n</code> and <code class="literal">\r</code>, is not
+                                        supported. In addition, token operators, comments, and
+                                        dynamic expressions are not supported. For more information
+                                        about using regular expressions, see <a href="../matlab_prog/regular-expressions.html" class="a">Regular Expressions</a>.</p></td><td><strong class="keycap">Alt+X</strong></td></tr></tbody></table></div><p>
+</p><p>You can increase the amount of lines available in the Command Window so that more
+                text is available for searching. Doing so requires more memory. On the
+                    <strong class="guilabel">Home</strong> tab, in the <strong class="guilabel">Environment</strong> section,
+                click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem"> Command Window</strong>, and then increase the setting for <strong class="guilabel">Number of lines in the
+                    command window scroll buffer</strong>. </p><p>Clearing the command window (for example, with the <code class="literal">clc</code>
+                function), empties the scroll buffer. The cleared text is no longer available for
+                searching. To clear your display in the Command Window without clearing the buffer,
+                use the <code class="literal">home</code> function.</p></section><section><h3 class="title" id="f0-23178">Find Text in the Command History</h3><p>To search for text in the Command History, use the Command History panel. To open
+                the panel, click the Command History icon <span class="guiicon"><span class="inlinemediaobject"><img src="command_history_icon.png" alt="" height="24" width="24"></span></span> in the sidebar. Then, use the Search field to
+                perform a search.</p><p>The Command History panel searches backward and selects the previous entry that
+                contains the sequence of letters you typed. To find the previous or next occurrence
+                of the entry, use the<strong class="keycap">Up Arrow</strong> and <strong class="keycap">Down Arrow</strong>
+                keys.</p><p>To enter the selected entry into the Command Window, press <strong class="keycap">Enter</strong>.
+                To clear the search field, press <strong class="keycap">Esc</strong>.</p></section>
+            <h2 id="d126e8503">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/commandwindow.html"><span itemprop="name"><span class="tool">Command Window</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/commandhistory.html"><span itemprop="name"><span class="tool">Command History</span></span></a></span></p>
+            <h3 id="d126e8512">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/find-and-replace-text-in-files.html" class="a">Find and Replace Text in Files and Go to Location</a></li><li><a href="finding-files-and-folders.html" class="a">Find Files</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

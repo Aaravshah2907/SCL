@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Pass struct Parameter</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../use-prebuilt-matlab-interface-to-c-library.html",
+          "name": "Use Prebuilt MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "use-prebuilt-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to pass struct arguments to C++ functions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../use-prebuilt-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_3d27c21a-5812-42a3-a2e1-0a91d8651b07"><span itemprop="title">Use Prebuilt MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Pass struct Parameter</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_3f175d7b-20ea-498a-a278-51e188ac9797" class="nav-link intrnllnk">Return MATLAB struct Example</a><ul class="nav"><li class="nav-item"><a href="#mw_68275ec9-8758-44e8-a714-9e51677cdd35" class="nav-link intrnllnk">Display Help for struct Example</a></li><li class="nav-item"><a href="#mw_e99ee60e-53be-48f7-88a3-b5e0c6b40204" class="nav-link intrnllnk">Call returnMATLABStruct and returnClibreturnMATLABStruct</a></li><li class="nav-item"><a href="#mw_f4ae3f33-ed6b-4157-9258-4bb554a3b869" class="nav-link intrnllnk">Build Interface for struct Example</a></li></ul></li><li class="nav-item"><a href="#mw_d4dafe1d-1aac-4c5f-b505-7c73d88163b4" class="nav-link intrnllnk">Pass nullptr Parameter Example</a><ul class="nav"><li class="nav-item"><a href="#mw_471fa7a4-ac7a-47f5-b722-0751f1de2555" class="nav-link intrnllnk">Display Help for clib.libnullptr</a></li><li class="nav-item"><a href="#mw_639a94df-06cc-47da-81e2-be69bfd5d317" class="nav-link intrnllnk">Set Pointer Fields to nullptr</a></li><li class="nav-item"><a href="#mw_d3144d93-5de4-47f5-855d-37eafb860857" class="nav-link intrnllnk">Build Interface for nullptr Example</a></li></ul></li><li class="nav-item"><a href="#d126e22333" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a1240879-a9e4-442e-a0c8-521b50bacc58">Pass <code class="literal">struct</code> Parameter</h2><p>You can pass a MATLAB<sup>&#x00AE;</sup> structure as a parameter to a C++ function. The MATLAB interface to the C++ library converts the
+            structure to a C++ <code class="literal">struct</code> argument. Likewise, you can configure a C++
+            function to return a C++ <code class="literal">struct</code> as a MATLAB structure. The MATLAB structure must meet these requirements.</p><div class="itemizedlist"><ul><li><p>The structure contains all the fields of the C++ structure definition.</p></li><li><p>The field names of the structure must exactly match the field names of the C++
+                    structure. Field names are case-sensitive.</p></li><li><p>The MATLAB structure cannot contain fields that are not in the C++
+                    structure.</p></li><li><p>The data type for each field value must be a valid type for the matching field
+                    in the C++ structure.</p></li><li><p>The size of the field value must match the C++ data member size.</p></li></ul></div><section><h3 class="title" id="mw_3f175d7b-20ea-498a-a278-51e188ac9797">Return <span class="trademark entity">MATLAB</span>                 <code class="literal">struct</code> Example</h3><p>This example shows how to configure an interface to functions that return a struct
+                as either a C++ struct of type <code class="literal">A</code> or as a MATLAB struct.</p><section><h4 class="title" id="mw_68275ec9-8758-44e8-a714-9e51677cdd35">Display Help for <code class="literal">struct</code> Example</h4><p>Suppose that you have an interface defined by this code with functions
+                        <code class="literal">returnClib</code> and <code class="literal">returnMATLABStruct</code> that
+                    return a struct <code class="literal">A</code>.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">struct A { int I; };
+
+A returnClib();
+A returnMATLABStruct();</code></pre></div><p>To run this example, follow the instructions in <a href="pass-struct-parameter.html#mw_f4ae3f33-ed6b-4157-9258-4bb554a3b869" class="intrnllnk">Build Interface for struct Example</a> to
+                    generate a MATLAB interface named <code class="literal">lib</code>.</p><p>When you display help for <code class="literal">lib</code>, you see that it contains a
+                    class <code class="literal">A</code> and functions <code class="literal">returnClib</code> and
+                        <code class="literal">returnMATLABStruct</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Classes contained in clib.lib:
+A                              -  clib.lib.A    Representation of C++ class A.
+
+
+Functions contained in clib.lib:
+returnMATLABStruct             -  clib.lib.returnMATLABStruct Representation of C++ function returnMATLABStruct.
+
+returnClib                     -  clib.lib.returnClib Representation of C++ function returnClib.</pre></div></div></div><p>Display help for the functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib.returnMATLABStruct</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>returnMATLABStruct -  clib.lib.returnMATLABStruct Representation of C++ function returnMATLABStruct.
+
+  RetVal = clib.lib.returnMATLABStruct
+    Output Arguments
+      RetVal         struct with fields: 
+                      I              int32</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib.returnClib</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>returnClib -  clib.lib.returnClib Representation of C++ function returnClib.
+
+  RetVal = clib.lib.returnClib
+    Output Arguments
+      RetVal         clib.lib.A  </pre></div></div></div><p>Display help for <code class="literal">A</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib.A</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A -  clib.lib.A    Representation of C++ class A.
+
+      struct with fields:  
+      I              int32</pre></div></div></div></section><section><h4 class="title" id="mw_e99ee60e-53be-48f7-88a3-b5e0c6b40204">Call <code class="literal">returnMATLABStruct</code> and                         <code class="literal">returnClib</code><code class="literal">returnMATLABStruct</code></h4><p>The <code class="literal">returnMATLABStruct</code> function returns an object you can
+                    use as a MATLAB struct.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mobj = clib.lib.returnMATLABStruct</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mobj = 
+
+  struct with fields:
+
+    I: 10</pre></div></div></div><p>The <code class="literal">returnClib</code> function returns an object of struct
+                        <code class="literal">A</code>. You can pass this object to other functions in the
+                    library that accept <code class="literal">A</code> parameters.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cobj = clib.lib.returnClib</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>cobj = 
+
+  A with properties:
+
+    I: 10</pre></div></div></div></section><section><h4 class="title" id="mw_f4ae3f33-ed6b-4157-9258-4bb554a3b869">Build Interface for <code class="literal">struct</code> Example</h4><p>This C++ code defines two functions that return struct
+                    <code class="literal">A</code>.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include &lt;utility&gt;
+struct A { int I; };
+
+A returnClib(){
+    A a1{10}; 
+    return std::move(a1);
+};
+
+A returnMATLABStruct(){
+    A a1{10}; 
+    return std::move(a1);
+};</code></pre></div><p>Save this code in a header file named <code class="literal">lib.hpp</code>, then
+                    generate a library definition file for a MATLAB interface named <code class="literal">lib</code> following the instructions
+                    in <a href="how-to-define-and-publish-matlab-interface-for-cpp-library-sample.html" class="a">Header-Only HPP File</a>.</p><p>For this example, edit the library definition file
+                        <code class="literal">definelib.m</code> and define the return arguments
+                        <code class="literal">RetVal</code> as:</p><div class="itemizedlist"><ul><li><p><code class="literal">returnClib</code> function&#8212;By default, the
+                                <code class="literal">&lt;MLTYPE&gt;</code> is <code class="literal">"clib.lib.A"</code>.
+                            Do not edit this value.</p></li><li><p><code class="literal">returnMATLABStruct</code> function&#8212;Change the
+                                <code class="literal">&lt;MLTYPE&gt;</code> from <code class="literal">"clib.lib.A"</code>
+                            to <code class="literal">"struct"</code>.</p></li></ul></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Library Artifacts</th><th>MATLAB Interface
+                                    <em class="replaceable"><code>libname</code></em></th><th>MATLAB Help</th></tr></thead><tbody><tr><td><p>Header file <code class="literal">lib.hpp</code></p></td><td><p><code class="literal">clib.lib</code></p></td><td><p><code class="literal">&gt;&gt; help clib.lib</code></p></td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_d4dafe1d-1aac-4c5f-b505-7c73d88163b4">Pass <code class="literal">nullptr</code> Parameter Example</h3><p>This example shows how to assign <code class="literal">nullptr</code> values to a
+                    MATLAB struct to pass to a function in a C++
+                library.</p><section><h4 class="title" id="mw_471fa7a4-ac7a-47f5-b722-0751f1de2555">Display Help for <code class="literal">clib.libnullptr</code></h4><p>Suppose that you have an interface with the struct definition
+                        <code class="literal">MyStruct</code>. To run this example, follow the instructions in
+                        <a href="pass-struct-parameter.html#mw_d3144d93-5de4-47f5-855d-37eafb860857" class="intrnllnk">Build Interface for nullptr Example</a> to
+                    generate a MATLAB interface named <code class="literal">libnullptr</code>.</p><p>When you display help for <code class="literal">libnullptr</code>, you see that it
+                    contains classes <code class="literal">MyStruct</code> and
+                    <code class="literal">Inner</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.libnullptr</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Classes contained in clib.libnullptr:
+Inner                          -  clib.libnullptr.Inner    Representation of C++ class Inner.
+
+MyStruct                       -  clib.libnullptr.MyStruct    Representation of C++ class MyStruct.</pre></div></div></div><p>Display the help text for <code class="literal">MyStruct</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib.MyStruct</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>MyStruct -  clib.lib.MyStruct    Representation of C++ class MyStruct.
+
+      struct with fields:  
+      in1            struct with fields:
+                     i              int32
+
+      in2            2 element vector struct with fields:
+                     i              int32
+
+
+
+    Documentation for clib.lib.MyStruct</pre></div></div></div><p>Display the help text for <code class="literal">Inner</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">clib.lib.Inner</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Inner -  clib.lib.Inner    Representation of C++ class Inner.
+
+      struct with fields:  
+      i              int32
+
+
+    Documentation for clib.lib.Inner</pre></div></div></div></section><section><h4 class="title" id="mw_639a94df-06cc-47da-81e2-be69bfd5d317">Set Pointer Fields to <code class="literal">nullptr</code></h4><p>Create a MATLAB object <code class="literal">myStruct</code>. Use single quotes to assign an
+                    empty value to the <code class="literal">char*</code> field <code class="literal">str</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStruct.str = <span style="color:#A020F0">''</span>;</pre></div></div></div><p>Assign <code class="literal">empty</code> to numeric field <code class="literal">x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStruct.x = int32.empty;
+</pre></div></div></div><p>Assign <code class="literal">[]</code> to struct pointer data member
+                        <code class="literal">in1</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStruct.in1 = struct([]); 
+</pre></div></div></div><p>Alternatively, you can assign <code class="literal">empty</code> to the field.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStruct.in1 = struct.empty;</pre></div></div></div><p>Create an object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>obj = clib.libnullptr.MyStruct(myStruct)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>obj = 
+  MyStruct with properties:
+
+    str: [0×0 string]
+      x: [1×1 clib.array.lib.Int]
+    in1: [1×1 clib.lib.Inner]</pre></div></div></div><p>You can convert this C++ <code class="literal">struct</code> with pointer fields set to
+                        <code class="literal">nullptr</code> to a MATLAB structure <code class="literal">mlStruct</code> using the
+                        <code class="function">struct</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mlStruct = struct(obj)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mlStruct = struct with fields:
+    str: ''
+      x: []
+    in1: [1×1 struct]</pre></div></div></div></section><section><h4 class="title" id="mw_d3144d93-5de4-47f5-855d-37eafb860857">Build Interface for <code class="literal">nullptr</code> Example</h4><p>This C++ code defines <code class="literal">MyStruct</code> with data members that point
+                    to struct <code class="literal">Inner</code>:</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include &lt;stdint.h&gt;
+struct Inner { int i; };
+struct MyStruct { 
+    char *str;
+    int32_t *x;
+    Inner *in1;
+};</code></pre></div><p>Save this code in a header file named <code class="literal">MyStruct.hpp</code>, then
+                    generate a library definition file for a MATLAB interface named <code class="literal">libnullptr</code> following the
+                    instructions in <a href="how-to-define-and-publish-matlab-interface-for-cpp-library-sample.html" class="a">Header-Only HPP File</a>.</p><p>The <code class="literal">MyStruct</code> class needs definition based on your
+                    implementation. For this example, edit the library definition file
+                        <code class="literal">definelibnullptr.m</code> and define the input arguments
+                    as:</p><div class="itemizedlist"><ul><li><p>Argument <code class="literal">str</code>&#8212;Set <code class="literal">&lt;MLTYPE&gt;</code> to
+                                <code class="literal">"string"</code> and <code class="literal">&lt;SHAPE&gt;</code> to
+                                <code class="literal">"nullTerminated"</code>.</p></li><li><p>Argument <code class="literal">x</code>&#8212;Set <code class="literal">&lt;MLTYPE&gt;</code> to
+                                <code class="literal">"clib.array.lib.Int32"</code>.</p></li><li><p>Argument <code class="literal">in1</code>&#8212;Set <code class="literal">&lt;MLTYPE&gt;</code> to
+                                <code class="literal">clib.lib.Inner</code>.</p></li></ul></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Library Artifacts</th><th>MATLAB Interface
+                                    <em class="replaceable"><code>libname</code></em></th><th>MATLAB Help</th></tr></thead><tbody><tr><td><p>Header file
+                                    <code class="literal">MyStruct.hpp</code></p></td><td><p><code class="literal">clib.libnullptr</code></p></td><td><p><code class="literal">&gt;&gt; help
+                                    clib.libnullptr</code></p></td></tr></tbody></table></div></section></section>
+            <h2 id="d126e22333">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibconvertarray.html"><span itemprop="name"><code class="function">clibConvertArray</code></span></a></span></p>
+            <h3 id="d126e22339">Topics</h3><ul class="list-unstyled"><li><a href="matlab-to-c-data-type-mapping.html" class="a">C++ to MATLAB Data Type Mapping</a></li><li><a href="how-to-define-and-publish-matlab-interface-for-cpp-library-sample.html" class="a">Header-Only HPP File</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

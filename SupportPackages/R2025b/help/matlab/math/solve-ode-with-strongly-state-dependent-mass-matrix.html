@@ -1,0 +1,501 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Solve ODE with Strongly State-Dependent Mass Matrix</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../numerical-integration-and-differential-equations.html",
+          "name": "Numerical Integration and Differential Equations"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../ordinary-differential-equations.html",
+          "name": "Ordinary Differential Equations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "ordinary-differential-equations"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Solve ODE with Strongly State-Dependent Mass Matrix",
+          "description": "Solve Burgers' equation using a moving mesh technique [1]. The problem includes a mass matrix, and options are specified to account for the strong state dependence and sparsity of the mass matrix, making the solution process more efficient.",
+          "thumbnailURL": "../../examples/matlab/win64/BurgersODEExample_04.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.BurgersODEExample",
+          "name": "BurgersODEExample",
+          "url": "solve-ode-with-strongly-state-dependent-mass-matrix.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/BurgersODEExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "BurgersODEExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to solve Burgers' equation using a moving mesh technique [1]."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/matlab/win64/BurgersODEExample_04.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../numerical-integration-and-differential-equations.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Numerical Integration and Differential Equations</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../ordinary-differential-equations.html?s_tid=CRUX_lftnav" itemprop="url" id="ordinary-differential-equations"><span itemprop="title">Ordinary Differential Equations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Solve ODE with Strongly State-Dependent Mass Matrix</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#BurgersODEExample-1" class="nav-link intrnllnk">Problem Setup</a></li><li class="nav-item"><a href="#BurgersODEExample-2" class="nav-link intrnllnk">Code Mass Matrix</a></li><li class="nav-item"><a href="#BurgersODEExample-3" class="nav-link intrnllnk">Code Derivative Function</a></li><li class="nav-item"><a href="#BurgersODEExample-4" class="nav-link intrnllnk">Code Functions for Sparsity Patterns</a></li><li class="nav-item"><a href="#BurgersODEExample-5" class="nav-link intrnllnk">Solve System of Equations</a></li><li class="nav-item"><a href="#BurgersODEExample-6" class="nav-link intrnllnk">Plot Results</a></li><li class="nav-item"><a href="#BurgersODEExample-7" class="nav-link intrnllnk">References</a></li><li class="nav-item"><a href="#BurgersODEExample-8" class="nav-link intrnllnk">Local Functions</a></li><li class="nav-item"><a href="#d126e37542" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=ordinary-differential-equations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_74218b73-19b5-48b9-b83e-eab80d0aa3d4">Solve ODE with Strongly State-Dependent Mass Matrix</h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/BurgersODEExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-BurgersODEExample"><meta itemprop="exampletitle" content="Solve ODE with Strongly StateDependent Mass Matrix"></div><span id="BurgersODEExample" class="anchor_target"></span><p class="shortdesc">This example shows how to solve Burgers' equation using a moving mesh technique [1]. The problem includes a mass matrix, and options are specified to account for the strong state dependence and sparsity of the mass matrix, making the solution process more efficient.</p><div class="procedure"><h3 class="title" id="BurgersODEExample-1">Problem Setup</h3><p>Burgers' equation is a convection-diffusion equation given by the PDE</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="italic">u</mi></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mo>=</mo><mi>ϵ</mi><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mi mathvariant="italic">u</mi></mrow><mrow><msup><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo></mrow><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow><mo>,</mo><mtext> </mtext><mtext> </mtext><mtext> </mtext><mtext> </mtext><mn>0</mn><mo>&lt;</mo><mi mathvariant="italic">x</mi><mo>&lt;</mo><mn>1</mn><mo>,</mo><mtext> </mtext><mtext> </mtext><mtext> </mtext><mtext> </mtext><mi mathvariant="italic">t</mi><mo>&gt;</mo><mn>0</mn><mo>,</mo><mtext> </mtext><mtext> </mtext><mi>ϵ</mi><mo>=</mo><mn>1</mn><msup><mrow><mtext> </mtext><mo>×</mo><mi mathvariant="normal">10</mi></mrow><mrow><mo>-</mo><mn>4</mn></mrow></msup><mo>.</mo></mrow></math></p></div><p></p><p>Applying a coordinate transformation (Eq. 18 in [1]) leads to an extra term on the left-hand side:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="italic">u</mi></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo><mi mathvariant="italic">u</mi></mrow><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow></mfrac><mfrac><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mo>=</mo><mi>ϵ</mi><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mi mathvariant="italic">u</mi></mrow><mrow><msup><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo></mrow><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div><p></p><p>Converting the PDE into an ODE of one variable is accomplished by using finite differences to approximate the partial derivatives taken with respect to <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">x</mi></mrow></math></span>. If the finite differences are written as <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi>Δ</mi></mrow></math></span>, then the PDE can be rewritten as an ODE that only contains derivatives taken with respect to <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">t</mi></mrow></math></span>:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mfrac><mrow><mi mathvariant="italic">du</mi></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>-</mo><mi>Δ</mi><mi mathvariant="italic">u</mi><mfrac><mrow><mi mathvariant="italic">dx</mi></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>=</mo><mi>ϵ</mi><msup><mrow><mi>Δ</mi></mrow><mrow><mn>2</mn></mrow></msup><mi mathvariant="italic">u</mi><mo>-</mo><mi>Δ</mi><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div><p></p><p>In this form, you can use an ODE solver such as <code class="literal">ode15s</code> to solve for <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">u</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">x</mi></mrow></math></span> over time.</p><p>For this example, the problem is formulated on a <span class="emphasis"><em>moving</em></span> mesh of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> points, and the moving mesh technique described in [1] positions the mesh points at each time step so that they are concentrated in areas of change. The boundary and initial conditions are</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mtable columnalign="left"><mtr><mtd><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mn>0</mn><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mn>1</mn><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mo>=</mo><mn>0</mn><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mn>0</mn></mrow><mo>)</mo></mrow><mo>=</mo><mi mathvariant="normal">sin</mi><mrow><mo>(</mo><mrow><mn>2</mn><mi>π</mi><mi mathvariant="italic">x</mi></mrow><mo>)</mo></mrow><mo>+</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi mathvariant="normal">sin</mi><mrow><mo>(</mo><mrow><mi>π</mi><mi mathvariant="italic">x</mi></mrow><mo>)</mo></mrow><mo>.</mo></mrow></mtd></mtr></mtable></mrow></math></p></div><p></p><p>For a given initial mesh of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> points, there are <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mn>2</mn><mi mathvariant="italic">N</mi></mrow></math></span> equations to solve: <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations corresponding to Burgers' equation, and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations determining the movement of each mesh point. So, the final system of equations is:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mtable columnalign="left"><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>-</mo><mi>Δ</mi><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>=</mo><mi>ϵ</mi><msup><mrow><mi>Δ</mi></mrow><mrow><mn>2</mn></mrow></msup><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>-</mo><mi>Δ</mi><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>-</mo><mi>Δ</mi><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mo>=</mo><mi>ϵ</mi><msup><mrow><mi>Δ</mi></mrow><mrow><mn>2</mn></mrow></msup><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>-</mo><mi>Δ</mi><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">d</mi></mrow><mrow><mn>2</mn></mrow></msup><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mi mathvariant="italic">d</mi><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>τ</mi></mrow></mfrac><mfrac><mrow><mi mathvariant="italic">d</mi></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac></mrow><mo>)</mo></mrow><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">d</mi></mrow><mrow><mn>2</mn></mrow></msup><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mi mathvariant="italic">d</mi><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>τ</mi></mrow></mfrac><mfrac><mrow><mi mathvariant="italic">d</mi></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mi mathvariant="italic">dt</mi></mrow></mfrac></mrow><mo>)</mo></mrow><mo>.</mo></mrow></mtd></mtr></mtable></mrow></math></p></div><p></p><p>The terms for the moving mesh correspond to MMPDE6 in [1]. The parameter <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi>τ</mi></mrow></math></span> represents a timescale for forcing the mesh toward equidistribution. The term <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow></mrow></math></span> is a monitor function given by Eq. 21 in [1]:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mo>=</mo><msqrt><mrow><mn>1</mn><mo>+</mo><msup><mrow><mrow><mo>(</mo><mrow><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow></mrow><mrow><mn>2</mn></mrow></msup></mrow></msqrt><mo>.</mo></mrow></math></p></div><p></p><p>The approach used in this example to solve Burgers' equation with moving mesh points demonstrates several techniques:</p><div class="itemizedlist"><ul><li><p>The system of equations is expressed using a mass matrix formulation, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">M</mi><mtext> </mtext><msup><mrow><mi mathvariant="italic">y</mi></mrow><mrow><mo>′</mo></mrow></msup><mo>=</mo><mi mathvariant="italic">f</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">t</mi><mo>,</mo><mi mathvariant="italic">y</mi></mrow><mo>)</mo></mrow></mrow></math></span>. The mass matrix is provided to the <code class="literal">ode15s</code> solver as a function.</p></li><li><p>The derivative function not only includes the equations for Burgers' equation, but also a set of equations governing the moving mesh selection.</p></li><li><p>The sparsity patterns of the Jacobian <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="normal">dF</mi><mo>/</mo><mi mathvariant="normal">dy</mi></mrow></math></span> and the derivative of the mass matrix multiplied with a vector <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">d</mi><mrow><mo>(</mo><mrow><mi mathvariant="normal">Mv</mi></mrow><mo>)</mo></mrow><mo>/</mo><mi mathvariant="normal">dy</mi></mrow></math></span> are supplied to the solver as functions. Supplying these sparsity patterns helps the solver operate more efficiently.</p></li><li><p><a href="https://en.wikipedia.org/wiki/Finite_difference" target="_blank">Finite differences</a> are used to approximate several partial derivatives.</p></li></ul></div><p>To solve this equation in MATLAB&#174;, write a derivative function, a mass matrix function, a function for the sparsity pattern of the Jacobian <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="normal">dF</mi><mo>/</mo><mi mathvariant="normal">dy</mi></mrow></math></span>, and a function for the sparsity pattern of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">d</mi><mrow><mo>(</mo><mrow><mi mathvariant="normal">Mv</mi></mrow><mo>)</mo></mrow><mo>/</mo><mi mathvariant="normal">dy</mi></mrow></math></span>. You can either include the required functions as local functions at the end of a file (as done here), or save them as separate, named files in a directory on the MATLAB path.</p><h3 class="title" id="BurgersODEExample-2">Code Mass Matrix</h3><p>The left side of the system of equations involves linear combinations of first derivatives, so a mass matrix is required to represent all of the terms. Set the left side of the system of equations equal to <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">M</mi><mtext> </mtext><msup><mrow><mi mathvariant="italic">y</mi></mrow><mrow><mo>′</mo></mrow></msup></mrow></math></span> to extract the form of the mass matrix. The mass matrix is composed of four blocks, each of which is a square matrix of order <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span>: </p><p class="displayequation"><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mfrac><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow></mfrac><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>∂</mo><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>∂</mo><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo>=</mo><mi mathvariant="italic">M</mi><mtext> </mtext><msup><mrow><mi mathvariant="italic">y</mi></mrow><mrow><mo>′</mo></mrow></msup><mo>=</mo><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow></mtd><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mtd></mtr><mtr><mtd><mrow><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mover accent="true" accentunder="false"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow><mrow><mo>˙</mo></mrow></mover></mrow></mtd></mtr></mtable><mo>]</mo></mrow></mrow></math></span>.</p><p>This formulation shows that <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math></span> form the left side of Burgers' equations (the first <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations in the system), while <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub></mrow></math></span> form the left side of the mesh equations (the last <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations in the system). The block matrices are:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mtable columnalign="left"><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mo>-</mo><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></mfrac><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>=</mo><msub><mrow><mn>0</mn></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>,</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>=</mo><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mo>∂</mo><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>.</mo></mrow></mtd></mtr></mtable></mrow></math></p></div><p></p><p><span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub></mrow></math></span> is the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi><mo>×</mo><mi mathvariant="italic">N</mi></mrow></math></span> identity matrix. The partial derivatives in <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></math></span> are estimated using finite differences, while the partial derivative in <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub></mrow></math></span> uses a Laplacian matrix. Notice that <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow></math></span> contains only zeros because none of the equations for the mesh movement depend on <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow></math></span>.</p><p>Now you can write a function that computes the mass matrix. The function must accept two inputs for time <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">t</mi></mrow></math></span> and the solution vector <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">y</mi></mrow></math></span>. Since the solution vector <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">y</mi></mrow></math></span> contains half <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow></math></span> components and half <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mover accent="true"><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow></math></span> components, the function extracts these first. Then, the function forms all of the block matrices (taking the boundary values of the problem into account) and assembles the mass matrix using the four blocks.</p><div class="code_responsive"><pre id="d126e36623" class="programlisting"><span style="color:#0000FF">function</span> M = mass(t,y)
+<span style="color:#228B22">% Extract the components of y for the solution u and mesh x</span>
+N = length(y)/2; 
+u = y(1:N);
+x = y(N+1:end);
+
+<span style="color:#228B22">% Boundary values of solution u and mesh x</span>
+u0 = 0;
+uNP1 = 0;
+x0 = 0;
+xNP1 = 1;
+
+<span style="color:#228B22">% M1 and M2 are the portions of the mass matrix for Burgers' equation. </span>
+<span style="color:#228B22">% The derivative du/dx is approximated with finite differences, using </span>
+<span style="color:#228B22">% single-sided differences on the edges and centered differences in between.</span>
+M1 = speye(N);
+M2 = sparse(N,N);
+M2(1,1) = - (u(2) - u0)/(x(2) - x0);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    M2(i,i) = - (u(i+1) - u(i-1))/(x(i+1) - x(i-1));
+<span style="color:#0000FF">end</span>
+M2(N,N) = - (uNP1 - u(N-1))/(xNP1 - x(N-1));
+
+<span style="color:#228B22">% M3 and M4 define the equations for mesh point evolution, corresponding to </span>
+<span style="color:#228B22">% MMPDE6 in the reference paper. Since the mesh functions only involve d/dt(dx/dt), </span>
+<span style="color:#228B22">% the M3 portion of the mass matrix is all zeros. The second derivative in M4 is </span>
+<span style="color:#228B22">% approximated using a finite difference Laplacian matrix. </span>
+M3 = sparse(N,N);
+e = ones(N,1);
+M4 = spdiags([e -2*e e],-1:1,N,N);
+
+<span style="color:#228B22">% Assemble mass matrix</span>
+M = [M1 M2
+     M3 M4];
+<span style="color:#0000FF">end</span>
+</pre></div><p><span class="emphasis"><em>Note: All functions are included as local functions at the end of the example.</em></span></p><h3 class="title" id="BurgersODEExample-3">Code Derivative Function</h3><p>The derivative function for this problem returns a vector with <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mn>2</mn><mi mathvariant="italic">N</mi></mrow></math></span> elements. The first <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> elements correspond to Burgers' equations, while the last <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> elements are for the moving mesh equations. The function <code class="literal">movingMeshODE</code> goes through these steps to evaluate the right-hand sides of all the equations in the system:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Evaluate Burgers' equations using finite differences (first <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> elements).</p></li><li><p>Evaluate monitor function (last <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> elements).</p></li><li><p>Apply spatial smoothing to monitor function and evaluate moving mesh equations.</p></li></ol></div><p>The first <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations in the derivative function encode the right side of Burgers' equations. Burgers' equations can be considered as a differential operator involving spatial derivatives of the form:</p><p> <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">f</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">u</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi>ϵ</mi><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mi mathvariant="italic">u</mi></mrow><mrow><msup><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>-</mo><mfrac><mrow><mo>∂</mo></mrow><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mfrac><mrow><msup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><mo>)</mo></mrow></mrow></math></span>. </p><p>The reference paper [1] describes the process of approximating the differential operator <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">f</mi></mrow></math></span> using centered finite differences by</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi mathvariant="italic">f</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo>=</mo><mi>ϵ</mi><mrow><mo>[</mo><mrow><mfrac><mrow><mrow><mo>(</mo><mrow><mfrac><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow><mo>-</mo><mrow><mo>(</mo><mrow><mfrac><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow></mrow><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mrow><mo>(</mo><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mo>)</mo></mrow></mrow></mfrac></mrow><mo>]</mo></mrow><mo>-</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mrow><mo>(</mo><mrow><mfrac><mrow><msubsup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow><mrow><mn>2</mn></mrow></msubsup><mo>-</mo><msubsup><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow><mrow><mn>2</mn></mrow></msubsup></mrow><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div><p></p><p>On the edges of the mesh (for which <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">i</mi><mo>=</mo><mn>1</mn></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">i</mi><mo>=</mo><mi mathvariant="italic">N</mi></mrow></math></span>), only single-sided differences are used instead. This example uses <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi>ϵ</mi><mo>=</mo><mn>1</mn><mo>×</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>-</mo><mn>4</mn></mrow></msup></mrow></math></span>.</p><p>The equations governing the mesh (comprising the last <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi></mrow></math></span> equations in the derivative function) are</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mfrac><mrow><msup><mrow><mo>∂</mo></mrow><mrow><mn>2</mn></mrow></msup><mover accent="true" accentunder="false"><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mo>˙</mo></mrow></mover></mrow><mrow><mo>∂</mo><msup><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>τ</mi></mrow></mfrac><mfrac><mrow><mo>∂</mo></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mfrac><mrow><mo>∂</mo><mi mathvariant="italic">x</mi></mrow><mrow><mo>∂</mo><mi mathvariant="italic">t</mi></mrow></mfrac></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div><p></p><p>Just as with Burgers' equations, you can use finite differences to approximate the monitor function <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow></mrow></math></span>:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi mathvariant="italic">B</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow><mo>=</mo><msqrt><mrow><mn>1</mn><mo>+</mo><msup><mrow><mrow><mo>(</mo><mrow><mfrac><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow><mrow><mo>∂</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow></mrow><mrow><mn>2</mn></mrow></msup></mrow></msqrt><mo>=</mo><msqrt><mrow><mn>1</mn><mo>+</mo><msup><mrow><mrow><mo>(</mo><mrow><mfrac><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>-</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow></mfrac></mrow><mo>)</mo></mrow></mrow><mrow><mn>2</mn></mrow></msup></mrow></msqrt><mo>.</mo></mrow></math></p></div><p></p><p>Once the monitor function is evaluated, spatial smoothing is applied (Equations 14 and 15 in [1]). This example uses <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi>γ</mi><mo>=</mo><mn>2</mn></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">p</mi><mo>=</mo><mn>2</mn></mrow></math></span> for the spatial smoothing parameters.</p><p>The function encoding the system of equations is</p><div class="code_responsive"><pre id="d126e37173" class="programlisting"><span style="color:#0000FF">function</span> g = movingMeshODE(t,y)
+<span style="color:#228B22">% Extract the components of y for the solution u and mesh x</span>
+N = length(y)/2;
+u = y(1:N);
+x = y(N+1:end);
+
+<span style="color:#228B22">% Boundary values of solution u and mesh x</span>
+u0 = 0;
+uNP1 = 0;
+x0 = 0;
+xNP1 = 1;
+
+<span style="color:#228B22">% Preallocate g vector of derivative values.</span>
+g = zeros(2*N,1);
+
+<span style="color:#228B22">% Use centered finite differences to approximate the RHS of Burgers'</span>
+<span style="color:#228B22">% equations (with single-sided differences on the edges). The first N</span>
+<span style="color:#228B22">% elements in g correspond to Burgers' equations.</span>
+<span style="color:#0000FF">for</span> i = 2:N-1
+    delx = x(i+1) - x(i-1);
+    g(i) = 1e-4*((u(i+1) - u(i))/(x(i+1) - x(i)) - <span style="color:#0000FF">...</span>
+        (u(i) - u(i-1))/(x(i) - x(i-1)))/(0.5*delx) <span style="color:#0000FF">...</span>
+        - 0.5*(u(i+1)^2 - u(i-1)^2)/delx;
+<span style="color:#0000FF">end</span>
+delx = x(2) - x0;
+g(1) = 1e-4*((u(2) - u(1))/(x(2) - x(1)) - (u(1) - u0)/(x(1) - x0))/(0.5*delx) <span style="color:#0000FF">...</span>
+    - 0.5*(u(2)^2 - u0^2)/delx;
+delx = xNP1 - x(N-1);
+g(N) = 1e-4*((uNP1 - u(N))/(xNP1 - x(N)) - <span style="color:#0000FF">...</span>
+    (u(N) - u(N-1))/(x(N) - x(N-1)))/delx - <span style="color:#0000FF">...</span>
+    0.5*(uNP1^2 - u(N-1)^2)/delx;
+
+<span style="color:#228B22">% Evaluate the monitor function values (Eq. 21 in reference paper), used in</span>
+<span style="color:#228B22">% RHS of mesh equations. Centered finite differences are used for interior</span>
+<span style="color:#228B22">% points, and single-sided differences are used on the edges.</span>
+M = zeros(N,1);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    M(i) = sqrt(1 + ((u(i+1) - u(i-1))/(x(i+1) - x(i-1)))^2);
+<span style="color:#0000FF">end</span>
+M0 = sqrt(1 + ((u(1) - u0)/(x(1) - x0))^2);
+M(1) = sqrt(1 + ((u(2) - u0)/(x(2) - x0))^2);
+M(N) = sqrt(1 + ((uNP1 - u(N-1))/(xNP1 - x(N-1)))^2);
+MNP1 = sqrt(1 + ((uNP1 - u(N))/(xNP1 - x(N)))^2);
+
+<span style="color:#228B22">% Apply spatial smoothing (Eqns. 14 and 15) with gamma = 2, p = 2.</span>
+SM = zeros(N,1);
+<span style="color:#0000FF">for</span> i = 3:N-2
+    SM(i) = sqrt((4*M(i-2)^2 + 6*M(i-1)^2 + 9*M(i)^2 + <span style="color:#0000FF">...</span>
+        6*M(i+1)^2 + 4*M(i+2)^2)/29);
+<span style="color:#0000FF">end</span>
+SM0 = sqrt((9*M0^2 + 6*M(1)^2 + 4*M(2)^2)/19);
+SM(1) = sqrt((6*M0^2 + 9*M(1)^2 + 6*M(2)^2 + 4*M(3)^2)/25);
+SM(2) = sqrt((4*M0^2 + 6*M(1)^2 + 9*M(2)^2 + 6*M(3)^2 + 4*M(4)^2)/29);
+SM(N-1) = sqrt((4*M(N-3)^2 + 6*M(N-2)^2 + 9*M(N-1)^2 + 6*M(N)^2 + 4*MNP1^2)/29);
+SM(N) = sqrt((4*M(N-2)^2 + 6*M(N-1)^2 + 9*M(N)^2 + 6*MNP1^2)/25);
+SMNP1 = sqrt((4*M(N-1)^2 + 6*M(N)^2 + 9*MNP1^2)/19);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    g(i+N) = (SM(i+1) + SM(i))*(x(i+1) - x(i)) - <span style="color:#0000FF">...</span>
+        (SM(i) + SM(i-1))*(x(i) - x(i-1));
+<span style="color:#0000FF">end</span>
+g(1+N) = (SM(2) + SM(1))*(x(2) - x(1)) - (SM(1) + SM0)*(x(1) - x0);
+g(N+N) = (SMNP1 + SM(N))*(xNP1 - x(N)) - (SM(N) + SM(N-1))*(x(N) - x(N-1));
+
+<span style="color:#228B22">% Form final discrete approximation for Eq. 12 in reference paper, the equation governing</span>
+<span style="color:#228B22">% the mesh points.</span>
+tau = 1e-3;
+g(1+N:end) = - g(1+N:end)/(2*tau);
+<span style="color:#0000FF">end</span>
+</pre></div><h3 class="title" id="BurgersODEExample-4">Code Functions for Sparsity Patterns</h3><p>The Jacobian <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="normal">dF</mi><mo>/</mo><mi mathvariant="normal">dy</mi></math></span> for the derivative function is a <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mn>2</mn><mi mathvariant="italic">N</mi><mo>×</mo><mn>2</mn><mi mathvariant="italic">N</mi></mrow></math></span> matrix containing all of the partial derivatives of the derivative function, <code class="literal">movingMeshODE</code>. <code class="literal">ode15s</code> estimates the Jacobian using finite differences when the matrix is not supplied in the options structure. You can supply the sparsity pattern of the Jacobian to help <code class="literal">ode15s</code> calculate it more quickly. </p><p>The function for the sparsity pattern of the Jacobian is</p><div class="code_responsive"><pre id="d126e37205" class="programlisting"><span style="color:#0000FF">function</span> out = JPat(N)
+S1 = spdiags(ones(N,3),-1:1,N,N);
+S2 = spdiags(ones(N,9),-4:4,N,N);
+out = [S1 S1
+       S2 S2];
+<span style="color:#0000FF">end</span>
+</pre></div><p>Plot the sparsity pattern of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="normal">dF</mi><mo>/</mo><mi mathvariant="normal">dy</mi></mrow></math></span> for <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi><mo>=</mo><mn>80</mn></mrow></math></span> using <code class="literal">spy</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>spy(JPat(80))</pre></div></div></div><div class="informalfigure"><div id="d126e37231" class="mediaobject"><p><img src="../../examples/matlab/win64/BurgersODEExample_01.png" alt="Figure contains an axes object. The axes object with xlabel nz = 1876 contains a line object which displays its values using only markers." width="560"></p></div></div><p>Another way to make the calculation more efficient is to provide the sparsity pattern of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="italic">d</mi><mrow><mo>(</mo><mrow><mi mathvariant="normal">Mv</mi></mrow><mo>)</mo></mrow><mo>/</mo><mi mathvariant="normal">dy</mi></math></span>. You can find this sparsity pattern by examining which terms of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></mrow></math></span> are present in the finite differences calculated in the mass matrix function.</p><p>The function for the sparsity pattern of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="italic">d</mi><mrow><mo>(</mo><mrow><mi mathvariant="normal">Mv</mi></mrow><mo>)</mo></mrow><mo>/</mo><mi mathvariant="normal">dy</mi></math></span> is</p><div class="code_responsive"><pre id="d126e37289" class="programlisting"><span style="color:#0000FF">function</span> S = MvPat(N)
+S = sparse(2*N,2*N);
+S(1,2) = 1;
+S(1,2+N) = 1;
+<span style="color:#0000FF">for</span> i = 2:N-1
+    S(i,i-1) = 1;
+    S(i,i+1) = 1;
+    S(i,i-1+N) = 1;
+    S(i,i+1+N) = 1;
+<span style="color:#0000FF">end</span>
+S(N,N-1) = 1;
+S(N,N-1+N) = 1;
+<span style="color:#0000FF">end</span>
+</pre></div><p>Plot the sparsity pattern of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true"><mi mathvariant="italic">d</mi><mrow><mo>(</mo><mrow><mi mathvariant="normal">Mv</mi></mrow><mo>)</mo></mrow><mo>/</mo><mi mathvariant="normal">dy</mi></math></span> for <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi><mo>=</mo><mn>80</mn></mrow></math></span> using <code class="literal">spy</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>spy(MvPat(80))</pre></div></div></div><div class="informalfigure"><div id="d126e37321" class="mediaobject"><p><img src="../../examples/matlab/win64/BurgersODEExample_02.png" alt="Figure contains an axes object. The axes object with xlabel nz = 316 contains a line object which displays its values using only markers." width="560"></p></div></div><h3 class="title" id="BurgersODEExample-5">Solve System of Equations</h3><p>Solve the system with the value <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">N</mi><mo>=</mo><mn>80</mn></mrow></math></span>. For the initial conditions, initialize <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">x</mi></mrow></math></span> with a uniform grid and evaluate <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mn>0</mn></mrow><mo>)</mo></mrow></mrow></math></span> on the grid. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N = 80;
+h = 1/(N+1);
+xinit = h*(1:N);
+uinit = sin(2*pi*xinit) + 0.5*sin(pi*xinit);
+y0 = [uinit xinit];</pre></div></div></div><p>Use <code class="literal">odeset</code> to create an options structure that sets several values:</p><div class="itemizedlist"><ul><li><p>A function handle for the mass matrix</p></li><li><p>The state-dependence of the mass matrix, which for this problem is <code class="literal">'strong'</code> since the mass matrix is a function of both <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">t</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">y</mi></mrow></math></span></p></li><li><p>A function handle that calculates the Jacobian sparsity pattern</p></li><li><p>A function handle that calculates the sparsity pattern of the derivative of the mass matrix multiplied by a vector</p></li><li><p>The absolute and relative error tolerances</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>opts = odeset(<span style="color:#A020F0">'Mass'</span>,@mass,<span style="color:#A020F0">'MStateDependence'</span>,<span style="color:#A020F0">'strong'</span>,<span style="color:#A020F0">'JPattern'</span>,JPat(N),<span style="color:#0000FF">...</span>
+   <span style="color:#A020F0">'MvPattern'</span>,MvPat(N),<span style="color:#A020F0">'RelTol'</span>,1e-5,<span style="color:#A020F0">'AbsTol'</span>,1e-4);</pre></div></div></div><p>Finally, call <code class="literal">ode15s</code> to solve the system on the interval <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mrow><mo>[</mo><mrow><mn>0</mn><mo>,</mo><mtext> </mtext><mn>1</mn></mrow><mo>]</mo></mrow></mrow></math></span> using the <code class="literal">movingMeshODE</code> derivative function, the time span, the initial conditions, and the options structure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tspan = [0 1];
+sol = ode15s(@movingMeshODE,tspan,y0,opts);</pre></div></div></div><h3 class="title" id="BurgersODEExample-6">Plot Results</h3><p>The result of the integration is a structure <code class="literal">sol</code> that contains the time steps <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">t</mi></mrow></math></span>, the mesh points <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">x</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow></mrow></math></span>, and the solution <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow></mrow></math></span>. Extract these values from the structure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = sol.x;
+x = sol.y(N+1:end,:);
+u = sol.y(1:N,:);</pre></div></div></div><p>Plot the movement of the mesh points over time. The plot shows that the mesh points retain a reasonably even spacing over time (due to the monitor function), but they are able to cluster near the discontinuity in the solution as it moves.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(x,t)
+xlabel(<span style="color:#A020F0">'t'</span>)
+ylabel(<span style="color:#A020F0">'x(t)'</span>)
+title(<span style="color:#A020F0">'Burgers'' equation: Trajectories of grid points'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e37455" class="mediaobject"><p><img src="../../examples/matlab/win64/BurgersODEExample_03.png" alt="Figure contains an axes object. The axes object with title Burgers' equation: Trajectories of grid points, xlabel t, ylabel x(t) contains 80 objects of type line." width="560"></p></div></div><p>Now, sample <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mi mathvariant="italic">t</mi></mrow><mo>)</mo></mrow></mrow></math></span> at a few values of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">t</mi></mrow></math></span> and plot the evolution of the solution over time. The mesh points at the ends of the interval are fixed, so <code class="literal">x(0) = 0</code> and <code class="literal">x(N+1) = 1</code>. The boundary values are <code class="literal">u(t,0) = 0</code> and <code class="literal">u(t,1) = 0</code>, which you must add to the known values computed for the figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tint = 0:0.2:1;
+yint = deval(sol,tint);
+figure
+labels = {};
+<span style="color:#0000FF">for</span> j = 1:length(tint)
+   solution = [0; yint(1:N,j); 0];
+   location = [0; yint(N+1:end,j); 1];
+   labels{j} = [<span style="color:#A020F0">'t = '</span> num2str(tint(j))];
+   plot(location,solution,<span style="color:#A020F0">'-o'</span>)
+   hold <span style="color:#A020F0">on</span>
+<span style="color:#0000FF">end</span>
+xlabel(<span style="color:#A020F0">'x'</span>)
+ylabel(<span style="color:#A020F0">'solution u(x,t)'</span>)
+legend(labels{:},<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'SouthWest'</span>)
+title(<span style="color:#A020F0">'Burgers equation on moving mesh'</span>)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e37494" class="mediaobject"><p><img src="../../examples/matlab/win64/BurgersODEExample_04.png" alt="Figure contains an axes object. The axes object with title Burgers equation on moving mesh, xlabel x, ylabel solution u(x,t) contains 6 objects of type line. These objects represent t = 0, t = 0.2, t = 0.4, t = 0.6, t = 0.8, t = 1." width="560"></p></div></div><p>The plot shows that <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">u</mi><mrow><mo>(</mo><mrow><mi mathvariant="italic">x</mi><mo>,</mo><mn>0</mn></mrow><mo>)</mo></mrow></mrow></math></span> is a smooth wave that develops a steep gradient over time as it moves towards <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mi mathvariant="italic">x</mi><mo>=</mo><mn>1</mn></mrow></math></span>. The mesh points track the movement of the discontinuity so that extra evaluation points are in the appropriate position in each time step.</p><h3 class="title" id="BurgersODEExample-7">References</h3><p>[1] Huang, Weizhang, et al. “Moving Mesh Methods Based on Moving Mesh Partial Differential Equations.” <span class="emphasis"><em>Journal of Computational Physics</em></span>, vol. 113, no. 2, Aug. 1994, pp. 279&#8211;90. <a href="https://doi.org/10.1006/jcph.1994.1135" target="_blank">https://doi.org/10.1006/jcph.1994.1135</a>.</p><h3 class="title" id="BurgersODEExample-8">Local Functions</h3><p>Listed here are the local helper functions that the solver <code class="literal">ode15s</code> calls to calculate the solution. Alternatively, you can save these functions as their own files in a directory on the MATLAB path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> g = movingMeshODE(t,y)
+<span style="color:#228B22">% Extract the components of y for the solution u and mesh x</span>
+N = length(y)/2;
+u = y(1:N);
+x = y(N+1:end);
+
+<span style="color:#228B22">% Boundary values of solution u and mesh x</span>
+u0 = 0;
+uNP1 = 0;
+x0 = 0;
+xNP1 = 1;
+
+<span style="color:#228B22">% Preallocate g vector of derivative values.</span>
+g = zeros(2*N,1);
+
+<span style="color:#228B22">% Use centered finite differences to approximate the RHS of Burgers'</span>
+<span style="color:#228B22">% equations (with single-sided differences on the edges). The first N</span>
+<span style="color:#228B22">% elements in g correspond to Burgers' equations.</span>
+<span style="color:#0000FF">for</span> i = 2:N-1
+    delx = x(i+1) - x(i-1);
+    g(i) = 1e-4*((u(i+1) - u(i))/(x(i+1) - x(i)) - <span style="color:#0000FF">...</span>
+        (u(i) - u(i-1))/(x(i) - x(i-1)))/(0.5*delx) <span style="color:#0000FF">...</span>
+        - 0.5*(u(i+1)^2 - u(i-1)^2)/delx;
+<span style="color:#0000FF">end</span>
+delx = x(2) - x0;
+g(1) = 1e-4*((u(2) - u(1))/(x(2) - x(1)) - (u(1) - u0)/(x(1) - x0))/(0.5*delx) <span style="color:#0000FF">...</span>
+    - 0.5*(u(2)^2 - u0^2)/delx;
+delx = xNP1 - x(N-1);
+g(N) = 1e-4*((uNP1 - u(N))/(xNP1 - x(N)) - <span style="color:#0000FF">...</span>
+    (u(N) - u(N-1))/(x(N) - x(N-1)))/delx - <span style="color:#0000FF">...</span>
+    0.5*(uNP1^2 - u(N-1)^2)/delx;
+
+<span style="color:#228B22">% Evaluate the monitor function values (Eq. 21 in reference paper), used in</span>
+<span style="color:#228B22">% RHS of mesh equations. Centered finite differences are used for interior</span>
+<span style="color:#228B22">% points, and single-sided differences are used on the edges.</span>
+M = zeros(N,1);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    M(i) = sqrt(1 + ((u(i+1) - u(i-1))/(x(i+1) - x(i-1)))^2);
+<span style="color:#0000FF">end</span>
+M0 = sqrt(1 + ((u(1) - u0)/(x(1) - x0))^2);
+M(1) = sqrt(1 + ((u(2) - u0)/(x(2) - x0))^2);
+M(N) = sqrt(1 + ((uNP1 - u(N-1))/(xNP1 - x(N-1)))^2);
+MNP1 = sqrt(1 + ((uNP1 - u(N))/(xNP1 - x(N)))^2);
+
+<span style="color:#228B22">% Apply spatial smoothing (Eqns. 14 and 15) with gamma = 2, p = 2.</span>
+SM = zeros(N,1);
+<span style="color:#0000FF">for</span> i = 3:N-2
+    SM(i) = sqrt((4*M(i-2)^2 + 6*M(i-1)^2 + 9*M(i)^2 + <span style="color:#0000FF">...</span>
+        6*M(i+1)^2 + 4*M(i+2)^2)/29);
+<span style="color:#0000FF">end</span>
+SM0 = sqrt((9*M0^2 + 6*M(1)^2 + 4*M(2)^2)/19);
+SM(1) = sqrt((6*M0^2 + 9*M(1)^2 + 6*M(2)^2 + 4*M(3)^2)/25);
+SM(2) = sqrt((4*M0^2 + 6*M(1)^2 + 9*M(2)^2 + 6*M(3)^2 + 4*M(4)^2)/29);
+SM(N-1) = sqrt((4*M(N-3)^2 + 6*M(N-2)^2 + 9*M(N-1)^2 + 6*M(N)^2 + 4*MNP1^2)/29);
+SM(N) = sqrt((4*M(N-2)^2 + 6*M(N-1)^2 + 9*M(N)^2 + 6*MNP1^2)/25);
+SMNP1 = sqrt((4*M(N-1)^2 + 6*M(N)^2 + 9*MNP1^2)/19);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    g(i+N) = (SM(i+1) + SM(i))*(x(i+1) - x(i)) - <span style="color:#0000FF">...</span>
+        (SM(i) + SM(i-1))*(x(i) - x(i-1));
+<span style="color:#0000FF">end</span>
+g(1+N) = (SM(2) + SM(1))*(x(2) - x(1)) - (SM(1) + SM0)*(x(1) - x0);
+g(N+N) = (SMNP1 + SM(N))*(xNP1 - x(N)) - (SM(N) + SM(N-1))*(x(N) - x(N-1));
+
+<span style="color:#228B22">% Form final discrete approximation for Eq. 12 in reference paper, the equation governing</span>
+<span style="color:#228B22">% the mesh points.</span>
+tau = 1e-3;
+g(1+N:end) = - g(1+N:end)/(2*tau);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% -----------------------------------------------------------------------</span>
+<span style="color:#0000FF">function</span> M = mass(t,y)
+<span style="color:#228B22">% Extract the components of y for the solution u and mesh x</span>
+N = length(y)/2; 
+u = y(1:N);
+x = y(N+1:end);
+
+<span style="color:#228B22">% Boundary values of solution u and mesh x</span>
+u0 = 0;
+uNP1 = 0;
+x0 = 0;
+xNP1 = 1;
+
+<span style="color:#228B22">% M1 and M2 are the portions of the mass matrix for Burgers' equation. </span>
+<span style="color:#228B22">% The derivative du/dx is approximated with finite differences, using </span>
+<span style="color:#228B22">% single-sided differences on the edges and centered differences in between.</span>
+M1 = speye(N);
+M2 = sparse(N,N);
+M2(1,1) = - (u(2) - u0)/(x(2) - x0);
+<span style="color:#0000FF">for</span> i = 2:N-1
+    M2(i,i) = - (u(i+1) - u(i-1))/(x(i+1) - x(i-1));
+<span style="color:#0000FF">end</span>
+M2(N,N) = - (uNP1 - u(N-1))/(xNP1 - x(N-1));
+
+<span style="color:#228B22">% M3 and M4 define the equations for mesh point evolution, corresponding to </span>
+<span style="color:#228B22">% MMPDE6 in the reference paper. Since the mesh functions only involve d/dt(dx/dt), </span>
+<span style="color:#228B22">% the M3 portion of the mass matrix is all zeros. The second derivative in M4 is </span>
+<span style="color:#228B22">% approximated using a finite difference Laplacian matrix. </span>
+M3 = sparse(N,N);
+e = ones(N,1);
+M4 = spdiags([e -2*e e],-1:1,N,N);
+
+<span style="color:#228B22">% Assemble mass matrix</span>
+M = [M1 M2
+     M3 M4];
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% -------------------------------------------------------------------------</span>
+<span style="color:#0000FF">function</span> out = JPat(N)  <span style="color:#228B22">% Jacobian sparsity pattern</span>
+S1 = spdiags(ones(N,3),-1:1,N,N);
+S2 = spdiags(ones(N,9),-4:4,N,N);
+out = [S1 S1
+    S2 S2];
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% -------------------------------------------------------------------------</span>
+<span style="color:#0000FF">function</span> S = MvPat(N)  <span style="color:#228B22">% Sparsity pattern for the derivative of the Mass matrix times a vector</span>
+S = sparse(2*N,2*N);
+S(1,2) = 1;
+S(1,2+N) = 1;
+<span style="color:#0000FF">for</span> i = 2:N-1
+    S(i,i-1) = 1;
+    S(i,i+1) = 1;
+    S(i,i-1+N) = 1;
+    S(i,i+1+N) = 1;
+<span style="color:#0000FF">end</span>
+S(N,N-1) = 1;
+S(N,N-1+N) = 1;
+<span style="color:#0000FF">end</span>
+<span style="color:#228B22">% -------------------------------------------------------------------------</span></pre></div></div></div></div>
+            <h2 id="d126e37542">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ode15s.html"><span itemprop="name"><code class="function">ode15s</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/odeset.html"><span itemprop="name"><code class="function">odeset</code></span></a></span></p>
+            <h3 id="d126e37551">Topics</h3><ul class="list-unstyled"><li><a href="choose-an-ode-solver.html" class="a">Choose an ODE Solver</a></li><li><a href="summary-of-ode-options.html" class="a">Summary of ODE Options</a></li><li><a href="solve-equations-of-motion-for-baton.html" class="a">Solve Equations of Motion for Baton Thrown into Air</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

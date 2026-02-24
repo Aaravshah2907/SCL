@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Audio Pitch Shift Using Audio Capture Playback</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../hardware-network-comm.html",
+          "name": "Hardware and Network Communication"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../hardware-boards-and-kits.html",
+          "name": "Hardware Boards and Kits"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../raspberrypiio.html",
+          "name": "Raspberry Pi Hardware"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 7,
+
+          "item": {
+          "@id": "../raspberrypiio-audio.html",
+          "name": "Audio"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "raspberrypiio-audio"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Audio Pitch Shift Using Audio Capture Playback",
+          "description": "Shift the pitch of an audio signal on Raspberry Pi&#174; hardware using audio capture and playback.",
+          "thumbnailURL": "../../examples/raspberrypiio/win64/xxpitch_shift_connection.png",
+          "genre": "Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "raspberrypiio.PitchShiftAudioCaptureAndPlaybackExample",
+          "name": "PitchShiftAudioCaptureAndPlaybackExample",
+          "url": "audio-pitch-shift-playback.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('raspberrypiio/PitchShiftAudioCaptureAndPlaybackExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "PitchShiftAudioCaptureAndPlaybackExample.m",
+        "pitch_shift_connection.png",
+        "listAudioDevices.m",
+        "listAudioDevices_test.wav"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fe">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows you how to shift the pitch of an audio signal on Raspberry Pi&#174; hardware using audio capture and playback."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/raspberrypiio/win64/xxpitch_shift_connection.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-network-comm.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware and Network Communication</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-boards-and-kits.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware Boards and Kits</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../raspberrypiio.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Raspberry Pi Hardware</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../raspberrypiio-audio.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_20b23641-0231-4308-a092-206d14e343be"><span itemprop="title">Audio</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Audio Pitch Shift Using Audio Capture Playback</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#d126e120780" class="nav-link intrnllnk">Pitch Shifting</a></li><li class="nav-item"><a href="#d126e120785" class="nav-link intrnllnk">Required Products</a></li><li class="nav-item"><a href="#d126e120798" class="nav-link intrnllnk">Required Hardware</a></li><li class="nav-item"><a href="#d126e120819" class="nav-link intrnllnk">Step 1: Connect the Raspberry Pi Hardware for Pitch Shift</a></li><li class="nav-item"><a href="#d126e120841" class="nav-link intrnllnk">Step 2: Change the Audio Output Mode to Headphone Jack</a></li><li class="nav-item"><a href="#d126e120875" class="nav-link intrnllnk">Step 3: Create Capture and Playback Objects</a></li><li class="nav-item"><a href="#d126e120905" class="nav-link intrnllnk">Step 4: Perform Pitch Shift of Audio Input</a></li><li class="nav-item"><a href="#d126e120931" class="nav-link intrnllnk">Step 5: Deploy the MATLAB Function</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=raspberrypiio-audio&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-example">
+<section><div class="example_icon"></div><h1 class="r2025b" itemprop="title content" id="example-pitchshift-playback">Audio Pitch Shift Using Audio Capture Playback</h1><div class="examples_short_list hidden_ios_android" data-products="ML RASPPIIO"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.addons.showAddon('RASPPIIO')">MATLAB Support Package for Raspberry Pi Hardware</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('raspberrypiio/PitchShiftAudioCaptureAndPlaybackExample')" data-ex-genre="Script">Open Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="raspberrypiio-PitchShiftAudioCaptureAndPlaybackExample"><meta itemprop="exampletitle" content="Audio Pitch Shift Using Audio Capture Playback"></div><span id="PitchShiftAudioCaptureAndPlaybackExample" class="anchor_target"></span>
+
+
+
+<p class="shortdesc">This example shows you how to shift the pitch of an audio signal on Raspberry Pi&#174; hardware using audio capture and playback.</p>
+
+
+<p>In this example, you will learn how to:</p>
+
+
+
+<p></p>
+<div class="itemizedlist"><ul><li><p>Acquire audio from a USB microphone or a webcam microphone connected to the Raspberry Pi hardware</p></li><li><p>Shift the pitch of the acquired audio</p></li><li><p>Play the processed audio data through the headphone jack of the Raspberry Pi hardware</p></li></ul></div><p>
+</p>
+
+
+
+<p>
+<strong class="emphasis bold">NOTE</strong> - This example is applicable only to the installed MATLAB&#174; Support Package for Raspberry Pi Hardware. Deploying <code class="literal">audiocapture</code> and <code class="literal">audioplayer</code> is not supported in MATLAB Online&#8482;.</p>
+
+
+
+
+<div class="procedure"><h3 class="title" id="d126e120780">Pitch Shifting<span id="PitchShiftAudioCaptureAndPlaybackExample-1" class="anchor_target"></span></h3><p>Pitch shifting is the ability to modify the pitch of an audio signal to either increase or decrease the pitch. For example, when a fast car passes you in the street, the pitch of the sound from the car increases as the vehicle approaches you and decreases as the vehicle moves away from you. As the source of the audio moves closer or further away from the receiver, the successive signals reach the receiver at either smaller or larger intervals of time. This time difference causes change in the frequency of the audio being heard by the receiver. You can perform a similar pitch-shifting operation by splitting an audio signal into two components, delaying the signals using varying time periods, and then adding them back together. This process simulates the effect of either increasing or decreasing the pitch depending on how the two signals are delayed or overlapped. To ensure uniform power levels, the individual gains for the split signals must be modulated.</p><h3 class="title" id="d126e120785">Required Products<span id="PitchShiftAudioCaptureAndPlaybackExample-2" class="anchor_target"></span></h3><div class="itemizedlist"><ul><li><p>MATLAB Support Package for Raspberry Pi Hardware</p></li><li><p>
+<a href="https://www.mathworks.com/products/audio.html">Audio Toolbox</a>
+</p></li></ul></div><h3 class="title" id="d126e120798">Required Hardware<span id="PitchShiftAudioCaptureAndPlaybackExample-3" class="anchor_target"></span></h3><div class="itemizedlist"><ul><li><p>Raspberry Pi hardware (Model 3B or 3B+ recommended)</p></li><li><p>Audio capture device: USB microphone or <a href="https://elinux.org/RPi_USB_Webcams" target="_blank">webcam microphone</a>
+</p></li><li><p>A pair of headphones that can be plugged into the 3.5 mm headphone jack of the hardware</p></li><li><p>USB cable</p></li><li><p>Ethernet cable</p></li><li><p>A monitor connected to the Raspberry Pi hardware and an HDMI cable (optional)</p></li></ul></div><h3 class="title" id="d126e120819">Step 1: Connect the Raspberry Pi Hardware for Pitch Shift<span id="PitchShiftAudioCaptureAndPlaybackExample-4" class="anchor_target"></span></h3><p>Before you start this example, we recommend you to complete the <a href="getting-started-with-matlab-support-package-for-raspberry-pi-hardware.html" data-docid="mlsupportpkg#example-raspi_gettingstarted" class="a">Getting Started with MATLAB Support Package for Raspberry Pi Hardware</a> example.</p><p>1. Connect the micro-USB end of the USB cable to the Raspberry Pi and the regular USB end of the USB cable to the computer. Wait until the PWR LED on the hardware starts blinking.</p><p>2. Connect the webcam or the microphone to one of the USB ports on the hardware. Note that some webcams draw too much power and may require a powered USB hub for proper operation.</p><p>3. Connect a pair of headphones to the 3.5 mm headphone jack of the hardware.</p><p>4. Using the <a href="install-support-for-raspberry-pi-hardware.html#bt7xwov-2_sep_mw_ce00da2f-bde9-4f39-a69a-a9aaf014dbc0" data-docid="mlsupportpkg#bt7xwov-2.mw_ce00da2f-bde9-4f39-a69a-a9aaf014dbc0" class="a">Hardware Setup</a> screen, configure the Raspberry Pi network.</p><p>
+</p>
+<div class="informalfigure"><div id="d126e120837" class="mediaobject"><p><img src="../../examples/raspberrypiio/win64/xxpitch_shift_connection.png"></p></div></div><p>
+ </p><h3 class="title" id="d126e120841">Step 2: Change the Audio Output Mode to Headphone Jack<span id="PitchShiftAudioCaptureAndPlaybackExample-5" class="anchor_target"></span></h3><p>1. In the hardware terminal, execute this command to open the Software Configuration Tool of the hardware.</p><div class="code_responsive"><pre id="d126e120846" class="programlisting">sudo <span style="color:#A020F0">raspi-config</span>
+</pre></div><p>2. In the Software Configuration Tool Window, select <strong class="emphasis bold">Advanced Options</strong> and press <strong class="emphasis bold">Enter</strong>, then select <strong class="emphasis bold">Audio</strong> and press <strong class="emphasis bold">Enter</strong>.</p><p>3. Select the <strong class="emphasis bold">Force 3.5mm ('headphone') jack</strong> option and press <strong class="emphasis bold">Enter</strong>.</p><p>4. Press <strong class="emphasis bold">OK</strong>.</p><h3 class="title" id="d126e120875">Step 3: Create Capture and Playback Objects<span id="PitchShiftAudioCaptureAndPlaybackExample-6" class="anchor_target"></span></h3><p>Create a raspi object.</p><div class="code_responsive"><pre id="d126e120880" class="programlisting">rpi = raspi();
+</pre></div><p>Create <code class="literal">captureObj</code> and <code class="literal">playerObj</code> system objects for audio processing on Raspberry Pi Hardware.</p><p>The <code class="literal">captureObj</code> is a connection to the audio source device <code class="literal">plughw:1,0</code>. The audio input is captured at a sample rate of 48000, and samples per frame of 4800.</p><div class="code_responsive"><pre id="d126e120894" class="programlisting">captureObj = audiocapture(rpi,<span style="color:#A020F0">'plughw:1,0'</span>,<span style="color:#A020F0">'SampleRate'</span>, 48000, <span style="color:#A020F0">'SamplesPerFrame'</span>, 4800);
+</pre></div><p>The <code class="literal">playbackObj</code> is a connection to the audio player device <code class="literal">plughw:0,1</code>. The audio output is played at a sample rate of 48000.</p><div class="code_responsive"><pre id="d126e120902" class="programlisting">playbackObj = audioplayer(rpi,<span style="color:#A020F0">'plughw:0,1'</span>, <span style="color:#A020F0">'SampleRate'</span>, 48000);
+</pre></div><p>If you do not know the name of the device, use the listAudioDevices function attached with this example.</p><h3 class="title" id="d126e120905">Step 4: Perform Pitch Shift of Audio Input<span id="PitchShiftAudioCaptureAndPlaybackExample-7" class="anchor_target"></span></h3><p> <a href="../../audio/ug/delay-based-pitch-shifter.html" data-docid="audio_ug#mw_fb381a97-4bf8-45d8-8b13-4f96722ed1f1" class="a">Delay-Based Pitch Shifter</a><span role="cross_prod"> (Audio Toolbox)</span> is an audio plugin object that performs the pitch shifting algorithm. The plugin parameters are the pitch shift (in semi-tones), the cross-fading factor (which controls the overlap between the two delay branches), and the sampling frequency. The plugin's parameters are tuned by setting their values to the input arguments pitch and overlap, respectively.</p><div class="code_responsive"><pre id="d126e120913" class="programlisting">pitch = -5;
+overlap = 0.2;
+Fs = 8192;
+</pre></div><p>
+<code class="literal">shiftPitch</code>, a function that may be used to perform pitch shifting, instantiates an <code class="literal">audiopluginexample.PitchShifter</code> plugin, and uses the <code class="literal">setSampleRate</code> method to set its sampling rate to the input argument Fs.</p><div class="code_responsive"><pre id="d126e120923" class="programlisting">pitchShifter = audiopluginexample.PitchShifter(<span style="color:#A020F0">'PitchShift'</span>,8,<span style="color:#A020F0">'Overlap'</span>,0.3);
+setSampleRate(pitchShifter,Fs);
+</pre></div><p>Capture audio from the input device. The input is of type int16 and needs to be converted to type double before processing the data. This is because the function <code class="literal">shiftPitch</code> expects all its inputs to be of the same data type. The output data needs to be of type int16 and thus pitchShifted which is a double is cast to be of type int16 before being sent to audio playback device.</p><div class="code_responsive"><pre id="d126e120929" class="programlisting">
+<span style="color:#0000FF">for</span> k = 1:3000
+    input = capture(captureObj);
+    pitchShifted = zeros(size(double(input)),<span style="color:#A020F0">'like'</span>,double(input));
+    pitchShifter.PitchShift = pitch;
+    pitchShifter.Overlap = overlap;
+    [pitchShifted] = pitchShifter(double(input));
+    play(playbackObj,int16(pitchShifted));
+<span style="color:#0000FF">end</span>
+</pre></div><h3 class="title" id="d126e120931">Step 5: Deploy the MATLAB Function<span id="PitchShiftAudioCaptureAndPlaybackExample-8" class="anchor_target"></span></h3><p>You can deploy the <code class="literal">raspi_pitchshiftdeployment()</code> function on the hardware.</p><div class="code_responsive"><pre id="d126e120939" class="programlisting">
+<span style="color:#0000FF">function</span> raspi_pitchshiftdeployment()
+  rpi = raspi();
+  captureObj = audiocapture(rpi,<span style="color:#A020F0">'plughw:1,0'</span>,<span style="color:#A020F0">'SampleRate'</span>, 48000, <span style="color:#A020F0">'SamplesPerFrame'</span>, 4800);
+  playbackObj = audioplayer(rpi,<span style="color:#A020F0">'plughw:0,1'</span>, <span style="color:#A020F0">'SampleRate'</span>, 48000);
+</pre></div><div class="code_responsive"><pre class="programlisting">   pitch = -5;
+   overlap = 0.2;
+   Fs = 8192;</pre></div><div class="code_responsive"><pre class="programlisting">   pitchShifter = audiopluginexample.PitchShifter('PitchShift',8,'Overlap',0.3);
+   setSampleRate(pitchShifter,Fs);</pre></div><div class="code_responsive"><pre class="programlisting">  for k = 1:3000
+    input = capture(captureObj);
+    pitchShifted = zeros(size(double(input)),'like',double(input)); %#ok&lt;PREALL&gt;
+    pitchShifter.PitchShift = pitch;
+    pitchShifter.Overlap = overlap;
+   [pitchShifted] = pitchShifter(double(input));
+   play(playbackObj,int16(pitchShifted));
+  end
+ end</pre></div><p>Deploy the <code class="literal">raspi_pitchshiftdeployment</code> function as a standalone executable on the hardware by using the <code class="literal"><a href="deploy.html" data-docid="mlsupportpkg#mw_a8a63ef5-1af4-460a-8515-2432dd5670b6" class="a"><code class="olink">deploy</code></a></code> function. Note: For Raspberry Pi with 32-bit OS use <code class="literal">targetHardware('Raspberry Pi')</code> and for 64-bit OS use <code class="literal">targetHardware('Raspberry Pi (64bit)')</code>.</p><div class="code_responsive"><pre id="d126e120955" class="programlisting">board = targetHardware(Raspberry Pi (64bit))
+deploy(board,<span style="color:#A020F0">'raspi_pitchshiftdeployment'</span>)
+</pre></div><div class="code_responsive"><pre id="d126e120957" class="programlisting">Code <span style="color:#A020F0">generation</span> <span style="color:#A020F0">successful:</span> <span style="color:#A020F0">View</span> <span style="color:#A020F0">report</span>
+</pre></div><p>The <code class="literal">deploy</code> function initiates code generation of the <code class="literal">raspi_pitchshiftdeployment</code> function. At the end of code generation, MATLAB generates a code generation report. Use this report to debug the <code class="literal">raspi_pitchshiftdeployment</code> function for any build errors and warnings in the generated code.</p><p>After successfully generating the code, the support package loads and runs the code as a standalone executable on the hardware. The executable starts acquiring live audio input from the audio device, runs the pitch shift algorithm on the acquired audio, and then plays the result on the playback device.</p></div></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

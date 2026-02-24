@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Use MATLAB Handle Classes in C&#35;</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../net-with-matlab.html",
+          "name": ".NET with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-matlab-from-net.html",
+          "name": "Call MATLAB from .NET"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-matlab-from-net"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Integrate MATLAB handle classes with C# applications."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../net-with-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">.NET with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-matlab-from-net.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_654cb9e7-212b-49c2-aaaa-ce3b4c8e7643"><span itemprop="title">Call MATLAB from .NET</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Use MATLAB Handle Classes in C#</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_45d908db-21ef-4391-8a4b-fea113c6f23a" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#mw_da69f57f-62b3-4b08-8451-aa5d50ec87ac" class="nav-link intrnllnk">Key Features</a></li><li class="nav-item"><a href="#mw_118e679d-7590-496a-8f78-5dadfc818df1" class="nav-link intrnllnk">Inherent Capabilities of MATLAB Handle Classes</a></li><li class="nav-item"><a href="#mw_2762cf8b-a30e-4994-8b52-0eacd59a9a14" class="nav-link intrnllnk">Example Files</a></li><li class="nav-item"><a href="#mw_d88ed848-73cf-4b80-941f-29de37454018" class="nav-link intrnllnk">MATLAB BankAccount Class</a></li><li class="nav-item"><a href="#mw_43907fbc-d6fa-49f9-980e-c97862fa6664" class="nav-link intrnllnk">Generated C# BankAccount File</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-matlab-from-net&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_495fd13b-4226-491c-9eee-6c08e055233c">Use <span class="trademark entity">MATLAB</span> Handle Classes in C#</h2><section><h3 class="title" id="mw_45d908db-21ef-4391-8a4b-fea113c6f23a">Overview</h3><p>The MATLAB<sup>&#x00AE;</sup> engine API for .NET supports MATLAB handle classes when using the strongly typed interface. This feature
+        translates the behavior of MATLAB classes that inherit from handle classes into equivalent C# code, preserving
+        specific features and behaviors.<em> (since R2024a)</em></p></section><section><h3 class="title" id="mw_da69f57f-62b3-4b08-8451-aa5d50ec87ac">Key Features</h3><p>When you generate a C# file from a MATLAB class that inherits from a handle class using the <a href="../ref/matlab.engine.typedinterface.generatecsharp.html"><code class="function">matlab.engine.typedinterface.generateCSharp</code></a> function, you get this
+        functionality:</p><div class="itemizedlist"><ul><li><p>Copy behavior: The generated C# code replicates MATLAB handle class copy behavior. In MATLAB, handle objects are reference types, meaning that when you copy these
+            objects, both the original and the new variable refer to the same object.</p></li><li><p>Comparison operators: The C# representation of MATLAB handle classes supports comparison operations. You can compare C# objects,
+            derived from MATLAB handle classes,  using the standard operators <code class="literal">==</code>,
+              <code class="literal">!=</code>, <code class="literal">&lt;</code>, <code class="literal">&gt;</code>,
+              <code class="literal">&lt;=</code>, and <code class="literal">&gt;=</code>.</p></li><li><p><code class="function">isvalid</code> function support: The C# interface supports the
+              <code class="function">isvalid</code> function, which checks if handle objects are valid or
+            have been deleted.</p></li><li><p><code class="function">delete</code> function support: The C# interface supports the
+              <code class="function">delete</code> function.</p></li></ul></div></section><section><h3 class="title" id="mw_118e679d-7590-496a-8f78-5dadfc818df1">Inherent Capabilities of <span class="trademark entity">MATLAB</span> Handle Classes</h3><p>Deriving from the MATLAB handle class enables a subclass to:</p><div class="itemizedlist"><ul><li><p>Inherit methods.</p></li><li><p>Define events and listeners.</p></li><li><p>Define dynamic properties.</p></li><li><p>Implement <code class="function">set</code> and <code class="function">get</code> methods.</p></li><li><p>Customize copy behavior.</p></li></ul></div></section><section><h3 class="title" id="mw_2762cf8b-a30e-4994-8b52-0eacd59a9a14">Example Files</h3><p>These example files demonstrate the use and integration of MATLAB handle classes with C# applications using the engine API for .NET:</p><div class="itemizedlist"><ul><li><p><code class="literal">BankAccount.m</code>: This MATLAB class file inherits from the handle class and provides basic banking
+            functionality. For more information, see <a href="use-matlab-handle-classes-in-csharp.html#mw_d88ed848-73cf-4b80-941f-29de37454018" class="intrnllnk">MATLAB BankAccount Class</a>.</p></li><li><p><code class="literal">generateBankAccount.m</code>: A MATLAB script used to generate the corresponding C# file from the
+              <code class="literal">BankAccount</code> class, illustrating the integration with the engine API
+            for .NET.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>matlab.engine.typedinterface.generateCSharp( <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"BankAccount"</span>, <span style="color:#0000FF">...</span>
+    Classes=<span style="color:#A020F0">"BankAccount"</span>)
+</pre></div></div></div></li><li><p><code class="literal">run_BankAccount.m</code>: An example using the
+              <code class="literal">BankAccount</code> class.</p><p><a href="#" onclick="return toggleexpander('d126e78347_block','d126e78347_expandable_text');"><img style="border:0;" id="d126e78347_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e78347_block','d126e78347_expandable_text');"><code class="literal">run_BankAccount.m</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e78347_block"><div class="code_responsive"><pre class="programlisting">%% Create a bank account with an initial balance of 100
+account = BankAccount(100);
+%% Deposit 50 into the account
+account.deposit(50);
+disp(['Balance after deposit: ',num2str(account.checkBalance())]);
+%% Withdraw 30 from the account
+account.withdraw(30);
+disp(['Balance after withdrawal: ',num2str(account.checkBalance())]);
+%% Create a joint account that references the same existing account
+jointAccount = account;
+%% Deposit 20 using the shared reference
+jointAccount.deposit(20);
+disp(['Balance from sharedAccount: ',num2str(jointAccount.checkBalance())]);
+disp(['Balance from original account: ',num2str(account.checkBalance())]);
+</pre></div></div></li><li><p><code class="literal">Program.cs</code>: This C# console application demonstrates the use of
+            the generated C# file from the MATLAB
+            <code class="literal">BankAccount</code> class. It replicates the functionality of the MATLAB script <code class="literal">run_BankAccount.m</code>, but within a .NET
+            environment. This application shows key operations such as account creation, deposits,
+            withdrawals, and balance inquiries, mirroring the actions performed in the MATLAB script.</p><p><a href="#" onclick="return toggleexpander('d126e78372_block','d126e78372_expandable_text');"><img style="border:0;" id="d126e78372_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e78372_block','d126e78372_expandable_text');"><code class="literal">Program.cs</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e78372_block"><div class="code_responsive"><pre class="programlisting">using System;
+using MathWorks.MATLAB.Engine;
+using MathWorks.MATLAB.Types;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Start MATLAB engine
+        using (dynamic matlab = MATLABEngine.StartMATLAB())
+        {
+            //Set the current folder in MATLAB to the folder containing the MATLAB class definition
+            matlab.cd(new RunOptions(nargout: 0), @"P:\MATLAB\work\handle_class_support\dotnet");
+            
+            // Create a new bank account with an initial balance of 100
+            BankAccount account = new BankAccount(matlab, 100);
+
+            // Deposit 50 into the account
+            account.deposit(50);
+            DisplayBalance(account, "Balance after deposit:");
+
+            // Withdraw 30 from the account
+            account.withdraw(30);
+            DisplayBalance(account, "Balance after withdrawal:");
+
+            // Create a joint account that references the same existing account
+            BankAccount jointAccount = account;
+
+            // Deposit 20 using the shared reference
+            jointAccount.deposit(20);
+            DisplayBalance(jointAccount, "Balance from sharedAccount:");
+            DisplayBalance(account, "Balance from original account:");
+        }
+    }
+
+    static void DisplayBalance(BankAccount account, string message)
+    {
+        double balance;
+        account.checkBalance(out balance);
+        Console.WriteLine($"{message} {balance}");
+    }
+}
+</pre></div></div></li></ul></div></section><section><h3 class="title" id="mw_d88ed848-73cf-4b80-941f-29de37454018"><span class="trademark entity">MATLAB</span>         <code class="literal">BankAccount</code> Class</h3><p><a href="#" onclick="return toggleexpander('d126e78387_block','d126e78387_expandable_text');"><img style="border:0;" id="d126e78387_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e78387_block','d126e78387_expandable_text');"><code class="literal">BankAccount.m</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e78387_block"><div class="code_responsive"><pre class="programlisting">classdef BankAccount &lt; handle
+    properties (Access = private)
+        Balance (1,1) double {mustBeReal}
+    end
+    
+    methods
+        % Constructor to initialize the account with a balance
+        function obj = BankAccount(initialBalance)
+            arguments (Input)
+                initialBalance (1,1) double {mustBeReal}
+            end
+            if nargin == 0
+                initialBalance = 0;
+            end
+            obj.Balance = initialBalance;
+        end
+        
+        % Method to deposit money
+        function deposit(obj, amount)
+            arguments (Input)
+                obj (1,1) BankAccount
+                amount (1,1) double {mustBeReal}
+            end
+            if amount &gt; 0
+                obj.Balance = obj.Balance + amount;
+            else
+                error('Amount must be positive');
+            end
+        end
+        
+        % Method to withdraw money
+        function withdraw(obj, amount)
+            arguments (Input)
+                obj (1,1) BankAccount
+                amount (1,1) double {mustBeReal}
+            end
+            if amount &lt;= obj.Balance &amp;&amp; amount &gt; 0
+                obj.Balance = obj.Balance - amount;
+            else
+                error('Insufficient funds or invalid amount');
+            end
+        end
+        
+        % Method to check the balance
+        function bal = checkBalance(obj)
+            arguments (Input)
+                obj (1,1) BankAccount
+            end
+            arguments (Output)
+                bal (1,1) double {mustBeReal}
+            end
+            bal = obj.Balance;
+        end
+    end
+end
+</pre></div></div><p>Class definition: The MATLAB class <code class="literal">BankAccount</code> is defined as a subclass of the handle
+        class, which allows it to exhibit reference behavior. This means instances of this class can
+        be passed by reference.</p><p>Private properties: The class has one private property, <code class="literal">Balance</code>,
+        which is a double.</p><p>Methods: The class includes methods for depositing, withdrawing, and checking the
+        balance. These methods ensure controlled access and modification of the
+          <code class="literal">Balance</code> property.</p></section><section><h3 class="title" id="mw_43907fbc-d6fa-49f9-980e-c97862fa6664">Generated C# <code class="literal">BankAccount</code> File</h3><p><a href="#" onclick="return toggleexpander('d126e78414_block','d126e78414_expandable_text');"><img style="border:0;" id="d126e78414_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e78414_block','d126e78414_expandable_text');"><code class="literal">BankAccount.cs</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e78414_block"><div class="code_responsive"><pre class="programlisting">/* File: BankAccount.cs
+*
+* MATLAB Strongly Typed Interface Version: R2024b
+* C# source code generated on: 11-Jan-2024
+*/
+using System;
+using MathWorks.MATLAB.Types;
+using MathWorks.MATLAB.Exceptions;
+
+[MATLABClass("BankAccount")]
+public  class BankAccount:IEquatable&lt;BankAccount&gt; { 
+    private dynamic _objrep;
+    private dynamic _matlab;
+    public  BankAccount(MATLABProvider _matlab, double initialBalance){
+        this._matlab = _matlab;
+        _objrep = (MATLABArray)this._matlab.BankAccount(new RunOptions(nargout:1),initialBalance);
+    }
+    private BankAccount (){}
+
+    public void checkBalance(){
+        _objrep.checkBalance(new RunOptions(nargout:0));
+    }
+    public void checkBalance( out double bal){
+        bal = (double)_objrep.checkBalance(new RunOptions(nargout:1));
+    }
+    public void withdraw(double amount){
+        _objrep.withdraw(new RunOptions(nargout:0),amount);
+    }
+    public void deposit(double amount){
+        _objrep.deposit(new RunOptions(nargout:0),amount);
+    }
+    public void eq(dynamic B){
+        _objrep.eq(new RunOptions(nargout:0),B);
+    }
+    public void eq(dynamic B,  out dynamic TF){
+        TF = (MATLABArray)_objrep.eq(new RunOptions(nargout:1),B);
+    }
+    public void ne(dynamic B){
+        _objrep.ne(new RunOptions(nargout:0),B);
+    }
+    public void ne(dynamic B,  out dynamic TF){
+        TF = (MATLABArray)_objrep.ne(new RunOptions(nargout:1),B);
+    }
+    public static bool operator &lt; (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.lt(obj1,obj2);
+        return ret;
+    }
+
+    public static bool operator &gt; (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.gt(obj1,obj2);
+        return ret;
+    }
+
+    public static bool operator &lt;= (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.le(obj1,obj2);
+        return ret;
+    }
+
+    public static bool operator &gt;= (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.ge(obj1,obj2);
+        return ret;
+    }
+
+    public void delete(){
+        _objrep.delete(new RunOptions(nargout:0));
+    }
+    public void isvalid(){
+        _objrep.isvalid(new RunOptions(nargout:0));
+    }
+    public void isvalid( out dynamic validity){
+        validity = (MATLABArray)_objrep.isvalid(new RunOptions(nargout:1));
+    }
+    public static bool operator == (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.eq(obj1,obj2);
+        return ret;
+    }
+
+    public static bool operator != (BankAccount obj1, BankAccount obj2){
+        bool ret = obj1._matlab.ne(obj1,obj2);
+        return ret;
+    }
+
+    public override bool Equals (Object obj){
+        if (obj == null){
+            return false;
+        }
+
+        try{
+
+            BankAccount _obj = (BankAccount)obj;
+            return (this == _obj);
+        }
+
+        catch(Exception){
+
+            return false;
+        }
+
+    }
+
+    public bool Equals(BankAccount obj){
+        return this == obj;
+    }
+
+    public override int GetHashCode(){
+        UInt64 hashcode = _matlab.keyHash(_objrep);
+        return hashcode.GetHashCode();
+    }
+
+    public static implicit operator MATLABObject(BankAccount bankaccount){
+        return bankaccount._objrep;
+    }
+    public static implicit operator BankAccount(MATLABObject _obj){
+        BankAccount bankaccount = new BankAccount();
+        bankaccount._objrep = _obj;
+#pragma warning disable CS8601, CS8602
+        bankaccount._matlab = typeof(MATLABObject).GetField("Matlab", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(_obj);
+#pragma warning restore
+        return bankaccount;
+    }
+}
+
+</pre></div></div><p>Class inheritance: The C# <code class="literal">BankAccount</code> class does not explicitly
+        inherit from a standard C# class that mimics a MATLAB handle class. Instead, the characteristics of a MATLAB handle class are flattened into the C# representation. This approach involves
+        selectively integrating a subset of supported methods into the generated C# code. By
+        incorporating these methods, the C# <code class="literal">BankAccount</code> class emulates the
+        behavior of a MATLAB handle class.</p><p>Constructors and overloaded operators: These operators provide similar functionalities
+        to a MATLAB handle class, which supports comparison operations.</p><div class="code_responsive"><pre class="programlisting">public static bool operator &gt;= (BankAccount obj1, BankAccount obj2)
+public static bool operator &lt;= (BankAccount obj1, BankAccount obj2)
+public static bool operator != (BankAccount obj1, BankAccount obj2)
+public static bool operator == (BankAccount obj1, BankAccount obj2)
+public static bool operator &gt; (BankAccount obj1, BankAccount obj2)
+public static bool operator &lt; (BankAccount obj1, BankAccount obj2)</pre></div><p>Method mapping: The C# methods (<code class="literal">deposit</code>, <code class="literal">withdraw</code>,
+        and <code class="literal">checkBalance</code>) correspond to the MATLAB class methods.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th><p>MATLAB Signature</p></th><th><p>C# Signature</p></th></tr></thead><tbody><tr><td>
+                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> deposit(obj, amount)</pre></div></div></div>
+              </td><td>
+                <div class="code_responsive"><pre class="programlisting">public void deposit(double amount)
+</pre></div>
+              </td></tr><tr><td>
+                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> withdraw(obj, amount)</pre></div></div></div>
+              </td><td>
+                <div class="code_responsive"><pre class="programlisting">public void withdraw(double amount)</pre></div>
+              </td></tr><tr><td>
+                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> bal = checkBalance(obj)</pre></div></div></div>
+              </td><td>
+                <div class="code_responsive"><pre class="programlisting">
+public void checkBalance()</pre></div>
+              </td></tr></tbody></table></div></section>
+      
+      
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Use Prebuilt MATLAB Interface to C++ Library</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleTopics",
+
+        "itemListElement":
+        [
+        "matlab_external/call-functions-in-interface-to-matrixoperations-library.html",
+        "matlab_external/call-functions-in-linux-version-of-interface-to-c-shared-library.html"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "function:clibArray",
+          "name": "clibArray"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "function:clibConvertArray",
+          "name": "clibConvertArray"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "function:clibConfiguration",
+          "name": "clibConfiguration"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "object:matlab.cppclient.CLibraryConfiguration",
+          "name": "CLibraryConfiguration"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "function:clibIsNull",
+          "name": "clibIsNull"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "function:clibIsReadOnly",
+          "name": "clibIsReadOnly"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 7,
+            "item": {
+          "identifier": "function:clibRelease",
+          "name": "clibRelease"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 8,
+            "item": {
+          "identifier": "function:underlyingValue",
+          "name": "underlyingValue"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "UnlistedReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "function:unload",
+          "name": "unload"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="To call a function in a C++ library, use the MATLAB clib namespace"><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4df314fd-8da6-47c6-982f-ed349e6ba2be"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="cpp-language.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_a1db2d16-0bc8-4f6b-8004-0589a626b063"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_85a357f1-d3ea-40ec-80d6-3daa449354a8"><span itemprop="title">Call C++ from MATLAB</span></a></li></ul><div id="left_nav_categories"><div class="search_refine"><h3>Category</h3><div id="nav_categories"><ul class="nav_toc"><li><a href="build-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" class="corrected_url">Build MATLAB Interface to C++ Library</a></li><li class="active"><a href="use-prebuilt-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" class="corrected_url">Use Prebuilt MATLAB Interface to C++ Library</a></li></ul></div></div></div></nav></div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=use-prebuilt-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-category">
+<h1 class="r2025b" itemprop="content title">Use Prebuilt <span class="trademark entity">MATLAB</span> Interface to C++ Library</h1><div class="doc_topic_desc" itemprop="content purpose">To call a function in a C++ library, use the MATLAB<sup>&#x00AE;</sup>
+                                        <code class="literal">clib</code> namespace</div>
+<span id="clib_help" class="anchor_target"></span><div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+
+                                <p>If you have a published MATLAB interface to a C++ shared library, then you
+                                        can use these classes and functions directly in MATLAB, passing data back and forth between
+                                                MATLAB and C++.</p>
+                        </div></div>
+</div>
+<div class="doc_functionsgroup_container"><h2>Functions</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/clibarray.html"><code class="function">clibArray</code></a></td><td class="description">Create <span class="trademark entity">MATLAB</span> clib array for C++ library functions</td></tr><tr><td class="term notranslate"><a href="ref/clibconvertarray.html"><code class="function">clibConvertArray</code></a></td><td class="description">Convert <span class="trademark entity">MATLAB</span> fundamental or struct array to <span class="trademark entity">MATLAB</span> array of C++ objects</td></tr><tr><td class="term notranslate"><a href="ref/clibconfiguration.html"><code class="function">clibConfiguration</code></a></td><td class="description">Set run-time configuration parameters for C++ library interface<em class="releaseinfo" role="Since R2023a" data-swrelease="R2023a"> (Since R2023a)</em></td></tr><tr><td class="term notranslate"><a href="ref/matlab.cppclient.clibraryconfiguration.html"><code class="object">CLibraryConfiguration</code></a></td><td class="description">C++ library interface environment information<em class="releaseinfo" role="Since R2023a" data-swrelease="R2023a"> (Since R2023a)</em></td></tr><tr><td class="term notranslate"><a href="ref/clibisnull.html"><code class="function">clibIsNull</code></a></td><td class="description">Determine if C++ object is null</td></tr><tr><td class="term notranslate"><a href="ref/clibisreadonly.html"><code class="function">clibIsReadOnly</code></a></td><td class="description">Determine if C++ object is read-only</td></tr><tr><td class="term notranslate"><a href="ref/clibrelease.html"><code class="function">clibRelease</code></a></td><td class="description">Release C++ object from <span class="trademark entity">MATLAB</span></td></tr><tr><td class="term notranslate"><a href="ref/underlyingvalue.html"><code class="function">underlyingValue</code></a></td><td class="description">Underlying numeric value for C++ enumeration object created in <span class="trademark entity">MATLAB</span></td></tr></tbody></table></div></div>
+<div class="moreabout_container"><h2>Topics</h2>
+<div itemprop="content">
+<div class="doc_subgroup_container" itemprop="content">
+<h3>Configure C++ Library Interface</h3>
+
+<ul class="list-unstyled"><li><strong><a href="matlab_external/set-run-time-library-path-for-c-interface.html" class="a">Set Run-Time Library Path for C++ Interface</a></strong><br>
+If the C++ library has a compiled library file, then that file and its dependencies must         be on your system path or run-time search path (rpath). 
+</li><li><strong><a href="matlab_external/load-cpp-library-in-process-or-out-of-process.html" class="a">Load C++ Library In-Process or Out-of-Process</a></strong><br>
+Execute C++ functions in processes that are the same as or separate from the
+            MATLAB process.
+</li><li><strong><a href="matlab_external/display-help-for-c-interface.html" class="a">Display Help for MATLAB Interface to C++ Library</a></strong><br>
+Display information about the members of MATLAB interface.
+</li></ul></div>
+<div class="doc_subgroup_container" itemprop="content">
+<h3>Use C++ Library in <span class="trademark entity">MATLAB</span></h3>
+
+<ul class="list-unstyled"><li><strong><a href="matlab_external/call-functions-in-cpp-shared-library.html" class="a">Call Functions in C++ Compiled Library</a></strong><br>
+<p>To call a function in the library, use the MATLAB
+          <code class="package">clib</code> namespace.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/pass-struct-parameter.html" class="a">Pass struct Parameter</a></strong></li>
+<li><strong><a href="matlab_external/pass-const-and-non-const-parameters.html" class="a">Pass const and Non-const Parameters</a></strong></li>
+<li><strong><a href="matlab_external/c-language-opaque-types.html" class="a">Pass C++ Language Opaque Objects</a></strong></li>
+<li><strong><a href="matlab_external/use-function-pointer-input-arguments.html" class="a">Pass Functions as Arguments</a></strong></li>
+<li><strong><a href="matlab_external/use-function-and-member-function-templates.html" class="a">Use Function and Member Function Templates</a></strong></li>
+<li><strong><a href="matlab_external/pass-stdvector-parameter.html" class="a">Pass std::vector Parameter</a></strong></li>
+<li><strong><a href="matlab_external/pass-fixed-sized-array-parameter.html" class="a">Pass Fixed-Sized Array Parameter</a></strong></li>
+<li><strong><a href="matlab_external/pass-parameter-by-reference.html" class="a">Pass Parameter by Reference</a></strong></li>
+<li><strong><a href="matlab_external/handle-updated-array-elements.html" class="a">Handle Updated Array Elements</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a></strong><br>
+The term clib array is the MATLAB object representation of C++ native arrays and
+                        <code class="literal">std::vector</code> types.
+</li><li><strong><a href="matlab_external/create-matlab-array-of-c-objects.html" class="a">Create MATLAB Array of C++ Objects</a></strong><br>
+Call <code class="literal">clibArray</code> to create MATLAB clib array for C++ library
+                    functions.
+</li><li><strong><a href="matlab_external/matlab-type-to-cpp-type-mapping.html" class="a">MATLAB Type to C++ Type Mapping</a></strong><br>
+When you pass MATLAB data as arguments to C++ methods or functions, MATLAB converts the data into types that best represent the data to the C++
+      language.
+</li><li><strong><a href="matlab_external/c-names-that-are-invalid-in-matlab.html" class="a">C++ Names That Are Invalid in MATLAB</a></strong><br>
+How MATLAB handles C++ names that are invalid MATLAB names.
+</li><li><strong><a href="matlab_external/use-c-objects-and-functions-in-parfor-loops.html" class="a">Use C++ Objects and Functions in parfor Loops</a></strong><br>
+How to take advantage of parallel computing resources using a MATLAB interface to a C++ compiled library.
+</li></ul></div>
+</div>
+</div>
+<div class="doc_troubleshootgroup_container"><h2 class="remove_border">Troubleshooting</h2>
+<div itemprop="content">
+<p class="add_margin_0"><strong><a href="matlab_external/troubleshooting-matlab-interface-to-c-library-issues.html" class="a">Troubleshooting MATLAB Interface to C++ Library Run-Time Issues</a></strong></p>
+<p>Resolve unexpected run-time errors when calling functions in a published MATLAB interface to a C++ shared library.</p><p class="add_margin_0"><strong><a href="matlab_external/troubleshooting-calls-to-c-library-functions.html" class="a">Troubleshooting Calls to C++ Library Functions</a></strong></p>
+<p>Resolve unexpected issues when calling functions in a C++ shared library.</p><p class="add_margin_0"><strong><a href="matlab_external/limitations-to-cpp-support-in-matlab-cpp-library-interface.html" class="a">Limitations to C/C++ Support</a></strong></p>
+<p>C/C++ library features not supported in MATLAB.</p><p class="add_margin_0"><strong><a href="matlab_external/cpp-interface-handling-exceptions.html" class="a">Handling Exceptions</a></strong></p>
+<p>Using C++ exceptions in MATLAB.</p></div>
+</div>
+<div class="moreabout_container"><h2>Related Information</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="build-matlab-interface-to-c-library.html" class="a">Build MATLAB Interface to C++ Library</a></strong><br></li>
+</ul></div>
+</div>
+<h2>Featured Examples</h2><section class="mw_cards_container" id="mw_0304887f-d1a0-4839-a9d0-8f551e0ea71a"><div class="mw_card -has_metadata"><div class="mw_card_header"><div class="mw_card_image" style="background-image:url(../includes/product/images/doc_center/DefaultImage.png);"><a tabindex="-1" href="matlab_external/call-functions-in-interface-to-matrixoperations-library.html"><img alt="Call Functions in Interface to matrixOperations C++ Compiled Library on Windows" src="../includes/product/images/doc_center/DefaultImage.png"></a></div></div><div class="mw_card_body"><h3 class="mw_card_title"><a href="matlab_external/call-functions-in-interface-to-matrixoperations-library.html">Call Functions in Interface to matrixOperations C++ Compiled Library on Windows</a></h3><p class="mw_card_description">How to call functions in a Windows<sup>&#x00AE;</sup> interface to the <code class="literal">matrixOperations</code> C++ compiled library
+          example.</p></div><div class="mw_card_footer"><ul class="list-unstyled"><li class="coming_from_product"></li></ul></div></div><div class="mw_card -has_metadata"><div class="mw_card_header"><div class="mw_card_image" style="background-image:url(../includes/product/images/doc_center/DefaultImage.png);"><a tabindex="-1" href="matlab_external/call-functions-in-linux-version-of-interface-to-c-shared-library.html"><img alt="Call Functions in Interface to matrixOperations C++ Compiled Library on Linux" src="../includes/product/images/doc_center/DefaultImage.png"></a></div></div><div class="mw_card_body"><h3 class="mw_card_title"><a href="matlab_external/call-functions-in-linux-version-of-interface-to-c-shared-library.html">Call Functions in Interface to matrixOperations C++ Compiled Library on Linux</a></h3><p class="mw_card_description">How to call functions in a Linux<sup>&#x00AE;</sup> interface to the <code class="literal">matrixOperations</code> C++ compiled library
+          example.</p></div><div class="mw_card_footer"><ul class="list-unstyled"><li class="coming_from_product"></li></ul></div></div></section></div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Work with HDF5 Virtual Datasets (VDS)</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../hdf5-files.html",
+          "name": "HDF5 Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "hdf5-files"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Access data stored across multiple HDF5 files as a single, unified HDF5 dataset."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hdf5-files.html?s_tid=CRUX_lftnav" itemprop="url" id="btpwvi2"><span itemprop="title">HDF5 Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Work with HDF5 Virtual Datasets (VDS)</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_bd6c07da-1c6f-4882-841b-6918f603c3d4" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#mw_f018c697-06fd-43c4-afde-d1db59f11016" class="nav-link intrnllnk">Create a Virtual Dataset</a></li><li class="nav-item"><a href="#mw_48465453-c673-4de8-8ca4-a89bbc46ef3b" class="nav-link intrnllnk">Work with Remotely Stored Virtual Datasets</a></li><li class="nav-item"><a href="#mw_52af6378-2ceb-404a-af16-97e8e5e92ab4" class="nav-link intrnllnk">Create Virtual Dataset from Datasets of Varying Sizes</a></li><li class="nav-item"><a href="#d126e15590" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_98b78dd0-7f80-408b-b212-f0004bb245df">Work with HDF5 Virtual Datasets (VDS)</h2><section><h3 class="title" id="mw_bd6c07da-1c6f-4882-841b-6918f603c3d4">Overview</h3><p>The HDF5 Virtual Dataset (VDS) feature allows you to access data from a collection
+                of HDF5 files as a single, unified dataset, without modifying how the data is stored
+                in the original files. Virtual datasets can have unlimited dimensions and map to
+                source datasets with unlimited dimensions. This mapping allows a Virtual Dataset to
+                grow over time, as its underlying source datasets change in size.</p><p>The VDS feature was introduced in the HDF5 library version 1.10. To use VDS, you
+                must be familiar with the HDF5 VDS programming model. For more information, see the
+                    <a href="https://support.hdfgroup.org/releases/hdf5/documentation/rfc/HDF5-VDS-requirements-use-cases-2014-12-10.pdf" target="_blank">HDF5 Virtual Dataset documentation</a> on The HDF Group website.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>MATLAB<sup>&#x00AE;</sup> versions earlier than R2021b cannot read HDF5 Virtual
+                    Datasets.</p></div></section><section><h3 class="title" id="mw_f018c697-06fd-43c4-afde-d1db59f11016">Create a Virtual Dataset</h3><p>Follow these general steps for building a Virtual Dataset:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create datasets that comprise the VDS (the source datasets)
+                        (optional).</p></li><li><p>Create the VDS.</p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>Define a datatype.</p></li><li><p>Define a dataspace.</p></li><li><p>Define the dataset creation property list.</p></li><li><p>Map elements from the source datasets to the elements of the
+                                    VDS.</p><div class="orderedlist"><ol style="list-style: lower-roman;"><li><p>Iterate over the source datasets.</p>
+<div class="orderedlist"><ol style="list-style: upper-alpha;"><li><p>Select elements in the source dataset
+                                                  (source selection).</p></li><li><p>Select elements in the Virtual Dataset
+                                                  (destination selection).</p></li><li><p>Map destination selections to source
+                                                  selections using a dataset creation property list
+                                                  call.</p></li></ol></div><p>
+</p></li><li><p>End the iteration.</p></li></ol></div></li><li><p>Call <code class="literal">H5D.create</code> using the defined
+                                    properties.</p></li></ol></div><p>
+</p></li><li><p>Access the VDS as a regular HDF5 dataset.</p></li><li><p>Close the VDS when finished.</p></li></ol></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The HDF5 C library uses C-style ordering for multidimensional arrays, whereas
+                        MATLAB uses FORTRAN-style ordering. For more information, see <a href="export-to-hdf5-files.html#bqyqs27" class="a">Report Data Set Dimensions</a>.</p></div></section><section><h3 class="title" id="mw_48465453-c673-4de8-8ca4-a89bbc46ef3b">Work with Remotely Stored Virtual Datasets</h3><p>You can use the MATLAB low-level HDF5 functions to create and read Virtual Datasets stored in
+                remote locations, such as Amazon S3&#x2122; and Windows Azure<sup>&#x00AE;</sup> Blob Service. Use the high-level HDF5 functions to read and access
+                information on Virtual Datasets stored in remote locations.</p><p>When accessing a Virtual Dataset stored in a remote location, you must specify the
+                full path using a uniform resource locator (URL). For example, display the metadata
+                of an HDF5 file stored on Amazon S3.</p><div class="code_responsive"><pre class="programlisting">h5disp('s3://bucketname/path_to_file/my_VDSdata.h5'); 
+</pre></div><p>For more information on setting up MATLAB to access your online storage service,
+                see <a href="work-with-remote-data.html" class="a">Work with Remote Data</a>.</p></section><section><h3 class="title" id="mw_52af6378-2ceb-404a-af16-97e8e5e92ab4">Create Virtual Dataset from Datasets of Varying Sizes</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create Virtual Dataset from Datasets of Varying Sizes",
+          "description": "Create an HDF5 Virtual Dataset from datasets of varying sizes and with mismatching group and dataset names. The elevation data in the three datasets is generated from the MATLAB peaks function.",
+          "thumbnailURL": "../../examples/matlab/win64/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "work-with-hdf5-virtual-datasets-vds.html"
+
+        },
+          "identifier": "matlab.CreateVirtualDatasetFromDatasetsOfVaryingSizesExample",
+          "name": "CreateVirtualDatasetFromDatasetsOfVaryingSizesExample",
+          "url": "work-with-hdf5-virtual-datasets-vds.html#mw_52af6378-2ceb-404a-af16-97e8e5e92ab4"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateVirtualDatasetFromDatasetsOfVaryingSizesExample.mlx",
+        "data_SE.h5",
+        "myDatasets.m",
+        "data_W.h5",
+        "data_NE.h5"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-CreateVirtualDatasetFromDatasetsOfVaryingSizesExample"><meta itemprop="exampletitle" content="Create Virtual Dataset from Datasets of Varying Sizes"></div><span id="CreateVirtualDatasetFromDatasetsOfVaryingSizesExample" class="anchor_target"></span><p class="shortdesc">Create an HDF5 Virtual Dataset from datasets of varying sizes and with mismatching group and dataset names. The elevation data in the three datasets is generated from the MATLAB <code class="literal">peaks</code> function. </p><p>Use three datasets containing elevation data to reconstruct a larger, more complete topographical map. The three datasets are disjoint, meaning spatial data is missing along one or more of their shared dimensions, and they vary in shape and size. </p><p>Reconstruct the topographical profile with the three disjoint datasets. The sampling points from the three datasets are overlayed on the topographical profile according to their geospatial coordinates. In both plots, the x and y axes represent longitudes and latitudes, respectively, with latitudes increasing in the y-direction. </p><p>      <span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/matlab/win64/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample_01.png" alt="figure_01a.png" height="258" width="313"></span></span>  <span class="guiicon"><span class="inlinemediaobject"><img src="../../examples/matlab/win64/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample_02.png" alt="figure_01b_v3.png" height="258" width="319"></span></span></p><p>Display information on the three datasets in the files <code class="literal">data_W.h5</code>, <code class="literal">data_NE.h5</code>, <code class="literal">data_SE.h5</code>. The <code class="literal">h5disp</code> function displays information about the datasets, including their names, datatypes, dimensions, and groups to which they belong.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"data_W.h5"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 data_W.h5 
+Group '/' 
+    Group '/data' 
+        Dataset 'elevation' 
+            Size:  20x10
+            MaxSize:  20x10
+            Datatype:   H5T_IEEE_F64LE (double)
+            ChunkSize:  []
+            Filters:  none
+            FillValue:  0.000000
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"data_NE.h5"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 data_NE.h5 
+Group '/' 
+    Dataset 'z' 
+        Size:  11x12
+        MaxSize:  11x12
+        Datatype:   H5T_IEEE_F64LE (double)
+        ChunkSize:  []
+        Filters:  none
+        FillValue:  0.000000
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"data_SE.h5"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 data_SE.h5 
+Group '/' 
+    Dataset 'Elev' 
+        Size:  9x13
+        MaxSize:  9x13
+        Datatype:   H5T_IEEE_F64LE (double)
+        ChunkSize:  []
+        Filters:  none
+        FillValue:  0.000000
+</pre></div></div></div><p>Create a dataspace and creation property list for the Virtual Dataset. Then, map each dataset to the virtual dataspace using C-style dimensions ordering and zero-based indexing. </p><p>For instance, the lower-left corner of the data block for the North-East region corresponds to MATLAB indices <code class="literal">[10 11]</code>. To convert these indices to C-style ordered, zero-based indices, flip the indices <code class="literal">[10 11]</code> and subtract the value <code class="literal">1</code>. The resulting start indices are <code class="literal">[10 9]</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Define the fill value and specify the file access property list identifier.</span>
+fillValue = NaN;
+faplID = H5P.create(<span style="color:#A020F0">'H5P_FILE_ACCESS'</span>);
+
+<span style="color:#228B22">% Create the file for the Virtual Dataset.</span>
+vdsFileID = H5F.create(<span style="color:#A020F0">'data_VDS.h5'</span>,<span style="color:#A020F0">'H5F_ACC_TRUNC'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>,faplID);
+
+<span style="color:#228B22">% Define the datatype and dataspace.</span>
+datatypeID = H5T.copy(<span style="color:#A020F0">'H5T_NATIVE_DOUBLE'</span>);
+vdsDataspaceID = H5S.create_simple(2,[24 20],[]);
+
+<span style="color:#228B22">% Initialize Virtual Dataset creation property list with virtual layout and fill value.</span>
+vdsDcplID = H5P.create(<span style="color:#A020F0">'H5P_DATASET_CREATE'</span>);
+H5P.set_layout(vdsDcplID,<span style="color:#A020F0">'H5D_VIRTUAL'</span>);
+H5P.set_fill_value(vdsDcplID,datatypeID,fillValue);
+
+<span style="color:#228B22">% Perform full dataset mapping for three individual source datasets.</span>
+
+<span style="color:#228B22">% Map '/data/elevation' from data_W.h5 to the Virtual Dataset.</span>
+srcDataspaceID_W = H5S.create_simple(2,[10 20],[]);
+H5S.select_hyperslab(vdsDataspaceID,<span style="color:#A020F0">'H5S_SELECT_SET'</span>,[0 0],[],[],[10 20]);
+H5P.set_virtual(vdsDcplID, vdsDataspaceID,<span style="color:#A020F0">'data_W.h5'</span>,<span style="color:#A020F0">'/data/elevation'</span>,srcDataspaceID_W);
+
+<span style="color:#228B22">% Map '/z' from data_NE.h5 to the Virtual Dataset.</span>
+srcDataspaceID_NE = H5S.create_simple(2,[12 11],[]);
+H5S.select_hyperslab(vdsDataspaceID,<span style="color:#A020F0">'H5S_SELECT_SET'</span>,[10 9],[],[],[12 11]);
+H5P.set_virtual(vdsDcplID,vdsDataspaceID,<span style="color:#A020F0">'data_NE.h5'</span>,<span style="color:#A020F0">'/z'</span>,srcDataspaceID_NE);
+
+<span style="color:#228B22">% Map '/Elev' from data_SE.h5 to the Virtual Dataset.</span>
+srcDataspaceID_SE = H5S.create_simple(2,[13 9],[]);
+H5S.select_hyperslab(vdsDataspaceID,<span style="color:#A020F0">'H5S_SELECT_SET'</span>,[11 0],[],[],[13 9]);
+H5P.set_virtual(vdsDcplID,vdsDataspaceID,<span style="color:#A020F0">'data_SE.h5'</span>,<span style="color:#A020F0">'/Elev'</span>,srcDataspaceID_SE);</pre></div></div></div><p>Create the HDF5 file and the Virtual Dataset <code class="literal">/elevation</code>, and then close all open resources.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Call H5D.create using the defined properties.</span>
+vdsDatasetID = H5D.create(vdsFileID,<span style="color:#A020F0">'/elevation'</span>,datatypeID,vdsDataspaceID, <span style="color:#0000FF">...</span>
+                          <span style="color:#A020F0">'H5P_DEFAULT'</span>,vdsDcplID,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+
+<span style="color:#228B22">% Close open resources.</span>
+H5D.close(vdsDatasetID);
+H5S.close(srcDataspaceID_SE);
+H5S.close(srcDataspaceID_NE);
+H5S.close(srcDataspaceID_W);
+H5P.close(vdsDcplID);
+H5S.close(vdsDataspaceID);
+H5T.close(datatypeID);
+H5F.close(vdsFileID);
+H5P.close(faplID);</pre></div></div></div><p>Read the Virtual Dataset and plot it. </p><p>The resulting plot is similar to the original plot of the topographical map, except for the areas where data is missing due to the disjoint datasets.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Read elevations using the low-level interface.</span>
+vdsFileID = H5F.open(<span style="color:#A020F0">'data_VDS.h5'</span>,<span style="color:#A020F0">'H5F_ACC_RDONLY'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+vdsDatasetID = H5D.open(vdsFileID,<span style="color:#A020F0">'/elevation'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+elevation = H5D.read(vdsDatasetID,<span style="color:#A020F0">'H5ML_DEFAULT'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+H5D.close(vdsDatasetID);
+H5F.close(vdsFileID);
+contourf(elevation,10);</pre></div></div></div><div class="informalfigure"><div id="d126e15564" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateVirtualDatasetFromDatasetsOfVaryingSizesExample_03.png" alt="Figure contains an axes object. The axes object contains an object of type contour." width="560"></p></div></div><p>Display the contents of the Virtual Dataset file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">'data_VDS.h5'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 data_VDS.h5 
+Group '/' 
+    Dataset 'elevation' 
+        Size:  20x24
+        MaxSize:  20x24
+        Datatype:   H5T_IEEE_F64LE (double)
+        ChunkSize:  []
+        Filters:  none
+        FillValue:  NaN
+</pre></div></div></div><p>You can perform I/O operations on the Virtual Dataset. For instance, read a hyperslab of data from the <code class="literal">/elevation</code> dataset using the <code class="literal">h5read</code> function in the high-level interface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sample = h5read(<span style="color:#A020F0">'data_VDS.h5'</span>,<span style="color:#A020F0">'/elevation'</span>,[1 1],[5 6],[4 4])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>sample = <span class="emphasis"><em>5×6</em></span>
+
+    0.0007    0.0102    0.0823    0.3265    0.0765    0.0059
+    0.0028    0.0331    0.3023    2.9849    0.1901    0.4741
+    0.1661    3.3570    2.5482    1.3171    4.8474    3.3676
+    0.1915    3.9606    1.1585    0.9892    3.9113    2.5722
+    0.0151    0.2633    1.0373    2.5380    0.9625    0.2401
+
+</pre></div></div></div><div class="procedure"></div></section>
+            <h2 id="d126e15590">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="read-and-write-data-concurrently-using-single-writermultiple-reader-swmr.html"><span itemprop="name">Read and Write Data Concurrently Using Single-Writer/Multiple-Reader (SWMR)</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/propertyh5p.html"><span itemprop="name">Property (H5P)</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/dataspaceh5s.html"><span itemprop="name">Dataspace (H5S)</span></a></span></p>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Sort and Plot MATLAB Data from Python</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../python-language.html",
+          "name": "Python with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../matlab-engine-for-python.html",
+          "name": "Call MATLAB from Python"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "matlab-engine-for-python"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to sort data about patients into lists of smokers and nonsmokers in Python and plot blood pressure readings for the patients with MATLAB."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../python-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Python with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-engine-for-python.html?s_tid=CRUX_lftnav" itemprop="url" id="bugnozf"><span itemprop="title">Call MATLAB from Python</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Sort and Plot MATLAB Data from Python</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#d126e56791" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bui87rp">Sort and Plot <span class="trademark entity">MATLAB</span> Data from <span class="trademark entity">Python</span></h2><p class="shortdesc">This example shows how to sort data about patients into lists of
+            smokers and nonsmokers in Python<sup>&#x00AE;</sup> and plot blood pressure readings for the patients with MATLAB<sup>&#x00AE;</sup>.</p><p>Start the engine, and read data about a set of patients into a MATLAB table. MATLAB provides a sample comma-delimited file, <code class="literal">patients.dat</code>,
+            which contains information on 100 different patients.
+            <div class="code_responsive"><pre class="programlisting"><code class="language-python">import matlab.engine
+eng = matlab.engine.start_matlab()
+eng.eval("T = readtable('patients.dat');",nargout=0)
+</code></pre></div></p><p>The MATLAB
+            <code class="literal">readtable</code> function reads the data into a table. The engine does not
+            support the MATLAB table data type. However, with the MATLAB
+            <code class="literal">table2struct</code> function you can convert the table to a scalar
+            structure, which is a data type the engine does
+            support.<div class="code_responsive"><pre class="programlisting"><code class="language-python">eng.eval("S = table2struct(T,'ToScalar',true);",nargout=0)
+eng.eval("disp(S)",nargout=0)
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>                    LastName: {100x1 cell}
+                      Gender: {100x1 cell}
+                         Age: [100x1 double]
+                    Location: {100x1 cell}
+                      Height: [100x1 double]
+                      Weight: [100x1 double]
+                      Smoker: [100x1 double]
+                    Systolic: [100x1 double]
+                   Diastolic: [100x1 double]
+    SelfAssessedHealthStatus: {100x1 cell}
+</pre></div></div></div></p><p>You can pass <code class="literal">S</code> from the MATLAB workspace into your Python session. The engine converts <code class="literal">S</code> to a Python dictionary,
+            <code class="literal">D</code>.<div class="code_responsive"><pre class="programlisting"><code class="language-python">D = eng.workspace["S"]
+</code></pre></div></p><p><code class="literal">S</code> has fields that contain arrays. The engine converts cell arrays
+            to Python
+            <code class="literal">list</code> variables, and numeric arrays to MATLAB arrays. Therefore, <code class="literal">D["LastName"]</code> is of data type
+                <code class="literal">list</code>, and <code class="literal">D["Age"]</code> is of data type
+                <code class="literal">matlab.double</code>.</p><p>Sort blood pressure readings into lists of smokers and nonsmokers. In
+                <code class="literal">patients.dat</code>, the column <code class="literal">Smoker</code> indicated a
+            smoker with logical 1 (true), and a nonsmoker with a logical 0 (false). Convert
+                <code class="literal">D["Smoker"]</code> to a <code class="literal">matlab.logical</code> array for
+            sorting.<div class="code_responsive"><pre class="programlisting"><code class="language-python">smoker = matlab.logical(D["Smoker"])</code></pre></div></p><p>Convert the <code class="literal">Diastolic</code> blood pressure readings and
+                <code class="literal">Smoker</code> indicators into 1-by-100 MATLAB arrays for
+            sorting.<div class="code_responsive"><pre class="programlisting"><code class="language-python">pressure = D["Diastolic"]
+pressure.reshape((1,100))
+pressure = pressure[0]
+smoker.reshape((1,100))
+smoker = smoker[0]
+</code></pre></div></p><p>Sort the <code class="literal">pressure</code> array into lists of blood pressure readings for
+            smokers and non-smokers. Python list comprehensions provide a compact method for iterating over sequences.
+            With the Python
+            <code class="literal">zip</code> function, you can iterate over multiple sequences in a single
+                <code class="literal">for</code>
+            loop.<div class="code_responsive"><pre class="programlisting"><code class="language-python">sp = [p for (p,s) in zip(pressure,smoker) if s is True]
+nsp = [p for (p,s) in zip(pressure,smoker) if s is False]
+</code></pre></div></p><p>Display the length of <code class="literal">sp</code>, the blood pressure readings for smokers
+            in a <code class="literal">list</code>.<div class="code_responsive"><pre class="programlisting"><code class="language-python">print(len(sp))
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>34
+</pre></div></div></div></p><p>Display the length of <code class="literal">nsp</code>, the <code class="literal">list</code> of readings
+            for nonsmokers.<div class="code_responsive"><pre class="programlisting"><code class="language-python">print(len(nsp))
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>66
+</pre></div></div></div></p><p>Calculate the mean blood pressure readings for smokers and nonsmokers. Convert
+                <code class="literal">sp</code> and <code class="literal">nsp</code> to MATLAB arrays before passing them to the MATLAB
+            <code class="literal">mean</code>
+            function.<div class="code_responsive"><pre class="programlisting"><code class="language-python">sp = matlab.double(sp)
+nsp = matlab.double(nsp)
+print(eng.mean(sp))
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>89.9117647059
+</pre></div></div></div></p><p>Display the mean blood pressure for the
+            nonsmokers.<div class="code_responsive"><pre class="programlisting"><code class="language-python">print(eng.mean(nsp))
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>79.3787878788
+</pre></div></div></div></p><p>Plot blood pressure readings for the smokers and nonsmokers. To define two
+                <span class="emphasis"><em>x</em></span>-axes for plotting, call the MATLAB
+            <code class="literal">linspace</code> function. You can plot the 34 smokers and 66 nonsmokers on
+            the same scatter
+            plot.<div class="code_responsive"><pre class="programlisting"><code class="language-python">sdx = eng.linspace(1.0,34.0,34)
+nsdx = eng.linspace(1.0,34.0,66)
+</code></pre></div></p><p>Show the axes boundaries with the <code class="literal">box</code>
+            function.<div class="code_responsive"><pre class="programlisting"><code class="language-python">eng.figure(nargout=0)
+eng.hold("on",nargout=0)
+eng.box("on",nargout=0)
+</code></pre></div></p><p>You must call the <code class="literal">figure</code>, <code class="literal">hold</code>, and
+                <code class="literal">box</code> functions with <code class="literal">nargout=0</code>, because these
+            functions do not return output arguments.</p><p>Plot the blood pressure readings for the smokers and nonsmokers, and label the plot.
+            For many MATLAB functions, the engine can return a handle to a MATLAB graphics object. You can store a handle to a MATLAB object in a Python variable, but you cannot manipulate the object properties in Python. You can pass MATLAB objects as input arguments to other MATLAB
+            functions.<div class="code_responsive"><pre class="programlisting"><code class="language-python">eng.scatter(sdx,sp,10,'blue')
+</code></pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>&lt;matlab.object object at 0x22d1510&gt;
+</pre></div></div></div></p><p>In the rest of this example, assign the output argument of MATLAB functions to <code class="literal">h</code> as a
+            placeholder.<div class="code_responsive"><pre class="programlisting"><code class="language-python">h = eng.scatter(nsdx,nsp,10,'red')
+h = eng.xlabel("Patient (Anonymized)")
+h = eng.ylabel("Diastolic Blood Pressure (mm Hg)")
+h = eng.title("Blood Pressure Readings for All Patients")
+h = eng.legend("Smokers","Nonsmokers")
+</code></pre></div></p><p>Draw lines showing the average blood pressure readings for smokers and
+            nonsmokers.<div class="code_responsive"><pre class="programlisting"><code class="language-python">x = matlab.double([0,35])
+y = matlab.double([89.9,89.9])
+h = eng.line(x,y,"Color","blue")
+h = eng.text(21.0,88.5,"89.9 (Smoker avg.)","Color","blue")
+y = matlab.double([79.4,79.4])
+h = eng.line(x,y,"Color","red")
+h = eng.text(5.0,81.0,"79.4 (Nonsmoker avg.)","Color","red")
+</code></pre></div></p><div class="informalfigure"><div id="d126e56785" class="mediaobject"><p><img src="ch_engine_python_bp_readings.png" alt="Plot of blood pressure readings for all patients." height="420" width="560"></p></div></div>
+            <h2 id="d126e56791">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/readtable.html"><span itemprop="name"><code class="function">readtable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/scatter.html"><span itemprop="name"><code class="function">scatter</code></span></a></span></p>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

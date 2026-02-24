@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Debug MapReduce Algorithms</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mapreduce.html",
+          "name": "MapReduce"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mapreduce"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="trbl">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to debug mapreduce algorithms in MATLAB."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mapreduce.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetb8-1"><span itemprop="title">MapReduce</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Debug MapReduce Algorithms</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#buj0p5m-30" class="nav-link intrnllnk">Set Breakpoint</a></li><li class="nav-item"><a href="#buj0p5m-31" class="nav-link intrnllnk">Execute mapreduce</a></li><li class="nav-item"><a href="#buj0p5m-32" class="nav-link intrnllnk">Step Through Map Function</a></li><li class="nav-item"><a href="#bumtun4" class="nav-link intrnllnk">Step Through Reduce Function</a></li><li class="nav-item"><a href="#d126e25744" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bui2avp">Debug MapReduce Algorithms</h2>
+      <p class="shortdesc">This example shows how to debug your <code class="function">mapreduce</code>
+        algorithms in MATLAB<sup>&#x00AE;</sup> using a simple example file, <code class="literal">MaxMapReduceExample.m</code>.
+        Debugging enables you to follow the movement of data between the different phases of
+          <code class="function">mapreduce</code> execution and inspect the state of all intermediate
+        variables.</p>
+      <p>To begin, save the contents of the following functions as separate files in your current
+        directory.</p>
+    <p><a href="#" onclick="return toggleexpander('d126e25467_block','d126e25467_expandable_text');"><img style="border:0;" id="d126e25467_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e25467_block','d126e25467_expandable_text');">MaxMapReduceExample.m</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e25467_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%% Find Maximum Value with MapReduce</span>
+<span style="color:#228B22">% This example shows how to find the maximum value of a single variable in</span>
+<span style="color:#228B22">% a data set using |mapreduce|. It demonstrates the simplest use of</span>
+<span style="color:#228B22">% |mapreduce| since there is only one key and minimal computation.</span>
+
+<span style="color:#228B22">% Copyright 1984-2014 The MathWorks, Inc.</span>
+<span style="color:#228B22">%% Prepare Data</span>
+<span style="color:#228B22">% Create a datastore using the |airlinesmall.csv| data set. This 12</span>
+<span style="color:#228B22">% megabyte data set contains 29 columns of flight information for several</span>
+<span style="color:#228B22">% airline carriers, including arrival and departure times. In this example,</span>
+<span style="color:#228B22">% select |ArrDelay| (flight arrival delay) as the variable of interest.</span>
+ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>, <span style="color:#A020F0">'TreatAsMissing'</span>, <span style="color:#A020F0">'NA'</span>);
+ds.SelectedVariableNames = <span style="color:#A020F0">'ArrDelay'</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% |tabularTextDatastore| returns a |TabularTextDatastore| object for the data. This</span>
+<span style="color:#228B22">% datastore treats |'NA'| strings as missing, and replaces the missing</span>
+<span style="color:#228B22">% values with |NaN| values by default. Additionally, the</span>
+<span style="color:#228B22">% |SelectedVariableNames| property allows you to work with only the</span>
+<span style="color:#228B22">% selected variable of interest, which you can verify using |preview|.</span>
+preview(ds)
+
+<span style="color:#228B22">%% Run MapReduce</span>
+<span style="color:#228B22">% The |mapreduce| function requires a mapper function and a reducer</span>
+<span style="color:#228B22">% function. The mapper function receives chunks of data and outputs</span>
+<span style="color:#228B22">% intermediate results. The reducer function reads the intermediate results</span>
+<span style="color:#228B22">% and produces a final result.</span>
+
+<span style="color:#228B22">%% </span>
+<span style="color:#228B22">% In this example, the mapper function finds the maximum arrival delay in</span>
+<span style="color:#228B22">% each chunk of data. The mapper function then stores these maximum values</span>
+<span style="color:#228B22">% as the intermediate values associated with the key</span>
+<span style="color:#228B22">% |'PartialMaxArrivalDelay'|.</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% Display the mapper function file.</span>
+type <span style="color:#A020F0">maxArrivalDelayMapper.m</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% The reducer function receives a list of the maximum arrival delays for</span>
+<span style="color:#228B22">% each chunk and finds the overall maximum arrival delay from the list of</span>
+<span style="color:#228B22">% values. |mapreduce| only calls this reducer function once, since the</span>
+<span style="color:#228B22">% mapper function only adds a single unique key. The reducer function uses</span>
+<span style="color:#228B22">% |add| to add a final key-value pair to the output.</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% Display the reducer function file.</span>
+type <span style="color:#A020F0">maxArrivalDelayReducer.m</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% Use |mapreduce| to apply the mapper and reducer functions to the</span>
+<span style="color:#228B22">% datastore, |ds|.</span>
+maxDelay = mapreduce(ds, @maxArrivalDelayMapper, @maxArrivalDelayReducer);
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% |mapreduce| returns a datastore, |maxDelay|, with files in the</span>
+<span style="color:#228B22">% current folder.</span>
+
+<span style="color:#228B22">%%</span>
+<span style="color:#228B22">% Read the final result from the output datastore, |maxDelay|.</span>
+readall(maxDelay)
+</pre></div></div></div></div><p><a href="#" onclick="return toggleexpander('d126e25474_block','d126e25474_expandable_text');"><img style="border:0;" id="d126e25474_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e25474_block','d126e25474_expandable_text');">maxArrivalDelayMapper.m</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e25474_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> maxArrivalDelayMapper (data, info, intermKVStore)
+<span style="color:#228B22">% Mapper function for the MaxMapreduceExample.</span>
+
+<span style="color:#228B22">% Copyright 1984-2014 The MathWorks, Inc. </span>
+
+<span style="color:#228B22">% Data is an n-by-1 table of the ArrDelay. As the data source is tabular,</span>
+<span style="color:#228B22">% the return of read is a table object.</span>
+partMax = max(data.ArrDelay);
+add(intermKVStore, <span style="color:#A020F0">'PartialMaxArrivalDelay'</span>,partMax);</pre></div></div></div></div><p><a href="#" onclick="return toggleexpander('d126e25481_block','d126e25481_expandable_text');"><img style="border:0;" id="d126e25481_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e25481_block','d126e25481_expandable_text');">maxArrivalDelayReducer.m</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e25481_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> maxArrivalDelayReducer(intermKey, intermValIter, outKVStore)
+<span style="color:#228B22">% Reducer function for the MaxMapreduceExample.</span>
+
+<span style="color:#228B22">% Copyright 2014 The MathWorks, Inc.</span>
+
+<span style="color:#228B22">% intermKey is 'PartialMaxArrivalDelay'. intermValIter is an iterator of</span>
+<span style="color:#228B22">% all values that has the key 'PartialMaxArrivalDelay'.</span>
+maxVal = -inf;
+<span style="color:#0000FF">while</span> hasnext(intermValIter)
+   maxVal = max(getnext(intermValIter), maxVal);
+<span style="color:#0000FF">end</span>
+<span style="color:#228B22">% The key-value pair added to outKVStore will become the output of mapreduce </span>
+add(outKVStore,<span style="color:#A020F0">'MaxArrivalDelay'</span>,maxVal);</pre></div></div></div></div><section><h3 class="title" id="buj0p5m-30">Set Breakpoint</h3><p>Set one or more breakpoints in your map or reduce function files so you can examine the
+        variable values where you think the problem is. For more information, see <a href="../matlab_prog/set-breakpoints.html" class="a">Set Breakpoints</a>.</p><p>Open the file <code class="literal">maxArrivalDelayMapper.m</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>edit <span style="color:#A020F0">maxArrivalDelayMapper.m</span></pre></div></div></div><p>Set a breakpoint on line 9. This breakpoint causes execution of
+          <code class="function">mapreduce</code> to pause right before each call to the map function adds a
+        key-value pair to the intermediate <code class="literal">KeyValueStore</code> object, named
+          <code class="literal">intermKVStore</code>.</p><div class="informalfigure"><div id="d126e25509" class="mediaobject"><p><img src="mapreduce_troubleshooting1.png" alt="Screenshot of map function file with breakpoint added on line that calls the add method." height="155" width="597"></p></div></div></section><section><h3 class="title" id="buj0p5m-31">Execute mapreduce</h3><p>Run the <code class="function">mapreduce</code> example file
+          <code class="literal">MaxMapReduceExample.m</code>. Specify <code class="literal">mapreducer(0)</code> to
+        ensure that the algorithm does not run in parallel, since parallel execution of
+          <code class="literal">mapreduce</code> using Parallel Computing Toolbox&#x2122; ignores breakpoints.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mapreducer(0);
+MaxMapReduceExample</pre></div></div></div><p>MATLAB stops execution of the file when it encounters the breakpoint in the map
+        function. During the pause in execution, you can hover over the different variable names in
+        the map function, or type one of the variable names at the command line to inspect the
+        values.</p><p>In this case, the display indicates that, as yet, there are no key-value pairs in
+          <code class="literal">intermKVStore</code>.</p><div class="informalfigure"><div id="d126e25539" class="mediaobject"><p><img src="mapreduce_troubleshooting2.png" alt="Screenshot of hover text showing KeyValueStore with no key-value pairs." height="279" width="596"></p></div></div></section><section><h3 class="title" id="buj0p5m-32">Step Through Map Function</h3><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Continue past the breakpoint. You can use <code class="literal">dbstep</code> to execute a
+            single line, or <code class="literal">dbcont</code> to continue execution until MATLAB encounters another breakpoint. Alternatively, you can click
+                <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="step_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Step</strong> or <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Continue</strong> in the <strong class="guilabel">Editor</strong> tab. For more
+            information about all the available options, see <a href="../matlab_prog/debugging-process-and-features.html" class="a">Debug MATLAB Code Files</a>.</p><p>In this case, use <code class="literal">dbstep</code> (or click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="step_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Step</strong>) to execute only line 9, which adds a key-value pair to
+              <code class="literal">intermKVStore</code>. Inspect the new display for
+              <code class="literal">intermKVStore</code>.</p><div class="informalfigure"><div id="d126e25591" class="mediaobject"><p class="listimage"><img src="mapreduce_troubleshooting3.png" alt="Screenshot of hover text showing KeyValueStore with one key-value pair." height="403" width="598"></p></div></div></li><li><p>Now, use <code class="literal">dbcont</code> (or click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Continue</strong>) to continue execution of
+            <code class="function">mapreduce</code>. During the <span class="emphasis"><em>next</em></span> call to the map
+            function, MATLAB halts again on line 9. The new display for
+              <code class="literal">intermKVStore</code> indicates that it does not contain any key-value
+            pairs, because the display is meant to show only the <span class="emphasis"><em>most</em></span>
+            <span class="emphasis"><em>recent</em></span> key-value pairs that are added in the current call to the
+            map (or reduce) function.</p></li><li><p>Step past line 9 again using <code class="literal">dbstep</code> (or click
+                <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="step_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Step</strong>) to add the next key-value pair to
+              <code class="literal">intermKVStore</code>, and inspect the new display for the variable.
+              MATLAB displays only the key-value pair added during the current call to the map
+            function.</p><div class="informalfigure"><div id="d126e25639" class="mediaobject"><p class="listimage"><img src="mapreduce_troubleshooting4.png" alt="Screenshot of hover text showing KeyValueStore with multiple key-value pairs. The display shows the last key-value pair added." height="392" width="594"></p></div></div></li><li><p>Complete the debugging of the map function by removing the breakpoint and closing
+            the file <code class="literal">maxArrivalDelayMapper.m</code>.</p></li></ol></div></section><section><h3 class="title" id="bumtun4">Step Through Reduce Function</h3><div class="orderedlist"><ol style="list-style: decimal;"><li><p>You can use the same process to set breakpoints and step through execution of a
+            reduce function. The reduce function for this example is
+              <code class="literal">maxArrivalDelayReducer.m</code>. Open this file for editing.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>edit <span style="color:#A020F0">maxArrivalDelayReducer.m</span></pre></div></div></div></li><li><p> Set two breakpoints: one on line 10, and one on line 13. This enables you to
+            inspect the <code class="literal">ValueIterator</code> and the final key-value pairs added to the
+            output, <code class="literal">outKVStore</code>.</p></li><li><p>Run the main example file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>MaxMapReduceExample</pre></div></div></div></li><li><p>The execution of the example will pause when the breakpoint on line 10 is
+            encountered. The debug display for the <code class="literal">ValueIterator</code> indicates the
+            active key and whether any values remain to be retrieved.</p><div class="informalfigure"><div id="d126e25675" class="mediaobject"><p class="listimage"><img src="mapreduce_troubleshooting5.png" alt="Screenshot of hover text showing ValueIterator with an active key and one or more values available." height="408" width="866"></p></div></div></li><li><p>Now, remove the breakpoint on line 10 and use <code class="literal">dbcont</code> (or click
+                <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Continue</strong>) to continue execution of the example until the next
+            breakpoint is reached (on line 13). Since this reduce function continually compares each
+            new value from the <code class="literal">ValueIterator</code> to the global maximum,
+              <code class="literal">mapreduce</code> execution ends by adding a single key-value pair to
+              <code class="literal">outKVStore</code>.</p></li><li><p>Use <code class="literal">dbstep</code> (or click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="step_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Step</strong>) to execute line 13 only. The display for
+              <code class="literal">outKVStore</code> shows the global maximum value that
+              <code class="literal">mapreduce</code> will return as the final answer.</p><div class="informalfigure"><div id="d126e25715" class="mediaobject"><p class="listimage"><img src="mapreduce_troubleshooting6.png" alt="Screenshot of hover text showing KeyValueStore with one key-value pair added." height="436" width="597"></p></div></div></li><li><p>Now use <code class="literal">dbcont</code> (or click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+            <strong class="guibutton">Continue</strong>) to advance execution, enabling the example to finish
+            running. <code class="literal">mapreduce</code> returns the final results.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Map 100% Reduce 100%
+
+ans = 
+
+           Key           Value 
+    _________________    ______
+
+    'MaxArrivalDelay'    [1014]</pre></div></div></div></li></ol></div><p>For a complete guide to debugging in MATLAB, see <a href="../debugging-code.html" class="a">Debugging and Analysis</a>.</p></section>
+      <h2 id="d126e25744">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreduce.html"><span itemprop="name"><code class="function">mapreduce</code></span></a></span></p>
+      <h3 id="d126e25750">Topics</h3><ul class="list-unstyled"><li><a href="../ref/matlab.mapreduce.keyvaluestore.html"><code class="object">KeyValueStore</code></a></li><li><a href="../ref/matlab.mapreduce.valueiterator.html"><code class="object">ValueIterator</code></a></li><li><a href="getting-started-with-mapreduce.html" class="a">Getting Started with MapReduce</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

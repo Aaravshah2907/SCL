@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tall Skinny QR (TSQR) Matrix Factorization Using MapReduce</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mapreduce.html",
+          "name": "MapReduce"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mapreduce"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Tall Skinny QR (TSQR) Matrix Factorization Using MapReduce",
+          "description": "Compute a tall skinny QR (TSQR) factorization using mapreduce. It demonstrates how to chain mapreduce calls to perform multiple iterations of factorizations, and uses the info argument of the map function to compute numeric keys.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample",
+          "name": "TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample",
+          "url": "tall-skinny-qr-tsqr-matrix-factorization-using-mapreduce.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample.mlx",
+        "identityMapper.m",
+        "tsqrMapper.m",
+        "tsqrReducer.m",
+        "airlinesmall.csv"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to compute a tall skinny QR (TSQR) factorization using mapreduce."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../includes/product/images/doc_center/DefaultImage.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mapreduce.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetb8-1"><span itemprop="title">MapReduce</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Tall Skinny QR (TSQR) Matrix Factorization Using MapReduce</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-1" class="nav-link intrnllnk">Prepare Data</a></li><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-2" class="nav-link intrnllnk">Chain MapReduce Calls</a></li><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-3" class="nav-link intrnllnk">First MapReduce Iteration</a></li><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-4" class="nav-link intrnllnk">Second MapReduce Iteration</a></li><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-5" class="nav-link intrnllnk">View Results</a></li><li class="nav-item"><a href="#TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-6" class="nav-link intrnllnk">References</a></li><li class="nav-item"><a href="#d126e27423" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="bujibta-1_2">Tall Skinny QR (TSQR) Matrix Factorization Using MapReduce</h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample"><meta itemprop="exampletitle" content="Tall Skinny QR (TSQR) Matrix Factorization Using MapReduce"></div><span id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample" class="anchor_target"></span><p class="shortdesc">This example shows how to compute a tall skinny QR (TSQR) factorization using <code class="literal">mapreduce</code>. It demonstrates how to chain <code class="literal">mapreduce</code> calls to perform multiple iterations of factorizations, and uses the <code class="literal">info</code> argument of the map function to compute numeric keys.</p><div class="procedure"><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-1">Prepare Data</h3><p>Create a datastore using the <code class="literal">airlinesmall.csv</code> data set. This 12-megabyte data set contains 29 columns of flight information for several airline carriers, including arrival and departure times. In this example, the variables of interest are <code class="literal">ArrDelay</code> (flight arrival delay), <code class="literal">DepDelay</code> (flight departure delay) and <code class="literal">Distance</code> (total flight distance).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>, <span style="color:#A020F0">'TreatAsMissing'</span>, <span style="color:#A020F0">'NA'</span>);
+ds.ReadSize = 1000;
+ds.SelectedVariableNames = {<span style="color:#A020F0">'ArrDelay'</span>, <span style="color:#A020F0">'DepDelay'</span>, <span style="color:#A020F0">'Distance'</span>};</pre></div></div></div><p>The datastore treats <code class="literal">'NA'</code> values as missing and replaces the missing values with <code class="literal">NaN</code> values by default. The <code class="literal">ReadSize</code> property lets you specify how to partition the data into blocks. Additionally, the <code class="literal">SelectedVariableNames</code> property allows you to work with only the specified variables of interest, which you can verify using <code class="literal">preview</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>preview(ds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>8×3 table</em></span>
+    ArrDelay    DepDelay    Distance
+    ________    ________    ________
+
+        8          12         308   
+        8           1         296   
+       21          20         480   
+       13          12         296   
+        4          -1         373   
+       59          63         308   
+        3          -2         447   
+       11          -1         954   
+
+</pre></div></div></div><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-2">Chain MapReduce Calls</h3><p>The implementation of the multi-iteration TSQR algorithm needs to chain consecutive <code class="literal">mapreduce</code> calls. To demonstrate the general chaining design pattern, this example uses two <code class="literal">mapreduce</code> iterations. The output from the map function calls is passed into a large set of reducers, and then the output of these reducers becomes the input for the next <code class="literal">mapreduce</code> iteration.</p><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-3">First MapReduce Iteration</h3><p>In the first iteration, the map function, <code class="literal">tsqrMapper</code>, receives one block (the ith) of data, which is a table of size <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>N</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>×</mo><mn>3</mn></mrow></math></span>. The mapper computes the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>R</mi></mrow></math></span> matrix of this block of data and stores it as an intermediate result. Then, <code class="literal">mapreduce</code> aggregates the intermediate results by unique key before sending them to the reduce function. Thus, <code class="literal">mapreduce</code> sends all intermediate <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>R</mi></mrow></math></span> matrices with the same key to the same reducer.</p><p>Since the reducer uses <code class="literal">qr</code>, which is an in-memory MATLAB&#174; function, it's best to first make sure that the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>R</mi></mrow></math></span> matrices fit in memory. This example divides the dataset into eight partitions. The <code class="literal">mapreduce</code> function reads the data in blocks and passes the data along with some meta information to the map function. The <code class="literal">info</code> input argument is the second input to the map function and it contains the read offset and file size information that are necessary to generate the key,</p><div class="code_responsive"><pre class="programlisting">  key = ceil(offset/fileSize/numPartitions).
+</pre></div><p>Display the map function file.</p><div class="code_responsive"><pre id="d126e27339" class="programlisting"><span style="color:#0000FF">function</span> tsqrMapper(data, info, intermKVStore)
+  x = data{:,:};
+  x(any(isnan(x),2),:) = [];<span style="color:#228B22">% Remove missing values</span>
+  [~, r] = qr(x,0);
+
+  <span style="color:#228B22">% intermKey = randi(4); % random integer key for partitioning intermediate results</span>
+  intermKey = computeKey(info, 8);
+  add(intermKVStore,intermKey, r);
+
+  <span style="color:#0000FF">function</span> key = computeKey(info, numPartitions)
+    fileSize = info.FileSize; <span style="color:#228B22">% total size of the underlying data file</span>
+    partitionSize = fileSize/numPartitions; <span style="color:#228B22">% size in bytes of each partition</span>
+    offset = info.Offset; <span style="color:#228B22">% offset in bytes of the current read</span>
+    key = ceil(offset/partitionSize);
+  <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div><p>The reduce function receives a list of the intermediate <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>R</mi></mrow></math></span> matrices, vertically concatenates them, and computes the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>R</mi></mrow></math></span> matrix of the concatenated matrix.</p><p>Display the reduce function file.</p><div class="code_responsive"><pre id="d126e27354" class="programlisting"><span style="color:#0000FF">function</span> tsqrReducer(intermKey, intermValIter, outKVStore)
+  x = [];
+
+  <span style="color:#0000FF">while</span> (intermValIter.hasnext)
+    x = [x;intermValIter.getnext];
+  <span style="color:#0000FF">end</span>
+  <span style="color:#228B22">% Note that this approach assumes the concatenated intermediate values fit</span>
+  <span style="color:#228B22">% in memory. Consider increasing the number of reduce tasks (increasing the</span>
+  <span style="color:#228B22">% number of partitions in the tsqrMapper) and adding more iterations if it</span>
+  <span style="color:#228B22">% does not fit in memory.</span>
+
+  [~, r] =qr(x,0);
+
+  add(outKVStore,intermKey,r);
+<span style="color:#0000FF">end</span>
+</pre></div><p>Use <code class="literal">mapreduce</code> to apply the map and reduce functions to the datastore, <code class="literal">ds</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outds1 = mapreduce(ds, @tsqrMapper, @tsqrReducer);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>********************************
+*      MAPREDUCE PROGRESS      *
+********************************
+Map   0% Reduce   0%
+Map  10% Reduce   0%
+Map  20% Reduce   0%
+Map  30% Reduce   0%
+Map  40% Reduce   0%
+Map  50% Reduce   0%
+Map  60% Reduce   0%
+Map  70% Reduce   0%
+Map  80% Reduce   0%
+Map  90% Reduce   0%
+Map 100% Reduce   0%
+Map 100% Reduce  11%
+Map 100% Reduce  22%
+Map 100% Reduce  33%
+Map 100% Reduce  44%
+Map 100% Reduce  56%
+Map 100% Reduce  67%
+Map 100% Reduce  78%
+Map 100% Reduce  89%
+Map 100% Reduce 100%
+</pre></div></div></div><p><code class="literal">mapreduce</code> returns an output datastore, <code class="literal">outds1</code>, with files in the current folder.</p><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-4">Second MapReduce Iteration</h3><p>The second iteration uses the output of the first iteration, <code class="literal">outds1</code>, as its input. This iteration uses an identity mapper, <code class="literal">identityMapper</code>, which simply copies over the data using a single key, <code class="literal">'Identity'</code>.</p><p>Display the identity mapper file.</p><div class="code_responsive"><pre id="d126e27383" class="programlisting"><span style="color:#0000FF">function</span> identityMapper(data, info, intermKVStore)
+  <span style="color:#228B22">% This mapper function simply copies the data and add them to the</span>
+  <span style="color:#228B22">% intermKVStore as intermediate values.</span>
+  x = data.Value{:,:};
+  add(intermKVStore,<span style="color:#A020F0">'Identity'</span>, x);
+<span style="color:#0000FF">end</span>
+</pre></div><p>The reducer function is the same in both iterations. The use of a single key by the map function means that <code class="literal">mapreduce</code> only calls the reduce function once in the second iteration.</p><p>Use <code class="literal">mapreduce</code> to apply the identity mapper and the same reducer to the output from the first <code class="literal">mapreduce</code> call.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outds2 = mapreduce(outds1, @identityMapper, @tsqrReducer);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>********************************
+*      MAPREDUCE PROGRESS      *
+********************************
+Map   0% Reduce   0%
+Map  11% Reduce   0%
+Map  22% Reduce   0%
+Map  33% Reduce   0%
+Map  44% Reduce   0%
+Map  55% Reduce   0%
+Map  66% Reduce   0%
+Map  77% Reduce   0%
+Map  88% Reduce   0%
+Map 100% Reduce   0%
+Map 100% Reduce 100%
+</pre></div></div></div><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-5">View Results</h3><p>Read the final results from the output datastore.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r = readall(outds2);
+r.Value{:}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>3×3</em></span>
+10<sup>5</sup> ×
+
+    0.1091    0.0893    0.5564
+         0   -0.0478   -0.4890
+         0         0    3.0130
+
+</pre></div></div></div><h3 class="title" id="TallSkinnyQRTSQRMatrixFactorizationUsingMapReduceExample-6">References</h3><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Constantine, Paul G., and David F. Gleich. “Tall and Skinny QR Factorizations in MapReduce Architectures.” <span class="emphasis"><em>Proceedings of the Second International Workshop on MapReduce and Its Applications</em></span>, ACM, 2011, pp. 43&#8211;50. <a href="https://dl.acm.org/doi/10.1145/1996092.1996103" target="_blank">https://dl.acm.org/doi/10.1145/1996092.1996103</a></p></li></ol></div></div>
+<h2 id="d126e27423">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreduce.html"><span itemprop="name"><code class="function">mapreduce</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.tabulartextdatastore.html"><span itemprop="name"><code class="function">tabularTextDatastore</code></span></a></span></p>
+<h3 id="d126e27432">Topics</h3><ul class="list-unstyled"><li><a href="getting-started-with-mapreduce.html" class="a">Getting Started with MapReduce</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

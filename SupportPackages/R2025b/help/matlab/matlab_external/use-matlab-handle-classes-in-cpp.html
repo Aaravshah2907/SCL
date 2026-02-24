@@ -1,0 +1,733 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Use MATLAB Handle Classes in C++</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../calling-matlab-engine-from-cpp-programs.html",
+          "name": "Call MATLAB from C++"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "calling-matlab-engine-from-cpp-programs"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Integrate MATLAB handle classes with C++ applications."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../calling-matlab-engine-from-cpp-programs.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7f97b554-9eba-4c77-9873-5b8f7b753729"><span itemprop="title">Call MATLAB from C++</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Use MATLAB Handle Classes in C++</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_949e6d89-ef82-46c5-90af-de2a1b7396ef" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#mw_8959596b-cea6-44bd-8657-6f651ac8d6e0" class="nav-link intrnllnk">Key Features</a></li><li class="nav-item"><a href="#mw_4c8816f2-3267-49ed-b999-450ddb4e2c91" class="nav-link intrnllnk">Inherent Capabilities of MATLAB Handle Classes</a></li><li class="nav-item"><a href="#mw_afb7690c-b5f9-4aa7-8c9e-2b18453d6c6f" class="nav-link intrnllnk">Example Files</a></li><li class="nav-item"><a href="#mw_4879ecb0-a63d-4854-875b-e84753912efd" class="nav-link intrnllnk">MATLAB BankAccount Class</a></li><li class="nav-item"><a href="#mw_3c1104fd-56a3-40f2-ad30-dbbc5e87fba1" class="nav-link intrnllnk">Generated C++ BankAccount Header</a></li><li class="nav-item"><a href="#mw_1c8de17e-c559-493f-8cea-cbe760528ce9" class="nav-link intrnllnk">Inheritance from MATLAB Handle Class</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_43ef7632-b78c-432f-bcef-c8df9a276063">Use <span class="trademark entity">MATLAB</span> Handle Classes in C++</h2><section><h3 class="title" id="mw_949e6d89-ef82-46c5-90af-de2a1b7396ef">Overview</h3><p>The MATLAB<sup>&#x00AE;</sup> engine API for C++ supports MATLAB handle classes when using the strongly typed interface. This feature
+                translates the behavior of MATLAB classes that inherit from handle classes into equivalent C++ code,
+                preserving specific features and behaviors.<em> (since R2024a)</em></p></section><section><h3 class="title" id="mw_8959596b-cea6-44bd-8657-6f651ac8d6e0">Key Features</h3><p>When you generate a C++ header file from a MATLAB class that inherits from a handle class using the <a href="../ref/matlab.engine.typedinterface.generatecpp.html"><code class="function">matlab.engine.typedinterface.generateCPP</code></a> function, you get this
+                functionality:</p><div class="itemizedlist"><ul><li><p>Copy behavior: The generated C++ code replicates MATLAB handle class copy behavior. In MATLAB, handle objects are reference types, meaning that when you
+                        copy these objects, both the original and the new variable refer to the same
+                        object.</p></li><li><p>Comparison operators: The C++ representation of MATLAB handle classes supports comparison operations. You can compare
+                        C++ objects, derived from MATLAB handle classes, using the standard operators
+                            <code class="literal">==</code>, <code class="literal">!=</code>, <code class="literal">&lt;</code>,
+                            <code class="literal">&gt;</code>, <code class="literal">&lt;=</code>, and
+                            <code class="literal">&gt;=</code>.</p></li><li><p><code class="function">isvalid</code> function support: The C++ interface supports
+                        the <code class="function">isvalid</code> function, which checks if handle objects
+                        are valid or have been deleted.</p></li></ul></div><p>It is important to note that in the context of the MATLAB engine API for C++, the only functionalities currently supported are
+                copy behavior, comparison operators, and the <code class="function">isvalid</code>
+                function.</p></section><section><h3 class="title" id="mw_4c8816f2-3267-49ed-b999-450ddb4e2c91">Inherent Capabilities of <span class="trademark entity">MATLAB</span> Handle Classes</h3><p>Deriving from the MATLAB handle class enables a subclass to:</p><div class="itemizedlist"><ul><li><p>Inherit methods.</p></li><li><p>Define events and listeners.</p></li><li><p>Define dynamic properties.</p></li><li><p>Implement <code class="function">set</code> and <code class="function">get</code>
+                        methods.</p></li><li><p>Customize copy behavior.</p></li></ul></div></section><section><h3 class="title" id="mw_afb7690c-b5f9-4aa7-8c9e-2b18453d6c6f">Example Files</h3><p>These example files demonstrate the use and integration of MATLAB handle classes with C++ applications using the engine API for
+                C++:</p><div class="itemizedlist"><ul><li><p><code class="literal">BankAccount.m</code>: This MATLAB class file inherits from the handle class and provides basic
+                        banking functionality. For more information, see <a href="use-matlab-handle-classes-in-cpp.html#mw_4879ecb0-a63d-4854-875b-e84753912efd" class="intrnllnk">MATLAB BankAccount Class</a>.</p></li><li><p><code class="literal">generateHeader.m</code>: A MATLAB script used to generate the corresponding C++ header file from
+                        the <code class="literal">BankAccount</code> class, illustrating the integration with
+                        the engine API for C++.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>matlab.engine.typedinterface.generateCPP( <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"BankAccount.hpp"</span>, <span style="color:#0000FF">...</span>
+    Classes=<span style="color:#A020F0">"BankAccount"</span>)</pre></div></div></div></li><li><p><code class="literal">run_BankAccount.m</code>: An example using the
+                            <code class="literal">BankAccount</code> class.</p><p><a href="#" onclick="return toggleexpander('d126e63590_block','d126e63590_expandable_text');"><img style="border:0;" id="d126e63590_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e63590_block','d126e63590_expandable_text');"><code class="literal">run_BankAccount.m</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e63590_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%% Create a bank account with an initial balance of 100</span>
+account = BankAccount(100);
+
+<span style="color:#228B22">%% Deposit 50 into the account</span>
+account.deposit(50);
+disp([<span style="color:#A020F0">'Balance after deposit: '</span>,num2str(account.checkBalance())]);
+
+<span style="color:#228B22">%% Withdraw 30 from the account</span>
+account.withdraw(30);
+disp([<span style="color:#A020F0">'Balance after withdrawal: '</span>,num2str(account.checkBalance())]);
+
+<span style="color:#228B22">%% Create a joint account that references the same existing account</span>
+jointAccount = account;
+
+<span style="color:#228B22">%% Deposit 20 using the shared reference</span>
+jointAccount.deposit(20);
+disp([<span style="color:#A020F0">'Balance from sharedAccount: '</span>,num2str(jointAccount.checkBalance())]);
+disp([<span style="color:#A020F0">'Balance from original account: '</span>,num2str(account.checkBalance())]);</pre></div></div></div></div></li><li><p><code class="literal">BankConsoleApplication.cpp</code>: This C++ console
+                        application demonstrates the use of the generated header file from the
+                            MATLAB
+                        <code class="literal">BankAccount</code> class. It replicates the functionality of the
+                            MATLAB script <code class="literal">run_BankAccount.m</code>, but within a C++
+                        environment. This application shows key operations such as account creation,
+                        deposits, withdrawals, and balance inquiries, mirroring the actions
+                        performed in the MATLAB script.</p><p><a href="#" onclick="return toggleexpander('d126e63615_block','d126e63615_expandable_text');"><img style="border:0;" id="d126e63615_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e63615_block','d126e63615_expandable_text');"><code class="literal">BankConsoleApplication.cpp</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e63615_block"><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "MatlabEngine.hpp"
+#include "P:\MATLAB\work\stronghandle\BankAccount.hpp"  // Include generated header file
+
+int main() {
+    // Connect to MATLAB
+    std::shared_ptr&lt;matlab::engine::MATLABEngine&gt; matlabPtr = matlab::engine::startMATLAB();
+    //matlab::data::ArrayFactory factory;
+    //matlabPtr-&gt;feval(u"addpath", 0, {factory.createScalar&lt;std::u16string&gt;(u"P:\\MATLAB\\work\\stronghandle") });
+    // add "P:\\MATLAB\\work\\stronghandle" using feval to the MATLAB path
+
+    matlabPtr-&gt;eval(u"addpath('P:\\MATLAB\\work\\stronghandle')");
+
+
+    try {
+        // Create a BankAccount object with an initial balance of 100
+        BankAccount myAccount(matlabPtr, 100.0);
+
+        // Deposit 50 into the account
+        myAccount.deposit(50.0);
+        std::cout &lt;&lt; "Deposited $50" &lt;&lt; std::endl;
+
+        // Withdraw 30 from the account
+        myAccount.withdraw(30.0);
+        std::cout &lt;&lt; "Withdrew $30" &lt;&lt; std::endl;
+
+        // Check the balance
+        matlab::data::Array balance = myAccount.checkBalance&lt;1&gt;();
+        double currentBalance = balance[0];
+        std::cout &lt;&lt; "Current balance: $" &lt;&lt; currentBalance &lt;&lt; std::endl;
+
+        // Createa a joint account using that references the same existing account
+        BankAccount jointAccount = myAccount;
+
+        //Deposit 20 using the shared reference
+        jointAccount.deposit(20.0);
+
+        // Check the balance
+        balance = myAccount.checkBalance&lt;1&gt;();
+        currentBalance = balance[0];
+        matlab::data::Array jointBalance = jointAccount.checkBalance&lt;1&gt;();
+        double currentJointBalance = jointBalance[0];
+
+        std::cout &lt;&lt; "Deposited $20 into the joint account" &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Current balance: $" &lt;&lt; currentBalance &lt;&lt; std::endl;
+        std::cout &lt;&lt; "Current joint balance: $" &lt;&lt; currentJointBalance &lt;&lt; std::endl;
+
+    }
+    catch (const std::exception&amp; e) {
+        std::cerr &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; std::endl;
+        return -1;
+    }
+
+    return 0;
+}
+</code></pre></div></div></li></ul></div></section><section><h3 class="title" id="mw_4879ecb0-a63d-4854-875b-e84753912efd"><span class="trademark entity">MATLAB</span>                 <code class="literal">BankAccount</code> Class</h3><p><a href="#" onclick="return toggleexpander('d126e63630_block','d126e63630_expandable_text');"><img style="border:0;" id="d126e63630_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e63630_block','d126e63630_expandable_text');"><code class="literal">BankAccount.m</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e63630_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> BankAccount &lt; handle
+    <span style="color:#0000FF">properties</span> (Access = private)
+        Balance <span style="color:#A0522D">(1,1) double {mustBeReal}</span>
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#228B22">% Constructor to initialize the account with a balance</span>
+        <span style="color:#0000FF">function</span> obj = BankAccount(initialBalance)
+            <span style="color:#0000FF">arguments</span> (Input)
+                initialBalance <span style="color:#A0522D">(1,1) double {mustBeReal}</span>
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> nargin == 0
+                initialBalance = 0;
+            <span style="color:#0000FF">end</span>
+            obj.Balance = initialBalance;
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#228B22">% Method to deposit money</span>
+        <span style="color:#0000FF">function</span> deposit(obj, amount)
+            <span style="color:#0000FF">arguments</span> (Input)
+                obj <span style="color:#A0522D">(1,1) BankAccount</span>
+                amount <span style="color:#A0522D">(1,1) double {mustBeReal}</span>
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> amount &gt; 0
+                obj.Balance = obj.Balance + amount;
+            <span style="color:#0000FF">else</span>
+                error(<span style="color:#A020F0">'Amount must be positive'</span>);
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#228B22">% Method to withdraw money</span>
+        <span style="color:#0000FF">function</span> withdraw(obj, amount)
+            <span style="color:#0000FF">arguments</span> (Input)
+                obj <span style="color:#A0522D">(1,1) BankAccount</span>
+                amount <span style="color:#A0522D">(1,1) double {mustBeReal}</span>
+            <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">if</span> amount &lt;= obj.Balance &amp;&amp; amount &gt; 0
+                obj.Balance = obj.Balance - amount;
+            <span style="color:#0000FF">else</span>
+                error(<span style="color:#A020F0">'Insufficient funds or invalid amount'</span>);
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#228B22">% Method to check the balance</span>
+        <span style="color:#0000FF">function</span> bal = checkBalance(obj)
+            <span style="color:#0000FF">arguments</span> (Input)
+                obj <span style="color:#A0522D">(1,1) BankAccount</span>
+            <span style="color:#0000FF">end</span>
+            bal = obj.Balance;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div><p>Class definition: The MATLAB class <code class="literal">BankAccount</code> is defined as a subclass of the
+                handle class, which allows it to exhibit reference behavior. This means instances of
+                this class can be passed by reference.</p><p>Private properties: The class has one private property,
+                <code class="literal">Balance</code>, which is a double.</p><p>Methods: The class includes methods for depositing, withdrawing, and checking the
+                balance. These methods ensure controlled access and modification of the
+                    <code class="literal">Balance</code> property.</p></section><section><h3 class="title" id="mw_3c1104fd-56a3-40f2-ad30-dbbc5e87fba1">Generated C++ <code class="literal">BankAccount</code> Header</h3><p><a href="#" onclick="return toggleexpander('d126e63658_block','d126e63658_expandable_text');"><img style="border:0;" id="d126e63658_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e63658_block','d126e63658_expandable_text');"><code class="literal">BankAccount.hpp</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e63658_block"><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">/* File: BankAccount.hpp
+*
+* MATLAB Strongly Typed Interface Version: R2024b
+* C++ source code generated on: 20-Dec-2023
+*/
+#include "MatlabTypesInterface.hpp"
+#include &lt;map&gt;
+
+    class BankAccount : public MATLABHandleObject&lt;MATLABControllerType&gt; { 
+    public:
+
+    friend bool operator==(const BankAccount&amp; A, const BankAccount&amp; B);
+    friend bool operator!=(const BankAccount&amp; A, const BankAccount&amp; B);
+    friend bool operator&lt;(const BankAccount&amp; A, const BankAccount&amp; B);
+    friend bool operator&gt;(const BankAccount&amp; A, const BankAccount&amp; B);
+    friend bool operator&lt;=(const BankAccount&amp; A, const BankAccount&amp; B);
+    friend bool operator&gt;=(const BankAccount&amp; A, const BankAccount&amp; B);
+        // constructors
+        BankAccount() : MATLABHandleObject() {}
+
+        BankAccount(std::shared_ptr&lt;MATLABControllerType&gt; _matlabPtr, double initialBalance) : 
+            MATLABHandleObject()
+        { 
+            m_matlabPtr = _matlabPtr;
+            matlab::data::ArrayFactory _arrayFactory;
+            std::vector&lt;matlab::data::Array&gt; _args = {
+                _arrayFactory.createArray&lt;double&gt;({1,1}, {initialBalance}) };
+            matlab::data::Array _result = m_matlabPtr-&gt;feval(u"BankAccount", _args);
+            m_object = _result;
+        }
+
+
+                BankAccount(std::shared_ptr&lt;MATLABControllerType&gt; matlabPtr, matlab::data::Array obj) :
+            MATLABHandleObject(matlabPtr, obj)
+        {}
+
+        // properties
+
+        // methods
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_checkBalance { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_checkBalance&lt;nargout&gt;::type checkBalance() {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        void withdraw(double amount) { 
+            matlab::data::ArrayFactory _arrayFactory;
+            std::vector&lt;matlab::data::Array&gt; _args = {
+                m_object,
+                _arrayFactory.createArray&lt;double&gt;({1,1}, {amount}) };
+            m_matlabPtr-&gt;feval(u"withdraw", 0, _args);
+        }
+
+        void deposit(double amount) { 
+            matlab::data::ArrayFactory _arrayFactory;
+            std::vector&lt;matlab::data::Array&gt; _args = {
+                m_object,
+                _arrayFactory.createArray&lt;double&gt;({1,1}, {amount}) };
+            m_matlabPtr-&gt;feval(u"deposit", 0, _args);
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_eq { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_eq&lt;nargout&gt;::type eq(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_ne { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_ne&lt;nargout&gt;::type ne(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_lt { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_lt&lt;nargout&gt;::type lt(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_gt { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_gt&lt;nargout&gt;::type gt(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_le { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_le&lt;nargout&gt;::type le(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+        private:
+        template&lt;size_t nargout&gt;
+        struct return_type_ge { typedef void type; };
+        
+        public:
+        template&lt;size_t nargout = 1&gt;
+        typename return_type_ge&lt;nargout&gt;::type ge(matlab::data::Array B) {
+            static_assert(nargout&lt;=1, "Too many outputs specified. Maximum outputs is 1.");
+        }
+
+    };
+template&lt;&gt;
+struct BankAccount::return_type_checkBalance&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_checkBalance&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::checkBalance&lt;0&gt;() { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object };
+    m_matlabPtr-&gt;feval(u"checkBalance", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::checkBalance&lt;1&gt;() { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"checkBalance", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+
+
+template&lt;&gt;
+struct BankAccount::return_type_eq&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_eq&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::eq&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"eq", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::eq&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"eq", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+template&lt;&gt;
+struct BankAccount::return_type_ne&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_ne&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::ne&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"ne", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::ne&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"ne", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+template&lt;&gt;
+struct BankAccount::return_type_lt&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_lt&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::lt&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"lt", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::lt&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"lt", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+template&lt;&gt;
+struct BankAccount::return_type_gt&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_gt&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::gt&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"gt", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::gt&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"gt", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+template&lt;&gt;
+struct BankAccount::return_type_le&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_le&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::le&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"le", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::le&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"le", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+template&lt;&gt;
+struct BankAccount::return_type_ge&lt;0&gt; { typedef void type; };
+
+template&lt;&gt;
+struct BankAccount::return_type_ge&lt;1&gt; { typedef matlab::data::Array type; };
+
+template&lt;&gt;
+void BankAccount::ge&lt;0&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    m_matlabPtr-&gt;feval(u"ge", 0, _args);
+}
+
+template&lt;&gt;
+matlab::data::Array BankAccount::ge&lt;1&gt;(matlab::data::Array B) { 
+    matlab::data::ArrayFactory _arrayFactory;
+    std::vector&lt;matlab::data::Array&gt; _args = {
+        m_object,
+        B };
+    matlab::data::Array _result_mda = m_matlabPtr-&gt;feval(u"ge", _args);
+    matlab::data::Array _result;
+    _result = _result_mda;
+    return _result;
+}
+
+
+
+bool operator==(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"eq", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}
+
+
+bool operator!=(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"ne", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}
+
+
+bool operator&lt;(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"lt", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}
+
+
+bool operator&gt;(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"gt", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}
+
+
+bool operator&lt;=(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"le", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}
+
+
+bool operator&gt;=(const BankAccount&amp; A, const BankAccount&amp; B) {
+    std::vector&lt;matlab::data::Array&gt; _args = { A.m_object, B.m_object };
+    matlab::data::TypedArray&lt;bool&gt; _result_mda = A.m_matlabPtr-&gt;feval(u"ge", _args);
+    bool _result = _result_mda[0];
+    return _result;
+}</code></pre></div></div><p>Class inheritance: The C++ <code class="literal">BankAccount</code> class does not
+                explicitly inherit from a standard C++ class that mimics a MATLAB handle class. However, it inherits from
+                    <code class="literal">MATLABHandleObject</code>. This custom class is intended to provide
+                similar reference-type behavior as a MATLAB handle class.</p><p>Constructors and overloaded operators: The <code class="literal">MATLABHandleObject</code>
+                C++ class includes constructors and overloaded operators (<code class="literal">==</code>,
+                    <code class="literal">!=</code>, <code class="literal">&lt;</code>, <code class="literal">&gt;</code>,
+                    <code class="literal">&lt;=</code>, and <code class="literal">&gt;=</code>). These operators provide
+                similar functionalities to the MATLAB handle class, which supports comparison operations.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">bool operator==(const BankAccount&amp; A, const BankAccount&amp; B);
+bool operator!=(const BankAccount&amp; A, const BankAccount&amp; B);
+bool operator&lt;(const BankAccount&amp; A, const BankAccount&amp; B);
+bool operator&gt;(const BankAccount&amp; A, const BankAccount&amp; B);
+bool operator&lt;=(const BankAccount&amp; A, const BankAccount&amp; B);
+bool operator&gt;=(const BankAccount&amp; A, const BankAccount&amp; B);</code></pre></div><p>Method mapping: The C++ methods (<code class="literal">deposit</code>,
+                    <code class="literal">withdraw</code>, and <code class="literal">checkBalance</code>) correspond to
+                the MATLAB class methods. These methods interact with MATLAB using <code class="function">feval</code>, which evaluates MATLAB functions from C++.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th><p>MATLAB Signature</p></th><th><p>C++ Signature</p></th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> deposit(obj, amount)</pre></div></div></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">
+void deposit(double amount) { </pre></div>
+                            </td></tr><tr><td>
+                                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> withdraw(obj, amount)</pre></div></div></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">void withdraw(double amount) { </pre></div>
+                            </td></tr><tr><td>
+                                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> bal = checkBalance(obj)</pre></div></div></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">template&lt;&gt;
+void BankAccount::checkBalance&lt;0&gt;() {</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_1c8de17e-c559-493f-8cea-cbe760528ce9">Inheritance from <span class="trademark entity">MATLAB</span> Handle Class</h3><p>In MATLAB, inheriting from the handle class allows objects to be passed by
+                reference. It also comes with built-in comparison operators.</p><p>In the C++ representation, the concept of a handle is replicated through the use
+                of <code class="literal">MATLABHandleObject</code> and <code class="literal">std::shared_ptr</code>. The
+                comparison operators are explicitly defined to mimic the behavior of a MATLAB handle class in C++.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> BankAccount &lt; handle
+class BankAccount : public MATLABHandleObject&lt;MATLABControllerType&gt;</pre></div></div></div></section>
+            
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Custom Plugin</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../extend-testing-frameworks.html",
+          "name": "Extend Testing Frameworks"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "extend-testing-frameworks"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create a custom plugin that counts the number of passing and failing assertions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../extend-testing-frameworks.html?s_tid=CRUX_lftnav" itemprop="url" id="butj3cg-8"><span itemprop="title">Extend Testing Frameworks</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Custom Plugin</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_32bd5071-b713-4514-a81b-3e46824da48a" class="nav-link intrnllnk">Create AssertionCountingPlugin Class</a></li><li class="nav-item"><a href="#mw_8508f251-bd44-4274-abcd-6bed47374632" class="nav-link intrnllnk">Extend Running of TestSuite</a></li><li class="nav-item"><a href="#mw_5ca99e51-4a31-4d87-8290-334451aba63e" class="nav-link intrnllnk">Extend Creation of Shared Test Fixtures and TestCase Instances</a></li><li class="nav-item"><a href="#mw_761f63c5-c6c6-47cb-be0e-021e2a1f8bd6" class="nav-link intrnllnk">Extend Running of Single Test Suite Element</a></li><li class="nav-item"><a href="#mw_e2b2ecd5-3842-479c-a274-2555802002bd" class="nav-link intrnllnk">Define Helper Methods</a></li><li class="nav-item"><a href="#mw_c39f769c-9628-4fcc-a6a7-eb2d6cf26392" class="nav-link intrnllnk">AssertionCountingPlugin Class Definition Summary</a></li><li class="nav-item"><a href="#mw_2f81e19f-1365-46f6-b608-f71458172385" class="nav-link intrnllnk">Create Example Test Class</a></li><li class="nav-item"><a href="#mw_7b9b3b76-9d88-4178-98f4-c9cb3eb8db45" class="nav-link intrnllnk">Add Plugin to TestRunner and Run Tests</a></li><li class="nav-item"><a href="#d126e94422" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt8bz1l">Create Custom Plugin</h2>
+            <p class="shortdesc">This example shows how to create a custom plugin that counts the
+                number of passing and failing assertions when the <code class="literal">TestRunner</code> is
+                running a test suite. The plugin prints a brief summary at the end of the testing.
+                To extend the <code class="literal">TestRunner</code>, the plugin subclasses and overrides
+                select methods of the <code class="literal">matlab.unittest.plugins.TestRunnerPlugin</code>
+                class.</p>
+        <div class="procedure"><h3 class="title" id="mw_32bd5071-b713-4514-a81b-3e46824da48a">Create AssertionCountingPlugin Class</h3><p>In a file in your current folder, create the custom plugin class
+                        <code class="literal">AssertionCountingPlugin</code>, which inherits from the
+                        <code class="literal">TestRunnerPlugin</code> class. For the complete code for
+                        <code class="literal">AssertionCountingPlugin</code>, see <a href="create-custom-plugin.html#mw_c39f769c-9628-4fcc-a6a7-eb2d6cf26392" class="intrnllnk">AssertionCountingPlugin Class Definition Summary</a>.</p><p>To keep track of the number of passing and failing assertions, define two
+                    read-only properties, <code class="literal">NumPassingAssertions</code> and
+                        <code class="literal">NumFailingAssertions</code>, within a
+                        <code class="literal">properties</code> block.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">properties</span> (SetAccess = private)
+        NumPassingAssertions
+        NumFailingAssertions
+    <span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_8508f251-bd44-4274-abcd-6bed47374632">Extend Running of TestSuite</h3><p>Implement the <code class="literal">runTestSuite</code> method in a
+                        <code class="literal">methods</code> block with <code class="literal">protected</code> access. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">methods</span> (Access = protected)
+        <span style="color:#0000FF">function</span> runTestSuite(plugin, pluginData)
+            suiteSize = numel(pluginData.TestSuite);
+            fprintf(<span style="color:#A020F0">'## Running a total of %d tests\n'</span>, suiteSize)
+
+            plugin.NumPassingAssertions = 0;
+            plugin.NumFailingAssertions = 0;
+
+            runTestSuite@matlab.unittest.plugins.TestRunnerPlugin(<span style="color:#0000FF">...</span>
+                plugin, pluginData);
+
+            fprintf(<span style="color:#A020F0">'## Done running tests\n'</span>)
+            plugin.printAssertionSummary()
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div><p>The testing framework evaluates this method one time. It displays information
+                    about the total number of tests, initializes the properties used by the plugin
+                    to generate text output, and invokes the superclass method. After the framework
+                    completes evaluating the superclass method, the <code class="literal">runTestSuite</code>
+                    method displays the assertion count summary by calling the helper method
+                        <code class="literal">printAssertionSummary</code> (see <a href="create-custom-plugin.html#mw_e2b2ecd5-3842-479c-a274-2555802002bd" class="intrnllnk">Define
+                        Helper Methods</a>).</p><h3 class="title" id="mw_5ca99e51-4a31-4d87-8290-334451aba63e">Extend Creation of Shared Test Fixtures and TestCase Instances</h3><p>Add listeners to <code class="literal">AssertionPassed</code> and
+                        <code class="literal">AssertionFailed</code> events to count the assertions. To add
+                    these listeners, extend the methods used by the testing framework to create the
+                    test content. The test content includes <code class="literal">TestCase</code> instances
+                    for each <code class="literal">Test</code> element, class-level
+                        <code class="literal">TestCase</code> instances for the
+                        <code class="literal">TestClassSetup</code> and <code class="literal">TestClassTeardown</code>
+                    methods, and <code class="literal">Fixture</code> instances used when a
+                        <code class="literal">TestCase</code> class has the
+                        <code class="literal">SharedTestFixtures</code> attribute.</p><p>Invoke the corresponding superclass method when you override the creation
+                    methods. The creation methods return the content that the testing framework
+                    creates for each of their respective contexts. When implementing one of these
+                    methods using the <code class="literal">incrementPassingAssertionsCount</code> and
+                        <code class="literal">incrementFailingAssertionsCount</code>
+                    <a href="create-custom-plugin.html#mw_e2b2ecd5-3842-479c-a274-2555802002bd" class="intrnllnk">helper
+                        methods</a>, add the listeners required by the plugin to the returned
+                        <code class="literal">Fixture</code> or <code class="literal">TestCase</code> instance.</p><p>Add these creation methods to a <code class="literal">methods</code> block with
+                        <code class="literal">protected</code> access. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">methods</span> (Access = protected)
+        <span style="color:#0000FF">function</span> fixture = createSharedTestFixture(plugin, pluginData)
+            fixture = createSharedTestFixture@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+
+            fixture.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            fixture.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> testCase = createTestClassInstance(plugin, pluginData)
+            testCase = createTestClassInstance@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+
+            testCase.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            testCase.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> testCase = createTestMethodInstance(plugin, pluginData)
+            testCase = createTestMethodInstance@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+
+            testCase.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            testCase.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_761f63c5-c6c6-47cb-be0e-021e2a1f8bd6">Extend Running of Single Test Suite Element</h3><p>Extend <code class="literal">runTest</code> to display the name of each test at run
+                    time. Include this method in a <code class="literal">methods</code> block with
+                        <code class="literal">protected</code> access. Like all plugin methods, the
+                        <code class="literal">runTest</code> method requires you to invoke the corresponding
+                    superclass method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">methods</span> (Access = protected)
+        <span style="color:#0000FF">function</span> runTest(plugin, pluginData)
+            fprintf(<span style="color:#A020F0">'### Running test: %s\n'</span>, pluginData.Name)
+
+            runTest@matlab.unittest.plugins.TestRunnerPlugin(<span style="color:#0000FF">...</span>
+                plugin, pluginData);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_e2b2ecd5-3842-479c-a274-2555802002bd">Define Helper Methods</h3><p>In a <code class="literal">methods</code> block with <code class="literal">private</code> access,
+                    define three helper methods. These methods increment the number of passing or
+                    failing assertions, and print the assertion count summary.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    <span style="color:#0000FF">methods</span> (Access = private)
+        <span style="color:#0000FF">function</span> incrementPassingAssertionsCount(plugin)
+            plugin.NumPassingAssertions = plugin.NumPassingAssertions + 1;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> incrementFailingAssertionsCount(plugin)
+            plugin.NumFailingAssertions = plugin.NumFailingAssertions + 1;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> printAssertionSummary(plugin)
+            fprintf(<span style="color:#A020F0">'%s\n'</span>, repmat(<span style="color:#A020F0">'_'</span>, 1, 30))
+            fprintf(<span style="color:#A020F0">'Total Assertions: %d\n'</span>, <span style="color:#0000FF">...</span>
+                plugin.NumPassingAssertions + plugin.NumFailingAssertions)
+            fprintf(<span style="color:#A020F0">'\t%d Passed, %d Failed\n'</span>, <span style="color:#0000FF">...</span>
+                plugin.NumPassingAssertions, plugin.NumFailingAssertions)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_c39f769c-9628-4fcc-a6a7-eb2d6cf26392">AssertionCountingPlugin Class Definition Summary</h3><p>The following code provides the complete contents of
+                        <code class="literal">AssertionCountingPlugin</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> AssertionCountingPlugin &lt; <span style="color:#0000FF">...</span>
+        matlab.unittest.plugins.TestRunnerPlugin
+    
+    <span style="color:#0000FF">properties</span> (SetAccess = private)
+        NumPassingAssertions
+        NumFailingAssertions
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span> (Access = protected)
+        <span style="color:#0000FF">function</span> runTestSuite(plugin, pluginData)
+            suiteSize = numel(pluginData.TestSuite);
+            fprintf(<span style="color:#A020F0">'## Running a total of %d tests\n'</span>, suiteSize)
+            
+            plugin.NumPassingAssertions = 0;
+            plugin.NumFailingAssertions = 0;
+            
+            runTestSuite@matlab.unittest.plugins.TestRunnerPlugin(<span style="color:#0000FF">...</span>
+                plugin, pluginData);
+            
+            fprintf(<span style="color:#A020F0">'## Done running tests\n'</span>)
+            plugin.printAssertionSummary()
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> fixture = createSharedTestFixture(plugin, pluginData)
+            fixture = createSharedTestFixture@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+            
+            fixture.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            fixture.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> testCase = createTestClassInstance(plugin, pluginData)
+            testCase = createTestClassInstance@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+            
+            testCase.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            testCase.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> testCase = createTestMethodInstance(plugin, pluginData)
+            testCase = createTestMethodInstance@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+            
+            testCase.addlistener(<span style="color:#A020F0">'AssertionPassed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementPassingAssertionsCount);
+            testCase.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,~)plugin.incrementFailingAssertionsCount);
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> runTest(plugin, pluginData)
+            fprintf(<span style="color:#A020F0">'### Running test: %s\n'</span>, pluginData.Name)
+            
+            runTest@matlab.unittest.plugins.TestRunnerPlugin(<span style="color:#0000FF">...</span>
+                plugin, pluginData);
+        <span style="color:#0000FF">end</span> 
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span> (Access = private)
+        <span style="color:#0000FF">function</span> incrementPassingAssertionsCount(plugin)
+            plugin.NumPassingAssertions = plugin.NumPassingAssertions + 1;
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> incrementFailingAssertionsCount(plugin)
+            plugin.NumFailingAssertions = plugin.NumFailingAssertions + 1;
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> printAssertionSummary(plugin)
+            fprintf(<span style="color:#A020F0">'%s\n'</span>, repmat(<span style="color:#A020F0">'_'</span>, 1, 30))
+            fprintf(<span style="color:#A020F0">'Total Assertions: %d\n'</span>, <span style="color:#0000FF">...</span>
+                plugin.NumPassingAssertions + plugin.NumFailingAssertions)
+            fprintf(<span style="color:#A020F0">'\t%d Passed, %d Failed\n'</span>, <span style="color:#0000FF">...</span>
+                plugin.NumPassingAssertions, plugin.NumFailingAssertions)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_2f81e19f-1365-46f6-b608-f71458172385">Create Example Test Class</h3><p>In your current folder, create a file named <code class="literal">ExampleTest.m</code>
+                    containing the following test class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ExampleTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">methods</span>(Test)
+        <span style="color:#0000FF">function</span> testOne(testCase)  <span style="color:#228B22">% Test fails</span>
+            testCase.assertEqual(5, 4)
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> testTwo(testCase)  <span style="color:#228B22">% Test passes</span>
+            testCase.verifyEqual(5, 5)
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> testThree(testCase)  <span style="color:#228B22">% Test passes</span>
+            testCase.assertEqual(7*2, 14)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="mw_7b9b3b76-9d88-4178-98f4-c9cb3eb8db45">Add Plugin to TestRunner and Run Tests</h3><p>At the command prompt, create a test suite from the
+                        <code class="literal">ExampleTest</code> class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.unittest.TestSuite</span>
+import <span style="color:#A020F0">matlab.unittest.TestRunner</span>
+
+suite = TestSuite.fromClass(?ExampleTest);</pre></div></div></div><p>Create a <code class="literal">TestRunner</code> instance with no plugins. This code
+                    creates a silent runner and gives you control over the installed plugins.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>runner = TestRunner.withNoPlugins;</pre></div></div></div><p>Run the tests.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = runner.run(suite);</pre></div></div></div><p>Add <code class="literal">AssertionCountingPlugin</code> to the runner and run the
+                    tests.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>runner.addPlugin(AssertionCountingPlugin)
+result = runner.run(suite);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>## Running a total of 3 tests
+### Running test: ExampleTest/testOne
+### Running test: ExampleTest/testTwo
+### Running test: ExampleTest/testThree
+## Done running tests
+______________________________
+Total Assertions: 2
+	1 Passed, 1 Failed</pre></div></div></div></div>
+            <h2 id="d126e94422">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.plugins.testrunnerplugin-class.html"><span itemprop="name"><code class="class">matlab.unittest.plugins.TestRunnerPlugin</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.automation.streams.outputstream-class.html"><span itemprop="name"><code class="class">matlab.automation.streams.OutputStream</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testcase-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestCase</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testrunner-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestRunner</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.fixtures.fixture-class.html"><span itemprop="name"><code class="class">matlab.unittest.fixtures.Fixture</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/handle.addlistener.html"><span itemprop="name"><code class="function">addlistener</code></span></a></span></p>
+            <h3 id="d126e94444">Topics</h3><ul class="list-unstyled"><li><a href="write-plugins-to-extend-testrunner.html" class="a">Write Plugins to Extend TestRunner</a></li><li><a href="run-tests-in-parallel-with-custom-plugin.html" class="a">Run Tests in Parallel with Custom Plugin</a></li><li><a href="write-custom-plugin-to-save-diagnostic-details.html" class="a">Write Plugin to Save Diagnostic Details</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

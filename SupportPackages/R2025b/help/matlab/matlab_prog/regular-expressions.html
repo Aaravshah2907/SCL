@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Regular Expressions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-types.html",
+          "name": "Data Types"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../characters-and-strings.html",
+          "name": "Characters and Strings"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "characters-and-strings"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Regular expressions are a versatile way to search and replace text."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../language-fundamentals.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Language Fundamentals</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Types</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../characters-and-strings.html?s_tid=CRUX_lftnav" itemprop="url" id="characters-and-strings"><span itemprop="title">Characters and Strings</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Regular Expressions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#braibw0" class="nav-link intrnllnk">What Is a Regular Expression?</a></li><li class="nav-item"><a href="#bsei1vj-1" class="nav-link intrnllnk">Steps for Building Expressions</a><ul class="nav"><li class="nav-item"><a href="#bsei1vj-2" class="nav-link intrnllnk">Step 1 &#8212; Identify Unique Patterns in the Text</a></li><li class="nav-item"><a href="#bsei1vj-3" class="nav-link intrnllnk">Step 2 &#8212; Express Each Pattern as a Regular Expression</a></li><li class="nav-item"><a href="#bsei1vj-4" class="nav-link intrnllnk">Step 3 &#8212; Call the Appropriate Search Function</a></li></ul></li><li class="nav-item"><a href="#btrug0n-1" class="nav-link intrnllnk">Operators and Characters</a><ul class="nav"><li class="nav-item"><a href="#f0-42723" class="nav-link intrnllnk">Metacharacters</a></li><li class="nav-item"><a href="#f0-42808" class="nav-link intrnllnk">Character Representation</a></li><li class="nav-item"><a href="#f0-43073" class="nav-link intrnllnk">Quantifiers</a></li><li class="nav-item"><a href="#f0-42884" class="nav-link intrnllnk">Grouping Operators</a></li><li class="nav-item"><a href="#f0-42983" class="nav-link intrnllnk">Anchors</a></li><li class="nav-item"><a href="#brchk1t" class="nav-link intrnllnk">Lookaround Assertions</a></li><li class="nav-item"><a href="#bqv21pe-1" class="nav-link intrnllnk">Logical and Conditional Operators</a></li><li class="nav-item"><a href="#btrvwd4" class="nav-link intrnllnk">Token Operators</a></li><li class="nav-item"><a href="#btrv050" class="nav-link intrnllnk">Dynamic Expressions</a></li><li class="nav-item"><a href="#bqxyiyr-1" class="nav-link intrnllnk">Comments</a></li><li class="nav-item"><a href="#btrv1j8" class="nav-link intrnllnk">Search Flags</a></li></ul></li><li class="nav-item"><a href="#d126e5982" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=characters-and-strings&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=characters-and-strings&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=characters-and-strings&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=characters-and-strings&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=characters-and-strings&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=characters-and-strings&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f0-42649">Regular Expressions</h2><a class="indexterm" name="d126e4307"></a><span id="regular_expressions_in_matlab" class="anchor_target"></span><p>This topic describes what regular expressions are and how to use them to search text.
+            Regular expressions are flexible and powerful, though they use complex syntax. An
+            alternative to regular expressions is a <a href="../ref/pattern.html" class="a"><code class="olink">pattern</code></a> (<span class="emphasis"><em>since R2020b</em></span>), which is simpler to define and results in
+            code that is easier to read. For more information, see <a href="build-pattern-expressions.html" class="a">Build Pattern Expressions</a>.</p><section><h3 class="title" id="braibw0">What Is a Regular Expression?</h3><p>A regular expression is a sequence of characters that defines a certain pattern.
+                You normally use a regular expression to search text for a group of words that
+                matches the pattern, for example, while parsing program input or while processing a
+                block of text.</p><p>The character vector <code class="literal">'Joh?n\w*'</code> is an example of a regular expression. It defines a pattern that starts with the letters <code class="literal">Jo</code>, is optionally followed by the letter <code class="literal">h</code> (indicated by <code class="literal">'h?'</code>), is then followed by the letter <code class="literal">n</code>, and ends with any number of <em class="firstterm">word characters</em>, that is, characters that are alphabetic, numeric, or underscore (indicated by <code class="literal">'\w*'</code>). This pattern matches any of the following:</p><div class="code_responsive"><pre class="programlisting">Jon, John, Jonathan, Johnny
+</pre></div><p>Regular expressions provide a unique way to search a volume of text for a particular subset of characters within that text. Instead of looking for an exact character match as you would do with a function like <a href="../ref/string.strfind.html"><code class="function">strfind</code></a>, regular expressions give you the ability to look for a particular <span class="emphasis"><em>pattern</em></span> of characters.</p><p>For example, several ways of expressing a metric rate of speed are:</p><div class="code_responsive"><pre class="programlisting">km/h
+km/hr
+km/hour
+kilometers/hour
+kilometers per hour
+</pre></div><p>You could locate any of the above terms in your text by issuing five separate search commands:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>strfind(text, <span style="color:#A020F0">'km/h'</span>);
+strfind(text, <span style="color:#A020F0">'km/hour'</span>);
+<span style="color:#228B22">% etc.</span>
+</pre></div></div></div><p>To be more efficient, however, you can build a single phrase that applies to all of these search terms:</p><div class="informalfigure"><div id="d126e4356" class="mediaobject"><p><img src="build_an_expression.gif" alt="Flow-chart describing logic of example regular expression." height="144" width="438"></p></div></div><p>Translate this phrase into a regular expression (to be explained later in this section) and you have:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pattern = <span style="color:#A020F0">'k(ilo)?m(eters)?(/|\sper\s)h(r|our)?'</span>;
+</pre></div></div></div><p>Now locate one or more of the terms using just a single command:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>text = [<span style="color:#A020F0">'The high-speed train traveled at 250 '</span>, <span style="color:#0000FF">...</span>
+   <span style="color:#A020F0">'kilometers per hour alongside the automobile '</span>, <span style="color:#0000FF">...</span>
+   <span style="color:#A020F0">'travelling at 120 km/h.'</span>];
+regexp(text, pattern, <span style="color:#A020F0">'match'</span>)
+</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans =
+
+  1×2 cell array
+
+    {'kilometers per hour'}    {'km/h'}
+</pre></div><p>There are four MATLAB<sup>&#x00AE;</sup> functions that support searching and replacing characters using regular expressions. The first three are similar in the input values they accept and the output values they return. For details, click the links to the function reference pages.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="39%"><col class="tcol2" width="62%"></colgroup><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><a href="../ref/regexp.html"><code class="function">regexp</code></a></td><td><p>Match regular expression.</p></td></tr><tr><td><a href="../ref/regexpi.html"><code class="function">regexpi</code></a></td><td><p>Match regular expression, ignoring case.</p></td></tr><tr><td><a href="../ref/regexprep.html"><code class="function">regexprep</code></a></td><td><p>Replace part of text using regular expression.</p></td></tr><tr><td><a href="../ref/regexptranslate.html"><code class="function">regexptranslate</code></a></td><td><p>Translate text into regular expression.</p></td></tr></tbody></table></div><p>When calling any of the first three functions, pass the text to be parsed and the regular expression in the first two input arguments. When calling <code class="function">regexprep</code>, pass an additional input that is an expression that specifies a pattern for the replacement.</p></section><section><h3 class="title" id="bsei1vj-1">Steps for Building Expressions</h3><p>There are three steps involved in using regular expressions to search text for a particular term:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>
+                        <a href="regular-expressions.html#bsei1vj-2" class="intrnllnk">Identify unique
+                            patterns in the string</a>
+                    </p><p>This entails breaking up the text you want to search for into groups of
+                        like character types. These character types could be a series of lowercase
+                        letters, a dollar sign followed by three numbers and then a decimal point,
+                        etc.</p></li><li><p>
+                        <a href="regular-expressions.html#bsei1vj-3" class="intrnllnk">Express each pattern as
+                            a regular expression</a>
+                    </p><p>Use the <em class="firstterm">metacharacters</em> and operators described in
+                        this documentation to express each segment of your search pattern as a
+                        regular expression. Then combine these expression segments into the single
+                        expression to use in the search.</p></li><li><p>
+                        <a href="regular-expressions.html#bsei1vj-4" class="intrnllnk">Call the appropriate
+                            search function</a>
+                    </p><p>Pass the text you want to parse to one of the search functions, such as
+                            <a href="../ref/regexp.html"><code class="function">regexp</code></a> or <a href="../ref/regexpi.html"><code class="function">regexpi</code></a>, or to the text
+                        replacement function, <a href="../ref/regexprep.html"><code class="function">regexprep</code></a>.</p></li></ol></div><p>The example shown in this section searches a record containing contact information belonging to a group of five friends. This information includes each person's name, telephone number, place of residence, and email address. The goal is to extract specific information from the text..</p><span id="contacts_cell_array" class="anchor_target"></span><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>contacts = { <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Harry  287-625-7315  Columbus, OH  hparker@hmail.com'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Janice  529-882-1759  Fresno, CA  jan_stephens@horizon.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Mike  793-136-0975  Richmond, VA  sue_and_mike@hmail.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Nadine  648-427-9947  Tampa, FL  nadine_berry@horizon.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Jason  697-336-7728  Montrose, CO  jason_blake@mymail.com'</span>};
+</pre></div></div></div><p>The first part of the example builds a regular expression that represents the format of a standard email address. Using that expression, the example then searches the information for the email address of one of the group of friends. Contact information for Janice is in row 2 of the <code class="literal">contacts</code> cell array:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>contacts{2}
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    'Janice  529-882-1759  Fresno, CA  jan_stephens@horizon.net'
+</pre></div></div></div><section><h4 class="title" id="bsei1vj-2">Step 1 &#8212; Identify Unique Patterns in the Text</h4><p>A typical email address is made up of standard components: the user's account name, followed by an @ sign, the name of the user's internet service provider (ISP), a dot (period), and the domain to which the ISP belongs. The table below lists these components in the left column, and generalizes the format of each component in the right column.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Unique patterns of an email address</th><th>General description of each pattern</th></tr></thead><tbody><tr><td>Start with the account name<br/>
+&nbsp;<code class="literal">jan_stephens</code> &nbsp; . . .</td><td>One or more lowercase letters and underscores</td></tr><tr><td>Add '<code class="literal">@</code>'<br/>
+&nbsp;<code class="literal">jan_stephens@</code> &nbsp; . . .</td><td><code class="literal">@</code> sign</td></tr><tr><td>Add the ISP <br/>
+&nbsp;<code class="literal">jan_stephens@horizon</code> &nbsp; . . .</td><td>One or more lowercase letters, no underscores</td></tr><tr><td>Add a dot (period)<br/>
+&nbsp;<code class="literal">jan_stephens@horizon.</code> &nbsp; . . .</td><td>Dot (period) character</td></tr><tr><td>Finish with the domain<br/>
+&nbsp;<code class="literal">jan_stephens@horizon.net</code></td><td><code class="literal">com</code> or <code class="literal">net</code></td></tr></tbody></table></div></section><section><h4 class="title" id="bsei1vj-3">Step 2 &#8212; Express Each Pattern as a Regular Expression</h4><p>In this step, you translate the general formats derived in Step 1 into segments of a regular expression. You then add these segments together to form the entire expression.</p><p>The table below shows the generalized format descriptions of each character pattern in the left-most column. (This was carried forward from the right column of the table in Step 1.) The second column shows the operators or metacharacters that represent the character pattern.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="55%"><col class="tcol2" width="45%"></colgroup><thead><tr><th><strong class="emphasis bold">Description of each segment</strong></th><th>Pattern</th></tr></thead><tbody><tr><td>One or more lowercase letters and underscores</td><td><code class="literal">[a-z_]+</code></td></tr><tr><td><code class="literal">@</code> sign</td><td><code class="literal">@</code></td></tr><tr><td>One or more lowercase letters, no underscores</td><td><code class="literal">[a-z]+</code></td></tr><tr><td>Dot (period) character</td><td><code class="literal">\.</code></td></tr><tr><td><code class="literal">com</code> or <code class="literal">net</code></td><td><code class="literal">(com|net)</code></td></tr></tbody></table></div><p>Assembling these patterns into one character vector gives you the complete expression:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>email = <span style="color:#A020F0">'[a-z_]+@[a-z]+\.(com|net)'</span>;
+</pre></div></div></div></section><section><h4 class="title" id="bsei1vj-4">Step 3 &#8212; Call the Appropriate Search Function</h4><p>In this step, you use the regular expression derived in Step 2 to match an email address for one of the friends in the group. Use the <code class="literal">regexp</code> function to perform the search.</p><p>Here is the list of contact information shown earlier in this section. Each person's record occupies a row of the <code class="literal">contacts</code> cell array:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>contacts = { <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Harry  287-625-7315  Columbus, OH  hparker@hmail.com'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Janice  529-882-1759  Fresno, CA  jan_stephens@horizon.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Mike  793-136-0975  Richmond, VA  sue_and_mike@hmail.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Nadine  648-427-9947  Tampa, FL  nadine_berry@horizon.net'</span>; <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'Jason  697-336-7728  Montrose, CO  jason_blake@mymail.com'</span>};
+</pre></div></div></div><p>This is the regular expression that represents an email address, as derived in Step 2:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>email = <span style="color:#A020F0">'[a-z_]+@[a-z]+\.(com|net)'</span>;
+</pre></div></div></div><p>Call the <code class="function">regexp</code> function, passing row 2 of the <code class="literal">contacts</code> cell array and the <code class="literal">email</code> regular expression. This returns the email address for Janice. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>regexp(contacts{2}, email, <span style="color:#A020F0">'match'</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  1×1 cell array
+
+    {'jan_stephens@horizon.net'}
+</pre></div></div></div><p>MATLAB parses a character vector from left to right, “consuming” the vector as it goes. If matching characters are found, <code class="function">regexp</code> records the location and resumes parsing the character vector, starting just after the end of the most recent match.</p><p>Make the same call, but this time for the fifth person in the list:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>regexp(contacts{5}, email, <span style="color:#A020F0">'match'</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  1×1 cell array
+
+    {'jason_blake@mymail.com'}
+</pre></div></div></div><p>You can also search for the email address of everyone in the list by using the entire cell array for the input argument:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>regexp(contacts, email, <span style="color:#A020F0">'match'</span>);
+</pre></div></div></div></section></section><section><h3 class="title" id="btrug0n-1">Operators and Characters</h3><p>Regular expressions can contain characters, metacharacters, operators, tokens, and flags that specify patterns to match, as described in these sections:</p><ul><li><p><a class="intrnllnk" href="#f0-42723">Metacharacters</a></p></li><li><p><a class="intrnllnk" href="#f0-42808">Character Representation</a></p></li><li><p><a class="intrnllnk" href="#f0-43073">Quantifiers</a></p></li><li><p><a class="intrnllnk" href="#f0-42884">Grouping Operators</a></p></li><li><p><a class="intrnllnk" href="#f0-42983">Anchors</a></p></li><li><p><a class="intrnllnk" href="#brchk1t">Lookaround Assertions</a></p></li><li><p><a class="intrnllnk" href="#bqv21pe-1">Logical and Conditional Operators</a></p></li><li><p><a class="intrnllnk" href="#btrvwd4">Token Operators</a></p></li><li><p><a class="intrnllnk" href="#btrv050">Dynamic Expressions</a></p></li><li><p><a class="intrnllnk" href="#bqxyiyr-1">Comments</a></p></li><li><p><a class="intrnllnk" href="#btrv1j8">Search Flags</a></p></li></ul><section><h4 class="title" id="f0-42723">Metacharacters</h4><a class="indexterm" name="d126e4625"></a><p>Metacharacters represent letters, letter ranges, digits, and space characters. Use them to construct a generalized pattern of characters.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="19%"><col class="tcol2" width="38%"><col class="tcol3" width="43%"></colgroup><thead><tr><th><p>Metacharacter</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">.</code></p></td><td><p>Any single character, including white space</p></td><td><p><code class="literal">'..ain'</code> matches sequences of five
+consecutive characters that end with <code class="literal">'ain'</code>.</p></td></tr><tr><td><p><code class="literal">[c<sub>1</sub>c<sub>2</sub>c<sub>3</sub>]</code></p></td><td><p>Any character contained within the square brackets. The following characters are treated
+                        literally: <code class="literal">$ | . * + ?</code> and <code class="literal remove_text_wrapping">-</code> when not
+                        used to indicate a range.</p></td><td><p><code class="literal">'[rp.]ain'</code> matches <code class="literal">'rain'</code> or <code class="literal">'pain'</code> or <code class="literal">'.ain'</code>. </p></td></tr><tr><td><p><code class="literal">[^c<sub>1</sub>c<sub>2</sub>c<sub>3</sub>]</code></p></td><td><p>Any character not contained within the square brackets. The following characters are treated
+                        literally: <code class="literal">$ | . * + ?</code> and <code class="literal remove_text_wrapping">-</code> when not
+                        used to indicate a range.</p></td><td><p><code class="literal">'[^*rp]ain'</code> matches all four-letter
+sequences that end in <code class="literal">'ain'</code>, except <code class="literal">'rain'</code> and <code class="literal">'pain'</code> and <code class="literal">'*ain'</code>.
+For example, it matches <code class="literal">'gain'</code>, <code class="literal">'lain'</code>,
+or <code class="literal">'vain'</code>.</p></td></tr><tr><td><p><code class="literal">[c</code><sub>1</sub><code class="literal remove_text_wrapping">-c</code><sub>2</sub><code class="literal">]</code></p></td><td><p>Any character in the range of <code class="literal">c</code><sub>1</sub> through <code class="literal">c</code><sub>2</sub></p></td><td><p><code class="literal">'[A-G]'</code> matches a single character
+in the range of <code class="literal">A</code> through <code class="literal">G</code>.</p></td></tr><tr><td><p><code class="literal">\w</code></p></td><td><p>Any alphabetic, numeric, or underscore character. For
+English character sets, <code class="literal">\w</code> is equivalent to <code class="literal">[a-zA-Z_0-9]</code></p></td><td><p><code class="literal">'\w*'</code> identifies a word comprised of any grouping of alphabetic,
+                                                  numeric, or underscore characters.</p></td></tr><tr><td><p><code class="literal">\W</code></p></td><td><p>Any character that is not alphabetic, numeric, or underscore.
+For English character sets, <code class="literal">\W</code> is equivalent to <code class="literal">[^a-zA-Z_0-9]</code></p></td><td><p><code class="literal">'\W*'</code> identifies a term that is not a word comprised of any grouping
+                                                  of alphabetic, numeric, or underscore
+                                                  characters.</p></td></tr><tr><td><p><code class="literal">\s</code></p></td><td><p>Any white-space character; equivalent to <code class="literal">[
+\f\n\r\t\v]</code></p></td><td><p><code class="literal">'\w*n\s'</code> matches words that end with
+the letter <code class="literal">n</code>, followed by a white-space character.</p></td></tr><tr><td><p><code class="literal">\S</code></p></td><td><p>Any non-white-space character; equivalent to  <code class="literal">[^
+\f\n\r\t\v]</code></p></td><td><p><code class="literal">'\d\S'</code> matches a numeric digit followed
+by any non-white-space character.</p></td></tr><tr><td><p><code class="literal">\d</code></p></td><td><p>Any numeric digit; equivalent to <code class="literal">[0-9]</code></p></td><td><p><code class="literal">'\d*'</code> matches any number of consecutive
+digits.</p></td></tr><tr><td><p><code class="literal">\D</code></p></td><td><p>Any nondigit character; equivalent to <code class="literal">[^0-9]</code></p></td><td><p><code class="literal">'\w*\D\&gt;'</code> matches words that do
+not end with a numeric digit.</p></td></tr><tr><td><p><code class="literal">\oN</code> or <code class="literal">\o{N}</code></p></td><td><p>Character of octal value <code class="literal">N</code></p></td><td><p><code class="literal">'\o{40}'</code> matches the space character,
+defined by octal <code class="literal">40</code>.</p></td></tr><tr><td><p><code class="literal">\xN</code> or <code class="literal">\x{N}</code></p></td><td><p>Character of hexadecimal value <code class="literal">N</code></p></td><td><p><code class="literal">'\x2C'</code> matches the comma character,
+defined by hex <code class="literal">2C</code>.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="f0-42808">Character Representation</h4><span id="regexpress_character_representation" class="anchor_target"></span><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="16%"><col class="tcol2" width="84%"></colgroup><thead><tr><th><p>Operator</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">\a</code></p></td><td><p>Alarm (beep)</p></td></tr><tr><td><p><code class="literal">\b</code></p></td><td><p>Backspace</p></td></tr><tr><td><p><code class="literal">\f</code></p></td><td><p>Form feed</p></td></tr><tr><td><p><code class="literal">\n</code></p></td><td><p>New line</p></td></tr><tr><td><p><code class="literal">\r</code></p></td><td><p>Carriage return</p></td></tr><tr><td><p><code class="literal">\t</code></p></td><td><p>Horizontal tab</p></td></tr><tr><td><p><code class="literal">\v</code></p></td><td><p>Vertical tab</p></td></tr><tr><td><p><code class="literal">\<em class="replaceable"><code>char</code></em></code></p></td><td><p>Any character with special meaning in regular expressions
+that you want to match literally (for example, use <code class="literal">\\</code> to
+match a single backslash)</p></td></tr></tbody></table></div></section><section><h4 class="title" id="f0-43073">Quantifiers</h4><p>Quantifiers specify the number of times a pattern must occur in the matching text.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="16%"><col class="tcol2" width="40%"><col class="tcol3" width="43%"></colgroup><thead><tr><th><p>Quantifier</p></th><th><p>Number of Times Expression Occurs</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">expr*</code></p></td><td><p>0 or more times consecutively.</p></td><td><p><code class="literal">'\w*'</code> matches a word of any length.</p></td></tr><tr><td><p><code class="literal">expr?</code></p></td><td><p>0 times or 1 time.</p></td><td><p><code class="literal">'\w*(\.m)?'</code> matches words that optionally
+end with the extension <code class="literal">.m</code>.</p></td></tr><tr><td><p><code class="literal">expr+</code></p></td><td><p>1 or more times consecutively.</p></td><td><p><code class="literal">'&lt;img src="\w+\.gif"&gt;'</code> matches
+an <code class="literal">&lt;img&gt;</code> HTML tag when the file name contains
+one or more characters.</p></td></tr><tr><td><p><code class="literal">expr{m,n}</code></p></td><td><p>At least <code class="literal">m</code> times, but no more than <code class="literal">n</code> times
+consecutively.</p><p><code class="literal">{0,1}</code> is equivalent
+to <code class="literal">?</code>.</p></td><td><p><code class="literal">'\S{4,8}'</code> matches between four and
+eight non-white-space characters.</p></td></tr><tr><td><p><code class="literal">expr{m,}</code></p></td><td><p>At least <code class="literal">m</code> times consecutively.</p><p><code class="literal">{0,}</code> and <code class="literal">{1,}</code> are
+equivalent to <code class="literal">*</code> and <code class="literal">+</code>, respectively.</p></td><td><p><code class="literal">'&lt;a href="\w{1,}\.html"&gt;'</code> matches
+an <code class="literal">&lt;a&gt;</code> HTML tag when the file name contains
+one or more characters.</p></td></tr><tr><td><p><code class="literal">expr{n}</code></p></td><td><p>Exactly <code class="literal">n</code> times consecutively.</p><p>Equivalent
+to <code class="literal">{n,n}</code>.</p></td><td><p><code class="literal">'\d{4}'</code> matches four consecutive digits.</p></td></tr></tbody></table></div><p>Quantifiers can appear in three modes, described in the following table. <span class="emphasis"><em>q</em></span> represents any of the quantifiers in the previous table.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="42%"><col class="tcol3" width="42%"></colgroup><thead><tr><th><p>Mode</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">expr</code><span class="emphasis"><em>q</em></span></p></td><td><p>Greedy expression: match as many characters as possible.</p></td><td><p>Given the text <code class="literal">'&lt;tr&gt;&lt;td&gt;&lt;p&gt;text&lt;/p&gt;&lt;/td&gt;'</code>, the expression <code class="literal">'&lt;/?t.*&gt;'</code> matches
+all characters between <code class="literal">&lt;tr</code> and <code class="literal">/td&gt;</code>:<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><code class="literal">'&lt;tr&gt;&lt;td&gt;&lt;p&gt;text&lt;/p&gt;&lt;/td&gt;'</code></pre></div></div></div></p></td></tr><tr><td><p><code class="literal">expr</code><span class="emphasis"><em>q</em></span><code class="literal">?</code></p></td><td><p>Lazy expression: match as few characters as necessary.</p></td><td><p>Given the text<code class="literal">'&lt;tr&gt;&lt;td&gt;&lt;p&gt;text&lt;/p&gt;&lt;/td&gt;'</code>, the
+                        expression <code class="literal">'&lt;/?t.*?&gt;'</code> ends each match at the first
+                        occurrence of the closing angle bracket
+                        (<code class="literal">&gt;</code>):<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><code class="literal">'&lt;tr&gt;'   '&lt;td&gt;'   '&lt;/td&gt;'</code></pre></div></div></div></p></td></tr><tr><td><p><code class="literal">expr</code><span class="emphasis"><em>q</em></span>+</p></td><td><p>Possessive expression: match as much as possible, but
+do not rescan any portions of the text.</p></td><td><p>Given the text<code class="literal">'&lt;tr&gt;&lt;td&gt;&lt;p&gt;text&lt;/p&gt;&lt;/td&gt;'</code>, the
+                        expression <code class="literal">'&lt;/?t.*+&gt;'</code> does not return any matches,
+                        because the closing angle bracket is captured using <code class="literal">.*</code>,
+                        and is not rescanned.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="f0-42884">Grouping Operators</h4><span id="regexpress_logical_operators" class="anchor_target"></span><p>Grouping operators allow you to capture tokens, apply one operator to multiple elements, or disable backtracking in a specific group.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="42%"><col class="tcol3" width="42%"></colgroup><thead><tr><th><p>Grouping Operator</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">(expr)</code></p></td><td><p>Group elements of the expression and capture tokens.</p></td><td><p><code class="literal">'Joh?n\s(\w*)'</code> captures
+a token that contains the last name of any person with the first name <code class="literal">John</code> or <code class="literal">Jon</code>.</p></td></tr><tr><td><p><code class="literal">(?:expr)</code></p></td><td><p>Group, but do not capture tokens.</p></td><td><p><code class="literal">'(?:[aeiou][^aeiou]){2}'</code> matches two
+consecutive patterns of a vowel followed by a nonvowel, such as <code class="literal">'anon'</code>.</p><p>Without
+grouping, <code class="literal">'[aeiou][^aeiou]{2}'</code>matches a vowel followed
+by two nonvowels.</p></td></tr><tr><td><p><code class="literal">(?&gt;expr)</code></p></td><td><p>Group atomically. Do not backtrack within the group to
+complete the match, and do not capture tokens.</p></td><td><p><code class="literal">'A(?&gt;.*)Z'</code> does not match <code class="literal">'AtoZ'</code>,
+although <code class="literal">'A(?:.*)Z'</code> does. Using the atomic group, <code class="literal">Z</code> is
+captured using <code class="literal">.*</code> and is not rescanned.</p></td></tr><tr><td><p><code class="literal">(expr1|expr2)</code></p></td><td><p>Match expression <code class="literal">expr1</code> or expression <code class="literal">expr2</code>.</p><p>If
+there is a match with <code class="literal">expr1</code>, then <code class="literal">expr2</code> is
+ignored.</p><p>You can include <code class="literal">?:</code> or <code class="literal">?&gt;</code> after
+the opening parenthesis to suppress tokens or group atomically.</p></td><td><p><code class="literal">'(let|tel)\w+'</code>
+                        matches words that contain, but do not end, with <code class="literal">let</code> or
+                            <code class="literal">tel</code>. </p></td></tr></tbody></table></div></section><section><h4 class="title" id="f0-42983">Anchors</h4><span id="regexpress_lookaround_operators" class="anchor_target"></span><p>Anchors in the expression match the beginning or end of a character vector or word.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="42%"><col class="tcol3" width="42%"></colgroup><thead><tr><th><p>Anchor</p></th><th><p>Matches
+the...</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">^expr</code></p></td><td><p>Beginning of the input text.</p></td><td><p><code class="literal">'^M\w*'</code> matches a word starting with <code class="literal">M</code> at
+the beginning of the text.</p></td></tr><tr><td><p><code class="literal">expr$</code></p></td><td><p>End of the input text.</p></td><td><p><code class="literal">'\w*m$'</code> matches words ending with <code class="literal">m</code> at
+the end of the text.</p></td></tr><tr><td><p><code class="literal">\&lt;expr</code></p></td><td><p>Beginning of a word.</p></td><td><p><code class="literal">'\&lt;n\w*'</code> matches any words starting
+with <code class="literal">n</code>.</p></td></tr><tr><td><p><code class="literal">expr\&gt;</code></p></td><td><p>End of a word.</p></td><td><p><code class="literal">'\w*e\&gt;'</code> matches any words ending
+with <code class="literal">e</code>.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="brchk1t">Lookaround Assertions</h4><span id="lookaround_operators" class="anchor_target"></span><p>Lookaround assertions look for patterns that immediately precede or follow the intended match, but are not part of the match.</p><p>The pointer remains at the current location, and characters that correspond to the <code class="literal">test</code> expression are not captured or discarded. Therefore, lookahead assertions can match overlapping character groups.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="40%"><col class="tcol3" width="41%"></colgroup><thead><tr><th><p>Lookaround Assertion</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">expr(?=test)</code></p></td><td><p>Look ahead for characters that match <code class="literal">test</code>.</p></td><td><p><code class="literal">'\w*(?=ing)'</code> matches terms that are
+followed by <code class="literal">ing</code>, such as <code class="literal">'Fly'</code> and <code class="literal">'fall'</code> in
+the input text <code class="literal">'Flying, not falling.'</code></p></td></tr><tr><td><p><code class="literal">expr(?!test)</code></p></td><td><p>Look ahead for characters that do not match <code class="literal">test</code>.</p></td><td><p><code class="literal">'i(?!ng)'</code> matches instances of the
+letter <code class="literal">i</code> that are not followed by <code class="literal">ng</code>.</p></td></tr><tr><td><p><code class="literal">(?&lt;=test)expr</code></p></td><td><p>Look behind for characters that match <code class="literal">test</code>.</p></td><td><p><code class="literal">'(?&lt;=re)\w*'</code> matches terms that
+follow <code class="literal">'re'</code>, such as <code class="literal">'new'</code>, <code class="literal">'use'</code>,
+and <code class="literal">'cycle'</code> in the input text <code class="literal">'renew,
+reuse, recycle'</code></p></td></tr><tr><td><p><code class="literal">(?&lt;!test)expr</code></p></td><td><p>Look behind for characters that do not match <code class="literal">test</code>.</p></td><td><p><code class="literal">'(?&lt;!\d)(\d)(?!\d)'</code> matches single-digit
+numbers (digits that do not precede or follow other digits).</p></td></tr></tbody></table></div><p>If you specify a lookahead assertion <span class="emphasis"><em>before</em></span> an expression, the operation is equivalent to a logical <code class="literal">AND</code>.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="40%"><col class="tcol3" width="41%"></colgroup><thead><tr><th><p>Operation</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">(?=test)expr</code></p></td><td><p>Match both <code class="literal">test</code> and <code class="literal">expr</code>.</p></td><td><p><code class="literal">'(?=[a-z])[^aeiou]'</code> matches consonants.</p></td></tr><tr><td><p><code class="literal">(?!test)expr</code></p></td><td><p>Match <code class="literal">expr</code> and do not match <code class="literal">test</code>.</p></td><td><p><code class="literal">'(?![aeiou])[a-z]'</code> matches consonants.</p></td></tr></tbody></table></div><p>For more information, see <a href="lookahead-assertions-in-regular-expressions.html" class="a">Lookahead Assertions in Regular Expressions</a>.</p></section><section><h4 class="title" id="bqv21pe-1">Logical and Conditional Operators</h4><a class="indexterm" name="d126e5421"></a><a class="indexterm" name="d126e5424"></a><span id="bqm4uf2-2" class="anchor_target"></span><p>Logical and conditional operators allow you to test the state of a given condition, and then use the outcome to determine which pattern, if any, to match next. These operators support logical <code class="literal">OR</code> and <code class="literal">if</code> or <code class="literal">if/else</code> conditions. (For <code class="literal">AND</code> conditions, see <a href="regular-expressions.html#brchk1t" class="intrnllnk">Lookaround Assertions</a>.)</p><p>Conditions can be <a href="regular-expressions.html#btrvwd4" class="intrnllnk">tokens</a>, <a href="regular-expressions.html#brchk1t" class="intrnllnk">lookaround assertions</a>, or <a href="regular-expressions.html#btrv050" class="intrnllnk">dynamic expressions</a> of the form <code class="literal">(?@cmd)</code>. Dynamic expressions must return a logical or numeric value.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="27%"><col class="tcol2" width="36%"><col class="tcol3" width="37%"></colgroup><thead><tr><th><p>Conditional Operator</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">expr1|expr2</code></p></td><td><p>Match expression <code class="literal">expr1</code> or expression <code class="literal">expr2</code>.</p><p>If
+there is a match with <code class="literal">expr1</code>, then <code class="literal">expr2</code> is
+ignored.</p></td><td><p><code class="literal">'(let|tel)\w+'</code> matches words that
+start with <code class="literal">let</code> or <code class="literal">tel</code>. </p></td></tr><tr><td><p><code class="literal">(?(cond)expr)</code></p></td><td><p>If condition <code class="literal">cond</code> is <code class="literal">true</code>,
+then match <code class="literal">expr</code>.</p></td><td><p><code class="literal">'(?(?@ispc)[A-Z]:\\)'</code> matches a drive
+name, such as <code class="literal">C:\</code>, when run on a Windows<sup>&#x00AE;</sup> system.</p></td></tr><tr><td><p><code class="literal">(?(cond)expr1|expr2)</code></p></td><td><p>If condition <code class="literal">cond</code> is <code class="literal">true</code>,
+then match <code class="literal">expr1</code>. Otherwise, match <code class="literal">expr2</code>.</p></td><td><p><code class="literal">'Mr(s?)\..*?(?(1)her|his)
+\w*'</code> matches text that includes <code class="literal">her</code> when
+the text begins with <code class="literal">Mrs</code>, or that includes <code class="literal">his</code> when
+the text begins with <code class="literal">Mr</code>.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="btrvwd4">Token Operators</h4><p>Tokens are portions of the matched text that you define by enclosing part of the regular expression in parentheses. You can refer to a token by its sequence in the text (an ordinal token), or assign names to tokens for easier code maintenance and readable output.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="27%"><col class="tcol2" width="36%"><col class="tcol3" width="37%"></colgroup><thead><tr><th><p>Ordinal Token Operator</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">(expr)</code></p></td><td><p>Capture in a token the characters that match the enclosed
+expression.</p></td><td><p><code class="literal">'Joh?n\s(\w*)'</code> captures
+a token that contains the last name of any person with the first name <code class="literal">John</code> or <code class="literal">Jon</code>.</p></td></tr><tr><td><p><code class="literal">\N</code></p></td><td><p>Match the <code class="literal">N</code>th token.</p></td><td><p><code class="literal">'&lt;(\w+).*&gt;.*&lt;/\1&gt;'</code> captures
+tokens for HTML tags, such as <code class="literal">'title'</code> from the
+text <code class="literal">'&lt;title&gt;Some text&lt;/title&gt;'</code>.</p></td></tr><tr><td><p><code class="literal">(?(N)expr1|expr2)</code></p></td><td><p>If the <code class="literal">N</code>th token is found, then match <code class="literal">expr1</code>.
+Otherwise, match <code class="literal">expr2</code>.</p></td><td><p><code class="literal">'Mr(s?)\..*?(?(1)her|his)
+\w*'</code> matches text that includes <code class="literal">her</code> when
+the text begins with <code class="literal">Mrs</code>, or that includes <code class="literal">his</code> when
+the text begins with <code class="literal">Mr</code>.</p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="27%"><col class="tcol2" width="36%"><col class="tcol3" width="37%"></colgroup><thead><tr><th><p>Named Token Operator</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">(?&lt;name&gt;expr)</code></p></td><td><p>Capture in a named token the characters that match the
+enclosed expression.</p></td><td><p><code class="literal">'(?&lt;month&gt;\d+)-(?&lt;day&gt;\d+)-(?&lt;yr&gt;\d+)'</code> creates
+named tokens for the month, day, and year in an input date of the
+form <code class="literal">mm-dd-yy</code>.</p></td></tr><tr><td><p><code class="literal">\k&lt;name&gt;</code></p></td><td><p>Match the token referred to by <code class="literal">name</code>.</p></td><td><p><code class="literal">'&lt;(?&lt;tag&gt;\w+).*&gt;.*&lt;/\k&lt;tag&gt;&gt;'</code> captures
+tokens for HTML tags, such as <code class="literal">'title'</code> from the
+text <code class="literal">'&lt;title&gt;Some text&lt;/title&gt;'</code>.</p></td></tr><tr><td><p><code class="literal">(?(name)expr1|expr2)</code></p></td><td><p>If the named token is found, then match <code class="literal">expr1</code>.
+Otherwise, match <code class="literal">expr2</code>.</p></td><td><p><code class="literal">'Mr(?&lt;sex&gt;s?)\..*?(?(sex)her|his) \w*'</code> matches
+text that includes <code class="literal">her</code> when the text begins with <code class="literal">Mrs</code>,
+or that includes <code class="literal">his</code> when the text begins with <code class="literal">Mr</code>.</p></td></tr></tbody></table></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If an expression has nested parentheses, MATLAB captures tokens that correspond to the outermost set of parentheses. For example, given the search pattern <code class="literal">'(and(y|rew))'</code>, MATLAB creates a token for <code class="literal">'andrew'</code> but not for <code class="literal">'y'</code> or <code class="literal">'rew'</code>.</p></div><p>For more information, see <a href="tokens-in-regular-expressions.html" class="a">Tokens in Regular Expressions</a>.</p></section><section><h4 class="title" id="btrv050">Dynamic Expressions</h4><p>Dynamic expressions allow you to execute a MATLAB command or a regular expression to determine the text to match. </p><p>The parentheses that enclose dynamic expressions do <span class="emphasis"><em>not</em></span> create a capturing group.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="22%"><col class="tcol2" width="40%"><col class="tcol3" width="39%"></colgroup><thead><tr><th><p>Operator</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><p><code class="literal">(??expr)</code></p></td><td><p>Parse <code class="literal">expr</code> and include the resulting
+term in the match expression.</p><p>When parsed, <code class="literal">expr</code> must
+correspond to a complete, valid regular expression. Dynamic expressions
+that use the backslash escape character (<code class="literal">\</code>) require
+two backslashes: one for the initial parsing of <code class="literal">expr</code>,
+and one for the complete match.</p></td><td><p><code class="literal">'^(\d+)((??\\w{$1}))'</code> determines how
+many characters to match by reading a digit at the beginning of the
+match. The dynamic expression is enclosed in a second set of parentheses
+so that the resulting match is captured in a token. For instance,
+matching <code class="literal">'5XXXXX'</code> captures tokens for <code class="literal">'5'</code> and <code class="literal">'XXXXX'</code>.</p></td></tr><tr><td><p><code class="literal">(??@cmd)</code></p></td><td><p>Execute the MATLAB command represented by <code class="literal">cmd</code>,
+and include the output returned by the command in the match expression.</p></td><td><p><code class="literal">'(.{2,}).?(??@fliplr($1))'</code> finds palindromes
+that are at least four characters long, such as <code class="literal">'abba'</code>.</p></td></tr><tr><td><p><code class="literal">(?@cmd)</code></p></td><td><p>Execute the MATLAB command represented by <code class="literal">cmd</code>,
+but discard any output the command returns. (Helpful for diagnosing
+regular expressions.)</p></td><td><p><code class="literal">'\w*?(\w)(?@disp($1))\1\w*'</code> matches
+words that include double letters (such as <code class="literal">pp</code>),
+and displays intermediate results.</p></td></tr></tbody></table></div><p>Within dynamic expressions, use the following operators to define replacement terms.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="26%"><col class="tcol2" width="75%"></colgroup><thead><tr><th><p>Replacement Operator</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">$&amp;</code> or <code class="literal">$0</code></p></td><td><p>Portion of the input text that is currently a match</p></td></tr><tr><td><p><code class="literal">$`</code></p></td><td><p>Portion of the input text that precedes the current match</p></td></tr><tr><td><p><code class="literal">$'</code></p></td><td><p>Portion of the input text that follows the current match
+(use <code class="literal">$''</code> to represent <code class="literal">$'</code>)</p></td></tr><tr><td><p><code class="literal">$N</code></p></td><td><p><code class="literal">N</code>th token</p></td></tr><tr><td><p><code class="literal">$&lt;name&gt;</code></p></td><td><p>Named token</p></td></tr><tr><td><p><code class="literal">&#36;{cmd}</code></p></td><td><p>Output returned when MATLAB executes the command, <code class="literal">cmd</code></p></td></tr></tbody></table></div><p>For more information, see <a href="dynamic-regular-expressions.html" class="a">Dynamic Regular Expressions</a>.</p></section><section><h4 class="title" id="bqxyiyr-1">Comments</h4><p>The <code class="literal">comment</code> operator enables you to insert comments into your code to make it more maintainable. The text of the comment is ignored by MATLAB when matching against the input text.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="21%"><col class="tcol2" width="40%"><col class="tcol3" width="39%"></colgroup><thead><tr><th><p>Characters</p></th><th><p>Description</p></th><th><p>Example</p></th></tr></thead><tbody><tr><td><code class="literal">(?#comment)</code></td><td><p>Insert a comment in the regular expression. The comment
+text is ignored when matching the input.</p></td><td><p><code class="literal">'(?# Initial digit)\&lt;\d\w+'</code> includes
+a comment, and matches words that begin with a number.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="btrv1j8">Search Flags</h4><p>Search flags modify the behavior for matching expressions.</p><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="24%"><col class="tcol2" width="76%"></colgroup><thead><tr><th><p>Flag</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><code class="literal">(?-i)</code></td><td><p>Match letter case (default for <code class="function">regexp</code> and <code class="function">regexprep</code>).</p></td></tr><tr><td><code class="literal">(?i)</code></td><td><p>Do not match letter case (default for <code class="function">regexpi</code>).</p></td></tr><tr><td><code class="literal">(?s)</code></td><td><p>Match dot (<code class="literal">.</code>) in the pattern with
+any character (default).</p></td></tr><tr><td><code class="literal">(?-s)</code></td><td><p>Match dot in the pattern with any character that is not
+a newline character.</p></td></tr><tr><td><code class="literal">(?-m)</code></td><td><p>Match the <code class="literal">^</code> and <code class="literal">$</code> metacharacters
+at the beginning and end of text (default).</p></td></tr><tr><td><code class="literal">(?m)</code></td><td><p>Match the <code class="literal">^</code> and <code class="literal">$</code> metacharacters
+at the beginning and end of a line.</p></td></tr><tr><td><code class="literal">(?-x)</code></td><td><p>Include space characters and comments when matching (default).</p></td></tr><tr><td><code class="literal">(?x)</code></td><td><p>Ignore space characters and comments when matching. Use <code class="literal">'\
+'</code> and <code class="literal">'\#'</code> to match space and <code class="literal">#</code> characters.</p></td></tr></tbody></table></div><p>The expression that the flag modifies can appear either after the parentheses, such as</p><div class="code_responsive"><pre class="programlisting">(?i)\w*
+</pre></div><p>or inside the parentheses and separated from the flag with a colon (<code class="literal">:</code>), such as</p><div class="code_responsive"><pre class="programlisting">(?i:\w*)
+</pre></div><p>The latter syntax allows you to change the behavior for part of a larger expression.</p></section></section>
+            <h2 id="d126e5982">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/regexp.html"><span itemprop="name"><code class="function">regexp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/regexpi.html"><span itemprop="name"><code class="function">regexpi</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/regexprep.html"><span itemprop="name"><code class="function">regexprep</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/regexptranslate.html"><span itemprop="name"><code class="function">regexptranslate</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/pattern.html"><span itemprop="name"><code class="function">pattern</code></span></a></span></p>
+            <h3 id="d126e6000">Topics</h3><ul class="list-unstyled"><li><a href="lookahead-assertions-in-regular-expressions.html" class="a">Lookahead Assertions in Regular Expressions</a></li><li><a href="tokens-in-regular-expressions.html" class="a">Tokens in Regular Expressions</a></li><li><a href="dynamic-regular-expressions.html" class="a">Dynamic Regular Expressions</a></li><li><a href="searching-and-replacing.html" class="a">Search and Replace Text</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

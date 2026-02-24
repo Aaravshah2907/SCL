@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Read and Write HDF5 Datasets Using Dynamically Loaded Filters</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../hdf5-files.html",
+          "name": "HDF5 Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "hdf5-files"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The HDF5 library and file format enables using filters on data chunks before they are written to or after they are read from disk."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hdf5-files.html?s_tid=CRUX_lftnav" itemprop="url" id="btpwvi2"><span itemprop="title">HDF5 Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Read and Write HDF5 Datasets Using Dynamically Loaded Filters</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_bdf048dd-e441-44c3-a523-5964ea403aef" class="nav-link intrnllnk">Install Filter Plugins</a></li><li class="nav-item"><a href="#mw_5bd2c5f6-8f68-4bc1-84ee-05eff8c6da28" class="nav-link intrnllnk">Read Datasets Compressed with Third-Party Filters</a></li><li class="nav-item"><a href="#mw_13af207d-238d-442e-864d-3dd9ea4ac1a6" class="nav-link intrnllnk">Write Datasets Compressed with Third-Party Filters</a></li><li class="nav-item"><a href="#d126e15873" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_4ca7f8f5-d51c-4b20-bbbc-663fcec58efc">Read and Write HDF5 Datasets Using Dynamically Loaded Filters</h2><p>The HDF5 library and file format enables using filters on data chunks before they are
+            written to or after they are read from disk. Compression filters, for example, can
+            substantially reduce the size of the data to be stored on disk and improve the overall
+            performance of reading from and writing to an HDF5 dataset.</p><p>The HDF5 library includes a small set of internal filters, and MATLAB<sup>&#x00AE;</sup> supports most of them. While these filters work relatively well, they may
+            not always provide an optimal performance improvement. For this reason, the HDF5 library
+            and MATLAB support dynamically loaded filters, a mechanism that enables loading
+            third-party filters at run time and adding them to the filter pipeline. To use
+            dynamically-loaded filters, install filter plugins for reading datasets that were
+            created using third-party filters, or for creating and writing datasets using
+            third-party filters.</p><p>Both MATLAB high- and low-level interfaces support workflows that involve dynamically
+            loaded filters. You can read HDF5 datasets encoded using third-party filters through
+            typical workflows as long as the necessary filter plugins are available on your system.</p>
+<div class="itemizedlist"><ul><li><p>High-level interface &#8212; <a href="../ref/h5create.html"><code class="function">h5create</code></a> supports two
+                        name-value arguments for specifying the filter identifier and parameters
+                        when creating datasets.</p></li><li><p>Low-level interface &#8212; The low-level interface enables more advanced filter
+                        workflows, including <a href="../ref/propertyh5p.html#mw_ddddccc5-8319-461a-9c83-bc0449ba35c7"><code class="function">H5P.set_filter</code></a> for adding filters to the filter pipeline and
+                            <a href="../ref/filtersandcompressionh5z.html#mw_cc68a283-6d73-4d1a-a48f-3d23c31c315c"><code class="function">H5Z.filter_avail</code></a> for checking if a filter is available. To
+                        take full advantage of the low-level interface, you must be familiar with
+                        the HDF5 C API. For more information, see the documentation on the HDF5
+                        Group website about <a href="https://support.hdfgroup.org/releases/hdf5/documentation/rfc/HDF5DynamicallyLoadedFilters.pdf" target="_blank">Dynamically Loaded Filters</a>.</p></li></ul></div><p>
+</p><section><h3 class="title" id="mw_bdf048dd-e441-44c3-a523-5964ea403aef">Install Filter Plugins</h3><p>MATLAB supports three internal HDF5 filters: Deflate (GZIP), Shuffle, and
+                Fletcher32. To read or write datasets using third-party filters, install and
+                configure filter plugins.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Install the relevant filter plugins:</p>
+<div class="itemizedlist"><ul><li><p>On Windows<sup>&#x00AE;</sup> and <span class="entity">Mac</span> &#8212; Download and install the plugin binaries for
+                                    your operating system from <a href="https://www.hdfgroup.org/downloads/hdf5/" target="_blank">The
+                                        HDF Group</a>.</p><p>Install the bundle of filter plugins for the version of HDF5
+                                    shipped with your MATLAB release. To query the version of HDF5 in your
+                                        MATLAB release, use <a href="../ref/libraryh5.html#mw_30e3876e-c610-4181-bf81-e729242115dd"><code class="function">H5.get_libversion</code></a>.</p></li><li><p>On Linux<sup>&#x00AE;</sup> &#8212; Get the filter plugin source code and build it
+                                    against the version of HDF5 that is shipped with MATLAB. To obtain the filter plugin source code, see
+                                        <a href="https://github.com/HDFGroup/hdf5_plugins/blob/master/docs/RegisteredFilterPlugins.md" target="_blank">The HDF Group - Filters</a>. Alternatively, you can
+                                    build HDF5 from source using the instructions and the export map
+                                    file from <a href="https://www.mathworks.com/matlabcentral/answers/880033-build-hdf5-filter-plugins-on-linux-using-matlab-hdf5-shared-library-or-gnu-export-map">Build HDF5 Filter Plugins</a> on <span class="entity">MATLAB
+            Answers&#x2122;</span>, and then build the filter plugin against your
+                                    built HDF5 library.</p></li></ul></div><p>
+</p></li><li><p>Set the <code class="literal">HDF5_PLUGIN_PATH</code> environment variable to point
+                        to the local installation of the plugins, and then start MATLAB:</p>
+<div class="itemizedlist"><ul><li><p>On Windows &#8212; Set the environment variable using <span class="emphasis"><em>System Properties &gt; Advanced &gt; Environment
+                                        Variables</em></span>, and then start MATLAB.</p></li><li><p>On Linux and <span class="entity">Mac</span> &#8212; Set the environment variable from the terminal,
+                                    and then start MATLAB from the same terminal.</p></li></ul></div><p>
+</p></li></ol></div></section><section><h3 class="title" id="mw_5bd2c5f6-8f68-4bc1-84ee-05eff8c6da28">Read Datasets Compressed with Third-Party Filters</h3><p>To read an HDF5 dataset compressed with a third-party filter, install the filter
+                plugin on your system and set the environment variable.</p><p>To get information about filters associated with a dataset, use the
+                    <code class="literal">h5disp</code> function. For example, get the filter information for
+                the <code class="literal">myFile.h5</code> dataset. The <code class="literal">Filters</code> field
+                indicates that the filter is registered with The HDF Group. If the required filter
+                plugin is not installed, MATLAB will throw an error indicating that the filter is not
+                available.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"myFile.h5"</span>,<span style="color:#A020F0">"/SomeDataset"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 myFile.h5 
+Dataset 'SomeDataset'
+    Size:  250x250x181
+    MaxSize:  250x250xInf
+    Datatype:   H5T_IEEE_F64LE (double)
+    ChunkSize:  250x250x3
+    Filters:  unrecognized filter (H5Z-ZFP-1.0.1 (ZFP-0.5.5) github.com/LLNL/H5Z-ZFP)
+    FillValue:  0.000000</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><span class="emphasis"><em>unrecognized filter</em></span> indicates that the filter is not one
+                    of the HDF5 internal filters (e.g., Deflate); it does not indicate that the
+                    filter is not available on your system.</p></div><p>Once the necessary filter plugins are installed and configured, you can use your
+                typical workflows to read the HDF5 dataset. For more information about reading HDF5
+                data, see <a href="import-hdf5-files.html" class="a">Import HDF5 Files</a>.</p></section><section><h3 class="title" id="mw_13af207d-238d-442e-864d-3dd9ea4ac1a6">Write Datasets Compressed with Third-Party Filters</h3><p>You can create and write an HDF5 dataset using either the high-level interface
+                (such as <code class="literal">h5create</code> and <code class="literal">h5write</code>) or low-level
+                interface (such as <code class="literal">H5D.create</code> and <code class="literal">H5D.write</code>).
+                To write a dataset with a third-party filter, first identify the filter ID and
+                parameters from <a href="https://github.com/HDFGroup/hdf5_plugins/blob/master/docs/RegisteredFilterPlugins.md" target="_blank">The HDF Group - Filters page</a>.</p><p>For example, create an HDF5 dataset for a time series of 2-D arrays that grows
+                with time. Use data chunking to enable an unlimited third dimension, and use a ZFP
+                filter to compress the data chunks, as shown in this illustration.</p><div class="informalfigure"><div id="d126e15769" class="mediaobject"><p><img src="writedatasetsthirdpartyfilter.png" alt="Time series of 2-D arrays that changes with time, shown as a 3-D plot with an unlimited third dimension" height="1367" width="6032"></p></div></div><div class="orderedlist"><ol style="list-style: decimal;"><li><p><span class="emphasis"><em>Install ZFP Filter Plugin</em></span></p><p>First, check if the ZFP filter is available on your system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>H5Z.filter_avail(32013)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+     0</pre></div></div></div><p>If the function returns <code class="literal">1</code>, the plugin is installed and
+                        available on your system. If it returns <code class="literal">0</code>, install the
+                        ZFP filter plugin.</p></li><li><p><span class="emphasis"><em>Create HDF5 Dataset</em></span></p><p>When you create an HDF5 dataset using filters, its list of filters is
+                        stored as a dataset property. You can define a filter using either the
+                        high-level or the low-level interface. To use filters, you must enable data
+                        chunking because filters are applied per chunk.</p><p>Create an HDF5 dataset using the high-level <code class="literal">h5create</code>
+                        function. Specify the chunk size using the <code class="literal">ChunkSize</code>
+                        name-value argument. Specify the filter using the
+                            <code class="literal">CustomFilterID</code> and
+                            <code class="literal">CustomFilterParameters</code> name-value arguments.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N = 250;
+filterID = 32013;                      <span style="color:#228B22">% ID of the ZFP filter</span>
+filterParams = [3 3.5 2 0 0 0 0 0 0];  <span style="color:#228B22">% Parameters for the ZFP filter</span>
+filename = <span style="color:#A020F0">"myFile.h5"</span>;
+dataset = <span style="color:#A020F0">"/dataset"</span>;
+
+<span style="color:#228B22">% Delete file if it exists to restart with a clean file</span>
+<span style="color:#0000FF">if</span> exist(filename,<span style="color:#A020F0">"file"</span>)
+    delete(filename);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Create dataset with unlimited (infinite) dimension, chunking, and</span>
+<span style="color:#228B22">% with ZFP compression.</span>
+h5create(filename,dataset,[N,N,Inf],<span style="color:#A020F0">"ChunkSize"</span>,[N,N,4], <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"CustomFilterID"</span>,filterID,<span style="color:#A020F0">"CustomFilterParameters"</span>,filterParams);</pre></div></div></div><p>Alternatively, if you want more control over the filter pipeline, such as
+                        adding or updating filters, you can use the low-level interface. The
+                        low-level interface has functions for adding multiple filters to the filter
+                        pipeline (<code class="literal">H5P.set_filter</code>), for getting filters or
+                        information about filters (<code class="literal">H5P.get_filter</code>,
+                            <code class="literal">H5Z.get_filter_info</code>,
+                            <code class="literal">H5P.get_filter_by_id</code>), for updating filters
+                            (<code class="literal">H5P.modify_filter</code>), and for removing filters from
+                        the pipeline (<code class="literal">H5P.remove_filter</code>).</p><p>For example, create an HDF5 dataset using the low-level interface. Specify
+                        the chunk size and the filter using <code class="literal">H5P.set_chunk</code> and
+                            <code class="literal">H5P.set_filter</code>. You can exclude a filter from any
+                        chunks in which there was a filter failure during writing by using the
+                            <code class="literal">H5Z_FLAG_OPTIONAL</code> option. With this option, the
+                        filter does not participate in the pipeline during any subsequent reading of
+                        the chunk. To error at the first chunk in which there is a filter failure,
+                        use the <code class="literal">H5Z_FLAG_MANDATORY</code> option. Subsequent data is not
+                        written.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N = 250;
+filterID = 32013;                      <span style="color:#228B22">% ID of the ZFP filter</span>
+filterParams = [3 3.5 2 0 0 0 0 0 0];  <span style="color:#228B22">% Parameters for the ZFP filter</span>
+filename = <span style="color:#A020F0">"myFile.h5"</span>;
+dataset = <span style="color:#A020F0">"/dataset"</span>;
+
+<span style="color:#228B22">% Delete file if it exists to restart with a clean file</span>
+<span style="color:#0000FF">if</span> exist(filename,<span style="color:#A020F0">"file"</span>)
+    delete(filename);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Check that ZFP filter is available</span>
+assert(H5Z.filter_avail(filterID),<span style="color:#A020F0">"ZFP filter (ID %d) unavailable."</span>,filterID);    
+
+<span style="color:#228B22">% Create dataspace with unlimited (infinite) dimension</span>
+UNLIMITED = H5ML.get_constant_value(<span style="color:#A020F0">"H5S_UNLIMITED"</span>);
+dspaceID = H5S.create_simple(3,fliplr([N,N,0]),fliplr([N,N,UNLIMITED]));
+
+<span style="color:#228B22">% Build dataset creation property list with chunking and ZFP filter</span>
+dcplID = H5P.create(<span style="color:#A020F0">"H5P_DATASET_CREATE"</span>);
+H5P.set_chunk(dcplID,fliplr([N,N,4]));
+H5P.set_filter(dcplID,filterID,<span style="color:#A020F0">"H5Z_FLAG_MANDATORY"</span>,filterParams);
+
+<span style="color:#228B22">% Create file and dataset</span>
+fileID = H5F.create(filename,<span style="color:#A020F0">"H5F_ACC_TRUNC"</span>,<span style="color:#A020F0">"H5P_DEFAULT"</span>,<span style="color:#A020F0">"H5P_DEFAULT"</span>);
+dsetID = H5D.create(fileID,dataset,<span style="color:#A020F0">"H5T_NATIVE_DOUBLE"</span>,dspaceID,[],dcplID,<span style="color:#A020F0">"H5P_DEFAULT"</span>);
+
+<span style="color:#228B22">% Close open resources</span>
+H5D.close(dsetID);
+H5F.close(fileID);
+H5P.close(dcplID);
+H5S.close(dspaceID);</pre></div></div></div></li><li><p><span class="emphasis"><em>Write HDF5 Dataset</em></span></p><p>Write the dataset using the typical workflow. For example, this code
+                        writes time-varying data based on the MATLAB
+                        <code class="literal">peaks</code> function. The <code class="literal">for</code> loop creates a
+                        situation similar to saving a data stream, one 2-D array at a time while
+                        time flows.</p><div class="itemizedlist"><ul><li><p>Using the high-level interface:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data0 = peaks(N);
+tic;
+<span style="color:#0000FF">for</span> t = 0:180
+    data = data0 * cosd(t);
+    h5write(filename,dataset,data,[1,1,t+1],[N,N,1]);
+<span style="color:#0000FF">end</span>
+to</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 1.029668 seconds.</pre></div></div></div></li><li><p>Using the low-level interface:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data0 = peaks(N);
+tic;
+fileID = H5F.open(filename,<span style="color:#A020F0">"H5F_ACC_RDWR"</span>,<span style="color:#A020F0">"H5P_DEFAULT"</span>);
+dsetID = H5D.open(fileID,dataset);
+<span style="color:#0000FF">for</span> t = 0:180
+    data = data0 * cosd(t);
+    H5D.set_extent(dsetID,fliplr([N,N,t+1]));
+    dspaceID = H5D.get_space(dsetID);
+    H5S.select_hyperslab(dspaceID,<span style="color:#A020F0">"H5S_SELECT_SET"</span>,<span style="color:#0000FF">...</span>
+                         fliplr([0,0,t]),[],[],fliplr([N,N,1]));
+    memspaceID = H5S.create_simple(3,fliplr([N,N,1]),[]);
+    H5D.write(dsetID,<span style="color:#A020F0">"H5ML_DEFAULT"</span>,memspaceID,dspaceID,<span style="color:#A020F0">"H5P_DEFAULT"</span>,data);       
+<span style="color:#0000FF">end</span>
+H5S.close(dspaceID);
+H5D.close(dsetID);
+H5F.close(fileID);
+toc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 0.598005 seconds.</pre></div></div></div></li></ul></div><p>The low-level workflow is more efficient because it requires opening and
+                        closing the file and the dataset only once, before and after the loop,
+                        respectively. In the high-level workflow, these operations are performed
+                        each time <code class="literal">h5write</code> is called. The low-level interface also
+                        allows setting the chunk cache size, which can improve the
+                        performance.</p></li><li><p><span class="emphasis"><em>Read and Display HDF5 Dataset</em></span></p><p>You can read HDF5 datasets compressed using dynamically loaded filters
+                        like any other dataset, as long as relevant filter plugins are installed and
+                        the environment variable <code class="literal">HDF5_PLUGIN_PATH</code> is set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = h5read(filename,dataset,[50,25,1],[3,5,2],[50,40,45])
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>data(:,:,1) =
+    0.0145    0.1045   -3.0375   -5.4901   -0.7706
+   -0.2130   -0.6894    3.7574    0.1285    2.3196
+   -0.2966   -2.3229    0.5124    0.4879    2.4735
+data(:,:,2) =
+    0.0102    0.0739   -2.1478   -3.8821   -0.5449
+   -0.1506   -0.4875    2.6569    0.0909    1.6402
+   -0.2097   -1.6425    0.3623    0.3450    1.7490</pre></div></div></div></li></ol></div></section>
+            <h2 id="d126e15873">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5create.html"><span itemprop="name"><code class="function">h5create</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5disp.html"><span itemprop="name"><code class="function">h5disp</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5read.html"><span itemprop="name"><code class="function">h5read</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/h5write.html"><span itemprop="name"><code class="function">h5write</code></span></a></span></p>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

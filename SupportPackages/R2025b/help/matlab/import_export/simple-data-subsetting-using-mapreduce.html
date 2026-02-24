@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Simple Data Subsetting Using MapReduce</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mapreduce.html",
+          "name": "MapReduce"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mapreduce"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simple Data Subsetting Using MapReduce",
+          "description": "Extract a subset of a large data set.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.SimpleDataSubsettingUsingMapReduceExample",
+          "name": "SimpleDataSubsettingUsingMapReduceExample",
+          "url": "simple-data-subsetting-using-mapreduce.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/SimpleDataSubsettingUsingMapReduceExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimpleDataSubsettingUsingMapReduceExample.mlx",
+        "subsettingMapper.m",
+        "subsettingMapperGeneric.m",
+        "subsettingReducer.m",
+        "airlinesmall.csv"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to extract a subset of a large data set."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../includes/product/images/doc_center/DefaultImage.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mapreduce.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetb8-1"><span itemprop="title">MapReduce</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Simple Data Subsetting Using MapReduce</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-1" class="nav-link intrnllnk">Prepare Data</a></li><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-2" class="nav-link intrnllnk">Run MapReduce</a></li><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-3" class="nav-link intrnllnk">Display Results</a></li><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-4" class="nav-link intrnllnk">Delay Patterns</a></li><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-5" class="nav-link intrnllnk">Rerun MapReduce</a></li><li class="nav-item"><a href="#SimpleDataSubsettingUsingMapReduceExample-6" class="nav-link intrnllnk">Verify Results</a></li><li class="nav-item"><a href="#d126e26740" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="bujibs_-1_1">Simple Data Subsetting Using MapReduce</h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/SimpleDataSubsettingUsingMapReduceExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-SimpleDataSubsettingUsingMapReduceExample"><meta itemprop="exampletitle" content="Simple Data Subsetting Using MapReduce"></div><span id="SimpleDataSubsettingUsingMapReduceExample" class="anchor_target"></span><p class="shortdesc">This example shows how to extract a subset of a large data set.</p><p>There are two aspects of subsetting, or performing a query. One is selecting a subset of the variables (columns) in the data set. The other is selecting a subset of the observations, or rows.</p><p>In this example, the selection of variables takes place in the definition of the datastore. (The map function could perform a further sub-selection of variables, but that is not within the scope of this example). In this example, the role of the map function is to perform the selection of observations. The role of the reduce function is to concatenate the subsetted records extracted by each call to the map function. This approach assumes that the data set can fit in memory after the Map phase.</p><div class="procedure"><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-1">Prepare Data</h3><p>Create a datastore using the <code class="literal">airlinesmall.csv</code> data set. This 12-megabyte data set contains 29 columns of flight information for several airline carriers, including arrival and departure times. This example uses 15 variables out of the 29 variables available in the data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>, <span style="color:#A020F0">'TreatAsMissing'</span>, <span style="color:#A020F0">'NA'</span>);
+ds.SelectedVariableNames = ds.VariableNames([1 2 5 9 12 13 15 16 17 <span style="color:#0000FF">...</span>
+    18 20 21 25 26 27]);
+ds.SelectedVariableNames</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×15 cell</em></span>
+    {'Year'}    {'Month'}    {'DepTime'}    {'UniqueCarrier'}    {'ActualElapsedTime'}    {'CRSElapsedTime'}    {'ArrDelay'}    {'DepDelay'}    {'Origin'}    {'Dest'}    {'TaxiIn'}    {'TaxiOut'}    {'CarrierDelay'}    {'WeatherDelay'}    {'NASDelay'}
+
+</pre></div></div></div><p>The datastore treats <code class="literal">'NA'</code> values as missing, and replaces the missing values with <code class="literal">NaN</code> values by default. Additionally, the <code class="literal">SelectedVariableNames</code> property allows you to work with only the specified variables of interest, which you can verify using <code class="literal">preview</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>preview(ds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>8×15 table</em></span>
+    Year    Month    DepTime    UniqueCarrier    ActualElapsedTime    CRSElapsedTime    ArrDelay    DepDelay    Origin      Dest      TaxiIn    TaxiOut    CarrierDelay    WeatherDelay    NASDelay
+    ____    _____    _______    _____________    _________________    ______________    ________    ________    _______    _______    ______    _______    ____________    ____________    ________
+
+    1987     10        642         {'PS'}                53                 57              8          12       {'LAX'}    {'SJC'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10       1021         {'PS'}                63                 56              8           1       {'SJC'}    {'BUR'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10       2055         {'PS'}                83                 82             21          20       {'SAN'}    {'SMF'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10       1332         {'PS'}                59                 58             13          12       {'BUR'}    {'SJC'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10        629         {'PS'}                77                 72              4          -1       {'SMF'}    {'LAX'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10       1446         {'PS'}                61                 65             59          63       {'LAX'}    {'SJC'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10        928         {'PS'}                84                 79              3          -2       {'SAN'}    {'SFO'}     NaN        NaN          NaN             NaN           NaN   
+    1987     10        859         {'PS'}               155                143             11          -1       {'SEA'}    {'LAX'}     NaN        NaN          NaN             NaN           NaN   
+
+</pre></div></div></div><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-2">Run MapReduce</h3><p>The <code class="literal">mapreduce</code> function requires a map function and a reduce function as inputs. The mapper receives blocks of data and outputs intermediate results. The reducer reads the intermediate results and produces a final result.</p><p>In this example, the mapper receives a table with the variables described by the <code class="literal">SelectedVariableNames</code> property in the datastore. Then, the mapper extracts flights that had a high amount of delay after pushback from the gate. Specifically, it identifies flights with a duration exceeding 2.5 times the length of the scheduled duration. The mapper ignores flights prior to 1995, because some of the variables of interest for this example were not collected before that year.</p><p>Display the map function file.</p><div class="code_responsive"><pre id="d126e26627" class="programlisting"><span style="color:#0000FF">function</span> subsettingMapper(data, ~, intermKVStore)
+  <span style="color:#228B22">% Select flights from 1995 and later that had exceptionally long</span>
+  <span style="color:#228B22">% elapsed flight times (including both time on the tarmac and time in </span>
+  <span style="color:#228B22">% the air).</span>
+  idx = data.Year &gt; 1994 &amp; (data.ActualElapsedTime - data.CRSElapsedTime)<span style="color:#0000FF">...</span>
+    &gt; 1.50 * data.CRSElapsedTime;
+  intermVal = data(idx,:);
+
+  add(intermKVStore,<span style="color:#A020F0">'Null'</span>,intermVal);
+<span style="color:#0000FF">end</span>
+</pre></div><p>The reducer receives the subsetted observations obtained from the mapper and simply concatenates them into a single table. The reducer returns one key (which is relatively meaningless) and one value (the concatenated table).</p><p>Display the reduce function file.</p><div class="code_responsive"><pre id="d126e26631" class="programlisting"><span style="color:#0000FF">function</span> subsettingReducer(~, intermValList, outKVStore)
+  <span style="color:#228B22">% get all intermediate results from the list</span>
+  outVal = {};
+
+  <span style="color:#0000FF">while</span> hasnext(intermValList)
+    outVal = [outVal; getnext(intermValList)];
+  <span style="color:#0000FF">end</span>
+  <span style="color:#228B22">% Note that this approach assumes the concatenated intermediate values (the</span>
+  <span style="color:#228B22">% subset of the whole data) fit in memory.</span>
+    
+  add(outKVStore, <span style="color:#A020F0">'Null'</span>, outVal);
+<span style="color:#0000FF">end</span>
+</pre></div><p>Use <code class="literal">mapreduce</code> to apply the map and reduce functions to the datastore, <code class="literal">ds</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = mapreduce(ds, @subsettingMapper, @subsettingReducer);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>********************************
+*      MAPREDUCE PROGRESS      *
+********************************
+Map   0% Reduce   0%
+Map  16% Reduce   0%
+Map  32% Reduce   0%
+Map  48% Reduce   0%
+Map  65% Reduce   0%
+Map  81% Reduce   0%
+Map  97% Reduce   0%
+Map 100% Reduce   0%
+Map 100% Reduce 100%
+</pre></div></div></div><p><code class="literal">mapreduce</code> returns an output datastore, <code class="literal">result</code>, with files in the current folder.</p><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-3">Display Results</h3><p>Look for patterns in the first 10 variables that were pulled from the data set. These variables identify the airline, the destination, and the arrival airports, as well as some basic delay information.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r = readall(result);
+tbl = r.Value{1};
+tbl(:,1:10)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>37×10 table</em></span>
+    Year    Month    DepTime    UniqueCarrier    ActualElapsedTime    CRSElapsedTime    ArrDelay    DepDelay    Origin      Dest  
+    ____    _____    _______    _____________    _________________    ______________    ________    ________    _______    _______
+
+    1995      6       1601         {'US'}               162                 58            118          14       {'BWI'}    {'PIT'}
+    1996      6       1834         {'CO'}               241                 75            220          54       {'IAD'}    {'EWR'}
+    1997      1        730         {'DL'}               110                 43            137          70       {'ATL'}    {'GSP'}
+    1997      4       1715         {'UA'}               152                 57            243         148       {'IND'}    {'ORD'}
+    1997      9       2232         {'NW'}               143                 50            115          22       {'DTW'}    {'CMH'}
+    1997     10       1419         {'CO'}               196                 58            157          19       {'DFW'}    {'IAH'}
+    1998      3       2156         {'DL'}               139                 49            146          56       {'TYS'}    {'ATL'}
+    1998     10       1803         {'NW'}               291                 81            213           3       {'MSP'}    {'ORD'}
+    2000      5        830         {'WN'}               140                 55             85           0       {'DAL'}    {'HOU'}
+    2000      8       1630         {'CO'}               357                123            244          10       {'EWR'}    {'CLT'}
+    2002      6       1759         {'US'}               260                 67            192          -1       {'LGA'}    {'BOS'}
+    2003      3       1214         {'XE'}               214                 84            124          -6       {'GPT'}    {'IAH'}
+    2003      3        604         {'XE'}               175                 60            114          -1       {'LFT'}    {'IAH'}
+    2003      4       1556         {'MQ'}               142                 52            182          92       {'PIA'}    {'ORD'}
+    2003      5       1954         {'US'}               127                 48             78          -1       {'RDU'}    {'CLT'}
+    2003      7       1250         {'FL'}               261                 95            166           0       {'ATL'}    {'IAD'}
+      &#x22EE;
+
+</pre></div></div></div><p>Looking at the first record, a US Air flight departed the gate 14 minutes after its scheduled departure time and arrived 118 minutes late. The flight experienced a delay of 104 minutes after pushback from the gate which is the difference between <code class="literal">ActualElapsedTime</code> and <code class="literal">CRSElapsedTime</code>.</p><p>There is one anomalous record. In February of 2006, a JetBlue flight had a departure time of 3:24 a.m. and an elapsed flight time of 1650 minutes, but an arrival delay of only 415 minutes. This might be a data entry error.</p><p>Otherwise, there are no clear cut patterns concerning when and where these exceptionally delayed flights occur. No airline, time of year, time of day, or single airport dominates. Some intuitive patterns, such as O'Hare (ORD) in the winter months, are certainly present.</p><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-4">Delay Patterns</h3><p>Beginning in 1995, the airline system performance data began including measurements of how much delay took place in the taxi phases of a flight. Then, in 2003, the data also began to include certain causes of delay.</p><p>Examine these two variables in closer detail.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tbl(:,[1,7,8,11:end])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>37×8 table</em></span>
+    Year    ArrDelay    DepDelay    TaxiIn    TaxiOut    CarrierDelay    WeatherDelay    NASDelay
+    ____    ________    ________    ______    _______    ____________    ____________    ________
+
+    1995      118          14          7        101          NaN             NaN           NaN   
+    1996      220          54         12        180          NaN             NaN           NaN   
+    1997      137          70          2         12          NaN             NaN           NaN   
+    1997      243         148          4         38          NaN             NaN           NaN   
+    1997      115          22          4         98          NaN             NaN           NaN   
+    1997      157          19          6         95          NaN             NaN           NaN   
+    1998      146          56          9         47          NaN             NaN           NaN   
+    1998      213           3         11        205          NaN             NaN           NaN   
+    2000       85           0          5         51          NaN             NaN           NaN   
+    2000      244          10          4        273          NaN             NaN           NaN   
+    2002      192          -1          6        217          NaN             NaN           NaN   
+    2003      124          -6         13        131          NaN             NaN           NaN   
+    2003      114          -1          8        106          NaN             NaN           NaN   
+    2003      182          92          9        106          NaN             NaN           NaN   
+    2003       78          -1          5         90          NaN             NaN           NaN   
+    2003      166           0         11        170            0               0           166   
+      &#x22EE;
+
+</pre></div></div></div><p>For these exceptionally delayed flights, the great majority of delay occurs during taxi out, on the tarmac. Moreover, the major cause of the delay is <span class="emphasis"><em>NASDelay</em></span>. NAS delays are holds imposed by the national aviation authorities on departures headed for an airport that is forecast to be unable to handle all scheduled arrivals at the time the flight is scheduled to arrive. NAS delay programs in effect at any given time are posted at <a href="https://nasstatus.faa.gov/" target="_blank"><span class="emphasis underline"><code class="literal">https:/</code></span><span class="emphasis underline"><code class="literal">/</code></span><span class="emphasis underline"><code class="literal">nasstatus.</code></span><span class="emphasis underline"><code class="literal">faa.</code></span><span class="emphasis underline"><code class="literal">gov/</code></span></a>.</p><p>Preferably, when NAS delays are imposed, boarding of the aircraft is simply delayed. Such a delay would show up as a departure delay. However, for most of the flights selected for this example, the delays took place largely after departure from the gate, leading to a taxi delay.</p><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-5">Rerun MapReduce</h3><p>The previous map function had the subsetting criteria hard-wired in the function file. A new map function would have to be written for any new query, such as flights departing San Francisco on a given day. </p><p>A generic mapper can be more adaptive by separating out the subsetting criteria from the map function definition and using an anonymous function to configure the mapper for each query. This generic mapper uses a fourth input argument that supplies the desired query variable.</p><p>Display the generic map function file.</p><div class="code_responsive"><pre id="d126e26698" class="programlisting"><span style="color:#0000FF">function</span> subsettingMapperGeneric(data, ~, intermKVStore, subsetter)
+  intermKey = <span style="color:#A020F0">'Null'</span>;
+  intermVal = data(subsetter(data), :);
+  add(intermKVStore,intermKey,intermVal);
+<span style="color:#0000FF">end</span>
+</pre></div><p>Create an anonymous function that performs the same selection of rows that is hard-coded in <code class="literal">subsettingMapper</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>inFlightDelay150percent = <span style="color:#0000FF">...</span>
+   @(data) data.Year &gt; 1994 &amp; <span style="color:#0000FF">...</span>
+   (data.ActualElapsedTime-data.CRSElapsedTime) &gt; 1.50*data.CRSElapsedTime;</pre></div></div></div><p>Since the <code class="literal">mapreduce</code> function requires the map and reduce functions to accept exactly three inputs, use another anonymous function to specify the fourth input to the mapper, <code class="literal">subsettingMapperGeneric</code>. Subsequently, you can use this anonymous function to call <code class="literal">subsettingMapperGeneric</code> using only three arguments (the fourth is implicit).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>configuredMapper = <span style="color:#0000FF">...</span>
+    @(data, info, intermKVStore) subsettingMapperGeneric(data, info, <span style="color:#0000FF">...</span>
+    intermKVStore, inFlightDelay150percent);</pre></div></div></div><p>Use <code class="literal">mapreduce</code> to apply the generic map function to the input datastore.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result2 = mapreduce(ds, configuredMapper, @subsettingReducer);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>********************************
+*      MAPREDUCE PROGRESS      *
+********************************
+Map   0% Reduce   0%
+Map  16% Reduce   0%
+Map  32% Reduce   0%
+Map  48% Reduce   0%
+Map  65% Reduce   0%
+Map  81% Reduce   0%
+Map  97% Reduce   0%
+Map 100% Reduce   0%
+Map 100% Reduce 100%
+</pre></div></div></div><p><code class="literal">mapreduce</code> returns an output datastore, <code class="literal">result2</code>, with files in the current folder.</p><h3 class="title" id="SimpleDataSubsettingUsingMapReduceExample-6">Verify Results</h3><p>Confirm that the generic mapper gets the same result as with the hard-wired subsetting logic.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r2 = readall(result2);
+tbl2 = r2.Value{1};
+
+<span style="color:#0000FF">if</span> isequaln(tbl, tbl2)
+    disp(<span style="color:#A020F0">'Same results with the configurable mapper.'</span>)
+<span style="color:#0000FF">else</span>
+    disp(<span style="color:#A020F0">'Oops, back to the drawing board.'</span>)
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Same results with the configurable mapper.
+</pre></div></div></div></div>
+<h2 id="d126e26740">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreduce.html"><span itemprop="name"><code class="function">mapreduce</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.tabulartextdatastore.html"><span itemprop="name"><code class="function">tabularTextDatastore</code></span></a></span></p>
+<h3 id="d126e26749">Topics</h3><ul class="list-unstyled"><li><a href="getting-started-with-mapreduce.html" class="a">Getting Started with MapReduce</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

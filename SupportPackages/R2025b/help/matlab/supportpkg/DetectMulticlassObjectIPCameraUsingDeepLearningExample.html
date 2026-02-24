@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Detect Objects from Images Acquired by IP Camera Using YOLO v2 Detector</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../hardware-network-comm.html",
+          "name": "Hardware and Network Communication"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../cameras-and-mobile-sensing.html",
+          "name": "Cameras and Mobile Sensing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../ipcamera.html",
+          "name": "IP Cameras"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 7,
+
+          "item": {
+          "@id": "../ipcamera-image-acquistion.html",
+          "name": "Image Acquisition"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "ipcamera-image-acquistion"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Detect Objects from Images Acquired by IP Camera Using YOLO v2 Detector",
+          "description": "Perform multiclass object detection on an image data set acquired using an IP camera.",
+          "thumbnailURL": "../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "ipcamera.DetectMulticlassObjectIPCameraUsingDeepLearningExample",
+          "name": "DetectMulticlassObjectIPCameraUsingDeepLearningExample",
+          "url": "DetectMulticlassObjectIPCameraUsingDeepLearningExample.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('ipcamera/DetectMulticlassObjectIPCameraUsingDeepLearningExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DetectMulticlassObjectIPCameraUsingDeepLearningExample.mlx",
+        "helperSanitizeBoxes.m",
+        "imageLabels.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to perform multiclass object detection on an image data set acquired using an IP camera."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_01.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/livecontrolpopover.js"></script>
+
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-network-comm.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware and Network Communication</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cameras-and-mobile-sensing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Cameras and Mobile Sensing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../ipcamera.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">IP Cameras</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../ipcamera-image-acquistion.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_69ee647b-153e-4b89-bae1-4ebe0ad2b3f3"><span itemprop="title">Image Acquisition</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Detect Objects from Images Acquired by IP Camera Using YOLO v2 Detector</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-1" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-2" class="nav-link intrnllnk">Acquire Images Using IP Camera</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-4" class="nav-link intrnllnk">Prepare Image Data for Training</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-5" class="nav-link intrnllnk">Define YOLO v2 Object Detector Architecture</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-7" class="nav-link intrnllnk">Train YOLOv2 Object Detector</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-8" class="nav-link intrnllnk">Detect Multiple Indoor Objects</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-9" class="nav-link intrnllnk">Evaluate Object Detector</a></li><li class="nav-item"><a href="#DetectMulticlassObjectIPCameraUsingDeepLearningExample-10" class="nav-link intrnllnk">References</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=ipcamera-image-acquistion&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_acba9dac-52e4-42e2-aa9e-654f8ad711da">Detect Objects from Images Acquired by IP Camera Using YOLO v2 Detector</h1><div class="examples_short_list hidden_ios_android" data-products="ML ML_IP_CAMERAS VP NN YOLOV2"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.addons.showAddon('ML_IP_CAMERAS')">MATLAB Support Package for IP Cameras</a></li><li><a href="matlab:matlab.internal.addons.showAddon('VP')">Computer Vision Toolbox</a></li><li><a href="matlab:matlab.internal.addons.showAddon('NN')">Deep Learning Toolbox</a></li><li><a href="matlab:matlab.internal.addons.showAddon('YOLOV2')">Computer Vision Toolbox Model for YOLO v2 Object Detection</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('ipcamera/DetectMulticlassObjectIPCameraUsingDeepLearningExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="ipcamera-DetectMulticlassObjectIPCameraUsingDeepLearningExample"><meta itemprop="exampletitle" content="Detect Objects from Images Acquired by IP Camera Using YOLO v2 Detector"></div><span id="DetectMulticlassObjectIPCameraUsingDeepLearningExample" class="anchor_target"></span><p class="shortdesc">This example shows how to perform multiclass object detection on an image data set acquired using an IP camera. </p><div class="procedure"><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-1">Overview</h3><p>Deep learning is a powerful machine learning technique that you can use to train robust multiclass object detectors such as YOLO v2, YOLO v4, YOLOX, SSD, and Faster R-CNN. This example trains a YOLO v2 multiclass object detector using the <a href="../../vision/ref/trainyolov2objectdetector.html" data-docid="vision_ref#mw_0ff9d26a-9a79-4333-a1b1-ba03c8539ee3" class="a"><code class="olink">trainYOLOv2ObjectDetector</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span> function. The trained object detector is able to detect and identify multiple indoor objects. For more information about training other multiclass object detectors, such as YOLOX, YOLO v4, SSD, and Faster R-CNN, see <a href="../../vision/ug/getting-started-with-object-detection-using-deep-learning.html" data-docid="vision_ug#mw_88256fa9-8fad-4c50-a287-2b02b5ebcc5e" class="a">Get Started with Object Detection Using Deep Learning</a><span role="cross_prod"> (Computer Vision Toolbox)</span> and <a href="../../vision/ug/choose-an-object-detector.html" data-docid="vision_ug#mw_dc0e49bf-3c00-412b-9bcf-fbf229e03e55" class="a">Choose an Object Detector</a><span role="cross_prod"> (Computer Vision Toolbox)</span>.</p><p>The example shows you how to train the YOLO v2 object detector using either the image data set included with this example or with a custom data set. For more information on the detector, see <a href="../../vision/ref/yolov2objectdetector.html" data-docid="vision_ref#mw_f01b629f-3ec5-4c93-b854-29bb015a144d" class="a"><code class="olink">yolov2ObjectDetector</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span>.</p><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-2">Acquire Images Using IP Camera</h3><p>You can acquire the image data set using an IP camera and create a directory to save the image data set manually. You can also download the image data set, included with this example.</p><h4 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-3"><strong class="emphasis bold">Capture Image Data Manually</strong></h4><p>If you want to capture the image data set manually, click the checkbox for <code class="literal">iscollectData</code> and start capturing the data. While capturing the images, to have a more diversified data set, make sure to capture the images under different lighting conditions throughout the day and capture them from different angles. If you use the image data set provided in this example, skip this section<strong class="emphasis bold">. </strong></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Check this if you want to manually collect the data</span>
+iscollectData = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_05.png"><span data-examplename="openExample('ipcamera/DetectMulticlassObjectIPCameraUsingDeepLearningExample')" tabindex="0" data-controlvalue="false" data-bs-trigger="focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">false</span></span>;
+<span style="color:#0000FF">if</span> iscollectData  
+    <span style="color:#228B22">% Directory to save the images.</span>
+    datapath = <span style="color:#A020F0">'imageSet'</span>
+
+    <span style="color:#0000FF">if</span> ~exist(datapath,<span style="color:#A020F0">"dir"</span>)
+        mkdir(datapath);
+    <span style="color:#0000FF">end</span>  
+
+    <span style="color:#228B22">% Create a connection to the IP Camera by setting the URL for your IP camera.</span>
+    cam = ipcam(<span style="color:#A020F0">'http://172.48.214.164:8080/video'</span>)
+    
+    <span style="color:#228B22">% Acquire images and store as files in the directory.</span>
+    <span style="color:#0000FF">for</span> i = 1:400
+        pause(1); <span style="color:#228B22">% Set the pause, based on the interval at which you want to capture the image.</span>
+        img = snapshot(cam);
+        imwrite(img,sprintf(<span style="color:#A020F0">"%s\\image_%d.jpg"</span>,datapath,i));
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-4">Prepare Image Data for Training</h3><p>If you want to download the image data set provided with this example run the following command.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">if</span> ~iscollectData
+    dsURL = <span style="color:#A020F0">"https://www.mathworks.com/supportfiles/downloads/SupportPackageExamples/mlhw/ipcamera/emptyOfficeImages.zip"</span>; 
+    outputFolder = fullfile(tempdir,<span style="color:#A020F0">"emptyOfficeImages"</span>); 
+    imagesZip = fullfile(outputFolder,<span style="color:#A020F0">"emptyOfficeImages.zip"</span>);
+    
+    <span style="color:#0000FF">if</span> ~exist(imagesZip,<span style="color:#A020F0">"file"</span>)   
+        mkdir(outputFolder)       
+        disp(<span style="color:#A020F0">"Downloading Empty Office Dataset images..."</span>) 
+        websave(imagesZip,dsURL)
+        unzip(imagesZip,fullfile(outputFolder))  
+    <span style="color:#0000FF">end</span>
+    datapath = fullfile(outputFolder,<span style="color:#A020F0">"emptyOfficeImages"</span>);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create an <a href="../ref/matlab.io.datastore.imagedatastore.html" data-docid="matlab_ref#butueui-1" class="a"><code class="olink">imageDatastore</code></a> object to store the images from the data set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>imds = imageDatastore(datapath,IncludeSubfolders=true, FileExtensions=<span style="color:#A020F0">".jpg"</span>);</pre></div></div></div><p>You can use <a href="../../vision/ref/imagelabeler-app.html" data-docid="vision_ref#mw_96fe579b-b33c-4798-a463-6fdeee7cd214" class="a">Image Labeler</a><span role="cross_prod"> (Computer Vision Toolbox)</span> to define the labels for objects (classes) that you want to detect. You can then export the labeled ground truth to a MAT file. For more information on how to define labels and export the ground truth, see <a href="../../vision/ug/get-started-with-the-image-labeler.html" data-docid="vision_ug#mw_556d4096-67ca-484a-8ff6-4b493706517f" class="a">Get Started with the Image Labeler</a><span role="cross_prod"> (Computer Vision Toolbox)</span>. You can then create a datastore for the bounding box label data using <a href="../../vision/ref/boxlabeldatastore.html" data-docid="vision_ref#mw_ea7fe152-be5c-4868-acb6-7c5d7fd40b93" class="a"><code class="olink">boxLabelDatastore</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span>.</p><p>In this example, you label objects from four target classes: <code class="literal">box</code>, <code class="literal">locker</code>, <code class="literal">monitor</code>, and <code class="literal">fireExtinguisher</code>. You can use the datastore in the <code class="literal">imageLabels.mat</code> file attached with this example.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create the helper function.</span>
+<span style="color:#0000FF">function</span> data = resizeImageAndLabel(data,targetSize)
+<span style="color:#228B22">% Resize the images and scale the corresponding bounding boxes.</span>
+
+    scale = (targetSize(1:2))./size(data{1},[1 2]);
+    data{1} = imresize(data{1},targetSize(1:2));
+    data{2} = bboxresize(data{2},scale);
+
+    data{2} = floor(data{2});
+    imageSize = targetSize(1:2);
+    boxes = data{2};
+    <span style="color:#228B22">% Set boxes with negative values to the value 1.</span>
+    boxes(boxes &lt;= 0) = 1;
+    
+    <span style="color:#228B22">% Validate if bounding box in within image boundary.</span>
+    boxes(:,3) = min(boxes(:,3),imageSize(2)-boxes(:,1)-1);
+    boxes(:,4) = min(boxes(:,4),imageSize(1)-boxes(:,2)-1);
+    
+    data{2} = boxes; 
+
+<span style="color:#0000FF">end</span>
+officeLabelStruct = load(<span style="color:#A020F0">'imageLabels.mat'</span>);
+officeblds= officeLabelStruct.BBstore;</pre></div></div></div><p>The size of all the images within the data set is [720 1024 3]. Based on the object analysis, the smallest objects are approximately 20-by-20 pixels. </p><p>To maintain a balance between accuracy and the computational cost of running the example, specify a size of [720 720 3]. This size ensures that resizing each image does not drastically affect the spatial resolution of objects in this data set. If you adapt this example for your own data set, you must change the training image size based on your data. Determining the optimal input size requires empirical analysis.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>inputSize = [720 720 3];</pre></div></div></div><p>Combine the image and bounding box datastores.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>officeds = combine(imds,officeblds);</pre></div></div></div><p>Use <a href="../ref/matlab.io.datastore.transform.html" data-docid="matlab_ref#mw_16489124-fe7e-4381-b715-8d3b8b30a9f6" class="a"><code class="olink">transform</code></a> to apply a preprocessing function that resizes images and their corresponding bounding boxes. The function also sanitizes the bounding boxes to convert them to a valid shape. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>preprocessedData = transform(officeds,@(data)resizeImageAndLabel(data,inputSize));</pre></div></div></div><p>Display one of the preprocessed images and its bounding box labels to verify that the objects in the resized images have visible features.  </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>officedata = preview(preprocessedData);
+I = officedata{1};
+bbox = officedata{2};
+label = officedata{3};
+imshow(I)
+showShape(<span style="color:#A020F0">"rectangle"</span>,bbox,Label=label);</pre></div></div></div><div class="informalfigure"><div id="d126e14278" class="mediaobject"><p><img src="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_01.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="860"></p></div></div><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-5">Define YOLO v2 Object Detector Architecture</h3><p>Configure a YOLO v2 object detector using these steps:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Choose a pretrained detector for transfer learning.</p></li><li><p>Choose a training image size.</p></li><li><p>Select which network features to use for predicting object locations and classes.</p></li><li><p>Estimate anchor boxes from the preprocessed data used to train the object detector.</p></li></ol></div><p>Select a pretrained Tiny YOLO v2 detector for transfer learning. Tiny YOLO v2 is a lightweight network trained on COCO [<a href="DetectMulticlassObjectIPCameraUsingDeepLearningExample.html#mw_rtc_DetectMulticlassObjectIPCameraUsingDeepLearningExample_M_0417" class="intrnllnk">1</a>], a large object detection data set. Transfer learning using a pretrained object detector reduces training time compared to training a network from scratch. Alternatively, you can use the larger Darknet-19 YOLO v2 pretrained detector, but consider starting with a simpler network to establish a performance baseline before experimenting with a larger network. Using the Tiny or Darknet-19 YOLO v2 pretrained detector requires the Computer Vision Toolbox&#8482; Model for YOLO v2 Object Detection support package. For more information see, <a href="../../vision/ref/yolov2objectdetector.html" data-docid="vision_ref#mw_f01b629f-3ec5-4c93-b854-29bb015a144d" class="a"><code class="olink">yolov2ObjectDetector</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pretrainedDetector = yolov2ObjectDetector(<span style="color:#A020F0">"tiny-yolov2-coco"</span>);</pre></div></div></div><p>Next, choose the size of the training images for YOLO v2. When choosing the training image size, consider these size parameters:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>The distribution of object sizes in the images, and the impact of resizing the images on the object sizes.</p></li><li><p>The computational resources required to batch process data at the selected size. </p></li><li><p>The minimum input size required by the network.</p></li></ol></div><p>Determine the input size of the pretrained Tiny YOLO v2 network.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pretrainedDetector.Network.Layers(1).InputSize</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   416   416     3
+
+</pre></div></div></div><p>YOLO v2 is a single-scale detector because it uses features extracted from one network layer to predict the location and class of objects in the image. The feature extraction layer is an important hyperparameter for deep learning based object detectors. When selecting the feature extraction layer, choose a layer that outputs features at a spatial resolution that is suitable for the range of object sizes in the data set.  </p><p>Most networks used in object detection spatially downsample features by powers of two as the data flows through the network. For example, starting from the specified input size, networks can have layers that produce feature maps downsampled spatially by 4x, 8x, 16x, and 32x. If object sizes in the data set are small (for example, less than 10-by-10 pixels), feature maps downsampled by 16x and 32x might not have sufficient spatial resolution to locate the objects precisely. Conversely, if the objects are large, feature maps downsampled by 4x or 8x might not encode enough global context for those objects. </p><p>For this data set, specify the <code class="literal">"leaky_relu_5"</code> layer of the Tiny YOLO v2 network, which outputs feature maps downsampled by 16x. This amount of downsampling is a good tradeoff between spatial resolution and the strength of the extracted features, as features extracted further down the network encode stronger image features at the cost of spatial resolution. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>featureLayer = <span style="color:#A020F0">"leaky_relu_5"</span>;</pre></div></div></div><p>You can use the <a href="../../deeplearning/ref/analyzenetwork.html" data-docid="nnet_ref#mw_8d52b67d-b6b3-4c62-b573-56fdf4dce6a0" class="a"><code class="olink">analyzeNetwork</code></a><span role="cross_prod"> (Deep Learning Toolbox)</span> function to visualize the Tiny YOLO v2 network and determine the name of the layer that outputs features downsampled by 16x.</p><p>Next, use <a href="../../vision/ref/estimateanchorboxes.html" data-docid="vision_ref#mw_cba7b62d-6557-41e6-9e4d-73ec50667c6d" class="a"><code class="olink">estimateAnchorBoxes</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span> to estimate anchor boxes from the training data. Estimating anchor boxes from the preprocessed data enables you to get an estimate based on the selected training image size. You can use the procedure defined in the <a href="../../vision/ug/estimate-anchor-boxes-from-training-data.html" data-docid="vision_ug#mw_671cb7a6-5a7a-4147-acf3-3e1fd7d3dfd7" class="a">Estimate Anchor Boxes from Training Data</a><span role="cross_prod"> (Computer Vision Toolbox)</span> example to determine the number of anchor boxes suitable for the data set. Based on this procedure, four anchor boxes is a good tradeoff between computational cost and accuracy. As with any other hyperparameter, you must optimize the number of anchor boxes for your data using empirical analysis.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numAnchors = 4;
+aboxes = estimateAnchorBoxes(preprocessedData,numAnchors);</pre></div></div></div><p>Finally, configure the YOLO v2 network for transfer learning on four classes with the selected training image size and the estimated anchor boxes.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numClasses = 4;
+pretrainedNet = pretrainedDetector.Network;
+pretrainedNet = layerGraph(pretrainedNet);
+lgraph = yolov2Layers(inputSize,numClasses,aboxes,pretrainedNet,featureLayer);</pre></div></div></div><p>Initialize the random number generator with a seed of 0 using <code class="literal">rng</code>, and shuffle the data set for reproducibility using the <code class="literal">shuffle</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(0);
+preprocessedData = shuffle(preprocessedData);</pre></div></div></div><p>Split the data set into training, test, and validation subsets using the <code class="literal">subset</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>trainingIdx = 1:70;
+validationIdx = 71:85;
+testIdx = 86:100;
+dsTrain = subset(preprocessedData,trainingIdx);
+dsVal = subset(preprocessedData,validationIdx);
+dsTest = subset(preprocessedData,testIdx);</pre></div></div></div><h4 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-6">Data Augmentation</h4><p>Use data augmentation to improve network accuracy by randomly transforming the original data during training. Data augmentation enables you to add more variety to the training data without increasing the number of labeled training samples. Use <code class="literal">transform</code> to augment the training data using these steps: </p><div class="itemizedlist"><ul><li><p>Randomly flip the image and associated bounding box labels horizontally.</p></li><li><p>Randomly scale the image and associated bounding box labels.</p></li><li><p>Jitter the image color.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create the helper function.</span>
+<span style="color:#0000FF">function</span> B = augmentData(A)
+<span style="color:#228B22">% Apply random horizontal flipping, random X/Y scaling, and jitter image color.</span>
+<span style="color:#228B22">% The function clips boxes scaled outside the bounds if the overlap is above 0.25.</span>
+B = cell(size(A));
+
+I = A{1};
+sz = size(I);
+<span style="color:#0000FF">if</span> numel(sz)==3 &amp;&amp; sz(3)==3
+    I = jitterColorHSV(I, <span style="color:#0000FF">...</span>
+        Contrast=0.2, <span style="color:#0000FF">...</span>
+        Hue=0, <span style="color:#0000FF">...</span>
+        Saturation=0.1, <span style="color:#0000FF">...</span>
+        Brightness=0.2);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Randomly flip and scale image.</span>
+tform = randomAffine2d(XReflection=true,Scale=[1 1.1]);  
+rout = affineOutputView(sz,tform,BoundsStyle=<span style="color:#A020F0">"CenterOutput"</span>);    
+B{1} = imwarp(I,tform,OutputView=rout);
+
+<span style="color:#228B22">% Sanitize boxes if needed. This helper function is attached to the example as a</span>
+<span style="color:#228B22">% supporting file. Open the example in MATLAB to use this function.</span>
+A{2} = helperSanitizeBoxes(A{2});
+    
+<span style="color:#228B22">% Apply same transform to boxes.</span>
+[B{2},indices] = bboxwarp(A{2},tform,rout,OverlapThreshold=0.25);    
+B{3} = A{3}(indices);
+    
+<span style="color:#228B22">% Return original data only when all boxes have been removed by warping.</span>
+<span style="color:#0000FF">if</span> isempty(indices)
+    B = A;
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+
+augmentedTrainingData = transform(dsTrain,@augmentData);</pre></div></div></div><p>Display one of the training images and box labels.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = read(augmentedTrainingData);
+I = data{1};
+bbox = data{2};
+label = data{3};
+imshow(I)
+showShape(<span style="color:#A020F0">"rectangle"</span>,bbox,Label=label)</pre></div></div></div><div class="informalfigure"><div id="d126e14376" class="mediaobject"><p><img src="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_02.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="860"></p></div></div><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-7">Train YOLOv2 Object Detector</h3><p>Use <a href="../../deeplearning/ref/trainingoptions.html" data-docid="nnet_ref#bu59f0q" class="a"><code class="olink">trainingOptions</code></a><span role="cross_prod"> (Deep Learning Toolbox)</span> to specify network training options. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>opts = trainingOptions(<span style="color:#A020F0">"rmsprop"</span>, <span style="color:#0000FF">...</span>
+        InitialLearnRate=0.001, <span style="color:#0000FF">...</span>
+        MiniBatchSize=8, <span style="color:#0000FF">...</span>
+        MaxEpochs=20, <span style="color:#0000FF">...</span>
+        LearnRateSchedule=<span style="color:#A020F0">"piecewise"</span>, <span style="color:#0000FF">...</span>
+        LearnRateDropPeriod=5, <span style="color:#0000FF">...</span>
+        VerboseFrequency=30, <span style="color:#0000FF">...</span>
+        L2Regularization=0.001, <span style="color:#0000FF">...</span>
+        ValidationData=dsVal, <span style="color:#0000FF">...</span>
+        ValidationFrequency=50, <span style="color:#0000FF">...</span>
+        OutputNetwork=<span style="color:#A020F0">"best-validation-loss"</span>);</pre></div></div></div><p>These training options have been selected using Experiment Manager. For more information on using Experiment Manager for hyperparameter tuning, see <a href="../../vision/ug/train-object-detectors-in-experiment-manager.html" data-docid="vision_ug#mw_55613d8b-264d-42cf-ad86-be6556d75292" class="a">Train Object Detectors in Experiment Manager</a><span role="cross_prod"> (Computer Vision Toolbox)</span>.</p><p>To use the <a href="../../vision/ref/trainyolov2objectdetector.html" data-docid="vision_ref#mw_0ff9d26a-9a79-4333-a1b1-ba03c8539ee3" class="a"><code class="olink">trainYOLOv2ObjectDetector</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span> function to train a YOLO v2 object detector, set <code class="literal">doTraining </code>to <code class="literal">true</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[detector,info] = trainYOLOv2ObjectDetector(augmentedTrainingData,lgraph,opts);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>*************************************************************************
+Training a YOLO v2 Object Detector for the following object classes:
+
+* box
+* locker
+* fireExtinguisher
+* monitor
+
+Training on single CPU.
+|======================================================================================================================|
+|  Epoch  |  Iteration  |  Time Elapsed  |  Mini-batch  |  Validation  |  Mini-batch  |  Validation  |  Base Learning  |
+|         |             |   (hh:mm:ss)   |     RMSE     |     RMSE     |     Loss     |     Loss     |      Rate       |
+|======================================================================================================================|
+|       1 |           1 |       00:00:08 |         8.01 |         5.91 |      64.2087 |      34.9198 |          0.0010 |
+|       4 |          30 |       00:01:30 |         0.89 |              |       0.7946 |              |          0.0010 |
+|       7 |          50 |       00:02:27 |         0.64 |         0.70 |       0.4086 |       0.4930 |          0.0001 |
+|       8 |          60 |       00:02:53 |         0.55 |              |       0.3052 |              |          0.0001 |
+|      12 |          90 |       00:04:09 |         0.45 |              |       0.2003 |              |      1.0000e-05 |
+|      13 |         100 |       00:04:35 |         0.44 |         0.52 |       0.1956 |       0.2664 |      1.0000e-05 |
+|      15 |         120 |       00:05:25 |         0.42 |              |       0.1766 |              |      1.0000e-05 |
+|      19 |         150 |       00:06:41 |         0.41 |         0.50 |       0.1710 |       0.2478 |      1.0000e-06 |
+|      20 |         160 |       00:07:07 |         0.44 |         0.49 |       0.1960 |       0.2447 |      1.0000e-06 |
+|======================================================================================================================|
+Training finished: Max epochs completed.
+Detector training complete.
+*************************************************************************
+</pre></div></div></div><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-8">Detect Multiple Indoor Objects</h3><p>Read a test image that contains objects of the target classes, run the object detector on the image, and display an image annotated with the detection results.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>I = imread(fullfile(datapath,<span style="color:#A020F0">"image_1.jpg"</span>));
+[bbox,score,label] = detect(detector,I);
+
+annotatedImage = insertObjectAnnotation(I,<span style="color:#A020F0">"rectangle"</span>,bbox,label,LineWidth=4,FontSize=24);
+figure
+imshow(annotatedImage)</pre></div></div></div><div class="informalfigure"><div id="d126e14410" class="mediaobject"><p><img src="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_03.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="1107"></p></div></div><p>If you want to run object detector on the image captured directly from the IP Camera, run the following commands in the MATLAB Command Window.</p><div class="code_responsive"><pre id="d126e14415" class="programlisting"><span style="color:#0000FF">for</span> i=1:20
+    img=snapshot(cam);
+    [bbox,score,label] = detect(detector,I);
+    annotatedImage = insertObjectAnnotation(I,<span style="color:#A020F0">"rectangle"</span>,bbox,label,LineWidth=4,FontSize=24);
+    figure
+    imshow(annotatedImage)
+<span style="color:#0000FF">end</span>
+</pre></div><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-9">Evaluate Object Detector</h3><p>Evaluate the trained object detector on test images to measure the performance. Computer Vision Toolbox&#8482; provides an object detector evaluation function (<a href="../../vision/ref/evaluateobjectdetection.html" data-docid="vision_ref#mw_6aecf450-1718-4e91-b2cf-2972f639a177" class="a"><code class="olink">evaluateObjectDetection</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span>) to measure common metrics such as average precision and log-average miss rate. For this example, use the average precision (AP) metric to evaluate performance. The AP metric provides a single number that incorporates the ability of the detector to make correct classifications (precision) and the ability of the detector to find all relevant objects (recall).</p><p>Run the detector on the test data set. Set the detection threshold to a low value to detect as many objects as possible. A lower threshold helps you evaluate the detector's precision across the full range of recall values. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>detectionThreshold = 0.01;
+results = detect(detector,dsTest,MiniBatchSize=8,Threshold=detectionThreshold);</pre></div></div></div><p>Calculate object detection metrics on the test set results with <code class="literal">evaluateObjectDetection</code>, which evaluates the detector at one or more intersection-over-union (IoU) thresholds. The IoU threshold defines the amount of overlap required between a predicted bounding box and a ground truth bounding box for the predicted bounding box to count as a true positive. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>iouThresholds = [0.5 0.6 0.7 0.8 0.9];
+metrics = evaluateObjectDetection(results,dsTest,iouThresholds);</pre></div></div></div><p>List the overall class metrics, and inspect the mean average precision (mAP) to see how well the detector is performing.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>metrics.ClassMetrics </pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>4×5 table</em></span>
+                        NumObjects    APOverlapAvg         AP            Precision             Recall     
+                        __________    ____________    ____________    ________________    ________________
+
+    box                     30          0.83262       {5×1 double}    {5×9489  double}    {5×9489  double}
+    locker                  15          0.86912       {5×1 double}    {5×1527  double}    {5×1527  double}
+    fireExtinguisher        30          0.51511       {5×1 double}    {5×6037  double}    {5×6037  double}
+    monitor                 45          0.75493       {5×1 double}    {5×11547 double}    {5×11547 double}
+
+</pre></div></div></div><p>Compute the AP value at each of the specified overlap thresholds for all classes using the <a href="../../vision/ref/objectdetectionmetrics.averageprecision.html" data-docid="vision_ref#mw_75439e17-297c-4cb4-b8a3-f1f8351033cb" class="a"><code class="olink">averagePrecision</code></a><span role="cross_prod"> (Computer Vision Toolbox)</span> object function. To visualize how the AP value at the specified thresholds values varies across all the classes in the data set, create a bar plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+classAP = averagePrecision(metrics);
+bar(classAP)
+xticklabels(metrics.ClassNames)
+ylabel(<span style="color:#A020F0">"AP"</span>)
+legend(string(iouThresholds))</pre></div></div></div><div class="informalfigure"><div id="d126e14447" class="mediaobject"><p><img src="../../examples/ipcamera/win64/DetectMulticlassObjectIPCameraUsingDeepLearningExample_04.png" alt="Figure contains an axes object. The axes object with ylabel AP contains 5 objects of type bar. These objects represent 0.5, 0.6, 0.7, 0.8, 0.9." width="560"></p></div></div><p>The plot demonstrates that the detector performed well on all the classes. If you are using your own image data set and see poor performance for certain classes, add more images that contain the underrepresented classes or replicate images with these classes, and then use data augmentation.</p><h3 class="title" id="DetectMulticlassObjectIPCameraUsingDeepLearningExample-10">References</h3><span id="mw_rtc_DetectMulticlassObjectIPCameraUsingDeepLearningExample_M_0417" class="anchor_target"></span><p>[1] Lin, Tsung-Yi, Michael Maire, Serge Belongie, Lubomir Bourdev, Ross Girshick, James Hays, Pietro Perona, Deva Ramanan, C. Lawrence Zitnick, and Piotr Dollár. “Microsoft COCO: Common Objects in Context,” May 1, 2014. <a href="https://arxiv.org/abs/1405.0312v3" target="_blank">https://arxiv.org/abs/1405.0312v3</a>.</p></div>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e14463">Topics</h3><ul class="list-unstyled"><li><a href="detect-circles-from-ip-camera-using-image-processing-toolbox.html" class="a">Detect Circles from IP Camera Using Image Processing Toolbox</a></li><li><a href="../../vision/ug/multiclass-object-detection-using-yolo-v2-deep-learning.html" class="a">Multiclass Object Detection Using YOLO v2 Deep Learning</a><span role="cross_prod"> (Computer Vision Toolbox)</span></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

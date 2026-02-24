@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Class Support for Array-Creation Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../object-oriented-programming-in-matlab.html",
+          "name": "Define Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../methods-defining-operations.html",
+          "name": "Methods"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "methods-defining-operations"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Add support for array-creation functions without overloading these functions in your class."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Define Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../methods-defining-operations.html?s_tid=CRUX_lftnav" itemprop="url" id="methods-defining-operations"><span itemprop="title">Methods</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Class Support for Array-Creation Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bt702nr" class="nav-link intrnllnk">Extend Array-Creation Functions for Your Class</a><ul class="nav"><li class="nav-item"><a href="#bt8pk7j" class="nav-link intrnllnk">Array-Creation Functions That Support Overloading</a></li><li class="nav-item"><a href="#mw_9f6811a5-ea73-46f9-8021-d3e304f79e16" class="nav-link intrnllnk">Scalar Functions That Support Overloading</a></li></ul></li><li class="nav-item"><a href="#bt8flaq" class="nav-link intrnllnk">Which Syntax to Use</a></li><li class="nav-item"><a href="#bt7zlfg" class="nav-link intrnllnk">Implement Support for Array-Creation Functions</a><ul class="nav"><li class="nav-item"><a href="#bt8dvd7" class="nav-link intrnllnk">How MATLAB Interprets the Function Call</a></li><li class="nav-item"><a href="#bt8pvfa-1" class="nav-link intrnllnk">Class Name Method Called If Prototype Method Does Not Exist</a></li><li class="nav-item"><a href="#bt8dvjh" class="nav-link intrnllnk">Support All Function Inputs</a></li><li class="nav-item"><a href="#bt8bn0n" class="nav-link intrnllnk">Sample Class</a></li><li class="nav-item"><a href="#bt79cru" class="nav-link intrnllnk">Class Name Method Implementations</a></li><li class="nav-item"><a href="#bt8boln" class="nav-link intrnllnk">Prototype Object Method Implementation</a></li><li class="nav-item"><a href="#bt8drng" class="nav-link intrnllnk">Full Class Listing</a></li><li class="nav-item"><a href="#mw_49bce0b4-31a7-46ea-aba0-5a0756cbabe4" class="nav-link intrnllnk">Overloading createArray</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=methods-defining-operations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=methods-defining-operations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=methods-defining-operations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=methods-defining-operations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=methods-defining-operations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=methods-defining-operations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt7zb8f">Class Support for Array-Creation Functions</h2><span id="error_False_invalidInputClass" class="anchor_target"></span><span id="error_False_invalidStringInput" class="anchor_target"></span><span id="error_Inf_invalidInputClass" class="anchor_target"></span><span id="error_Inf_invalidClassName" class="anchor_target"></span><span id="error_NaN_invalidInputClass" class="anchor_target"></span><span id="error_NaN_invalidClassName" class="anchor_target"></span><span id="error_True_invalidInputClass" class="anchor_target"></span><span id="error_True_invalidStringInput" class="anchor_target"></span><span id="error_eye_invalidNonStringInput" class="anchor_target"></span><span id="error_eye_invalidStringInput" class="anchor_target"></span><span id="error_ones_invalidInputClass" class="anchor_target"></span><span id="error_ones_invalidStringInput" class="anchor_target"></span><span id="error_rand_invalidPrototype" class="anchor_target"></span><span id="error_rand_invalidOutputType" class="anchor_target"></span><span id="error_randi_invalidPrototype" class="anchor_target"></span><span id="error_randi_invalidClassname" class="anchor_target"></span><span id="error_randn_invalidPrototype" class="anchor_target"></span><span id="error_randn_invalidOutputType" class="anchor_target"></span><span id="error_zeros_invalidInputClass" class="anchor_target"></span><span id="error_zeros_invalidStringInput" class="anchor_target"></span><span id="error_eps_invalidPrototype" class="anchor_target"></span><span id="error_eps_invalidClassName" class="anchor_target"></span><span id="error_intmax_invalidPrototype" class="anchor_target"></span><span id="error_intmax_invalidClassName" class="anchor_target"></span><span id="error_intmin_invalidPrototype" class="anchor_target"></span><span id="error_intmin_invalidClassName" class="anchor_target"></span><span id="error_flintmax_invalidPrototype" class="anchor_target"></span><span id="error_flintmax_invalidClassName" class="anchor_target"></span><span id="error_realmax_invalidPrototype" class="anchor_target"></span><span id="error_realmax_invalidClassName" class="anchor_target"></span><span id="error_realmin_invalidPrototype" class="anchor_target"></span><span id="error_realmin_invalidClassName" class="anchor_target"></span><span id="error_cast_UnsupportedPrototype" class="anchor_target"></span><span id="error_cast_UnsupportedClass" class="anchor_target"></span><section><h3 class="title" id="bt702nr">Extend Array-Creation Functions for Your Class</h3><p>There are several MATLAB<sup>&#x00AE;</sup> functions that create arrays of a specific size and type, such as
+                    <a href="../ref/ones.html"><code class="function">ones</code></a> and <a href="../ref/zeros.html"><code class="function">zeros</code></a>. You can overload many of these functions to work specifically
+                with your classes. That process is described in this topic. For options for creating
+                object arrays without overloading existing functions, see <a href="creating-object-arrays.html" class="a">Create and Initialize Object Arrays</a>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><span><code class="function">createArray</code><em> (since R2024a)</em></span> supports
+                    array creation for many classes without the need for overloading. For more
+                    information, see <a href="../ref/createarray.html"><code class="function">createArray</code></a>. For information about cases when overloading
+                        <code class="function">createArray</code> might be useful, see  <a href="class-support-for-array-creation-functions.html#mw_b752901d-60a1-46a5-8ae7-a893976e34e7" class="intrnllnk">createArray Methods to Implement</a>.</p></div><p>Class support for any of the array-creation functions enables you to develop code
+                that you can share with built-in and user-defined data types. For example, the class
+                of the variable <code class="literal">x</code> in the following code can be a built-in type
+                during initial development, and then be replaced by a user-defined class that
+                transparently overloads <code class="function">zeros</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cls = class(x);
+zArray = zeros(m,n,cls);</pre></div></div></div><p>Array-creation functions create arrays of a specific type in two ways:</p><div class="itemizedlist"><ul><li><p>Class name syntax &#8212; Specify class name that determines the type of
+                        array elements. </p></li><li><p>Prototype object syntax &#8212; Provide a prototype object that the
+                        function uses to determine the type and other characteristics of the array
+                        elements.</p></li></ul></div><p>For example: </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zArray = zeros(2,3,<span style="color:#A020F0">'uint8'</span>);
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = uint8([1 3 5; 2 4 6]);
+zArray = zeros(2,3,<span style="color:#A020F0">'like'</span>,p);
+</pre></div></div></div><p>After adding support for these functions to a class named
+                    <code class="literal">MyClass</code>, you can use a similar syntax with that class:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zArray = zeros(2,3,<span style="color:#A020F0">'MyClass'</span>);</pre></div></div></div><p>Or pass an object of your class:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = MyClass(<span style="color:#0000FF">...</span><span style="color:#228B22">);</span>
+zArray = zeros(size(p),<span style="color:#A020F0">'like'</span>,p);
+</pre></div></div></div><p>MATLAB uses these arguments to dispatch to the appropriate method in your
+                class.</p><section><h4 class="title" id="bt8pk7j">Array-Creation Functions That Support Overloading</h4><p>These functions support this kind of overloading:</p><p>
+                    </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="100%"></colgroup><thead><tr><th>Array-Creation Functions</th></tr></thead><tbody><tr><td><a href="../ref/ones.html"><code class="function">ones</code></a></td></tr><tr><td><a href="../ref/zeros.html"><code class="function">zeros</code></a></td></tr><tr><td><a href="../ref/eye.html"><code class="function">eye</code></a></td></tr><tr><td><a href="../ref/nan.html"><code class="function">NaN</code></a></td></tr><tr><td><a href="../ref/inf.html"><code class="function">Inf</code></a></td></tr><tr><td><a href="../ref/true.html"><code class="function">true</code></a></td></tr><tr><td><a href="../ref/false.html"><code class="function">false</code></a></td></tr><tr><td><a href="../ref/cast.html"><code class="function">cast</code></a></td></tr><tr><td><a href="../ref/double.rand.html"><code class="function">rand</code></a></td></tr><tr><td><a href="../ref/double.randn.html"><code class="function">randn</code></a></td></tr><tr><td><a href="../ref/double.randi.html"><code class="function">randi</code></a></td></tr><tr><td><span><a href="../ref/createarray.html"><code class="function">createArray</code></a><em> (since R2024a)</em></span></td></tr></tbody></table></div><p>
+
+                </p></section><section><h4 class="title" id="mw_9f6811a5-ea73-46f9-8021-d3e304f79e16">Scalar Functions That Support Overloading</h4><p>These functions also support similar overloading, with the exception that the
+                    output is always a scalar (or a 1-by-1 sparse matrix):</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" align="left" width="100%"></colgroup><thead><tr><th>Scalar Functions</th></tr></thead><tbody><tr><td><a href="../ref/double.eps.html"><code class="function">eps</code></a></td></tr><tr><td><a href="../ref/realmax.html"><code class="function">realmax</code></a></td></tr><tr><td><a href="../ref/realmin.html"><code class="function">realmin</code></a></td></tr><tr><td><a href="../ref/intmax.html"><code class="function">intmax</code></a></td></tr><tr><td><a href="../ref/intmin.html"><code class="function">intmin</code></a></td></tr><tr><td><a href="../ref/flintmax.html"><code class="function">flintmax</code></a></td></tr></tbody></table></div><p>For these functions, you do not need to specify the size when creating scalars
+                    of a specific type. For example: </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d = eps(<span style="color:#A020F0">'single'</span>);
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = single([1 3 5; 2 4 6]);
+d = eps(<span style="color:#A020F0">'like'</span>,p);
+</pre></div></div></div><p>After adding support for these functions to a user-defined class, you can use
+                    similar syntax with that class as well.</p></section></section><section><h3 class="title" id="bt8flaq">Which Syntax to Use</h3><p>Classes can support both the class name and the prototype object syntax. To create
+                an array of default objects, use the class name syntax. To create an array of
+                objects with the same type, complexity, and other properties as an existing object,
+                use the prototype syntax.</p></section><section><h3 class="title" id="bt7zlfg">Implement Support for Array-Creation Functions</h3><p>Use two separate methods to support an array-creation function. One method
+                implements the class name syntax and the other implements the prototype object
+                syntax.</p><p>For example, to support the <code class="function">zeros</code> function:</p><div class="itemizedlist"><ul><li><p>Implement the class name syntax:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zeros(...,'<em class="replaceable">ClassName</em>')</pre></div></div></div><p>As a <code class="literal">Static</code> method:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods (Static)
+   <span style="color:#0000FF">function</span> z = zeros(varargin)
+      <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></li><li><p>Implement the prototype object syntax:</p><div class="code_responsive"><pre class="programlisting">zeros(...,'like',obj)</pre></div><p>As a <code class="literal">Hidden</code> method with the <code class="literal">char</code>
+                        vector <code class="literal">'Like'</code> appended to the name. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods (Hidden)
+   <span style="color:#0000FF">function</span> z = zerosLike(obj,varargin)
+      <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></li></ul></div><section><h4 class="title" id="bt8dvd7">How <span class="trademark entity">MATLAB</span> Interprets the Function Call</h4><p>The special support for array-creation functions results from the
+                    interpretation of the syntax.</p><div class="itemizedlist"><ul><li><p>A call to the <code class="function">zeros</code> function of this
+                            form:<div class="code_responsive"><pre class="programlisting">zeros(...,'<em class="replaceable">ClassName</em>')
+</pre></div></p><p>Calls the class static method with this syntax:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><em class="replaceable">ClassName</em>.zeros(varargin{1:end-1})</pre></div></div></div></li><li><p>A call to the <code class="function">zeros</code> function of this
+                            form:<div class="code_responsive"><pre class="programlisting">zeros(...,'like',obj)</pre></div></p><p>Calls the class method with this
+                            syntax:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zerosLike(obj,varargin{1:end-2})</pre></div></div></div></p></li></ul></div></section><section><h4 class="title" id="bt8pvfa-1">Class Name Method Called If Prototype Method Does Not Exist</h4><p>If your class implements a class name syntax, but does not implement a
+                    prototype object syntax for a particular function, you can still call both
+                    syntaxes. For example, if you implement a static <code class="literal">zeros</code> method
+                    only, you can call:</p><div class="code_responsive"><pre class="programlisting">zeros(...,'like',MyClass(...))</pre></div><p>In the case in which you call the prototype object syntax, MATLAB first searches for a method named <code class="literal">zerosLike</code>. If
+                        MATLAB cannot find this method, it calls for the <code class="literal">zeros</code>
+                    static method.</p><p>This feature is useful if you only need the class name to create the array.
+                    You do not need to implement both methods to support the complete array-creation
+                    function syntax. When you implement only the class name syntax, a call to a
+                    prototype object syntax is the same as the call to the class name syntax.</p></section><section><h4 class="title" id="bt8dvjh">Support All Function Inputs</h4><p>The input arguments to an array-creation function can include the dimensions
+                    of the array the function returns and possibly other arguments. In general,
+                    there are three cases that your methods must support:</p><div class="itemizedlist"><ul><li><p>No dimension input arguments resulting in the return of a scalar. For
+                            example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>z = zeros(<span style="color:#A020F0">'MyClass'</span>);</pre></div></div></div></li><li><p>One or more dimensions equal to or less than zero, resulting in an
+                            empty array. For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>z = zeros(2,0,<span style="color:#A020F0">'MyClass'</span>);</pre></div></div></div></li><li><p>Any number of valid array dimensions specifying the size of the array.
+                            For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>z = zeros(2,3,5,<span style="color:#A020F0">'MyClass'</span>);</pre></div></div></div></li></ul></div><p>When the array-creation function calls your class method, it passes the input
+                    arguments, excluding the class name or the literal <code class="literal">'like'</code> and
+                    the object variable to your method. You can implement your methods with these
+                    signatures:</p><div class="itemizedlist"><ul><li><p><code class="literal">zeros(varargin)</code> for “class name”
+                            methods</p></li><li><p><code class="literal">zeros(obj,varargin)</code> for “like prototype
+                            object” methods</p></li></ul></div></section><section><h4 class="title" id="bt8bn0n">Sample Class</h4><p>The <code class="literal">Color</code> class represents a color in a specific color
+                    space, such as, <code class="literal">RGB</code>, <code class="literal">HSV</code>, and so on. The
+                    discussions in <a href="class-support-for-array-creation-functions.html#bt79cru" class="intrnllnk">Class Name Method Implementations</a> and <a href="class-support-for-array-creation-functions.html#bt8boln" class="intrnllnk">Prototype Object Method Implementation</a> use this class as a basis for
+                    the overloaded method implementations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Color
+   <span style="color:#0000FF">properties</span>
+      ColorValues = [0,0,0]
+      ColorSpace = <span style="color:#A020F0">'RGB'</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = Color(cSpace,values)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            obj.ColorSpace = cSpace;
+            obj.ColorValues = values;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="bt79cru">Class Name Method Implementations</h4><p>The <code class="literal">zeros</code> function strips the final
+                        <em class="replaceable"><code>ClassName</code></em>
+                    <code class="literal">char</code> vector and uses it to form the call to the static method
+                    in the <code class="literal">Color</code> class. The arguments passed to the static method
+                    are the array dimension arguments.</p><p>Here is an implementation of a <code class="literal">zeros</code> method for the
+                        <code class="literal">Color</code> class. This implementation:</p><div class="itemizedlist"><ul><li><p>Defines the <code class="literal">zeros</code> method as
+                                <code class="literal">Static</code> (required)</p></li><li><p>Returns a scalar <code class="literal">Color</code> object if the call to
+                                <code class="literal">zeros</code> has no dimension arguments</p></li><li><p>Returns an empty array if the call to <code class="literal">zeros</code> has any
+                            dimensions arguments equal to 0.</p></li><li><p>Returns an array of default <code class="literal">Color</code> objects. Use
+                                <a href="../ref/repmat.html"><code class="function">repmat</code></a> to create an
+                            array of the dimensions specified by the call to
+                                <code class="literal">zeros</code>.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Color
+   <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">methods</span> (Static)
+      <span style="color:#0000FF">function</span> z = zeros(varargin)
+         <span style="color:#0000FF">if</span> (nargin == 0)
+         <span style="color:#228B22">% For zeros('Color')</span>
+            z = Color;
+         <span style="color:#0000FF">elseif</span> any([varargin{:}] &lt;= 0)
+         <span style="color:#228B22">% For zeros with any dimension &lt;= 0   </span>
+            z = Color.empty(varargin{:});
+         <span style="color:#0000FF">else</span>
+         <span style="color:#228B22">% For zeros(m,n,...,'Color')</span>
+         <span style="color:#228B22">% Use property default values</span>
+            z = repmat(Color,varargin{:});
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The <code class="literal">zeros</code> method uses default values for the
+                        <code class="literal">ColorValues</code> property because these values are appropriate
+                    for this application. An implementation of a <code class="function">ones</code> method
+                    can set the <code class="literal">ColorValues</code> property to
+                        <code class="literal">[1,1,1]</code>, for example.</p><p>Suppose that you want to overload the <a href="../ref/double.randi.html"><code class="function">randi</code></a> function to achieve the
+                    following objectives:</p><div class="itemizedlist"><ul><li><p>Define each <code class="literal">ColorValue</code> property as a 1-by-3 array
+                            in the range of 1 to a specified maximum value (for example,
+                            1&#8211;255).</p></li><li><p>Accommodate scalar, empty, and multidimensional array sizes.</p></li><li><p>Return an array of <code class="literal">Color</code> objects of the specified
+                            dimensions, each with random <code class="literal">ColorValues</code>.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Color
+   <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">methods</span> (Static)
+      <span style="color:#0000FF">function</span> r = randi(varargin)
+         <span style="color:#0000FF">if</span> (nargin == 0)
+            <span style="color:#228B22">% For randi('ClassName')</span>
+            r = Color(<span style="color:#A020F0">'RGB'</span>,randi(255,[1,3]));
+         <span style="color:#0000FF">elseif</span> any([varargin{2:end}] &lt;= 0)
+            <span style="color:#228B22">% For randi with any dimension &lt;= 0</span>
+            r = Color.empty(varargin{2:end});
+         <span style="color:#0000FF">else</span>
+            <span style="color:#228B22">% For randi(max,m,n,...,'ClassName')</span>
+            <span style="color:#0000FF">if</span> numel([varargin{:}]) &lt; 2
+               error(<span style="color:#A020F0">'Not enough input arguments'</span>)
+            <span style="color:#0000FF">end</span>
+            dims = [varargin{2:end}];
+            r = zeros(dims,<span style="color:#A020F0">'Color'</span>);
+            <span style="color:#0000FF">for</span> k = 1:prod(dims)
+               r(k) = Color(<span style="color:#A020F0">'RGB'</span>,randi(varargin{1},[1,3]));
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="bt8boln">Prototype Object Method Implementation</h4><p>The objective of a method that returns an array of objects that are
+                    “like a prototype object” depends on the requirements of the
+                    class. For the <code class="literal">Color</code> class, the <code class="literal">zerosLike</code>
+                    method creates objects that have the <code class="literal">ColorSpace</code> property
+                    value of the prototype object, but the <code class="literal">ColorValues</code> are all
+                    zero.</p><p>Here is an implementation of a <code class="literal">zerosLike</code> method for the
+                        <code class="literal">Color</code> class. This implementation:</p><div class="itemizedlist"><ul><li><p>Defines the <code class="literal">zerosLike</code> method as
+                                <code class="literal">Hidden</code></p></li><li><p>Returns a scalar <code class="literal">Color</code> object if the call to the
+                                <code class="literal">zeros</code> function has no dimension arguments</p></li><li><p>Returns an empty array if the call to the <code class="literal">zeros</code>
+                            function has any dimension arguments that are negative or equal to
+                            0.</p></li><li><p>Returns an array of <code class="literal">Color</code> objects of the dimensions
+                            specified by the call to the <code class="function">zeros</code> function.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Color
+   <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">methods</span> (Hidden)
+      <span style="color:#0000FF">function</span> z = zerosLike(obj,varargin)
+         <span style="color:#0000FF">if</span> nargin == 1
+            <span style="color:#228B22">% For zeros('like',obj)</span>
+            cSpace = obj.ColorSpace;
+            z = Color;
+            z.ColorSpace = cSpace;
+         <span style="color:#0000FF">elseif</span>  any([varargin{:}] &lt;= 0)
+            <span style="color:#228B22">% For zeros with any dimension &lt;= 0</span>
+            z = Color.empty(varargin{:});
+         <span style="color:#0000FF">else</span>
+            <span style="color:#228B22">% For zeros(m,n,...,'like',obj)</span>
+            <span style="color:#0000FF">if</span> ~isscalar(obj)
+               error(<span style="color:#A020F0">'Prototype object must be scalar'</span>)
+            <span style="color:#0000FF">end</span>
+            obj = Color(obj.ColorSpace,zeros(1,3,<span style="color:#A020F0">'like'</span>,obj.ColorValues));
+            z = repmat(obj,varargin{:});
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="bt8drng">Full Class Listing</h4><p>Here is the <code class="literal">Color</code> class definition with the overloaded
+                    methods.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>In actual practice, the <code class="literal">Color</code> class requires error
+                        checking, color space conversions, and so on. This overly simplified version
+                        illustrates the implementation of the overloaded methods.</p></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Color
+   <span style="color:#0000FF">properties</span>
+      ColorValues = [0,0,0]
+      ColorSpace = <span style="color:#A020F0">'RGB'</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = Color(cSpace,values)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            obj.ColorSpace = cSpace;
+            obj.ColorValues = values;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span> (Static)
+      <span style="color:#0000FF">function</span> z = zeros(varargin)
+         <span style="color:#0000FF">if</span> (nargin == 0)
+            <span style="color:#228B22">% For zeros('ClassName')</span>
+            z = Color;
+         <span style="color:#0000FF">elseif</span> any([varargin{:}] &lt;= 0)
+            <span style="color:#228B22">% For zeros with any dimension &lt;= 0</span>
+            z = Color.empty(varargin{:});
+         <span style="color:#0000FF">else</span>
+            <span style="color:#228B22">% For zeros(m,n,...,'ClassName')</span>
+            <span style="color:#228B22">% Use property default values</span>
+            z = repmat(Color,varargin{:});
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> r = randi(varargin)
+         <span style="color:#0000FF">if</span> (nargin == 0)
+            <span style="color:#228B22">% For randi('ClassName')</span>
+            r = Color(<span style="color:#A020F0">'RGB'</span>,randi(255,[1,3]));
+         <span style="color:#0000FF">elseif</span> any([varargin{2:end}] &lt;= 0)
+            <span style="color:#228B22">% For randi with any dimension &lt;= 0</span>
+            r = Color.empty(varargin{2:end});
+         <span style="color:#0000FF">else</span>
+            <span style="color:#228B22">% For randi(max,m,n,...,'ClassName')</span>
+            <span style="color:#0000FF">if</span> numel([varargin{:}]) &lt; 2
+               error(<span style="color:#A020F0">'Not enough input arguments'</span>)
+            <span style="color:#0000FF">end</span>
+            dims = [varargin{2:end}];
+            r = zeros(dims,<span style="color:#A020F0">'Color'</span>);
+            <span style="color:#0000FF">for</span> k = 1:prod(dims)
+               r(k) = Color(<span style="color:#A020F0">'RGB'</span>,randi(varargin{1},[1,3]));
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span> (Hidden)
+      <span style="color:#0000FF">function</span> z = zerosLike(obj,varargin)
+         <span style="color:#0000FF">if</span> nargin == 1
+            <span style="color:#228B22">% For zeros('like',obj)</span>
+            cSpace = obj.ColorSpace;
+            z = Color;
+            z.ColorSpace = cSpace;
+         <span style="color:#0000FF">elseif</span>  any([varargin{:}] &lt;= 0)
+            <span style="color:#228B22">% For zeros with any dimension &lt;= 0</span>
+            z = Color.empty(varargin{:});
+         <span style="color:#0000FF">else</span>
+            <span style="color:#228B22">% For zeros(m,n,...,'like',obj)</span>
+            <span style="color:#0000FF">if</span> ~isscalar(obj)
+               error(<span style="color:#A020F0">'Prototype object must be scalar'</span>)
+            <span style="color:#0000FF">end</span>
+            obj = Color(obj.ColorSpace,zeros(1,3,<span style="color:#A020F0">'like'</span>,obj.ColorValues));
+            z = repmat(obj,varargin{:});
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_49bce0b4-31a7-46ea-aba0-5a0756cbabe4">Overloading <code class="function">createArray</code></h4><p><span><a href="../ref/createarray.html"><code class="function">createArray</code></a><em> (since R2024a)</em></span> supports most classes without the need
+                    for overloading. However, if your class meets one or more of these conditions,
+                    implement the static <code class="function">createArray</code> method:</p>
+<div class="itemizedlist"><ul><li><p>Your class does not have a default constructor.</p></li><li><p>Your class has a default constructor that returns an empty
+                                array.</p></li><li><p>Your class has properties that need to be dynamically initialized
+                                for each instance in the array.</p></li></ul></div><p>
+Implement the <code class="function">createArrayLike</code> method if your
+                    class does not support creating an array from an existing object through indexed
+                    assignment. However, most classes do not need to overload
+                        <code class="function">createArrayLike</code> because
+                        <code class="function">createArray</code> usually supports the preservation of
+                    property values. </p><p>The process of overloading the <code class="function">createArray</code> function is
+                    similar to <code class="function">zeros</code>, but the syntaxes are slightly different
+                    because of the <code class="literal">FillValue</code> name-value arguments for
+                        <code class="function">createArray</code>.</p><div itemprop="content" id="mw_b752901d-60a1-46a5-8ae7-a893976e34e7" class="table_class"><p class="title"><strong class="title"><code class="function">createArray</code> Methods to Implement</strong></p><div class="table-responsive"><table class="table table-condensed" summary="createArray Methods to Implement"><colgroup><col class="tcol1" width="20%"><col class="tcol2" width="25%"><col class="tcol3" width="55%"></colgroup><thead><tr><th><p>Method</p></th><th><p>Function Signature</p></th><th><p>When the Method Is Called</p></th></tr></thead><tbody><tr><td><p>static <code class="literal">createArray</code></p></td><td><p><code class="literal">function obj = createArray(dims,F)</code>,
+                                        where <code class="literal">dims</code> is a row vector of two or more
+                                        nonnegative integers, and <code class="literal">F</code> is the
+                                            <code class="literal">FillValue</code> (optional)</p></td><td><p><code class="literal">createArray(dims,"ClassName")</code></p><p><code class="literal">createArray(dims,"ClassName",
+                                            FillValue=F)</code></p></td></tr><tr><td><p>
+                                        <code class="literal">createArrayLike</code></p></td><td><p><code class="literal">function obj =
+                                            createArrayLike(L,dims,F)</code>, where
+                                            <code class="literal">dims</code> is a row vector of two or more
+                                        nonnegative integers, <code class="literal">L</code> is the prototype
+                                        and <code class="literal">F</code> is the <code class="literal">FillValue</code>
+                                        (optional)</p></td><td><p><code class="literal">createArrayLike(dims,Like=L)</code></p><p><code class="literal">createArrayLike(dims,Like=L,FillValue=F)</code></p></td></tr></tbody></table></div></div></section></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e16844">Topics</h3><ul class="list-unstyled"><li><a href="creating-object-arrays.html" class="a">Create and Initialize Object Arrays</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Groups of Similar Tasks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../build-automation.html",
+          "name": "Build Automation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-automation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="fe">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create and run a group of related tasks that act as a single unit of work in the build tool."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-automation.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_ffa65eba-3ea4-4023-8cda-f17c6894f34b"><span itemprop="title">Build Automation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Groups of Similar Tasks</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_6b7415bb-67e2-400c-bba0-87bbd083f5ec" class="nav-link intrnllnk">Create Build File</a><ul class="nav"><li class="nav-item"><a href="#mw_4155bd16-d1ef-4bcc-8255-4881711cc5a9" class="nav-link intrnllnk">Define buildfile Function</a></li><li class="nav-item"><a href="#mw_2a4b4c4b-2da5-4576-8cd5-de15fc822244" class="nav-link intrnllnk">Add "clean" Task</a></li><li class="nav-item"><a href="#mw_1a080228-754b-4e49-a76f-2821c883d10a" class="nav-link intrnllnk">Add "mex" Task Group</a></li><li class="nav-item"><a href="#mw_795fb40c-1cf3-4a69-862b-47a862ccb6a8" class="nav-link intrnllnk">Add "test" Task</a></li></ul></li><li class="nav-item"><a href="#mw_c4556d3e-7fe4-44e0-946e-6466e6cd5862" class="nav-link intrnllnk">Summary of Build File</a></li><li class="nav-item"><a href="#mw_7881aca2-cf5c-49ec-8c2d-322a9b7438c9" class="nav-link intrnllnk">Visualize Task Group</a></li><li class="nav-item"><a href="#mw_1cad558f-a0a8-4c18-93db-5b1f37327acf" class="nav-link intrnllnk">Run Task Group</a></li><li class="nav-item"><a href="#mw_27584080-1f80-48a2-a064-86a630f70026" class="nav-link intrnllnk">Source and Test Code</a><ul class="nav"><li class="nav-item"><a href="#mw_a7a022cc-fa81-4c6a-ad7e-6183a5e5c960" class="nav-link intrnllnk">Copy Source Files</a></li><li class="nav-item"><a href="#mw_f5d87781-c761-4ea1-92dd-1c5166f34832" class="nav-link intrnllnk">Create Tests</a></li></ul></li><li class="nav-item"><a href="#d126e101912" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-automation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-automation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-automation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-automation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-automation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-automation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_cb0526c5-5b8d-4f7a-ba72-f894378abab4">Create Groups of Similar Tasks</h2><div class="doc_topic_desc"><div class="purpose_container"><em>Since R2024b</em></div></div>
+            <p class="shortdesc">You can group tasks that perform similar actions into a single
+                unit of work in the build tool. For instance, you can create a group of all the
+                tasks in your project that build binary MEX files and then list, plot, or run the
+                grouped tasks. Grouping similar tasks makes it easier to define and run a build. For
+                example, if you add a dependency to a task group, all the tasks in the group observe
+                that dependency. Therefore, you do not need to repeat the same dependency for each
+                task in the build file. Similarly, if you run a task group, the build tool runs all
+                the tasks in the group. Therefore, you do not need to pass all the task names to the
+                command that runs your build.</p>
+            <p class="shortdesc">This example shows how to create a group of tasks that build MEX
+                files in a build file and then run the group and test the resulting MEX files. To
+                run the example, you must have a supported C compiler installed on your system and
+                follow the steps in <a href="create-groups-of-similar-tasks.html#mw_27584080-1f80-48a2-a064-86a630f70026" class="intrnllnk">Source and Test Code</a> to set up
+                your current folder. The build file that you create in this example assumes that
+                your current folder has a <code class="literal">source</code> folder that contains the
+                    <code class="literal">arrayProduct.c</code> and <code class="literal">yprime.c</code> source files
+                as well as a <code class="literal">tests</code> folder that contains the
+                    <code class="literal">MEXFileTest.m</code> test file.</p>
+        <section><h3 class="title" id="mw_6b7415bb-67e2-400c-bba0-87bbd083f5ec">Create Build File</h3><p>In your current folder, create a build file named <code class="literal">buildfile.m</code>
+                that contains a single function. Use the function to create a plan with tasks
+                created from the classes in the <a href="../ref/matlab.buildtool.tasks-package.html"><code class="package">matlab.buildtool.tasks</code></a> namespace. For the complete code in the build
+                file, see <a href="create-groups-of-similar-tasks.html#mw_c4556d3e-7fe4-44e0-946e-6466e6cd5862" class="intrnllnk">Summary of Build File</a>.</p><section><h4 class="title" id="mw_4155bd16-d1ef-4bcc-8255-4881711cc5a9">Define <code class="function">buildfile</code> Function</h4><p>In the build file, define a function named <code class="function">buildfile</code> that
+                    returns a plan with tasks created using built-in task classes. Before adding the
+                    tasks, import the required classes and create a plan with no tasks.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> plan = buildfile
+import <span style="color:#A020F0">matlab.buildtool.tasks.*</span>
+
+<span style="color:#228B22">% Create a plan with no tasks</span>
+plan = buildplan;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_2a4b4c4b-2da5-4576-8cd5-de15fc822244">Add <code class="literal">"clean"</code> Task</h4><p>In the <code class="function">buildfile</code> function, add a task named
+                        <code class="literal">"clean"</code> to the plan that deletes outputs and traces of
+                    the other tasks in the build file. To create the task, use the <a href="../ref/matlab.buildtool.tasks.cleantask-class.html"><code class="class">matlab.buildtool.tasks.CleanTask</code></a> class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Add a task to delete outputs and traces</span>
+plan(<span style="color:#A020F0">"clean"</span>) = CleanTask;</pre></div></div></div></section><section><h4 class="title" id="mw_1a080228-754b-4e49-a76f-2821c883d10a">Add <code class="literal">"mex"</code> Task Group</h4><p>The <code class="literal">source</code> folder in this example contains the
+                        <code class="literal">arrayProduct.c</code> and <code class="literal">yprime.c</code> source
+                    files. To compile each C source file into a binary MEX file, use a <a href="../ref/matlab.buildtool.tasks.mextask-class.html"><code class="class">matlab.buildtool.tasks.MexTask</code></a> instance. Because
+                        <code class="class">MexTask</code> instances perform similar actions, organize them into
+                    a task group.</p><p>You can create a task group by adding a task whose name contains a colon to
+                    the plan. Start the task name with the task group name followed by a colon. For
+                    instance, add the <code class="literal">"mex"</code> task group that contains two tasks
+                    named <code class="literal">"mex:arrayProduct"</code> and <code class="literal">"mex:yprime"</code>
+                    to the plan. Each of these tasks compiles a source file into a MEX file and
+                    saves the result to a folder named <code class="literal">output</code> in your current
+                    folder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Add a task group to build MEX files</span>
+plan(<span style="color:#A020F0">"mex:arrayProduct"</span>) = MexTask(fullfile(<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"arrayProduct.c"</span>),<span style="color:#A020F0">"output"</span>);
+plan(<span style="color:#A020F0">"mex:yprime"</span>) = MexTask(fullfile(<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"yprime.c"</span>),<span style="color:#A020F0">"output"</span>);
+</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>To create a task group containing a
+                            <code class="class">MexTask</code> instance for each source file, you can also use
+                        the <a href="../ref/matlab.buildtool.tasks.mextask.foreachfile.html"><code class="method">matlab.buildtool.tasks.MexTask.forEachFile</code></a> method.<em> (since R2025a)</em></p></div><p>A task group is an object of the <a href="../ref/matlab.buildtool.taskgroup-class.html"><code class="class">matlab.buildtool.TaskGroup</code></a> class, which subclasses the <a href="../ref/matlab.buildtool.task-class.html"><code class="class">matlab.buildtool.Task</code></a> class and inherits its properties, such as
+                        <code class="property">Description</code> and <code class="property">Dependencies</code>. For
+                    example, set the <code class="property">Description</code> property of the
+                        <code class="literal">"mex"</code> task group.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plan(<span style="color:#A020F0">"mex"</span>).Description = <span style="color:#A020F0">"Build MEX files"</span>;</pre></div></div></div></section><section><h4 class="title" id="mw_795fb40c-1cf3-4a69-862b-47a862ccb6a8">Add <code class="literal">"test"</code> Task</h4><p>Using the <a href="../ref/matlab.buildtool.tasks.testtask-class.html"><code class="class">matlab.buildtool.tasks.TestTask</code></a> class, add a task named
+                        <code class="literal">"test"</code> to the plan that runs the tests in the
+                        <code class="class">MEXFileTest</code> test class and fails the build if any of the
+                    tests fail. Because the tests must exercise the MEX files, make the
+                        <code class="literal">"test"</code> task dependent on the <code class="literal">"mex"</code>
+                    task group.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Add a task to run tests</span>
+plan(<span style="color:#A020F0">"test"</span>) = TestTask(fullfile(<span style="color:#A020F0">"tests"</span>,<span style="color:#A020F0">"MEXFileTest.m"</span>));
+
+<span style="color:#228B22">% Make the "test" task dependent on the "mex" task group</span>
+plan(<span style="color:#A020F0">"test"</span>).Dependencies = <span style="color:#A020F0">"mex"</span>;</pre></div></div></div></section></section><section><h3 class="title" id="mw_c4556d3e-7fe4-44e0-946e-6466e6cd5862">Summary of Build File</h3><p>This code shows the complete contents of the file <code class="literal">buildfile.m</code>
+                in your current folder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> plan = buildfile
+import <span style="color:#A020F0">matlab.buildtool.tasks.*</span>
+
+<span style="color:#228B22">% Create a plan with no tasks</span>
+plan = buildplan;
+
+<span style="color:#228B22">% Add a task to delete outputs and traces</span>
+plan(<span style="color:#A020F0">"clean"</span>) = CleanTask;
+
+<span style="color:#228B22">% Add a task group to build MEX files</span>
+plan(<span style="color:#A020F0">"mex:arrayProduct"</span>) = MexTask(fullfile(<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"arrayProduct.c"</span>),<span style="color:#A020F0">"output"</span>);
+plan(<span style="color:#A020F0">"mex:yprime"</span>) = MexTask(fullfile(<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"yprime.c"</span>),<span style="color:#A020F0">"output"</span>);
+
+plan(<span style="color:#A020F0">"mex"</span>).Description = <span style="color:#A020F0">"Build MEX files"</span>;
+
+<span style="color:#228B22">% Add a task to run tests</span>
+plan(<span style="color:#A020F0">"test"</span>) = TestTask(fullfile(<span style="color:#A020F0">"tests"</span>,<span style="color:#A020F0">"MEXFileTest.m"</span>));
+
+<span style="color:#228B22">% Make the "test" task dependent on the "mex" task group</span>
+plan(<span style="color:#A020F0">"test"</span>).Dependencies = <span style="color:#A020F0">"mex"</span>;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h3 class="title" id="mw_7881aca2-cf5c-49ec-8c2d-322a9b7438c9">Visualize Task Group</h3><p>Create a dependency graph of the build plan using the <a href="../ref/matlab.buildtool.plan.plot.html"><code class="method">plot</code></a>
+                method. By default, the method represents the <code class="literal">"mex"</code> task group as
+                a single node in the graph. To display the tasks in the <code class="literal">"mex"</code>
+                task group, call the method using <code class="argument">ShowAllTasks=true</code> as an
+                input. Because the <code class="literal">"test"</code> task depends on the
+                    <code class="literal">"mex"</code> task group, the edges in the graph indicate that the
+                    <code class="literal">"mex:arrayProduct"</code> and <code class="literal">"mex:yprime"</code> tasks
+                must run before the <code class="literal">"test"</code> task runs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plan = buildfile;
+plot(plan,ShowAllTasks=true)</pre></div></div></div><div class="informalfigure"><div id="d126e101787" class="mediaobject"><p><img src="build_tool_show_all_tasks.png" alt="Dependency graph that shows the &#34;test&#34; task and its dependency on the &#34;mex&#34; task group. The &#34;mex&#34; task group includes two tasks. The &#34;clean&#34; task appears without dependencies." height="420" width="560"></p></div></div></section><section><h3 class="title" id="mw_1cad558f-a0a8-4c18-93db-5b1f37327acf">Run Task Group</h3><p>You can run all the tasks in a task group or a specified task in a task group by
+                using the <a href="../ref/buildtool.html"><code class="function">buildtool</code></a> command or the <a href="../ref/matlab.buildtool.plan.run.html"><code class="method">run</code></a>
+                method. If you specify a task group (for example, <code class="literal">buildtool
+                        <em class="replaceable"><code>mygroup</code></em></code>), then the build tool runs all
+                the tasks in the task group. If you specify a task in a task group (for example,
+                    <code class="literal">buildtool <em class="replaceable"><code>mygroup:taskN</code></em></code>), then the
+                build tool runs only the specified task.</p><p>List the tasks in the build file including the tasks in any task groups.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">-tasks</span> <span style="color:#A020F0">all</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>clean            - Delete task outputs and traces
+mex              - Build MEX files
+mex:arrayProduct - Build arrayProduct MEX file
+mex:yprime       - Build yprime MEX file
+test             - Run tests</pre></div></div></div><p>Run the <code class="literal">"mex"</code> task group. The
+                    <code class="literal">"mex:arrayProduct"</code> and <code class="literal">"mex:yprime"</code> tasks
+                in the task group build binary MEX files and save them to the
+                    <code class="literal">output</code> folder. The build run progress includes information
+                specific to your compiler.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">mex</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Starting mex:arrayProduct
+mex source\arrayProduct.c -output output\arrayProduct.mexw64 
+Building with 'MinGW64 Compiler (C)'.
+MEX completed successfully.
+** Finished mex:arrayProduct
+
+** Starting mex:yprime
+mex source\yprime.c -output output\yprime.mexw64 
+Building with 'MinGW64 Compiler (C)'.
+MEX completed successfully.
+** Finished mex:yprime
+
+** Done mex</pre></div></div></div><p>Run the <code class="literal">"test"</code> task. Even though the <code class="literal">"test"</code>
+                task depends on the <code class="literal">"mex"</code> task group, the build tool skips the
+                tasks in the task group because neither their inputs nor outputs have changed. In
+                this example, both the tests in the <code class="literal">tests</code> folder pass and the
+                    <code class="literal">"test"</code> task runs successfully.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">test</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Skipped mex:arrayProduct (up-to-date)
+
+** Skipped mex:yprime (up-to-date)
+
+** Done mex
+
+** Starting test
+..
+
+Test Summary:
+    Total Tests: 2
+         Passed: 2
+         Failed: 0
+     Incomplete: 0
+       Duration: 0.50099 seconds testing time.
+                 
+** Finished test</pre></div></div></div><p>Run the <code class="literal">"clean"</code> task to delete outputs and traces of the other
+                tasks in the plan. When you delete the outputs or the trace of a task, the build
+                tool no longer considers the task as up to date.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">clean</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Starting clean
+Deleted 'C:\work\output\arrayProduct.mexw64' successfully
+Deleted 'C:\work\output\yprime.mexw64' successfully
+** Finished clean</pre></div></div></div><p>Run the <code class="literal">"mex:arrayProduct"</code> task in isolation to build a fresh
+                MEX file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">mex:arrayProduct</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Starting mex:arrayProduct
+mex source\arrayProduct.c -output output\arrayProduct.mexw64 
+Building with 'MinGW64 Compiler (C)'.
+MEX completed successfully.
+** Finished mex:arrayProduct</pre></div></div></div><p>Now, run the <code class="literal">"test"</code> task again. The build tool runs only the
+                    <code class="literal">"mex:yprime"</code> task in the task group. It skips the
+                    <code class="literal">"mex:arrayProduct"</code> task because the task is up to
+                date.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool <span style="color:#A020F0">test</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Skipped mex:arrayProduct (up-to-date)
+
+** Starting mex:yprime
+mex source\yprime.c -output output\yprime.mexw64 
+Building with 'MinGW64 Compiler (C)'.
+MEX completed successfully.
+** Finished mex:yprime
+
+** Done mex
+
+** Starting test
+..
+
+Test Summary:
+    Total Tests: 2
+         Passed: 2
+         Failed: 0
+     Incomplete: 0
+       Duration: 0.50383 seconds testing time.
+                 
+** Finished test</pre></div></div></div></section><section><h3 class="title" id="mw_27584080-1f80-48a2-a064-86a630f70026">Source and Test Code</h3><p>This section shows how to set up your current folder for running this
+                example.</p><section><h4 class="title" id="mw_a7a022cc-fa81-4c6a-ad7e-6183a5e5c960">Copy Source Files</h4><p>In your current folder, create the <code class="literal">source</code> folder if it does
+                    not exist. Then, copy two C source files named <code class="literal">arrayProduct.c</code>
+                    and <code class="literal">yprime.c</code> to the <code class="literal">source</code> folder. For
+                    more information about the source files used in this example, see <a href="../matlab_external/table-of-mex-file-source-code-files.html" class="a">Tables of MEX Function Source Code Examples</a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mkdir <span style="color:#A020F0">source</span>
+copyfile(fullfile(matlabroot,<span style="color:#A020F0">"extern"</span>,<span style="color:#A020F0">"examples"</span>,<span style="color:#A020F0">"mex"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"arrayProduct.c"</span>),<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"f"</span>)
+copyfile(fullfile(matlabroot,<span style="color:#A020F0">"extern"</span>,<span style="color:#A020F0">"examples"</span>,<span style="color:#A020F0">"mex"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"yprime.c"</span>),<span style="color:#A020F0">"source"</span>,<span style="color:#A020F0">"f"</span>)</pre></div></div></div></section><section><h4 class="title" id="mw_f5d87781-c761-4ea1-92dd-1c5166f34832">Create Tests</h4><p>In your current folder, create the <code class="literal">tests</code> folder if it does
+                    not exist.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mkdir <span style="color:#A020F0">tests</span></pre></div></div></div><p>In a file named <code class="literal">MEXFileTest.m</code> in the
+                        <code class="literal">tests</code> folder, create the <code class="class">MEXFileTest</code> test
+                    class to test the MEX files corresponding to the C source files.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> MEXFileTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> test1(testCase)
+            import <span style="color:#A020F0">matlab.unittest.fixtures.PathFixture</span>
+            testCase.applyFixture(PathFixture(fullfile(<span style="color:#A020F0">".."</span>,<span style="color:#A020F0">"output"</span>)))
+            actual = arrayProduct(5,[1 2]);
+            expected = [5 10];
+            testCase.verifyEqual(actual,expected)
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> test2(testCase)
+            import <span style="color:#A020F0">matlab.unittest.fixtures.PathFixture</span>
+            testCase.applyFixture(PathFixture(fullfile(<span style="color:#A020F0">".."</span>,<span style="color:#A020F0">"output"</span>)))
+            actual = yprime(1,1:4);
+            expected = [2.0000 8.9685 4.0000 -1.0947];
+            testCase.verifyEqual(actual,expected,RelTol=1e-4)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section>
+            <h2 id="d126e101912">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/buildplan.html"><span itemprop="name"><code class="function">buildplan</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/buildtool.html"><span itemprop="name"><code class="function">buildtool</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.plan.plot.html"><span itemprop="name"><code class="method">plot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.tasks.mextask.foreachfile.html"><span itemprop="name"><code class="method">matlab.buildtool.tasks.MexTask.forEachFile</code></span></a></span></li></ul><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.plan-class.html"><span itemprop="name"><code class="class">matlab.buildtool.Plan</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.taskgroup-class.html"><span itemprop="name"><code class="class">matlab.buildtool.TaskGroup</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.tasks.mextask-class.html"><span itemprop="name"><code class="class">matlab.buildtool.tasks.MexTask</code></span></a></span></li></ul><h3>Namespaces</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.tasks-package.html"><span itemprop="name"><code class="package">matlab.buildtool.tasks</code></span></a></span></li></ul>
+            <h3 id="d126e101948">Topics</h3><ul class="list-unstyled"><li><a href="overview-of-matlab-build-tool.html" class="a">Overview of MATLAB Build Tool</a></li><li><a href="create-and-run-tasks-using-build-tool.html" class="a">Create and Run Tasks Using Build Tool</a></li><li><a href="improve-performance-with-incremental-builds.html" class="a">Improve Performance with Incremental Builds</a></li><li><a href="run-build-from-toolstrip.html" class="a">Run Build from Toolstrip</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

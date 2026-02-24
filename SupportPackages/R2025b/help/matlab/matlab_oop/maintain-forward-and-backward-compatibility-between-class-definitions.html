@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Maintain Backward and Forward Compatibility Between Class Definitions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../matlab-class-customization.html",
+          "name": "Class Customization"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../save-and-load.html",
+          "name": "Object Save and Load"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "save-and-load"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Modify the save and load process to provide class version compatibility."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-class-customization.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Class Customization</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../save-and-load.html?s_tid=CRUX_lftnav" itemprop="url" id="buwihbe-1"><span itemprop="title">Object Save and Load</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Maintain Backward and Forward Compatibility Between Class Definitions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_644dab99-1317-400f-b6d3-61e60d1f895c" class="nav-link intrnllnk">Backward Compatibility</a></li><li class="nav-item"><a href="#mw_71c435ed-d701-4cea-9905-7fb8fc92f369" class="nav-link intrnllnk">Forward Compatibility</a></li><li class="nav-item"><a href="#d126e26423" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=save-and-load&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=save-and-load&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=save-and-load&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=save-and-load&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=save-and-load&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=save-and-load&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_993343ca-57d3-4ee5-a5c2-e20b9afeb021">Maintain Backward and Forward Compatibility Between Class Definitions</h2><p>Revising a class definition can lead to errors when trying to deserialize instances of a
+         different version of that class using the default load process. When changing a class
+         definition, you can inherit from <a href="../ref/matlab.mixin.customelementserialization-class.html"><code class="class">matlab.mixin.CustomElementSerialization</code></a> and use it to control how the new class
+         definition serializes and deserializes instances to preserve compatibility. The general
+         process is:</p><div class="itemizedlist"><ul><li><p>When you revise your class definition in a way that breaks compatibility with the
+               older version, add <code class="class">matlab.mixin.CustomElementSerialization</code> as a
+               superclass.</p></li><li><p>If you need to change how objects of the revised class are serialized, implement
+               the <code class="method">modifyOutgoingSerializationContent</code> method of
+                  <code class="class">matlab.mixin.CustomElementSerialization</code>. The method takes an
+               instance of <a href="../ref/matlab.serialization.elementserializationcontent-class.html"><code class="class">matlab.serialization.ElementSerializationContent</code></a> as input. That object
+               represents what will be serialized, and the methods of
+                  <code class="class">matlab.serialization.ElementSerializationContent</code> enable you to
+               change how properties are serialized.</p></li><li><p>If you need to change how objects of the revised class are deserialized, implement
+               the <code class="method">modifyIncomingSerializationContent</code> method of
+                  <code class="class">matlab.mixin.CustomElementSerialization</code>. The method takes an
+               instance of the <code class="class">matlab.serialization.ElementSerializationContent</code> class
+               as input. That object represents what will be deserialized, and the methods of
+                  <code class="class">matlab.serialization.ElementSerializationContent</code> enable you to
+               change how properties are deserialized.</p></li><li><p>If you need to perform any final operations on the deserialized object, such as
+               adding an event listener, implement the <code class="method">finalizeIncomingObject</code>
+               method of <code class="class">matlab.mixin.CustomElementSerialization</code>. The method takes
+               the deserialized object as input.</p></li></ul></div><section><h3 class="title" id="mw_644dab99-1317-400f-b6d3-61e60d1f895c">Backward Compatibility</h3><p>Define a class <code class="class">Employee</code> that stores basic information. The
+               <code class="property">EmployeeID</code> property is stored as a string with
+               "<code class="literal">ID-</code>" at the beginning, as shown by the default value.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Employee
+    <span style="color:#0000FF">properties</span>
+        Name
+        Department
+        EmployeeID = <span style="color:#A020F0">"ID-0000"</span>
+        Email
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create an instance of <code class="class">Employee</code>, assign values to all the properties,
+            and save it. Replace <em class="replaceable"><code>yourfilepath</code></em> with your local
+            path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>eOld = Employee;
+eOld.Name = "Alex Cruz";
+eOld.Department = "Sales";
+eOld.EmployeeID = "ID-1301"
+eOld.Email = "acruz@notacompany.com"
+save("<em class="replaceable">yourfilepath</em>/oldEmployee.mat","eOld");</pre></div></div></div><p>Update the class definition with new and redefined properties:</p>
+<div class="itemizedlist"><ul><li><p>Split <code class="property">Name</code> into <code class="property">FirstName</code> and
+                        <code class="property">LastName</code>.</p></li><li><p>Change <code class="property">Department</code> to
+                     <code class="property">Division</code>.</p></li><li><p>Remove the "<code class="literal">ID-</code>" prefix from the
+                        <code class="property">EmployeeID</code> property.</p></li></ul></div><p>
+</p><p>Trying to deserialize an object that was serialized under the old definition would
+            leave some properties without proper values. To keep the old objects as accessible as
+            possible, add <code class="class">matlab.mixin.CustomElementSerialization</code> as a superclass and
+            implement the static method <code class="method">modifyIncomingSerialization</code> to convert the
+            old property data into the new format as needed.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Employee &lt; matlab.mixin.CustomElementSerialization
+    <span style="color:#0000FF">properties</span>
+        LastName
+        FirstName
+        EmployeeID
+        Division
+        Email
+    <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span> (Static)
+        <span style="color:#0000FF">function</span> modifyIncomingSerializationContent(sObj)
+            <span style="color:#0000FF">if</span> sObj.hasNameValue(<span style="color:#A020F0">"Name"</span>)
+                nameArray = split(sObj.Name);
+                sObj.addNameValue(<span style="color:#A020F0">"FirstName"</span>,nameArray(1));
+                sObj.addNameValue(<span style="color:#A020F0">"LastName"</span>,nameArray(2));
+                sObj.remove(<span style="color:#A020F0">"Name"</span>);
+                sObj.rename(<span style="color:#A020F0">"Department"</span>,<span style="color:#A020F0">"Division"</span>);
+                id = split(sObj.EmployeeID,<span style="color:#A020F0">"-"</span>);
+                sObj.updateValue(<span style="color:#A020F0">"EmployeeID"</span>,id(2));
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>MATLAB<sup>&#x00AE;</sup> calls <code class="method">modifyIncomingSerializationContent</code> when you load an
+            object of <code class="class">Employee</code>. The method takes as input an instance of <a href="../ref/matlab.serialization.elementserializationcontent-class.html"><code class="class">matlab.serialization.ElementSerializationContent</code></a>. The
+               <code class="method">hasNameValue</code> method of
+               <code class="class">matlab.serialization.ElementSerializationContent</code> checks to see if the
+            saved object has a property called <code class="property">Name</code>. If there is a
+               <code class="property">Name</code> property, the object being deserialized was serialized
+            under the old class definition. In that case, the methods of
+               <code class="class">matlab.serialization.ElementSerializationContent</code> convert and assign
+            the old property data into the revised properties:</p>
+<div class="itemizedlist"><ul><li><p>The value of the <code class="property">Name</code> property is split into an array
+                     of two strings, and the <code class="method">addNameValue</code> method adds the
+                        <code class="property">FirstName</code> and <code class="property">LastName</code> properties.
+                        <code class="method">remove</code> discards the old property
+                     <code class="property">Name</code>.</p></li><li><p>The <code class="method">rename</code> method changes <code class="property">Department</code>
+                     to <code class="property">Division</code>.</p></li><li><p>The <code class="method">updateValue</code> method changes the value of the
+                        <code class="property">EmployeeID</code> property to include only the numeric
+                     portion.</p></li></ul></div><p>
+</p><p>Clear <code class="object">eOld</code> from
+            memory.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear(<span style="color:#A020F0">"eOld"</span>)</pre></div></div></div>Remove the
+            old definition of <code class="class">Employee</code> from your path. Add the revised definition of
+               <code class="class">Employee</code> to the path, and load the <code class="literal">eOld</code> object.
+            Display the object to confirm that the variable has been deserialized as an object of
+            the revised definition of <code class="class">Employee</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load("<em class="replaceable">yourfilepath</em>/oldEmployee.mat","eOld")
+eOld</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>eOld = 
+
+  Employee with properties:
+
+      LastName: "Cruz"
+     FirstName: "Alex"
+    EmployeeID: "1301"
+      Division: "Sales"
+         Email: "acruz@notacompany.com"</pre></div></div></div><p><code class="class">matlab.mixin.CustomElementSerialization</code> also provides a static
+               <code class="method">finalizeIncomingObject</code> method. If the method is implemented,
+               MATLAB calls it after <code class="method">modifyIncomingSerializationContent</code>. Use
+            the method to perform any necessary cleanup on the deserialized object, like restoring
+            property listeners, for example. In the case of <code class="class">Employee</code>,
+               <code class="method">finalizeIncomingObject</code> could be used to fill in the unknown value
+            for <code class="property">EmployeeID</code> if the method has access to that data from other
+            sources.</p><p>The <code class="method">modifyOutgoingSerializationContent</code> method also has an optional
+            input argument, an instance of <a href="../ref/matlab.serialization.serializationcontext-class.html"><code class="class">matlab.serialization.SerializationContext</code></a>. An instance of this class can be
+            used to determine the context in which the object is being serialized. For example,
+               MATLAB sets the <code class="property">CustomizeForReadability</code> property of the
+            instance to <code class="property">true</code> if the serialized object is readable by external
+            users.</p><p>For an additional example on preserving backward compatibility, see <a href="../ref/matlab.serialization.elementserializationcontent-class.html#mw_bfe01bf4-c9a8-4216-b366-392efa05a269" class="a">Load Serialized Objects After Changing Class Definition</a>.</p></section><section><h3 class="title" id="mw_71c435ed-d701-4cea-9905-7fb8fc92f369">Forward Compatibility</h3><p>The latest version of <code class="class">Employee</code> can now successfully deserialize
+            objects saved under the older version of the class, but the class does not have forward
+            compatibility. In other words, someone who only has access to the older version of the
+            class cannot successfully deserialize an object serialized under the latest version of
+            the class.</p><p>To support forward compatibility, implement the
+               <code class="method">modifyOutgoingSerializationContent</code> method of
+               <code class="class">matlab.mixin.CustomElementSerialization</code> in the new class definition.
+            This method controls what information is serialized, so the goal is to save the
+            information in a way that both the old and new versions of the class can access.</p><p>MATLAB calls <code class="method">modifyOutgoingSerializationContent</code> when you save an
+            object of <code class="class">Employee</code>. The method takes as inputs an object of <a href="../ref/matlab.serialization.elementserializationcontent-class.html"><code class="class">matlab.serialization.ElementSerializationContent</code></a> as well as the object
+            itself. The process from there is the inverse of how
+               <code class="method">modifyIncomingSerializationContent</code> works. The properties are
+            reverted to the format of the older version so that the data can be deserialized by
+            either version of the class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Employee &lt; matlab.mixin.CustomElementSerialization
+    <span style="color:#0000FF">properties</span>
+        LastName
+        FirstName
+        EmployeeID = <span style="color:#A020F0">"0000"</span>
+        Division
+        Email
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span> (Static)
+        <span style="color:#0000FF">function</span> modifyIncomingSerializationContent(sObj)
+            <span style="color:#0000FF">if</span> sObj.hasNameValue(<span style="color:#A020F0">"Name"</span>)
+                nameArray = split(sObj.Name);
+                sObj.addNameValue(<span style="color:#A020F0">"FirstName"</span>,nameArray(1));
+                sObj.addNameValue(<span style="color:#A020F0">"LastName"</span>,nameArray(2));
+                sObj.remove(<span style="color:#A020F0">"Name"</span>);
+                sObj.rename(<span style="color:#A020F0">"Department"</span>,<span style="color:#A020F0">"Division"</span>);
+                id = split(sObj.EmployeeID,<span style="color:#A020F0">"-"</span>);
+                sObj.updateValue(<span style="color:#A020F0">"EmployeeID"</span>,id(2));
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> modifyOutgoingSerializationContent(sObj,obj)
+            nameStr = append(obj.FirstName,<span style="color:#A020F0">" "</span>,obj.LastName);
+            sObj.addNameValue(<span style="color:#A020F0">"Name"</span>,nameStr);
+            sObj.remove(<span style="color:#A020F0">"FirstName"</span>);
+            sObj.remove(<span style="color:#A020F0">"LastName"</span>);
+            sObj.rename(<span style="color:#A020F0">"Division"</span>,<span style="color:#A020F0">"Department"</span>);
+            fullID = append(<span style="color:#A020F0">"ID-"</span>,obj.EmployeeID);
+            sObj.updateValue(<span style="color:#A020F0">"EmployeeID"</span>,fullID);
+        <span style="color:#0000FF">end</span>
+     <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Resave <code class="literal">eOld</code> under the newer definition of
+               <code class="literal">Employee</code> and then load it under the older class definition. The
+            deserialized version under the older definition is in the correct format.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>eOld = 
+
+  Employee with properties:
+
+          Name: "Alex Cruz"
+    Department: "Sales"
+    EmployeeID: "ID-1301"
+         Email: "acruz@notacompany.com"</pre></div></div></div><p>For another example of a revised class definition that supports both forward and
+            backward compatibility, see <a href="../ref/matlab.mixin.customelementserialization-class.html#mw_4bb52685-c13a-454f-82d9-c35d878f461f" class="a">Maintain Backward and Forward Compatibility During Serialization</a>.</p></section>
+         <h2 id="d126e26423">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mixin.customelementserialization-class.html"><span itemprop="name"><code class="class">matlab.mixin.CustomElementSerialization</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.serialization.elementserializationcontent-class.html"><span itemprop="name"><code class="class">matlab.serialization.ElementSerializationContent</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.serialization.serializationcontext-class.html"><span itemprop="name"><code class="class">matlab.serialization.SerializationContext</code></span></a></span></p>
+         <h3 id="d126e26435">Topics</h3><ul class="list-unstyled"><li><a href="../save-and-load.html" class="a">Object Save and Load</a></li><li><a href="../ref/matlab.mixin.customelementserialization-class.html#mw_4bb52685-c13a-454f-82d9-c35d878f461f" class="a">Maintain Backward and Forward Compatibility During Serialization</a></li></ul>
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

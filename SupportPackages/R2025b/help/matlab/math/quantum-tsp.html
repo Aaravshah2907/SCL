@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Traveling Salesperson Problem with QUBO</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../qubo.html",
+          "name": "Quadratic Unconstrained Binary Optimization (QUBO)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "qubo"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Convert a Traveling Salesperson Problem (TSP) to a QUBO problem and solve the problem."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../qubo.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_179b79ec-0389-46ef-988e-3f9c7f9a5981"><span itemprop="title">Quadratic Unconstrained Binary Optimization (QUBO)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Traveling Salesperson Problem with QUBO</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_b9596aca-5525-4c07-9508-0200f39d5649" class="nav-link intrnllnk">Problem Data</a></li><li class="nav-item"><a href="#mw_841908d5-3550-457f-9966-430a04134f86" class="nav-link intrnllnk">Convert to QUBO: Theory</a></li><li class="nav-item"><a href="#mw_93d946f3-3bc8-4c10-a82a-b7000e9b89ce" class="nav-link intrnllnk">Solve TSP Using solve</a></li><li class="nav-item"><a href="#mw_6ab0e449-8b2e-45cf-a2d7-62cefd2f026a" class="nav-link intrnllnk">Convert to QUBO: Code</a></li><li class="nav-item"><a href="#mw_be382992-37c8-4a91-922f-f4904e6249a0" class="nav-link intrnllnk">Helper Function</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e70397" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_317dacfa-d015-424a-84f8-8a1703958286">Traveling Salesperson Problem with QUBO</h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><p>The classic Traveling Salesperson Problem (TSP) involves a group of cities (locations)
+      that a salesperson must visit before returning to the start location. The problem is to
+      minimize the total distance the salesperson travels. This topic shows how to convert a TSP to
+      a Quadratic Unconstrained Binary Optimization (QUBO) problem, and to solve the QUBO problem
+      using the tabu search algorithm.</p><section><h3 class="title" id="mw_b9596aca-5525-4c07-9508-0200f39d5649">Problem Data</h3><p>The data for a TSP consists of city locations and the distances between each pair of
+        cities. The distances can be given as a matrix <code class="literal">D</code>, where
+          <code class="literal">D(i,j)</code> is the distance from city <code class="literal">i</code> to city
+          <code class="literal">j</code>. This example uses the Pythagorean rule to calculate distances,
+        assuming a flat earth. The solution depends only on the distances, not the city locations.
+        But to plot the solution, you need the locations.</p><p>Specify the following pseudorandom city locations:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N = 9; <span style="color:#228B22">% Number of cities</span>
+rng <span style="color:#A020F0">default</span> <span style="color:#228B22">% For reproducibility</span>
+stopsLon = 1.5*rand(N,1);
+stopsLat = rand(N,1);
+plot(stopsLon,stopsLat,<span style="color:#A020F0">"ko"</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e69870" class="mediaobject"><p><img src="tsplocations.png" alt="Nine random locations" height="577" width="734"></p></div></div><p>Calculate the distances between the cities using the <code class="literal">hypot</code>
+        function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[X,Y] = meshgrid(1:N);
+dist = hypot(stopsLon(X) - stopsLon(Y),stopsLat(X) - stopsLat(Y));</pre></div></div></div></section><section><h3 class="title" id="mw_841908d5-3550-457f-9966-430a04134f86">Convert to QUBO: Theory</h3><p>For <em class="varname">N</em> cities, use <em class="varname">N<sup>2</sup></em>
+        binary variables <em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>), where
+          <em class="varname">i</em> represents the index of a city and <em class="varname">j</em> represents
+        the order of the city in the route. In other words, if city <em class="varname">i</em> is visited
+        at step <em class="varname">j</em> of the route, then <span class="inlineequation"><em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>) =
+            1</span>. </p><p>According to Lucas <a href="quantum-tsp.html#mw_2fdb273e-b3a8-4c26-92e7-2d56ad7ba3bb" class="intrnllnk">[2]</a>, the following
+        equations suffice to specify that the
+          <em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>) variables represent a
+        route.</p><div id="d126e69925" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-52px" display="block"><mtable columnalign="left"><mtr><mtd><msup><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle><mn>2</mn></msup><mo>=</mo><mn>0</mn></mtd></mtr><mtr><mtd><msup><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle><mn>2</mn></msup><mo>=</mo><mn>0.</mn></mtd></mtr></mtable></math></p></div></div><p>These equations ensure that each city is visited only once, and each step of the route
+        is in one city.</p><p>If some cities are not reachable directly from other cities, also include the
+        equation</p><div id="d126e69931" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mtext>No&nbsp;path&nbsp;from&nbsp;</mtext><mi>i</mi><mtext>&nbsp;to&nbsp;</mtext><mi>j</mi><mtext>&nbsp;</mtext></mrow></munder><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>k</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle><mo>=</mo><mn>0.</mn></mrow></mstyle></mrow></math></p></div></div><p>This equation ensures that when no direct path exists from <em class="varname">i</em> to
+          <em class="varname">j</em>, then at any time <em class="varname">k</em> when the route visits
+          <em class="varname">i</em>, the route does not visit <em class="varname">j</em> at time
+          <em class="varname">k</em> + 1.</p><p>To convert the TSP to a QUBO problem, use the following objective function, which is
+        scaled by a positive number <em class="varname">M</em>. Each expression in the objective function
+        is a penalty for the solution failing to satisfy one of the previous equations.</p><div id="d126e69954" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-69px" display="block"><mtable><mtr><mtd><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>M</mi><msup><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle><mn>2</mn></msup></mtd></mtr><mtr><mtd><mo>+</mo><mi>M</mi><msup><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle><mn>2</mn></msup></mtd></mtr><mtr><mtd><mo>+</mo><mi>M</mi><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mtext>No&nbsp;connection&nbsp;from&nbsp;</mtext><mi>i</mi><mtext>&nbsp;to&nbsp;</mtext><mi>j</mi><mtext>&nbsp;</mtext></mrow></munder><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>k</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle><mo>.</mo></mrow></mstyle></mtd></mtr></mtable></math></p></div></div><p>As you can see, <span class="inlineequation"><em class="varname">f</em>(<em class="varname">x</em>) = 0</span> when <em class="varname">x</em> represents a valid route. All of the expressions
+        in <span class="inlineequation"><em class="varname">f</em>(<em class="varname">x</em>)</span> are in QUBO form.</p><p>To finish the conversion from TSP to QUBO, include the cost of the route in the
+        objective function. Let <em class="varname">D</em>(<em class="varname">i</em>,<em class="varname">j</em>) be
+        the distance of a direct path from <em class="varname">i</em> to <em class="varname">j</em>. The
+        objective function for the TSP is</p><div id="d126e69989" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mi>u</mi><mi>v</mi></mrow></munder><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>.</mo></mrow></math></p></div></div><p>Here, interpret <em class="varname">x</em>(<em class="varname">v</em>,<em class="varname">N</em>+1) as
+          <em class="varname">x</em>(<em class="varname">v</em>,1), meaning the route returns to the start
+        location at step <em class="varname">N</em>+1.</p><p>Suppose that the multiplier <em class="varname">M</em> satisfies <span class="inlineequation">0 &lt; max(<em class="varname">D</em>) &lt; <em class="varname">M</em></span>. When you specify <em class="varname">M</em> this large, the minimal objective
+        function takes place where <span class="inlineequation"><em class="varname">f</em>(<em class="varname">x</em>) = 0</span>. In this case, the constraints are satisfied, so the <em class="varname">x</em>
+        variables represent a valid route.</p><p>The final step in converting the quadratic expressions for distance and penalty to a
+        QUBO problem is to represent them in matrix form. This step is explained in <a href="quantum-tsp.html#mw_6ab0e449-8b2e-45cf-a2d7-62cefd2f026a" class="intrnllnk">Convert to QUBO: Code</a>. The code that converts
+        the problem to a QUBO problem is given in the <code class="literal">tsp2qubo</code>
+        <a href="quantum-tsp.html#mw_be382992-37c8-4a91-922f-f4904e6249a0" class="intrnllnk">Helper Function</a> at the end of this
+        example.</p></section><section><h3 class="title" id="mw_93d946f3-3bc8-4c10-a82a-b7000e9b89ce">Solve TSP Using <code class="literal">solve</code></h3><p>Earlier, you created the distance matrix <code class="literal">dist</code>. Convert the distance
+        matrix to a TSP using the <code class="literal">tsp2qubo</code> helper function, and then solve the
+        problem.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Q = tsp2qubo(dist);
+result = solve(Q);</pre></div></div></div><p>Plot the city locations and the calculated route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>binx = result.BestX;
+binx = reshape(binx,N,[]);
+ordr = zeros(1,N);
+<span style="color:#0000FF">for</span> i = 1:N
+    ordr(i) = find(binx(i,:)); <span style="color:#228B22">% Find order of cities in route</span>
+<span style="color:#0000FF">end</span>
+
+hold <span style="color:#A020F0">on</span>
+plot(stopsLon(ordr),stopsLat(ordr),<span style="color:#A020F0">"ko"</span>)
+plot(stopsLon(ordr),stopsLat(ordr),<span style="color:#A020F0">"b-"</span>)
+plot(stopsLon(ordr([N 1])),stopsLat(ordr([N,1])),<span style="color:#A020F0">"b-"</span>)
+<span style="color:#0000FF">for</span> i = 1:length(stopsLon)
+text(stopsLon(i)+0.02,stopsLat(i),num2str(i))
+<span style="color:#0000FF">end</span>
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e70053" class="mediaobject"><p><img src="tspsolution.png" alt="Solution of the TSP" height="420" width="560"></p></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>disp(ordr)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>     4     1     3     6     7     8     5     2     9</pre></div></div></div><p>Find the distance of the route by adding the length of each leg.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myd = 0;
+<span style="color:#0000FF">for</span> i = 1:(N-1)
+    myd = myd + dist(ordr(i),ordr(i+1));
+<span style="color:#0000FF">end</span>
+myd = myd + dist(ordr(N),ordr(1))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>myd =
+
+    4.0665</pre></div></div></div><p>Find the distance by evaluating the objective function at the solution.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>evaluateObjective(Q,result.BestX)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    4.0665</pre></div></div></div></section><section><h3 class="title" id="mw_6ab0e449-8b2e-45cf-a2d7-62cefd2f026a">Convert to QUBO: Code</h3><p>The <code class="function">tsp2qubo</code> helper function converts a TSP to a QUBO problem
+        according to the procedure in the Convert to QUBO: Theory section. After you solve the
+        problem, the result is a binary matrix <em class="varname">x</em>, where <span class="inlineequation">
+            <em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>) = 1</span> means the route visits city <em class="varname">i</em> at step
+          <em class="varname">j</em>.</p><p>To represent the quadratic expressions in the form</p><div id="d126e70096" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-7px" display="block"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo>'</mo><mi>Q</mi><mi>x</mi><mo>+</mo><mi>c</mi><mo>'</mo><mi>x</mi><mo>+</mo><mi>d</mi><mtext>,</mtext></mrow></math></p></div></div><p>set the variable <em class="varname">x</em> as the variables
+          <em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>) for <em class="varname">i</em>
+        and <em class="varname">j</em> going from 1 through <em class="varname">N</em>. In other words,
+          <em class="varname">x</em> is a column vector with
+          <em class="varname">N</em><sup>2</sup> entries, corresponding in order to (1,1),
+        …, (1,<em class="varname">N</em>), (2,1), …, (2,<em class="varname">N</em>), …,
+        (<em class="varname">N</em>,1), … (<em class="varname">N</em>,<em class="varname">N</em>). The
+          <em class="varname">Q</em> matrix is of size
+          <em class="varname">N</em><sup>2</sup>-by-<em class="varname">N</em><sup>2</sup>.</p><p>Expand the first expression in <em class="varname">f</em>(<em class="varname">x</em>).</p><div id="d126e70148" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-23px" display="block"><mrow><msup><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle></mrow><mn>2</mn></msup><mo>=</mo><mi>N</mi><mo>−</mo><mn>2</mn><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>+</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msup><mrow><mrow><mo>(</mo><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow><mn>2</mn></msup></mrow></mstyle><mo>.</mo></mrow></math></p></div></div><p>The first double sum is linear in the variables and, therefore, does not enter into the
+        quadratic matrix. You can represent the quadratic expression using a block diagonal matrix,
+        where each block is an <em class="varname">N</em>-by-<em class="varname">N</em> matrix of ones.</p><div id="d126e70158" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-208px" display="block"><mtable><mtr><mtd><mi>x</mi><mo>'</mo><mi>Q</mi><mi>x</mi><mo>=</mo><mi>x</mi><mo>'</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mrow/></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mi>x</mi></mtd></mtr><mtr><mtd><mo>=</mo><mi>x</mi><mo>'</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd><mo>=</mo><mrow><mo>(</mo><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msup><mrow><mrow><mo>(</mo><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow><mn>2</mn></msup></mrow></mstyle></mrow><mo>)</mo></mrow><mo>.</mo></mtd></mtr></mtable></math></p></div></div><p>Similarly, expand the second double sum, which differs from the first by having the
+        order of the <em class="varname">i</em> and <em class="varname">j</em> indices interchanged.</p><div id="d126e70168" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><msup><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow></mstyle></mrow><mn>2</mn></msup><mo>=</mo><mi>N</mi><mo>−</mo><mn>2</mn><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>+</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msup><mrow><mrow><mo>(</mo><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow><mn>2</mn></msup></mrow></mstyle><mo>.</mo></mrow></math></p></div></div><p>You can represent the quadratic term using a block matrix, where every block is an
+          <em class="varname">N</em>-by-<em class="varname">N</em> identity matrix.</p><div id="d126e70179" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-181px" display="block"><mtable><mtr><mtd><mi>x</mi><mo>'</mo><mi>Q</mi><mi>x</mi><mo>=</mo><mi>x</mi><mo>'</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>1</mn></mtd></mtr></mtable></mrow><mo>)</mo></mrow><mi>x</mi></mtd></mtr><mtr><mtd><mo>=</mo><mi>x</mi><mo>'</mo><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mi>i</mi></munder><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mtd></mtr><mtr><mtd><mo>=</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msup><mrow><mrow><mo>(</mo><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow></mrow><mn>2</mn></msup><mo>.</mo></mrow></mstyle></mtd></mtr></mtable></math></p></div></div><p>Now calculate the distance to travel from the first city to city <em class="varname">N</em>, a
+        one-way trip (calculate the cost to return in another step). The cost to go from city
+          <em class="varname">u</em> to city <em class="varname">v</em>, including a check that such a step is
+        in the route, is</p><table width="95%" class="programlistingindent table table-condensed" id="mw_595f1d6b-04cb-478d-815f-51da1baa8c5b"><tr valign="top"><td class="cell_80"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle><mo>.</mo></mrow></math></td><td class="cell_20 text-end valign_center"><strong>(1)</strong></td></tr></table><p>This expression is the sum over all step numbers in which the step occurs, times the
+        distance of the step. Therefore, the total cost of the one-way trip is</p><table width="95%" class="programlistingindent table table-condensed" id="mw_b092a535-3cd8-4b96-9061-6aabadbac91a"><tr valign="top"><td class="cell_80"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mi>u</mi><mi>v</mi></mrow></munder><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>,</mo></mrow></math></td><td class="cell_20 text-end valign_center"><strong>(2)</strong></td></tr></table><p>where the sum is over all stops <em class="varname">u</em> and <em class="varname">v</em>.</p><p>To represent this cost function as a QUBO problem, create a block matrix of size
+          <em class="varname">N</em><sup>2</sup>-by-<em class="varname">N</em><sup>2</sup>,
+        where each block is of size <em class="varname">N</em>-by-<em class="varname">N</em>, and the
+          (<em class="varname">i</em>,<em class="varname">j</em>) block is a matrix with
+          <em class="varname">D</em>(<em class="varname">i</em>,<em class="varname">j</em>) on the upper
+        diagonal.</p><div id="d126e70229" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-37px" display="block"><mrow><mi>Q</mi><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mo>…</mo></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mo>…</mo></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mtd><mtd><mo>…</mo></mtd><mtd><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mo>,</mo></mrow></math></p></div></div><p>where</p><div id="d126e70234" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-37px" display="block"><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>To see that this matrix represents the cost of a route from the first city to the last
+        before returning to the first, consider the contribution of <em class="varname">x'Qx</em> from the
+          (<em class="varname">u</em>,<em class="varname">v</em>) block.</p><div id="d126e70247" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mi>Q</mi><mi>x</mi><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>Therefore,</p><div id="d126e70252" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-8px" display="block"><mrow><mi>x</mi><mo>'</mo><mrow><mo>(</mo><mrow><mi>Q</mi><mi>x</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mrow><mo>[</mo><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mn>3</mn><mo stretchy="false">)</mo><mo>+</mo><mo>&#x22EF;</mo><mo>+</mo><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><mo>]</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>This form matches the form of <a href="quantum-tsp.html#mw_b092a535-3cd8-4b96-9061-6aabadbac91a" class="intrnllnk">Equation&nbsp;2</a>.</p><p>The final distance is the distance for returning from the end of the route to the start.
+        To calculate this distance, recall that <em class="varname">x</em>(<em class="varname">i</em>,1) = 1
+        when <em class="varname">i</em> is the first step of the route, and
+          <em class="varname">x</em>(<em class="varname">j</em>,<em class="varname">N</em>) = 1 when
+          <em class="varname">j</em> is the last step. So the cost to return from <em class="varname">j</em> to
+          <em class="varname">i</em> is</p><div id="d126e70281" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mstyle><mo>.</mo></mrow></mstyle></mrow></math></p></div></div><p>To represent this cost in a QUBO problem, place the cost
+          <em class="varname">D</em>(<em class="varname">j</em>,<em class="varname">i</em>) in the upper-right corner
+        of each block submatrix, and place zeros elsewhere. The matrix
+          <em class="varname">M</em>(<em class="varname">u</em>,<em class="varname">v</em>) for this cost
+        becomes</p><div id="d126e70300" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-37px" display="block"><mrow><mi>M</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>[</mo><mrow><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>u</mi><mo stretchy="false">)</mo></mrow></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>&#x22EE;</mo></mtd><mtd><mo>⋱</mo></mtd><mtd><mo>&#x22EE;</mo></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mo>…</mo></mtd><mtd><mn>0</mn></mtd></mtr></mtable></mrow><mo>]</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>You can check that this matrix represents the cost of returning in the expression
+          <em class="varname">x'Qx</em>, where <em class="varname">Q</em> is a block matrix with subblocks
+          <em class="varname">M</em>(<em class="varname">u</em>,<em class="varname">v</em>).</p><p>In summary, the QUBO problem representing the cost of a TSP route has four terms:</p><div class="itemizedlist"><ul><li><p>A quadratic term of block diagonal 1s, along with a constant term
+              <em class="varname">N</em> and a linear term <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mo>−</mo><mn>2</mn><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle></mrow></math></span></span></p></li><li><p>A quadratic term of block diagonal identity blocks, along with a constant term
+              <em class="varname">N</em> and a linear term <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mo>−</mo><mn>2</mn><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle></mrow></math></span></span></p></li><li><p>A quadratic term <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mi>u</mi><mi>v</mi></mrow></munder><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo stretchy="false">)</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>u</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>v</mi><mo>,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>,</mo></mrow></math></span></span> representing the cost of the sequence of cities from the first city
+            through city <em class="varname">N</em></p></li><li><p>A quadratic term <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mi>D</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>i</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">(</mo><mi>j</mi><mo>,</mo><mi>N</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow></mstyle><mo>,</mo></mrow></math></span></span> representing the cost to return from city <em class="varname">N</em> to the
+            first city</p></li></ul></div><p>As explained in Feld <a href="quantum-tsp.html#mw_af551099-3419-4131-9263-75f462ae2a09" class="intrnllnk">[1]</a>, to incorporate
+        constraints in the QUBO problem, multiply the first two terms by a large number such as <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-16px" display="block"><mrow><munder><mrow><mi>max</mi></mrow><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mi>D</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><msup><mi>N</mi><mn>2</mn></msup></mrow></math></span></span>. In this way, the QUBO problem is minimized when the constraints are
+        satisfied because the cost of not satisfying a constraint is larger than any cost associated
+        with the route.</p><p>The cost of the first two terms is zero when the constraints are satisfied. You can use
+        the information to check whether a returned solution is feasible. Another way to check is to
+        rewrite the returned <em class="varname">x</em> as an <em class="varname">N</em>-by-<em class="varname">N</em>
+        matrix and see if its row sums and column sums are all 1.</p></section><section><h3 class="title" id="mw_be382992-37c8-4a91-922f-f4904e6249a0">Helper Function</h3><p>This code creates the <code class="function">tsp2qubo</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> QP = tsp2qubo(dist)
+<span style="color:#228B22">%   QP = TSP2QUBO(DIST) returns a QUBO problem from the traveling salesperson</span>
+<span style="color:#228B22">%   problem specified by the distance matrix DIST. DIST is an N-by-N</span>
+<span style="color:#228B22">%   nonnegative matrix where DIST(i,j) is the distance between locations</span>
+<span style="color:#228B22">%   i and j.</span>
+
+<span style="color:#228B22">% Copyright 2023 The MathWorks, Inc.</span>
+
+N = size(dist,1);
+<span style="color:#228B22">% Create constraints on routes</span>
+A = eye(N);
+B = ones(N);
+Q0 = kron(A,B);
+Q1 = kron(B,A);
+<span style="color:#228B22">% Create upper diagonal matrices of distances</span>
+v = ones(N-1,1);
+A2 = diag(v,1);
+Q2 = kron(B,A2); <span style="color:#228B22">% Q2 has a diagonal just above the main diagonal in each block</span>
+C = kron(dist,B);
+Q2 = Q2.*C; <span style="color:#228B22">% Q2 has an upper diagonal dist(i,j)</span>
+<span style="color:#228B22">% Create dist(j,i) in the upper-right corner of each block</span>
+E = zeros(N);
+E(1,N) = 1;
+Q3 = kron(B,E); <span style="color:#228B22">% Q3 has a 1 in the upper-right corner of each block</span>
+CP = kron(dist',B); <span style="color:#228B22">% dist' for D(j,i)</span>
+Q3 = Q3.*CP; <span style="color:#228B22">% Q3 has dist(j,i) in the upper-right corner of each block</span>
+<span style="color:#228B22">% Add the multipliers</span>
+M = max(max(dist));
+QN = sparse(M*(Q0 + Q1)*N^2 + Q2 + Q3);
+<span style="color:#228B22">% Symmetrize</span>
+QN = (QN + QN.')/2;
+
+<span style="color:#228B22">% Include the constant and linear terms</span>
+c = -4*ones(N^2,1)*M*N^2;
+d = 2*N*M*N^2;
+
+QP = qubo(QN,c,d);
+
+<span style="color:#0000FF">end</span></pre></div></div></div></section><div class="bibliography"><h2 id="References">References</h2><div id="mw_af551099-3419-4131-9263-75f462ae2a09" class="bibliomixed"><p>[1] Feld, Sebastian, Christoph Roch,
+        Thomas Gabor, Christian Seidel, Florian Neukart, Isabella Galter, Wolfgang Mauerer, and
+        Claudia Linnhoff-Popien. “A Hybrid Solution Method for the Capacitated Vehicle Routing
+        Problem Using a Quantum Annealer.” <span class="emphasis"><em>Frontiers in ICT</em></span> 6
+        (June 25, 2019): 13.  Available at <a href="https://arxiv.org/abs/1811.07403" target="_blank">https://arxiv.org/abs/1811.07403</a>.</p></div><div id="mw_2fdb273e-b3a8-4c26-92e7-2d56ad7ba3bb" class="bibliomixed"><p>[2] Lucas, Andrew. “Ising
+        Formulations of Many NP Problems.” <span class="emphasis"><em>Frontiers in Physics</em></span> 2
+        (2014). Available at <a href="https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2014.00005/full" target="_blank">https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2014.00005/full</a>.</p></div></div>
+      <h2 id="d126e70397">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.solve.html"><span itemprop="name"><code class="function">solve</code></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.html"><span itemprop="name"><code class="object">qubo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearch.html"><span itemprop="name"><code class="object">tabuSearch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qaoa.html"><span itemprop="name"><code class="object">qaoa</code></span></a></span></li></ul>
+      <h3 id="d126e70418">Topics</h3><ul class="list-unstyled"><li><a href="quantum-annealing-workflow.html" class="a">Workflow for QUBO Problems</a></li><li><a href="qubo-constraints.html" class="a">Constraints in QUBO Problems</a></li><li><a href="quantum-capacitated-vehicle-routing.html" class="a">Capacitated Vehicle Routing Problem</a></li><li><a href="max-cut-with-qaoa.html" class="a">Solve Max-Cut Problem Using QAOA</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

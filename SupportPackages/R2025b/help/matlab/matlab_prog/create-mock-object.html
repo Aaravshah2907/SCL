@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Mock Object</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mock-dependencies-in-tests.html",
+          "name": "Mock Dependencies in Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mock-dependencies-in-tests"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Test a portion of a complete system in isolation using a mock."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mock-dependencies-in-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="bvisvh0"><span itemprop="title">Mock Dependencies in Tests</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Mock Object</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_4bbb6945-bbc1-439d-a619-68d2f10ae8fa" class="nav-link intrnllnk">Depended on Components</a></li><li class="nav-item"><a href="#mw_0d2f2b45-59fc-4230-ba4d-3ae5119c5535" class="nav-link intrnllnk">Component Under Test</a></li><li class="nav-item"><a href="#mw_2c8b8996-5d83-4c2c-bc9f-1f1960ee4ca9" class="nav-link intrnllnk">Mock Objects and Behavior Objects</a></li><li class="nav-item"><a href="#mw_db57071d-ffe9-4639-99ce-1b9cb49feb05" class="nav-link intrnllnk">Create Stub to Define Behavior</a></li><li class="nav-item"><a href="#mw_f0efa783-e740-4faf-bf1d-955f8a88e621" class="nav-link intrnllnk">Create Spy to Intercept Messages</a></li><li class="nav-item"><a href="#mw_5be77678-88ed-4e4d-84cd-2ced9b34bea6" class="nav-link intrnllnk">Call Component Under Test</a></li><li class="nav-item"><a href="#mw_a9103793-bc0f-41e1-99dd-3ebefbc9c5af" class="nav-link intrnllnk">Verify Function Interactions</a></li><li class="nav-item"><a href="#mw_549e9866-fe2d-481d-866c-ff701133f6d7" class="nav-link intrnllnk">Test Class for trader Function</a></li><li class="nav-item"><a href="#d126e98253" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bvisvr8-1">Create Mock Object</h2>
+            <p class="shortdesc">When unit testing, you are often interested in testing a portion
+                of a complete system, isolated from the components it depends on. To test a portion
+                of the system, we can substitute mock objects to replace the depended-on components.
+                A mock object implements at least part of the same interface as the production
+                object, but often in a manner that is simple, efficient, predictable, and
+                controllable. When you use the mocking framework, the component under test is
+                unaware of whether its collaborator is a "real" object or a mock object.</p>
+            <p>
+                </p>
+<div class="informalfigure"><div id="d126e98016" class="mediaobject"><p><img src="mocking_overview.png" alt="Test a component using mocked-up dependencies." height="386" width="600"></p></div></div><p>
+            </p>
+            <p>For example, suppose you want to test an algorithm for buying stock, but you do
+                not want to test the entire system. You could use a mock object to replace the
+                functionality of looking up the stock price, and another mock object to verify that
+                the trader purchased the stock. The algorithm you are testing does not know that it
+                is operating on mock objects, and you can test the algorithm isolated from the rest
+                of the system.</p>
+            <p>Using a mock object, you can define behavior (a process known as
+                    <span class="emphasis"><em>stubbing</em></span>). For example, you can specify that an object
+                produces predefined responses to queries. You can also intercept and remember
+                messages sent from the component under test to the mock object (a process known as
+                    <span class="emphasis"><em>spying</em></span>). For example, you can verify that a particular
+                method was called or a property was set.</p>
+            <p>The typical workflow to test a component in isolation is as follows:</p>
+            <p>
+                </p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create mocks for the depended-on components.</p></li><li><p>Define behaviors of the mocks. For example, define the outputs that a
+                            mocked method or property returns when it is called with a particular
+                            set of inputs.</p></li><li><p>Test the component of interest.</p></li><li><p>Qualify interactions between the component of interest and the mocked
+                            components. For example, verify that a mocked method was called with
+                            particular inputs, or that a property was set.</p></li></ol></div><p>
+
+            </p>
+        <div class="procedure"><h3 class="title" id="mw_4bbb6945-bbc1-439d-a619-68d2f10ae8fa">Depended on Components</h3><p>In this example, the component under test is a simple day-trading algorithm.
+                    It is the part of the system you want to test independent of other components.
+                    The day-trading algorithm has two dependencies: a data service to retrieve the
+                    stock price data and a broker to purchase the stock.</p><p>In a file <code class="literal">DataService.m</code> in your current working folder,
+                    create an abstract class that includes a <code class="literal">lookupPrice</code>
+                    method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> DataService
+    <span style="color:#0000FF">methods</span> (Abstract,Static)
+        price = lookupPrice(ticker,date)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>In production code, there could be several concrete implementations of the
+                        <code class="literal">DataService</code> class, such as a
+                        <code class="literal">BloombergDataService</code> class. This class uses the
+                        Datafeed Toolbox&#x2122;. However, since we create a mock of the
+                        <code class="literal">DataService</code> class, you do not need to have the toolbox
+                    installed to run the tests for the trading algorithm.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> BloombergDataService &lt; DataService
+    <span style="color:#0000FF">methods</span> (Static)
+        <span style="color:#0000FF">function</span> price = lookupPrice(ticker,date)
+            <span style="color:#228B22">% This method assumes you have installed and configured the</span>
+            <span style="color:#228B22">% Bloomberg software.</span>
+            conn = blp;
+            data = history(conn,ticker,<span style="color:#A020F0">'LAST_PRICE'</span>,date-1,date);
+            price = data(end);
+            close(conn)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>In this example, assume that the broker component has not been developed yet.
+                    Once it is implemented, it will have a <code class="literal">buy</code> method that
+                    accepts a ticker symbol and a specified number of shares to buy, and returns a
+                    status code. The mock for the broker component uses an implicit interface, and
+                    does not derive from a superclass.</p><h3 class="title" id="mw_0d2f2b45-59fc-4230-ba4d-3ae5119c5535">Component Under Test</h3><p>In a file <code class="literal">trader.m</code> in your current working folder, create a
+                    simple day trading algorithm. The <code class="literal">trader</code> function accepts as
+                    inputs a data service object that looks up the price of the stock, a broker
+                    object that defines how the stock is bought, a ticker symbol, and a number of
+                    shares to purchase. If the price from yesterday is less than the price two days
+                    ago, instruct the broker to buy the specified number of shares.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> trader(dataService,broker,ticker,numShares)
+    yesterday = datetime(<span style="color:#A020F0">'yesterday'</span>);
+    priceYesterday = dataService.lookupPrice(ticker,yesterday);
+    price2DaysAgo = dataService.lookupPrice(ticker,yesterday-days(1));
+    
+    <span style="color:#0000FF">if</span> priceYesterday &lt; price2DaysAgo
+        broker.buy(ticker,numShares);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><h3 class="title" id="mw_2c8b8996-5d83-4c2c-bc9f-1f1960ee4ca9">Mock Objects and Behavior Objects</h3><p>The mock object is an implementation of the abstract methods and properties of
+                    the interface specified by a superclass. You can also construct a mock without a
+                    superclass, in which case the mock has an implicit interface. The component
+                    under test interacts with the mock object, for example, by calling a mock object
+                    method or accessing a mock object property. The mock object carries out
+                    predefined actions in response to these interactions.</p><p>When you create a mock, you also create an associated behavior object. The
+                    behavior object defines the same methods as the mock object and controls mock
+                    behavior. Use the behavior object to define mock actions and qualify
+                    interactions. For example, use it to define values a mocked method returns, or
+                    verify that a property was accessed.</p><p>At the command prompt, create a mock test case for interactive use. Using the
+                    mock in a test class instead of at the command prompt is presented later in this
+                    example.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.mock.TestCase</span>
+testCase = TestCase.forInteractiveUse;
+</pre></div></div></div><h3 class="title" id="mw_db57071d-ffe9-4639-99ce-1b9cb49feb05">Create Stub to Define Behavior</h3><p>Create a mock for the data service dependency and examine the methods on it.
+                    The data service mock returns predefined values, replacing the implementation of
+                    the service that provides actual stock prices. Therefore, it exhibits stubbing
+                    behavior.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[stubDataService,dataServiceBehavior] = createMock(testCase,?DataService);
+methods(stubDataService)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>
+Methods for class matlab.mock.classes.DataServiceMock:
+
+
+
+Static methods:
+
+lookupPrice  
+
+</pre></div></div></div><p>In the <code class="literal">DataService</code> class, the
+                        <code class="literal">lookupPrice</code> method is abstract and static. The mocking
+                    framework implements this method as concrete and static.</p><p>Define behavior for the data service mock. For ticker symbol
+                        <code class="literal">"FOO"</code>, it returns the price yesterday as $123 and
+                    anything before yesterday is $234. Therefore, according to the
+                        <code class="literal">trader</code> function, the broker always buys stock
+                        <code class="literal">"FOO"</code>. For the ticker symbol <code class="literal">"BAR"</code>, it
+                    returns the price yesterday as $765 and anything before yesterday is $543.
+                    Therefore, the broker never buys stock <code class="literal">"BAR"</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.unittest.constraints.IsLessThan</span>
+yesterday = datetime(<span style="color:#A020F0">'yesterday'</span>);
+
+testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"FOO"</span>,yesterday),123);
+testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"FOO"</span>,IsLessThan(yesterday)),234);
+
+testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"BAR"</span>,yesterday),765);
+testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"BAR"</span>,IsLessThan(yesterday)),543);
+</pre></div></div></div><p>You can now call the mocked <code class="literal">lookupPrice</code> method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p1 = stubDataService.lookupPrice(<span style="color:#A020F0">"FOO"</span>,yesterday)
+p2 = stubDataService.lookupPrice(<span style="color:#A020F0">"BAR"</span>,yesterday-days(5))
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>
+p1 =
+
+   123
+
+
+p2 =
+
+   543
+
+</pre></div></div></div><p>While the <code class="literal">assignOutputsWhen</code> method on
+                        <code class="literal">testCase</code> is convenient to specify behavior, there is more
+                    functionality if you use the <code class="literal">AssignOutputs</code> action. For more
+                    information, see <a href="specify-mock-object-behavior.html" class="a">Specify Mock Object Behavior</a>.</p><h3 class="title" id="mw_f0efa783-e740-4faf-bf1d-955f8a88e621">Create Spy to Intercept Messages</h3><p>Create a mock for the broker dependency and examine the methods on it. Since
+                    the broker mock is used to verify interactions with the component under test
+                    (the <code class="literal">trader</code> function), it exhibits spying behavior. The
+                    broker mock has an implicit interface. While the <code class="literal">buy</code> method
+                    is not currently implemented, you can create a mock with it.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[spyBroker,brokerBehavior] = createMock(testCase,<span style="color:#A020F0">'AddedMethods'</span>,{<span style="color:#A020F0">'buy'</span>});
+methods(spyBroker)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>
+Methods for class matlab.mock.classes.Mock:
+
+buy  
+
+</pre></div></div></div><p>Call the <code class="literal">buy</code> method of the mock. By default it returns
+                    empty.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s1 = spyBroker.buy
+s2 = spyBroker.buy(<span style="color:#A020F0">"inputs"</span>,[13 42])
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>
+s1 =
+
+     []
+
+
+s2 =
+
+     []
+
+</pre></div></div></div><p>Since the <code class="literal">trader</code> function does not use the status return
+                    code, the default mock behavior of returning empty is acceptable. The broker
+                    mock is a pure spy, and does not need to implement any stubbing behavior.</p><h3 class="title" id="mw_5be77678-88ed-4e4d-84cd-2ced9b34bea6">Call Component Under Test</h3><p>Call the <code class="literal">trader</code> function. In addition to the ticker symbol
+                    and the number of shares to buy, the <code class="literal">trader</code> function takes as
+                    inputs the data service and the broker. Instead of passing in actual data
+                    service and broker objects, pass in the <code class="literal">spyBroker</code> and
+                        <code class="literal">stubDataService</code> mocks.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>trader(stubDataService,spyBroker,<span style="color:#A020F0">"FOO"</span>,100)
+trader(stubDataService,spyBroker,<span style="color:#A020F0">"FOO"</span>,75)
+trader(stubDataService,spyBroker,<span style="color:#A020F0">"BAR"</span>,100)
+</pre></div></div></div><h3 class="title" id="mw_a9103793-bc0f-41e1-99dd-3ebefbc9c5af">Verify Function Interactions</h3><p>Use the broker behavior object (the spy) to verify that the
+                        <code class="literal">trader</code> function calls the <code class="literal">buy</code> method,
+                    as expected.</p><p>Use the <code class="literal">TestCase.verifyCalled</code> method to verify that the
+                        <code class="literal">trader</code> function instructed the <code class="literal">buy</code>
+                    method to buy 100 shares of the <code class="literal">FOO</code> stock.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.mock.constraints.WasCalled</span>;
+testCase.verifyCalled(brokerBehavior.buy(<span style="color:#A020F0">"FOO"</span>,100))
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Verification passed.
+</pre></div></div></div><p>Verify that <code class="literal">FOO</code> stock was purchased two times, regardless
+                    of the specified number of shares. While the <code class="literal">verifyCalled</code>
+                    method is convenient to specify behavior, there is more functionality if you use
+                    the <code class="literal">WasCalled</code> constraint. For example, you can verify that a
+                    mocked method was called a specified number of times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.unittest.constraints.IsAnything</span>
+testCase.verifyThat(brokerBehavior.buy(<span style="color:#A020F0">"FOO"</span>,IsAnything), <span style="color:#0000FF">...</span>
+    WasCalled(<span style="color:#A020F0">'WithCount'</span>,2))
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Verification passed.
+</pre></div></div></div><p>Verify that the <code class="literal">buy</code> method was not called requesting 100
+                    shares of the <code class="literal">BAR</code> stock.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyNotCalled(brokerBehavior.buy(<span style="color:#A020F0">"BAR"</span>,100))
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Verification passed.
+</pre></div></div></div><p>Although the <code class="literal">trader</code> function was called requesting 100
+                    shares of <code class="literal">BAR</code> stock, the stub defined yesterday's price for
+                        <code class="literal">BAR</code> to return a higher value than all days prior to
+                    yesterday. Therefore, the broker never buys stock
+                    <code class="literal">"BAR"</code>.</p><h3 class="title" id="mw_549e9866-fe2d-481d-866c-ff701133f6d7">Test Class for <code class="literal">trader</code> Function</h3><p>The interactive test case is convenient to experiment with at the command
+                    prompt. However, it is typical to create and use mocks within a test class. In a
+                    file in your current working folder, create the following test class that
+                    incorporates the interactive testing from this example.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> TraderTest &lt; matlab.mock.TestCase
+    <span style="color:#0000FF">methods</span>(Test)
+        <span style="color:#0000FF">function</span> buysStockWhenDrops(testCase)
+            import <span style="color:#A020F0">matlab.unittest.constraints.IsLessThan</span>
+            import <span style="color:#A020F0">matlab.unittest.constraints.IsAnything</span>
+            import <span style="color:#A020F0">matlab.mock.constraints.WasCalled</span>
+            yesterday = datetime(<span style="color:#A020F0">'yesterday'</span>);
+            
+            <span style="color:#228B22">% Create mocks</span>
+            [stubDataService,dataServiceBehavior] = createMock(testCase,<span style="color:#0000FF">...</span>
+                ?DataService);
+            [spyBroker,brokerBehavior] = createMock(testCase,<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'AddedMethods'</span>,{<span style="color:#A020F0">'buy'</span>});
+            
+            <span style="color:#228B22">% Set up behavior</span>
+            testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">"FOO"</span>,yesterday),123);
+            testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">"FOO"</span>,IsLessThan(yesterday)),234);
+            
+            <span style="color:#228B22">% Call function under test</span>
+            trader(stubDataService,spyBroker,<span style="color:#A020F0">"FOO"</span>,100)
+            trader(stubDataService,spyBroker,<span style="color:#A020F0">"FOO"</span>,75)
+            
+            <span style="color:#228B22">% Verify interactions</span>
+            testCase.verifyCalled(brokerBehavior.buy(<span style="color:#A020F0">"FOO"</span>,100))
+            testCase.verifyThat(brokerBehavior.buy(<span style="color:#A020F0">"FOO"</span>,IsAnything),<span style="color:#0000FF">...</span>
+                WasCalled(<span style="color:#A020F0">'WithCount'</span>,2))
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> doesNotBuyStockWhenIncreases(testCase)
+            import <span style="color:#A020F0">matlab.unittest.constraints.IsLessThan</span>
+            yesterday = datetime(<span style="color:#A020F0">'yesterday'</span>);
+            
+            <span style="color:#228B22">% Create mocks</span>
+            [stubDataService,dataServiceBehavior] = createMock(testCase,<span style="color:#0000FF">...</span>
+                ?DataService);
+            [spyBroker,brokerBehavior] = createMock(testCase, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'AddedMethods'</span>,{<span style="color:#A020F0">'buy'</span>});
+            
+            <span style="color:#228B22">% Set up behavior</span>
+            testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">"BAR"</span>,yesterday),765);
+            testCase.assignOutputsWhen(dataServiceBehavior.lookupPrice(<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">"BAR"</span>,IsLessThan(yesterday)),543);
+            
+            <span style="color:#228B22">% Call function under test</span>
+            trader(stubDataService,spyBroker,<span style="color:#A020F0">"BAR"</span>,100)
+            
+            <span style="color:#228B22">% Verify interactions</span>
+            testCase.verifyNotCalled(brokerBehavior.buy(<span style="color:#A020F0">"BAR"</span>,100))
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>Run the tests and view a table of the results.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>results = runtests(<span style="color:#A020F0">'TraderTest'</span>);
+table(results)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Running TraderTest
+..
+Done TraderTest
+__________
+
+
+ans =
+
+  2×6 table
+
+                      Name                       Passed    Failed    Incomplete    Duration      Details   
+    _________________________________________    ______    ______    __________    ________    ____________
+
+    'TraderTest/buysStockWhenDrops'              true      false       false        0.24223    [1×1 struct]
+    'TraderTest/doesNotBuyStockWhenIncreases'    true      false       false       0.073614    [1×1 struct]
+</pre></div></div></div></div>
+            <h2 id="d126e98253">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mock.testcase-class.html"><span itemprop="name"><code class="class">matlab.mock.TestCase</code></span></a></span></li></ul>
+            <h3 id="d126e98262">Topics</h3><ul class="list-unstyled"><li><a href="specify-mock-object-behavior.html" class="a">Specify Mock Object Behavior</a></li><li><a href="qualify-mock-object-interaction.html" class="a">Qualify Mock Object Interaction</a></li><li><a href="write-tests-that-use-app-testing-and-mocking-frameworks.html" class="a">Write Tests That Use App Testing and Mocking Frameworks</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Run Quantum Circuit on Hardware Using AWS</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../gate-based-quantum-computing.html",
+          "name": "Gate-Based Quantum Computing"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "gate-based-quantum-computing"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This topic describes how to run quantum circuits on remote hardware using Amazon Web Services."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gate-based-quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_89c73565-106a-4694-9620-a4310ac5bfc3"><span itemprop="title">Gate-Based Quantum Computing</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Run Quantum Circuit on Hardware Using AWS</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_34a8dd9f-311f-4fbf-8c23-f4765bca5f5c" class="nav-link intrnllnk">Requirements</a></li><li class="nav-item"><a href="#mw_9420a9bf-b23c-4c53-84bf-6a3763a64230" class="nav-link intrnllnk">Set Up Access to AWS</a></li><li class="nav-item"><a href="#mw_0b093c31-0aa8-42d1-897a-7b702e0bccdc" class="nav-link intrnllnk">Device Availability</a></li><li class="nav-item"><a href="#mw_eaab136d-14a7-4f4f-8b96-008a30ee2263" class="nav-link intrnllnk">Connect to Quantum Device</a></li><li class="nav-item"><a href="#mw_ece0efdf-37b9-4c05-9922-49575a840f89" class="nav-link intrnllnk">Create Task to Run Circuit</a></li><li class="nav-item"><a href="#mw_8291efd2-8601-4887-b53f-911ac6b97264" class="nav-link intrnllnk">Fetch Measurement Output</a></li><li class="nav-item"><a href="#d126e64428" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_5bfa03ca-ac06-45c8-8dc0-41aaf77ffaac">Run Quantum Circuit on Hardware Using <span class="trademark entity">AWS</span></h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><p>This topic describes how to connect directly from MATLAB<sup>&#x00AE;</sup> to Amazon<sup>&#x00AE;</sup> Web Services (AWS<sup>&#x00AE;</sup>) to enable running gate-based quantum circuits on remote quantum devices and
+      simulators. Quantum hardware has limited availability as well as associated costs for each
+      task that is run. A best practice is to finalize your circuit design as much as possible by
+      simulating the circuit locally on your computer before running the circuit on a quantum
+      device. See <a href="local-quantum-state-simulation.html" class="a">Local Quantum State Simulation</a> for instructions on how
+      to inspect simulated circuit results on your local computer.</p><section><h3 class="title" id="mw_34a8dd9f-311f-4fbf-8c23-f4765bca5f5c">Requirements</h3><p>To run quantum circuits on an AWS device from within MATLAB, you need:</p>
+<div class="itemizedlist"><ul><li><p>The <span class="entity">MATLAB Support Package for Quantum Computing</span></p></li><li><p>An AWS account with access to Amazon Braket</p></li><li><p>An AWS Access Key and AWS Secret Access Key</p></li><li><p>An Amazon S3&#x2122; bucket to store results</p></li></ul></div><p>
+</p><p>Costs for the use of Amazon Braket devices are charged to your AWS account. See <a href="https://aws.amazon.com/braket/pricing/" target="_blank">Amazon
+          Braket Pricing</a> for details.</p></section><section><h3 class="title" id="mw_9420a9bf-b23c-4c53-84bf-6a3763a64230">Set Up Access to <span class="trademark entity">AWS</span></h3><p>Follow these steps to enable communication between MATLAB and AWS.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Set up AWS account and retrieve credentials</strong>. Go to <a href="https://aws.amazon.com/blogs/quantum-computing/setting-up-your-local-development-environment-in-amazon-braket/" target="_blank">Setting up your local development environment in Amazon Braket</a> and complete
+              steps 1&#8211;3. If you have an existing account, then you can skip the first step and check
+              your account settings in steps 2 and 3.</p><p>The account credentials (AWS Access Key and AWS Secret Access Key) are only available to download just after they are
+              created. If your AWS account is managed through your organization, then you might need to
+              contact your administrator for the recommended way to retrieve credentials.</p><p>At the end of this step, you should have:</p><div class="itemizedlist"><ul><li><p>Configured or checked permissions for your AWS account</p></li><li><p>Received account credentials (AWS Access Key and AWS Secret Access Key)</p></li><li><p>Enabled Amazon Braket service for your account</p></li></ul></div></li><li><p><strong class="emphasis bold">Set environment variables</strong>. Specify these
+              environment variables using your AWS Access Key and AWS Secret Access Key.</p><p>First, create a file named <code class="literal">awsConfig.env</code> that contains all
+              necessary environment variables. At a minimum, you must specify values for
+                <code class="literal">AWS_ACCESS_KEY_ID</code> and
+              <code class="literal">AWS_SECRET_ACCESS_KEY</code>.</p><div class="code_responsive"><pre class="programlisting">AWS_ACCESS_KEY_ID=<em class="replaceable">YOUR_AWS_ACCESS_KEY_ID</em>
+AWS_SECRET_ACCESS_KEY=<em class="replaceable">YOUR_AWS_SECRET_ACCESS_KEY</em></pre></div><p>Next, use the <code class="function">loadenv</code> function with no output argument. This
+              command loads each line as an environment variable in MATLAB.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>loadenv(<span style="color:#A020F0">'awsConfig.env'</span>)</pre></div></div></div><p><span class="emphasis"><em>Optional:</em></span> Two optional environment variables that you can
+              also specify in the configuration file are:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">AWS_SESSION_TOKEN</code>: A token for one AWS session that expires after a given time period.</p></li><li><p><code class="literal">AWS_DEFAULT_REGION</code>: Restricts the region in which the
+                    server storing results must reside. When <code class="literal">AWS_DEFAULT_REGION</code>
+                    is set, you can still use QPUs that are located in any region.</p></li></ul></div><p>
+</p></li><li><p><strong class="emphasis bold">Create Amazon S3 bucket to store results</strong>. See <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-bucket.html" target="_blank">Create your first S3 bucket</a> for more information about creating a bucket.</p>
+<div class="itemizedlist"><ul><li><p>The bucket you create must have a unique name. A suggested prefix for the
+                    name is <code class="literal">amazon-braket-mathworks-</code>.</p></li><li><p>If you specified <code class="literal">AWS_DEFAULT_REGION</code> in the previous step,
+                    then the bucket must reside in the same region.</p></li></ul></div><p>
+</p></li></ol></div><p>
+</p></section><section><h3 class="title" id="mw_0b093c31-0aa8-42d1-897a-7b702e0bccdc">Device Availability</h3><p>To see a list of available quantum devices:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Go to <a href="https://aws.amazon.com/" target="_blank">https://aws.amazon.com/</a>.</p></li><li><p>Log in to your AWS account.</p></li><li><p>Navigate to Amazon Braket using the <strong class="emphasis bold">Services</strong> menu or the
+              search bar.</p></li><li><p>Select <strong class="emphasis bold">Devices</strong> from the navigation menu.</p></li></ol></div><p>
+</p><p>The device list contains information on device providers, names, availability, and
+        descriptions. Each device has different associated costs, and you can click on a device to
+        see more details. If a device is offline, it does not accept tasks and creating a <a href="../ref/quantum.backend.quantumdeviceaws-class.html"><code class="class">quantum.backend.QuantumDeviceAWS</code></a> object for the device returns an error. However,
+        devices that are not currently available might still accept tasks into their queue to be run
+        later. Check the device details to determine the current status before submitting
+        tasks.</p><p>The <span class="entity">MATLAB Support Package for Quantum Computing</span> works with gate-model QPU devices as well as simulators:</p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">QPU Devices:</strong> These devices are quantum computers
+              used to perform probabilistic measurements of circuits. Not all QPU devices are
+              supported. To find out if a device is supported, try connecting to the device using
+                <a href="../ref/quantum.backend.quantumdeviceaws-class.html"><code class="class">quantum.backend.QuantumDeviceAWS</code></a>. Availability and number of qubits
+              supported can also vary, so check the device details before sending circuits for
+              measurement.</p></li><li><p><strong class="emphasis bold">Simulator Devices:</strong> Because memory usage scales
+              exponentially with the number of qubits, larger circuits with many qubits might
+              stretch the limits of memory available on your local computer. To address that issue,
+                AWS also provides cloud-scale simulators. The functionality is similar to
+              using <a href="../ref/quantum.gate.quantumstate.randsample.html"><code class="function">randsample</code></a> on your local system, but the simulators can support up to 34
+              qubits with cloud-scale performance.</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="mw_eaab136d-14a7-4f4f-8b96-008a30ee2263">Connect to Quantum Device</h3><p>Connect to a quantum device using <a href="../ref/quantum.backend.quantumdeviceaws-class.html"><code class="class">quantum.backend.QuantumDeviceAWS</code></a>. Specify the name of the device as well as its
+        region and the path of the Amazon S3 bucket to store results. The <code class="literal">SV1</code> device is a state vector
+        simulator that is preferred for prototyping circuits.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reg = <span style="color:#A020F0">"us-west-1"</span>;
+bucketPath = <span style="color:#A020F0">"s3://amazon-braket-mathworks/doc-example"</span>;
+device = quantum.backend.QuantumDeviceAWS(<span style="color:#A020F0">"SV1"</span>,Region=reg,S3Path=bucketPath)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>device = 
+
+  QuantumDeviceAWS with properties:
+
+         Name: "SV1"
+    DeviceARN: "arn:aws:braket:::device/quantum-simulator/amazon/sv1"
+       Region: "us-west-1"
+       S3Path: "s3://amazon-braket-mathworks/doc-example"</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If you receive an error or warning while connecting to a device in this step, then
+          your connection to AWS might not be set up properly. See <a href="run-quantum-circuit-on-hardware-using-AWS.html#mw_9420a9bf-b23c-4c53-84bf-6a3763a64230" class="intrnllnk">Set Up Access to AWS</a> for more
+          information.</p></div><p>Use <a href="../ref/quantum.backend.quantumtaskaws.fetchdetails.html"><code class="function">fetchDetails</code></a> to
+        get additional information about the device.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fetchDetails(device)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  struct with fields:
+
+             deviceArn: "arn:aws:braket:::device/quantum-simulator/amazon/sv1"
+    deviceCapabilities: "{"service": {"braketSchemaHeader": {"name": "braket.device_schema.device_service_properties",..."
+            deviceName: "SV1"
+          deviceStatus: "ONLINE"
+            deviceType: "SIMULATOR"
+          providerName: "Amazon Braket"</pre></div></div></div></section><section><h3 class="title" id="mw_ece0efdf-37b9-4c05-9922-49575a840f89">Create Task to Run Circuit</h3><p>Create a quantum circuit with three qubits and three gates, and then plot the
+        circuit.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gates = [hGate(1);
+         cxGate(1,2);
+         cxGate(2,3)];
+C = quantumCircuit(gates);
+plot(C)</pre></div></div></div><div class="informalfigure"><div id="d126e64372" class="mediaobject"><p><img src="quantum_fig10.png" alt="Quantum circuit diagram with three qubits and three gates" height="260" width="325"></p></div></div><p>When a circuit is measured on quantum hardware, the superposition of states for the
+        qubits collapses into a single state, and that result is probabilistic. That is, the result
+        of a measurement can change between runs, but the probability of each result follows the
+        state probabilities produced by the gates in the circuit. So, it is common to run several
+          <em class="firstterm">shots</em>, or trials, of a circuit to reveal the underlying probability
+        distribution of results. By default, the <a href="../ref/quantumcircuit.run.html"><code class="function">run</code></a> method uses
+        100 shots.</p><p>Create a task to run the circuit on the device.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>task = run(C,device)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>task = 
+
+  QuantumTaskAWS with properties:
+
+    TaskARN: "arn:aws:braket:us-west-1:123456789012:quantum-task/1234abcd-ef56-7890-abc2-34de56f678ab"
+     Status: "queued"</pre></div></div></div><p>Quantum devices have limited availability, so tasks are often queued for execution. Once
+        a task is finished, the <code class="property">Status</code> property of the task object has a value
+        of <code class="literal">"finished"</code>. Check the status of a task by querying the
+          <code class="property">Status</code> property periodically, or use the <a href="../ref/quantum.backend.quantumtaskaws.wait.html"><code class="function">wait</code></a> method to
+        internally check the status until the task is finished.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wait(task)</pre></div></div></div><p>You can use <a href="../ref/quantum.backend.quantumtaskaws.cancel.html"><code class="function">cancel</code></a> to
+        cancel the task when needed. Canceling has no effect unless the status of the task is
+          <code class="literal">"queued"</code> or <code class="literal">"running"</code>.</p></section><section><h3 class="title" id="mw_8291efd2-8601-4887-b53f-911ac6b97264">Fetch Measurement Output</h3><p>Once the task is finished, retrieve the result of running the circuit by using <a href="../ref/quantum.backend.quantumtaskaws.fetchoutput.html"><code class="function">fetchOutput</code></a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R = fetchOutput(task)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>R = 
+
+  QuantumMeasurement with properties:
+
+    MeasuredStates: [2×1 string]
+            Counts: [2×1 double]
+     Probabilities: [2×1 double]
+         NumQubits: 3</pre></div></div></div><p>Examine the counts and probabilities of the measured states in a table. The counts can
+        change slightly from run to run, but will tend to be evenly divided between the two possible
+        states.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = table(R.Counts,R.Probabilities,R.MeasuredStates, <span style="color:#0000FF">...</span>
+    VariableNames=[<span style="color:#A020F0">"Counts"</span>,<span style="color:#A020F0">"Probabilities"</span>,<span style="color:#A020F0">"States"</span>])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>T =
+
+  2×3 table
+
+    Counts    Probabilities    States
+    ______    _____________    ______
+
+      55          0.55         "000" 
+      45          0.45         "111" </pre></div></div></div></section>
+      <h2 id="d126e64428">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantumcircuit.html"><span itemprop="name"><code class="class">quantumCircuit</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantum.backend.quantumdeviceaws-class.html"><span itemprop="name"><code class="class">quantum.backend.QuantumDeviceAWS</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantum.backend.quantumtaskaws-class.html"><span itemprop="name"><code class="class">quantum.backend.QuantumTaskAWS</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantum.gate.quantummeasurement-class.html"><span itemprop="name"><code class="class">quantum.gate.QuantumMeasurement</code></span></a></span></p>
+      <h3 id="d126e64443">Topics</h3><ul class="list-unstyled"><li><a href="introduction-to-quantum-computing.html" class="a">Introduction to Quantum Computing</a></li><li><a href="local-quantum-state-simulation.html" class="a">Local Quantum State Simulation</a></li><li><a href="graph-coloring-with-grovers-algorithm.html" class="a">Graph Coloring with Grover's Algorithm</a></li><li><a href="max-cut-with-qaoa.html" class="a">Solve Max-Cut Problem Using QAOA</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Verify Optimality by Solving QUBO as MILP</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../qubo.html",
+          "name": "Quadratic Unconstrained Binary Optimization (QUBO)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "qubo"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Convert a QUBO problem to a mixed-integer linear programming (MILP) problem, and solve the problem using intlinprog."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../qubo.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_179b79ec-0389-46ef-988e-3f9c7f9a5981"><span itemprop="title">Quadratic Unconstrained Binary Optimization (QUBO)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Verify Optimality by Solving QUBO as MILP</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_ec850b6b-d4b5-4301-b7a3-449c01f7577a" class="nav-link intrnllnk">Theory: Convert Quadratic Problem to Linear Integer Program</a></li><li class="nav-item"><a href="#mw_d45b3d37-7481-4b8f-9bff-2772f22b1521" class="nav-link intrnllnk">Example: Solve QUBO Using MILP</a></li><li class="nav-item"><a href="#mw_90f37636-c04c-442a-83e0-716b2328dc60" class="nav-link intrnllnk">Helper Function</a></li><li class="nav-item"><a href="#d126e69124" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_2b7db9b6-9f8c-429e-ba1d-acfe9633c49f">Verify Optimality by Solving QUBO as MILP</h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><p>A Quadratic Unconstrained Binary Optimization (QUBO) problem can be difficult to solve
+      exactly. The <code class="function">solve</code> function might return solutions that are not globally
+      optimal. However, for small enough QUBO problems, you can convert the QUBO problem to a
+      mixed-integer linear programming (MILP) problem. To solve an MILP problem, use <a href="../../optim/ug/intlinprog.html"><code class="function">intlinprog</code></a><span role="cross_prod"> (Optimization Toolbox)</span>, which requires an Optimization Toolbox&#x2122; license. If <code class="function">intlinprog</code> returns a solution with gap 0, the
+      solution is guaranteed to be optimal. This approach is practical for up to 100 or 200
+      variables. For larger problems, the N<sup>2</sup> problem size slows the
+      solution too much.</p><section><h3 class="title" id="mw_ec850b6b-d4b5-4301-b7a3-449c01f7577a">Theory: Convert Quadratic Problem to Linear Integer Program</h3><p>Suppose that your binary variable vector is a column vector <code class="literal">x</code> with N
+        elements. Let <code class="literal">xij</code> be an N-by-N binary matrix with entries
+          <code class="literal">xij(i,j) = x(i)*x(j)</code>. You can write the objective function</p><p>
+        </p>
+<div itemprop="content"><p class="programlistingindent"><code class="literal">x'*Q*x + c'*x + d = sum(Q.*xij,"all") + c'*x +
+            d</code>.</p></div><p>
+      </p><p>This formulation converts the problem from quadratic in <code class="literal">x</code> to linear
+        in <code class="literal">xij</code> and <code class="literal">x</code>, which is a simplification. However, the
+        number of variables increases from N to N<sup>2</sup> + N, which is a
+        complication.</p><p>The following three linear inequalities tie the matrix <code class="literal">xij</code> to the
+        vector <code class="literal">x</code> and ensure that, at the solution, <code class="literal">xij(i,j) =
+          x(i)*x(j)</code>. For all <code class="literal">i</code> and <code class="literal">j</code>,</p><p>
+        </p>
+<div itemprop="content"><p class="programlistingindent"><code class="literal">xij(i,j) &gt;= x(i) + x(j) - 1</code></p></div><p>
+      </p><p>
+        </p>
+<div itemprop="content"><p class="programlistingindent"><code class="literal">xij(i,j) &lt;= x(i)</code></p></div><p>
+      </p><p>
+        </p>
+<div itemprop="content"><p class="programlistingindent"><code class="literal">xij(i,j) &lt;= x(j)</code>.</p></div><p>
+      </p><p>Represent these inequality constraints in a structured way. Define
+          <code class="literal">xij</code> as an N-by-N matrix of optimization variables, and define
+          <code class="literal">x</code> as a column vector of optimization variables with N entries. Use the
+        following code to create the constraints for an optimization problem named
+          <code class="literal">prob</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>prob.Constraints.f = xij &gt;= repmat(x,1,N) + repmat(x',N,1) - 1;
+prob.Constraints.g = xij &lt;= repmat(x,1,N);
+prob.Constraints.h = xij &lt;= repmat(x',N,1);</pre></div></div></div></section><section><h3 class="title" id="mw_d45b3d37-7481-4b8f-9bff-2772f22b1521">Example: Solve QUBO Using MILP</h3><p>Take a matrix Q of size 100-by-100 generated by the <code class="literal">makeq</code>
+        <a href="solve-qubo-using-milp.html#mw_90f37636-c04c-442a-83e0-716b2328dc60" class="intrnllnk">Helper Function</a> given at the end of
+        this example.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Q = makeq(100,1);</pre></div></div></div><p>Create a QUBO problem from Q and solve the problem using the default tabu search
+        algorithm.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>qprob = qubo(Q);
+rng <span style="color:#A020F0">default</span> <span style="color:#228B22">% For reproducibility</span>
+result = solve(qprob)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>result = 
+
+  quboResult with properties:
+
+                BestX: [100×1 double]
+    BestFunctionValue: -9610
+      AlgorithmResult: [1×1 tabuSearchResult]</pre></div></div></div><p>The returned objective function value is &#8211;<code class="literal">9610</code>. Check whether this
+        answer is reliable by resolving the problem.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = solve(qprob)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>result = 
+
+  quboResult with properties:
+
+                BestX: [100×1 double]
+    BestFunctionValue: -9610
+      AlgorithmResult: [1×1 tabuSearchResult]</pre></div></div></div><p>The returned objective function value does not change. However, the tabu search
+        algorithm does not necessarily give consistent results.</p><p>To obtain a reliable result, formulate the problem as an MILP using optimization
+        variables.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N = size(Q,1);
+x = optimvar(<span style="color:#A020F0">"x"</span>,N,Type=<span style="color:#A020F0">"integer"</span>,LowerBound=0,UpperBound=1);
+<span style="color:#228B22">% Need N^2 variables for MILP</span>
+xij = optimvar(<span style="color:#A020F0">"xij"</span>,N,N,Type=<span style="color:#A020F0">"integer"</span>,LowerBound=0,UpperBound=1);
+prob = optimproblem;
+<span style="color:#228B22">% The next three constraint arrays are the connections between xij and x</span>
+prob.Constraints.f = xij &gt;= repmat(x,1,N) + repmat(x',N,1) - 1;
+prob.Constraints.g = xij &lt;= repmat(x,1,N);
+prob.Constraints.h = xij &lt;= repmat(x',N,1);
+<span style="color:#228B22">% Formulate the objective in terms of xij</span>
+<span style="color:#228B22">% If you have a linear term c and a constant term d, the objective is</span>
+<span style="color:#228B22">% prob.Objective = sum(Q.*xij,"all") + dot(c,x) + d;</span>
+prob.Objective = sum(Q.*xij,<span style="color:#A020F0">"all"</span>);
+<span style="color:#228B22">% Solve calls intlinprog</span>
+[solxij,fv] = solve(prob);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Solving problem using intlinprog.
+Running HiGHS 1.5.3: Copyright (c) 2023 HiGHS under MIT licence terms
+Presolving model
+30000 rows, 10100 cols, 69900 nonzeros
+23742 rows, 8014 cols, 55398 nonzeros
+18978 rows, 6426 cols, 44282 nonzeros
+18978 rows, 5701 cols, 44282 nonzeros
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   18978 rows
+   5701 cols (5701 binary, 0 integer, 0 implied int., 0 continuous)
+   44282 nonzeros
+
+        Nodes      |    B&amp;B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+         0       0         0   0.00%   -22706          inf                  inf        0      0      0         0     0.6s
+ R       0       0         0   0.00%   -11353          1368             929.90%        0      0      0      5043     0.8s
+ C       0       0         0   0.00%   -11353          -36                Large        8      5      0      5049     1.3s
+         0       0         0   0.00%   -10745          -36                Large      295     98      0      7419     6.3s
+ L       0       0         0   0.00%   -10745          -878            1123.80%      340    104      0      7425    13.8s
+
+0.5% inactive integer columns, restarting
+Model after restart has 16713 rows, 5669 cols (5669 bin., 0 int., 0 impl., 0 cont.), and 38997 nonzeros
+
+         0       0         0   0.00%   -10745          -878            1123.80%       86      0      0     13993    13.9s
+         0       0         0   0.00%   -10739          -878            1123.12%       86     80      9     15524    14.4s
+ L       0       0         0   0.00%   -10657          -1134            839.77%      192    103      9     16083    16.9s
+
+Symmetry detection completed in 0.4s
+Found 619 full orbitope(s) acting on 1238 columns
+
+ L       0       0         0   0.00%   -10657          -1216            776.40%      192    102      9     17007    18.5s
+ T       0       0         0   0.00%   -10657          -8078             31.93%      192    102      9     21224    19.4s
+ T      21       0         5   0.02%   -10657          -8158             30.63%      197    102    154     26697    19.6s
+ T      25       0         6   0.03%   -10657          -8182             30.25%      198    102    185     26925    19.7s
+ T      30       0         9   0.03%   -10657          -8268             28.89%      201    102    256     27082    19.7s
+ T      38       0        14   0.07%   -10657          -8362             27.45%      206    102    342     28022    20.0s
+ T      64       0        26   0.21%   -10657          -8370             27.32%      218    102    590     31876    20.8s
+ T      69       1        29   0.23%   -10657          -8408             26.75%      221    102    652     32418    21.0s
+ T      82       1        36   0.33%   -10657          -8472             25.79%      228    102    728     34629    21.7s
+ T      84       1        37   0.35%   -10657          -8594             24.01%      229    102    749     35443    21.8s
+ T      86       1        38   0.37%   -10657          -8616             23.69%      230    102    750     36173    21.9s
+ L     102       9        44   0.44%   -10657          -8766             21.57%      239    105    970     38098    23.4s
+
+        Nodes      |    B&amp;B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+     Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+ T     129      10        55   1.61%   -10657          -8878             20.04%      250    105   1148     49252    25.8s
+ T     141       9        59   1.75%   -10657          -8926             19.39%      254    105   1180     52528    26.1s
+ T     164      11        71   2.81%   -10657          -9014             18.23%      266    105   1374     59822    27.6s
+ L     202      12        88   4.79%   -10508          -9224             13.92%      313    109   1698     71134    31.3s
+ T     212      10        91   6.54%   -10508          -9282             13.21%      316    109   1792     77167    32.2s
+ T     237       9       104   9.96%   -10508          -9298             13.01%      329    109   1936     82816    33.5s
+ T     239       9       105  10.06%   -10508          -9328             12.65%      330    109   1942     83049    33.6s
+ T     286       8       129  15.43%   -10508          -9404             11.74%      354    109   2335     96674    36.7s
+ T     289       8       130  15.48%   -10508          -9408             11.69%      355    109   2339     97832    36.7s
+ T     298       8       135  16.80%   -10508          -9426             11.48%      360    109   2408    100588    37.4s
+ T     299       8       136  17.19%   -10508          -9610              9.34%      361    109   2416    100607    37.7s
+       332       7       154  61.72%   -10333          -9610              7.52%      356    136   2826    117870    42.8s
+       340       4       159  85.16%   -10333          -9610              7.52%     1794    148   2858    125406    47.9s
+
+Solving report
+  Status            Optimal
+  Primal bound      -9610
+  Dual bound        -9610
+  Gap               0% (tolerance: 0.01%)
+  Solution status   feasible
+                    -9610 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            50.64 (total)
+                    0.65 (presolve)
+                    0.00 (postsolve)
+  Nodes             351
+  LP iterations     133983 (total)
+                    0 (strong br.)
+                    6663 (separation)
+                    14353 (heuristics)
+
+Optimal solution found.
+
+Intlinprog stopped because the objective value is within a gap tolerance of the optimal value, options.AbsoluteGapTolerance = 1e-06.
+The intcon variables are integer within tolerance, options.ConstraintTolerance = 1e-06.</pre></div></div></div><p>The returned gap is 0, meaning the solution is guaranteed to be optimal. The returned
+        objective function value is &#8211;<code class="literal">9610</code>, which is the same as the tabu search
+        result. You can see this value at the end of the iterative display in the <code class="literal">Solving
+          report</code>, in the <code class="literal">Solution status</code> section.</p><p>Check that the returned variable <code class="literal">solxij.x</code> gives the same objective
+        function value in the quadratic expression <code class="literal">x'*Q*x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myx = round(solxij.x); <span style="color:#228B22">% Round any fractional entries</span>
+<span style="color:#228B22">% Not needed here because the reported int. viol. = 0</span>
+disp(myx'*Q*myx)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>       -9610</pre></div></div></div></section><section><h3 class="title" id="mw_90f37636-c04c-442a-83e0-716b2328dc60">Helper Function</h3><p>This code creates the <code class="literal">makeq</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> Q = makeq(N,seed)
+<span style="color:#228B22">% N must be a positive integer, seed is a random stream seed</span>
+<span style="color:#228B22">% Q is an N-by-N sparse symmetric integer matrix, values -100 through 100</span>
+<span style="color:#228B22">% Q has about N^2/10 nonzeros</span>
+<span style="color:#228B22">% Q is modeled after Beasley 1998</span>
+
+<span style="color:#228B22">% Copyright 2022 The MathWorks, Inc.</span>
+<span style="color:#0000FF">if</span> nargin == 1
+    seed = 0;
+<span style="color:#0000FF">end</span>
+strm = RandStream(<span style="color:#A020F0">"mt19937ar"</span>,Seed=seed);
+Q = randi(strm,201,N);
+Q = Q - 101; <span style="color:#228B22">% Random integers uniform from -100 through 100</span>
+JJ = rand(strm,N) &gt;= 0.1;
+Q(JJ) = 0; <span style="color:#228B22">% 10% density of nonzeros</span>
+<span style="color:#0000FF">for</span> i = 1:N
+    <span style="color:#0000FF">for</span> j = 1:i
+        Q(i,j) = 0; <span style="color:#228B22">% Make upper triangular, 0 on diagonal</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+Q = sparse(Q + Q'); <span style="color:#228B22">% Symmetrize</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section>
+      <h2 id="d126e69124">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../optim/ug/intlinprog.html"><span itemprop="name"><code class="function">intlinprog</code></span></a> (Optimization Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.solve.html"><span itemprop="name"><code class="function">solve</code></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.html"><span itemprop="name"><code class="object">qubo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearch.html"><span itemprop="name"><code class="object">tabuSearch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qaoa.html"><span itemprop="name"><code class="object">qaoa</code></span></a></span></li></ul>
+      <h3 id="d126e69148">Topics</h3><ul class="list-unstyled"><li><a href="quantum-annealing-workflow.html" class="a">Workflow for QUBO Problems</a></li><li><a href="../../optim/ug/problem-based-workflow.html" class="a">Problem-Based Optimization Workflow</a><span role="cross_prod"> (Optimization Toolbox)</span></li><li><a href="max-cut-with-qaoa.html" class="a">Solve Max-Cut Problem Using QAOA</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

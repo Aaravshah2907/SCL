@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Pass Variables from C++ to MATLAB</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../calling-matlab-engine-from-cpp-programs.html",
+          "name": "Call MATLAB from C++"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "calling-matlab-engine-from-cpp-programs"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="fe">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to pass variables from C++ to MATLAB as function arguments or by placing those variables directly into the MATLAB base workspace."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../calling-matlab-engine-from-cpp-programs.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7f97b554-9eba-4c77-9873-5b8f7b753729"><span itemprop="title">Call MATLAB from C++</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Pass Variables from C++ to MATLAB</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_55bc7d1b-7a1a-4bfb-a7d7-faf3d252ba52" class="nav-link intrnllnk">Ways to Pass Variables</a></li><li class="nav-item"><a href="#mw_a462b157-6ff4-449a-a410-7009a9e1ee22" class="nav-link intrnllnk">Put Variables in MATLAB Base Workspace</a></li><li class="nav-item"><a href="#d126e61236" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a7903727-00a6-454f-826a-08740374b697">Pass Variables from C++ to <span class="trademark entity">MATLAB</span></h2><section><h3 class="title" id="mw_55bc7d1b-7a1a-4bfb-a7d7-faf3d252ba52">Ways to Pass Variables</h3><p>These examples show you how to pass C++ variables to MATLAB<sup>&#x00AE;</sup> using these techniques:</p><div class="itemizedlist"><ul><li><p>Pass the variables as function arguments in calls to the
+                            <code class="literal">matlab::engine::MATLABEngine</code>
+                        <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-8" class="a">feval</a> or <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-9" class="a">fevalAsync</a> member functions. Variables
+                        passed as arguments to function calls are not stored in the MATLAB base workspace. For more information, see <a href="call-matlab-functions-from-c-1.html" class="a">Call MATLAB Functions from C++</a>.</p></li><li><p>Put the variables in the MATLAB base or global workspace using the
+                            <code class="literal">matlab::engine::MATLABEngine</code>
+                        <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-14" class="a">setVariable</a> and <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-15" class="a">setVariableAsync</a> member functions. For more
+                        information on using global variables in MATLAB, see the MATLAB
+                        <a href="../ref/global.html"><code class="function">global</code></a> function.</p></li></ul></div><p>You can create variables in the MATLAB workspace using the <code class="literal">matlab::engine::MATLABEngine</code>
+                <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-10" class="a">eval</a> and <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-11" class="a">evalAsync</a> member functions. Use these functions to
+                execute MATLAB statements that make assignments to variables. For more information,
+                see <a href="evaluate-matlab-statements-from-c.html" class="a">Evaluate MATLAB Statements from C++</a>.</p></section><section><h3 class="title" id="mw_a462b157-6ff4-449a-a410-7009a9e1ee22">Put Variables in <span class="trademark entity">MATLAB</span> Base Workspace</h3><p>This example performs these steps:</p><div class="itemizedlist"><ul><li><p>Puts variables in the MATLAB workspace using
+                        <code class="literal">MATLABEngine::setVariable</code></p></li><li><p>Uses these variables to call the MATLAB
+                        <a href="../ref/movsum.html"><code class="function">movsum</code></a> function using
+                            <code class="literal">MATLABEngine::eval</code></p></li><li><p>Gets the output variable <code class="literal">A</code> from the MATLAB workspace using
+                        <code class="literal">MATLABEngine::getVariable</code>.</p></li></ul></div><p>Here is the equivalent MATLAB code.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = movsum([4 8 6 -1 -2 -3 -1 3 4 5],3,<span style="color:#A020F0">'Endpoints'</span>,<span style="color:#A020F0">'discard'</span>);</pre></div></div></div><p>Here is the C++ code.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "MatlabDataArray.hpp"
+#include "MatlabEngine.hpp"
+#include &lt;iostream&gt;
+
+void callputVariables() {
+    using namespace matlab::engine;
+
+    // Start MATLAB engine synchronously
+    std::unique_ptr&lt;MATLABEngine&gt; matlabPtr = startMATLAB();
+
+    //Create MATLAB data array factory
+    matlab::data::ArrayFactory factory;
+
+    // Create variables    
+    matlab::data::TypedArray&lt;double&gt; data = factory.createArray&lt;double&gt;({ 1, 10 },
+        { 4, 8, 6, -1, -2, -3, -1, 3, 4, 5 });
+    matlab::data::TypedArray&lt;int32_t&gt;  windowLength = factory.createScalar&lt;int32_t&gt;(3);
+    matlab::data::CharArray name = factory.createCharArray("Endpoints");
+    matlab::data::CharArray value = factory.createCharArray("discard");
+      
+    // Put variables in the MATLAB workspace
+    matlabPtr-&gt;setVariable(u"data", std::move(data));
+    matlabPtr-&gt;setVariable(u"w", std::move(windowLength));
+    matlabPtr-&gt;setVariable(u"n", std::move(name));
+    matlabPtr-&gt;setVariable(u"v", std::move(value));
+
+    // Call the MATLAB movsum function
+    matlabPtr-&gt;eval(u"A = movsum(data, w, n, v);");
+
+    // Get the result
+    matlab::data::TypedArray&lt;double&gt; const A = matlabPtr-&gt;getVariable(u"A");
+      
+    // Display the result
+    int i = 0;
+    for (auto r : A) {
+        std::cout &lt;&lt; "results[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; r &lt;&lt; std::endl;
+        ++i;
+    }
+}</code></pre></div><p>For information on how to setup and build C++ engine programs, see <a href="requirements-to-build-cpp-engine-programs.html" class="a">Requirements to Build C++ Engine Applications</a>.</p></section>
+            <h2 id="d126e61236">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.engine.matlabengine_cpp.html"><span itemprop="name"><code class="cpp">matlab::engine::MATLABEngine</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.engine.startmatlab.html"><span itemprop="name"><code class="cpp">matlab::engine::startMATLAB</code></span></a></span></p>
+            <h3 id="d126e61245">Topics</h3><ul class="list-unstyled"><li><a href="pass-variables-from-matlab-to-c.html" class="a">Pass Variables from MATLAB to C++</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

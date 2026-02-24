@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Vector Field Displayed with Cone Plots</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../2-and-3d-plots.html",
+          "name": "2-D and 3-D Plots"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../surfaces-polygons-and-volumes.html",
+          "name": "Surfaces, Volumes, and Polygons"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../volume-visualization.html",
+          "name": "Volume Visualization"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "volume-visualization"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use cone plots, isosurfaces, lighting, and camera placement to visualize a vector field."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../2-and-3d-plots.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">2-D and 3-D Plots</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../surfaces-polygons-and-volumes.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Surfaces, Volumes, and Polygons</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../volume-visualization.html?s_tid=CRUX_lftnav" itemprop="url" id="btfx5uw-1"><span itemprop="title">Volume Visualization</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Vector Field Displayed with Cone Plots</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brbl_jm" class="nav-link intrnllnk">What Cone Plots Can Show</a></li><li class="nav-item"><a href="#brbl_kd" class="nav-link intrnllnk">1. Create an Isosurface</a></li><li class="nav-item"><a href="#brbl_ky" class="nav-link intrnllnk">2. Add Isocaps to the Isosurface</a></li><li class="nav-item"><a href="#brbl_lk" class="nav-link intrnllnk">3. Create the First Set of Cones</a></li><li class="nav-item"><a href="#brbl_l_" class="nav-link intrnllnk">4. Create Second Set of Cones</a></li><li class="nav-item"><a href="#brbl_mr" class="nav-link intrnllnk">5. Define the View</a></li><li class="nav-item"><a href="#brbl_nd" class="nav-link intrnllnk">6. Add Lighting</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=volume-visualization&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=volume-visualization&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=volume-visualization&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=volume-visualization&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=volume-visualization&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=volume-visualization&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f5-7858">Vector Field Displayed with Cone Plots</h2><a class="indexterm" name="d126e3618"></a><span id="vector_field_displayed_with_cone_plots" class="anchor_target"></span><section><h3 class="title" id="brbl_jm">What Cone Plots Can Show</h3><p>This example plots the velocity vector cones for the <code class="literal">wind</code> data.
+                The graph produced employs a number of visualization techniques:</p><div class="itemizedlist"><ul><li><p>An isosurface is used to provide visual context for the cone plots and to
+                        provide means to select a specific data value for a set of cones.</p></li><li><p>Lighting enables the shape of the isosurface to be clearly visible.</p></li><li><p>The use of perspective projection, camera positioning, and view angle
+                        adjustments composes the final view.</p></li></ul></div></section><section><h3 class="title" id="brbl_kd">1. Create an Isosurface</h3><p>Displaying an isosurface within the rectangular space of the data provides a
+                visual context for the cone plot. Creating the isosurface requires a number of
+                steps:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Calculate the magnitude of the vector field, which represents the speed of
+                        the wind.</p></li><li><p>Use <a href="../ref/isosurface.html"><code class="function">isosurface</code></a> and <a href="../ref/patch.html"><code class="function">patch</code></a> to draw an isosurface
+                        illustrating where in the rectangular space the wind speed is equal to a
+                        particular value. Regions inside the isosurface have higher wind speeds,
+                        regions outside the isosurface have lower wind speeds.</p></li><li><p>Use <a href="../ref/isonormals.html"><code class="function">isonormals</code></a> to compute
+                        vertex normals of the isosurface from the volume data rather than calculate
+                        the normals from the triangles used to render the isosurface. These normals
+                        generally produce more accurate results.</p></li><li><p>Set visual properties of the isosurface, making it red and without drawing
+                        edges (<code class="literal">FaceColor</code>, <code class="literal">EdgeColor</code>).</p><div class="code_responsive"><pre class="programlisting">load wind
+wind_speed = sqrt(u.^2 + v.^2 + w.^2);
+hiso = patch(isosurface(x,y,z,wind_speed,40));
+isonormals(x,y,z,wind_speed,hiso)
+hiso.FaceColor = 'red';
+hiso.EdgeColor = 'none';</pre></div></li></ol></div></section><section><h3 class="title" id="brbl_ky">2. Add Isocaps to the Isosurface</h3><p>Isocaps are similar to slice planes in that they show a cross section of the
+                volume. They are designed to be the end caps of isosurfaces. Using interpolated face
+                color on an isocap causes a mapping of data value to color in the current colormap.
+                To create isocaps for the isosurface, define them at the same isovalue (<a href="../ref/isocaps.html"><code class="function">isocaps</code></a>, <a href="../ref/patch.html"><code class="function">patch</code></a>, <a href="../ref/colormap.html"><code class="function">colormap</code></a>).</p><div class="code_responsive"><pre class="programlisting">hcap = patch(isocaps(x,y,z,wind_speed,40),...
+   'FaceColor','interp',...
+   'EdgeColor','none');
+colormap hsv</pre></div></section><section><h3 class="title" id="brbl_lk">3. Create the First Set of Cones</h3><div class="itemizedlist"><ul><li><p>Use <a href="../ref/daspect.html"><code class="function">daspect</code></a> to set the data
+                        aspect ratio of the axes before calling <code class="literal">coneplot</code> so
+                        function can determine the proper size of the cones.</p></li><li><p>Determine the points at which to place cones by calculating another
+                        isosurface that has a smaller isovalue (so the cones are displayed outside
+                        the first isosurface) and use <a href="../ref/reducepatch.html"><code class="function">reducepatch</code></a> to reduce the
+                        number of faces and vertices (so there are not too many cones on the
+                        graph).</p></li><li><p>Draw the cones and set the face color to <code class="literal">blue</code> and the
+                        edge color to <code class="literal">none</code>.</p><div class="code_responsive"><pre class="programlisting">daspect([1 1 1]);
+[f,verts] = reducepatch(isosurface(x,y,z,wind_speed,30),0.07);
+h1 = coneplot(x,y,z,u,v,w,verts(:,1),verts(:,2),verts(:,3),3);
+h1.FaceColor = 'blue';
+h1.EdgeColor = 'none';</pre></div></li></ul></div></section><section><h3 class="title" id="brbl_l_">4. Create Second Set of Cones</h3><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create a second set of points at values that span the data range
+                            (<a href="../ref/double.linspace.html"><code class="function">linspace</code></a>, <a href="../ref/meshgrid.html"><code class="function">meshgrid</code></a>).</p></li><li><p>Draw a second set of cones and set the face color to green and the edge
+                        color to none.</p><div class="code_responsive"><pre class="programlisting">xrange = linspace(min(x(:)),max(x(:)),10);
+yrange = linspace(min(y(:)),max(y(:)),10);
+zrange = 3:4:15;
+[cx,cy,cz] = meshgrid(xrange,yrange,zrange);
+h2 = coneplot(x,y,z,u,v,w,cx,cy,cz,2);
+h2.FaceColor = 'green';
+h2.EdgeColor = 'none';</pre></div></li></ol></div></section><section><h3 class="title" id="brbl_mr">5. Define the View</h3><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Use the <a href="../ref/axis.html"><code class="function">axis</code></a> command to set the
+                        axis limits equal to the minimum and maximum values of the data and enclose
+                        the graph in a box to improve the sense of a volume (<a href="../ref/box.html"><code class="function">box</code></a>).</p></li><li><p>Set the projection type to perspective to create a more natural view of
+                        the volume. Set the viewpoint and zoom in to make the scene larger
+                            (<a href="../ref/camproj.html"><code class="function">camproj</code></a>, <a href="../ref/camzoom.html"><code class="function">camzoom</code></a>, <a href="../ref/view.html"><code class="function">view</code></a>).</p><div class="code_responsive"><pre class="programlisting">axis tight
+set(gca,'BoxStyle','full','Box','on')
+camproj perspective
+camzoom(1.25)
+view(65,45)</pre></div></li></ol></div></section><section><h3 class="title" id="brbl_nd">6. Add Lighting</h3><p>Add a light source and use Gouraud lighting for the smoothest lighting of the
+                isosurface. Increase the strength of the background lighting on the isocaps to make
+                them brighter (<a href="../ref/camlight.html"><code class="function">camlight</code></a>, <a href="../ref/lighting.html"><code class="function">lighting</code></a>,
+                    <code class="literal">AmbientStrength</code>).</p><div class="code_responsive"><pre class="programlisting">camlight(-45,45)
+hcap.AmbientStrength = 0.6;
+lighting gouraud</pre></div><div class="informalfigure"><div id="d126e3758" class="mediaobject"><p><img src="chvolvis19.png" height="420" width="560"></p></div></div></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

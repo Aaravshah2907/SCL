@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create a Simple Custom UI Component in App Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../developing-custom-ui-component-classes.html",
+          "name": "Create Custom UI Components"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-custom-ui-component-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Walk through the basic steps to interactively create a simple custom UI component."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-custom-ui-component-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4599001b-126d-40d9-b094-1d13710d02e2"><span itemprop="title">Create Custom UI Components</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create a Simple Custom UI Component in App Designer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_4a10a1f6-d242-4887-8bcc-b25536e55a94" class="nav-link intrnllnk">Component Creation Overview</a><ul class="nav"><li class="nav-item"><a href="#mw_c8e50f15-0b6b-4b2d-a409-0de95aad0859" class="nav-link intrnllnk">Create Custom UI Component</a></li></ul></li><li class="nav-item"><a href="#mw_5eb6b0d0-329f-42d0-854a-6a7ea937064d" class="nav-link intrnllnk">Design Component Appearance</a></li><li class="nav-item"><a href="#mw_898ded96-a52c-4da2-bb56-4245f1232012" class="nav-link intrnllnk">Design Component Interface</a><ul class="nav"><li class="nav-item"><a href="#mw_63616743-da44-4493-8ee5-41820e621e65" class="nav-link intrnllnk">Create and Configure Public Properties</a></li><li class="nav-item"><a href="#mw_163d8bc2-79e0-497f-94be-e0b33f1d348a" class="nav-link intrnllnk">Create and Configure Public Callbacks</a></li></ul></li><li class="nav-item"><a href="#mw_6ebdf9d7-cee4-4560-a501-efc0781811c3" class="nav-link intrnllnk">Verify Component Behavior</a></li><li class="nav-item"><a href="#mw_826fe0e6-a54b-4708-912d-f4a4fa5db891" class="nav-link intrnllnk">Configure Component for Use in Apps</a></li><li class="nav-item"><a href="#d126e15681" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_46809009-e3f2-4ef4-b0a4-0cdc9c142b73">Create a Simple Custom UI Component in App Designer</h2><span id="comp-example-tutorial" class="anchor_target"></span><p>In addition to the UI components that MATLAB<sup>&#x00AE;</sup> provides for building apps, you can create custom UI components to use in your
+      own apps or to share with others. Starting in R2022a, you can interactively create custom UI
+      components in App Designer.</p><p>Some benefits of creating custom UI components include:</p>
+<div class="itemizedlist"><ul><li><p>Modularization &#8212; Separate the display and code of large apps into independent,
+            maintainable pieces.</p></li><li><p>Reusability &#8212; Provide a convenient interface for adding and customizing similar
+            components in apps.</p></li><li><p>Flexibility &#8212; Extend the appearance and behavior of existing UI components.</p></li></ul></div><p>
+</p><section><h3 class="title" id="mw_4a10a1f6-d242-4887-8bcc-b25536e55a94">Component Creation Overview</h3><p>When you design and create a custom UI component, there are two users of your component
+        to consider: <em class="firstterm">app creators</em> and <em class="firstterm">app users</em>. App
+        creators use your component when building an app, whereas app users interact with your
+        component when running an app. Because these two types of users use your component in
+        different ways, there are additional considerations to take into account when designing a
+        custom component as opposed to designing an app.</p><p>To provide a good experience for app creators who use your component to build an app:</p>
+<div class="itemizedlist"><ul><li><p>Provide an interface for users to customize the appearance and behavior of the
+              component in an app by creating public properties.</p></li><li><p>Enable users to program a response to interactions with the component by creating
+              public callbacks.</p></li><li><p>Ensure that the component is robust to the different ways in which users can
+              incorporate it into their apps, and provide feedback, such as descriptive error
+              messages, when a user attempts to use it in an unintended way.</p></li></ul></div><p>
+</p><p>To provide a good experience for app users who interact with your component in an app:</p>
+<div class="itemizedlist"><ul><li><p>Design the component appearance so that users can understand its purpose.</p></li><li><p>Program the basic behavior of the component so that it is consistent across all
+              apps that use it.</p></li></ul></div><p>
+</p><p>Learn how to create a custom UI component in App Designer by walking through the process
+        of creating a slider-spinner UI component that provides a flexible interface to change a
+        numeric value. When you have completed the process, you will be able to use the
+        slider-spinner component in an App Designer app in the same way you use existing UI
+        components.</p><div class="informalfigure"><div id="d126e15080" class="mediaobject"><p><img src="slider-spinner-component.png" alt="Slider-spinner custom UI component." height="133" width="250"></p></div></div><p>You can either create the slider-spinner component by following the interactive tutorial
+        in the App Designer environment or by following the steps on this page. </p><p>To run the interactive component tutorial in App Designer, open the App Designer Start
+        Page. In the <strong class="guilabel">Custom UI Components</strong> section, click <strong class="guilabel">Show
+          examples</strong>, and then select <strong class="guilabel">Interactive Component
+        Tutorial</strong>.</p><p><a href="#" onclick="return toggleexpander('d126e15093_block','d126e15093_expandable_text');"><img style="border:0;" id="d126e15093_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e15093_block','d126e15093_expandable_text');">App Designer Component Tutorial Steps</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e15093_block"><p>This table provides a quick reference for the App Designer interactive component
+          tutorial.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Step Number</th><th>Step Instruction</th></tr></thead><tbody><tr><td>1</td><td><p>Let's build a simple custom UI component that consists of a slider and
+                    a spinner with their values connected together.</p><p>Drag a
+                      <strong class="guilabel">Slider</strong> component onto the canvas.</p></td></tr><tr><td>2</td><td>Drag a <strong class="guilabel">Spinner</strong> component onto the canvas.</td></tr><tr><td>3</td><td><p>Create a public property named <code class="literal">Value</code> to allow app
+                    creators to set the slider-spinner component value when they use the component
+                    to build an app.</p><p>Select the component node in the <strong class="emphasis bold">Component Browser</strong> and click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button to add a new public
+                  property.</p></td></tr><tr><td>4</td><td><p>Fill out the dialog box with the following values and then click
+                      <strong class="guibutton">OK</strong> to create the
+                      property:</p><p><strong class="guilabel">Name</strong>: <code class="literal">Value</code>
+                  </p><p><strong class="guilabel">Data Type</strong>: <code class="literal">double</code>
+                  </p><p><strong class="guilabel">Default Value</strong>: <code class="literal">0</code>
+                  </p></td></tr><tr><td>5</td><td><p>App Designer has a design view for designing your component and a code
+                    view for programming your component.</p><p>Click <strong class="guilabel">Code
+                      View</strong> to begin programming your component.</p></td></tr><tr><td>6</td><td><p>Create a callback function for the slider to respond when a user
+                    changes the slider value.</p><p>In the <strong class="guilabel">Component
+                      Browser</strong>, right-click <code class="literal">comp.Slider</code> and select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Add ValueChangedFcn callback</strong>.</p></td></tr><tr><td>7</td><td><p>When the slider value changes and this callback function is executed,
+                    update the <code class="literal">Value</code> property of your component to match the new
+                    slider value.</p><p>Replace the callback code with the
+                  following:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Value = event.Source.Value;</pre></div></div></div></td></tr><tr><td>8</td><td><p>Next, do the same thing for the spinner. Instead of creating a new
+                    callback function, you can reuse the slider callback.</p><p>In the
+                      <strong class="guilabel">Component Browser</strong>, right-click
+                      <code class="literal">comp.Spinner</code> and select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Select existing callback</strong>. Then, select the existing callback for the slider from the dialog
+                    box.</p></td></tr><tr><td>9</td><td><p>Your component's <code class="literal">Value</code> property now updates when the
+                    value of the slider or the spinner changes. Next, conversely, update the slider
+                    and spinner value when someone sets your component's <code class="literal">Value</code>
+                    property programmatically.</p><p>Write the following code to do this in
+                    the <code class="literal">update</code> function, which executes every time the value of a
+                    public property
+                  changes:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Slider.Value = comp.Value;
+comp.Spinner.Value = comp.Value;</pre></div></div></div></td></tr><tr><td>10</td><td><p>Create a public callback to allow users of your component to program a
+                    response to an interaction in the context of their app. App Designer creates a
+                    public callback when you add an event.</p><p>Click on the
+                      <strong class="guilabel">Events</strong> tab and then click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button to add a new event. </p></td></tr><tr><td>11</td><td><p>When you add an event, App Designer creates a public callback of the
+                    same name with <code class="literal">Fcn</code> appended. This callback is available when
+                    the component is added to an app.</p><p>Specify the name of the event to
+                    be <code class="literal">ValueChanged</code>.</p></td></tr><tr><td>12</td><td><p>To trigger the <code class="literal">ValueChangedFcn</code> callback at the right
+                    time, you need to notify the event whenever you change your component's
+                      <code class="literal">Value</code> property.</p><p>Add the following code to the
+                    end of the <code class="literal">SliderValueChanged</code>
+                  callback:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>notify(comp, <span style="color:#A020F0">'ValueChanged'</span>)</pre></div></div></div></td></tr><tr><td>13</td><td><p>Click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="run.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Run</strong> to save and run the component to verify the its
+                    interactive behavior.</p></td></tr><tr><td>14</td><td><p>To verify that your component's <code class="literal">ValueChangedFcn</code>
+                    callback is triggered when the component value changes, execute the following
+                    code in the MATLAB Command
+                  Window:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = tutorialComponent;
+comp.ValueChangedFcn = @(src,event)disp(src.Value);</pre></div></div></div></td></tr><tr><td>15</td><td><p>Congratulations, you just built your first custom UI
+                    component!</p><p>Click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="configure.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Configure </strong> to enable your component to appear in the App
+                    Designer Component Library. You can use the component in your apps or share it
+                    with others.</p></td></tr></tbody></table></div></div><section><h4 class="title" id="mw_c8e50f15-0b6b-4b2d-a409-0de95aad0859">Create Custom UI Component</h4><p>To create a custom UI component in App Designer, first open a new blank component.
+          Open the App Designer Start Page, and in the <strong class="guilabel">Custom UI Components</strong>
+          section, click <strong class="guilabel">Blank Component</strong>. Save the component file as
+            <code class="literal">myComponent.mlapp</code>. Then, follow these steps to build the
+          slider-spinner component with connected values:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_5eb6b0d0-329f-42d0-854a-6a7ea937064d" class="intrnllnk">Design Component Appearance</a> &#8212; Lay out
+                your custom component using existing UI components in App Designer <strong class="guilabel">Design
+                  View</strong>.</p></li><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_898ded96-a52c-4da2-bb56-4245f1232012" class="intrnllnk">Design Component Interface</a> &#8212; Provide
+                options for an app creator to customize the appearance and behavior of your custom
+                component to suit the needs of the app. Do this in two steps:</p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_63616743-da44-4493-8ee5-41820e621e65" class="intrnllnk">Create and Configure Public Properties</a> &#8212;
+                      Enable the app creator to specify aspects of the component appearance and
+                      behavior in an app.</p></li><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_163d8bc2-79e0-497f-94be-e0b33f1d348a" class="intrnllnk">Create and Configure Public Callbacks</a> &#8212;
+                      Enable the app creator to program a response when an app user interacts with
+                      the component in an app.</p></li></ol></div><p>
+</p></li><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_6ebdf9d7-cee4-4560-a501-efc0781811c3" class="intrnllnk">Verify Component Behavior</a> &#8212; Ensure your
+                custom component looks and behaves as intended.</p></li><li><p><a href="create-a-custom-ui-component-in-app-designer.html#mw_826fe0e6-a54b-4708-912d-f4a4fa5db891" class="intrnllnk">Configure Component for Use in Apps</a> &#8212; Specify how
+                your custom component appears in the App Designer <strong class="guilabel">Component
+                  Library</strong>.</p></li></ol></div><p>
+</p></section></section><section><h3 class="title" id="mw_5eb6b0d0-329f-42d0-854a-6a7ea937064d">Design Component Appearance</h3><p>Design your custom component appearance in <strong class="guilabel">Design View</strong>.</p><p>To design the slider-spinner appearance, first drag a <strong class="guilabel">Slider</strong>
+        component from the <strong class="guilabel">Component Library</strong> onto the canvas. Then, drag a
+          <strong class="guilabel">Spinner</strong> component onto the canvas and position it below the
+        slider.</p><p>When you lay out your custom component in <strong class="guilabel">Design View</strong>, App Designer
+        generates the code that creates the underlying UI components in the <a href="../ref/matlab.ui.componentcontainer.componentcontainer.setup.html"><code class="method">setup</code></a> function in
+          <strong class="guilabel">Code View</strong>. This function is run once when the custom component object
+        is created in an app. If you have additional startup tasks that you would like to execute
+        once at setup, such as plotting data or initializing default values, you can create a
+          <code class="literal">PostSetupFcn</code> callback for the custom component. For more information,
+        see <a href="custom-ui-component-startup-tasks-in-app-designer.html" class="a">Define Custom UI Component Startup Tasks in App Designer</a>.</p></section><section><h3 class="title" id="mw_898ded96-a52c-4da2-bb56-4245f1232012">Design Component Interface</h3><p>Design your custom component interface so that an app creator can specify how the
+        component appears and behaves within their app. There are two aspects of the component
+        interface to consider:</p><div class="itemizedlist"><ul><li><p>Public properties &#8212; These are properties of the component that can be set and
+            queried when the component is added to an app. Create public properties to provide
+            component customization options and to expose information about the component to an app
+            creator.</p></li><li><p>Public callbacks &#8212; These are callbacks of the component that can be accessed when
+            the component is added to an app. Create public callbacks to allow an app creator to
+            program a response to a specific component interaction in the context of their
+            app.</p></li></ul></div><section><h4 class="title" id="mw_63616743-da44-4493-8ee5-41820e621e65">Create and Configure Public Properties</h4><p>To add a public property to your custom component, first create the property and
+          specify its default value, data type, and associated validation functions. Then, write
+          code to connect the property value and the custom component appearance and behavior.
+          Update the public property value when an app user interacts with the component, and update
+          the underlying components when an app creator programmatically sets the public property
+          value.</p><p>For the slider-spinner component, create a public property named
+            <code class="literal">Value</code> to allow app creators to set the slider-spinner value when they
+          use the component in app. Select the component node in the <strong class="guilabel">Component
+            Browser</strong> and click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button.</p><div class="informalfigure"><div id="d126e15411" class="mediaobject"><p><img src="appd-component-browser-public-property.png" alt="Component Browser. The component node is selected and there is a button to add a new public property." height="390" width="354"></p></div></div><p>When you add a new public property, App Designer opens a dialog box that lets you
+          specify property details. Fill out the dialog box with these values:</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Name</strong> &#8212; Enter <code class="literal">Value</code> as the property
+                name.</p></li><li><p><strong class="guilabel">Data Type</strong> &#8212; Enter <code class="literal">double</code> as the property
+                data type.</p></li><li><p><strong class="guilabel">Default Value</strong> &#8212; Enter <code class="literal">0</code> as the default
+                property value.</p></li></ul></div><p>
+Click <strong class="guibutton">OK</strong> to create the property.</p><p>Once you create the <code class="literal">Value</code> public property, write code to link the
+          property to the slider-spinner component appearance. Navigate to <strong class="guilabel">Code
+            View</strong> using the button in the upper-right corner of the canvas.</p><div class="informalfigure"><div id="d126e15446" class="mediaobject"><p><img src="appd-view-buttons-code-view.png" alt="Design View and Code View toggle buttons. The Code View button is selected." height="38" width="182"></p></div></div><p>When you create a custom UI component, App Designer creates a class definition file
+          with <a href="../ref/matlab.ui.componentcontainer.componentcontainer-class.html"><code class="class">matlab.ui.componentcontainer.ComponentContainer</code></a> as the superclass. Use the
+            <strong class="guilabel">Code View</strong> editor to write code to program your component in this
+          file. Access the custom component object in your code by using
+          <code class="literal">comp</code>.</p><p>First, update the <code class="literal">Value</code> property whenever an app user interacts
+          with the slider or the spinner. Perform this update using these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create a callback for the slider component. Right-click
+                  <code class="literal">comp.Slider</code> in the <strong class="guilabel">Component Browser</strong> and
+                select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Add ValueChangedFcn callback</strong>.</p></li><li><p>Update the <code class="literal">Value</code> property within the
+                  <code class="literal">SliderValueChanged</code> callback function. Replace the code in the
+                callback function with this
+                code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Value = event.Source.Value;</pre></div></div></div></p></li><li><p>Assign the same callback function to the spinner component. Right-click
+                  <code class="literal">comp.Spinner</code> in the <strong class="guilabel">Component Browser</strong> and
+                select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Select existing callback</strong>. Use the dialog box to assign the
+                  <code class="literal">SliderValueChanged</code> function to the spinner
+                  <code class="literal">ValueChangedFcn</code> callback.</p></li></ol></div><p>
+</p><p>At this point, your code updates the slider-spinner <code class="literal">Value</code> property
+          whenever the underlying component values change. Next, conversely, write code to update
+          the underlying spinner and slider components whenever an app creator sets the
+          slider-spinner <code class="literal">Value</code> property. Perform this update inside the
+            <code class="literal">update</code> function of your component code. The <code class="literal">update</code>
+          function executes whenever the value of a public property of the custom component changes,
+          so this ensures that the underlying spinner and slider values always match the value of
+          the custom component.</p><p>Add this code to the <code class="literal">update</code>
+          function:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Slider.Value = comp.Value;
+comp.Spinner.Value = comp.Value;</pre></div></div></div></p><p>For more information about creating and configuring public properties, see <a href="manage-properties-of-custom-ui-components-in-app-designer.html" class="a">Create Public Properties for Custom UI Components in App Designer</a>.</p></section><section><h4 class="title" id="mw_163d8bc2-79e0-497f-94be-e0b33f1d348a">Create and Configure Public Callbacks</h4><p>Create public callbacks for your custom component to enable app creators to write code
+          in their apps to respond to specific interactions. To create a public callback, add an
+            <em class="firstterm">event</em>. An event is a notice that is broadcast when an action
+          occurs. When you add an event for your custom component, App Designer creates a public
+          callback associated with the event. Then, write code to trigger the event, which executes
+          the associated public callback.</p><p>In the slider-spinner component, create an event named <code class="literal">ValueChanged</code>
+          and write code to trigger the event and execute the associated
+            <code class="literal">ValueChangedFcn</code> callback whenever an app user changes the value of
+          the slider or the spinner in a running app. This step lets app creators use the
+            <code class="literal">ValueChangedFcn</code> callback in their app. For instance, an app creator
+          might write a callback function to plot some data whenever the app user changes the
+          slider-spinner value.</p><p>Use these steps to add and trigger the <code class="literal">ValueChanged</code> event:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Select the <strong class="guilabel">Event&#8211;Callback Pairs</strong> tab in the
+                  <strong class="guilabel">Component Browser</strong> and click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="icon-add.png" alt="Plus" height="16" width="16"></span></span> button.</p><div class="informalfigure"><div id="d126e15554" class="mediaobject"><p class="listimage"><img src="appd-component-browser-event.png" alt="Component Browser Inspector for the myComponent node. The Event&#8211;Callback Pairs tab is selected and contains a plus button." height="272" width="354"></p></div></div></li><li><p>In the Add Event&#8211;Public Callback Pair dialog box, enter the event name as
+                  <code class="literal">ValueChanged</code>, and click <strong class="guibutton">OK</strong>. App Designer
+                creates a public callback of the same name with the letters <code class="literal">Fcn</code>
+                appended. So in this case, the public callback is named
+                  <code class="literal">ValueChangedFcn</code>.</p></li><li><p>Write code to ensure that the callback is executed at the appropriate moment. Do
+                this by calling the <a href="../ref/handle.notify.html"><code class="function">notify</code></a> function on the component
+                object and specifying the event name. Here, the callback should be executed when an
+                app user interacts with the slider or the spinner. In the
+                  <code class="literal">SliderValueChanged</code> function, add this
+                code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>notify(comp,<span style="color:#A020F0">"ValueChanged"</span>)</pre></div></div></div></p></li></ol></div><p>
+</p><p>For more information about creating and executing public callbacks, see <a href="create-callbacks-for-custom-ui-components-in-app-designer.html" class="a">Create Callbacks for Custom UI Components in App Designer</a>.</p></section></section><section><h3 class="title" id="mw_6ebdf9d7-cee4-4560-a501-efc0781811c3">Verify Component Behavior</h3><p>To see what your component looks like in a running app, save the component and then
+        click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="run.png" alt="" height="16" width="16"></span></span>
+        <strong class="guibutton">Run</strong>. App Designer displays a UI figure window that contains your
+        custom component. </p><p>Run the slider-spinner component, and interact with it to verify that it looks and
+        behaves as expected.</p><div class="informalfigure"><div id="d126e15597" class="mediaobject"><p><img src="appd-slider-spinner-in-figure.png" alt="Slider-spinner component in a UI figure window" height="330" width="403"></p></div></div><p>Next, verify that the <code class="literal">ValueChangedFcn</code> callback is executed when the
+        component value changes. Create an instance of your component programmatically by specifying
+        the component file name at the MATLAB Command Window and returning the component object as a variable. Enter this
+        code in the Command Window to create a slider-spinner component and assign a callback
+        function:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = myComponent;
+comp.ValueChangedFcn = @(src,event)disp(src.Value);</pre></div></div></div>Interact
+        with the slider and spinner. The value of the custom component is displayed in the Command
+        Window.</p></section><section><h3 class="title" id="mw_826fe0e6-a54b-4708-912d-f4a4fa5db891">Configure Component for Use in Apps</h3><p>To use your custom UI component in an App Designer app or to share it for others to use,
+        follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>In the <strong class="guilabel">Designer</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="configure.png" alt="" height="16" width="16"></span></span>
+              <strong class="guibutton">Configure for Apps</strong>.</p></li><li><p>Fill out the App Designer Custom UI Component Metadata dialog box, and then click
+                <strong class="guibutton">OK</strong>.</p></li><li><p>In the confirmation dialog box, click <strong class="guibutton">Add to Path</strong> to add
+              the component and generated <code class="literal">resources</code> folder to the MATLAB path.</p></li><li><p>In the <strong class="guilabel">Designer</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="new.png" alt="" height="16" width="16"></span></span>
+              <strong class="guibutton">New</strong> and select <strong class="guibutton">Blank App</strong>.</p></li></ol></div><p>
+</p><p>The component appears in the <strong class="guilabel">Component Library</strong> of the app, under
+        the category specified in the dialog box.</p><div class="informalfigure"><div id="d126e15662" class="mediaobject"><p><img src="appd-slider-spinner-in-library.png" alt="App Designer Component Library. The Slider-Spinner component and its metadata, including its name, description, and file location, are displayed under a header labeled MATLAB Examples (Custom)." height="151" width="414"></p></div></div><p>Drag a slider-spinner component onto the canvas. You can set public properties of the
+        component using the <strong class="guilabel">Component Browser</strong>, and you can assign public
+        callbacks to program the component behavior in the app.</p><div class="informalfigure"><div id="d126e15671" class="mediaobject"><p><img src="appd-slider-spinner-in-app.png" alt="Slider-spinner UI component in an app. The component node is selected in the Component Browser, which shows the Value property. A context menu for the component on the canvas is displayed and the Callbacks &gt; Add ValueChangedFcn callback option is highlighted." height="520" width="716"></p></div></div><p>For more information about configuring and sharing your custom UI component, see <a href="custom-ui-component-classes-in-app-designer.html" class="a">Configure Custom UI Components for App Designer</a>.</p></section>
+      <h2 id="d126e15681">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.ui.componentcontainer.componentcontainer-class.html"><span itemprop="name"><code class="class">matlab.ui.componentcontainer.ComponentContainer</code></span></a></span></li></ul>
+      <h3 id="d126e15690">Topics</h3><ul class="list-unstyled"><li><a href="manage-properties-of-custom-ui-components-in-app-designer.html" class="a">Create Public Properties for Custom UI Components in App Designer</a></li><li><a href="create-callbacks-for-custom-ui-components-in-app-designer.html" class="a">Create Callbacks for Custom UI Components in App Designer</a></li><li><a href="custom-ui-component-classes-in-app-designer.html" class="a">Configure Custom UI Components for App Designer</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Interpolating Gridded Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../interpolation.html",
+          "name": "Interpolation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interpolation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Interpolation of regularly spaced, axis-aligned data sets."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interpolation.html?s_tid=CRUX_lftnav" itemprop="url" id="btfpj5e"><span itemprop="title">Interpolation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Interpolating Gridded Data</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_873988e4-6747-4003-a7bc-505711c83086" class="nav-link intrnllnk">MATLAB Gridded Interpolation Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_28183e22-15fa-47d2-bf8f-26efe890c2a9" class="nav-link intrnllnk">Grid Creation Functions</a></li><li class="nav-item"><a href="#mw_f319b268-91a8-48d6-b687-a98e101dd376" class="nav-link intrnllnk">Interpolation Functions</a></li><li class="nav-item"><a href="#mw_a8224969-368f-44bb-af53-f27b5609c379" class="nav-link intrnllnk">Interpolation Objects</a></li></ul></li><li class="nav-item"><a href="#bs2o5wb-1" class="nav-link intrnllnk">Grid Representations</a><ul class="nav"><li class="nav-item"><a href="#bs3_b6d" class="nav-link intrnllnk">Full Grid</a></li><li class="nav-item"><a href="#bs4d_a1" class="nav-link intrnllnk">Compact Grid</a></li><li class="nav-item"><a href="#bs4d_b_-1" class="nav-link intrnllnk">Default Grid</a></li></ul></li><li class="nav-item"><a href="#mw_b0f8b584-b1a0-4379-ab6d-313835cb0bdd" class="nav-link intrnllnk">Example: Temperature Interpolation on 2-D Grid</a></li><li class="nav-item"><a href="#bs5vmq1" class="nav-link intrnllnk">Gridded Interpolation Methods</a></li><li class="nav-item"><a href="#d126e22873" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bspq0rb-1">Interpolating Gridded Data</h2><p>Gridded data consists of values or measurements at regularly spaced points that form
+               a grid. Gridded data arises in many areas, such as meteorology, surveying, and
+               medical imaging. In these areas, it is common to take measurements at regular spatial
+               intervals, possibly over time. These ordered grids of data can range from 1-D (for
+               simple time series) to 4-D (for measuring volumes over time) or higher. Some examples
+               of gridded data are:</p>
+<div class="itemizedlist"><ul><li><p>1-D: Stock prices over time</p></li><li><p>2-D: Temperature of a surface</p></li><li><p>3-D: MRI image of a brain</p></li><li><p>4-D: Ocean measurements in a volume of water over time</p></li></ul></div><p>
+</p><p>In all of these applications, grid-based interpolation efficiently extends the
+               usefulness of the data to points where no measurement was taken. For example, if you
+               have hourly price data for a stock, you can use interpolation to approximate the
+               price every 15 minutes.</p><section><h3 class="title" id="mw_873988e4-6747-4003-a7bc-505711c83086"><span class="trademark entity">MATLAB</span> Gridded Interpolation Functions</h3><p>MATLAB<sup>&#x00AE;</sup> provides several tools for grid-based interpolation:</p><section><h4 class="title" id="mw_28183e22-15fa-47d2-bf8f-26efe890c2a9">Grid Creation Functions</h4><p>The <a href="../ref/meshgrid.html"><code class="function">meshgrid</code></a> and <a href="../ref/ndgrid.html"><code class="function">ndgrid</code></a> functions create
+                         grids of various dimensionality. <code class="function">meshgrid</code> can create
+                         2-D or 3-D grids, while <code class="function">ndgrid</code> can create grids with
+                         any number of dimensions. These functions return grids using different
+                         output formats. You can convert between these grid formats using the
+                              <a href="../ref/pagetranspose.html"><code class="function">pagetranspose</code></a> (<span class="emphasis"><em>as of R2020b</em></span>) or
+                              <a href="../ref/double.permute.html"><code class="function">permute</code></a> functions to
+                         swap the first two dimensions of the grid.</p></section><section><h4 class="title" id="mw_f319b268-91a8-48d6-b687-a98e101dd376">Interpolation Functions</h4><p>The <code class="literal">interp</code> family of functions includes <a href="../ref/double.interp1.html"><code class="function">interp1</code></a>, <a href="../ref/interp2.html"><code class="function">interp2</code></a>, <a href="../ref/interp3.html"><code class="function">interp3</code></a>, and <a href="../ref/interpn.html"><code class="function">interpn</code></a>. Each function is
+                         designed to interpolate data with a specific number of dimensions.
+                              <code class="function">interp2</code> and <code class="function">interp3</code> use
+                         grids in <code class="function">meshgrid</code> format, while
+                              <code class="function">interpn</code> uses grids in <code class="function">ndgrid</code>
+                         format.</p></section><section><h4 class="title" id="mw_a8224969-368f-44bb-af53-f27b5609c379">Interpolation Objects</h4><p><a href="../ref/griddedinterpolant.html"><code class="object">griddedInterpolant</code></a> objects
+                         support interpolation in any number of dimensions for data in
+                              <code class="function">ndgrid</code> format. These objects also support
+                         multivalued interpolation (<span class="emphasis"><em>as of R2021a</em></span>), where each
+                         grid point can have multiple values associated with it.</p><p>There are memory and performance benefits to using <code class="object">griddedInterpolant</code> objects over the
+                              <code class="literal">interp</code> functions. <code class="object">griddedInterpolant</code> offers substantial performance
+                         improvements for repeated queries of the interpolant object, whereas the
+                              <code class="literal">interp</code> functions perform a new calculation each
+                         time they are called. Also, <code class="object">griddedInterpolant</code> stores the sample points in a
+                         memory-efficient format (as a <a href="interpolating-gridded-data.html#bs4d_a1" class="intrnllnk">compact grid</a>) and is multithreaded to take advantage of
+                         multicore computer processors.</p></section></section><section><h3 class="title" id="bs2o5wb-1">Grid Representations</h3><p>MATLAB allows you to represent a grid in one of three representations:
+                    full grid, compact grid, or default grid. The default grid and compact grid are
+                    used primarily for convenience and improved efficiency, respectively.</p><section><h4 class="title" id="bs3_b6d">Full Grid</h4><p>A <em class="firstterm">full grid</em> is one in which all points are
+                         explicitly defined. The outputs of <code class="function">ndgrid</code> and
+                              <code class="function">meshgrid</code> define a full grid. You can create full
+                         grids that are <em class="firstterm">uniform</em>, in which points in each
+                         dimension have equal spacing, or <em class="firstterm">nonuniform</em>, in
+                         which the spacing varies in one or more of the dimensions. Uniform grids
+                         can have different spacing in each dimension, as long as the spacing is
+                         constant within each dimension.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Uniform</th><th>Uniform</th><th>Nonuniform</th></tr></thead><tbody><tr><td><p>
+                                                  </p>
+<div class="informalfigure"><div id="d126e22533" class="mediaobject"><p><img src="interpolation_uniformgrid1.png" alt="Grid with uniformly-spaced points in each direction." height="127" width="126"></p></div></div><p>
+                                             </p></td><td><p>
+                                                  </p>
+<div class="informalfigure"><div id="d126e22542" class="mediaobject"><p><img src="interpolation_uniformgrid2.png" alt="Grid with uniformly-spaced points, but the spacing differs in each dimension." height="127" width="126"></p></div></div><p>
+                                             </p></td><td><p>
+                                                  </p>
+<div class="informalfigure"><div id="d126e22551" class="mediaobject"><p><img src="interpolation_nonuniformgrid.png" alt="Grid with nonuniformly-spaced points in each dimension." height="127" width="126"></p></div></div><p>
+                                             </p></td></tr></tbody></table></div><p>An example of a uniform full grid
+                         is:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[X,Y] = meshgrid([1 2 3],[3 6 9 12])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>X =
+
+     1     2     3
+     1     2     3
+     1     2     3
+     1     2     3
+
+
+Y =
+
+     3     3     3
+     6     6     6
+     9     9     9
+    12    12    12</pre></div></div></div></p></section><section><h4 class="title" id="bs4d_a1">Compact Grid</h4><p>Explicitly defining every point in a grid can consume a lot of memory when
+                         you are dealing with large grids. The <em class="firstterm">compact grid</em>
+                         representation is a way to dispense with the memory overhead of a full
+                         grid. The compact grid representation stores only <em class="firstterm">grid
+                              vectors</em> (one for each dimension) instead of the full grid.
+                         Together, the grid vectors implicitly define the grid. In fact, the inputs
+                         for <code class="function">meshgrid</code> and <code class="function">ndgrid</code> are grid
+                         vectors, and these functions replicate the grid vectors to form the full
+                         grid. The compact grid representation enables you to bypass grid creation
+                         and supply the grid vectors directly to the interpolation function.</p><p>For example, consider two vectors, <code class="literal">x1 = 1:3</code> and
+                              <code class="literal">x2 = 1:5</code>. You can think of these vectors as a set
+                         of coordinates in the <code class="literal">x1</code> direction and a set of
+                         coordinates in the <code class="literal">x2</code> direction, like so:</p>
+<div class="informalfigure"><div id="d126e22585" class="mediaobject"><p><img src="intepolation_grid_vectors.png" alt="One grid vector is arranged horizontally and the other vertically." height="187" width="314"></p></div></div><p>Each arrow points to a location. You can use these two
+                         vectors to define a set of grid points, where one set of coordinates is
+                         given by <code class="literal">x1</code> and the other set of coordinates is given by
+                              <code class="literal">x2</code>. When the grid vectors are replicated, they form
+                         two coordinate arrays that make up the full grid:</p>
+<div class="informalfigure"><div id="d126e22596" class="mediaobject"><p><img src="intepolation_full_grid_grid_vectors.png" alt="With one grid vector arranged horizontally and the other vertically, the points in the vectors define a grid of points." height="192" width="293"></p></div></div><p></p><p>Your input grid vectors might be <em class="firstterm">monotonic</em> or
+                              <em class="firstterm">nonmonotonic</em>. Monotonic vectors contain values
+                         that either increase in that dimension or decrease in that dimension.
+                         Conversely, nonmonotonic vectors contain values that fluctuate. If the
+                         input grid vector is nonmonotonic, such as <code class="literal">[2 4 6 3 1]</code>,
+                         then <code class="literal">[X1,X2] = ndgrid([2 4 6 3 1])</code> outputs a
+                         nonmonotonic grid. Your grid vectors should be monotonic if you intend to
+                         pass the grid to other MATLAB functions. The <a href="../ref/double.sort.html"><code class="function">sort</code></a> function is useful
+                         to ensure monotonicity.</p></section><section><h4 class="title" id="bs4d_b_-1">Default Grid</h4><p>In some applications, only the values at the grid points are important and
+                         not the distances between grid points. For example, most MRI scans gather
+                         data that is uniformly spaced in all directions. In cases like this, you
+                         can allow the interpolation function to automatically generate a
+                              <em class="firstterm">default grid</em> representation to use with the
+                         data. To do this, leave out the grid inputs to the interpolation function.
+                         When you leave out the grid inputs, the function automatically considers
+                         the data to be on a unit-spaced grid. The function creates this unit-spaced
+                         grid while it executes, saving you the trouble of creating a grid
+                         yourself.</p></section></section><section><h3 class="title" id="mw_b0f8b584-b1a0-4379-ab6d-313835cb0bdd">Example: Temperature Interpolation on 2-D Grid</h3><p>Consider temperature data collected on a surface at regular 5 cm intervals,
+                    extending 20 cm in each direction. Use <code class="function">meshgrid</code> to create
+                    the full grid.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[X,Y] = meshgrid(0:5:20)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>X =
+
+     0     5    10    15    20
+     0     5    10    15    20
+     0     5    10    15    20
+     0     5    10    15    20
+     0     5    10    15    20
+
+
+Y =
+
+     0     0     0     0     0
+     5     5     5     5     5
+    10    10    10    10    10
+    15    15    15    15    15
+    20    20    20    20    20</pre></div></div></div><p>The (<em class="varname">x</em>,<em class="varname">y</em>)  coordinates of each grid point
+                    are represented as corresponding elements in the <code class="literal">X</code> and
+                         <code class="literal">Y</code> matrices. The first grid point is given by
+                         <code class="literal">[X(1) Y(1)]</code>, which is <code class="literal">[0 0]</code>, the next
+                    grid point is given by <code class="literal">[X(2) Y(2)]</code>, which is <code class="literal">[0
+                         5]</code>, and so on.</p><p>Now, create a matrix to represent temperature measurements on the grid and then
+                    plot the data as a surface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = [1   1   10   1   1; 
+     1   10  10   10  10;  
+     100 100 1000 100 100; 
+     10  10  10   10  1;
+     1   1   10   1   1];
+surf(X,Y,T)
+view(2)</pre></div></div></div><div class="informalfigure"><div id="d126e22656" class="mediaobject"><p><img src="interp2_temp_plot.png" alt="Surface plot of gridded temperature data." height="420" width="560"></p></div></div><p>Although the temperature at the center grid point is large, its location and
+                    influence on surrounding grid points is not apparent from the raw data.</p><p>To improve the resolution of the data by a factor of 10, use
+                         <code class="function">interp2</code> to interpolate the temperature data onto a
+                    finer grid that uses 0.5 cm intervals. Use <code class="function">meshgrid</code> again
+                    to create a finer grid represented by the matrices <code class="literal">Xq</code> and
+                         <code class="literal">Yq</code>. Then, use <code class="function">interp2</code> with the
+                    original grid, the temperature data, and the new grid points, and plot the
+                    resulting data. By default, <code class="function">interp2</code> uses linear
+                    interpolation in each dimension.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[Xq,Yq] = meshgrid(0:0.5:20);
+Tq = interp2(X,Y,T,Xq,Yq);
+surf(Xq,Yq,Tq)
+view(2)</pre></div></div></div><div class="informalfigure"><div id="d126e22680" class="mediaobject"><p><img src="interp2_temp_plot_interpolated.png" alt="Surface plot of interpolated temperature data." height="420" width="560"></p></div></div><p>Interpolating the temperature data adds detail to the image and greatly
+                    improves the usefulness of the data within the area of measurements.</p></section><section><h3 class="title" id="bs5vmq1">Gridded Interpolation Methods</h3><p>The grid-based interpolation functions and objects in MATLAB offer several different methods for interpolation. When choosing
+                    an interpolation method, keep in mind that some require more memory or longer
+                    computation time than others. You may need to trade off these resources to
+                    achieve the desired smoothness in the result. The following table gives a
+                    preview of each interpolation method applied to the same 1-D data, and also
+                    provides an overview of the benefits, trade-offs, and requirements for each
+                    method.</p><span id="bs52s9_" class="anchor_target"></span><div class="table-responsive"><table class="table table-condensed" width="100%"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>
+                                        <div class="informalfigure"><div id="d126e22707" class="mediaobject"><p><img src="interp1_nearest_thumb.png" alt="Nearest neighbor interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is the value
+                                             at the nearest sample grid point.</p>
+<div class="itemizedlist"><ul><li><p>Discontinuous</p></li><li><p>Modest memory requirements</p></li><li><p>Fastest computation time</p></li><li><p>Requires 2 grid points in each
+                                                  dimension</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22728" class="mediaobject"><p><img src="interp1_next_thumb.png" alt="Next neighbor interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is the value
+                                             at the next sample grid point.</p>
+<div class="itemizedlist"><ul><li><p>Discontinuous</p></li><li><p>Same memory requirements and computation
+                                                  time as nearest neighbor</p></li><li><p>Available for 1-D interpolation only</p></li><li><p>Requires at least 2 grid points</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22749" class="mediaobject"><p><img src="interp1_previous_thumb.png" alt="Previous neighbor interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is the value
+                                             at the previous sample grid point.</p>
+<div class="itemizedlist"><ul><li><p>Discontinuous</p></li><li><p>Same memory requirements and computation
+                                                  time as nearest neighbor</p></li><li><p>Available for 1-D interpolation only</p></li><li><p>Requires at least 2 grid points</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22770" class="mediaobject"><p><img src="interp1_linear_thumb.png" alt="Linear interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is based on
+                                             linear interpolation of the values at neighboring grid
+                                             points in each respective dimension.</p>
+<div class="itemizedlist"><ul><li><p>C0 continuous</p></li><li><p>Requires more memory and computation time
+                                                  than nearest neighbor</p></li><li><p>Requires at least 2 grid points in each
+                                                  dimension</p></li></ul></div><p>
+</p>
+                                   </td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22790" class="mediaobject"><p><img src="interp1_pchip_thumb.png" alt="Piece-wise cubic interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is based on
+                                             a shape-preserving piece-wise cubic interpolation of
+                                             the values at neighboring grid points.</p>
+<div class="itemizedlist"><ul><li><p>C1 continuous</p></li><li><p>Requires more memory and computation time
+                                                  than linear</p></li><li><p>Available for 1-D interpolation only</p></li><li><p>Requires at least 4 grid points</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22811" class="mediaobject"><p><img src="interp1_cubic_thumb.png" alt="Cubic interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is based on
+                                             cubic interpolation of the values at neighboring grid
+                                             points in each respective dimension.</p>
+<div class="itemizedlist"><ul><li><p>C1 continuous</p></li><li><p>Requires more memory and computation time
+                                                  than linear</p></li><li><p>Grid must have uniform spacing, though the
+                                                  spacing in each dimension does not have to be the
+                                                  same</p></li><li><p>Requires at least 4 points in each
+                                                  dimension</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22832" class="mediaobject"><p><img src="interp1_makima_thumb.png" alt="Modified Akima interpolation." height="146" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is based on
+                                             a piecewise function of polynomials with degree at most
+                                             three evaluated using the values of neighboring grid
+                                             points in each respective dimension. The <a href="../ref/makima.html#mw_e8ee1c8c-2cc3-46c4-90c4-c3208804ff4e" class="a">Akima formula is modified</a> to avoid overshoots.</p>
+<div class="itemizedlist"><ul><li><p>C1 continuous</p></li><li><p>Similar memory requirements as spline</p></li><li><p>Requires more computation time than cubic,
+                                                  but typically less than spline</p></li><li><p>Requires at least 2 grid points in each
+                                                  dimension</p></li></ul></div><p>
+</p></td></tr><tr><td>
+                                        <div class="informalfigure"><div id="d126e22856" class="mediaobject"><p><img src="interp1_spline_thumb.png" alt="Spline interpolation." height="145" width="200"></p></div></div>
+                                   </td><td><p>The interpolated value at a query point is based on
+                                             a cubic interpolation of the values at neighboring grid
+                                             points in each respective dimension.</p>
+<div class="itemizedlist"><ul><li><p>C2 continuous</p></li><li><p>Requires more memory and computation time
+                                                  than cubic</p></li><li><p>Requires at least 4 points in each
+                                                  dimension</p></li></ul></div><p>
+</p></td></tr></tbody></table></div></section>
+               <h2 id="d126e22873">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.interp1.html"><span itemprop="name"><code class="function">interp1</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/interp2.html"><span itemprop="name"><code class="function">interp2</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/interp3.html"><span itemprop="name"><code class="function">interp3</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/interpn.html"><span itemprop="name"><code class="function">interpn</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/griddedinterpolant.html"><span itemprop="name"><code class="object">griddedInterpolant</code></span></a></span></p>
+               <h3 id="d126e22891">Topics</h3><ul class="list-unstyled"><li><a href="resample-image-with-gridded-interpolation.html" class="a">Resample Image with Gridded Interpolation</a></li><li><a href="interpolation-of-multiple-1-d-value-sets.html" class="a">Interpolation of Multiple 1-D Value Sets</a></li><li><a href="interpolation-of-2-d-sample-of-points-on-a-3-d-grid.html" class="a">Interpolation of 2-D Selections in 3-D Grids</a></li></ul>
+               
+          </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Accessing Sparse Matrices</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../sparse-matrices.html",
+          "name": "Sparse Matrices"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sparse-matrices"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Indexing and visualizing sparse data."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sparse-matrices.html?s_tid=CRUX_lftnav" itemprop="url" id="sparse-matrices"><span itemprop="title">Sparse Matrices</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Accessing Sparse Matrices</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#f6-13040" class="nav-link intrnllnk">Nonzero Elements</a></li><li class="nav-item"><a href="#f6-9348" class="nav-link intrnllnk">Indices and Values</a></li><li class="nav-item"><a href="#br7572b" class="nav-link intrnllnk">Indexing in Sparse Matrix Operations</a></li><li class="nav-item"><a href="#brfadp8-1" class="nav-link intrnllnk">Visualizing Sparse Matrices</a></li><li class="nav-item"><a href="#d126e13320" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f6-9182">Accessing Sparse Matrices</h2><a class="indexterm" name="d126e13033"></a><a class="indexterm" name="d126e13036"></a><a class="indexterm" name="d126e13040"></a><a class="indexterm" name="d126e13043"></a><a class="indexterm" name="d126e13045"></a><section><h3 class="title" id="f6-13040">Nonzero Elements</h3><a class="indexterm" name="d126e13051"></a><a class="indexterm" name="d126e13054"></a><p>There are several commands that provide high-level information
+about the nonzero elements of a sparse matrix:</p><div class="itemizedlist"><ul><li><a class="indexterm" name="d126e13060"></a><a class="indexterm" name="d126e13063"></a><a class="indexterm" name="d126e13067"></a><p><a href="../ref/double.nnz.html"><code class="function">nnz</code></a> returns
+the number of nonzero elements in a sparse matrix.</p></li><li><a class="indexterm" name="d126e13075"></a><a class="indexterm" name="d126e13079"></a><a class="indexterm" name="d126e13082"></a><p><a href="../ref/nonzeros.html"><code class="function">nonzeros</code></a> returns
+a column vector containing all the nonzero elements of a sparse matrix.</p></li><li><a class="indexterm" name="d126e13090"></a><a class="indexterm" name="d126e13094"></a><p><a href="../ref/nzmax.html"><code class="function">nzmax</code></a> returns the amount of storage space
+allocated for the nonzero entries of a sparse matrix.</p></li></ul></div><p>To try some of these, load the supplied sparse matrix <code class="literal">west0479</code>,
+one of the Harwell-Boeing collection.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">west0479</span>
+whos</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name            Size             Bytes  Class     Attributes
+
+  west0479      479x479            34032  double    sparse   </pre></div></div></div><p>This matrix models an eight-stage chemical distillation column.</p><p>Try these commands.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnz(west0479)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+        1887</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>format <span style="color:#A020F0">short</span> <span style="color:#A020F0">e</span>
+west0479</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>west0479 =
+
+  479×479 sparse double matrix (1887 nonzeros)
+
+  (25,1)      1.0000e+00
+  (31,1)     -3.7648e-02
+  (87,1)     -3.4424e-01
+  (26,2)      1.0000e+00
+  (31,2)     -2.4523e-02
+  (88,2)     -3.7371e-01
+  (27,3)      1.0000e+00
+  (31,3)     -3.6613e-02
+     .
+     .
+     .</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nonzeros(west0479)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   1.0000e+00
+  -3.7648e-02
+  -3.4424e-01
+   1.0000e+00
+  -2.4523e-02
+  -3.7371e-01
+   1.0000e+00
+  -3.6613e-02
+  -8.3694e-01
+   1.3000e+02
+    .
+    .
+    .</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Use <strong class="keycap">Ctrl+C</strong> to stop the <code class="literal">nonzeros</code> listing
+at any time.</p></div><p>Note that initially <code class="literal">nnz</code> has the same value
+as <code class="literal">nzmax</code> by default. That is, the number of nonzero
+elements is equivalent to the number of storage locations allocated
+for nonzeros. However, MATLAB<sup>&#x00AE;</sup> does not dynamically release memory
+if you zero out additional array elements. Changing the value of some
+matrix elements to zero changes the value of <code class="literal">nnz</code>,
+but not that of <code class="literal">nzmax</code>.</p><p>However, you can add as many nonzero elements to the matrix
+as desired. You are not constrained by the original value of <code class="literal">nzmax</code>.</p></section><section><h3 class="title" id="f6-9348">Indices and Values</h3><p>For any matrix, full or sparse, the <a href="../ref/find.html"><code class="function">find</code></a> function
+returns the indices and values of nonzero elements. Its syntax is</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[i,j,s] = find(S);</pre></div></div></div><p><code class="literal">find</code> returns the row indices of nonzero values
+in vector <code class="literal">i</code>, the column indices in vector <code class="literal">j</code>,
+and the nonzero values themselves in the vector <code class="literal">s</code>.
+The example below uses <code class="literal">find</code> to locate the indices
+and values of the nonzeros in a sparse matrix. The <code class="function">sparse</code> function
+uses the <code class="literal">find</code> output, together with the size of
+the matrix, to recreate the matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S1 = west0479;
+[i,j,s] = find(S1);
+[m,n] = size(S1);
+S2 = sparse(i,j,s,m,n);</pre></div></div></div></section><section><h3 class="title" id="br7572b">Indexing in Sparse Matrix Operations</h3><p>Because sparse matrices are stored in compressed sparse column format, there are different
+        costs associated with indexing into a sparse matrix than there are with indexing into a full
+        matrix. Such costs are negligible when you need to change only a few elements in a sparse
+        matrix, so in those cases you can use regular array indexing to reassign
+        values:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B = speye(4);
+[i,j,s] = find(B);
+[i,j,s]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     1     1     1
+     2     2     1
+     3     3     1
+     4     4     1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B(3,1) = 42;
+[i,j,s] = find(B);
+[i,j,s]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     1     1     1
+     3     1    42
+     2     2     1
+     3     3     1
+     4     4     1</pre></div></div></div>In order to store the new matrix with
+          <code class="literal">42</code> at <code class="literal">(3,1)</code>, MATLAB inserts an additional row into the nonzero values vector and subscript
+        vectors, then shifts all matrix values after <code class="literal">(3,1)</code>.</p><p>Using linear indexing to access or assign an element in a large
+sparse matrix will fail if the linear index exceeds <code class="literal">2^48-1</code>,
+which is the current upper bound for the number of elements allowed
+in a matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S = spalloc(2^30,2^30,2);
+S(end) = 1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Maximum variable size allowed by the program is exceeded.</pre></div></div></div><p>To access an element whose linear index is greater than <code class="literal">intmax</code>,
+use array indexing:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S(2^30,2^30) = 1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>S =
+
+         (1073741824,1073741824)              1</pre></div></div></div><p>While the cost of indexing into a sparse matrix to change a single element is negligible, it
+        is compounded in the context of a loop and can become quite slow for large matrices. For
+        that reason, in cases where many sparse matrix elements need to be changed, it is best to
+        vectorize the operation instead of using a loop. For example, consider a sparse identity
+        matrix:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n = 10000;
+A = 4*speye(n);</pre></div></div></div>Changing
+        the elements of <code class="literal">A</code> within a loop is slower than a similar vectorized
+        operation:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tic
+A(1:n-1,n) = -1; 
+A(n,1:n-1) = -1; 
+toc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 0.003344 seconds.</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tic
+<span style="color:#0000FF">for</span> k = 1:n-1
+  C(k,n) = -1; 
+  C(n,k) = -1; 
+<span style="color:#0000FF">end</span>
+toc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 0.448069 seconds.</pre></div></div></div>Since
+          MATLAB stores sparse matrices in compressed sparse column format, it needs to shift
+        multiple entries in <code class="literal">A</code> during each pass through the loop.</p><p>Preallocating the memory for a sparse matrix and then filling
+it in an element-wise manner similarly causes a significant amount
+of overhead in indexing into the sparse array:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S1 = spalloc(1000,1000,100000);
+tic;
+<span style="color:#0000FF">for</span> n = 1:100000
+    i = ceil(1000*rand(1,1));
+    j = ceil(1000*rand(1,1));
+    S1(i,j) = rand(1,1);
+<span style="color:#0000FF">end</span>
+toc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 2.577527 seconds.</pre></div></div></div><p>Constructing the vectors of indices and values eliminates the
+need to index into the sparse array, and thus is significantly faster:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>i = ceil(1000*rand(100000,1));
+j = ceil(1000*rand(100000,1));
+v = zeros(size(i));
+<span style="color:#0000FF">for</span> n = 1:100000
+    v(n) = rand(1,1);
+<span style="color:#0000FF">end</span>
+
+tic;
+S2 = sparse(i,j,v,1000,1000);
+toc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Elapsed time is 0.017676 seconds.</pre></div></div></div><p>For that reason, it’s best to construct sparse matrices
+all at once using a construction function, like the <code class="literal">sparse</code> or <code class="literal">spdiags</code> functions.</p><p>For example, suppose you wanted the sparse form of the coordinate
+matrix <code class="literal">C</code>:</p>
+<div id="d126e13258" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-48px" display="block"><mrow><mtext>C</mtext><mtext> </mtext><mtext> </mtext><mtext> </mtext><mtext>=</mtext><mtext> </mtext><mtext> </mtext><mrow><mo>(</mo><mrow><mtable><mtr><mtd><mn>4</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mrow><mo>−</mo><mn>1</mn></mrow></mtd></mtr></mtable></mrow></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>4</mn></mtd><mtd><mn>0</mn></mtd><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mrow><mo>−</mo><mn>1</mn></mrow></mtd></mtr></mtable></mrow></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>4</mn></mtd><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mrow><mo>−</mo><mn>1</mn></mrow></mtd></mtr></mtable></mrow></mtd></mtr><mtr><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mtd><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mtd><mtd><mrow><mtable><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mtd><mtd><mrow><mtable><mtr><mtd><mrow><mtable><mtr><mtd><mn>4</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mtd><mtd><mrow><mtable><mtr><mtd><mrow><mo>−</mo><mn>1</mn></mrow></mtd></mtr><mtr><mtd><mn>4</mn></mtd></mtr></mtable></mrow></mtd></mtr></mtable></mrow></mtd></mtr></mtable></mrow><mo>)</mo></mrow></mrow></math></p></div></div><p></p><p>Construct the five-column matrix directly with the <a href="../ref/sparse.html"><code class="function">sparse</code></a> function using the triplet pairs for the row subscripts, column
+        subscripts, and
+        values:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>i = [1 5 2 5 3 5 4 5 1 2 3 4 5]';
+j = [1 1 2 2 3 3 4 4 5 5 5 5 5]';
+s = [4 1 4 1 4 1 4 1 -1 -1 -1 -1 4]';
+C = sparse(i,j,s)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>C =
+
+  5×5 sparse double matrix (13 nonzeros)
+
+   (1,1)        4
+   (5,1)        1
+   (2,2)        4
+   (5,2)        1
+   (3,3)        4
+   (5,3)        1
+   (4,4)        4
+   (5,4)        1
+   (1,5)       -1
+   (2,5)       -1
+   (3,5)       -1
+   (4,5)       -1
+   (5,5)        4</pre></div></div></div>The ordering of the values in the output reflects the
+        underlying storage by columns. For more information on how MATLAB stores sparse matrices, see John R. Gilbert, Cleve Moler, and Robert
+        Schreiber's <a href="https://www.mathworks.com/help/pdf_doc/otherdocs/simax.pdf" target="_blank">Sparse Matrices In
+          MATLAB: Design and Implementation</a>, (<em class="citetitle">SIAM Journal on Matrix Analysis and
+          Applications</em>, 13:1, 333&#8211;356 (1992)).</p></section><section><h3 class="title" id="brfadp8-1">Visualizing Sparse Matrices</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/VisualizingSparseMatricesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Visualizing Sparse Matrices",
+          "description": "It is often useful to use a graphical format to view the distribution of the nonzero elements within a sparse matrix. The MATLAB spy function produces a template view of the sparsity structure, where each point on the graph represents the location of a nonzero array element.",
+          "thumbnailURL": "../../examples/matlab/win64/VisualizingSparseMatricesExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "accessing-sparse-matrices.html"
+
+        },
+          "identifier": "matlab.VisualizingSparseMatricesExample",
+          "name": "VisualizingSparseMatricesExample",
+          "url": "accessing-sparse-matrices.html#brfadp8-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/VisualizingSparseMatricesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "VisualizingSparseMatricesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-VisualizingSparseMatricesExample"><meta itemprop="exampletitle" content="Visualizing Sparse Matrices"></div><span id="VisualizingSparseMatricesExample" class="anchor_target"></span><p class="shortdesc">It is often useful to use a graphical format to view the distribution of the nonzero elements within a sparse matrix. The MATLAB <code class="literal">spy</code> function produces a template view of the sparsity structure, where each point on the graph represents the location of a nonzero array element.</p><p>For example:</p><p>Load the supplied sparse matrix <code class="literal">west0479</code>, one of the Harwell-Boeing collection.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">west0479</span></pre></div></div></div><p>View the sparsity structure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>spy(west0479)</pre></div></div></div><div class="informalfigure"><div id="d126e13312" class="mediaobject"><p><img src="../../examples/matlab/win64/VisualizingSparseMatricesExample_01.png" alt="Figure contains an axes object. The axes object with xlabel nz = 1887 contains a line object which displays its values using only markers." width="560"></p></div></div><div class="procedure"></div></section>
+<h2 id="d126e13320">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/sparse.html"><span itemprop="name"><code class="function">sparse</code></span></a></span></p>
+
+<h3 id="d126e13326">Topics</h3><ul class="list-unstyled"><li><a href="computational-advantages-of-sparse-matrices.html" class="a">Computational Advantages of Sparse Matrices</a></li><li><a href="constructing-sparse-matrices.html" class="a">Constructing Sparse Matrices</a></li><li><a href="sparse-matrix-operations.html" class="a">Sparse Matrix Operations</a></li></ul>
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

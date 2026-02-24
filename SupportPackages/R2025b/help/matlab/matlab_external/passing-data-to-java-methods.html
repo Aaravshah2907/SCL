@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Pass Data to Java Methods</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../java-language.html",
+          "name": "Java with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../using-java-libraries-in-matlab.html",
+          "name": "Call Java from MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "using-java-libraries-in-matlab"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to pass MATLAB types to Java methods."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../java-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Java with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../using-java-libraries-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url" id="btbzj26-1"><span itemprop="title">Call Java from MATLAB</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Pass Data to Java Methods</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bvie0yo" class="nav-link intrnllnk">MATLAB Type to Java Type Mapping</a></li><li class="nav-item"><a href="#bvie52m-1" class="nav-link intrnllnk">How Array Dimensions Affect Conversion</a></li><li class="nav-item"><a href="#bvie2dz-1" class="nav-link intrnllnk">Convert Numbers to Integer Arguments</a></li><li class="nav-item"><a href="#bvie2x6" class="nav-link intrnllnk">Pass String Arguments</a></li><li class="nav-item"><a href="#bvie38t" class="nav-link intrnllnk">Pass Java Objects</a><ul class="nav"><li class="nav-item"><a href="#bvie4m7" class="nav-link intrnllnk">Pass java.lang.Object</a></li><li class="nav-item"><a href="#bvie4v1" class="nav-link intrnllnk">Pass Array of Objects</a></li><li class="nav-item"><a href="#bvie5g1" class="nav-link intrnllnk">Pass Cell Array of Java Objects</a></li></ul></li><li class="nav-item"><a href="#mw_59855be3-9fc5-483a-a4a5-37483bda9213" class="nav-link intrnllnk">Pass Empty Matrices, Nulls, and Missing Values</a></li><li class="nav-item"><a href="#bviubld" class="nav-link intrnllnk">Overloaded Methods</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bvie0li">Pass Data to <span class="trademark entity">Java</span> Methods</h2><section><h3 class="title" id="bvie0yo"><span class="trademark entity">MATLAB</span> Type to <span class="trademark entity">Java</span> Type Mapping</h3><p>When you pass MATLAB<sup>&#x00AE;</sup> data as arguments to Java<sup>&#x00AE;</sup> methods, MATLAB converts the data into types that best represent the data to the Java language. For information about type mapping when passing data to arguments of
+        type <code class="literal">java.lang</code>, see <a href="passing-data-to-java-methods.html#bvie38t" class="intrnllnk">Pass Java Objects</a>.</p><p>Each row in the following table shows a MATLAB type followed by the possible Java argument matches, from left to right in order of closeness of the match. The
+          MATLAB types (except cell arrays) can be scalar (1-by-1) arrays or matrices. The
+          Java types can be scalar values or arrays.</p><span id="matlab_to_java_table" class="anchor_target"></span><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="13%"><col class="tcol2" width="13%"><col class="tcol3" width="13%"><col class="tcol4" width="13%"><col class="tcol5" width="13%"><col class="tcol6" width="13%"><col class="tcol7" width="13%"><col class="tcol8" width="13%"></colgroup><thead><tr><th>MATLAB Argument</th><th colspan="7"><p>Java Parameter Type (Scalar or Array)<br/>
+Types Other Than
+                  Object</p><p>Closest Type
+                  &lt;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&gt;
+                  Least Close Type</p></th></tr></thead><tbody><tr><td><p><code class="literal">logical</code></p></td><td><p><code class="literal">boolean</code></p></td><td><p><code class="literal">byte</code></p></td><td><p><code class="literal">short</code></p></td><td><p><code class="literal">int</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">double</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">int</code></p></td><td><p><code class="literal">short</code></p></td><td><p><code class="literal">byte</code></p></td><td><p><code class="literal">boolean</code></p></td></tr><tr><td><p><code class="literal">single</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p><code class="literal">uint8</code><br/>
+<code class="literal">int8</code></p></td><td><p><code class="literal">byte</code></p></td><td><p><code class="literal">short</code></p></td><td><p><code class="literal">int</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td>&nbsp;</td></tr><tr><td><p><code class="literal">uint16</code><br/>
+<code class="literal">int16</code></p></td><td><p><code class="literal">short</code></p></td><td><p><code class="literal">int</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p><code class="literal">uint32</code><br/>
+<code class="literal">int32</code></p></td><td><p><code class="literal">int</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p><code class="literal">uint64</code><br/>
+<code class="literal">int64</code></p></td><td><p><code class="literal">long</code></p></td><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p><code class="literal">string</code> scalar,<br/>
+character
+                    vector,<br/>
+<code class="literal">char</code> scalar</p></td><td><p><code class="literal">String</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p><code class="literal">string</code> array,<br/>
+cell array of character
+                  vectors<br/>
+See <a href="passing-data-to-java-methods.html#bvie2x6" class="intrnllnk">Pass String Arguments</a>.</p></td><td><p><code class="literal">String[]</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p>Java object of type <code class="literal">jClass</code></p></td><td><p>Java
+                  <code class="literal">Object</code> of type <code class="literal">jClass</code></p></td><td><p>any superclass of <code class="literal">jClass</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p>cell array of object</p></td><td><p><code class="literal">Object[]</code></p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td><p>MATLAB object</p></td><td><p>Unsupported</p></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></div></section><section><h3 class="title" id="bvie52m-1">How Array Dimensions Affect Conversion</h3><p>The term <span class="emphasis"><em>dimension</em></span> means the number of subscripts required to
+        address the elements of an array. For example, a 5-by-1 array has one dimension, because you
+        index individual elements using one array subscript.</p><p>In converting MATLAB to Java arrays, MATLAB handles dimension in a special manner. For a MATLAB array, dimension is the number of nonsingleton dimensions in the array. For
+        example, a 10-by-1 array has dimension 1. Whereas, a 1-by-1 array has dimension 0 because
+        you cannot index into a scalar value. In Java code, the number of nested arrays determines the dimension. For example,
+          <code class="literal">double[][]</code> has dimension 2, and <code class="literal">double</code> has dimension
+        0.</p><p>If the number of dimensions of the Java array matches the number of dimensions in MATLAB array <code class="literal">n</code>, then the converted Java array has <code class="literal">n</code> dimensions. If the Java array has fewer than <code class="literal">n</code> dimensions, then the conversion
+        drops singleton dimensions, starting with the first one. The conversion stops when the
+        number of remaining dimensions matches the number of dimensions in the Java array. If the Java array has more than n dimensions, then MATLAB adds trailing singleton dimensions.</p></section><section><h3 class="title" id="bvie2dz-1">Convert Numbers to Integer Arguments</h3><p>When passing an integer type to a Java method that takes a Java integer parameter, the MATLAB conversion is the same as the Java conversion between integer types. In particular, if the integer is
+        out-of-range, it does not fit into the number of bits of the parameter type. For
+        out-of-range integers, MATLAB discards all lowest <code class="literal">n</code> bits. The value <code class="literal">n</code>
+        is the number of bits in the parameter type. This conversion is unlike the conversion
+        between MATLAB integer types, where out-of-range integers are converted to the maximum or
+        minimum value represented by the destination type.</p><p>If the argument is a floating-point number, then MATLAB does not convert it to an integer in the same manner as Java. MATLAB first converts a floating-point number to a 64-bit signed integer with the
+        fractional part truncated. Then the number is processed as if it were an
+          <code class="literal">int64</code> argument.</p><p>A floating-point number is too large to be represented in a 64-bit integer when it is
+        (outside the range from -2<sup>63</sup>&#8211;2<sup>63</sup>. In
+        which case, MATLAB uses the following conversions:</p><div class="itemizedlist"><ul><li><p><code class="literal">int</code>, <code class="literal">short</code>, and <code class="literal">byte</code>
+            parameter values to <code class="literal">0</code>.</p></li><li><p><code class="literal">long</code> parameter values to
+              <code class="literal">java.lang.Long.MIN_VALUE</code>.</p></li><li><p><code class="literal">Inf</code> and <code class="literal remove_text_wrapping">-Inf</code> values to
+            <code class="literal remove_text_wrapping">-1</code>.</p></li><li><p><code class="literal">NaN</code> values to <code class="literal">0</code>.</p></li></ul></div></section><section><h3 class="title" id="bvie2x6">Pass String Arguments</h3><p>To call a Java method with an argument defined as <code class="literal">java.lang.String</code>, pass a
+          MATLAB string or character vector. MATLAB converts the argument to a Java
+        <code class="literal">String</code> object. You also can pass a <code class="literal">String</code> object
+        returned by a Java method.</p><p>If the method argument is an array of type <code class="literal">String</code>, then pass a string
+        array or a cell array of character vectors. MATLAB converts the input to a Java array of <code class="literal">String</code> objects, with dimensions adjusted as
+        described in <a href="passing-data-to-java-methods.html#bvie52m-1" class="intrnllnk">How Array Dimensions Affect Conversion</a>.</p></section><section><h3 class="title" id="bvie38t">Pass <span class="trademark entity">Java</span> Objects</h3><p>To call a method that has an argument belonging to a Java class (other than <code class="literal">java.lang.Object</code>), you must pass a
+          Java object that is an instance of that class. MATLAB does not support Java autoboxing, the automatic conversion of MATLAB types to Java
+        <code class="literal">Object</code> types. For example, MATLAB does not convert <code class="literal">double</code> to
+          <code class="literal">java.lang.Double</code> for a parameter of type
+        <code class="literal">Double</code>.</p><section><h4 class="title" id="bvie4m7">Pass <code class="literal">java.lang.Object</code></h4><p>A special case exists when the method takes an argument of the
+            <code class="literal">java.lang.Object</code> class. Since this class is the root of the
+            Java class hierarchy, you can pass objects of any class in the argument.
+            MATLAB automatically converts the argument to the closest Java
+          <code class="literal">Object</code> type, which might include Java-style autoboxing. This table shows the conversion.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th><p>MATLAB Argument</p></th><th><p>Java
+                    <code class="literal">Object</code> in Package <code class="literal">java.lang</code></p></th></tr></thead><tbody><tr><td><p><code class="literal">logical</code></p></td><td><p><code class="literal">Boolean</code></p></td></tr><tr><td><p><code class="literal">double</code></p></td><td><p><code class="literal">Double</code></p></td></tr><tr><td><p><code class="literal">single</code></p></td><td><p><code class="literal">Float</code></p></td></tr><tr><td><p><code class="literal">char</code> scalar</p></td><td><p><code class="literal">Character</code></p></td></tr><tr><td><p><code class="literal">string</code> scalar<br/>
+nonempty
+                      <code class="literal">char</code> vector</p></td><td><p><code class="literal">String</code></p></td></tr><tr><td><p><code class="literal">uint8</code><br/>
+<code class="literal">int8</code></p></td><td><p><code class="literal">Byte</code></p></td></tr><tr><td><p><code class="literal">uint16</code><br/>
+<code class="literal">int16</code></p></td><td><p><code class="literal">Short</code></p></td></tr><tr><td><p><code class="literal">uint32</code><br/>
+<code class="literal">int32</code></p></td><td><p><code class="literal">Integer</code></p></td></tr><tr><td><p><code class="literal">uint64</code><br/>
+<code class="literal">int64</code></p></td><td><p><code class="literal">Long</code></p></td></tr><tr><td><p><code class="literal">string</code> array (nonscalar)<br/>
+cell array
+                    of character vectors</p></td><td><p><code class="literal">String[]</code></p></td></tr><tr><td><p>Java object</p></td><td><p>Argument unchanged</p></td></tr><tr><td><p>cell array</p></td><td><p><code class="literal">Object[]</code></p></td></tr><tr><td><p>MATLAB object</p></td><td><p>Unsupported</p></td></tr></tbody></table></div></section><section><h4 class="title" id="bvie4v1">Pass Array of Objects</h4><p>To call a method with an argument defined as <code class="literal">java.lang.Object</code> or an
+          array of <code class="literal">java.lang.Object</code>, pass either a Java array or a MATLAB cell array. MATLAB automatically converts the cell array elements to their Java types as described in the <a href="passing-data-to-java-methods.html#bvie4m7" class="intrnllnk">Pass java.lang.Object</a> table. A Java array is an array returned from a Java constructor. You also can construct a Java array in MATLAB using the <a href="../ref/javaarray.html"><code class="function">javaArray</code></a> function.</p></section><section><h4 class="title" id="bvie5g1">Pass Cell Array of <span class="trademark entity">Java</span> Objects</h4><p>To create a cell array of Java objects, use the MATLAB syntax <code class="literal">{a1,a2,...}</code>. You index into a cell array of
+            Java objects in the usual way, with the syntax <code class="literal">a{m,n,...}</code>. For
+          example, create cell array <code class="literal">A</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>a1 = java.lang.Double(100);
+a2 = java.lang.Float(200);
+A = {a1,a2}
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A =
+
+  1×2 cell array
+
+    [1×1 java.lang.Double]    [1×1 java.lang.Float]</pre></div></div></div></section></section><section><h3 class="title" id="mw_59855be3-9fc5-483a-a4a5-37483bda9213">Pass Empty Matrices, Nulls, and Missing Values</h3><p>MATLAB converts an empty matrix as follows.</p><div class="itemizedlist"><ul><li><p>If the argument is an empty character vector and the parameter is declared as
+              <code class="literal">String</code>, then MATLAB passes in an empty (not <code class="literal">null</code>) Java
+              <code class="literal">String</code> object.</p></li><li><p>For all other cases, MATLAB converts an empty array to a Java
+            <code class="literal">null</code>.</p></li></ul></div><p>Empty (<code class="literal">0</code>-length) Java arrays remain unchanged.</p><p>MATLAB converts <code class="literal">&lt;missing&gt;</code> values in strings to
+          <code class="literal">null</code>.</p></section><section><h3 class="title" id="bviubld">Overloaded Methods</h3><p>When calling an overloaded method on a Java object, MATLAB compares the arguments you pass to the arguments defined for the methods. In
+        this context, the term <span class="emphasis"><em>method</em></span> includes constructors. MATLAB determines the method to call and converts the arguments to Java types according to the Java conversion rules. For more information, see <a href="passing-data-to-java-methods.html#bvie4v1" class="intrnllnk">Pass Array of Objects</a>.</p><p>When you call a Java method, MATLAB ensures that:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p id="bviubm_-1">The object or class (for a static method) has a method by that
+            name.</p></li><li><p id="bviubm_-2">The invocation passes the same number of arguments of at least
+            one method with that name.</p></li><li><p id="bviubm_-3">Each passed argument is converted to the Java type defined for the method.</p></li></ol></div><p>If all these conditions are satisfied, then MATLAB calls the method.</p><p>In a call to an overloaded method, if there is more than one candidate, MATLAB selects the one with arguments that best fit the calling arguments. First,
+          MATLAB rejects methods that have argument types incompatible with the passed
+        arguments. For example, if the method has a <code class="literal">double</code> argument, a
+          <code class="literal">char</code> argument is incompatible.</p><p>MATLAB then selects the method with the highest fitness value, which is the sum of
+        the fitness values of all its arguments. The fitness value for each argument is the fitness
+        of the base type minus the difference between the MATLAB array dimension and the Java array dimension. For information about array dimensionality, see <a href="passing-data-to-java-methods.html#bvie52m-1" class="intrnllnk">How Array Dimensions Affect Conversion</a>. If two methods have the same fitness,
+        then the first one defined in the Java class is chosen.</p></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e7199">Topics</h3><ul class="list-unstyled"><li><a href="handling-data-returned-from-java-methods.html" class="a">Handle Data Returned from Java Methods</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

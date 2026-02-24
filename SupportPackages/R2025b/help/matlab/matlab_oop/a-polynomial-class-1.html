@@ -1,0 +1,712 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Representing Polynomials with Classes</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../sample-classes.html",
+          "name": "Sample Class Implementations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sample-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to define new data types using classes."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sample-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="buo11mr"><span itemprop="title">Sample Class Implementations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Representing Polynomials with Classes</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brgoth0" class="nav-link intrnllnk">Class Requirements</a></li><li class="nav-item"><a href="#f3-61838" class="nav-link intrnllnk">DocPolynom Class Members</a><ul class="nav"><li class="nav-item"><a href="#f3-64580" class="nav-link intrnllnk">Using the DocPolynom Class</a></li></ul></li><li class="nav-item"><a href="#bupne9z-1" class="nav-link intrnllnk">DocPolynom Class Synopsis</a></li><li class="nav-item"><a href="#f3-25998" class="nav-link intrnllnk">The DocPolynom Constructor</a><ul class="nav"><li class="nav-item"><a href="#f3-62071" class="nav-link intrnllnk">Constructor Calling Syntax</a></li><li class="nav-item"><a href="#brrb0o0" class="nav-link intrnllnk">Remove Leading Zeros</a></li></ul></li><li class="nav-item"><a href="#f3-26405" class="nav-link intrnllnk">Convert DocPolynom Objects to Other Classes</a><ul class="nav"><li class="nav-item"><a href="#f3-26521" class="nav-link intrnllnk">The Double Converter</a></li><li class="nav-item"><a href="#f3-26533" class="nav-link intrnllnk">The Character Converter</a></li></ul></li><li class="nav-item"><a href="#f3-26830" class="nav-link intrnllnk">Overload disp for DocPolynom</a><ul class="nav"><li class="nav-item"><a href="#f3-26841" class="nav-link intrnllnk">When MATLAB Calls the disp Method</a></li></ul></li><li class="nav-item"><a href="#bupgl3w-1" class="nav-link intrnllnk">Display Evaluated Expression</a></li><li class="nav-item"><a href="#f3-30100" class="nav-link intrnllnk">Define Arithmetic Operators</a><ul class="nav"><li class="nav-item"><a href="#f3-38054" class="nav-link intrnllnk">Define the + Operator</a></li><li class="nav-item"><a href="#f3-30875" class="nav-link intrnllnk">Define the - Operator</a></li><li class="nav-item"><a href="#f3-30160" class="nav-link intrnllnk">Define the * Operator</a></li><li class="nav-item"><a href="#f3-30182" class="nav-link intrnllnk">Using the Arithmetic Operators</a></li></ul></li><li class="nav-item"><a href="#f3-62469" class="nav-link intrnllnk">Redefine Parentheses Indexing</a><ul class="nav"><li class="nav-item"><a href="#f3-29093" class="nav-link intrnllnk">Modular Indexing Implementation Details</a></li></ul></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f3-28024">Representing Polynomials with Classes</h2><a class="indexterm" name="d126e35520"></a><a class="indexterm" name="d126e35523"></a><a class="indexterm" name="d126e35526"></a><span id="polynomial_class_def" class="anchor_target"></span><p>You can use classes to define new data types. This example implements a class that
+         represents polynomials. The class stores the coefficients of the polynomial terms in a
+         vector and overrides the default MATLAB<sup>&#x00AE;</sup> display to show the polynomials as powers of <em class="varname">x</em>. Using
+         customized indexing, the class also enables you to evaluate the polynomials at one or more
+         values of <em class="varname">x</em> using parentheses indexing syntax.</p><section><h3 class="title" id="brgoth0">Class Requirements</h3><p>The design requirements for the <code class="class">DocPolynom</code> class are:</p><div class="itemizedlist"><ul><li><p>Value class behavior &#8212;Behave like MATLAB numeric variables when copied and passed to functions.</p></li><li><p>Scalar object behavior &#8212; Polynomial objects cannot be concatenated, and
+                  polynomial array size must always be (1,1).</p></li><li><p>Customized indexing behavior &#8212; Evaluate a polynomial using parentheses
+                  indexing syntax. <code class="literal">p(x)</code> evaluates the polynomial represented by
+                  object <code class="object">p</code> at each value in <code class="argument">x</code>.</p></li><li><p>Specialized display &#8212; Use the coefficients stored in the polynomial
+                  object to display the polynomial as an algebraic expression.</p></li><li><p>Override addition, subtraction, and multiplication &#8212; Adding,
+                  subtracting, or multiplying polynomial objects returns the result of the
+                  corresponding algebraic operation on the two polynomials.</p></li><li><p>Double converter &#8212; Convert a polynomial object to a
+                     <code class="class">double</code> array so it can be used with existing MATLAB functions that accept numeric inputs.</p></li></ul></div></section><section><h3 class="title" id="f3-61838"><code class="literal">DocPolynom</code> Class Members</h3><p>The class defines the property <code class="property">coef</code> for storage of the
+            polynomial coefficients. </p>
+<div itemprop="content" id="mw_cf80a78d-fcdf-4ca0-9c0c-1c3d01f5a1c4" class="table_class"><p class="title"><strong class="title"><code class="literal">DocPolynom</code> Class Properties</strong></p><div class="table-responsive"><table class="table table-condensed" summary="DocPolynom Class Properties"><colgroup><col class="tcol1" width="15%"><col class="tcol2" width="21%"><col class="tcol3" width="18%"><col class="tcol4" width="46%"></colgroup><thead><tr><th><p>Name</p></th><th><p>Class</p></th><th><p>Default</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">coef</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">[]</code></p></td><td><p>Vector of polynomial coefficients, in order of the highest
+                              exponent of <em class="varname">x</em> to lowest.</p></td></tr></tbody></table></div></div><p>
+
+         </p><p>This table summarizes the methods for the <code class="literal">DocPolynom</code> class. </p>
+<div itemprop="content" id="d126e35624" class="table_class"><p class="title"><strong class="title"><code class="literal">DocPolynom</code> Class Methods</strong></p><div class="table-responsive"><table class="table table-condensed" summary="DocPolynom Class Methods"><colgroup><col class="tcol1" width="26%"><col class="tcol2" width="75%"></colgroup><thead><tr><th><p>Name</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p><code class="literal">DocPolynom</code></p></td><td><p>Class constructor</p></td></tr><tr><td><p><code class="literal">double</code></p></td><td><p>Converts the <code class="literal">DocPolynom</code> object to a double.
+                              In other words, this method returns the coefficients in a vector of
+                                 <code class="class">double</code> values.</p></td></tr><tr><td><p><code class="literal">char</code></p></td><td><p>Creates a formatted display of the
+                                 <code class="literal">DocPolynom</code> object as powers of
+                                 <em class="varname">x</em>. This method is used by the
+                                 <code class="literal">disp</code> method.</p></td></tr><tr><td><p><code class="literal">disp</code></p></td><td><p>Defines how MATLAB displays <code class="literal">DocPolynom</code> objects on the
+                              command line.</p></td></tr><tr><td><p><code class="literal">plus</code></p></td><td><p>Adds <code class="literal">DocPolynom</code> objects.</p></td></tr><tr><td><p><code class="literal">minus</code></p></td><td><p>Subtracts <code class="literal">DocPolynom</code> objects.</p></td></tr><tr><td><p><code class="literal">mtimes</code></p></td><td><p>Multiplies <code class="literal">DocPolynom</code>
+                           objects.</p></td></tr><tr><td><p><code class="literal">dispPoly</code></p></td><td><p>Evaluates the polynomial for one or more values and returns the
+                              results in an organized list instead of a vector of
+                                 <code class="class">double</code> values.</p></td></tr><tr><td><p><code class="literal">parenReference</code></p></td><td><p>Enables evaluation of a polynomial using parentheses indexing
+                              syntax. <code class="literal">p(x)</code> evaluates the polynomial object
+                                 <code class="object">p</code> at each value in
+                           <code class="argument">x</code>.</p></td></tr></tbody></table></div></div><p>
+</p><section><h4 class="title" id="f3-64580">Using the <code class="literal">DocPolynom</code> Class</h4><p>These examples show the basic use of the <code class="literal">DocPolynom</code> class.
+               Create <code class="literal">DocPolynom</code> objects to represent <span class="inlineequation"><em class="varname">f</em>(<em class="varname">x</em>) =
+                        <em class="varname">x</em><sup>3</sup> − 2<em class="varname">x</em> −
+                     5</span>  and <span class="inlineequation"><em class="varname">f</em>(<em class="varname">x</em>) =
+                        2<em class="varname">x</em><sup>4</sup> +
+                        3<em class="varname">x</em><sup>2</sup> + 2<em class="varname">x</em> −
+                     7</span>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p1 = DocPolynom([1 0 -2 -5])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p1 =
+   x^3 - 2*x - 5
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p2 = DocPolynom([2 0 3 2 -7])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p2 =
+   2*x^4 + 3*x^2 + 2*x - 7</pre></div></div></div><p>Find the roots of the polynomial <code class="literal">p1</code>. Use the
+                  <code class="method">double</code> method of the object and pass the result to the <a href="../ref/roots.html"><code class="function">roots</code></a> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>roots(double(p1))
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   2.0946 + 0.0000i
+  -1.0473 + 1.1359i
+  -1.0473 - 1.1359i</pre></div></div></div><p>Add the two polynomials <code class="literal">p1</code> and <code class="literal">p2</code>.
+                  MATLAB calls the <code class="literal">plus</code> method defined for the
+                  <code class="literal">DocPolynom</code> class when you add two <code class="literal">DocPolynom</code>
+               objects.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p1 + p2
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+2*x^4 + x^3 + 3*x^2 - 12</pre></div></div></div></section></section><section><h3 class="title" id="bupne9z-1"><code class="literal">DocPolynom</code> Class Synopsis</h3><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="63%"><col class="tcol2" width="38%"></colgroup><thead><tr><th>Class Code</th><th>Description</th></tr></thead><tbody><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> DocPolynom &lt; matlab.mixin.Scalar</pre></div></div></div>
+                     </td><td><p>Value class that implements a data type for polynomials. The class
+                           inherits from <code class="class">matlab.mixin.Scalar</code>, which enforces scalar
+                           class behavior and also provides functionality to customize parentheses
+                           indexing. For more information on the superclass, see <a href="../ref/matlab.mixin.scalar-class.html"><code class="class">matlab.mixin.Scalar</code></a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties
+      coef
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Vector of polynomial coefficients.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods      
+      <span style="color:#0000FF">function</span> obj = DocPolynom(c)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            <span style="color:#0000FF">if</span> isa(c,<span style="color:#A020F0">'DocPolynom'</span>)
+               obj.coef = c.coef;
+            <span style="color:#0000FF">else</span>
+               obj.coef = c(:).';
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span> </pre></div></div></div>
+                     </td><td><p>Class constructor that creates objects using either:</p><div class="itemizedlist"><ul><li><p>An existing <code class="class">DocPolynom</code> object</p></li><li><p>A vector of doubles</p></li></ul></div><p>For more information, see <a href="a-polynomial-class-1.html#f3-25998" class="intrnllnk">The DocPolynom Constructor</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> obj = set.coef(obj,val)
+         <span style="color:#0000FF">if</span> ~isa(val,<span style="color:#A020F0">'double'</span>)
+            error(<span style="color:#A020F0">'Coefficients must be doubles.'</span>)
+         <span style="color:#0000FF">end</span>
+         ind = find(val(:).'~=0);
+         <span style="color:#0000FF">if</span> isempty(ind)
+            obj.coef = val;
+         <span style="color:#0000FF">else</span>
+            obj.coef = val(ind(1):end);
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Set method for <code class="literal">coef</code> property:</p><div class="itemizedlist"><ul><li><p>Restricts coefficients to type double</p></li><li><p>Removes leading zeros from the coefficient vector</p></li></ul></div><p>For more information, see <a href="a-polynomial-class-1.html#brrb0o0" class="intrnllnk">Remove Leading Zeros</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> c = double(obj)
+         c = obj.coef;
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Convert <code class="literal">DocPolynom</code> object to
+                              <code class="literal">double</code> by returning the
+                           coefficients.</p><p>For more information, see <a href="a-polynomial-class-1.html#f3-26405" class="intrnllnk">Convert DocPolynom Objects to Other Classes</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> str = char(obj)
+         <span style="color:#0000FF">if</span> all(obj.coef == 0)
+            s = <span style="color:#A020F0">'0'</span>;
+            str = s;
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">else</span>
+            d = length(obj.coef) - 1;
+            s = cell(1,d);
+            ind = 1;
+            <span style="color:#0000FF">for</span> a = obj.coef
+               <span style="color:#0000FF">if</span> a ~= 0
+                  <span style="color:#0000FF">if</span> ind ~= 1
+                     <span style="color:#0000FF">if</span> a &gt; 0
+                        s(ind) = {<span style="color:#A020F0">' + '</span>};
+                        ind = ind + 1;
+                     <span style="color:#0000FF">else</span>
+                        s(ind) = {<span style="color:#A020F0">' - '</span>};
+                        a = -a;
+                        ind = ind + 1;
+                     <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">if</span> a ~= 1 || d == 0
+                     <span style="color:#0000FF">if</span> a == -1
+                        s(ind) = {<span style="color:#A020F0">'-'</span>};
+                        ind = ind + 1;
+                     <span style="color:#0000FF">else</span>
+                        s(ind) = {num2str(a)};
+                        ind = ind + 1;
+                        <span style="color:#0000FF">if</span> d &gt; 0
+                           s(ind) = {<span style="color:#A020F0">'*'</span>};
+                           ind = ind + 1;
+                        <span style="color:#0000FF">end</span>
+                     <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">if</span> d &gt;= 2
+                     s(ind) = {[<span style="color:#A020F0">'x^'</span> int2str(d)]};
+                     ind = ind + 1;
+                  <span style="color:#0000FF">elseif</span> d == 1
+                     s(ind) = {<span style="color:#A020F0">'x'</span>};
+                     ind = ind + 1;
+                  <span style="color:#0000FF">end</span>
+               <span style="color:#0000FF">end</span>
+               d = d - 1;
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+         str = [s{:}];
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Convert <code class="literal">DocPolynom</code> object to
+                              <code class="literal">char</code>. For more information, see <a href="a-polynomial-class-1.html#f3-26405" class="intrnllnk">Convert DocPolynom Objects to Other Classes</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> disp(obj)
+         c = char(obj);
+         <span style="color:#0000FF">if</span> iscell(c)
+            disp([<span style="color:#A020F0">'     '</span> c{:}])
+         <span style="color:#0000FF">else</span>
+            disp(c)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span> </pre></div></div></div>
+                     </td><td><p>Overload <code class="literal">disp</code> function. This method displays
+                           objects as output of the <code class="literal">char</code> method.</p><p>For
+                           more information, see <a href="a-polynomial-class-1.html#f3-26830" class="intrnllnk">Overload disp for DocPolynom</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> dispPoly(obj,x)
+         p = char(obj);
+         y = zeros(length(x));
+         disp([<span style="color:#A020F0">'f(x) = '</span>,p])
+         <span style="color:#0000FF">for</span> k = 1:length(x)
+            y(k) = polyval(obj.coef,x(k));
+            disp([<span style="color:#A020F0">'   f('</span>,num2str(x(k)),<span style="color:#A020F0">') = '</span>,num2str(y(k))])
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Return evaluated polynomial with formatted output. This method
+                           uses <code class="function">polyval</code> in a loop to evaluate the polynomial at
+                           specified values of the independent variable.</p><p>For more
+                           information, see <a href="a-polynomial-class-1.html#bupgl3w-1" class="intrnllnk">Display Evaluated Expression</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> r = plus(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         k = length(obj2.coef) - length(obj1.coef);
+         zp = zeros(1,k);
+         zm = zeros(1,-k);
+         r = DocPolynom([zp,obj1.coef] + [zm,obj2.coef]);
+      <span style="color:#0000FF">end</span>
+
+      <span style="color:#0000FF">function</span> r = minus(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         k = length(obj2.coef) - length(obj1.coef);
+         zp = zeros(1,k);
+         zm = zeros(1,-k);
+         r = DocPolynom([zp,obj1.coef] - [zm,obj2.coef]);
+      <span style="color:#0000FF">end</span>
+
+      <span style="color:#0000FF">function</span> r = mtimes(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         r = DocPolynom(conv(obj1.coef,obj2.coef));
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Define three arithmetic operators:</p><div class="itemizedlist"><ul><li><p>Polynomial addition</p></li><li><p>Polynomial subtraction</p></li><li><p>Polynomial multiplication</p></li></ul></div><p>For information about this code, see <a href="a-polynomial-class-1.html#f3-30100" class="intrnllnk">Define Arithmetic Operators</a>.</p><p>For general information about defining operators, see
+                              <a href="implementing-operators-for-your-class.html" class="a">Operator Overloading</a>.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods (Access = protected)
+        <span style="color:#0000FF">function</span> f = parenReference(obj,indexOp)
+            n = cell2mat(indexOp(1).Indices);
+            <span style="color:#0000FF">if</span> numel(indexOp) == 1
+                f = polyval(obj.coef,n);
+            <span style="color:#0000FF">else</span>
+                f = polyval(obj.coef,n).(indexOp(2:end));
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><p>Customize parentheses reference for <code class="literal">DocPolynom</code>
+                           objects. This implementation of <code class="method">parenReference</code> enables
+                           users to evaluate a polynomial using parentheses indexing syntax.
+                              <code class="literal">p(x)</code> evaluates the polynomial represented by object
+                              <code class="object">p</code> for each value in
+                           <code class="argument">x</code>.</p><p>For more information, see <a href="a-polynomial-class-1.html#f3-62469" class="intrnllnk">Redefine Parentheses Indexing</a>.</p></td></tr></tbody></table></div><p><a href="#" onclick="return toggleexpander('d126e35996_block','d126e35996_expandable_text');"><img style="border:0;" id="d126e35996_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e35996_block','d126e35996_expandable_text');">Expand for Class Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e35996_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> DocPolynom &lt; matlab.mixin.Scalar
+   
+   <span style="color:#0000FF">properties</span>
+      coef
+   <span style="color:#0000FF">end</span>
+  
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = DocPolynom(c)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            <span style="color:#0000FF">if</span> isa(c,<span style="color:#A020F0">'DocPolynom'</span>)
+               obj.coef = c.coef;
+            <span style="color:#0000FF">else</span>
+               obj.coef = c(:).';
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> obj = set.coef(obj,val)
+         <span style="color:#0000FF">if</span> ~isa(val,<span style="color:#A020F0">'double'</span>)
+            error(<span style="color:#A020F0">'Coefficients must be doubles.'</span>)
+         <span style="color:#0000FF">end</span>
+         ind = find(val(:).'~=0);
+         <span style="color:#0000FF">if</span> isempty(ind)
+            obj.coef = val;
+         <span style="color:#0000FF">else</span>
+            obj.coef = val(ind(1):end);
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> c = double(obj)
+         c = obj.coef;
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> str = char(obj)
+         <span style="color:#0000FF">if</span> all(obj.coef == 0)
+            s = <span style="color:#A020F0">'0'</span>;
+            str = s;
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">else</span>
+            d = length(obj.coef) - 1;
+            s = cell(1,d);
+            ind = 1;
+            <span style="color:#0000FF">for</span> a = obj.coef
+               <span style="color:#0000FF">if</span> a ~= 0
+                  <span style="color:#0000FF">if</span> ind ~= 1
+                     <span style="color:#0000FF">if</span> a &gt; 0
+                        s(ind) = {<span style="color:#A020F0">' + '</span>};
+                        ind = ind + 1;
+                     <span style="color:#0000FF">else</span>
+                        s(ind) = {<span style="color:#A020F0">' - '</span>};
+                        a = -a;
+                        ind = ind + 1;
+                     <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">if</span> a ~= 1 || d == 0
+                     <span style="color:#0000FF">if</span> a == -1
+                        s(ind) = {<span style="color:#A020F0">'-'</span>};
+                        ind = ind + 1;
+                     <span style="color:#0000FF">else</span>
+                        s(ind) = {num2str(a)};
+                        ind = ind + 1;
+                        <span style="color:#0000FF">if</span> d &gt; 0
+                           s(ind) = {<span style="color:#A020F0">'*'</span>};
+                           ind = ind + 1;
+                        <span style="color:#0000FF">end</span>
+                     <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">end</span>
+                  <span style="color:#0000FF">if</span> d &gt;= 2
+                     s(ind) = {[<span style="color:#A020F0">'x^'</span> int2str(d)]};
+                     ind = ind + 1;
+                  <span style="color:#0000FF">elseif</span> d == 1
+                     s(ind) = {<span style="color:#A020F0">'x'</span>};
+                     ind = ind + 1;
+                  <span style="color:#0000FF">end</span>
+               <span style="color:#0000FF">end</span>
+               d = d - 1;
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+         str = [s{:}];
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> disp(obj)
+         c = char(obj);
+         <span style="color:#0000FF">if</span> iscell(c)
+            disp([<span style="color:#A020F0">'     '</span> c{:}])
+         <span style="color:#0000FF">else</span>
+            disp(c)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> dispPoly(obj,x)
+         p = char(obj);
+         y = zeros(length(x));
+         disp([<span style="color:#A020F0">'f(x) = '</span>,p])
+         <span style="color:#0000FF">for</span> k = 1:length(x)
+            y(k) = polyval(obj.coef,x(k));
+            disp([<span style="color:#A020F0">'   f('</span>,num2str(x(k)),<span style="color:#A020F0">') = '</span>,num2str(y(k))])
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> r = plus(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         k = length(obj2.coef) - length(obj1.coef);
+         zp = zeros(1,k);
+         zm = zeros(1,-k);
+         r = DocPolynom([zp,obj1.coef] + [zm,obj2.coef]);
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> r = minus(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         k = length(obj2.coef) - length(obj1.coef);
+         zp = zeros(1,k);
+         zm = zeros(1,-k);
+         r = DocPolynom([zp,obj1.coef] - [zm,obj2.coef]);
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> r = mtimes(obj1,obj2)
+         obj1 = DocPolynom(obj1);
+         obj2 = DocPolynom(obj2);
+         r = DocPolynom(conv(obj1.coef,obj2.coef));
+      <span style="color:#0000FF">end</span> 
+   <span style="color:#0000FF">end</span>
+
+   <span style="color:#0000FF">methods</span> (Access = protected)
+      <span style="color:#0000FF">function</span> f = parenReference(obj,indexOp)
+         n = cell2mat(indexOp(1).Indices);
+         <span style="color:#0000FF">if</span> numel(indexOp) == 1
+            f = polyval(obj.coef,n);
+         <span style="color:#0000FF">else</span>
+            f = polyval(obj.coef,n).(indexOp(2:end));
+         <span style="color:#0000FF">end</span>
+       <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div></section><section><h3 class="title" id="f3-25998">The <code class="literal">DocPolynom</code> Constructor</h3><p>This is the <code class="literal">DocPolynom</code> class constructor:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> obj = DocPolynom(c)
+   <span style="color:#0000FF">if</span> nargin &gt; 0
+      <span style="color:#0000FF">if</span> isa(c,<span style="color:#A020F0">'DocPolynom'</span>)
+         obj.coef = c.coef;
+       <span style="color:#0000FF">else</span>
+          obj.coef = c(:).';
+       <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><section><h4 class="title" id="f3-62071">Constructor Calling Syntax</h4><p>The <code class="literal">DocPolynom</code> constructor can accept two different input
+               arguments:</p><div class="itemizedlist"><ul><li><p>An existing <code class="literal">DocPolynom</code> object &#8212; Calling the
+                     constructor with an existing <code class="literal">DocPolynom</code> object as an input
+                     argument returns a new <code class="literal">DocPolynom</code> object with the same
+                     coefficients as the input argument. The <a href="../ref/isa.html"><code class="function">isa</code></a> function checks for this
+                     input. </p></li><li><p>Coefficient vector &#8212; When the input argument is not a
+                        <code class="literal">DocPolynom</code> object, the constructor attempts to reshape
+                     the values into a row vector and assign them to the <code class="literal">coef</code>
+                     property. </p><p>The <code class="literal">coef</code> property set method restricts property values to
+                     doubles. See <a href="a-polynomial-class-1.html#brrb0o0" class="intrnllnk">Remove Leading Zeros</a> for a
+                     description of the property set method.</p></li></ul></div><p>This example uses a vector as the input argument to the
+                  <code class="literal">DocPolynom</code> constructor:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DocPolynom([1 0 -2 -5])
+p = 
+   x^3 - 2*x -5
+</pre></div></div></div><p>This statement creates an instance of the <code class="literal">DocPolynom</code> class with
+               the specified coefficients. The display of the object shows the equivalent polynomial
+               using MATLAB language syntax. The <code class="literal">DocPolynom</code> class implements
+               this display using the <code class="literal">disp</code> and <code class="literal">char</code> class
+               methods.</p></section><section><h4 class="title" id="brrb0o0">Remove Leading Zeros</h4><p>The <code class="literal">DocPolynom</code> class represents polynomials as row vectors
+               containing coefficients ordered by descending powers. Zeros in the coefficient vector
+               represent terms that are not in the polynomial. Leading zeros, therefore, can be
+               ignored when forming the polynomial. In fact, some <code class="literal">DocPolynom</code>
+               class methods use the length of the coefficient vector to determine the degree of the
+               polynomials, so removing leading zeros from the coefficient vector ensures that the
+               vector length represents the correct polynomial degree. </p><p>The <code class="literal">DocPolynom</code> class stores the coefficient vector in a
+               property that uses a set method to remove leading zeros from the specified
+               coefficients before setting the property value. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> obj = set.coef(obj,val)
+   <span style="color:#0000FF">if</span> ~isa(val,<span style="color:#A020F0">'double'</span>)
+     error(<span style="color:#A020F0">'Coefficients must be doubles.'</span>)
+   <span style="color:#0000FF">end</span>
+   ind = find(val(:).'~=0);
+   <span style="color:#0000FF">if</span> isempty(ind)
+     obj.coef = val;
+   <span style="color:#0000FF">else</span>
+      obj.coef = val(ind(1):end);
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section><section><h3 class="title" id="f3-26405">Convert <code class="class">DocPolynom</code> Objects to Other Classes</h3><p>The <code class="literal">DocPolynom</code> class defines two methods to convert
+               <code class="literal">DocPolynom</code> objects to other classes:</p><div class="itemizedlist"><ul><li><p><code class="literal">double</code> &#8212; Converts to the double numeric type so
+                  functions can perform mathematical operations on the coefficients.</p></li><li><p><code class="literal">char</code> &#8212; Converts to characters used to format output
+                  for display in the Command Window.</p></li></ul></div><section><h4 class="title" id="f3-26521">The Double Converter</h4><p>The <code class="method">double</code> converter method for the <code class="literal">DocPolynom</code>
+               class returns the coefficient vector:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> c = double(obj)
+    c = obj.coef;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For the <code class="literal">DocPolynom</code> object <code class="literal">p</code>,
+                  <code class="method">double</code> returns a vector of class <code class="class">double</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DocPolynom([1 0 -2 -5]);
+c = double(p)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>c =
+
+     1     0    -2    -5</pre></div></div></div></section><section><h4 class="title" id="f3-26533">The Character Converter</h4><p>The <code class="literal">char</code> method returns a <code class="literal">char</code> vector that
+               represents the polynomial displayed as powers of <code class="literal">x</code>. The
+                  <code class="literal">char</code> vector returned is a syntactically correct MATLAB expression. </p><p>The <code class="literal">char</code> method uses a cell array to collect the
+                  <code class="literal">char</code> vector components that make up the displayed polynomial.
+               The <code class="literal">disp</code> method uses the <code class="literal">char</code> method to format
+               the <code class="literal">DocPolynom</code> object for display. Users of
+                  <code class="literal">DocPolynom</code> objects are not likely to call the
+                  <code class="literal">char</code> or <code class="literal">disp</code> methods directly, but these
+               methods enable the <code class="literal">DocPolynom</code> class to behave like other data
+               classes in MATLAB.</p></section></section><section><h3 class="title" id="f3-26830">Overload <code class="literal">disp</code> for <code class="class">DocPolynom</code></h3><p>To provide a more useful display of <code class="literal">DocPolynom</code> objects, this class
+            overloads <a href="../ref/disp.html"><code class="function">disp</code></a> in the class definition. This
+               <code class="literal">disp</code> method relies on the <code class="literal">char</code> method to
+            produce a text representation of the polynomial, which it then displays.</p><p>The <code class="literal">char</code> method returns a cell array or the character
+               <code class="literal">'0'</code> if the coefficients are all zero. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> disp(obj)
+   c = char(obj);
+   <span style="color:#0000FF">if</span> iscell(c)
+      disp([<span style="color:#A020F0">'     '</span> c{:}])
+   <span style="color:#0000FF">else</span>
+      disp(c)
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div><section><h4 class="title" id="f3-26841">When <span class="trademark entity">MATLAB</span> Calls the <code class="literal">disp</code> Method</h4><p>This statement creates a <code class="literal">DocPolynom</code> object. Because the
+               statement is not terminated with a semicolon, the resulting output is displayed on
+               the command line using the overloaded <code class="method">disp</code> method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DocPolynom([1 0 -2 -5])
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p =
+    x^3 - 2*x - 5
+</pre></div></div></div></section></section><section><h3 class="title" id="bupgl3w-1">Display Evaluated Expression</h3><p>The <code class="literal">dispPoly</code> method evaluates the polynomial for one or more
+            values of <code class="literal">x</code>. The method loops through the input values of
+               <code class="literal">x</code> and uses the <code class="function">polyval</code> function with the
+               <code class="property">coef</code> property to evaluate the polynomial.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> dispPoly(obj,x)
+   p = char(obj);
+   y = zeros(length(x));
+   disp([<span style="color:#A020F0">'f(x) = '</span>,p,])
+   <span style="color:#0000FF">for</span> k = 1:length(x)
+      y(k) = polyval(obj.coef,x(k));
+      disp([<span style="color:#A020F0">'   f('</span>,num2str(x(k)),<span style="color:#A020F0">') = '</span>,num2str(y(k))])
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create a <code class="literal">DocPolynom</code> object <code class="literal">p</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DocPolynom([1 0 -2 -5])
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 
+   x^3 - 2*x - 5</pre></div></div></div><p>Evaluate the polynomial at three values of <code class="literal">x</code>, <code class="literal">[3 5
+               9]</code>. Instead of returning a vector of values, the method uses function
+            notation to present the results in an organized list.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dispPoly(p,[3 5 9])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>f(x) = x^3 - 2*x - 5
+   f(3) = 16
+   f(5) = 110
+   f(9) = 706</pre></div></div></div></section><section><h3 class="title" id="f3-30100">Define Arithmetic Operators</h3><a class="indexterm" name="d126e36244"></a><a class="indexterm" name="d126e36247"></a><p>The <code class="literal">DocPolynom</code> class implements methods for three arithmetic
+               operations.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="51%"></colgroup><thead><tr><th><p>Method and Syntax</p></th><th><p>Operation</p></th></tr></thead><tbody><tr><td><p id="f3-63011"><code class="literal">plus(a,b)</code></p></td><td><p>Addition</p></td></tr><tr><td><p id="f3-63015"><code class="literal">minus(a,b)</code></p></td><td><p>Subtraction</p></td></tr><tr><td><p id="f3-63019"><code class="literal">mtimes(a,b)</code></p></td><td><p>Matrix multiplication</p></td></tr></tbody></table></div><p>
+</p><p>The overloaded <code class="literal">plus</code>, <code class="literal">minus</code>, and
+               <code class="literal">mtimes</code> methods accept argument pairs that include at least one
+               <code class="class">DocPolynom</code> object.</p><section><h4 class="title" id="f3-38054">Define the <code class="literal">+</code> Operator</h4><p>If either <code class="literal">p</code> or <code class="literal">q</code> is a
+                  <code class="literal">DocPolynom</code> object, this expression generates a call to the
+                  <code class="method">plus</code> method overload defined by <code class="literal">DocPolynom</code>
+               unless the other object is of higher precedence.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p + q
+</pre></div></div></div><p>This method overloads the <code class="literal">plus</code> (<code class="literal">+</code>) operator
+               for the <code class="literal">DocPolynom</code> class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> r = plus(obj1,obj2)
+   obj1 = DocPolynom(obj1);
+   obj2 = DocPolynom(obj2);
+   k = length(obj2.coef) - length(obj1.coef);
+   zp = zeros(1,k);
+   zm = zeros(1,-k);
+   r = DocPolynom([zp,obj1.coef] + [zm,obj2.coef]);
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div><p>The <code class="method">plus</code> method performs these actions:</p><div class="itemizedlist"><ul><li><p>Ensure that both input arguments are <code class="literal">DocPolynom</code> objects
+                     so that expressions that involve a <code class="literal">DocPolynom</code> and a
+                        <code class="literal">double</code> work correctly.</p></li><li><p>Access the two coefficient vectors and, if necessary, pad one of them with
+                     zeros to make both the same length. The actual addition is simply the vector
+                     sum of the two coefficient vectors.</p></li><li><p>Call the <code class="literal">DocPolynom</code> constructor to create a properly
+                     typed object that is the result of adding the polynomials.</p></li></ul></div></section><section><h4 class="title" id="f3-30875">Define the <code class="literal remove_text_wrapping">-</code> Operator</h4><p>The <code class="literal">minus</code> operator (<code class="literal remove_text_wrapping">-</code>) uses the same
+               approach as the <code class="literal">plus</code> (<code class="literal">+</code>) operator. The
+                  <code class="literal">minus</code> method computes <code class="literal">p</code> -
+                  <code class="literal">q</code>. The dominant argument must be a
+                  <code class="literal">DocPolynom</code> object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> r = minus(obj1,obj2)
+   obj1 = DocPolynom(obj1);
+   obj2 = DocPolynom(obj2);
+   k = length(obj2.coef) - length(obj1.coef);
+   zp = zeros(1,k);
+   zm = zeros(1,-k);
+   r = DocPolynom([zp,obj1.coef] - [zm,obj2.coef]);
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div></section><section><h4 class="title" id="f3-30160">Define the <code class="literal">*</code> Operator</h4><p>The <code class="literal">mtimes</code> method computes the product <code class="literal">p*q</code>.
+               The <code class="literal">mtimes</code> method implements <span class="emphasis"><em>matrix</em></span>
+               multiplication because the multiplication of two polynomials is the convolution
+                  (<a href="../ref/conv.html"><code class="function">conv</code></a>) of their coefficient
+               vectors:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> r = mtimes(obj1,obj2)
+      obj1 = DocPolynom(obj1);
+      obj2 = DocPolynom(obj2);
+      r = DocPolynom(conv(obj1.coef,obj2.coef));
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span> 
+</pre></div></div></div></section><section><h4 class="title" id="f3-30182">Using the Arithmetic Operators</h4><p>Create a <code class="literal">DocPolynom</code> object.</p><div class="code_responsive"><pre class="programlisting">p = DocPolynom([1 0 -2 -5]);
+</pre></div><p>These two arithmetic operations call the <code class="literal">DocPolynom</code>
+               <code class="literal">plus</code> and <code class="literal">mtimes</code> methods.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>q = p + 1
+r = p*q
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>q = 
+    x^3 - 2*x - 4
+
+r =
+    x^6 - 4*x^4 - 9*x^3 + 4*x^2 + 18*x + 20
+</pre></div></div></div></section></section><section><h3 class="title" id="f3-62469">Redefine Parentheses Indexing</h3><p>The <code class="literal">DocPolynom</code> class inherits from <a href="../ref/matlab.mixin.scalar-class.html"><code class="class">matlab.mixin.Scalar</code></a>, which in turn inherits from the modular indexing class
+               <a href="../ref/matlab.mixin.indexing.redefinesparen-class.html"><code class="class">matlab.mixin.indexing.RedefinesParen</code></a>. Overloading the
+               <code class="method">parenReference</code> method of <code class="class">RedefinesParen</code> enables users
+            to evaluate a polynomial represented by a <code class="literal">DocPolynom</code> object using
+            parentheses indexing syntax.</p><p>For example, create a <code class="literal">DocPolynom</code> object
+            <code class="literal">p</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DocPolynom([1 0 -2 -5])
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p =
+    x^3 - 2*x - 5</pre></div></div></div><p>The overloaded <code class="method">parenReference</code> method evaluates the value of the
+            polynomial at <code class="literal">x = 3</code> and at <code class="literal">x = 4</code> using this
+            command.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p([3 4])</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans =
+    16   51
+</pre></div><section><h4 class="title" id="f3-29093">Modular Indexing Implementation Details</h4><p>The <code class="method">parenReference</code> method handles expressions of the form
+                  <code class="literal">p(x)</code>, where <code class="object">p</code> is a
+                  <code class="literal">DocPolynom</code> object and <code class="argument">x</code> contains numeric
+               inputs. Instead of a traditional MATLAB indexing operation, however, <code class="method">parenReference</code> uses
+                  <code class="function">polyval</code> to evaluate the polynomial using the coefficients
+               stored in the <code class="property">coef</code> property.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods (Access = protected)
+    <span style="color:#0000FF">function</span> f = parenReference(obj,indexOp)
+       n = cell2mat(indexOp(1).Indices);
+       <span style="color:#0000FF">if</span> numel(indexOp) == 1
+          f = polyval(obj.coef,n);
+       <span style="color:#0000FF">else</span>
+          f = polyval(obj.coef,n).(indexOp(2:end));
+       <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The method performs these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Extract the indexing values from <code class="object">indexOp</code>, which is an
+                        instance of the <a href="../ref/matlab.indexing.indexingoperation-class.html"><code class="class">matlab.indexing.IndexingOperation</code></a> class. The
+                           <code class="object">indexOp</code> object stores them as a cell array, and the
+                        method converts them to a numeric array and stores them in
+                           <code class="argument">n</code>.</p></li><li><p>Calculate the number of indexing operations in the expression. </p></li><li><p>Evaluate the polynomial at the values in <code class="argument">n</code>. The
+                        intended use of this syntax includes one parentheses indexing
+                        operation.</p></li><li><p>If the method finds more than one indexing operation, it uses
+                           <code class="function">polyval</code> to evaluate the polynomial and then forwards
+                        the rest of the indexing operations to MATLAB using the forwarding syntax,
+                           <code class="literal">.(indexOp(2:end))</code>. The class does not support any
+                        additional customized indexing operations, so MATLAB returns an error.</p><p>For example, attempting to evaluate a polynomial object while also using
+                        dot indexing to try to access its <code class="property">coef</code> property at the
+                        same time
+                        errors.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p(5).coef(1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Dot indexing is not supported for variables of this type.</pre></div></div></div>For
+                        more information on forwarding operations with modular indexing, see <a href="forwarding-indexing-operations.html" class="a">Forward Indexing Operations</a>.</p></li></ol></div><p>
+</p><p>Using the modular indexing class in this way means that only parentheses reference
+               operations are customized. Dot access to properties and methods are unaffected and
+               are handled by MATLAB as expected.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The <a href="../ref/matlab.mixin.scalar-class.html"><code class="class">matlab.mixin.Scalar</code></a> and <a href="../ref/matlab.mixin.indexing.redefinesparen-class.html"><code class="class">matlab.mixin.indexing.RedefinesParen</code></a> functionality was introduced in
+                  R2021b.</p></div></section></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

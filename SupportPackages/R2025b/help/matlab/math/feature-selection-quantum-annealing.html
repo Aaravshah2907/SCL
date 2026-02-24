@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Feature Selection QUBO (Quadratic Unconstrained Binary Optimization)</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../qubo.html",
+          "name": "Quadratic Unconstrained Binary Optimization (QUBO)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "qubo"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Find the most relevant predictors in a data set using a QUBO problem formulation."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../qubo.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_179b79ec-0389-46ef-988e-3f9c7f9a5981"><span itemprop="title">Quadratic Unconstrained Binary Optimization (QUBO)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Feature Selection QUBO (Quadratic Unconstrained Binary Optimization)</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_b4630567-0176-4b7e-bb93-a48809287c77" class="nav-link intrnllnk">Feature Selection Overview</a></li><li class="nav-item"><a href="#mw_3c3eff9b-9610-46ca-8f8d-21fe6fc7df0d" class="nav-link intrnllnk">QUBO Data Model</a></li><li class="nav-item"><a href="#mw_9cbfae6f-d48b-4cf8-9a30-bce39056cd3c" class="nav-link intrnllnk">Create Feature Selection Model with Synthetic Data</a></li><li class="nav-item"><a href="#mw_c57b97be-a003-489f-8126-72271c5245db" class="nav-link intrnllnk">Helper Functions</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e71019" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_ccd5f956-e831-4383-aca9-801c87c5f17d">Feature Selection QUBO (Quadratic Unconstrained Binary Optimization)</h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><section><h3 class="title" id="mw_b4630567-0176-4b7e-bb93-a48809287c77">Feature Selection Overview</h3><p>Feature selection is a dimensionality reduction technique used to select a subset of
+        features (predictor variables) that provide the best predictive power in modeling a set of
+        data for classification or regression.</p><p>Feature selection can be used to:</p><div class="itemizedlist"><ul><li><p>Prevent overfitting &#8212; Avoid modeling with an excessive number of features that are
+            more susceptible to rote-learning-specific training examples.</p></li><li><p>Reduce model size &#8212; Increase computational performance with high-dimensional data or
+            prepare a model for embedded deployment when memory might be limited.</p></li><li><p>Improve interpretability &#8212; Use fewer features, which might help identify those that
+            affect model behavior.</p></li></ul></div><p>Based on Mücke, Heese, Müller, Wolter, and Piatkowski <a href="feature-selection-quantum-annealing.html#mw_376eafd1-89d4-4771-ab02-d36d0bb23021" class="intrnllnk">[1]</a>, you can perform
+        feature selection by using a QUBO model to select relevant predictors. Specifically, given a
+        set of <em class="varname">N</em> scalar observations <em class="varname">y</em>(<em class="varname">i</em>),
+        where the observations are associated with <em class="varname">p</em> variables (the predictors)
+          <em class="varname">x</em>(<em class="varname">i</em>,<em class="varname">j</em>) for <em class="varname">i</em> =
+        1 through <em class="varname">N</em> and <em class="varname">j</em> = 1 through <em class="varname">p</em>.
+        The problem is to find a subset of the <em class="varname">p</em> predictors such that the
+        resulting model gives accurate predictions of the observations.</p></section><section><h3 class="title" id="mw_3c3eff9b-9610-46ca-8f8d-21fe6fc7df0d">QUBO Data Model</h3><p>As noted in <a href="feature-selection-quantum-annealing.html#mw_376eafd1-89d4-4771-ab02-d36d0bb23021" class="intrnllnk">[1]</a>, the suggested process
+        for creating a QUBO data model is as follows:</p><div class="itemizedlist"><ul><li><p>Specify the input data as an <em class="varname">N</em>-by-<em class="varname">p</em> matrix
+              <code class="literal">X</code>, where each row is one data point.</p></li><li><p>Specify the response data as an <em class="varname">N</em>-by-1 vector
+              <code class="literal">Y</code>, where <code class="literal">Y(i)</code> is the response to the row
+              <code class="literal">X(i,:)</code>.</p></li><li><p>Calculate the matrix <code class="literal">R(i,j)</code> for <code class="literal">i</code> and
+              <code class="literal">j</code> from 1 through <em class="varname">p</em> as the mutual information
+            between columns <code class="literal">i</code> and <code class="literal">j</code> of <code class="literal">X</code>.
+              <code class="literal">R(i,j)</code> represents the redundancy between pairs of features. The
+            mutual information is a nonnegative quantity that can be estimated by binning the data
+            and counting entries in each bin to estimate the associated probabilities. For more
+            information, see <a href="https://en.wikipedia.org/wiki/Mutual_information" target="_blank">https://en.wikipedia.org/wiki/Mutual_information</a>.</p></li><li><p>Similarly, calculate the vector <code class="literal">J(i)</code> for <code class="literal">i</code>
+            from 1 through <em class="varname">p</em> as the mutual information between column
+              <code class="literal">i</code> of <code class="literal">X</code> and the response variable
+              <code class="literal">Y</code>. The quantity <code class="literal">J(i)</code> is nonnegative and
+            represents the strength of the coupling between column <code class="literal">i</code> and the
+            response <code class="literal">Y</code>.</p></li><li><p>For each value <em class="varname">a</em> from 0 through 1, define the QUBO as</p><div itemprop="content"><p class="programlistingindent"><em class="varname">Q<sub>a</sub></em> = (1 &#8211;
+                <em class="varname">a</em>)<em class="varname">R</em> &#8211;
+              diag(<em class="varname">aJ</em>).</p></div></li></ul></div><p>Because each <code class="literal">R</code> and <code class="literal">J</code> entry is nonnegative, the
+        minimum of the QUBO problem is at the point [1,1,…,1] for <em class="varname">a</em> = 1 and the
+        point [0,0,…,0] for <em class="varname">a</em> = 0. In <a href="feature-selection-quantum-annealing.html#mw_376eafd1-89d4-4771-ab02-d36d0bb23021" class="intrnllnk">[1]</a>, Mücke proves that in
+        nontrivial problems, for each <em class="varname">k</em> from 0 through <em class="varname">p</em>,
+        there is a value <em class="varname">a</em> such that the number of nonzero entries in the
+        solution to <em class="varname">Q<sub>a</sub></em> is equal to <em class="varname">k</em>.
+        In other words, for each number of predictors <em class="varname">k</em>, there is a QUBO problem
+            <em class="varname">Q<sub>a</sub></em> whose solution has exactly
+          <em class="varname">k</em> nonzero entries. These entries represent the data columns in
+          <code class="literal">X</code> that best match the <code class="literal">Y</code> data while not matching the
+        other data columns.</p></section><section><h3 class="title" id="mw_9cbfae6f-d48b-4cf8-9a30-bce39056cd3c">Create Feature Selection Model with Synthetic Data</h3><p>Create synthetic data for feature selection and then create a QUBO model to select the
+        features. To train the resulting regression model, you need a Statistics and Machine Learning Toolbox&#x2122; license.</p><div class="procedure"><ol type="1"><li id="mw_f82e75c2-3ef2-44e2-9a23-afb6537ad2d5"><p>Create a synthetic data set using the <code class="literal">iSyntheticData1</code> helper
+            function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[N,p,X,Y] = iSyntheticData1;</pre></div></div></div></li><li id="mw_8e43475c-94fa-41f7-9caf-ce7f964602c1"><p>View the number of data points and predictors.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>N</pre></div></div></div><div class="code_responsive"><pre class="programlisting">    N = 10000</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p</pre></div></div></div><div class="code_responsive"><pre class="programlisting">    p = 30</pre></div></li><li id="mw_cc2a6b9b-fea7-484b-aa2e-97f08227e948"><p>Select five features, the number of useful features in this example. In general, you
+            can try to find how many useful features exist by cross-validating models with different
+            numbers of features.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>K = 5;</pre></div></div></div></li><li id="mw_8d511b64-d741-4014-a12a-e4ed721039a3"><p>Create the <code class="literal">R</code> matrix and <code class="literal">J</code> vector from the data
+            by using 20 bins for the data, and estimating the mutual information by counting the
+            number of entries in each bin. Use the <code class="literal">iBinXY</code>,
+              <code class="literal">iComputeMIXX</code>, and <code class="literal">iComputeMIXY</code> helper functions
+            to create the matrix and vector. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nbins = 20;
+[binnedXInfo,binnedYInfo] = iBinXY(X,Y,nbins);
+binnedX = binnedXInfo.binned;
+nbinsX = binnedXInfo.nbins;
+binnedY = binnedYInfo.binned;
+nbinsY = binnedYInfo.nbins;
+R0 = iComputeMIXX(binnedX,nbinsX);
+J = iComputeMIXY(binnedX,binnedY,nbinsX,nbinsY);
+<span style="color:#228B22">% Scale $R$ to make $\alpha = 0.5$ correspond to equal redundancy and</span>
+<span style="color:#228B22">% relevance terms.</span>
+R = R0/(K-1);</pre></div></div></div></li><li id="mw_cd7182c5-eb83-4684-8a23-e125b527150e"><p>Find the appropriate value of <em class="varname italic">a</em> for the QUBO <span class="inlineequation"><em class="varname">Q<sub>a</sub></em> = (1 &#8211;
+                  <em class="varname">a</em>)<em class="varname">R</em> &#8211;
+                diag(<em class="varname">aJ</em>)</span>. To do so, solve for the number of nonzero elements in the solution by
+            using the <code class="literal">howmany</code> helper function, and then use
+              <code class="function">fzero</code> to set that number equal to <code class="literal">K</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fun = @(alpha)howmany(alpha,R,J) - K;
+alphasol = fzero(fun,[0 1]);
+
+[~,xsol] = howmany(alphasol,R,J);</pre></div></div></div></li><li id="mw_914ec8cc-ca10-49c5-9526-7835b9364ad8"><p>View the selected predictors.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>find(xsol.BestX)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =    
+     6
+     8
+     9
+    11
+    13
+</pre></div></div></div></li><li id="mw_2508bf4b-41a6-47cd-8966-117e174773a7"><p>Train a regression tree, first using the full set of 30 predictors and then using
+            the selected set of five predictors. Specify a common holdout value of 0.2, and compare
+            the cross-validation losses. First train the regression tree using all the predictors.
+            Training a regression tree requires a Statistics and Machine Learning Toolbox license.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng <span style="color:#A020F0">default</span>
+mdl = fitrtree(X,Y,CrossVal=<span style="color:#A020F0">"on"</span>,Holdout=0.2);
+kfoldLoss(mdl)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 0.0041</pre></div></div></div></li><li id="mw_31a0d916-3d3e-4f84-a75a-a0c7d5dc4f42"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng <span style="color:#A020F0">default</span>
+X2 = X(:,find(xsol.BestX));
+mdl2 = fitrtree(X2,Y,CrossVal=<span style="color:#A020F0">"on"</span>,Holdout=0.2);
+kfoldLoss(mdl2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 0.0032</pre></div></div></div><p>Although both regression trees have a low loss value, the regression tree that uses
+            only five of the 30 predictors has a lower loss value.</p></li></ol></div></section><section><h3 class="title" id="mw_c57b97be-a003-489f-8126-72271c5245db">Helper Functions</h3><p>This code creates the <code class="literal">iSyntheticData1</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [N,p,X,y] = iSyntheticData1
+rng <span style="color:#A020F0">default</span>
+N = 10000;
+p = 30;
+useful = [6,8,9,11,13];
+C = randn(p,p);
+R = corrcov(C'*C);
+X = mvnrnd(zeros(p,1),R,N);
+<span style="color:#228B22">% Make features 15 to 19 highly correlated with useful features:</span>
+<span style="color:#228B22">% 15 -&gt; 6</span>
+<span style="color:#228B22">% 16 -&gt; 8</span>
+<span style="color:#228B22">% 17 -&gt; 9</span>
+<span style="color:#228B22">% 18 -&gt; 11</span>
+<span style="color:#228B22">% 19 -&gt; 13</span>
+corrStd = 0.1;
+X(:,15:19) = X(:,useful) + corrStd*randn(N,5);
+noiseStd = 0.1;
+t = 0.5*cos(X(:,11)) + sin(X(:,9).*X(:,8)) + 0.5*X(:,13).*X(:,6) + noiseStd*randn(N,1);
+y = rescale(t,0,1);
+X = zscore(X);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iBinXY</code> helper function. Note that this helper
+        function uses the <code class="literal">iBinPredictors</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [binnedXInfo,binnedYInfo] = iBinXY(X,Y,nbins)
+binnedXInfo = iBinPredictors(X,nbins);
+binnedYInfo = iBinPredictors(Y,nbins);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iComputeMIXX</code> helper function. Note that this
+        helper function uses the <code class="literal">iComputeMIXIXJ</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> Q = iComputeMIXX(binnedX,nbinsX)
+p = size(binnedX,2);
+Q = zeros(p,p);
+<span style="color:#0000FF">for</span> i = 1:p
+    <span style="color:#0000FF">for</span> j = i+1:p
+        Xi = binnedX(:,i);
+        Xj = binnedX(:,j);
+        nbinsXi = nbinsX(i);
+        nbinsXj = nbinsX(j);
+        Q(i,j) = iComputeMIXIXJ(Xi,Xj,nbinsXi,nbinsXj);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+Q = Q + Q';
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iComputeMIXIXJ</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> mi = iComputeMIXIXJ(Xi,Xj,nbinsXi,nbinsXj)
+N = size(Xi,1);
+NXY = zeros(nbinsXi,nbinsXj);
+<span style="color:#0000FF">for</span> n = 1:N
+    a = Xi(n);
+    b = Xj(n);
+    NXY(a,b) = NXY(a,b) + 1;
+<span style="color:#0000FF">end</span>
+NX = sum(NXY,2);
+NY = sum(NXY,1);
+NXNYDivN = NX.*NY/N;
+nonzeroID = NXY ~= 0;
+nonzeroNXY = NXY(nonzeroID);
+nonzeroNXNYDivN = NXNYDivN(nonzeroID);
+mi = sum((nonzeroNXY./N).*log(nonzeroNXY./nonzeroNXNYDivN),<span style="color:#A020F0">'all'</span>);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iComputeMIXY</code> helper function. Note that this
+        helper function uses the <code class="literal">iComputeMIXIXJ</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> f = iComputeMIXY(binnedX,binnedY,nbinsX,nbinsY)
+p = size(binnedX,2);
+f = zeros(p,1);
+<span style="color:#0000FF">for</span> i = 1:p
+    Xi = binnedX(:,i);
+    nbinsXi = nbinsX(i);
+    f(i) = iComputeMIXIXJ(Xi,binnedY,nbinsXi,nbinsY);
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">howmany</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [n,result] = howmany(alpha,R,J)
+Q = qubo((1-alpha)*R - alpha*diag(J));
+result = solve(Q);
+n = sum(result.BestX);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iBinPredictors</code> helper function. Note that this
+        helper function uses the <code class="literal">iDiscretize</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> binnedInfo = iBinPredictors(X,nbins)
+[N,p] = size(X);
+binnedX = zeros(N,p);
+edgesX = cell(1,p);
+iscatX = false(1,p);
+nbinsX = zeros(1,p);
+istbl = istable(X);
+<span style="color:#0000FF">for</span> i = 1:p
+    <span style="color:#0000FF">if</span> istbl
+        oneX = X{:,i};
+    <span style="color:#0000FF">else</span>
+        oneX = X(:,i);
+    <span style="color:#0000FF">end</span>
+    nbinsi = min(nbins, numel(unique(oneX)));
+    [binnedX(:,i),edgesX{i},iscatX(i),nbinsX(i)] = iDiscretize(oneX,nbinsi);
+<span style="color:#0000FF">end</span>
+binnedInfo = struct;
+binnedInfo.binned = binnedX;
+binnedInfo.edges = edgesX;
+binnedInfo.iscat = iscatX;
+binnedInfo.nbins = nbinsX;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">iDiscretize</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [binnedx,edges,iscat,nbins] = iDiscretize(x,nbins)
+<span style="color:#0000FF">if</span> iscategorical(x)
+    binnedx = double(x);
+    edges = [];
+    iscat = true;
+    nbins = numel(unique(x));
+<span style="color:#0000FF">else</span>
+    probs = [0,(1:(nbins-1))/nbins,1];
+    edges = quantile(x,probs);
+    binnedx = discretize(x,edges,IncludedEdge=<span style="color:#A020F0">"right"</span>);
+    iscat = false;
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><div class="bibliography"><h2 id="References">References</h2><div id="mw_376eafd1-89d4-4771-ab02-d36d0bb23021" class="bibliomixed"><p>[1] Mücke, S., R. Heese, S. Müller,
+        M. Wolter, and N. Piatkowski. <em class="citetitle">Quantum Feature Selection.</em>
+        arXiv:2203.13261v1, March 2022. Available at <a href="https://arxiv.org/pdf/2203.13261" target="_blank">https://arxiv.org/pdf/2203.13261</a>.</p></div></div>
+      <h2 id="d126e71019">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../../stats/fitrtree.html"><span itemprop="name"><code class="function">fitrtree</code></span></a> (Statistics and Machine Learning Toolbox)</span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.solve.html"><span itemprop="name"><code class="function">solve</code></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.html"><span itemprop="name"><code class="object">qubo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearch.html"><span itemprop="name"><code class="object">tabuSearch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qaoa.html"><span itemprop="name"><code class="object">qaoa</code></span></a></span></li></ul>
+      <h3 id="d126e71043">Topics</h3><ul class="list-unstyled"><li><a href="quantum-annealing-workflow.html" class="a">Workflow for QUBO Problems</a></li></ul>
+      <h3 id="d126e71048">External Websites</h3><ul class="list-unstyled"><li><a href="https://en.wikipedia.org/wiki/Mutual_information" target="_blank">https://en.wikipedia.org/wiki/Mutual_information</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

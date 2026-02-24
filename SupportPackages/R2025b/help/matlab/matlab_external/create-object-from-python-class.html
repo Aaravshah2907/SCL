@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Access Python Modules from MATLAB - Getting Started</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../python-language.html",
+          "name": "Python with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-python-libraries.html",
+          "name": "Call Python from MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-python-libraries"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to create and use a Python object in MATLAB."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../python-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Python with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-python-libraries.html?s_tid=CRUX_lftnav" itemprop="url" id="buik_wp-1"><span itemprop="title">Call Python from MATLAB</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Access Python Modules from MATLAB - Getting Started</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_c40d89b6-6df7-4859-a8b3-64b766470515" class="nav-link intrnllnk">Learning Objectives</a></li><li class="nav-item"><a href="#mw_0465e4e0-8f01-4814-a237-426752ec21f3" class="nav-link intrnllnk">Verify Python Configuration</a></li><li class="nav-item"><a href="#mw_072efb46-0ec1-4133-ad7c-85282dbadb20" class="nav-link intrnllnk">Access Python Standard Library Modules in MATLAB</a></li><li class="nav-item"><a href="#mw_be38e803-4eb9-4800-98c8-6ee58dac2ffd" class="nav-link intrnllnk">Display Python Documentation in MATLAB</a></li><li class="nav-item"><a href="#buialof-61" class="nav-link intrnllnk">Create List, Tuple, and Dictionary Types</a></li><li class="nav-item"><a href="#bujm35m" class="nav-link intrnllnk">Precedence Order of Methods and Functions</a></li><li class="nav-item"><a href="#mw_c224a09a-f56b-48e5-b9ec-145388506204" class="nav-link intrnllnk">Access Other Python Modules</a></li><li class="nav-item"><a href="#mw_cba12591-9e70-445b-847d-9c44f8080561" class="nav-link intrnllnk">Python Examples</a></li><li class="nav-item"><a href="#d126e87304" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-python-libraries&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-python-libraries&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-python-libraries&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-python-libraries&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-python-libraries&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-python-libraries&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_c77c742f-f391-48ab-9e41-6cdb0d0cca31">Access <span class="trademark entity">Python</span> Modules from <span class="trademark entity">MATLAB</span> - Getting Started</h2><p>You can access all standard Python<sup>&#x00AE;</sup> library content from MATLAB<sup>&#x00AE;</sup>. Likewise, you can use functionality in third-party or user-created modules. To
+    call Python functionality directly from MATLAB, add the <code class="literal">py.</code> prefix to the name of the
+      Python function that you want to call.</p><div class="itemizedlist"><ul><li><p>To call content in the Python standard library, add <code class="literal">py.</code> in front of the
+          Python function or class name.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>py.list({<span style="color:#A020F0">"This"</span>,<span style="color:#A020F0">"is a"</span>,<span style="color:#A020F0">"list"</span>}) <span style="color:#228B22">% Call built-in function list</span></pre></div></div></div></li><li><p>To call content in available modules, add <code class="literal">py.</code> in
+        front of the Python module name followed by the Python function or class name.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>py.textwrap.wrap(<span style="color:#A020F0">"This is a string"</span>) <span style="color:#228B22">% Call wrap function in module textwrap</span></pre></div></div></div></li></ul></div><p>You do not need to import modules in order to use them. However, you may import Python names into your MATLAB function in the same way that you can import content in MATLAB namespaces. For more information, see <a href="differences-between-matlab-python.html" class="a">Understanding Python and
+      MATLAB import Commands</a>.</p><p>MATLAB also provides a way to run Python code in the Python interpreter directly from MATLAB. For more information, see <a href="ways-to-call-python-from-matlab.html" class="a">Directly Call Python Functionality from MATLAB</a>.</p><section><h3 class="title" id="mw_c40d89b6-6df7-4859-a8b3-64b766470515">Learning Objectives</h3><p>This tutorial explains how to:</p><div class="itemizedlist"><ul><li><p>Check the Python version on your computer.</p></li><li><p>Create a Python object and call a method on it.</p></li><li><p>Display help for Python modules.</p></li><li><p>Create specialized Python
+          <code class="literal">list</code>, <code class="literal">tuple</code>, and <code class="literal">dict</code>
+          (dictionary) types</p></li><li><p>Call a method on a Python object with the same name as a MATLAB function.</p></li><li><p>Call functionality from your own Python module.</p></li><li><p>Find examples.</p></li></ul></div></section><section><h3 class="title" id="mw_0465e4e0-8f01-4814-a237-426752ec21f3">Verify <span class="trademark entity">Python</span> Configuration</h3><p>To use Python in MATLAB, you must have a supported version of Python installed on your machine. For more information, see <a href="install-supported-python-implementation.html" class="a">Configure Your System to Use Python</a>.</p><p>Make sure that the Python path is included in your system path environment variable. To verify that you
+      have a supported version of Python, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pyenv</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  PythonEnvironment with properties:
+
+          Version: "3.11"
+       Executable: "C:\Users\<em class="replaceable">aname</em>\AppData\Local\Programs\Python\Python311\pythonw.exe"
+          Library: "C:\Users\<em class="replaceable">aname</em>\AppData\Local\Programs\Python\Python311\python311.dll"
+             Home: "C:\Users\<em class="replaceable">aname</em>\AppData\Local\Programs\Python\Python311"
+           Status: NotLoaded
+    ExecutionMode: OutOfProcess</pre></div></div></div><p>If the value of the <code class="literal">Version</code> property is empty, then you do not have a
+      supported version available. For more information about installing Python, see <a href="install-supported-python-implementation.html" class="a">Configure Your System to Use Python</a>.</p></section><section><h3 class="title" id="mw_072efb46-0ec1-4133-ad7c-85282dbadb20">Access <span class="trademark entity">Python</span> Standard Library Modules in <span class="trademark entity">MATLAB</span></h3><p class="shortdesc">MATLAB interacts with the Python interpreter on your machine, giving you access all standard library content. For
+      example, create a Python
+      <code class="literal">list</code> data type.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>res = py.list({<span style="color:#A020F0">"Name1"</span>,<span style="color:#A020F0">"Name2"</span>,<span style="color:#A020F0">"Name3"</span>})</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>res = 
+
+  Python list with values:
+
+    ['Name1', 'Name2', 'Name3']
+</pre></div></div></div><p class="shortdesc">MATLAB recognizes Python objects and automatically converts the MATLAB cell array to the appropriate Python type.</p><p>You can call Python methods on an object. To display the available methods for
+        <code class="literal">list</code> objects, type <code class="literal">methods(py.list)</code>. For example,
+      update the list <code class="literal">res</code> using the Python
+      <code class="literal">append</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>res.append(<span style="color:#A020F0">"Name4"</span>)
+res</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>res = 
+
+  Python list with values:
+
+    ['Name1', 'Name2', 'Name3', 'Name4']</pre></div></div></div><p class="shortdesc">To convert the <code class="literal">list</code> variable to a MATLAB variable, call <code class="function">string</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mylist = string(res)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mylist =
+
+  1×4 string array
+
+    'Name1'    'Name2'    'Name3'    'Name4'</pre></div></div></div></section><section><h3 class="title" id="mw_be38e803-4eb9-4800-98c8-6ee58dac2ffd">Display <span class="trademark entity">Python</span> Documentation in <span class="trademark entity">MATLAB</span></h3><p>You can display help text for Python functions in MATLAB. For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>py.help(<span style="color:#A020F0">"list.append"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Help on method_descriptor in list:
+
+list.append = append(...)
+    L.append(object) -&gt; None -- append object to end</pre></div></div></div><p>Tab completion when typing <code class="literal">py.</code> does not display
+      available Python functionality. For more information, see <a href="differences-between-matlab-python.html#buialof-71" class="a">Help for Python Functions</a>.</p></section><section><h3 class="title" id="buialof-61">Create List, Tuple, and Dictionary Types</h3><p>This table shows the statements for creating <code class="literal">list</code>,
+        <code class="literal">tuple</code>, and <code class="literal">dict</code> types. The statements on the left are
+      run from the Python interpreter. The statements on the right are MATLAB statements.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="44%"><col class="tcol2" width="56%"></colgroup><thead><tr><th><p>Python
+                <code class="literal">list</code> &#8212; <code class="literal">[]</code></p></th><th><p>MATLAB
+                <code class="literal">py.list</code></p></th></tr></thead><tbody><tr><td><code class="literal">&gt;&gt;&gt; ['Robert', 'Mary', 'Joseph']</code></td><td><code class="literal">&gt;&gt; py.list({"Robert","Mary","Joseph"})</code></td></tr><tr><td><code class="literal">&gt;&gt;&gt; [[1,2],[3,4]]</code></td><td><code class="literal">&gt;&gt; py.list({py.list([1,2]),py.list([3,4])})</code></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="44%"><col class="tcol2" width="56%"></colgroup><thead><tr><th><p>Python
+                <code class="literal">tuple</code> &#8212; <code class="literal">()</code></p></th><th><p>MATLAB
+                <code class="literal">py.tuple</code></p></th></tr></thead><tbody><tr><td><code class="literal">&gt;&gt;&gt; ('Robert', 19, 'Biology')</code></td><td><code class="literal">&gt;&gt; py.tuple({"Robert",19,"Biology"})</code></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="44%"><col class="tcol2" width="56%"></colgroup><thead><tr><th><p>Python
+                <code class="literal">dict</code> &#8212; <code class="literal">{}</code></p></th><th><p>MATLAB
+                <code class="literal">py.dict</code></p></th></tr></thead><tbody><tr><td><code class="literal">&gt;&gt;&gt; {'Robert': 357, 'Joe': 391, 'Mary': 229}</code></td><td><code class="literal">&gt;&gt; py.dict(Robert=357,Mary=229,Joe=391)</code></td></tr></tbody></table></div></section><section><h3 class="title" id="bujm35m">Precedence Order of Methods and Functions</h3><p>If a Python class defines a method with the same name as a MATLAB converter method for Python types, MATLAB calls the Python method. This means you cannot call the MATLAB converter method on an object of that class.</p><p>For example, if a Python class defines a <code class="literal">char</code> method, this statement calls the
+        Python method.</p><div class="code_responsive"><pre class="programlisting">char(obj)</pre></div><p>To use the MATLAB
+      <code class="function">char</code> function, type:</p><div class="code_responsive"><pre class="programlisting">char(py.str(obj))</pre></div></section><section><h3 class="title" id="mw_c224a09a-f56b-48e5-b9ec-145388506204">Access Other <span class="trademark entity">Python</span> Modules</h3><p>You can use your own Python code and third-party modules in MATLAB. The content must be on the Python path. Installing a third-party module puts the content on the Python path. If you create your own modules, you are responsible for putting them on
+      the path.</p><p>For an example, see <a href="call-user-defined-custom-module.html" class="a">Call User-Defined Python Module</a>.</p></section><section><h3 class="title" id="mw_cba12591-9e70-445b-847d-9c44f8080561"><span class="trademark entity">Python</span> Examples</h3><p>For example code you can open in the MATLAB live editor, look for Featured Examples on the <a href="../call-python-libraries.html" class="a">Call Python from MATLAB</a> page. For information about searching MATLAB examples, see <a href="../matlab_env/run-examples.html" class="a">MATLAB Code Examples</a>.</p><p>For an example using an online dataset, see this <a href="https://blogs.mathworks.com/loren/2020/03/03/matlab-speaks-python/">MathWorks
+        blog post</a>.</p></section><h2 id="d126e87304">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/pyenv.html"><span itemprop="name"><code class="function">pyenv</code></span></a></span></p>
+    <h3 id="d126e87308">Topics</h3><ul class="list-unstyled"><li><a href="call-python-from-matlab.html" class="a">Call Python Function in MATLAB to Wrap Paragraph Text</a></li><li><a href="install-supported-python-implementation.html" class="a">Configure Your System to Use Python</a></li><li><a href="ways-to-call-python-from-matlab.html" class="a">Directly Call Python Functionality from MATLAB</a></li></ul></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

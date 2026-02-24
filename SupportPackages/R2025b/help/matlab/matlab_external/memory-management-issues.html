@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Memory Management Issues</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Rules for managing mxArray memory."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Memory Management Issues</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#btoo8dz" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#f24813" class="nav-link intrnllnk">Improperly Destroying an mxArray</a><ul class="nav"><li class="nav-item"><a href="#f24819" class="nav-link intrnllnk">Example</a></li><li class="nav-item"><a href="#f24825" class="nav-link intrnllnk">Solution</a></li></ul></li><li class="nav-item"><a href="#f24829" class="nav-link intrnllnk">Incorrectly Constructing a Cell or Structure mxArray</a><ul class="nav"><li class="nav-item"><a href="#f24836" class="nav-link intrnllnk">Example</a></li><li class="nav-item"><a href="#f24846" class="nav-link intrnllnk">Solution</a></li></ul></li><li class="nav-item"><a href="#f24851" class="nav-link intrnllnk">Creating a Temporary mxArray with Improper Data</a><ul class="nav"><li class="nav-item"><a href="#f24856" class="nav-link intrnllnk">Example</a></li><li class="nav-item"><a href="#f24869" class="nav-link intrnllnk">Solution</a></li></ul></li><li class="nav-item"><a href="#f24877" class="nav-link intrnllnk">Creating Potential Memory Leaks</a></li><li class="nav-item"><a href="#brfpzpx-1" class="nav-link intrnllnk">Improperly Destroying a Structure</a><ul class="nav"><li class="nav-item"><a href="#brfpzyk" class="nav-link intrnllnk">Example</a></li><li class="nav-item"><a href="#brfpzyr-1" class="nav-link intrnllnk">Solution</a></li></ul></li><li class="nav-item"><a href="#brhj1k9-1" class="nav-link intrnllnk">Destroying Memory in a C++ Class Destructor</a></li><li class="nav-item"><a href="#d126e35316" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f24804">Memory Management Issues</h2><section><h3 class="title" id="btoo8dz">Overview</h3><span id="memory_management_compatibility_issues" class="anchor_target"></span><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The examples in this topic use functions in the interleaved complex API. To
+                    build applications with these functions, call <code class="function">mex</code> with the
+                    release-specific option <code class="literal remove_text_wrapping">-R2018a</code>.</p></div><p>When a MEX function returns control to MATLAB<sup>&#x00AE;</sup>, it returns the results of its computations in the output arguments&#8212;the
+        <code class="literal">mxArray</code>s contained in the left-side arguments <code class="literal">plhs[]</code>.
+    These arrays must have a temporary scope, so do not pass arrays created with the
+        <code class="function">mexMakeArrayPersistent</code> function in <code class="literal">plhs</code>. MATLAB destroys any <code class="literal">mxArray</code> created by the MEX function that is not in
+        <code class="literal">plhs</code>. MATLAB also frees any memory that was allocated in the MEX function using the
+        <code class="function">mxCalloc</code>, <code class="function">mxMalloc</code>, or
+        <code class="function">mxRealloc</code> functions.</p><p>In general, <span>MathWorks<sup>&#x00AE;</sup> recommends that MEX functions destroy their own temporary arrays and free their
+    own dynamically allocated memory. It is more efficient to perform this cleanup in the source MEX
+    file than to rely on the automatic mechanism.</span> This approach is consistent with other MATLAB API applications (MAT-file applications, engine applications, and
+                    <span class="entity">MATLAB
+            Compiler&#x2122;</span> generated applications, which do not have any automatic cleanup
+                mechanism.)</p><p>However, do not destroy an <code class="literal">mxArray</code> in a source MEX file when it
+                is:</p><div class="itemizedlist"><ul><li><p>passed to the MEX file in the right-hand side list
+                            <code class="literal">prhs[]</code></p></li><li><p>returned in the left side list <code class="literal">plhs[]</code></p></li><li><p>returned by <code class="function">mexGetVariablePtr</code></p></li><li><p>used to create a structure</p></li></ul></div><p>This section describes situations specific to memory management. We recommend that
+                you review code in your source MEX files to avoid using these functions in the
+                following situations. For more information, see <a href="automatic-cleanup-of-temporary-arrays.html" class="a">Automatic Cleanup of Temporary Arrays in MEX Files</a> and <a href="persistent-mxarrays.html" class="a">Persistent mxArrays</a>. For guidance on memory issues, see <a href="../matlab_prog/strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a>.</p><p>Potential memory management problems include:</p></section><section><h3 class="title" id="f24813">Improperly Destroying an <code class="literal">mxArray</code></h3><p>Do not use <code class="function">mxFree</code> to destroy an
+                <code class="literal">mxArray</code>.</p><section><h4 class="title" id="f24819">Example</h4><p>In the following example, <code class="function">mxFree</code> does not destroy the
+                    array object. This operation frees the structure header associated with the
+                    array, but MATLAB still operates as if the array object needs to be destroyed. Thus
+                        MATLAB tries to destroy the array object, and in the process, attempts to
+                    free its structure header again:</p><div class="code_responsive"><pre class="programlisting">mxArray *temp = mxCreateDoubleMatrix(1,1,mxREAL);
+      ...
+mxFree(temp);  /* INCORRECT */</pre></div></section><section><h4 class="title" id="f24825">Solution</h4><p>Call <code class="function">mxDestroyArray</code> instead:</p><div class="code_responsive"><pre class="programlisting">mxDestroyArray(temp);  /* CORRECT */</pre></div></section></section><section><h3 class="title" id="f24829">Incorrectly Constructing a Cell or Structure <code class="literal">mxArray</code></h3><p>Do not call <code class="function">mxSetCell</code> or <code class="function">mxSetField</code>
+                variants with <code class="literal">prhs[]</code> as the member array.</p><section><h4 class="title" id="f24836">Example</h4><p>In the following example, when the MEX file returns, MATLAB destroys the entire cell array. Since this includes the members of
+                    the cell, this implicitly destroys the input arguments of the MEX file. This can
+                    cause several strange results, generally having to do with the corruption of the
+                    caller workspace, if the right-hand side argument used is a temporary array (for
+                    example, a literal or the result of an expression):</p><div class="code_responsive"><pre class="programlisting">myfunction('hello')
+/* myfunction is the name of your MEX file and your code
+/* contains the following:    */
+
+    mxArray *temp = mxCreateCellMatrix(1,1);
+      ...
+    mxSetCell(temp, 0, prhs[0]);  /* INCORRECT */</pre></div></section><section><h4 class="title" id="f24846">Solution</h4><p>Make a copy of the right-hand side argument with
+                        <code class="function">mxDuplicateArray</code> and use that copy as the argument to
+                        <code class="function">mxSetCell</code> (or <code class="function">mxSetField</code>
+                    variants). For example:</p><div class="code_responsive"><pre class="programlisting">mxSetCell(temp, 0, mxDuplicateArray(prhs[0]));  /* CORRECT */</pre></div></section></section><section><h3 class="title" id="f24851">Creating a Temporary <code class="literal">mxArray</code> with Improper Data</h3><p>Do not call <code class="function">mxDestroyArray</code> on an <code class="literal">mxArray</code>
+                whose data was not allocated by an API routine.</p><section><h4 class="title" id="f24856">Example</h4><p>If you call <code class="function">mxSetDoubles</code>,
+                        <code class="function">mxSetComplexDoubles</code>, or any of the typed data access
+                    functions specifying memory that was not allocated by
+                        <code class="function">mxCalloc</code>, <code class="function">mxMalloc</code>, or
+                        <code class="function">mxRealloc</code> as the intended data block (second argument),
+                    then when the MEX file returns, MATLAB attempts to free the pointers to real data and imaginary data (if
+                    any). Thus MATLAB attempts to free memory, in this example, from the program
+                    stack:</p><div class="code_responsive"><pre class="programlisting">mxArray *temp = mxCreateDoubleMatrix(0,0,mxREAL);
+double data[5] = {1,2,3,4,5};
+      ...
+mxSetM(temp,1); mxSetN(temp,5); mxSetDoubles(temp, data); 
+/* INCORRECT */</pre></div></section><section><h4 class="title" id="f24869">Solution</h4><p>Rather than use <code class="function">mxSetDoubles</code> to set the data pointer,
+                    instead, create the <code class="literal">mxArray</code> with the right size and use
+                        <code class="literal">memcpy</code> to copy the stack data into the buffer returned by
+                        <code class="function">mxGetDoubles</code>:</p><div class="code_responsive"><pre class="programlisting">mxArray *temp = mxCreateDoubleMatrix(1,5,mxREAL);
+double data[5] = {1,2,3,4,5};
+      ...
+memcpy(mxGetDoubles(temp), data, 5*sizeof(double)); /* CORRECT */</pre></div></section></section><section><h3 class="title" id="f24877">Creating Potential Memory Leaks</h3><p>Before Version 5.2, if you created an <code class="literal">mxArray</code> using one of the
+                API creation routines and then you overwrote the pointer to the data using
+                    <code class="function">mxSetDoubles</code>, MATLAB still freed the original memory. MATLAB no longer frees the memory.</p><p>For example:</p><div class="code_responsive"><pre class="programlisting">pr = mxCalloc(5*5, sizeof(double));
+... &lt;load data into pr&gt;
+plhs[0] = mxCreateDoubleMatrix(5,5,mxREAL);
+mxSetDoubles(plhs[0], pr);  /* INCORRECT */</pre></div><p>now leaks 5*5*8 bytes of memory, where 8 bytes is the size of a
+                    <code class="literal">double</code>.</p><p>You can avoid that memory leak by changing the code to:</p><div class="code_responsive"><pre class="programlisting">plhs[0] = mxCreateDoubleMatrix(5,5,mxREAL);
+pr = mxGetDoubles(plhs[0]);
+... &lt;load data into pr&gt; </pre></div><p>or alternatively:</p><div class="code_responsive"><pre class="programlisting">pr = mxCalloc(5*5, sizeof(double));
+... &lt;load data into pr&gt;
+plhs[0] = mxCreateDoubleMatrix(5,5,mxREAL);
+mxFree(mxGetDoubles(plhs[0]));
+mxSetDoubles(plhs[0], pr);</pre></div><p>The first solution is more efficient.</p><p>Similar memory leaks can also occur when using <code class="function">mxSetDoubles</code>,
+                    <code class="function">mxSetComplexDoubles</code>, <code class="function">mxSetIr</code>,
+                    <code class="function">mxSetJc</code>, or any of the numeric typed data access functions.
+                You can avoid memory leaks by changing the code as described in this section.</p></section><section><h3 class="title" id="brfpzpx-1">Improperly Destroying a Structure</h3><p>For a structure, you must call <code class="function">mxDestroyArray</code> only on the
+                structure, not on the field data arrays. A field in the structure points to the data
+                in the array used by <code class="function">mxSetField</code> or
+                    <code class="function">mxSetFieldByNumber</code>. When
+                    <code class="function">mxDestroyArray</code> destroys the structure, it attempts to
+                traverse down through itself and free all other data, including the memory in the
+                data arrays. If you call <code class="function">mxDestroyArray</code> on each data array, the
+                same memory is freed twice which can corrupt memory.</p><section><h4 class="title" id="brfpzyk">Example</h4><p>The following example creates three arrays: one structure array
+                        <code class="literal">aStruct</code> and two data arrays, <code class="literal">myDataOne</code>
+                    and <code class="literal">myDataTwo</code>. Field name <code class="literal">one</code> contains a
+                    pointer to the data in <code class="literal">myDataOne</code>, and field name
+                        <code class="literal">two</code> contains a pointer to the data in
+                        <code class="literal">myDataTwo</code>.</p><div class="code_responsive"><pre class="programlisting">mxArray *myDataOne; 
+mxArray *myDataTwo; 
+mxArray *aStruct; 
+const char *fields[] = { "one", "two" }; 
+ 
+myDataOne = mxCreateDoubleScalar(1.0); 
+myDataTwo = mxCreateDoubleScalar(2.0); 
+ 
+aStruct = mxCreateStructMatrix(1,1,2,fields); 
+mxSetField( aStruct, 0, "one", myDataOne ); 
+mxSetField( aStruct, 1, "two", myDataTwo ); 
+mxDestroyArray(myDataOne); 
+mxDestroyArray(myDataTwo);
+mxDestroyArray(aStruct); /* tries to free myDataOne and myDataTwo */
+</pre></div></section><section><h4 class="title" id="brfpzyr-1">Solution</h4><p>The command <code class="literal">mxDestroyArray(aStruct)</code> destroys the data in
+                    all three arrays:</p><div class="code_responsive"><pre class="programlisting">      ...
+aStruct = mxCreateStructMatrix(1,1,2,fields); 
+mxSetField( aStruct, 0, "one", myDataOne ); 
+mxSetField( aStruct, 1, "two", myDataTwo ); 
+mxDestroyArray(aStruct); 
+</pre></div></section></section><section><h3 class="title" id="brhj1k9-1">Destroying Memory in a C++ Class Destructor</h3><p>Do not use the <code class="function">mxFree</code> or <code class="function">mxDestroyArray</code> functions
+in a C++ destructor of a class used in a MEX-function. If the MEX-function
+throws an error, MATLAB cleans up MEX-file variables, as described
+in <a href="automatic-cleanup-of-temporary-arrays.html" class="a">Automatic Cleanup of Temporary Arrays in MEX Files</a>.</p><p>If an error occurs that causes the object to go out of scope, MATLAB calls
+the C++ destructor. Freeing memory directly in the destructor means
+both MATLAB and the destructor free the same memory, which can
+corrupt memory.</p></section>
+            <h2 id="d126e35316">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/mxdestroyarray.html"><span itemprop="name"><code class="function">mxDestroyArray</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/mxfree.html"><span itemprop="name"><code class="function">mxFree</code></span></a></span></p>
+            <h3 id="d126e35325">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a></li><li><a href="automatic-cleanup-of-temporary-arrays.html" class="a">Automatic Cleanup of Temporary Arrays in MEX Files</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

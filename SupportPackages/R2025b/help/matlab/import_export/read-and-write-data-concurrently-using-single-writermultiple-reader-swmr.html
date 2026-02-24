@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Read and Write Data Concurrently Using Single-Writer/Multiple-Reader (SWMR)</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../hdf5-files.html",
+          "name": "HDF5 Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "hdf5-files"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Write data to an HDF5 file in one process while you concurrently read from the file in one or more reader processes."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hdf5-files.html?s_tid=CRUX_lftnav" itemprop="url" id="btpwvi2"><span itemprop="title">HDF5 Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Read and Write Data Concurrently Using Single-Writer/Multiple-Reader (SWMR)</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_73ffb083-7359-48a4-b12c-ba99db032e1c" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#mw_f97150cb-52bb-40c9-ba6f-1f18d0b2ea41" class="nav-link intrnllnk">Requirements and Limitations</a></li><li class="nav-item"><a href="#mw_9300a39f-7f03-4d7c-a283-ad4770f54f1b" class="nav-link intrnllnk">Enable SWMR Access for HDF5 File</a></li><li class="nav-item"><a href="#mw_f87ee1dd-eceb-4d80-8a38-b28d2a3c5b4f" class="nav-link intrnllnk">Write to HDF5 File While Two Processes Read</a></li><li class="nav-item"><a href="#d126e15377" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_19f3169e-29d4-4e87-bc2a-d5c73a27deb7">Read and Write Data Concurrently Using Single-Writer/Multiple-Reader (SWMR)</h2><section><h3 class="title" id="mw_73ffb083-7359-48a4-b12c-ba99db032e1c">Overview</h3><p>The Single-Writer/Multiple-Reader (SWMR) feature of the MATLAB<sup>&#x00AE;</sup> low-level HDF5 function interface allows you to append data to
+                datasets or overwrite existing data while several reader processes concurrently read
+                the new data from the file. The reader and writer processes can run on the same
+                platform or different platforms, and no communication between the processes or file
+                locking is needed.</p><p>To use SWMR, you must be familiar with the HDF5 SWMR programming model. For more
+                information, see the <a href="https://docs.hdfgroup.org/archive/support/HDF5/docNewFeatures/SWMR/Design-HDF5-SWMR-20130629.v5.2.pdf" target="_blank">HDF5 SWMR Feature Design and Semantics Document</a> and the <a href="https://support.hdfgroup.org/archive/support/HDF5/docNewFeatures/SWMR/HDF5_SWMR_Users_Guide.pdf" target="_blank">HDF5
+                    SWMR User's Guide</a> on The HDF Group website.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>MATLAB releases earlier than R2021b might not be able to read HDF5 files
+                    or objects created using R2021b or later releases due to the file format changes
+                    in HDF5 version 1.10. HDF5 files created with SWMR access are not compatible
+                    with versions of HDF5 prior to 1.10. Because the HDF5 library is always backward
+                    compatible, MATLAB R2021b and later releases can read and modify HDF5 files or
+                    objects created using any MATLAB release.</p></div></section><section><h3 class="title" id="mw_f97150cb-52bb-40c9-ba6f-1f18d0b2ea41">Requirements and Limitations</h3><div class="itemizedlist"><ul><li><p>An HDF5 file with SWMR access must be located on a file system that
+                        complies with the Portable Operating System Interface (POSIX) write()
+                        semantics, and the writer and reader processes must follow the SWMR
+                        programming model.</p></li><li><p>SWMR is not supported on remote file locations.</p></li><li><p>You must follow the SWMR implementation scope:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>The writer process is allowed to modify raw data of existing
+                                datasets only by:</p>
+<div class="itemizedlist"><ul><li><p>Appending data along an unlimited dimension</p></li><li><p>Modifying existing data</p></li></ul></div><p>
+</p></li><li><p>The writer process is not allowed to:</p>
+<div class="itemizedlist"><ul><li><p>Add new objects to or delete objects from the file.
+                                            Such objects include groups, datasets, links, committed
+                                            datatypes, and attributes.</p></li><li><p>Modify or append to any data items containing
+                                            variable-size data types (including string data
+                                            types).</p></li></ul></div><p>
+</p></li><li><p>File space recycling is not allowed. The size of a file modified
+                                by a SWMR writer may be greater than if a non-SWMR writer had
+                                modified the file.</p></li></ol></div></li></ul></div><p>For more information on SWMR requirements and limitations, see the <a href="https://support.hdfgroup.org/archive/support/HDF5/docNewFeatures/SWMR/HDF5_SWMR_Users_Guide.pdf" target="_blank">HDF5
+                    SWMR User's Guide</a> on the HDF Group website.</p></section><section><h3 class="title" id="mw_9300a39f-7f03-4d7c-a283-ad4770f54f1b">Enable SWMR Access for HDF5 File</h3><p>Follow these general steps in MATLAB to enable SWMR access in on HDF5 file:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create the file with the latest file format by specifying the lower
+                            and upper bounds of the library version as
+                                <code class="literal">'H5F_LIBVER_LATEST'</code> in the call to the
+                                <code class="literal">H5P.set_libver_bounds</code> function.</p><p>
+                            <div class="code_responsive"><pre class="programlisting">H5P.set_libver_bounds(faplID,'H5F_LIBVER_LATEST','H5F_LIBVER_LATEST');
+</pre></div>
+                        </p></li><li><div class="orderedlist"><p>Enable SWMR write access for the HDF5 file and flush the dataset
+                                after each write operation.</p><ol style="list-style: lower-alpha;"><li><p>Specify the flag <code class="literal">'H5F_ACC_SWMR_WRITE'</code> in
+                                    the call to the <code class="literal">H5F.open</code> function. For
+                                    example, open the file with SWMR write access using the default
+                                    property list settings.</p><p>
+                                    <div class="code_responsive"><pre class="programlisting">fileID = H5F.open(myFile,'H5F_ACC_RDWR|H5F_ACC_SWMR_WRITE','H5P_DEFAULT');
+</pre></div>
+                                </p><p>Alternatively, you can enable SWMR write access using the
+                                        <code class="literal">H5F.start_swmr_write</code> function.</p></li><li><p>Flush the dataset after each write operation using
+                                        <code class="literal">H5D.flush</code>.</p></li></ol></div></li><li><p>Enable SWMR read access for the HDF5 file and refresh the dataset
+                            before each read operation.</p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>Open the file for SWMR read access by specifying the flag
+                                            <code class="literal">'H5F_ACC_SWMR_READ'</code> in the call to
+                                        the <code class="literal">H5F.open</code> function. For example, open
+                                        the file with SWMR read access using the default property
+                                        list settings.</p><p>
+                                        <div class="code_responsive"><pre class="programlisting">fileID = H5F.open(myFile,'H5F_ACC_RDONLY|H5F_ACC_SWMR_READ','H5P_DEFAULT');
+</pre></div>
+                                    </p></li><li><p>Refresh the dataset before each read operation using
+                                            <code class="literal">H5D.refresh</code>.</p></li></ol></div><p>
+</p></li></ol></div><p>
+</p></section><section><h3 class="title" id="mw_f87ee1dd-eceb-4d80-8a38-b28d2a3c5b4f">Write to HDF5 File While Two Processes Read</h3>
+                <p class="shortdesc">Use SWMR to write surface data to an HDF5 file, while one
+                    reader process records peak data in a text file and another plots the surface
+                    data over time. This example uses data generated from the MATLAB
+                    <code class="literal">peaks</code> function.</p>
+                <p>This example defines three functions, <code class="literal">writeData</code>,
+                        <code class="literal">readPlot3D</code>, and <code class="literal">readLogger</code>, which can
+                    be run concurrently in an SWMR-enabled environment. You must run
+                        <code class="literal">writeData</code> before <code class="literal">readPlot3D</code> and
+                        <code class="literal">readLogger</code> to create the HDF5 file if it does not
+                    exist.</p>
+            <div class="procedure"><p>Create a writer function named <code class="literal">writeData</code> that writes a
+                        2-D array of data to an HDF5 file. </p><p>When you create the file, set the lower and upper library version bounds
+                        to <code class="literal">'H5F_LIBVER_LATEST'</code> in the call to the
+                            <code class="literal">H5P.set_libver_bounds</code> function. Then, enable SWMR
+                        write access to the file by specifying the flag
+                            <code class="literal">'H5F_ACC_SWMR_WRITE'</code> in the call to the
+                            <code class="literal">H5F.open</code> function.</p><p>Finally, flush the dataset after each write operation using
+                            <code class="literal">H5D.flush</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> writeData(dataFile)
+    <span style="color:#228B22">% Create HDF5 file if does not already exist, and initialize dataset.</span>
+    <span style="color:#0000FF">if</span> ~exist(dataFile,<span style="color:#A020F0">'file'</span>)
+        <span style="color:#228B22">% Create file access property list, set library version flags, and create the file.</span>
+        faplID = H5P.create(<span style="color:#A020F0">'H5P_FILE_ACCESS'</span>);
+        H5P.set_libver_bounds(faplID,<span style="color:#A020F0">'H5F_LIBVER_LATEST'</span>,<span style="color:#A020F0">'H5F_LIBVER_LATEST'</span>);
+        fileID = H5F.create(dataFile,<span style="color:#A020F0">'H5F_ACC_TRUNC'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>,faplID);
+    
+        <span style="color:#228B22">% Create and write dataset.</span>
+        datatypeID = H5T.copy(<span style="color:#A020F0">'H5T_NATIVE_DOUBLE'</span>);
+        dataspaceID = H5S.create_simple(2,[25 25],[]);
+        datasetID = H5D.create(fileID,<span style="color:#A020F0">'/peaks'</span>,datatypeID,dataspaceID,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+        H5D.write(datasetID,<span style="color:#A020F0">'H5ML_DEFAULT'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>,NaN(25));
+
+        <span style="color:#228B22">% Close open resources.</span>
+        H5D.close(datasetID);
+        H5S.close(dataspaceID);
+        H5T.close(datatypeID);
+        H5F.close(fileID);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Open HDF5 file with support for SWMR write access and open dataset.</span>
+    fileID = H5F.open(dataFile,<span style="color:#A020F0">'H5F_ACC_RDWR|H5F_ACC_SWMR_WRITE'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+    datasetID = H5D.open(fileID,<span style="color:#A020F0">'/peaks'</span>);
+    
+    <span style="color:#228B22">% Loop through writing Z data to file.</span>
+    <span style="color:#0000FF">for</span> t = 0 : 0.05 : 15
+        Z = exp(-0.15*t) * sin(10*t) * abs(peaks(25));
+        H5D.write(datasetID,<span style="color:#A020F0">'H5ML_DEFAULT'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>,Z);
+        
+        <span style="color:#228B22">% Flush data in the dataset after writing.</span>
+        H5D.flush(datasetID);
+        pause(0.05);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Close open resources.</span>
+    H5D.close(datasetID);
+    H5F.close(fileID);
+
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>Create a reader function named <code class="literal">readPlot3D</code> that plots
+                        data stored in the <code class="literal">/peaks</code> dataset of the input HDF5
+                        file.</p><p>Enable SWMR read access by specifying the flag
+                            <code class="literal">'H5F_ACC_SWMR_READ'</code> in the call to the
+                            <code class="literal">H5F.open</code> function. Refresh the data in the dataset
+                        before each subsequent read.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> readPlot3D(dataFile)
+    <span style="color:#228B22">% Open HDF5 file with for SWMR read access and open dataset.</span>
+    h5FileID = H5F.open(dataFile,<span style="color:#A020F0">'H5F_ACC_RDONLY|H5F_ACC_SWMR_READ'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+    datasetID = H5D.open(h5FileID,<span style="color:#A020F0">'/peaks'</span>);
+    
+    <span style="color:#228B22">% Loop through reading Z data from file and 3D plotting it.</span>
+    hSurf = [];
+    <span style="color:#0000FF">for</span> t = 0 : 0.05 : 15
+        <span style="color:#228B22">% Refresh dataset before reading.</span>
+        H5D.refresh(datasetID);
+        Z = H5D.read(datasetID,<span style="color:#A020F0">'H5ML_DEFAULT'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+        <span style="color:#0000FF">if</span> isempty(hSurf)      
+            <span style="color:#228B22">% Create surface plot if not present.</span>
+            hSurf = surf(Z);
+            zlim([-8 8]);
+            clim([-5 5]);
+        <span style="color:#0000FF">else</span>               
+            <span style="color:#228B22">% Update surface plot Z data otherwise.</span>
+            hSurf.ZData = Z;
+        <span style="color:#0000FF">end</span>
+        pause(0.05);
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Close open resources</span>
+    H5D.close(datasetID);
+    H5F.close(h5FileID);
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>The <code class="literal">readPlot3D</code> function updates the plot with each
+                        iteration, resulting in a surface plot similar to the following one.</p><div class="informalfigure"><div id="d126e15335" class="mediaobject"><p><img src="hdf5_swmr_peaksdata_3d.png" alt="Surface plot generated by readPlot3D function" height="425" width="611"></p></div></div><p>Create a second reader function named <code class="literal">readLogger</code> that
+                        reads the data in the <code class="literal">/peaks</code> dataset and logs the data
+                        taken at one sampling point.</p><p>Enable SWMR read access by specifying the flag
+                            <code class="literal">'H5F_ACC_SWMR_READ'</code> in the call to the
+                            <code class="literal">H5F.open</code> function. Refresh the data in the dataset
+                        before each subsequent read.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> readLogger(dataFile)
+    <span style="color:#228B22">% Open HDF5 file with SWMR read access and open dataset.</span>
+    h5FileID = H5F.open(dataFile,<span style="color:#A020F0">'H5F_ACC_RDONLY|H5F_ACC_SWMR_READ'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+    datasetID = H5D.open(h5FileID,<span style="color:#A020F0">'/peaks'</span>);
+    
+    <span style="color:#228B22">% Open log file for saving records.</span>
+    recordFileID = fopen(<span style="color:#A020F0">'logs.txt'</span>,<span style="color:#A020F0">'w'</span>);
+    fprintf(recordFileID,<span style="color:#A020F0">'t,Zpeak\n'</span>);
+    
+    <span style="color:#228B22">% Loop through reading Z data from the file and recording central value.</span>
+    <span style="color:#0000FF">for</span> t = 0 : 0.05 : 15
+        <span style="color:#228B22">% Refresh dataset before reading.</span>
+        H5D.refresh(datasetID);
+        Z = H5D.read(datasetID,<span style="color:#A020F0">'H5ML_DEFAULT'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5S_ALL'</span>,<span style="color:#A020F0">'H5P_DEFAULT'</span>);
+        idx = round(size(Z,1)/2);
+        fprintf(recordFileID,<span style="color:#A020F0">'%.3f,%.3f\n'</span>,t,Z(idx,idx));
+        pause(0.05);
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Close open resources.</span>
+    H5D.close(datasetID);
+    H5F.close(h5FileID);
+    fclose(recordFileID);
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>The <code class="literal">readLogger</code> function writes data samples to a text
+                        file named <code class="literal">logs.txt</code>. You can plot the data in
+                            <code class="literal">logs.txt</code> to obtain the following figure.</p><div class="informalfigure"><div id="d126e15366" class="mediaobject"><p><img src="hdf5_swmr_peaksdata_2d.png" alt="Plot of data samples in logs.txt output by readLogger function" height="394" width="493"></p></div></div></div></section>
+            <h2 id="d126e15377">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="work-with-hdf5-virtual-datasets-vds.html"><span itemprop="name">Work with HDF5 Virtual Datasets (VDS)</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/propertyh5p.html"><span itemprop="name">Property (H5P)</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/dataseth5d.html"><span itemprop="name">Dataset (H5D)</span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/fileh5f.html"><span itemprop="name">File (H5F)</span></a></span></p>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

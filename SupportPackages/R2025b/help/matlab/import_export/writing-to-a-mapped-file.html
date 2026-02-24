@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write to Mapped File</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../memory-mapping.html",
+          "name": "Memory Mapping"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "memory-mapping"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to create three different memory maps, and then write to each of the maps using the appropriate syntax."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../memory-mapping.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetc6-1"><span itemprop="title">Memory Mapping</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write to Mapped File</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bual_nc-1" class="nav-link intrnllnk">Write to Memory Mapped as Numeric Array</a></li><li class="nav-item"><a href="#bual_ob-1" class="nav-link intrnllnk">Write to Memory Mapped as Scalar Structure</a></li><li class="nav-item"><a href="#bual_o0-1" class="nav-link intrnllnk">Write to Memory Mapped as Nonscalar Structure</a></li><li class="nav-item"><a href="#braidws-44" class="nav-link intrnllnk">Syntaxes for Writing to Mapped File</a></li><li class="nav-item"><a href="#braidws-49" class="nav-link intrnllnk">Work with Copies of Your Mapped Data</a></li><li class="nav-item"><a href="#d126e19565" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=memory-mapping&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=memory-mapping&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="braidws-41">Write to Mapped File</h2><p>This example shows how to create three different memory maps,
+and then write to each of the maps using the appropriate syntax. Then,
+it shows how to work with copies of your mapped data.</p><p>You can write to a file using the same MATLAB<sup>&#x00AE;</sup> commands
+you use to access variables in the MATLAB workspace. By accessing
+the <code class="literal">Data</code> property of the memory map, the contents
+of the mapped file appear as an array in the currently active workspace.
+Simply index into this array to write data to the file. The syntax
+to use when writing to mapped memory depends on the format of the <code class="literal">Data</code> property
+of the memory map.</p><ul><li><p><a class="intrnllnk" href="#bual_nc-1">Write to Memory Mapped as Numeric Array</a></p></li><li><p><a class="intrnllnk" href="#bual_ob-1">Write to Memory Mapped as Scalar Structure</a></p></li><li><p><a class="intrnllnk" href="#bual_o0-1">Write to Memory Mapped as Nonscalar Structure</a></p></li><li><p><a class="intrnllnk" href="#braidws-44">Syntaxes for Writing to Mapped File</a></p></li><li><p><a class="intrnllnk" href="#braidws-49">Work with Copies of Your Mapped Data</a></p></li></ul><section><h3 class="title" id="bual_nc-1">Write to Memory Mapped as Numeric Array</h3><p>First, create a sample file named <code class="literal">records.dat</code>, in your current
+                folder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>)
+myData = rand([5000,1]);
+
+fileID = fopen(<span style="color:#A020F0">'records.dat'</span>,<span style="color:#A020F0">'w'</span>);
+fwrite(fileID, myData,<span style="color:#A020F0">'double'</span>);
+fclose(fileID);</pre></div></div></div><p>Map the file as a sequence of 16-bit-unsigned integers. Use the
+                    <code class="literal">Format</code> name-value pair argument to specify that the values
+                are of type <code class="literal">uint16</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m = memmapfile(<span style="color:#A020F0">'records.dat'</span>, <span style="color:#0000FF">...</span><span style="color:#228B22">      </span>
+      <span style="color:#A020F0">'Offset'</span>,20,            <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Format'</span>,<span style="color:#A020F0">'uint16'</span>,      <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Repeat'</span>,15);</pre></div></div></div><p>Because the file is mapped as a sequence of a single class
+                    (<code class="literal">uint16</code>), <code class="literal">Data</code> is a numeric array.</p><p>Ensure that you have write permission to the mapped file. Set the
+                    <code class="literal">Writable</code> property of the memory map, <code class="literal">m</code>, to
+                    <code class="literal">true</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Writable = true;</pre></div></div></div><p>Create a matrix <code class="literal">X</code> that is the same size as the
+                    <code class="literal">Data</code> property, and write it to the mapped part of the file.
+                All of the usual MATLAB indexing and class rules apply when assigning values to data via a
+                memory map. The class that you assign to must be big enough to hold the value being
+                assigned.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = uint16(1:1:15);
+m.Data = X;</pre></div></div></div><p><code class="literal">X</code> is a 1-by-15 vector of integer values ranging from 1 to
+                15.</p><p>Verify that new values were written to the file. Specify an
+                    <code class="literal">Offset</code> value of 0 to begin reading from the beginning of the
+                file. Specify a <code class="literal">Repeat</code> value of 35 to view a total of 35 values.
+                Use the <code class="literal">reshape</code> function to display the values as a 7-by-5
+                matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Offset = 0;
+m.Repeat = 35;
+reshape(m.Data,5,7)'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 7x5 uint16 matrix
+
+   47739   26762    4663   16362    3197
+   24407   64575   16364   31612   40832
+       1       2       3       4       5
+       6       7       8       9      10
+      11      12      13      14      15
+   12673   53994   16337   46560   44024
+   32781   16353   24667   24572   41957</pre></div></div></div><p>The values in X have been written to the file,
+                <code class="literal">records.dat</code>.</p></section><section><h3 class="title" id="bual_ob-1">Write to Memory Mapped as Scalar Structure</h3><p>Map a region of the file, <code class="literal">records.dat</code>, as a 300-by-8 matrix of
+                type <code class="literal">uint16</code> that can be referenced by the field name,
+                    <code class="literal">x</code>, followed by a 200-by-5 matrix of type
+                    <code class="literal">double</code> that can be reference by the field name, y. Specify
+                write permission to the mapped file using the <code class="literal">Writable</code> name-value
+                pair argument.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m = memmapfile(<span style="color:#A020F0">'records.dat'</span>,     <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Format'</span>, {                 <span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'uint16'</span> [300 8] <span style="color:#A020F0">'x'</span>;    <span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'double'</span> [200 5] <span style="color:#A020F0">'y'</span> },  <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Repeat'</span>, 1, <span style="color:#A020F0">'Writable'</span>, true);</pre></div></div></div><p>View the <code class="literal">Data</code> property</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = struct with fields:
+    x: [300x8 uint16]
+    y: [200x5 double]
+</pre></div></div></div><p><code class="literal">Data</code> is a scalar structure array. This is because the file,
+                    <code class="literal">records.dat</code>, is mapped as containing multiple data types that
+                do not repeat.</p><p>Replace the matrix in the field, <code class="literal">x</code>, with a matrix of all
+                ones.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data.x = ones(300,8,<span style="color:#A020F0">'uint16'</span>);</pre></div></div></div></section><section><h3 class="title" id="bual_o0-1">Write to Memory Mapped as Nonscalar Structure</h3><p>Map the file, <code class="literal">records.dat</code>, as a 25-by-8 matrix of type
+                    <code class="literal">uint16</code> followed by a 15-by-5 matrix of type
+                    <code class="literal">double</code>. Repeat the pattern 20 times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre> m = memmapfile(<span style="color:#A020F0">'records.dat'</span>,    <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Format'</span>, {                <span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'uint16'</span> [5 4] <span style="color:#A020F0">'x'</span>;    <span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'double'</span> [15 5] <span style="color:#A020F0">'y'</span> },  <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Repeat'</span>, 20, <span style="color:#A020F0">'Writable'</span>, true);</pre></div></div></div><p>View the <code class="literal">Data</code> property.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans=20×1 struct array with fields:
+    x
+    y
+</pre></div><p><code class="literal">Data</code> is a nonscalar structure array, because the file is mapped
+                as a repeating sequence of multiple data types.</p><p>Write an array of all ones to the field named <code class="literal">x</code> in the 12th
+                element of <code class="literal">Data</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>  m.Data(12).x = ones(5,4,<span style="color:#A020F0">'uint16'</span>);</pre></div></div></div><p>For the 12th element of <code class="literal">Data</code>, write the value, 50, to all
+                elements in rows 3 to 5 of the field, <code class="literal">x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>  m.Data(12).x(3:5,1:end) = 50;</pre></div></div></div><p>View the field, <code class="literal">x</code>, of the 12th element of
+                    <code class="literal">Data</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data(12).x</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = 5x4 uint16 matrix
+
+    1    1    1    1
+    1    1    1    1
+   50   50   50   50
+   50   50   50   50
+   50   50   50   50</pre></div></section><section><h3 class="title" id="braidws-44">Syntaxes for Writing to Mapped File</h3><p>The syntax to use when writing to mapped memory depends on the
+format of the <code class="literal">Data</code> property of the memory map.
+View the properties of the memory map by typing the name of the <code class="literal">memmapfile</code> object.</p><p>This table shows the syntaxes for writing a matrix, <code class="literal">X</code>,
+to a memory map, <code class="literal">m</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="36%"><col class="tcol2" width="64%"></colgroup><thead><tr><th>Format of the <code class="literal">Data</code> Property</th><th>Syntax for Writing to Mapped File</th></tr></thead><tbody><tr><td><p>Numeric array</p><p><strong class="emphasis bold">Example:</strong> <code class="literal">15x1
+uint16 array</code></p> </td><td><p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data = X;
+</pre></div></div></div></p></td></tr><tr><td><p>Scalar (1-by-1) structure array</p><p><strong class="emphasis bold">Example:</strong> <div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>1x1 struct array with fields:
+                x
+                y</pre></div></div></div></p></td><td><p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data.<em class="replaceable">fieldname</em> = X;</pre></div></div></div></p><p><code class="literal"><em class="replaceable"><code>fieldname</code></em></code> is
+the name of a field.</p></td></tr><tr><td><p>Nonscalar (<code class="literal">n</code>-by-1) structure array</p><p><strong class="emphasis bold">Example:</strong> <div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>20x1 struct array with fields:
+                x
+                y</pre></div></div></div></p></td><td><p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data(k).<em class="replaceable">fieldname</em> = X;</pre></div></div></div></p><p><code class="literal">k</code> is
+a scalar index and <code class="literal"><em class="replaceable"><code>fieldname</code></em></code> is
+the name of a field.</p></td></tr></tbody></table></div><p>The class of <code class="literal">X</code> and the number of elements
+in <code class="literal">X</code> must match those of the <code class="literal">Data</code> property
+or the field of the <code class="literal">Data</code> property being accessed.
+You cannot change the dimensions of the <code class="literal">Data</code> property
+after you have created the memory map using the <code class="literal">memmapfile</code> function.
+For example, you cannot diminish or expand the size of an array by
+removing or adding a row from the mapped array, <code class="literal">m.Data</code>. </p><p>If you map an entire file and then append to that file after
+constructing the map, the appended data is not included in the mapped
+region. If you need to modify the dimensions of data that you have
+mapped to a memory map, <code class="literal">m</code>, you must either modify
+the <code class="literal">Format</code> or <code class="literal">Repeat</code> properties
+for <code class="literal">m</code>, or recreate <code class="literal">m</code> using the <code class="literal">memmapfile</code> function.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>To successfully modify a mapped file, you must have write permission
+for that file. If you do not have write permission, attempting to
+write to the file generates an error, even if the <code class="literal">Writable</code> property
+is <code class="literal">true</code>.</p></div></section><section><h3 class="title" id="braidws-49">Work with Copies of Your Mapped Data</h3><p>This part of the example shows how to work with copies of your mapped data. The
+                data in variable <code class="literal">d</code> is a copy of the file data mapped by
+                    <code class="literal">m.Data(2)</code>. Because it is a copy, modifying array data in
+                    <code class="literal">d</code> does not modify the data contained in the file.</p><p>Create a sample file named <code class="literal">double.dat</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myData = rand([5000,1])*100;
+fileID = fopen(<span style="color:#A020F0">'double.dat'</span>,<span style="color:#A020F0">'w'</span>);
+fwrite(fileID,myData,<span style="color:#A020F0">'double'</span>); 
+fclose(fileID);</pre></div></div></div><p>Map the file as a series of <code class="literal">double</code> matrices.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m = memmapfile(<span style="color:#A020F0">'double.dat'</span>,    <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Format'</span>, {               <span style="color:#0000FF">...</span><span style="color:#228B22">	</span>
+         <span style="color:#A020F0">'double'</span> [5 5] <span style="color:#A020F0">'x'</span>;    <span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'double'</span> [4 5] <span style="color:#A020F0">'y'</span> });</pre></div></div></div><p>View the values in <code class="literal">m.Data(2).x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data(2).x</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = 5×5
+
+   95.0545   54.7696   15.6697   97.2605   85.0706
+   53.2131   60.9054    5.8124   60.5319   25.6792
+   24.7686   86.3135   33.9707   33.8236   28.5496
+   43.7276   38.0696   81.7176   92.7984   77.9947
+   66.9088   74.8956   37.7548   89.8425   70.1395</pre></div><p>Copy the contents of <code class="literal">m.Data</code> to the variable,
+                    <code class="literal">d</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d = m.Data;</pre></div></div></div><p>Write all zeros to the field named <code class="literal">x</code> in the copy.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d(2).x(1:5,1:5) = 0;</pre></div></div></div><p>Verify that zeros are written to <code class="literal">d(2).x</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d(2).x</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = 5×5
+
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0</pre></div><p>Verify that the data in the mapped file is not changed.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m.Data(2).x</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = 5×5
+
+   95.0545   54.7696   15.6697   97.2605   85.0706
+   53.2131   60.9054    5.8124   60.5319   25.6792
+   24.7686   86.3135   33.9707   33.8236   28.5496
+   43.7276   38.0696   81.7176   92.7984   77.9947
+   66.9088   74.8956   37.7548   89.8425   70.1395</pre></div></section>
+<h2 id="d126e19565">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/memmapfile.html"><span itemprop="name"><code class="function">memmapfile</code></span></a></span></p>
+<h3 id="d126e19569">Topics</h3><ul class="list-unstyled"><li><a href="map-a-file-to-memory.html" class="a">Map File to Memory</a></li><li><a href="reading-a-mapped-file.html" class="a">Read from Mapped File</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

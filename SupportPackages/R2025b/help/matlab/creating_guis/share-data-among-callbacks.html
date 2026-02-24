@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Share Data Among Callbacks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../develop-apps-programmatically.html",
+          "name": "Develop Apps Programmatically"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "develop-apps-programmatically"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Manage and share data in your app using different techniques."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../develop-apps-programmatically.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_f9a6ab69-acba-4d90-9e05-e852423494b0"><span itemprop="title">Develop Apps Programmatically</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Share Data Among Callbacks</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_900359f3-4e5e-42fc-961d-3fe3f3a5442e" class="nav-link intrnllnk">Store App Data</a></li><li class="nav-item"><a href="#bt9pv8w-1" class="nav-link intrnllnk">Access App Data From Callback Functions</a></li><li class="nav-item"><a href="#mw_b98520d7-da2a-44fe-a5d2-255683b09365" class="nav-link intrnllnk">Access Data in UserData</a><ul class="nav"><li class="nav-item"><a href="#mw_f76f0b01-6214-439f-a2dc-d296cb3b3795" class="nav-link intrnllnk">Example: Word Cloud App Using UserData</a></li></ul></li><li class="nav-item"><a href="#bt9p4qp" class="nav-link intrnllnk">Pass Input Data to Callbacks</a><ul class="nav"><li class="nav-item"><a href="#mw_f224ad20-6e63-4e01-96f5-7d696fcdbdf6" class="nav-link intrnllnk">Example: Word Cloud App Using Callback Input Arguments</a></li></ul></li><li class="nav-item"><a href="#bt9p4s2" class="nav-link intrnllnk">Create Nested Callback Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_2cb4d0ef-f975-40fb-8d6d-e03e2b91acd3" class="nav-link intrnllnk">Example: Word Cloud App Using Nested Callback</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f13-998352">Share Data Among Callbacks</h2><p>You can write callback functions for UI components in your app to specify how it behaves
+      when a user interacts with it. (For more information on callback functions in apps, see <a href="write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a>.)</p><p>In apps with multiple interdependent UI components, the callback functions often must
+      access data defined inside the main app function, or share data with other callbacks. For
+      instance, if you create an app with a list box, you might want your app to update an image
+      based on the list box option the app user chooses. Since each callback function has its own
+      scope, you must explicitly share information about the list box options and images with those
+      parts of your app that need to access it. To accomplish this, use your main app function to
+      store that information in a way that can be shared with callbacks. Then, access or modify the
+      information from within the callback functions.</p><section><h3 class="title" id="mw_900359f3-4e5e-42fc-961d-3fe3f3a5442e">Store App Data</h3><p>The UI components in your app contain useful information in their properties. For
+        example, you can find the current position of a slider by querying its
+          <code class="property">Value</code> property. When you create a UI component, store the component
+        as a variable so that you can set and access its properties throughout your app code.</p><p>In addition to their pre-defined properties, all components have a
+          <code class="property">UserData</code> property, which you can use to store any MATLAB<sup>&#x00AE;</sup> data. <code class="property">UserData</code> holds only one variable at a time, but you
+        can store multiple values as a structure array or a cell array. You can use
+          <code class="property">UserData</code> to store handles to the UI components in your app, as well
+        as other app data that might need to be updated from within your app code. One useful
+        approach is to store all your app data in the <code class="property">UserData</code> property of the
+        main app figure window. If you have access to any component in the app, you can access the
+        main figure window by using the <a href="../ref/ancestor.html"><code class="function">ancestor</code></a> function. Therefore, this keeps all
+        your app data in a location that is accessible from within every component callback.</p><p>For example, this code creates a figure with a date picker component. It stores both the
+        date picker and today's date as a structure array in the <code class="property">UserData</code>
+        property of the figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+d = uidatepicker(fig);
+date = datetime(<span style="color:#A020F0">"today"</span>);
+fig.UserData = struct(<span style="color:#A020F0">"Datepicker"</span>,d,<span style="color:#A020F0">"Today"</span>,date);</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Use the <code class="property">UserData</code> property to store only the data directly related
+          to your app user interface. If your app uses large data sets, or data that is not created
+          or modified inside your app code, instead store this data in a separate file and access
+          the file from within your app.</p></div><p>In simple applications, instead of storing your app data in the
+          <code class="property">UserData</code> property, you can store data as variables in your main app
+        function, and then provide each callback with the relevant data using input arguments or
+        nested functions.</p></section><section><h3 class="title" id="bt9pv8w-1">Access App Data From Callback Functions</h3><p>To access app data in a component callback function, use one of these methods:</p><div class="itemizedlist"><ul><li><p><a href="share-data-among-callbacks.html#mw_b98520d7-da2a-44fe-a5d2-255683b09365" class="intrnllnk">Access Data in UserData</a> &#8212; Use this method
+            to update app data from within the callback function. It requires you to have stored app
+            data in the <code class="property">UserData</code> property, as described in the previous
+            section. </p></li><li><p><a href="share-data-among-callbacks.html#bt9p4qp" class="intrnllnk">Pass Input Data to Callbacks</a> &#8212; Use this method in simple apps to limit what
+            data the callback has access to, and to make it easier to reuse the callback
+            code.</p></li><li><p><a href="share-data-among-callbacks.html#bt9p4s2" class="intrnllnk">Create Nested Callback Functions</a> &#8212; Use this method in simple apps to provide your
+            callback functions with access to all the app data, and to organize your app code within
+            a single file.</p></li></ul></div><p>Each section below describes one of these methods, and provides an example of using the
+        method to share data within an app. For each example, the final app behavior is the same:
+        the app user can enter text into a text area and click a button to generate a word cloud
+        from the text. To accomplish this, the app must share data between the text area, the
+        button, and the panel that holds the word cloud. Each example shares this data in a
+        different way. </p><div class="informalfigure"><div id="d126e12825" class="mediaobject"><p><img src="callback_data_sharing_app.png" alt="Word cloud app. The app has a text box with text, a button that says &#34;Create Word Cloud&#34;, and a word cloud of the text in the text box." height="376" width="502"></p></div></div></section><section><h3 class="title" id="mw_b98520d7-da2a-44fe-a5d2-255683b09365">Access Data in <code class="property">UserData</code></h3><p>To keep all your app data organized in one place, store the data somewhere that every
+        component can easily access. First, in the setup portion of your app code, use the
+          <code class="property">UserData</code> property of the figure window to store any data a component
+        needs access to from its callbacks. Since every UI component is a child of the main figure,
+        you can access the figure from within the callback by using the
+          <code class="function">ancestor</code> function. For example, if your figure contains a panel with
+        a button that is stored in a variable named <code class="literal">btn</code>, you can access the
+        figure with this
+        code.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = ancestor(btn,<span style="color:#A020F0">"figure"</span>,<span style="color:#A020F0">"toplevel"</span>);</pre></div></div></div>Then,
+        once you have access to the figure from within the callback, you can access and modify the
+        app data stored in the <code class="property">UserData</code> of the figure.</p><section><h4 class="title" id="mw_f76f0b01-6214-439f-a2dc-d296cb3b3795">Example: Word Cloud App Using <code class="literal">UserData</code></h4><p>In the word cloud app, to share app data when the app user clicks the button, store
+          the data in the <code class="literal">UserData</code> property of the figure. Define a
+            <code class="literal">ButtonPushedFcn</code> callback function named
+            <code class="literal">createWordCloud</code> that plots a word cloud based on the text in the text
+          area. The <code class="literal">createWordCloud</code> function needs access to the value of the
+          text box at the time the button is clicked. It also needs access to the panel container to
+          plot the data in. To provide this access, set the <code class="property">UserData</code> of the
+          figure to a <code class="literal">struct</code> that stores the text area component and the panel
+          container.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig.UserData = struct(<span style="color:#A020F0">"TextArea"</span>,txt,<span style="color:#A020F0">"Panel"</span>,pnl);</pre></div></div></div></p><p>In the <code class="literal">createWordCloud</code> function, access the
+            <code class="literal">UserData</code> property of the figure. Since MATLAB automatically passes the component executing the callback to the callback
+          function as <code class="literal">src</code>, you can access the figure from within the callback by
+          using the <code class="function">ancestor</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = ancestor(src,<span style="color:#A020F0">"figure"</span>,<span style="color:#A020F0">"toplevel"</span>);</pre></div></div></div><p>Then, you can use the figure to access the panel and the
+          text.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = fig.UserData;
+txt = data.TextArea;
+pnl = data.Panel;
+val = txt.Value;</pre></div></div></div></p><p>To run this example, save the <code class="literal">shareUserData</code> function to a file
+          named <code class="literal">shareUserData.m</code> on the MATLAB path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> shareUserData
+  <span style="color:#228B22">% Create figure and grid layout</span>
+  fig = uifigure;
+  gl = uigridlayout(fig,[2,2]);
+  gl.RowHeight = {<span style="color:#A020F0">'1x'</span>,30};
+  gl.ColumnWidth = {<span style="color:#A020F0">'1x'</span>,<span style="color:#A020F0">'2x'</span>};
+  
+  <span style="color:#228B22">% Create and lay out text area</span>
+  txt = uitextarea(gl);
+  txt.Layout.Row = 1;
+  txt.Layout.Column = 1;
+  
+  <span style="color:#228B22">% Create and lay out button</span>
+  btn = uibutton(gl);
+  btn.Layout.Row = 2;
+  btn.Layout.Column = 1;
+  btn.Text = <span style="color:#A020F0">"Create Word Cloud"</span>;
+  
+  <span style="color:#228B22">% Create and lay out panel</span>
+  pnl = uipanel(gl);
+  pnl.Layout.Row = [1 2];
+  pnl.Layout.Column = 2;
+  
+  <span style="color:#228B22">% Store data in figure</span>
+  fig.UserData = struct(<span style="color:#A020F0">"TextArea"</span>,txt,<span style="color:#A020F0">"Panel"</span>,pnl);
+  
+  <span style="color:#228B22">% Assign button callback function</span>
+  btn.ButtonPushedFcn = @createWordCloud;
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Process and plot text</span>
+<span style="color:#0000FF">function</span> createWordCloud(src,event)
+  fig = ancestor(src,<span style="color:#A020F0">"figure"</span>,<span style="color:#A020F0">"toplevel"</span>);
+  data = fig.UserData;
+  txt = data.TextArea;
+  pnl = data.Panel;
+  val = txt.Value;
+
+  words = {};
+  <span style="color:#0000FF">for</span> k = 1:length(val)
+      text = strsplit(val{k});
+      words = [words text];
+  <span style="color:#0000FF">end</span>
+  c = categorical(words);
+  wordcloud(pnl,c);
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section><section><h3 class="title" id="bt9p4qp">Pass Input Data to Callbacks</h3><p>When a callback function needs access to data, you can pass that data directly to the
+        callback as an input. In addition to the <code class="literal">src</code> and <code class="literal">event</code>
+        inputs that MATLAB automatically passes to every callback function, you can declare your callback
+        function with additional input arguments. Pass these inputs arguments to the callback
+        function using a cell array or an anonymous function.</p><section><h4 class="title" id="mw_f224ad20-6e63-4e01-96f5-7d696fcdbdf6">Example: Word Cloud App Using Callback Input Arguments</h4><p>In the word cloud app, to share app data when the app user pushes the button, pass
+          that data to the <code class="literal">ButtonPushedFcn</code> callback function.</p><p>Define a <code class="literal">ButtonPushedFcn</code> callback function named
+            <code class="literal">createWordCloud</code> that plots a word cloud based on the text in the text
+          area. The <code class="literal">createWordCloud</code> function needs access to the value of the
+          text box at the time the button is clicked. It also needs access to the panel container to
+          plot the data in. To provide this access, define <code class="literal">createWordCloud</code> to
+          take the text area and panel as input arguments, in addition to the required
+            <code class="literal">src</code> and <code class="literal">event</code>
+          arguments.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> createWordCloud(src,event,txt,pnl)
+  <span style="color:#228B22">% Code to plot the word cloud</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>Assign the <code class="literal">createWordCloud</code> callback function and pass in the text
+          area and panel by specifying <code class="literal">ButtonPushedFcn</code> as a cell array containing
+          a handle to <code class="literal">createWordCloud</code>, followed by the additional input
+          arguments.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>btn.ButtonPushedFcn = {@createWordCloud,txt,pnl};</pre></div></div></div><p>To run this example, save the <code class="literal">shareAsInput</code> function to a file named
+            <code class="literal">shareAsInput.m</code> on the MATLAB path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> shareAsInput
+  <span style="color:#228B22">% Create figure and grid layout</span>
+  fig = uifigure;
+  gl = uigridlayout(fig,[2,2]);
+  gl.RowHeight = {<span style="color:#A020F0">'1x'</span>,30};
+  gl.ColumnWidth = {<span style="color:#A020F0">'1x'</span>,<span style="color:#A020F0">'2x'</span>};
+  
+  <span style="color:#228B22">% Create and lay out text area</span>
+  txt = uitextarea(gl);
+  txt.Layout.Row = 1;
+  txt.Layout.Column = 1;
+  
+  <span style="color:#228B22">% Create and lay out button</span>
+  btn = uibutton(gl);
+  btn.Layout.Row = 2;
+  btn.Layout.Column = 1;
+  btn.Text = <span style="color:#A020F0">"Create Word Cloud"</span>;
+  
+  <span style="color:#228B22">% Create and lay out panel</span>
+  pnl = uipanel(gl);
+  pnl.Layout.Row = [1 2];
+  pnl.Layout.Column = 2;
+  
+  <span style="color:#228B22">% Assign button callback function</span>
+  btn.ButtonPushedFcn = {@createWordCloud,txt,pnl};
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Process and plot text</span>
+<span style="color:#0000FF">function</span> createWordCloud(src,event,txt,pnl)
+  val = txt.Value;
+  words = {};
+  <span style="color:#0000FF">for</span> k = 1:length(val)
+      text = strsplit(val{k});
+      words = [words text];
+  <span style="color:#0000FF">end</span>
+  c = categorical(words);
+  wordcloud(pnl,c);
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section><section><h3 class="title" id="bt9p4s2">Create Nested Callback Functions</h3><p>Finally, you can nest callback functions inside the main function of a programmatic app.
+        When you do this, the nested callback functions share a workspace with the main function. As
+        a result, the nested functions have access to all the UI components and variables defined in
+        the main function.</p><section><h4 class="title" id="mw_2cb4d0ef-f975-40fb-8d6d-e03e2b91acd3">Example: Word Cloud App Using Nested Callback</h4><p>In the word cloud app, to share app data when the app user pushes the button, nest the
+          button callback function inside the main app function. Define a
+            <code class="literal">ButtonPushedFcn</code> callback function named
+            <code class="literal">createWordCloud</code> that plots a word cloud based on the text in the text
+          area. The <code class="literal">createWordCloud</code> function needs access to the value of the
+          text box at the time the button is clicked. It also needs access to the panel container to
+          plot the data in. To provide this access, define <code class="literal">createWordCloud</code> inside
+          the main <code class="literal">nestCallback</code> function. The nested function has access to the
+            <code class="literal">t</code> and <code class="literal">p</code> variables that store the text area and
+          panel components.</p><p>To run this example, save the <code class="literal">nestCallback</code> function to a file named
+            <code class="literal">nestCallback.m</code>, and then run it.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> nestCallback
+  <span style="color:#228B22">% Create figure and grid layout</span>
+  fig = uifigure;
+  gl = uigridlayout(fig,[2,2]);
+  gl.RowHeight = {<span style="color:#A020F0">'1x'</span>,30};
+  gl.ColumnWidth = {<span style="color:#A020F0">'1x'</span>,<span style="color:#A020F0">'2x'</span>};
+  
+  <span style="color:#228B22">% Create and lay out text area</span>
+  t = uitextarea(gl);
+  t.Layout.Row = 1;
+  t.Layout.Column = 1;
+  
+  <span style="color:#228B22">% Create and lay out button</span>
+  b = uibutton(gl);
+  b.Layout.Row = 2;
+  b.Layout.Column = 1;
+  b.Text = <span style="color:#A020F0">"Create Word Cloud"</span>;
+  
+  <span style="color:#228B22">% Create and lay out panel</span>
+  p = uipanel(gl);
+  p.Layout.Row = [1 2];
+  p.Layout.Column = 2;
+  
+  <span style="color:#228B22">% Assign button callback function</span>
+  b.ButtonPushedFcn = @createWordCloud;
+  
+  <span style="color:#228B22">% Process and plot text</span>
+  <span style="color:#0000FF">function</span> createWordCloud(src,event)
+    val = t.Value;
+    words = {};
+    <span style="color:#0000FF">for</span> k = 1:length(val)
+        text = strsplit(val{k});
+        words = [words text];
+    <span style="color:#0000FF">end</span>
+    c = categorical(words);
+    wordcloud(p,c);
+  <span style="color:#0000FF">end</span>
+  
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e12986">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/nested-functions.html" class="a">Nested Functions</a></li><li><a href="interrupt-callback-execution.html" class="a">Interrupt Callback Execution</a></li><li><a href="write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a></li><li><a href="write-callbacks-for-gui-in-app-designer.html" class="a">Callbacks in App Designer</a></li><li><a href="share-data-across-callbacks-in-app-designer.html" class="a">Share Data Within App Designer Apps</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

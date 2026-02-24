@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Manage Project Files</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../projects.html",
+          "name": "Projects"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "projects"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Add, move, rename, label, group, and find project files and folders."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../projects.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_697a17be-dbaf-4a3f-92ef-7039a99a7d6f"><span itemprop="title">Projects</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Manage Project Files</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_535874f0-50f6-4a95-8569-9e72559ced41" class="nav-link intrnllnk">Automatic Updates When Renaming, Deleting, or Removing Files</a></li><li class="nav-item"><a href="#mw_36d2e9e4-280d-430b-bdf2-739ea76721ec" class="nav-link intrnllnk">Find Project Files</a><ul class="nav"><li class="nav-item"><a href="#mw_6c95fea3-d31c-450b-b01f-4c8745b27067" class="nav-link intrnllnk">Find Project Files with Unsaved Changes</a></li></ul></li><li class="nav-item"><a href="#mw_e9fe3447-31c3-4551-beda-00654db5201d" class="nav-link intrnllnk">Add Labels to Project Files</a></li><li class="nav-item"><a href="#mw_a5a83a86-aa77-4665-96f2-aeb5ea0a7eb6" class="nav-link intrnllnk">Run Custom Tasks on Project Files</a></li><li class="nav-item"><a href="#mw_2a0e4029-350c-456a-9bd6-8c2c94e2b3b5" class="nav-link intrnllnk">Manage Open Files When Closing Project</a></li><li class="nav-item"><a href="#d126e75328" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=projects&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=projects&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=projects&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=projects&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=projects&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=projects&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_cbaa683c-46de-437e-90ee-083f69e5d5f0">Manage Project Files</h2><p>This table shows how to add, move, rename, and open project files and folders. Some of
+            these actions can also trigger a dependency analysis to check for effects on other
+            project files. If you have not yet opened a project, see <a href="create-projects.html#mw_753645e7-e5b5-476d-afed-98d857e5f497" class="a">Open Project</a>. You must use the
+            Project panel to interact with project files. </p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>To revert changes to files easily, put your project under source control. For
+                    more information, see <a href="create-local-git-repository.html" class="a">Create Local Git Repository in MATLAB</a>.</p></div><p>
+</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="36%"><col class="tcol2" width="64%"></colgroup><thead><tr><th>Action</th><th>Procedure</th></tr></thead><tbody><tr><td>Create a new project folder.</td><td>In the Project panel, right-click in the white space, and then click <strong class="guimenuitem">New</strong> &gt; <strong class="guimenuitem">Folder</strong>.</td></tr><tr><td>Add files to a project.</td><td><p>In the Project panel, right-click the file you want to add to
+                                the project and select <strong class="guilabel">Add to
+                                Project</strong>.</p><p>You also can paste or drag files and
+                                folders from your operating system file browser or the Files panel
+                                to the Project panel. MATLAB<sup>&#x00AE;</sup> adds the file to the project.</p><p>To add a
+                                file programmatically, use the <a href="../ref/matlab.project.project.addfile.html"><code class="function">addFile</code></a> and <a href="../ref/matlab.project.project.addfolderincludingchildfiles.html"><code class="function">addFolderIncludingChildFiles</code></a>
+                            functions.</p></td></tr><tr><td>Remove project files or folders.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Remove from Project</strong>.</p><p>To
+                                remove a file programmatically, use the <a href="../ref/matlab.project.project.removefile.html"><code class="function">removeFile</code></a> function.</p></td></tr><tr><td><p>Move project files or folders.</p><p><em>In R2025a: You can move files and folders between projects in the same project
+                                hierarchy.</em></p></td><td>Cut and paste or drag the files in the project.</td></tr><tr><td>Rename project files or folders.</td><td>In the Project panel, right-click the file, and select
+                                <strong class="guimenuitem">Rename</strong>.</td></tr><tr><td>Open project files.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Open</strong>.</p><p>You also can
+                                double-click the file.</p></td></tr><tr><td>Preview project file contents without opening the file.</td><td><p>In the Project panel, select the file. Then, click the
+                                information icon that appears.</p>
+<div class="informalfigure"><div id="d126e74833" class="mediaobject"><p><img src="projects_preview.png" alt="Selected file highlighted in blue and the mouse cursor pointing to the information icon" height="218" width="867"></p></div></div><p></p></td></tr><tr><td>Delete a project file or folder.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Delete</strong>.</p></td></tr><tr><td>Run a file at project startup or shutdown.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Run at Startup</strong> or <strong class="guimenuitem">Run at
+                                    Shutdown</strong>.</p><p>Alternatively, use the
+                                    <strong class="guilabel">Task Automation</strong> section in the Project
+                                Settings dialog box. For more information, see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_eacab210-02d7-4b8a-affc-cc45b86d3bc9" class="a">Automate Startup and Shutdown Tasks</a>.</p></td></tr><tr><td>Remove a file from the startup or shutdown files list.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Remove from Startup</strong> or
+                                    <strong class="guimenuitem">Remove from
+                                Shutdown</strong>.</p><p>Alternatively, use the
+                                    <strong class="guilabel">Task Automation</strong> section in the Project
+                                Settings dialog box. For more information, see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_eacab210-02d7-4b8a-affc-cc45b86d3bc9" class="a">Automate Startup and Shutdown Tasks</a>.</p></td></tr><tr><td>Add a folder to the project path.</td><td><p>In the Project panel, right-click the folder, and select <strong class="guimenuitem">Add to Project Path</strong> &gt; <strong class="guimenuitem">Selected Folders</strong>. To add the folder and all subfolders to the project
+                                path, select <strong class="guimenuitem">Selected Folders and
+                                    Subfolders</strong> instead.</p><p>Alternatively, use
+                                the <strong class="guilabel">Search Path</strong> section in the Project Settings
+                                dialog box. For more information, see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_0fd5cb6e-635d-4670-a31f-73f7b20fd353" class="a">Specify Project Path</a>.</p></td></tr><tr><td>Remove a folder and subfolders from the project path.</td><td><p>In the Project panel, right-click the folder, and select
+                                    <strong class="guimenuitem">Remove from Project
+                                Path</strong>.</p><p>Alternatively, use the
+                                    <strong class="guilabel">Search Path</strong> section in the Project Settings
+                                dialog box. For more information, see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_0fd5cb6e-635d-4670-a31f-73f7b20fd353" class="a">Specify Project Path</a>.</p></td></tr><tr><td>Create a project shortcut from project files.</td><td><p>In the Project panel, right-click the file, and select
+                                    <strong class="guimenuitem">Create Shortcut</strong>. For more information
+                                about managing and running shortcuts, see <a href="create-shortcuts-to-frequent-tasks.html" class="a">Create Shortcuts to Frequent Tasks</a>.</p></td></tr><tr><td>Filter files</td><td><p>The Project panel shows all the files inside the project root folder.</p>
+<div class="itemizedlist"><ul><li><p>To view only the files that have the status
+                                                <code class="literal">In project</code>, right-click the white
+                                            space and select <strong class="guimenuitem">Filter</strong> &gt; <strong class="guimenuitem">Show Only Project Files</strong>.</p></li><li><p>To view only project files that have a certain label,
+                                            right-click the white space and select <strong class="guimenuitem">Filter</strong> &gt; <strong class="guimenuitem">Filter By Label</strong> &gt; <strong class="guimenuitem">CategoryName</strong> &gt; <strong class="guimenuitem">LabelName</strong>.</p></li><li><p>When you apply a filter, it appears in the upper left
+                                            corner of the Project panel <span class="inlinemediaobject"><img src="filter_tests.png" alt="" height="32" width="60"></span>.</p></li><li><p>To clear a filter, right-click the white space and
+                                            select <strong class="guimenuitem">Filter</strong> &gt; <strong class="guimenuitem">Clear Filter</strong>. Alternatively, click the filter icon that
+                                            appears at the top of the Project panel.</p></li></ul></div><p>
+</p></td></tr></tbody></table></div><section><h3 class="title" id="mw_535874f0-50f6-4a95-8569-9e72559ced41">Automatic Updates When Renaming, Deleting, or Removing Files</h3><p>When you rename, delete, or remove files or folders in a project, the project runs
+                a dependency analysis to check for effects on other project files. When the analysis
+                is complete, the project displays the affected files. Starting in R2025a, the
+                project looks for references to the modified file in all projects in the project
+                hierarchy. If you have not yet run a dependency analysis on the project, the
+                analysis may take some time to run. Subsequent analyses are incremental updates, so
+                they run faster.</p><p>When renaming a project file, the project offers to automatically update
+                references to the file in the current project and its referenced projects.
+                Automatically updating references to a file when renaming prevents errors that
+                result from changing a name or path manually and overlooking or mistyping the
+                name.</p><p>For example:</p>
+<div class="itemizedlist"><ul><li><p> When renaming a class, the project offers to automatically update all
+                            classes that inherit from it. </p></li><li><p>When renaming a <code class="literal">.m</code> or <code class="literal">.mlx</code> file,
+                            the project offers to automatically update files and callbacks that call
+                            it. The project does not automatically update <code class="literal">.mlx</code>
+                            files. You need to update them manually.</p></li><li><p>When renaming a C file, the project prompts you to update the
+                            S-function that uses it.</p></li></ul></div><p>
+</p><p>You can choose whether to run automatic updates on project files only, or disable
+                the updates altogether.</p><p>On the MATLAB
+                <strong class="guilabel">Home</strong> tab, in the <strong class="guilabel">Environment</strong> section,
+                click <strong class="guibutton">Settings</strong>. In the left pane, select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Project</strong>. In <strong class="guilabel">Detect file uses upon renaming, moving, or deletion in
+                    project hierarchy</strong>, select from the available options.</p><p>For more information about automatic updates when renaming, deleting, or removing
+                    Simulink<sup>&#x00AE;</sup> files such as library links, model references, and model callbacks,
+                see <a href="../../simulink/ug/move-rename-copy-or-delete-project-files.html" class="a">Automatic Updates When Renaming, Deleting, or Removing Project Files</a><span role="cross_prod"> (Simulink)</span>.</p></section><section><h3 class="title" id="mw_36d2e9e4-280d-430b-bdf2-739ea76721ec">Find Project Files</h3><p>To find files and folders in a project, click the Find Files icon
+                        <span class="guiicon"><span class="inlinemediaobject"><img src="find_files_icon_matlabonline.png" alt="" height="25" width="22"></span></span> in the sidebar. If the Find Files icon is not in
+                the left or right sidebar, go to the <strong class="guilabel">Home</strong> tab, and in the
+                    <strong class="guilabel">File</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="find_files_icon.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Find Files</strong>.</p><div class="informalfigure"><div id="d126e75035" class="mediaobject"><p><img src="find_files_matlabonline.png" alt="Find Files tool with a Search box and options to match the case of the search text, match the whole word, and filter results. The MATLAB Online desktop left sidebar shows the Find Files icon." height="230" width="479"></p></div></div><p>To change how the Find Files tool searches for text, select a search option:</p>
+<div class="itemizedlist"><ul><li><p><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="match_case_icon.png" alt="" height="16" width="16"></span></span> Match case &#8211; Search only for text
+                            with the precise case of the search text.</p></li><li><p><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="match_whole_word_icon.png" alt="" height="16" width="16"></span></span> Match whole word &#8211; Search only for
+                            exact full-word matches.</p></li></ul></div><p>
+</p><p>To only search for files within the project, click the Filters button
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="findfiles_filter_icon.png" alt="" height="15" width="16"></span></span> and set the <strong class="guilabel">Look in</strong> option
+                to <strong class="guimenuitem">Current project</strong>. If a project is open when you open
+                the Find Files tool, this option is set to <strong class="guimenuitem">Current
+                    project</strong> by default. You also can use the Filters button
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="findfiles_filter_icon.png" alt="" height="15" width="16"></span></span> to specify whether to search for file names or
+                file content, and what file types to include in the results.</p><section><h4 class="title" id="mw_6c95fea3-d31c-450b-b01f-4c8745b27067"><span id="findProjectFilesWithUnsavedChanges" class="anchor_target"></span>Find Project Files with                     Unsaved Changes</h4><p>You can check your project for files with unsaved changes. In the
+                        <strong class="guilabel">Project</strong> toolstrip, in the
+                        <strong class="guilabel">Environment</strong> section, click <strong class="guimenuitem">Project Issues</strong> &gt; <strong class="guimenuitem">Unsaved Changes</strong>.</p><p>In the Unsaved Changes dialog box, you can see the project files with unsaved
+                    changes. The project only detects unsaved changes edited in the MATLAB and Simulink editors. Manually examine changes edited in other tools. If you
+                    have referenced projects, the files are grouped by project. You can save or
+                    discard all detected changes.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>You can configure MATLAB to prompt you about unsaved changes before performing source
+                        control actions such as commit, merge, update, and branch switch. For more
+                        information, see <a href="set-source-control-preferences.html" class="a">Configure Source Control Settings</a>.</p></div></section></section><section><h3 class="title" id="mw_e9fe3447-31c3-4551-beda-00654db5201d">Add Labels to Project Files</h3><p>You can use labels to organize and group project files, and communicate
+                information to project users. All projects contain a built-in label category called
+                    <strong class="guilabel">Classification</strong> with several built-in labels. These built-in
+                labels are read-only. The project automatically attaches labels to some file types
+                when you first add them to the project. </p>
+<div class="itemizedlist"><ul><li><p>The project associates a <code class="literal">Design</code> label to files with
+                            the following extensions: <code class="literal">.m</code>,
+                            <code class="literal">.mlx</code>, <code class="literal">.mlapp</code>,
+                                <code class="literal">.mdl</code>, <code class="literal">.slx</code>,
+                                <code class="literal">sfx</code>, <code class="literal">.mat</code>,
+                                <code class="literal">.sldd</code>, <code class="literal">.c</code>,
+                                <code class="literal">.h</code>, <code class="literal">.cpp</code>,
+                                <code class="literal">.hpp</code>, <code class="literal">.ssc</code>,
+                                <code class="literal">.req</code>, and <code class="literal">.tlc</code>.</p></li><li><p>The project associates an <code class="literal">Artifact</code> label to files
+                            with the following extensions: <code class="literal">.html</code>,
+                                <code class="literal">.htm</code>, <code class="literal">.pdf</code>,
+                                <code class="literal">.doc</code>, and <code class="literal">.docx</code>.</p></li><li><p>The project associates a <code class="literal">Derived</code> label to files
+                            with the following extensions: <code class="literal">.mexglx</code>,
+                                <code class="literal">.mexa64</code>, <code class="literal">.mexmaci</code>,
+                                <code class="literal">.mexmaci64</code>, <code class="literal">.mexw32</code>,
+                                <code class="literal">.mexw64</code>, <code class="literal">.smf</code>,
+                                <code class="literal">.xml</code>, <code class="literal">.lib</code>,
+                                <code class="literal">.dll</code>, <code class="literal">.so</code>, and
+                                <code class="literal">.exe</code>.</p></li><li><p>The project associates a <code class="literal">Test</code> label to <span class="entity">Simulink
+            Test&#x2122;</span> files (<code class="literal">.mldatx</code>) and to classes that
+                            inherit from <code class="literal">matlab.unittest.TestCase</code>.</p></li></ul></div><p>
+
+            </p><p>To add a label <code class="literal">labelName</code> to a project file, in the Project
+                panel, right-click a file and select <strong class="guimenuitem">Add Label</strong> &gt; <strong class="guimenuitem"><em class="replaceable"><code>categoryName</code></em></strong> &gt; <strong class="guimenuitem"><em class="replaceable"><code>labelName</code></em></strong>. After you add a label to a file, the label appears in the
+                    <strong class="guilabel">Labels</strong> column and persists across file revisions.</p>
+<div class="informalfigure"><div id="d126e75226" class="mediaobject"><p><img src="add_label.png" alt="Add Label menu option showing the available labels in the Classification category" height="237" width="424"></p></div></div><p></p>
+<div class="itemizedlist"><ul><li><p>To add a label to multiple project files, in the project panel or in
+                            the <a href="../ref/dependencyanalyzer-app.html"><span class="tool">Dependency
+                                Analyzer</span></a> graph, select the files, right-click, and select
+                                <strong class="guimenuitem">Add Label</strong>. Then, choose a label from the
+                            list of available labels.</p><p>You can create new labels in the built-in
+                                <strong class="guilabel">Classification</strong> category or create a new label
+                            category altogether using the Project Settings dialog box. In the
+                            Project toolstrip, click <strong class="guibutton">Settings</strong>. Alternatively,
+                            right-click a file and select <strong class="guimenuitem">Add Label</strong> &gt; <strong class="guimenuitem">Manage Labels</strong>. For detailed instructions on how to create or edit
+                            labels, see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_18478f1a-1260-4b56-acad-40670c10000d" class="a">Create and Manage Labels</a>.</p></li><li><p>To add labels programmatically, see <a href="../ref/matlab.project.project.addlabel.html"><code class="function">addLabel</code></a>.</p></li></ul></div><p>
+</p><p>To detach a label <code class="literal">labelName</code> from a project file, in the Project
+                panel, right-click a file and select <strong class="guimenuitem">Remove Label</strong> &gt; <strong class="guimenuitem"><em class="replaceable"><code>categoryName</code></em></strong> &gt; <strong class="guimenuitem"><em class="replaceable"><code>labelName</code></em></strong>.</p></section><section><h3 class="title" id="mw_a5a83a86-aa77-4665-96f2-aeb5ea0a7eb6">Run Custom Tasks on Project Files</h3><p>Custom tasks are MATLAB functions that allow you to perform a series of operations on one or
+                more project files. If you did not yet create custom task functions in your project,
+                see <a href="manage-project-settings-path-labels-and-startup-and-shutdown-tasks.html#mw_d0ae7388-983d-4378-a680-77fb64d38600" class="a">Create and Manage Custom Tasks</a>.</p><p>To run a custom task on all project files, in the Project panel, right-click in
+                the white space and select <strong class="guilabel">Run Custom Task</strong>. Then, choose one of
+                the available tasks. To run a custom task on specific files, select the files. Then,
+                right-click and select <strong class="guilabel">Run Custom Task</strong> and choose one of the
+                available tasks.</p><p>The Custom Tasks dialog box prepopulates the <strong class="guilabel">Custom Task</strong>
+                field with the task you choose.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>By default, after running the custom tasks on the project files you
+                            selected, the tool saves the results in an HTML report in the project
+                            root folder. You can change the report path, name, and extension by
+                            using the <strong class="guibutton">Browse</strong> button or by pasting a path in
+                            the <strong class="guilabel">Report</strong> field.</p></li><li><p>Click <strong class="guibutton">Run Task</strong>.</p></li></ol></div><p>
+</p><p>The results report opens automatically. Examine the <strong class="guilabel">Summary</strong>
+                table in the report to ensure that the custom task ran correctly on all files you
+                selected. To view detailed result information for a file, select the file in the
+                table.</p></section><section><h3 class="title" id="mw_2a0e4029-350c-456a-9bd6-8c2c94e2b3b5">Manage Open Files When Closing Project</h3><p>When you close a project, if there are files with unsaved changes, a message
+                prompts you to save or discard changes. You can see all files with unsaved changes,
+                grouped by project if you have referenced projects. To avoid losing work, you can
+                save or discard changes before you close the project.</p><p>To control this behavior, on the <strong class="guilabel">Home</strong> tab, in the
+                    <strong class="guilabel">Environment</strong> section, click <strong class="guibutton">Settings</strong>.
+                In <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Project</strong>, in the <strong class="guilabel">Project Shutdown</strong> section, select or clear
+                the <strong class="guilabel">Interrupt project close if there are dirty project files</strong>
+                and <strong class="guilabel">Check for open project models and close them, unless they are
+                    dirty</strong> check boxes.</p></section>
+            <h2 id="d126e75328">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.project.project.addfile.html"><span itemprop="name"><code class="function">addFile</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.project.project.addfolderincludingchildfiles.html"><span itemprop="name"><code class="function">addFolderIncludingChildFiles</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.project.project.removefile.html"><span itemprop="name"><code class="function">removeFile</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.project.project.addlabel.html"><span itemprop="name"><code class="function">addLabel</code></span></a></span></p>
+            <h3 id="d126e75343">Topics</h3><ul class="list-unstyled"><li><a href="create-shortcuts-to-frequent-tasks.html" class="a">Create Shortcuts to Frequent Tasks</a></li><li><a href="manage-project-files.html#mw_a5a83a86-aa77-4665-96f2-aeb5ea0a7eb6" class="intrnllnk">Run Custom Tasks on Project Files</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

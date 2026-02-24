@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>GUIDE Migration Strategies</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../migrate-guide-apps.html",
+          "name": "Update figure -Based Apps"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "migrate-guide-apps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Migrate GUIDE apps (GUIs) to App Designer or export them to MATLAB files."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../migrate-guide-apps.html?s_tid=CRUX_lftnav" itemprop="url" id="bu6rafu"><span itemprop="title">Update figure-Based Apps</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">GUIDE Migration Strategies</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_7f306e19-74d0-4c0b-989d-74ed63e32ddd" class="nav-link intrnllnk">Migrate GUIDE App to App Designer</a><ul class="nav"><li class="nav-item"><a href="#mw_c6955b93-6aae-4327-8575-90ea613354a8" class="nav-link intrnllnk">Features of the Migration Tool</a></li><li class="nav-item"><a href="#mw_5a605118-699e-4904-94bb-ff50d96565a2" class="nav-link intrnllnk">Callback Code</a></li><li class="nav-item"><a href="#mw_25ffdeb6-b752-4df7-9d65-92c43f132e78" class="nav-link intrnllnk">Special Considerations</a></li><li class="nav-item"><a href="#mw_a37cdcf3-bb43-4e74-b28d-7b9c599f0bfd" class="nav-link intrnllnk">Differences Between GUIDE and App Designer Code</a></li><li class="nav-item"><a href="#mw_4afdb79d-8ef9-4e72-8ee5-799e67c9bbb2" class="nav-link intrnllnk">Update Migrated App Callback Code</a></li></ul></li><li class="nav-item"><a href="#mw_142d4e5c-996a-4b78-a0ee-c5a89841312c" class="nav-link intrnllnk">Edit GUIDE App Code File</a><ul class="nav"><li class="nav-item"><a href="#mw_a6546a82-d1ea-4072-80e2-b14947b91a01" class="nav-link intrnllnk">Identify Component Tag</a></li><li class="nav-item"><a href="#mw_b8bcd6b5-7952-4dcc-8d42-b9c1a61ec59e" class="nav-link intrnllnk">Edit App Behavior</a></li><li class="nav-item"><a href="#mw_88f091de-ff30-4347-b11b-7f59f5ff7cc5" class="nav-link intrnllnk">Edit App Layout</a></li></ul></li><li class="nav-item"><a href="#mw_48e611e7-2e6a-4aa7-a328-b7fc77c5eb6b" class="nav-link intrnllnk">Export GUIDE App to MATLAB File</a></li><li class="nav-item"><a href="#d126e1721" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="buvteyy">GUIDE Migration Strategies</h2><span id="diffappdguide" class="anchor_target"></span><span id="configuring_application_options" class="anchor_target"></span><span id="error_guide_GUIDEHasBeenRemoved" class="anchor_target"></span><p>GUIDE, the original drag-and-drop environment for building apps in MATLAB<sup>&#x00AE;</sup>, was removed in R2025a. You can continue to run existing GUIDE apps, and
+			you can continue to edit app program files if you need to change the behavior of an
+			app.</p><p>To continue working with an existing GUIDE app and to maintain its compatibility with future
+				MATLAB releases, use one of the recommendations listed in this table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>App Development Needs</th><th>Recommendation</th><th>Details</th></tr></thead><tbody><tr><td>Ongoing development</td><td>Migrate your app to App Designer.</td><td><a href="differences-between-app-designer-and-guide.html#mw_7f306e19-74d0-4c0b-989d-74ed63e32ddd" class="intrnllnk">Migrate GUIDE App to App Designer</a></td></tr><tr><td>Occasional editing</td><td>Edit your app using the existing app code file that GUIDE
+							created.</td><td><a href="differences-between-app-designer-and-guide.html#mw_142d4e5c-996a-4b78-a0ee-c5a89841312c" class="intrnllnk">Edit GUIDE App Code File</a></td></tr><tr><td>Only running</td><td>Continue to run your GUIDE app.</td><td>To run an existing GUIDE app, run the app code file associated with the app.</td></tr></tbody></table></div><p>Alternatively, you can export your GUIDE app to a single MATLAB file. However, you cannot migrate an exported app to App Designer in the
+			future. For more information, see <a href="differences-between-app-designer-and-guide.html#mw_48e611e7-2e6a-4aa7-a328-b7fc77c5eb6b" class="intrnllnk">Export GUIDE App to MATLAB File</a>.</p><section><h3 class="title" id="mw_7f306e19-74d0-4c0b-989d-74ed63e32ddd">Migrate GUIDE App to App Designer</h3><span id="guide_app_migrate" class="anchor_target"></span><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This functionality requires the <a href="https://www.mathworks.com/matlabcentral/fileexchange/66087-guide-to-app-designer-migration-tool-for-matlab"><span class="entity">GUIDE to App Designer Migration Tool for <span class="trademark">MATLAB</span></span></a>.</p></div><p>Migrating your GUIDE app to App Designer allows you to continue developing the
+				layout of your app interactively. It also allows you to take advantage of features
+				like an enhanced UI component set and auto-reflow options to make your app
+				responsive to changes in screen size. And it gives you the ability to create and
+				share your app as a web app (requires <span class="entity">MATLAB
+            Compiler&#x2122;</span>).</p><p>Use this option for GUIDE apps that require significant or ongoing feature
+				development. To migrate your GUIDE app, first download the <a href="https://www.mathworks.com/matlabcentral/fileexchange/66087-guide-to-app-designer-migration-tool-for-matlab"><span class="entity">GUIDE to App Designer Migration Tool for <span class="trademark">MATLAB</span></span></a>.</p><p>There are several ways to migrate your app.</p><div class="itemizedlist"><ul><li><p>In App Designer, open any app and go to the <strong class="guilabel">Designer</strong>
+						tab. In the <strong class="guilabel">File</strong> section, click <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">Open GUIDE to App Designer Migration Tool</strong>.</p></li><li><p>In the MATLAB Command Window, call the <a href="../ref/appmigration.migrateguideapp.html"><code class="function">appmigration.migrateGUIDEApp</code></a> function. You can use this
+						function to migrate multiple GUIDE apps as a batch.</p></li></ul></div><section><h4 class="title" id="mw_c6955b93-6aae-4327-8575-90ea613354a8">Features of the Migration Tool</h4><span id="migration_tool_features" class="anchor_target"></span><p>The migration tool helps you convert your apps by reading in a GUIDE FIG file
+					and automatically generating the App Designer equivalent components and layout
+					in an MLAPP file. Your GUIDE callback code and other user-defined functions are
+					copied into the MLAPP file. This semi-automated code conversion also creates a
+					migration report that suggests actions for any manual code updates that are
+					needed. Some features of the tool are described in this table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="13%"><col class="tcol2" width="46%"><col class="tcol3" width="41%"></colgroup><thead><tr><th>Migration Tool Features</th><th colspan="2">Description</th></tr></thead><tbody><tr><td>File Conversion</td><td colspan="2">Read in a GUIDE FIG file and
+									associated code and then generate an App Designer MLAPP file.
+									The App Designer file name takes the form
+										<em class="replaceable"><code>guideFileName</code></em><code class="literal">_App.mlapp</code>.</td></tr><tr><td>Components and App Layout</td><td colspan="2"><p>Convert components and property configurations to App
+										Designer equivalents, and preserve the layout of the
+										app.</p><div class="informalfigure"><div id="d126e903" class="mediaobject"><p><img src="appd_basics_migrate.png" alt="A GUIDE app and an App Designer app to calculate mass. The layout and functionality of each app is the same. There are minor visual differences, such as the color of the buttons." height="207" width="891"></p></div></div></td></tr><tr><td>Callback Code</td><td colspan="2">Retain a copy of the GUIDE
+									callback code and user-defined functions in the MLAPP
+									file.</td></tr><tr><td>Tutorial</td><td colspan="2">Step through the changes made
+									to your migrated app.</td></tr><tr><td>Migration Report</td><td colspan="2">Summarize the actions
+									successfully completed by the migration tool. List any
+									limitations or unsupported functionality, specific to your app,
+									with suggested actions if available.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_5a605118-699e-4904-94bb-ff50d96565a2">Callback Code</h4><span id="migrated_app_callbacks" class="anchor_target"></span><p>In order to make your GUIDE-style callback code compatible with the App
+					Designer UI components in your app, the migration tool uses a function called
+						<code class="literal">convertToGUIDECallbackArguments</code>. This function converts
+					App Designer callback arguments into the GUIDE-style callback arguments that
+					your code requires. The <code class="literal">convertToGUIDECallbackArguments</code>
+					function is added to the beginning of each migrated callback function. It takes
+					the App Designer callback arguments <code class="literal">app</code> and
+						<code class="literal">event</code> and returns the GUIDE-style callback arguments
+						<code class="literal">hObject</code>, <code class="literal">eventdata</code>, and
+						<code class="literal">handles</code>. For example:</p><div class="informalfigure"><div id="d126e947" class="mediaobject"><p><img src="migratedcallback.png" alt="Example of a call to the convertToGUIDECallbackArguments function inside an App Designer callback" height="183" width="763"></p></div></div><p>Each of the GUIDE-style callback arguments is used for a different purpose:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">hObject</code> is the handle of the object whose
+								callback is executing. For components from your GUIDE app that were
+									<code class="literal">UIControl</code> or <code class="literal">ButtonGroup</code>
+								objects, <code class="literal">hObject</code> is a handle to a
+									<code class="literal">UIControlPropertiesConverter</code> or
+									<code class="literal">ButtonGroupPropertiesConverter</code> object. These
+								objects are created to make your GUIDE-style code work in your App
+								Designer callback functions.</p></li><li><p><code class="literal">eventdata</code> is usually empty, but can be a
+								structure containing specific information about the callback
+								event.</p></li><li><p><code class="literal">handles</code> is a structure that contains the
+								migrated child components of the UI figure that have a
+									<code class="literal">'Tag'</code> property value set. Child components
+								that were <code class="literal">UIControl</code> objects in your GUIDE app are
+									<code class="literal">UIControlPropertiesConverter</code> objects in the
+								migrated app. Similarly, child <code class="literal">ButtonGroup</code>
+								objects are <code class="literal">ButtonGroupPropertiesConverter</code>
+								objects in the migrated app.</p></li></ul></div><p>
+</p><p>The <code class="literal">UIControlPropertiesConverter</code> and
+						<code class="literal">ButtonGroupPropertiesConverter</code> objects act like adapters
+					between the GUIDE-style code and the App Designer components and callbacks. A
+						<code class="literal">UIControlPropertiesConverter</code> object is created for each
+					component in your GUIDE app that was a <code class="literal">UIControl</code> object.
+					These converter objects are associated with an App Designer UI component in your
+					migrated app. The converter object has the same properties and values as the
+					original <code class="literal">UIControl</code> from your GUIDE app, but it applies them
+					to its associated App Designer UI component.</p><p>Similarly, for <code class="literal">ButtonGroup</code> objects from GUIDE, a
+						<code class="literal">ButtonGroupPropertiesConverter</code> object is created in App
+					Designer. This object makes it possible to set the
+						<code class="literal">SelectedObject</code> property to a
+						<code class="literal">UIControlPropertiesConverter</code> object so that button group
+						<code class="literal">SelectionChangedFcn</code> callback logic will function.</p></section><section><h4 class="title" id="mw_25ffdeb6-b752-4df7-9d65-92c43f132e78">Special Considerations</h4><span id="migration_considerations" class="anchor_target"></span><p>There are some circumstances that require you to take extra steps before or
+					after you migrate your app. This table lists common scenarios and coding
+					patterns that require extra steps or manual code updates. This is not intended
+					to be a comprehensive list.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>GUIDE App Feature</th><th>Description</th><th>Suggested Actions</th></tr></thead><tbody><tr><td>Multiwindow apps (that is, two or more apps that share
+									data)</td><td>Multiwindow apps require each app to be migrated separately.
+									Migrated app file names are appended with
+										<code class="literal">_App</code>. Calls to these apps from other apps
+									must be updated.</td><td><p>Migrate each app separately. In the calling app, update
+										the name of the app that is being called to the new file
+										name.</p><p>Alternatively, use the <a href="../ref/appmigration.migrateguideapp.html"><code class="function">appmigration.migrateGUIDEApp</code></a> function to
+										migrate multiwindow apps in a single command. The function
+										updates calls to all apps that were successfully migrated in
+										the command.</p></td></tr><tr><td>Radio buttons and radio button callbacks</td><td><p>The migration tool does not migrate radio buttons that
+										are not parented to a radio button group, or callback
+										functions for individual radio buttons.</p></td><td>Create a button group in App Designer and add radio buttons
+									to it. To execute behavior when radio button selection is
+									changed, create a <code class="literal">SelectionChangedFcn</code>
+									callback function for the button group. For more information,
+									see <a href="../ref/uiradiobutton.html"><code class="function">uiradiobutton</code></a>
+									and <a href="../ref/matlab.ui.container.buttongroup.html"><code class="object">ButtonGroup</code></a>.</td></tr><tr><td><code class="literal">ButtonDownFcn</code>,
+										<code class="literal">KeyPressFcn</code>, and
+										<code class="literal">KeyReleaseFcn</code> callbacks</td><td>The migration tool does not migrate button down and key press
+									callbacks on <code class="literal">UIControl</code> objects because there
+									is no equivalent callback in App Designer.</td><td><p>After migrating your app, update your code to replicate
+										the behavior by creating a new callback based on the
+										component. For example, if your app contains an edit field,
+										create a <code class="property">ValueChangingFcn</code> callback for
+										the component, which executes whenever an app user types in
+										the edit field.</p><p>If the component does not have a
+										callback with the equivalent functionality, instead create a
+											<code class="literal">WindowButtonDownFcn</code>,
+											<code class="literal">WindowKeyPressFcn</code>, or
+											<code class="literal">WindowKeyReleaseFcn</code> callback on the
+										UI figure. You can then query the object that was last
+										clicked by using the <code class="property">CurrentObject</code>
+										property. For example, if your app had a
+											<code class="literal">ButtonDownFcn</code> callback on a list box
+										named <code class="literal">listbox1</code>, first create a
+											<code class="literal">WindowButtonDownFcn</code> callback for the
+											<code class="literal">app.figure1</code> object in App Designer.
+										Then, add this code to the callback
+									function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> figure1WindowButtonDown(app,event)
+    <span style="color:#0000FF">if</span> app.figure1.CurrentObject == app.listbox1
+        <span style="color:#228B22">% Execute callback code</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr><tr><td>Menu bars and toolbars</td><td>The default figure menu bar and toolbar are not supported in
+									App Designer.</td><td><p>Create custom menu bars and toolbar using the
+											<strong class="guilabel">Menu Bar</strong> and
+											<strong class="guilabel">Toolbar</strong> components in the App
+										Designer component library.</p><p>If your app depends
+										on the default menu bar and toolbar, you can alternatively
+										set the figure <code class="literal">MenuBar</code> or
+											<code class="literal">ToolBar</code> properties to
+											<code class="literal">"figure"</code> in the
+											<code class="literal">StartupFcn</code> callback of the App
+										Designer app.</p></td></tr><tr><td><code class="literal">uistack</code></td><td>Calling this function on GUIDE-style objects migrated to App
+									Designer is not supported.</td><td>Update your code to use App Designer components. You can then
+									call the <code class="function">uistack</code> function on these objects.
+									For more information, see <a href="differences-between-app-designer-and-guide.html#mw_4afdb79d-8ef9-4e72-8ee5-799e67c9bbb2" class="intrnllnk">Update Migrated App Callback Code</a>.</td></tr><tr><td><code class="literal">findobj</code>, <code class="literal">findall</code>, and
+										<code class="literal">gcbo</code></td><td><p>Using <code class="literal">findobj</code>,
+											<code class="literal">findall</code>, or <code class="literal">gcbo</code>
+										to reference components and set properties can error.
+											<code class="literal">UIControl</code> objects are migrated to the
+										equivalent App Designer UI component. To access and set
+										properties on these migrated components, you must set it on
+										the <code class="literal">UIControlPropertiesConverter</code> objects.
+										Or, you can update your code to use its associated App
+										Designer component, properties, and values.</p></td><td>Reference components using the <code class="literal">handles</code>
+									structure instead, or update your code to use the associated App
+									Designer component, properties, and values.</td></tr><tr><td><code class="literal">nargin</code> and
+									<code class="literal">nargchk</code></td><td>Helper functions are migrated to app methods and have
+										<code class="literal">app</code> as an additional input argument. This
+									can cause incorrect <code class="literal">nargin</code> or
+										<code class="literal">nargchk</code> logic.</td><td>Increment check values by <code class="literal">1</code>.</td></tr><tr><td><code class="literal">OutputFcn(varargout)</code> and
+										<code class="literal">Figure</code> output</td><td><p>There is no equivalent functionality in App
+										Designer.</p><p>When you instantiate a migrated App
+										Designer app, the output is always the app object, not the
+											<code class="literal">Figure</code> object.</p></td><td><p>If your <code class="literal">OutputFcn</code> function includes
+										initialization code that is critical to your app, then add
+										it to the end of the <code class="literal">OpeningFcn</code>
+										instead.</p><p>If your <code class="literal">OutputFcn</code>
+										function specifies output to be assigned to the workspace
+										when you instantiate the app, such as the
+											<code class="literal">Figure</code> object, then you need to
+										create a function that instantiates the app. For
+										example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> out = MyGUIDEApp(varargin)
+    app = MyMigratedApp(varargin{:});
+    out = app.UIFigure;            
+<span style="color:#0000FF">end</span></pre></div></div></div></td></tr></tbody></table></div><p>If your GUIDE app integrates third-party components using functions like
+						<code class="literal">actxcontrol</code>, see <a href="https://www.mathworks.com/products/matlab/app-designer/java-swing-alternatives.html">Recommendations for MATLAB Apps Using Java and ActiveX</a>.</p></section><section><h4 class="title" id="mw_a37cdcf3-bb43-4e74-b28d-7b9c599f0bfd">Differences Between GUIDE and App Designer Code</h4><span id="adopt_appd_code" class="anchor_target"></span><p>App Designer and GUIDE have different code structures, callback syntaxes, and
+					techniques for accessing UI components and sharing data. Understanding these
+					differences is useful if you plan to add new App Designer features to your
+					migrated app or want to update it to use App Designer code style and
+					conventions. This table summarizes some of these differences.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"><col class="tcol4" width="17%"></colgroup><thead><tr><th>Difference</th><th>GUIDE </th><th>App Designer</th><th>More Information</th></tr></thead><tbody><tr><td>Using Figures and Graphics</td><td><p>GUIDE calls the <code class="function">figure</code> function to
+										create the app window.</p><p>GUIDE calls the
+											<code class="function">axes</code> function to create axes for
+										displaying plots.</p><p>All MATLAB graphics functions are supported. There is no
+										need to specify the target axes.</p></td><td><p>App Designer calls the <code class="function">uifigure</code>
+										function to create the app window.</p><p>App Designer
+										calls the <code class="function">uiaxes</code> function to create
+										axes for displaying plots.</p><p>Most MATLAB graphics functions are
+									supported.</p></td><td><a href="graphics-support-in-app-designer.html" class="a">Display Graphics in App Designer</a></td></tr><tr><td>Using Components</td><td><p>GUIDE creates most components with the
+											<code class="function">uicontrol</code> function. Fewer
+										components are available.</p></td><td><p>App Designer creates each UI component with its own
+										dedicated function. More components are available, including
+											<code class="literal">Tree</code>, <code class="literal">Gauge</code>,
+											<code class="literal">TabGroup</code>, and
+											<code class="literal">DatePicker</code>.</p></td><td><a href="choose-components-for-your-app-designer-app.html" class="a">App Building Components</a><br/>
+<a href="update-ui-controls-and-callbacks.html" class="a">Update UIControl Objects and Callbacks</a></td></tr><tr><td>Accessing Component Properties</td><td><p>GUIDE uses <code class="literal">set</code> and
+											<code class="literal">get</code> to access component properties,
+										and uses <code class="literal">handles</code> to specify a
+										component.<br/>
+
+									</p><p>For example, <br/>
+<code class="literal">name =
+											get(handles.Fig,'Name')</code></p></td><td><p>App Designer supports <code class="literal">set</code> and
+											<code class="literal">get</code>, but encourages the use of dot
+										notation to access component properties, and uses
+											<code class="literal">app</code> to specify a component.
+										<br/>
+
+									</p><p>For example, <br/>
+<code class="literal">name =
+											app.UIFigure.Name</code></p></td><td><a href="write-callbacks-for-gui-in-app-designer.html" class="a">Callbacks in App Designer</a></td></tr><tr><td>Managing App Code</td><td><p>The code is defined as a main function that can call
+										local functions. All code is editable.</p></td><td><p>The code is defined as a MATLAB class. Only callbacks, helper functions, and
+										custom properties are editable.</p></td><td><a href="app-designer-code-generation.html" class="a">Manage Code in App Designer Code View</a></td></tr><tr><td>Writing Callbacks</td><td><p>Callback functions created by GUIDE have three input
+										arguments: <code class="literal">handles</code>,
+											<code class="literal">hObject</code>, and
+											<code class="literal">eventdata</code>.<br/>
+</p><p>For
+											example,<br/>
+<code class="literal">myCallback(hObject,eventdata,handles)</code></p></td><td><p>Callback functions created by App Designer have two
+										input arguments: <code class="literal">app</code> and
+											<code class="literal">event</code>.
+										<br/>
+</p><p>For
+											example,<br/>
+<code class="literal">myCallback(app,event)</code></p></td><td><a href="write-callbacks-for-gui-in-app-designer.html" class="a">Callbacks in App Designer</a></td></tr><tr><td>Sharing Data</td><td><p>To store and share data between callbacks and
+										functions, use the <code class="property">UserData</code> property,
+										the <code class="literal">handles</code> structure, or the
+											<code class="function">guidata</code>,
+											<code class="function">setappdata</code>, or
+											<code class="function">getappdata</code>
+										function.<br/>
+</p><p>For
+											example,<br/>
+<code class="literal">handles.currSelection
+											=
+											selection;</code><br/>
+<code class="literal">guidata(hObject,handles);</code></p></td><td><p>To store and share data between callbacks and
+										functions, use custom properties to create variables.
+										<br/>
+<br/>
+For
+											example,<br/>
+<code class="literal">app.currSelection =
+											selection</code></p></td><td><a href="share-data-across-callbacks-in-app-designer.html" class="a">Share Data Within App Designer Apps</a></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_4afdb79d-8ef9-4e72-8ee5-799e67c9bbb2">Update Migrated App Callback Code</h4><span id="error_appdesigner_appdesigner_ConverterUnsupported" class="anchor_target"></span><p>Migrated apps use GUIDE-style objects and code conventions. It is a good
+					practice to update the callback code in your migrated app to use App Designer
+					objects and code conventions. Updating your callback code provides support for
+					modern app building functionality and makes the app easier to maintain. To
+					update your code, follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Use App Designer UI components &#8212; In your callback functions,
+								update references to the <code class="literal">handles</code> structure to
+								instead use the <code class="literal">app</code> object. The
+									<code class="literal">handles</code> structure gives access to converter
+								objects that represent <code class="literal">UIControl</code> objects in your
+								GUIDE app, whereas the <code class="literal">app</code> object gives access to
+								the UI components in the App Designer app.</p><p>For example, a GUIDE-style callback sets the background color of a
+								push button style <code class="literal">UIControl</code> object using this
+								code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>handles.pushbutton1.BackgroundColor = <span style="color:#A020F0">'red'</span>;</pre></div></div></div></p><p>Update this code to set the background color of the button UI
+								component
+								directly:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>app.pushbutton1.BackgroundColor = <span style="color:#A020F0">'red'</span>;</pre></div></div></div></p></li><li><p>Update UI component properties &#8212; Update the properties that your
+								callback code sets. In general, <code class="literal">UIControl</code> objects
+								and their equivalent UI component objects have many of the same
+								properties. However, there are some differences in the property
+								names or the types of values that the properties accept. To see a
+								comparison between <code class="literal">UIControl</code> and UI component
+								objects and properties, and to learn how to update your code to use
+								UI components, see <a href="update-ui-controls-and-callbacks.html" class="a">Update UIControl Objects and Callbacks</a>.</p></li><li><p>Delete unused code &#8212; Once a callback function no longer uses the
+									<code class="literal">hObject</code>, <code class="literal">eventdata</code>, and
+									<code class="literal">handles</code> arguments, delete the line of code
+								added by the migration tool that creates those
+								arguments:<div class="code_responsive"><pre class="programlisting">[hObject,eventdata,handles] = convertToGUIDECallbackArguments(app,event);</pre></div></p></li></ol></div><p>
+</p><p>If your app creates dialog boxes using functions such as
+						<code class="literal">errordlg</code> or <code class="literal">warndlg</code>, you can also
+					update your code to take advantage of modern dialog boxes created specifically
+					for app building, such as <code class="function">uialert</code> and
+						<code class="function">uiconfirm</code>. For more information, see <a href="update-dialog-boxes.html" class="a">Update Dialog Boxes</a>.</p></section></section><section><h3 class="title" id="mw_142d4e5c-996a-4b78-a0ee-c5a89841312c">Edit GUIDE App Code File</h3><p>A GUIDE app consists of two files:</p>
+<div class="itemizedlist"><ul><li><p>A FIG file, with extension <code class="literal">.fig</code>, that contains a
+							description of the layout and each component, such as push buttons,
+							axes, panels, menus, and so on.</p></li><li><p>An app code file, with extension <code class="literal">.m</code>, that contains
+							initialization code and callbacks that control app behavior.</p></li></ul></div><p>
+</p><p>If you need to only occasionally edit your existing GUIDE app, such as making minor changes
+				to maintain compatibility with future MATLAB releases, you can maintain the app by editing the code file in the
+					MATLAB Editor. You can edit both the app behavior and the app layout using
+				this strategy.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Do not edit the FIG file directly. Doing so might lead to unexpected behavior
+					or errors. </p></div><section><h4 class="title" id="mw_a6546a82-d1ea-4072-80e2-b14947b91a01">Identify Component Tag</h4><p>To make changes to the appearance or callback of a component in your app,
+					first identify the value of the <code class="property">Tag</code> property of the
+					component. The code generated by GUIDE uses the value of this property to access
+					the component. For example, if you have a button with a <code class="property">Tag</code>
+					value of <code class="literal">pushbutton1</code>, the name of the callback function for
+					the component is <code class="literal">pushbutton1_callback</code>, and you can modify the
+					object by accessing <code class="literal">handles.pushbutton1</code>.</p><p>To find the <code class="property">Tag</code> value of a specific component, first run
+					your app with an output argument to return the <code class="literal">Figure</code> object
+					for your app. Then, use one of these strategies to access the component:</p>
+<div class="itemizedlist"><ul><li><p>Call the <a href="../ref/handle.findobj.html"><code class="function">findobj</code></a> function &#8212;
+								Pass the <code class="literal">Figure</code> object to the function to display
+								a list of all components and their tags. You can further filter the
+								output by specifying property values for the component to identify.
+								For example, to identify the tag of a push button with the text
+									<code class="literal">"Click me"</code>, use this
+								code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f = myGUIDEApp;
+h = findobj(f,<span style="color:#A020F0">"Style"</span>,<span style="color:#A020F0">"pushbutton"</span>,<span style="color:#A020F0">"-and"</span>,<span style="color:#A020F0">"String"</span>,<span style="color:#A020F0">"Click me"</span>)</pre></div></div></div></p></li><li><p>Use the <code class="property">CurrentObject</code> property of the figure
+								&#8212; First, click a component in the running app. Then, query the
+								figure <code class="property">CurrentObject</code> property. The property
+								returns the last object clicked in the figure.</p></li></ul></div><p>
+</p><p>Finally, once you have access to the component object, query its
+						<code class="property">Tag</code> property using dot
+					notation.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tag = h.Tag</pre></div></div></div></p></section><section><h4 class="title" id="mw_b8bcd6b5-7952-4dcc-8d42-b9c1a61ec59e">Edit App Behavior</h4><p>Components in apps created using GUIDE have associated callback functions in
+					the code file. The functions control the behavior of the app when a user
+					interacts with it. You can continue to edit these callback functions to maintain
+					your app.</p><p>For example, this function definition is an example of a GUIDE-generated callback function
+					for a push button with tag <code class="literal">pushbutton1</code>. You can add code to
+					this function that executes when a user pushes the
+					button.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> pushbutton1_Callback(hObject,eventdata,handles)
+<span style="color:#228B22">% hObject    handle to pushbutton1 (see GCBO)</span>
+<span style="color:#228B22">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span style="color:#228B22">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span style="color:#0000FF">end</span></pre></div></div></div>If the UI name is <code class="literal">myui</code>, then GUIDE sets
+					the <code class="property">Callback</code> property to this
+					value:<div class="code_responsive"><pre class="programlisting">@(hObject,eventdata)myui('pushbutton1_Callback',hObject,eventdata,guidata(hObject))</pre></div>This
+					value is an anonymous function that serves as a reference to the function
+						<code class="literal">pushbutton1_Callback</code>. This anonymous function has four
+					input arguments. The first argument is the name of the callback function. The
+					last three arguments are arguments that all callbacks in apps created with GUIDE
+					must accept. In GUIDE-generated callback functions, these arguments are:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">hObject</code> &#8212; The UI component that
+								triggered the callback.</p></li><li><p><code class="literal">eventdata</code> &#8212; A variable that contains
+								detailed information about specific mouse or keyboard
+								actions.</p></li><li><p><code class="literal">handles</code> &#8212; A <code class="literal">struct</code>
+								that contains all the objects in the UI. The UI uses the <a href="../ref/guidata.html"><code class="function">guidata</code></a> function to
+								store and maintain this structure.</p></li></ul></div><p>
+</p><p>The <code class="literal">eventdata</code> argument provides detailed information to
+					certain callback functions. For example, if an app user triggers the
+						<code class="property">KeyPressFcn</code> callback, then MATLAB provides information regarding the specific key (or combination of
+					keys) that the app user pressed. If <code class="literal">eventdata</code> is not
+					available to the callback function, then MATLAB passes it as an empty array. This table lists the callbacks and
+					components that use <code class="literal">eventdata</code>.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="58%"><col class="tcol2" width="42%"></colgroup><thead><tr><th>Callback Property Name</th><th>Component</th></tr></thead><tbody><tr><td><code class="property">WindowKeyPressFcn</code><br/>
+<code class="property">WindowKeyReleaseFcn</code><br/>
+<code class="property">WindowScrollWheelFcn</code></td><td><code class="function">figure</code></td></tr><tr><td><code class="property">KeyPressFcn</code></td><td><code class="function">figure</code>, <code class="function">uicontrol</code>,
+                    <code class="function">uitable</code></td></tr><tr><td><code class="property">KeyReleaseFcn</code></td><td><code class="function">figure</code>, <code class="function">uicontrol</code>, <code class="function">uitable</code></td></tr><tr><td><code class="property">SelectionChangedFcn</code></td><td><code class="function">uibuttongroup</code></td></tr><tr><td><code class="property">CellEditCallback</code><br/>
+<code class="property">CellSelectionCallback</code></td><td><code class="function">uitable</code></td></tr></tbody></table></div><p>
+</p></section><section><h4 class="title" id="mw_88f091de-ff30-4347-b11b-7f59f5ff7cc5">Edit App Layout</h4><p>Every app created using GUIDE has a function named
+							<code class="literal"><em class="replaceable"><code>appname</code></em>_OpeningFcn</code> in the
+					code file. This function executes when the app runs. To edit the layout of your
+					app, add code to this function.</p><p>For example, suppose your app has a push button with the tag
+						<code class="literal">pushbutton1</code>. To change the text on the button and update
+					the button width, add this code to the <code class="literal">OpeningFcn</code> callback in
+					your code file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>btn = handles.pushbutton1;
+btn.String = <span style="color:#A020F0">"Push me"</span>;
+btn.Position(3) = 30;
+</pre></div></div></div><p>You can also add and delete components from your app. Whenever you add or
+					delete components, update the <code class="literal">handles</code> structure. Then, at the
+					end of the callback function, add this code to save the structure using the
+						<code class="function">guidata</code>
+					function.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>guidata(hObject,handles)</pre></div></div></div></p><p>For example, to delete the push button, add this code to the
+						<code class="literal">OpeningFcn</code> callback.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>delete(handles.pushbutton1)
+handles = rmfield(handles,<span style="color:#A020F0">"pushbutton1"</span>);
+guidata(hObject,handles);</pre></div></div></div><p>To add a check box to the app, add this code to the
+						<code class="literal">OpeningFcn</code> callback.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cbx = uicontrol(handles.figure1, <span style="color:#0000FF">...</span>
+    Style=<span style="color:#A020F0">"checkbox"</span>,Position=[20 10 80 20],Tag=<span style="color:#A020F0">"checkbox1"</span>);
+handles.checkbox1 = cbx;
+guidata(hObject,handles);</pre></div></div></div><p>To add a component with a callback, you must add some additional code to the
+					file to incorporate the behavior into the app. For example, to add a check box
+					that displays some text when its value changes, first add this code to the
+						<code class="literal">OpeningFcn</code> callback, replacing
+						<em class="replaceable"><code>myui</code></em> with the name of your app file. The code
+					creates the check box, assigns it a unique tag, and specifies a callback
+					function named <code class="literal">checkbox1_Callback</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cbx = uicontrol(handles.figure1, <span style="color:#0000FF">...</span>
+    Style=<span style="color:#A020F0">"checkbox"</span>,Position=[20 10 20 20],Tag=<span style="color:#A020F0">"checkbox1"</span>, <span style="color:#0000FF">...</span>
+    Callback=@(hObject,eventdata)myui(<span style="color:#A020F0">"checkbox1_Callback"</span>,hObject,eventdata,guidata(hObject)));
+handles.checkbox1 = cbx;
+guidata(hObject,handles);</pre></div></div></div><p>Then, add the callback function to the code file. Specify the three input
+					arguments that MATLAB passes to callbacks in GUIDE apps.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% --- Executes on value changed in checkbox1.</span>
+<span style="color:#0000FF">function</span> checkbox1_Callback(hObject,eventdata,handles)
+<span style="color:#228B22">% hObject    handle to checkbox1 (see GCBO)</span>
+<span style="color:#228B22">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span style="color:#228B22">% handles    structure with handles and user data (see GUIDATA)</span>
+disp(<span style="color:#A020F0">"Value changed"</span>)
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section><section><h3 class="title" id="mw_48e611e7-2e6a-4aa7-a328-b7fc77c5eb6b">Export GUIDE App to MATLAB File</h3><span id="guide_app_export" class="anchor_target"></span><p>Exporting a GUIDE app converts it into a programmatic app by re-creating the GUIDE
+				FIG and app code files together in a single MATLAB program file. In most cases, either migrating the app to App Designer
+				or editing the GUIDE app code file makes it easier to maintain your app long-term.
+				However, this option is useful if you want to work with a single app file.</p><p>To export your app, in App Designer, open any app and go to the
+					<strong class="guilabel">Designer</strong> tab of the toolstrip. In the
+					<strong class="guilabel">File</strong> section, select <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">Open GUIDE to App Designer Migration Tool</strong>. Expand the <strong class="guilabel">Export to Single Code File</strong> panel in
+				the dialog box, select the FIG file associated with your app, and then click
+					<strong class="guibutton">Export</strong>. MATLAB creates a program file with <code class="literal">_export</code> appended to the
+				file name. The new file contains your original callback code plus autogenerated
+				functions that handle the creation and layout of the app. An example of these added
+				functions is shown here.</p><div class="informalfigure"><div id="d126e1714" class="mediaobject"><p><img src="appd_guideexport_addcallbacks.png" alt="Generated function code to handle app creation." height="349" width="585"></p></div></div></section>
+			<h2 id="d126e1721">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/appmigration.migrateguideapp.html"><span itemprop="name"><code class="function">appmigration.migrateGUIDEApp</code></span></a></span></p>
+			<h3 id="d126e1727">Topics</h3><ul class="list-unstyled"><li><a href="create-a-simple-app-or-gui-using-app-designer.html" class="a">Create and Run a Simple App Using App Designer</a></li><li><a href="graphics-support-in-app-designer.html" class="a">Display Graphics in App Designer</a></li><li><a href="ways-to-build-matlab-guis.html" class="a">Ways to Build Apps</a></li></ul>
+		</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

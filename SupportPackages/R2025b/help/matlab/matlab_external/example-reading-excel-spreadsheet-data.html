@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Read Spreadsheet Data Using Excel as Automation Server</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "UISupport",
+          "value": "Desktop"
+
+        }</script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use a COM Automation server to access another application from MATLAB."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+</ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Read Spreadsheet Data Using Excel as Automation Server</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bqeqqwj" class="nav-link intrnllnk">Techniques Demonstrated</a></li><li class="nav-item"><a href="#bqeom1z" class="nav-link intrnllnk">Create Excel Automation Server</a></li><li class="nav-item"><a href="#bqeowkf" class="nav-link intrnllnk">Manipulate Data in MATLAB Workspace</a><ul class="nav"><li class="nav-item"><a href="#mw_653563d5-f6d6-435f-8478-39cd202d2496" class="nav-link intrnllnk">Excel Spreadsheet Format</a></li></ul></li><li class="nav-item"><a href="#bqeqnbq" class="nav-link intrnllnk">Create Plotter Interface</a><ul class="nav"><li class="nav-item"><a href="#bqevy0c" class="nav-link intrnllnk">Select and Plot Data</a></li><li class="nav-item"><a href="#bqeyrqr" class="nav-link intrnllnk">Clear the Axes</a></li><li class="nav-item"><a href="#bqeyr0v" class="nav-link intrnllnk">Display or Hide Excel File</a></li><li class="nav-item"><a href="#bqeyr1r" class="nav-link intrnllnk">Close Figure and Terminate Excel Automation Process</a></li></ul></li><li class="nav-item"><a href="#bqfirb9" class="nav-link intrnllnk">Insert MATLAB Graphs into Excel Spreadsheet</a></li><li class="nav-item"><a href="#bqe_4xp" class="nav-link intrnllnk">Run Example</a></li><li class="nav-item"><a href="#d126e79249" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bqd_o32">Read Spreadsheet Data Using <span class="trademark entity">Excel</span> as Automation Server</h2><p>This example shows how to use a COM Automation server to access another application from
+            MATLAB<sup>&#x00AE;</sup>. It creates a user interface to access the data in a <span class="entity">Microsoft<sup>&#x00AE;</sup>
+            Excel<sup>&#x00AE;</sup></span> file. If you do not use the Component Object Model (COM) in your
+         applications, then see the functions and examples in <a href="../spreadsheets.html" class="a">Spreadsheets</a> for alternatives to importing Excel spreadsheet data into MATLAB.</p><p>To enable the communication between MATLAB and the spreadsheet program, this example creates an object in an Automation
+         server running an Excel application. MATLAB then accesses the data in the spreadsheet through the interfaces provided by
+         the Excel Automation server. Finally, the example creates a user interface to access
+         the data in a <span class="entity">Microsoft
+            Excel</span> file.</p><section><h3 class="title" id="bqeqqwj">Techniques Demonstrated</h3><div class="itemizedlist"><ul><li><p>Use of an Automation server to access another application from MATLAB</p></li><li><p>Ways to manipulate Excel data into types used in the interface and plotting</p></li></ul></div><p>The following techniques demonstrate how to visualize and manipulate the spreadsheet
+            data:</p><div class="itemizedlist"><ul><li><p>Implementation of an interface that enables plotting of selected columns of the
+                     Excel spreadsheet.</p></li><li><p>Insertion of a MATLAB figure into an Excel file.</p></li></ul></div><p>Create the function <code class="literal">actx_excel.m</code> with this code.</p><p><a href="#" onclick="return toggleexpander('d126e78917_block','d126e78917_expandable_text');"><img style="border:0;" id="d126e78917_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e78917_block','d126e78917_expandable_text');"><code class="literal">actx_excel.m</code></a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e78917_block"><div class="code_responsive"><pre class="programlisting">function actx_excel                                             
+% Copyright 2013 The MathWorks, Inc.
+% Use Excel as a data server for MATLAB
+
+% Start data server
+startServ1
+% Scope variables from startServ1 to main function
+exl; exlWkbk; exlData;
+% Start graph server
+startServ2
+% Scope variables from startServ2 to main function
+exl2; exlWkbk2; wb; Shapes;
+
+%% Extract column data
+% Time:1, inptAil:2, inptEle:3, inptRud:4, respAil:5, respEle:6, respRud:7
+for ii = 1:size(exlData,2)
+   matData(:,ii) = reshape([exlData{2:end,ii}],size(exlData(2:end,ii)));
+   lBoxList{ii} = [exlData{1,ii}];
+end
+lbs = '';
+tme = matData(:,1); % Time data
+%% ------------ GUI layout ---------------
+% Use system background color for GUI components
+panelColor = get(0,'DefaultUicontrolBackgroundColor');
+%% Set up the figure and defaults
+f = figure('Units','characters',...
+        'Position',[30 30 120 35],...
+        'Color',panelColor,...
+        'HandleVisibility','callback',...
+        'IntegerHandle','off',...
+        'Renderer','painters',...
+        'Toolbar','figure',...
+        'NumberTitle','off',...
+        'Name','Excel Plotter',...
+        'PaperPositionMode','auto',...
+        'DeleteFcn',@deleteFig);
+
+%% Create the bottom uipanel
+botPanel = uipanel('BorderType','etchedin',...
+    'BackgroundColor',panelColor,...
+    'Units','characters',...
+    'Position',[1/20 1/20 119.9 8],...
+    'Parent',f);
+
+%% Create the right side panel
+rightPanel = uipanel('bordertype','etchedin',...
+    'BackgroundColor',panelColor,...
+    'Units','characters',...
+    'Position',[88 8 32 27],...
+    'Parent',f);
+
+%% Create the center panel
+centerPanel = uipanel('bordertype','etchedin',...
+    'Units','characters',...
+    'Position', [1/20 8 88 27],...
+    'Parent',f);
+
+%% Add an axes to the center panel
+a = axes('parent',centerPanel);
+xlabel(a,'Time')
+
+%% Add listbox and label
+listBoxLabel = uicontrol('Style','text','Units','characters',...
+        'Position',[4 24 24 2],...
+        'String','Select column(s) to plot',...
+        'BackgroundColor',panelColor,...
+        'Parent',rightPanel);
+listBox = uicontrol('Style','listbox','Units','characters',...
+        'Position',[4 2 24 20],...
+        'BackgroundColor','white',...
+        'Max',10,'Min',1,...
+        'Parent',rightPanel,...
+        'String',lBoxList(2:end));
+
+%% Add edit field for excel file name
+plotButton = uicontrol('Style','pushbutton','Units','characters',...
+        'Position',[5 2 24 2],...
+        'String','Create Plot',...
+        'Parent',botPanel,...
+        'Callback',@plotButtonCallback);
+clearButton = uicontrol('Style','pushbutton','Units','characters',...
+        'Position',[33 2 24 2],...
+        'String','Clear Graph',...
+        'Parent',botPanel,...
+        'Callback',@clearButtonCallback);
+saveButton = uicontrol('Style','pushbutton','Units','characters',...
+        'Position',[60 2 24 2],...
+        'String','Save Graph',...
+        'Parent',botPanel,...
+        'Callback',@saveButtonCallback);     
+dispButton = uicontrol('Style','togglebutton','Units','characters',...
+        'Position',[87 2 24 2],...
+        'String','Show Excel Data File',...
+        'Parent',botPanel,...
+        'Callback',@dispButtonCallback);
+
+%% ------------------Callback Functions------------
+
+function plotButtonCallback(src,evnt)   
+iSelected = get(listBox,'Value');
+grid(a,'on');hold on
+for p = 1:length(iSelected)
+   switch iSelected(p)
+      case 1
+         plot(a,tme,matData(:,2))
+      case 2
+         plot(a,tme,matData(:,3))
+      case 3
+         plot(a,tme,matData(:,4))   
+      case 4
+         plot(a,tme,matData(:,5))
+      case 5
+         plot(a,tme,matData(:,6))
+      case 6
+         plot(a,tme,matData(:,7))
+      otherwise
+         disp('Select data to plot')
+   end
+end
+[legh,c,g,lbs] = legend([lbs lBoxList(iSelected+1)]);
+end % plotButtonCallback
+
+%% Callback for clear button
+function clearButtonCallback(src,evt)
+   cla(a,'reset')
+   lbs = '';
+end % clearButtonCallback
+
+%% Callback for save graph button
+function saveButtonCallback(src,evt)
+   [stat,struc] = fileattrib(pwd);
+   if struc.UserWrite
+       tempfig = figure('Visible','off','PaperPositionMode','auto');
+       ah = findobj(f,'type','axes');
+       copyobj(ah,tempfig)
+       print(tempfig,'-dpng',[pwd '\exlgraphexample']);
+       Shapes.AddPicture([pwd '\exlgraphexample.png'] ,0,1,50,18,300,235);
+       exl2.visible = 1;
+   else
+       disp('Cannot save graph in this folder.') 
+   end
+end
+   
+%% Display or hide Excel file
+function dispButtonCallback(src,evt)
+   %exl.visible = get(src,'Value');
+   if get(src,'Value')
+      exl.visible = true;
+      set(src,'String','Hide Excel Data File')
+   else
+      exl.visible = false;
+      set(src,'String','Show Excel Data File')
+   end
+end % dispButtonCallback
+
+%% Start data server
+function startServ1
+   exl = actxserver('excel.application');
+   % Load data from an excel file
+   % Get Workbook interface and open file
+   exlWkbk = exl.Workbooks; 
+   exlFile = exlWkbk.Open([docroot '/techdoc/matlab_external/examples/input_resp_data.xls']);
+   % Get interface for Sheet1 and read data into range object
+   exlSheet1 = exlFile.Sheets.Item('Sheet1');
+   robj = exlSheet1.Columns.End(4);
+   numrows = robj.row;
+   dat_range = ['A1:G' num2str(numrows)]; 
+   rngObj = exlSheet1.Range(dat_range);
+   % Read data from excel range object into MATLAB cell array
+   exlData = rngObj.Value; 
+   exl.registerevent({'WorkbookBeforeClose',@close_event1});
+end % startServ1
+
+% Start graph server
+function startServ2
+   % Create a second Excel server and
+   % Add another workbook for saving
+   % the graph to an Excel file
+   exl2 = actxserver('excel.application');
+   exlWkbk2 = exl2.Workbooks;
+   wb = exlWkbk2.Add;
+   graphSheet = wb.Sheets.Add;
+   Shapes = graphSheet.Shapes;
+   exl2.registerevent({'WorkbookBeforeClose',@close_event2});
+end % startServ2
+
+% Handle situation where user closes Excel data file
+function close_event1(varargin)
+% MATLAB does not currently support 
+% pass by reference arguments for events
+% so you cannot set Cancel argument to True
+% Instead, just quit server and restart
+   if exist('exl','var')
+      exl.Quit;
+      set(dispButton,'Value',0,...
+         'String','Show Excel Data File')
+   end
+   startServ1
+end % close_event1
+
+% Handle situation where user closes Excel graph file
+function close_event2(varargin)
+% MATLAB does not currently support 
+% pass by reference arguments for events
+% so you cannot set Cancel argument to True
+% Instead, just quit server and restart
+   if exist('exl2','var')
+      wb.Saved = true;
+      exlWkbk2.Close
+      exl2.Quit;
+   end
+startServ2
+end % close_event2
+
+%% Terminate Excel process
+function deleteFig(src,evt)
+   if exist('exl','var')
+      exl.unregisterevent({'WorkbookBeforeClose',@close_event1});
+      exlWkbk.Close
+      exl.Quit
+   end
+   if exist('exl2','var')
+      wb.Saved = true;
+      exl2.unregisterevent({'WorkbookBeforeClose',@close_event2});
+      exlWkbk2.Close
+      exl2.Quit
+   end
+end % deleteFig       
+end % actx_excel</pre></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>To access the data file <code class="literal">input_resp_data.xls</code> in this example,
+               you must install the documentation.</p></div></section><section><h3 class="title" id="bqeom1z">Create <span class="trademark entity">Excel</span> Automation Server</h3><p>The first step in accessing the spreadsheet data from MATLAB is to run the Excel application in an Automation server process using the <a href="../ref/actxserver.html"><code class="function">actxserver</code></a> function and the program ID,
+               <code class="literal">excel.application</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>exl = actxserver(<span style="color:#A020F0">'excel.application'</span>);</pre></div></div></div><p>The <code class="literal">exl</code> object provides access to a number of interfaces supported
+            by the Excel program. Use the <code class="literal">Workbooks</code> interface to open the
+               Excel file containing the data. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>exlWkbk = exl.Workbooks;
+exlFile = exlWkbk.Open([docroot <span style="color:#A020F0">'/techdoc/matlab_external/examples/input_resp_data.xls'</span>]);</pre></div></div></div><p>Use the workbook <code class="literal">Sheets</code> interface to access the data from a
+               <code class="literal">Range</code> object, which stores a reference to a range of data from the
+            specified sheet. This example accesses all the data from the first cell in column
+               <code class="literal">A</code> to the last cell in column <code class="literal">G</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>exlSheet1 = exlFile.Sheets.Item(<span style="color:#A020F0">'Sheet1'</span>);
+robj = exlSheet1.Columns.End(4);       <span style="color:#228B22">% Find the end of the column</span>
+numrows = robj.row;                    <span style="color:#228B22">% And determine what row it is</span>
+dat_range = [<span style="color:#A020F0">'A1:G'</span> num2str(numrows)]; <span style="color:#228B22">% Read to the last row</span>
+rngObj = exlSheet1.Range(dat_range);
+</pre></div></div></div><p>At this point, the entire data set from the Excel file's <code class="literal">sheet1</code> is accessed via the range object
+            interface <code class="literal">rngObj</code>. This object returns the data in a MATLAB cell array <code class="literal">exlData</code>, which contains both numeric and
+            character data:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+exlData = rngObj.Value;</pre></div></div></div></section><section><h3 class="title" id="bqeowkf">Manipulate Data in <span class="trademark entity">MATLAB</span> Workspace</h3><p>Now that the data is in a cell array, you can use MATLAB functions to extract and reshape parts of the data to use in the interface
+            and to pass to the plot function. For assumptions about the data, see <a href="example-reading-excel-spreadsheet-data.html#mw_653563d5-f6d6-435f-8478-39cd202d2496" class="intrnllnk">Excel Spreadsheet Format</a>.</p><p>The following code manipulates the data:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#0000FF">for</span> ii = 1:size(exlData,2)
+   matData(:,ii) = reshape([exlData{2:end,ii}],size(exlData(2:end,ii)));
+   lBoxList{ii} = [exlData{1,ii}];
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The code performs the following operations:</p><div class="itemizedlist"><ul><li><p>Extracts numeric data from the cell array. See the indexing expression inside
+                  the curly braces <code class="literal">{}</code>.</p></li><li><p>Concatenates the individual doubles returned by the indexing operation. See the
+                  expression inside the square brackets <code class="literal">[]</code>.</p></li><li><p>Reshapes the results into an array that arranges the data in columns using the
+                     <code class="function">reshape</code> function.</p></li><li><p>Extracts the text in the first cell in each column of
+                     <code class="literal">exlData</code> data and stores the text in a cell array
+                     <code class="literal">lBoxList</code>. This variable is used to generate the items in the
+                  list box.</p></li></ul></div><section><h4 class="title" id="mw_653563d5-f6d6-435f-8478-39cd202d2496"><span class="trademark entity">Excel</span> Spreadsheet Format</h4><p>This example assumes a particular organization of the Excel spreadsheet, as shown in this image.</p><div class="informalfigure"><div id="d126e79044" class="mediaobject"><p><img src="xl_file.jpg" alt="Data in input_resp_data.xls spreadsheet." height="317" width="434"></p></div></div><p>The format of the Excel file is:</p><div class="itemizedlist"><ul><li><p>The first element in each column is text that identifies the data contained
+                     in the column. These values are extracted and used to populate the list
+                     box.</p></li><li><p>The first column <code class="literal">Time</code> is used for the
+                        <span class="emphasis"><em>x</em></span>-axis of all plots of the remaining data.</p></li><li><p>All rows in each column are read into MATLAB.</p></li></ul></div></section></section><section><h3 class="title" id="bqeqnbq">Create Plotter Interface</h3><p>This example uses an interface that enables you to select from a list of input and
+            response data. All data is plotted as a function of time and you can continue to add
+            more data to the graph. Each data plot added to the graph causes the legend to
+            expand.</p><p>The interface includes these details:</p><div class="itemizedlist"><ul><li><p>Legend that updates as you add data to a graph</p></li><li><p>Clear button that enables you to clear all graphs from the axes</p></li><li><p>Save button that saves the graph as a PNG file and adds it to another
+                     Excel file</p></li><li><p>Toggle button that shows or hides the Excel file being accessed</p></li><li><p>Figure delete function to terminate the Automation server </p></li></ul></div><section><h4 class="title" id="bqevy0c">Select and Plot Data</h4><p>When you click the <strong class="guibutton">Create Plot</strong> button, its callback
+               function queries the list box to determine what items are selected and plots each
+               data versus time. MATLAB updates the legend to display new data while still maintaining the
+               legend for the existing data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> plotButtonCallback(src,evnt)
+iSelected = get(listBox,<span style="color:#A020F0">'Value'</span>);
+grid(a,<span style="color:#A020F0">'on'</span>);hold <span style="color:#A020F0">on</span>
+<span style="color:#0000FF">for</span> p = 1:length(iSelected)
+   <span style="color:#0000FF">switch</span> iSelected(p)
+      <span style="color:#0000FF">case</span> 1
+         plot(a,tme,matData(:,2))
+      <span style="color:#0000FF">case</span> 2
+         plot(a,tme,matData(:,3))
+      <span style="color:#0000FF">case</span> 3
+         plot(a,tme,matData(:,4))
+      <span style="color:#0000FF">case</span> 4
+         plot(a,tme,matData(:,5))
+      <span style="color:#0000FF">case</span> 5
+         plot(a,tme,matData(:,6))
+      <span style="color:#0000FF">case</span> 6
+         plot(a,tme,matData(:,7))
+      <span style="color:#0000FF">otherwise</span>
+         disp(<span style="color:#A020F0">'Select data to plot'</span>)
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+[b,c,g,lbs] = legend([lbs lBoxList(iSelected+1)]);
+<span style="color:#0000FF">end</span> <span style="color:#228B22">% plotButtonCallback</span></pre></div></div></div></section><section><h4 class="title" id="bqeyrqr">Clear the Axes</h4><p>The plotter is designed to continually add graphs as the user selects data from
+               the list box. The <strong class="guibutton">Clear Graph</strong> button clears and resets the
+               axes and clears the variable used to store the labels of the plot data (used by
+               legend).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#228B22">%% Callback for clear button</span>
+<span style="color:#0000FF">function</span> clearButtonCallback(src,evt)
+   cla(a,<span style="color:#A020F0">'reset'</span>)
+   lbs = <span style="color:#A020F0">''</span>;
+<span style="color:#0000FF">end</span> <span style="color:#228B22">% clearButtonCallback</span></pre></div></div></div></section><section><h4 class="title" id="bqeyr0v">Display or Hide <span class="trademark entity">Excel</span> File</h4><p>The MATLAB program has access to the properties of the Excel application running in the Automation server. By setting the
+                  <code class="property">Visible</code> property to <code class="literal">1</code> or
+                  <code class="literal">0</code>, this callback controls the visibility of the Excel file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%% Display or hide Excel file</span>
+<span style="color:#0000FF">function</span> dispButtonCallback(src,evt)
+   exl.visible = get(src,<span style="color:#A020F0">'Value'</span>);
+<span style="color:#0000FF">end</span> <span style="color:#228B22">% dispButtonCallback</span></pre></div></div></div></section><section><h4 class="title" id="bqeyr1r">Close Figure and Terminate <span class="trademark entity">Excel</span> Automation Process</h4><p>Since the Excel Automation server runs in a separate process from MATLAB, you must terminate this process explicitly. There is no reason to keep
+               this process running after closing the interface, so this example uses the figure's
+                  <code class="literal">delete</code> function to terminate the Excel process with the <code class="function">Quit</code> method. You also need to
+               terminate the Excel process used for saving the graph. For information about terminating
+               this process, see <a href="example-reading-excel-spreadsheet-data.html#bqfirb9" class="intrnllnk">Insert MATLAB Graphs into Excel Spreadsheet</a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#228B22">%% Terminate Excel processes</span>
+<span style="color:#0000FF">function</span> deleteFig(src,evt)
+   exlWkbk.Close
+   exlWkbk2.Close
+   exl.Quit
+   exl2.Quit
+<span style="color:#0000FF">end</span> <span style="color:#228B22">% deleteFig</span></pre></div></div></div></section></section><section><h3 class="title" id="bqfirb9">Insert <span class="trademark entity">MATLAB</span> Graphs into <span class="trademark entity">Excel</span> Spreadsheet</h3><p>You can save the graph created with this interface in an Excel file. This example uses a separate Excel Automation server process for this purpose. The callback for the
+               <strong class="guibutton">Save Graph</strong> push button creates the image and adds it to an
+               Excel file:</p><div class="itemizedlist"><ul><li><p>Both the axes and legend are copied to an invisible figure configured to print
+                  the graph as you see it on the screen (figure
+                     <code class="property">PaperPositionMode</code> property is set to
+                     <code class="literal">auto</code>).</p></li><li><p>The <code class="function">print</code> command creates the PNG image.</p></li><li><p>Use the <code class="literal">Shapes</code> interface to insert the image in the
+                     Excel workbook.</p></li></ul></div><p>The server and interfaces are instanced during the initialization phase:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>exl2 = actxserver(<span style="color:#A020F0">'excel.application'</span>);
+exlWkbk2 = exl2.Workbooks;
+wb = invoke(exlWkbk2,<span style="color:#A020F0">'Add'</span>);
+graphSheet = invoke(wb.Sheets,<span style="color:#A020F0">'Add'</span>);
+Shapes = graphSheet.Shapes;</pre></div></div></div><p>Use this code to implement the <strong class="guibutton">Save Graph</strong> button
+            callback:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> saveButtonCallback(src,evt)
+   tempfig = figure(<span style="color:#A020F0">'Visible'</span>,<span style="color:#A020F0">'off'</span>,<span style="color:#A020F0">'PaperPositionMode'</span>,<span style="color:#A020F0">'auto'</span>);
+   tempfigfile = [tempname <span style="color:#A020F0">'.png'</span>];
+   ah = findobj(f,<span style="color:#A020F0">'type'</span>,<span style="color:#A020F0">'axes'</span>);
+   copyobj(ah,tempfig) <span style="color:#228B22">% Copy both graph axes and legend axes</span>
+   print(tempfig,<span style="color:#A020F0">'-dpng'</span>,tempfigfile);
+   Shapes.AddPicture(tempfigfile,0,1,50,18,300,235);
+   exl2.visible = 1;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h3 class="title" id="bqe_4xp">Run Example</h3><p>To run the example, select any items in the list box and click the <strong class="guibutton">Create
+               Plot</strong> button. The sample data provided with this example contain three
+            input and three associated response data sets. All of these data sets are plotted versus
+            the first column in the Excel file, which is the time data. </p><p>View the Excel data file by clicking the <strong class="guibutton">Show Excel Data File</strong>
+            button. To save an image of the graph in a different Excel file, click the <strong class="guibutton">Save Graph</strong> button. If you have
+            write-access permission in the current folder, then the <strong class="guibutton">Save
+               Graph</strong> option creates a temporary PNG file in that folder.</p><p>This image shows the interface with an input/response pair selected in the list box
+            and plotted in the axes.</p><div class="informalfigure"><div id="d126e79243" class="mediaobject"><p><img src="excel_plotter.jpg" alt="Excel plotter example output." height="398" width="456"></p></div></div></section>
+         <h2 id="d126e79249">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/xlsread.html"><span itemprop="name"><code class="function">xlsread</code></span></a></span></p>
+         <h3 id="d126e79255">Topics</h3><ul class="list-unstyled"><li><a href="../import_export/ways-to-import-spreadsheets.html" class="a">Import Spreadsheets</a></li></ul>
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

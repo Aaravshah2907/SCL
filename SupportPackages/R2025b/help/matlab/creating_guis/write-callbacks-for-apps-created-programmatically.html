@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Callbacks for Apps Created Programmatically</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../develop-apps-programmatically.html",
+          "name": "Develop Apps Programmatically"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "develop-apps-programmatically"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Write callbacks to control the behavior of apps you create programmatically."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../develop-apps-programmatically.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_f9a6ab69-acba-4d90-9e05-e852423494b0"><span itemprop="title">Develop Apps Programmatically</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Callbacks for Apps Created Programmatically</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_2e358093-b52e-4aa2-8ff7-024130ee3c2e" class="nav-link intrnllnk">Callback Function Arguments</a></li><li class="nav-item"><a href="#f16-1001315" class="nav-link intrnllnk">Specify a Callback Function</a><ul class="nav"><li class="nav-item"><a href="#br7qvh9" class="nav-link intrnllnk">Specify a Function Handle</a></li><li class="nav-item"><a href="#brqow8p" class="nav-link intrnllnk">Specify a Cell Array</a></li><li class="nav-item"><a href="#bvf4jbn" class="nav-link intrnllnk">Specify an Anonymous Function</a></li><li class="nav-item"><a href="#brqowqm" class="nav-link intrnllnk">Specify Text Containing MATLAB Commands (Not Recommended)</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f16-999606">Create Callbacks for Apps Created Programmatically</h2><p>To program a UI component in your app to respond to an app user's input, create a
+        <em class="firstterm">callback function</em> for that UI component. A callback function is a
+      function that executes in response to a user interaction, such as a click on a button. Every
+      UI component has multiple <em class="firstterm">callback properties</em>, each of which
+      corresponds to a specific action. When a user runs your app and performs one of these actions,
+        MATLAB<sup>&#x00AE;</sup> executes the function assigned to the associated callback property.</p><p>For example, if your app contains a button, you might want to make the app update when a
+      user clicks that button. You can do this by writing a function that performs the update, then
+      setting the <code class="property">ButtonPushedFcn</code> property of the button to a handle to your
+      function. You can assign a callback function to a callback property as a name-value argument
+      when you create the component, or you can set the property using dot notation from anywhere in
+      your code.</p><p>To determine the callback properties a UI component has, see the properties page of the
+      specific UI component.</p><section><h3 class="title" id="mw_2e358093-b52e-4aa2-8ff7-024130ee3c2e">Callback Function Arguments</h3><p>When a UI component executes a callback function, MATLAB automatically passes two input arguments to the function. These input
+        arguments are often named <code class="literal">src</code> and <code class="literal">event</code>. The first
+        argument is the UI component that triggered the callback. The second argument provides event
+        data to the callback function. The event data that it provides is specific to the callback
+        property and the component type. To determine the event data associated with a callback
+        property, see the properties page of the UI component that executes the callback.</p><p>For example, the <code class="literal">updateDropDown</code> function uses these callback inputs
+        to add items to an editable drop-down menu when the user types a new value. When the
+        drop-down executes the <code class="literal">addItems</code> callback, <code class="literal">src</code> contains
+        the drop-down component, and <code class="literal">event</code> contains information about the
+        interaction. The function uses the <code class="literal">event.Edited</code> property to check if the
+        value is a new value that the user typed, or an existing item. Then, if the value is new,
+        the function uses the <code class="literal">event.Value</code> property to add the value to the
+        drop-down items.</p><p>To run this function, save it to a file named <code class="literal">updateDropDown.m</code> on the
+          MATLAB path. Type a new value in the drop-down menu, press <strong class="keycap">Enter</strong>,
+        and view the updated drop-down items.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> updateDropDown
+  fig = uifigure(<span style="color:#A020F0">'Position'</span>,[500 500 300 200]);
+  dd = uidropdown(fig, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Editable'</span>,<span style="color:#A020F0">'on'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Items'</span>,{<span style="color:#A020F0">'Red'</span>,<span style="color:#A020F0">'Green'</span>,<span style="color:#A020F0">'Blue'</span>}, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ValueChangedFcn'</span>,@addItems);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> addItems(src,event)
+  val = event.Value;
+  <span style="color:#0000FF">if</span> event.Edited
+    src.Items{end+1} = val;
+  <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="informalfigure"><div id="d126e12526" class="mediaobject"><p><img src="callback_input_arguments.png" alt="A UI figure window with a label and drop-down. The drop-down value is &#34;Purple&#34;, and the items contain &#34;Purple&#34; as an option." height="232" width="302"></p></div></div></section><section><h3 class="title" id="f16-1001315">Specify a Callback Function</h3><p>Assign a callback function to a callback property in one of the following ways:</p><div class="itemizedlist"><ul><li><p><a href="write-callbacks-for-apps-created-programmatically.html#br7qvh9" class="intrnllnk">Specify a Function Handle</a> &#8212; Use this method when your callback does not
+            require additional input arguments.</p></li><li><p><a href="write-callbacks-for-apps-created-programmatically.html#brqow8p" class="intrnllnk">Specify a Cell Array</a> &#8212; Use this method when your callback requires
+            additional input arguments. The cell array contains a function handle as the first
+            element, followed by any input arguments you want to use in the function. </p></li><li><p><a href="write-callbacks-for-apps-created-programmatically.html#bvf4jbn" class="intrnllnk">Specify an Anonymous Function</a> &#8212; Use this method when your callback code is
+            simple, or to reuse a function that is not always executed as a callback.</p></li><li><p><a href="write-callbacks-for-apps-created-programmatically.html#brqowqm" class="intrnllnk">Specify Text Containing MATLAB Commands (Not Recommended)</a></p></li></ul></div><section><h4 class="title" id="br7qvh9">Specify a Function Handle</h4><p>Function handles provide a way to represent a function as a variable. The function can
+          be either a local or nested function in the same file as the app code, or a function
+          defined in a separate file that is on the MATLAB path. To create the function handle, specify the <code class="literal">@</code>
+          operator before the name of the function. </p><p>For example, to create a button that responds to a click, save the following function
+          to a file named <code class="literal">codeButtonResponse.m</code> on the MATLAB path. This code creates a button using the <a href="../ref/uibutton.html"><code class="function">uibutton</code></a> function and sets the <code class="property">ButtonPushedFcn</code> property
+          to be a handle to the function <code class="literal">buttonCallback</code>. It creates this handle
+          using the notation <code class="literal">@buttonCallback</code>.  Notice that the function handle
+          does not explicitly refer to any input arguments, but the function declaration includes
+          the <code class="literal">src</code> and <code class="literal">event</code> input arguments.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> codeButtonResponse
+  fig = uifigure(<span style="color:#A020F0">'Position'</span>,[500 500 300 200]);
+  btn = uibutton(fig,<span style="color:#A020F0">'ButtonPushedFcn'</span>,@buttonCallback);
+    
+  <span style="color:#0000FF">function</span> buttonCallback(src,event)
+    disp(<span style="color:#A020F0">'Button pressed'</span>);
+  <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e12582" class="mediaobject"><p><img src="callback_function_handle.png" alt="A UI figure window with a button component." height="232" width="302"></p></div></div><p></p><p>A benefit of specifying callbacks as function handles is that MATLAB checks each callback function for syntax errors and missing dependencies
+          when you assign it to the component. If there is a problem in a callback function, then
+            MATLAB returns an error immediately instead of waiting for the user to trigger the
+          callback. This behavior helps you to find problems in your code before the user encounters
+          them.</p></section><section><h4 class="title" id="brqow8p">Specify a Cell Array</h4><p>All callbacks accept two input arguments for the source and event. To specify a
+          callback that accepts additional input arguments beyond these two, use a cell array. The
+          first element in the cell array is a function handle. The other elements in the cell array
+          are the additional input arguments you want to use, separated by commas. The function you
+          specify must accept the source and event arguments as its first two input arguments, as
+          described in <a href="write-callbacks-for-apps-created-programmatically.html#br7qvh9" class="intrnllnk">Specify a Function Handle</a>. However, you can define additional inputs in your
+          function declaration after these first two arguments.</p><p>For example, the <code class="literal">codeComponentResponse</code> function creates a button
+          and a check box component that both use the same function as a callback, but that pass
+          different arguments to it. To specify different input arguments for the different
+          components, set the callback properties of both components to cell arrays. The first
+          element of the cell array is a handle to the <code class="literal">componentCallback</code>
+          function, and the second is the additional input argument to pass to the function.</p><p>To run this example, save the function to a file named
+            <code class="literal">codeComponentResponse.m</code> on the MATLAB path. When you select or clear the check box, MATLAB displays <code class="literal">You clicked the check box</code>. When you click the
+          button, MATLAB displays <code class="literal">You clicked the button</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> codeComponentResponse
+  fig = uifigure(<span style="color:#A020F0">'Position'</span>,[500 500 300 200]);
+  cbx = uicheckbox(fig,<span style="color:#A020F0">'Position'</span>,[100 125 84 22], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ValueChangedFcn'</span>,{@componentCallback,<span style="color:#A020F0">'check box'</span>});
+  btn = uibutton(fig,<span style="color:#A020F0">'Position'</span>,[100 75 84 22], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ButtonPushedFcn'</span>,{@componentCallback,<span style="color:#A020F0">'button'</span>});
+    
+  <span style="color:#0000FF">function</span> componentCallback(src,event,comp)
+    disp([<span style="color:#A020F0">'You clicked the '</span> comp]);
+  <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e12627" class="mediaobject"><p><img src="callback_cell_array.png" alt="A UI figure window with a check box component above a button component." height="232" width="302"></p></div></div><p></p><p>Like callbacks specified as function handles, MATLAB checks callbacks specified as cell arrays for syntax errors and missing
+          dependencies when you assign them to a component. If there is a problem in the callback
+          function, then MATLAB returns an error immediately instead of waiting for the user to trigger the
+          callback. This behavior helps you to find problems in your code before the user encounters
+          them.</p></section><section><h4 class="title" id="bvf4jbn">Specify an Anonymous Function</h4><p>An anonymous function is a function that is not stored in a program file. Specify an
+          anonymous function when:</p>
+<div class="itemizedlist"><ul><li><p>You want a UI component to execute a function that does not support the two
+                source and event arguments that are required for function handles and cell
+                arrays.</p></li><li><p>You want a UI component to execute a script.</p></li><li><p>Your callback consists of a single executable statement.</p></li></ul></div><p>
+ To specify an anonymous function, create a function handle with the two
+          required source and event input arguments that executes your callback function, script, or
+          statement. </p><p>For example, the <code class="function">changeSlider</code> function creates a slider UI
+          component and a button to increment the slider value. The
+            <code class="function">incrementSlider</code> function does not have the source and event input
+          arguments, since it is designed to be callable either inside or outside of a callback. To
+          execute <code class="function">incrementSlider</code> when the button is pressed, create an
+          anonymous function that accepts the <code class="literal">src</code> and <code class="literal">event</code>
+          input arguments, ignores them, and executes <code class="function">incrementSlider</code>.</p><p>To run the <code class="function">changeSlider</code> function, save the code below to a file
+          named <code class="literal">changeSlider.m</code> on the MATLAB path. <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> changeSlider
+  fig = uifigure(<span style="color:#A020F0">'Position'</span>,[500 500 300 200]);
+  s = uislider(fig,<span style="color:#A020F0">'Position'</span>,[75 150 150 3]);
+  incrementSlider;
+  b = uibutton(fig,<span style="color:#A020F0">'Position'</span>,[100 50 100 22], <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Text'</span>,<span style="color:#A020F0">'Increment'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ButtonPushedFcn'</span>,@(src,event)incrementSlider);
+    
+  <span style="color:#0000FF">function</span> incrementSlider
+    <span style="color:#0000FF">if</span> s.Value &lt; s.Limits(2)
+      s.Value = s.Value + 1;
+    <span style="color:#0000FF">end</span>
+  <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e12678" class="mediaobject"><p><img src="callback_anonymous_function.png" alt="A UI figure window with a slider component with a value of 1, and a button below the slider with the text &#34;Increment&#34;." height="232" width="302"></p></div></div><p></p><p>When your callback is a single executable statement, you can specify the callback as
+          an anonymous function to avoid needing to define a separate function for the statement.
+          For example, the following code creates a button that displays <code class="literal">Button
+            pressed</code> when the button is clicked by specifying a callback as an anonymous
+          function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure(<span style="color:#A020F0">'Position'</span>,[500 500 300 200]);
+btn = uibutton(fig,<span style="color:#A020F0">'ButtonPushedFcn'</span>,@(src,event)disp(<span style="color:#A020F0">'Button pressed'</span>));</pre></div></div></div><div class="informalfigure"><div id="d126e12689" class="mediaobject"><p><img src="callback_function_handle.png" alt="A UI figure window with a button component." height="232" width="302"></p></div></div><p>Unlike with callbacks specified as function handles or cell arrays, MATLAB does not check callbacks specified as anonymous functions for syntax errors
+          and missing dependencies when you assign them to a component. If there is a problem with
+          the anonymous function, it remains undetected until the user triggers the callback.</p></section><section><h4 class="title" id="brqowqm">Specify Text Containing MATLAB Commands (Not Recommended)</h4><p>You can specify a callback as a character vector or a string scalar when you want to
+          execute a few simple commands, but the callback can become difficult to manage if it
+          contains more than a few commands. Unlike with callbacks that are specified as function
+          handles or cell arrays, MATLAB does <span class="emphasis"><em>not</em></span> check character vectors or strings for syntax
+          errors or missing dependencies. If there is a problem with the MATLAB expression, it remains undetected until the user triggers the callback. The
+          character vector or string you specify must consist of valid MATLAB expressions, which can include arguments to functions.</p><p>For example, the code below creates a <code class="literal">UIAxes</code> object and a button
+          that plots random data on the axes when it is clicked. Notice that the character vector
+            <code class="literal">'plot(ax,rand(20,3))'</code> contains a variable, <code class="literal">ax</code> The
+          variable <code class="literal">ax</code> must exist in the base workspace when the user triggers the
+          callback, or MATLAB returns an error. The variable does not need to exist at the time you assign
+          callback property value, but it must exist when the user triggers the callback.</p><p>Run the code, then click the button. Since <code class="literal">ax</code> exists in your base
+          workspace, the callback command is valid, and MATLAB plots the data.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+ax = uiaxes(fig,<span style="color:#A020F0">'Position'</span>,[125 100 300 300]);
+b = uibutton(fig,<span style="color:#A020F0">'Position'</span>,[225 50 100 22], <span style="color:#0000FF">...</span>
+  <span style="color:#A020F0">'Text'</span>,<span style="color:#A020F0">'Plot Data'</span>, <span style="color:#0000FF">...</span>
+  <span style="color:#A020F0">'ButtonPushedFcn'</span>,<span style="color:#A020F0">'plot(ax,rand(20,3))'</span>);</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e12736" class="mediaobject"><p><img src="callback_character_vector.png" alt="A UI figure window with an axes and a button component. The button text says &#34;Plot Data&#34;. The axes has three lines of random data displayed on it." height="452" width="562"></p></div></div><p></p></section></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e12744">Topics</h3><ul class="list-unstyled"><li><a href="share-data-among-callbacks.html" class="a">Share Data Among Callbacks</a></li><li><a href="interrupt-callback-execution.html" class="a">Interrupt Callback Execution</a></li><li><a href="../matlab_prog/anonymous-functions.html" class="a">Anonymous Functions</a></li><li><a href="write-callbacks-for-gui-in-app-designer.html" class="a">Callbacks in App Designer</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

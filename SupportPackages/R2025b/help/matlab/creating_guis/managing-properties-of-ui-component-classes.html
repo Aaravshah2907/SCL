@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Manage Properties of Custom UI Components Programmatically</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../developing-custom-ui-component-classes.html",
+          "name": "Create Custom UI Components"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-custom-ui-component-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Validate property values, optimize how properties update, and customize how properties display for the UI components you author."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-custom-ui-component-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4599001b-126d-40d9-b094-1d13710d02e2"><span itemprop="title">Create Custom UI Components</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Manage Properties of Custom UI Components Programmatically</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_17b066d0-66ce-4572-8619-efa2d3ee5a1b" class="nav-link intrnllnk">Initialize Property Values</a></li><li class="nav-item"><a href="#mw_4acfbf30-2bed-49c5-a4d2-f1199900da27" class="nav-link intrnllnk">Validate Property Values</a></li><li class="nav-item"><a href="#mw_6655c721-3b10-4d23-a25a-256c9216d624" class="nav-link intrnllnk">Customize the Property Display</a></li><li class="nav-item"><a href="#mw_d22eddb2-bb5a-43c1-b812-69199da00060" class="nav-link intrnllnk">Optimize the update Method</a></li><li class="nav-item"><a href="#mw_bae3fcf2-a21a-47f2-8de2-ca0bfb9a8e3c" class="nav-link intrnllnk">Example: Optimized Polynomial Fit UI Component with Customized Property Display</a></li><li class="nav-item"><a href="#d126e14076" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_1e42e23f-d111-4dcd-95c0-3e5d9ab9d635">Manage Properties of Custom UI Components Programmatically</h2><p>When you develop a custom UI component as a subclass of the
+                <code class="class">ComponentContainer</code> base class, you can use certain techniques to make
+            your code more robust, efficient, and user-friendly. These techniques focus on how you
+            define and manage the properties of your class. Use any that are helpful for the type of
+            component you want to create and the user experience you want to provide.</p>
+<div class="itemizedlist"><ul><li><p><a href="managing-properties-of-ui-component-classes.html#mw_17b066d0-66ce-4572-8619-efa2d3ee5a1b" class="intrnllnk">Initialize Property Values</a> &#8212;
+                        Set the default state of the UI component in case your users call the
+                        implicit constructor without any input arguments.</p></li><li><p><a href="managing-properties-of-ui-component-classes.html#mw_4acfbf30-2bed-49c5-a4d2-f1199900da27" class="intrnllnk">Validate Property Values</a> &#8212;
+                        Ensure that the values are valid before using them.</p></li><li><p><a href="managing-properties-of-ui-component-classes.html#mw_6655c721-3b10-4d23-a25a-256c9216d624" class="intrnllnk">Customize the Property Display</a> &#8212;
+                        Provide a customized list of properties in the Command Window when a user
+                        references the UI component object without a semicolon.</p></li><li><p><a href="managing-properties-of-ui-component-classes.html#mw_d22eddb2-bb5a-43c1-b812-69199da00060" class="intrnllnk">Optimize the update Method</a> &#8212;
+                        Improve the performance of the <code class="literal">update</code> method when only a
+                        subset of your properties are used in a time-consuming calculation.</p></li></ul></div><p>
+For an example of these techniques, see <a href="managing-properties-of-ui-component-classes.html#mw_bae3fcf2-a21a-47f2-8de2-ca0bfb9a8e3c" class="intrnllnk">Example: Optimized Polynomial Fit UI Component with Customized Property Display</a>.</p><p>In addition, there are certain considerations and limitations to keep in mind if you
+            want to use your custom UI component in App Designer, or share your component with users
+            who develop apps in App Designer. These considerations are listed on a separate page, in
+                <a href="custom-ui-component-classes-in-app-designer.html" class="a">Configure Custom UI Components for App Designer</a>.</p><section><h3 class="title" id="mw_17b066d0-66ce-4572-8619-efa2d3ee5a1b">Initialize Property Values</h3><p>Assign default values for all of the public properties of your class. This allows
+                MATLAB to create a valid UI component even if the user omits some name-value
+                arguments when they call the constructor method. </p><p>For UI components that contain a chart and have properties that store coordinate
+                data, set the initial values to <code class="literal">NaN</code> values or empty arrays so
+                that the default chart is empty when the user does not specify the
+                coordinates.</p></section><section><h3 class="title" id="mw_4acfbf30-2bed-49c5-a4d2-f1199900da27">Validate Property Values</h3><p>Before your code uses property values, confirm that they have the
+                correct size and class. For example, this property block validates the size and
+                class of three
+                properties.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">properties</span>
+    LineColor <span style="color:#A0522D">{validateattributes(LineColor,{'double'}, </span><span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+        <span style="color:#A0522D">{'&lt;=',1,'&gt;=',0,'size',[1 3]})}</span> = [1 0 0]
+    XData <span style="color:#A0522D">(1,:) double </span>= NaN
+    YData <span style="color:#A0522D">(1,:) double </span>= NaN
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p><code class="literal">LineColor</code> must be a 1-by-3 array of class
+                    <code class="literal">double</code>, where each value is in the range
+                    <code class="literal">[0,1]</code>. Both <code class="literal">XData</code> and
+                    <code class="literal">YData</code> must be row vectors of class
+                <code class="literal">double</code>.</p><p>You can also validate properties that store the underlying component objects in
+                your UI component. To do this, you need to know the correct class name for each
+                object. To determine the class name of an object, call the corresponding UI
+                component function at the command line, and then call the <code class="function">class</code>
+                function to get the class name. For example, if you plan to create a drop-down
+                component in your <code class="literal">setup</code> method, call the <a href="../ref/uidropdown.html"><code class="function">uidropdown</code></a> function at the command
+                line with an output argument. Then, pass the output to the
+                    <code class="function">class</code> function to get its class
+                name.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dd = uidropdown;
+class(d)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    'matlab.ui.control.DropDown'</pre></div></div></div></p><p>Use the output of the <code class="function">class</code> function to validate the class
+                for the corresponding property in your class. Specify the class after the property
+                name. For example, the following property stores a <code class="literal">DropDown</code>
+                object and validates its
+                class.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">properties</span> (Access = private, Transient, NonCopyable)
+        DropDown <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>Occasionally, you might want to define a property that can store different shapes
+                and classes of values. For example, if you define a property that can store a
+                character vector, cell array of character vectors, or string array, omit the size
+                and class validation or use a custom property validation method. For more
+                information about validating properties, see <a href="../matlab_oop/validate-property-values.html" class="a">Validate Property Values</a>.</p></section><section><h3 class="title" id="mw_6655c721-3b10-4d23-a25a-256c9216d624">Customize the Property Display</h3><p>One of the benefits of defining your UI component as a subclass of the
+                    <code class="literal">ComponentContainer</code> base class is that it also inherits from
+                the <a href="../ref/matlab.mixin.customdisplay-class.html"><code class="class">matlab.mixin.CustomDisplay</code></a> class.
+                This lets you customize the list of properties MATLAB<sup>&#x00AE;</sup> displays in the Command Window when you reference the UI component
+                without a semicolon. To customize the property display, overload the <a href="../ref/matlab.mixin.customdisplay.getpropertygroups.html"><code class="method">getPropertyGroups</code></a> method.
+                Within that method, you can customize which properties are listed and the order of
+                the list. For example, consider a <code class="literal">FitPlot</code> class that has the
+                following public
+                properties.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">properties</span>
+    LineColor <span style="color:#A0522D">{validateattributes(LineColor,{'double'}, </span><span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+        <span style="color:#A0522D">{'&lt;=',1,'&gt;=',0,'size',[1 3]})}</span> = [1 0 0]
+    XData <span style="color:#A0522D">(1,:) double </span>= NaN
+    YData <span style="color:#A0522D">(1,:) double </span>= NaN
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>The following <code class="literal">getPropertyGroups</code> method specifies the scalar
+                object property list as <code class="literal">XData</code>, <code class="literal">YData</code>, and
+                    <code class="literal">LineColor</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> propgrp = getPropertyGroups(comp)
+    <span style="color:#0000FF">if</span> ~isscalar(comp)
+        <span style="color:#228B22">% List for array of objects</span>
+        propgrp = getPropertyGroups@matlab.mixin.CustomDisplay(comp);    
+    <span style="color:#0000FF">else</span>
+        <span style="color:#228B22">% List for scalar object</span>
+        propList = {<span style="color:#A020F0">'XData'</span>,<span style="color:#A020F0">'YData'</span>,<span style="color:#A020F0">'LineColor'</span>};
+        propgrp = matlab.mixin.util.PropertyGroup(propList);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></p><p>When the user references an instance of this UI component without a semicolon,
+                    MATLAB displays the customized
+                list.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = FitPlot</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p = 
+
+  <span class="blue">FitPlot</span> with properties:
+
+    XData: NaN
+    YData: NaN
+    LineColor: [1 0 0]</pre></div></div></div></p><p>For more information about customizing the property display, see <a href="../matlab_oop/use-cases.html" class="a">Customize Property Display</a>.</p></section><section><h3 class="title" id="mw_d22eddb2-bb5a-43c1-b812-69199da00060">Optimize the <code class="literal">update</code> Method</h3><p>In most cases, the <code class="literal">update</code> method of your class reconfigures all
+                the relevant aspects of your UI component that depend on the public properties.
+                Sometimes, the reconfiguration involves an expensive calculation that is time
+                consuming. If the calculation involves only a subset of the properties, you can
+                design your class to execute that code only when it is necessary.</p><p>One way to optimize the <code class="literal">update</code> method is to add these elements
+                to your class: </p>
+<div class="itemizedlist"><ul><li><p>A private property called <code class="literal">ExpensivePropChanged</code> that
+                            accepts a <code class="literal">logical</code> value. This property indicates
+                            whether any of the properties used in the expensive calculation have
+                            changed.</p></li><li><p>A <code class="literal">set</code> method for each property involved in the
+                            expensive calculation. Within each <code class="literal">set</code> method, set
+                            the <code class="literal">ExpensivePropChanged</code> property to
+                                <code class="literal">true</code>.</p></li><li><p>A protected method called <code class="literal">doExpensiveCalculation</code>
+                            that performs the expensive calculation.</p></li><li><p>A conditional statement in the <code class="literal">update</code> method that
+                            checks the value of <code class="literal">ExpensivePropChanged</code>. If the
+                            value is <code class="literal">true</code>, execute
+                                <code class="literal">doExpensiveCalculation</code>.</p></li></ul></div><p>
+</p><p>The following code provides a template for this design.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> OptimizedUIComponent &lt;  matlab.ui.componentcontainer.ComponentContainer
+    
+    <span style="color:#0000FF">properties</span>
+        Prop1
+        Prop2
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span>(Access=private,Transient,NonCopyable)
+        ExpensivePropChanged <span style="color:#A0522D">(1,1) logical </span>= true
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span>(Access = protected)
+        <span style="color:#0000FF">function</span> setup(comp)
+            <span style="color:#228B22">% Configure UI component</span>
+            <span style="color:#228B22">% ...</span>
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> update(comp)
+            <span style="color:#228B22">% Perform expensive computation if needed</span>
+            <span style="color:#0000FF">if</span> comp.ExpensivePropChanged
+                doExpensiveCalculation(comp);
+                comp.ExpensivePropChanged = false;
+            <span style="color:#0000FF">end</span>
+            
+            <span style="color:#228B22">% Update other aspects of UI component</span>
+            <span style="color:#228B22">% ...</span>
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> doExpensiveCalculation(comp)
+            <span style="color:#228B22">% Expensive code</span>
+            <span style="color:#228B22">% ...</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> set.Prop2(comp,val)
+            comp.Prop2 = val;
+            comp.ExpensivePropChanged = true;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>In this case, <code class="literal">Prop2</code> is involved in the expensive calculation.
+                The <code class="literal">set.Prop2</code> method sets the value of <code class="literal">Prop2</code>,
+                and then it sets <code class="literal">ExpensivePropChanged</code> to <code class="literal">true</code>.
+                The next time the <code class="literal">update</code> method runs, it calls
+                    <code class="literal">doExpensiveCalculation</code> only if
+                    <code class="literal">ExpensivePropChanged</code> is <code class="literal">true</code>. Then, the
+                    <code class="literal">update</code> method continues to update other aspects of the UI
+                component.</p></section><section><h3 class="title" id="mw_bae3fcf2-a21a-47f2-8de2-ca0bfb9a8e3c">Example: Optimized Polynomial Fit UI Component with Customized Property                 Display</h3><p>This example defines a <code class="literal">FitPlot</code> class for interactively
+                displaying best fit polynomials, and uses all four of these best practices. The
+                properties defined in the properties block have default values and use size and
+                class validation. The <code class="literal">getPropertyGroups</code> method defines a custom
+                order for the property display. The <code class="literal">changeFit</code> method performs the
+                potentially expensive polynomial fit calculation, and the <code class="literal">update</code>
+                method executes <code class="literal">changeFit</code> only if the plotted data
+                changed.</p><p>To define this class, save the <code class="literal">FitPlot</code> class definition to a
+                file named <code class="literal">FitPlot.m</code> in a folder that is on the MATLAB path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> FitPlot &lt; matlab.ui.componentcontainer.ComponentContainer
+    <span style="color:#228B22">% Choose a fit method for your plotted data</span>
+    
+    <span style="color:#0000FF">properties</span>
+        LineColor <span style="color:#A0522D">{validateattributes(LineColor,{'double'}, </span><span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+            <span style="color:#A0522D">{'&lt;=',1,'&gt;=',0,'size',[1 3]})}</span> = [1 0 0]
+        XData <span style="color:#A0522D">(1,:) double </span>= NaN
+        YData <span style="color:#A0522D">(1,:) double </span>= NaN
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">properties</span> (Access = private, Transient, NonCopyable)
+        DropDown <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+        Axes <span style="color:#A0522D">matlab.ui.control.UIAxes</span>
+        GridLayout <span style="color:#A0522D">matlab.ui.container.GridLayout</span>
+        DataLine <span style="color:#A0522D">(1,1) matlab.graphics.chart.primitive.Line</span>
+        FitLine <span style="color:#A0522D">(1,1) matlab.graphics.chart.primitive.Line</span>
+        FitXData <span style="color:#A0522D">(1,:) double</span>
+        FitYData <span style="color:#A0522D">(1,:) double </span>
+        ExpensivePropChanged <span style="color:#A0522D">(1,1) logical </span>= true
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span> (Access=protected)
+        <span style="color:#0000FF">function</span> setup(comp)
+            <span style="color:#228B22">% Set the initial position of this component</span>
+            comp.Position = [100 100 300 300];
+            
+            <span style="color:#228B22">% Create the grid layout, drop-down, and axes</span>
+            comp.GridLayout = uigridlayout(comp,[2,1], <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'RowHeight'</span>,{20,<span style="color:#A020F0">'1x'</span>},<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'ColumnWidth'</span>,{<span style="color:#A020F0">'1x'</span>});
+            comp.DropDown = uidropdown(comp.GridLayout, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'Items'</span>,{<span style="color:#A020F0">'None'</span>,<span style="color:#A020F0">'Linear'</span>,<span style="color:#A020F0">'Quadratic'</span>,<span style="color:#A020F0">'Cubic'</span>}, <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'ValueChangedFcn'</span>,@(s,e) changeFit(comp));
+            comp.Axes = uiaxes(comp.GridLayout);
+             
+            <span style="color:#228B22">% Create the line objects</span>
+            comp.DataLine = plot(comp.Axes,NaN,NaN,<span style="color:#A020F0">'o'</span>);
+            hold(comp.Axes,<span style="color:#A020F0">'on'</span>);
+            comp.FitLine = plot(comp.Axes,NaN,NaN);
+            hold(comp.Axes,<span style="color:#A020F0">'off'</span>);
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> update(comp)
+            <span style="color:#228B22">% Update data points</span>
+            comp.DataLine.XData = comp.XData;
+            comp.DataLine.YData = comp.YData;
+            
+            <span style="color:#228B22">% Do an expensive operation</span>
+            <span style="color:#0000FF">if</span> comp.ExpensivePropChanged
+                comp.changeFit();
+                comp.ExpensivePropChanged = false;
+            <span style="color:#0000FF">end</span>
+            
+            <span style="color:#228B22">% Update the fit line</span>
+            comp.FitLine.Color = comp.LineColor;
+            comp.FitLine.XData = comp.FitXData;
+            comp.FitLine.YData = comp.FitYData;
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> changeFit(comp)
+            <span style="color:#228B22">% Calculate the fit line based on the drop-down value</span>
+            <span style="color:#0000FF">if</span> strcmp(comp.DropDown.Value,<span style="color:#A020F0">'None'</span>)
+                comp.FitXData = NaN;
+                comp.FitYData = NaN;
+            <span style="color:#0000FF">else</span>
+                <span style="color:#0000FF">switch</span> comp.DropDown.Value
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">'Linear'</span>
+                        f = polyfit(comp.XData,comp.YData,1);
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">'Quadratic'</span>
+                        f = polyfit(comp.XData,comp.YData,2);
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">'Cubic'</span>
+                        f = polyfit(comp.XData,comp.YData,3);
+                <span style="color:#0000FF">end</span>
+                comp.FitXData = linspace(min(comp.XData),max(comp.XData));
+                comp.FitYData = polyval(f,comp.FitXData);
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> propgrp = getPropertyGroups(comp)
+            <span style="color:#0000FF">if</span> ~isscalar(comp)
+                <span style="color:#228B22">% List for array of objects</span>
+                propgrp = getPropertyGroups@matlab.mixin.CustomDisplay(comp);    
+            <span style="color:#0000FF">else</span>
+                <span style="color:#228B22">% List for scalar object</span>
+                propList = {<span style="color:#A020F0">'XData'</span>,<span style="color:#A020F0">'YData'</span>,<span style="color:#A020F0">'LineColor'</span>};
+                propgrp = matlab.mixin.util.PropertyGroup(propList);
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> set.XData(comp,val)
+            comp.XData = val;
+            comp.ExpensivePropChanged = true;
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> set.YData(comp,val)
+            comp.YData = val;
+            comp.ExpensivePropChanged = true;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Define some sample data and use it to create an instance of
+                    <code class="literal">FitPlot</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [0 0.3 0.8 1.1 1.6 2.3];
+y = [0.6 0.67 1.01 1.35 1.47 1.25];
+p = FitPlot(<span style="color:#A020F0">'XData'</span>,x,<span style="color:#A020F0">'YData'</span>,y)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  <span class="blue">FitPlot</span> with properties:
+
+        XData: [1×43 double]
+        YData: [1×43 double]
+    LineColor: [1 0 0]</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e14052" class="mediaobject"><p><img src="component_fitplot_ex1.png" alt="Instance of the FitPlot class displaying a drop-down with the value 'None' and an axes with some sample data." height="452" width="562"></p></div></div><p></p><p>Use the drop-down to display the quadratic best fit curve.</p>
+<div class="informalfigure"><div id="d126e14059" class="mediaobject"><p><img src="component_fitplot_ex2.png" alt="Instance of the FitPlot class. The drop-down is expanded the mouse pointer is on the &#34;Quadratic&#34; option. The axes shows sample data and a red quadratic line of best fit." height="452" width="562"></p></div></div><p></p><p>Set the <code class="literal">LineColor</code> property to change the color of the best fit
+                curve to green.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p.LineColor = [0 0.5 0];</pre></div></div></div><div class="informalfigure"><div id="d126e14070" class="mediaobject"><p><img src="component_fitplot_ex3.png" alt="Instance of the FitPlot class. The drop-down value is &#34;Quadratic&#34; and the axes show sample data and a green quadratic line of best fit." height="452" width="562"></p></div></div></section>
+            <h2 id="d126e14076">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.ui.componentcontainer.componentcontainer-class.html"><span itemprop="name"><code class="class">matlab.ui.componentcontainer.ComponentContainer</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/uidropdown.html"><span itemprop="name"><code class="function">uidropdown</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/uigridlayout.html"><span itemprop="name"><code class="function">uigridlayout</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/polyfit.html"><span itemprop="name"><code class="function">polyfit</code></span></a></span></li></ul>
+            <h3 id="d126e14097">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_oop/validate-property-values.html" class="a">Validate Property Values</a></li><li><a href="../matlab_oop/use-cases.html" class="a">Customize Property Display</a></li><li><a href="../matlab_oop/property-set-methods.html" class="a">Property Get and Set Methods</a></li><li><a href="develop-classes-of-ui-component-objects.html" class="a">Develop Custom UI Components Programmatically</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

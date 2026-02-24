@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Import HDF5 Files</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../standard-file-formats.html",
+          "name": "Standard File Formats"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../scientific-data.html",
+          "name": "Scientific Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../hdf5-files.html",
+          "name": "HDF5 Files"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "hdf5-files"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read data from an HDF5 file using the high-level functions, the low-level functions, and the Import Data Live Editor task."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../standard-file-formats.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Standard File Formats</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scientific-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Scientific Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hdf5-files.html?s_tid=CRUX_lftnav" itemprop="url" id="btpwvi2"><span itemprop="title">HDF5 Files</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Import HDF5 Files</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsxixpv-2" class="nav-link intrnllnk">Import Data Using High-Level HDF5 Functions</a><ul class="nav"><li class="nav-item"><a href="#bsxixpv-3" class="nav-link intrnllnk">Determine Contents of HDF5 File</a></li><li class="nav-item"><a href="#bsxixpv-4" class="nav-link intrnllnk">Import Data from HDF5 File</a></li><li class="nav-item"><a href="#bsxixpv-5" class="nav-link intrnllnk">Map HDF5 Data Types to MATLAB Data Types</a></li></ul></li><li class="nav-item"><a href="#bsxixpv-7" class="nav-link intrnllnk">Import Data Using Low-Level HDF5 Functions</a></li><li class="nav-item"><a href="#mw_8885f54c-5c54-4427-84ad-fe6382581e2e" class="nav-link intrnllnk">Interactively Read Data from HDF5 File</a><ul class="nav"><li class="nav-item"><a href="#InteractivelyReadDataFromHDF5FileExample-1" class="nav-link intrnllnk">Explore and Import Data</a></li><li class="nav-item"><a href="#InteractivelyReadDataFromHDF5FileExample-2" class="nav-link intrnllnk">Organize and Prepare Data</a></li><li class="nav-item"><a href="#InteractivelyReadDataFromHDF5FileExample-3" class="nav-link intrnllnk">Plot Data</a></li><li class="nav-item"><a href="#InteractivelyReadDataFromHDF5FileExample-4" class="nav-link intrnllnk">Credits</a></li></ul></li><li class="nav-item"><a href="#mw_fd037366-f9aa-4dc7-b1c8-b88c37bbd456" class="nav-link intrnllnk">Read HDF5 Dataset Using Dynamically Loaded Filters</a><ul class="nav"><li class="nav-item"><a href="#mw_da6faa9b-0611-4302-8432-51626f020949" class="nav-link intrnllnk">Linux Users Only: Rebuild Filter Plugins Using MATLAB HDF5 Shared Library</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=hdf5-files&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=hdf5-files&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bsxixpv-1">Import HDF5 Files</h2><a class="indexterm" name="d126e13493"></a><a class="indexterm" name="d126e13496"></a><a class="indexterm" name="d126e13499"></a><a class="indexterm" name="d126e13502"></a><a class="indexterm" name="d126e13505"></a><a class="indexterm" name="d126e13509"></a>
+            <p class="shortdesc">You can read data from an HDF5 file in several ways.
+                Programmatically, you can use the MATLAB<sup>&#x00AE;</sup> high-level HDF5 functions or the HDF5 library namespaces of low-level
+                functions. Interactively, you can use the <a href="../ref/importdatatask.html"><span class="liveeditortask">Import
+                    Data</span></a> Live Editor task or (in <span class="entity">MATLAB
+            Online&#x2122;</span>) the <a href="../ref/importtool.html"><span class="app">Import Tool</span></a> app.</p>
+            <p>Hierarchical Data Format, Version 5 (HDF5) is a
+    general-purpose, machine-independent standard for storing scientific data in files, developed by
+    the National Center for Supercomputing Applications (NCSA). HDF5 is used by a wide range of
+    engineering and scientific fields that want a standard way to store data so that it can be
+    shared. For more information about the HDF5 file format, read the HDF5 documentation available
+    at The HDF Group website (<code class="literal"><a href="https://www.hdfgroup.org" target="_blank">https://www.hdfgroup.org</a></code>).</p>
+            <p>
+                </p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>For information about importing HDF4 files, which have a separate,
+                        incompatible format, see <a href="importing-hierarchical-data-format-hdf4-files.html" class="a">Import HDF4 Files Using High-Level Functions</a>. </p></div><p>
+
+            </p>
+        <section><h3 class="title" id="bsxixpv-2">Import Data Using High-Level HDF5 Functions</h3><p>MATLAB includes several functions that you can use to examine the contents of
+                an HDF5 file and import data from the file into the MATLAB workspace.</p><div class="itemizedlist"><ul><li><p><a href="../ref/h5disp.html"><code class="function">h5disp</code></a> &#8212; View the
+                        contents of an HDF5 file.</p></li><li><p><a href="../ref/h5info.html"><code class="function">h5info</code></a> &#8212; Create a
+                        structure that contains all the metadata defining an HDF5 file.</p></li><li><p><a href="../ref/h5read.html"><code class="function">h5read</code></a> &#8212; Read data
+                        from a dataset in an HDF5 file.</p></li><li><p><a href="../ref/h5readatt.html"><code class="function">h5readatt</code></a> &#8212; Read
+                        data from an attribute associated with a dataset in an HDF5 file or with the
+                        file itself (a global attribute).</p></li></ul></div><p>For details about how to use these functions, see their reference pages, which
+                include examples. The following sections illustrate some common usage
+                scenarios.</p><section><h4 class="title" id="bsxixpv-3">Determine Contents of HDF5 File</h4><a class="indexterm" name="d126e13583"></a><p>HDF5 files can contain data and metadata, called
+                        <em class="firstterm">attributes</em>. HDF5 files organize the data and metadata
+                    in a hierarchical structure similar to the hierarchical structure of a
+                        UNIX<sup>&#x00AE;</sup> file system.</p><p>In an HDF5 file, the directories in the hierarchy are called
+                        <em class="firstterm">groups</em>. A group can contain other groups, datasets,
+                    attributes, links, and data types. A dataset is a collection of data, such as a
+                    multidimensional numeric array or string. An attribute is any data that is
+                    associated with another entity, such as a dataset. A link is similar to a
+                        UNIX file system symbolic link. Links are a way to reference objects
+                    without having to make a copy of the object.</p><p>Data types are a description of the data in the dataset or attribute. Data
+                    types tell how to interpret the data in the dataset.</p><p>To get a quick view into the contents of an HDF5 file, use the <a href="../ref/h5disp.html"><code class="function">h5disp</code></a> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"example.h5"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 example.h5 
+Group '/' 
+    Attributes:
+        'attr1':  97 98 99 100 101 102 103 104 105 0 
+        'attr2':  2x2 H5T_INTEGER
+    Group '/g1' 
+        Group '/g1/g1.1' 
+            Dataset 'dset1.1.1' 
+                Size:  10x10
+                MaxSize:  10x10
+                Datatype:   H5T_STD_I32BE (int32)
+                ChunkSize:  []
+                Filters:  none
+                Attributes:
+                    'attr1':  49 115 116 32 97 116 116 114 105 ...
+                    'attr2':  50 110 100 32 97 116 116 114 105 ...
+            Dataset 'dset1.1.2' 
+                Size:  20
+                MaxSize:  20
+                Datatype:   H5T_STD_I32BE (int32)
+                ChunkSize:  []
+                Filters:  none
+        Group '/g1/g1.2' 
+            Group '/g1/g1.2/g1.2.1' 
+                Link:  'slink'
+                    Type:  'soft link'
+                    Target:  'somevalue'
+    Group '/g2' 
+        Dataset 'dset2.1' 
+            Size:  10
+            MaxSize:  10
+            Datatype:   H5T_IEEE_F32BE (single)
+            ChunkSize:  []
+            Filters:  none
+        Dataset 'dset2.2' 
+            Size:  5x3
+            MaxSize:  5x3
+            Datatype:   H5T_IEEE_F32BE (single)
+            ChunkSize:  []
+            Filters:  none
+					.
+					.
+					.
+</pre></div></div></div><p>To explore the hierarchical organization of an HDF5 file, use the <a href="../ref/h5info.html"><code class="function">h5info</code></a> function. The <a href="../ref/h5info.html"><code class="function">h5info</code></a> function returns a
+                    structure that contains various information about the HDF5 file, including the
+                    name of the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>info = h5info(<span style="color:#A020F0">"example.h5"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>info = 
+
+  struct with fields:
+
+      Filename: '<em class="replaceable">matlabroot</em>\matlab\toolbox\matlab\demos\example.h5'
+          Name: '/'
+        Groups: [4×1 struct]
+      Datasets: []
+     Datatypes: []
+         Links: []
+    Attributes: [2×1 struct]
+</pre></div></div></div><p>By looking at the <code class="literal">Groups</code> and <code class="literal">Attributes</code>
+                    fields, you can see that the file contains four groups and two attributes. The
+                        <code class="literal">Datasets</code>, <code class="literal">Datatypes</code>, and
+                        <code class="literal">Links</code> fields are all empty, indicating that the root
+                    group does not contain any datasets, data types, or links. To explore the
+                    contents of the sample HDF5 file further, examine one of the structures in
+                        <code class="literal">Groups</code>. This example shows the contents of the second
+                    structure in this field.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>level2 = info.Groups(2)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>level2 = 
+
+  struct with fields:
+
+          Name: '/g2'
+        Groups: []
+      Datasets: [2×1 struct]
+     Datatypes: []
+         Links: []
+    Attributes: []
+</pre></div></div></div><p>In the sample file, the group named <code class="literal">/g2</code> contains two
+                    datasets. This figure illustrates this part of the sample HDF5 file
+                    organization.</p><div class="informalfigure"><div id="d126e13652" class="mediaobject"><p><img src="hdf5_file_structure.png" alt="Schematic showing structure of HDF5 data in example.h5" height="193" width="423"></p></div></div><p>To get information about a dataset, such as its name, dimensions, and data
+                    type, look at either of the structures returned in the
+                        <code class="literal">Datasets</code> field.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dataset1 = level2.Datasets(1)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dataset1 = 
+
+  struct with fields:
+
+          Name: 'dset2.1'
+      Datatype: [1×1 struct]
+     Dataspace: [1×1 struct]
+     ChunkSize: []
+     FillValue: []
+       Filters: []
+    Attributes: []
+</pre></div></div></div></section><section><h4 class="title" id="bsxixpv-4">Import Data from HDF5 File</h4><a class="indexterm" name="d126e13668"></a><p>To read data or metadata from an HDF5 file, use the <a href="../ref/h5read.html"><code class="function">h5read</code></a> function. As arguments,
+                    specify the name of the HDF5 file and the name of the dataset. (To read the
+                    value of an attribute, you must use <a href="../ref/h5readatt.html"><code class="function">h5readatt</code></a>.) </p><p>To illustrate, this example reads the dataset <code class="literal">/g2/dset2.1</code>
+                    from the HDF5 sample file <code class="literal">example.h5</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = h5read(<span style="color:#A020F0">"example.h5"</span>,<span style="color:#A020F0">"/g2/dset2.1"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>data =
+
+  10×1 single column vector
+
+    1.0000
+    1.1000
+    1.2000
+    1.3000
+    1.4000
+    1.5000
+    1.6000
+    1.7000
+    1.8000
+    1.9000
+</pre></div></div></div></section><section><h4 class="title" id="bsxixpv-5">Map HDF5 Data Types to <span class="trademark entity">MATLAB</span> Data Types</h4><p>When the <a href="../ref/h5read.html"><code class="function">h5read</code></a> function reads data from
+                    an HDF5 file into the MATLAB workspace, it maps HDF5 data types to MATLAB data types, as shown in this table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="38%"><col class="tcol2" width="63%"></colgroup><thead><tr><th>HDF5 Data Type</th><th><code class="function">h5read</code> Output</th></tr></thead><tbody><tr><td><p>Bitfield</p></td><td><p>Array of packed 8-bit integers</p></td></tr><tr><td><p>Float</p></td><td><p>MATLAB
+                                        <code class="literal">single</code> and <code class="literal">double</code>
+                                        types, provided that they occupy 64 bits or
+                                    fewer</p></td></tr><tr><td><p>Integer types, signed and unsigned</p></td><td><p>Equivalent MATLAB integer types, signed and
+                                    unsigned</p></td></tr><tr><td><p>Opaque</p></td><td><p>Cell array of <code class="literal">uint8</code>
+                                    values</p></td></tr><tr><td><p>Reference</p></td><td><p>Cell array of the actual data pointed to by the
+                                        reference, not the value of the reference</p></td></tr><tr><td><p>Strings, fixed-length and
+                                    variable-length</p></td><td><p>String arrays</p></td></tr><tr><td><p>Enums</p></td><td><p>Cell array of character vectors, where each enumerated
+                                        value is replaced by the corresponding member
+                                    name</p></td></tr><tr><td><p>Compound</p></td><td><p>1-by-1 structure array; the dimensions of the dataset
+                                        are expressed in the fields of the structure</p></td></tr><tr><td><p>Arrays</p></td><td><p>Array of values using the same data type as the HDF5
+                                        array. For example, if the array is of signed 32-bit
+                                        integers, the MATLAB array will be of type
+                                        <code class="literal">int32</code>.</p></td></tr></tbody></table></div><p>The example HDF5 file included with MATLAB includes examples of all these data types.</p><p>For example, the dataset <code class="literal">/g3/string</code> is a string.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"example.h5"</span>,<span style="color:#A020F0">"/g3/string"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 example.h5 
+Dataset 'string' 
+    Size:  2
+    MaxSize:  2
+    Datatype:   H5T_STRING
+        String Length: 3
+        Padding: H5T_STR_NULLTERM
+        Character Set: H5T_CSET_ASCII
+        Character Type: H5T_C_S1
+    ChunkSize:  []
+    Filters:  none
+    FillValue:  '   '
+</pre></div></div></div><p>Now read the data from the file. MATLAB returns it as a string array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = h5read(<span style="color:#A020F0">"example.h5"</span>,<span style="color:#A020F0">"/g3/string"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>s = 
+
+  2×1 string array
+
+    "ab "
+    "de "
+</pre></div></div></div><p>The compound data types are always returned as structures. The dimensions of
+                    the dataset are expressed in the fields of the structure. For example, the
+                    dataset <code class="literal">/g3/compound2D</code> is a compound data type.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h5disp(<span style="color:#A020F0">"example.h5"</span>,<span style="color:#A020F0">"/g3/compound2D"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>HDF5 example.h5 
+Dataset 'compound2D' 
+    Size:  2x3
+    MaxSize:  2x3
+    Datatype:   H5T_COMPOUND
+        Member 'a':  H5T_STD_I8LE (int8)
+        Member 'b':  H5T_IEEE_F64LE (double)
+    ChunkSize:  []
+    Filters:  none
+    FillValue:  H5T_COMPOUND
+</pre></div></div></div><p>Now read the data from the file. MATLAB returns it as a structure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = h5read(<span style="color:#A020F0">"example.h5"</span>,<span style="color:#A020F0">"/g3/compound2D"</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>data = 
+
+  struct with fields:
+
+    a: [2×3 int8]
+    b: [2×3 double]
+</pre></div></div></div></section></section><section><h3 class="title" id="bsxixpv-7">Import Data Using Low-Level HDF5 Functions</h3><p>MATLAB provides direct access to dozens of functions in the HDF5 library with low-level
+    functions that correspond to the functions in the HDF5 library. In this way, you can access the
+    features of the HDF5 library from MATLAB, such as using the HDF5 subsetting capabilities and writing complex data types.
+    For more information, see <a href="export-to-hdf5-files.html#bqwssia-1" class="a">Export Data Using MATLAB Low-Level HDF5 Functions</a>.</p></section><section><h3 class="title" id="mw_8885f54c-5c54-4427-84ad-fe6382581e2e">Interactively Read Data from HDF5 File</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InteractivelyReadDataFromHDF5FileExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interactively Read Data from HDF5 File",
+          "description": "Use the Import Data task to explore the structure of an HDF5 file, import data from the file, and then analyze and visualize the data.",
+          "thumbnailURL": "../../examples/matlab/win64/InteractivelyReadDataFromHDF5FileExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "import-hdf5-files.html"
+
+        },
+          "identifier": "matlab.InteractivelyReadDataFromHDF5FileExample",
+          "name": "InteractivelyReadDataFromHDF5FileExample",
+          "url": "import-hdf5-files.html#mw_8885f54c-5c54-4427-84ad-fe6382581e2e"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InteractivelyReadDataFromHDF5FileExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InteractivelyReadDataFromHDF5FileExample.mlx",
+        "nasa_pps.h5"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InteractivelyReadDataFromHDF5FileExample"><meta itemprop="exampletitle" content="Interactively Read Data from HDF5 File"></div><span id="InteractivelyReadDataFromHDF5FileExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use the Import Data task to explore the structure of an HDF5 file, import data from the file, and then analyze and visualize the data.</p><div class="procedure"><span id="InteractivelyReadDataFromHDF5FileExample-1" class="anchor_target"></span><p class="title" id="InteractivelyReadDataFromHDF5FileExample-1"><b>Explore and Import Data</b></p><p>The HDF5 file included with this example contains a swath of precipitation probability estimates from the NASA Precipitation Processing System (PPS).</p><p>Open the Import Data task in the Live Editor by selecting <strong class="emphasis bold">Task &gt; Import Data</strong> on the <strong class="emphasis bold">Live Editor</strong> tab. Enter the name of the HDF5 file, <code class="literal">nasa_pps.h5</code>, in the <strong class="emphasis bold">File</strong> field. Use the task to explore the structure of the data, including the groups, datasets, and attributes. The file contains a group <code class="literal">S1</code>, which contains three datasets. The <code class="literal">probabilityOfPrecip</code> dataset contains estimates of the probability of precipitation at given locations; the <code class="literal">Latitude</code> and <code class="literal">Longitude</code> datasets contain the locations of these probability estimates. The attributes of the <code class="literal">probabilityOfPrecip</code> dataset include <code class="literal">units</code>, which has value <code class="literal">'percent'</code>.</p><p>Select and import the data and attributes from the three datasets.</p><div class="informalfigure"><div id="d126e13892" class="mediaobject"><p><img src="../../examples/matlab/win64/InteractivelyReadDataFromHDF5FileExample_01.png" alt="2023-12-07_09-19-16.png" height="1102" width="1084"></p></div></div><p>To see the code that this task generates, expand the task display by clicking <strong class="emphasis bold">Show code</strong> at the bottom of the task parameter area.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create a structure to store imported HDF5 data</span>
+nasa_pps = struct();
+
+filename = <span style="color:#A020F0">"nasa_pps.h5"</span>;
+
+nasa_pps.Groups(1).Name = <span style="color:#A020F0">"S1"</span>;
+
+nasa_pps.Groups(1).Datasets(1).Name = <span style="color:#A020F0">"Latitude"</span>;
+nasa_pps.Groups(1).Datasets(1).Value = h5read(filename, <span style="color:#A020F0">"/S1/Latitude"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Name = <span style="color:#A020F0">"Longitude"</span>;
+nasa_pps.Groups(1).Datasets(2).Value = h5read(filename, <span style="color:#A020F0">"/S1/Longitude"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Name = <span style="color:#A020F0">"probabilityOfPrecip"</span>;
+nasa_pps.Groups(1).Datasets(3).Value = h5read(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>);
+
+nasa_pps.Groups(1).Datasets(1).Attributes(1).Name = <span style="color:#A020F0">"units"</span>;
+nasa_pps.Groups(1).Datasets(1).Attributes(1).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Latitude"</span>, <span style="color:#A020F0">"units"</span>);
+
+nasa_pps.Groups(1).Datasets(1).Attributes(2).Name = <span style="color:#A020F0">"DimensionNames"</span>;
+nasa_pps.Groups(1).Datasets(1).Attributes(2).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Latitude"</span>, <span style="color:#A020F0">"DimensionNames"</span>);
+
+nasa_pps.Groups(1).Datasets(1).Attributes(3).Name = <span style="color:#A020F0">"Units"</span>;
+nasa_pps.Groups(1).Datasets(1).Attributes(3).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Latitude"</span>, <span style="color:#A020F0">"Units"</span>);
+
+nasa_pps.Groups(1).Datasets(1).Attributes(4).Name = <span style="color:#A020F0">"_FillValue"</span>;
+nasa_pps.Groups(1).Datasets(1).Attributes(4).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Latitude"</span>, <span style="color:#A020F0">"_FillValue"</span>);
+
+nasa_pps.Groups(1).Datasets(1).Attributes(5).Name = <span style="color:#A020F0">"CodeMissingValue"</span>;
+nasa_pps.Groups(1).Datasets(1).Attributes(5).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Latitude"</span>, <span style="color:#A020F0">"CodeMissingValue"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Attributes(1).Name = <span style="color:#A020F0">"units"</span>;
+nasa_pps.Groups(1).Datasets(2).Attributes(1).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Longitude"</span>, <span style="color:#A020F0">"units"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Attributes(2).Name = <span style="color:#A020F0">"DimensionNames"</span>;
+nasa_pps.Groups(1).Datasets(2).Attributes(2).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Longitude"</span>, <span style="color:#A020F0">"DimensionNames"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Attributes(3).Name = <span style="color:#A020F0">"Units"</span>;
+nasa_pps.Groups(1).Datasets(2).Attributes(3).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Longitude"</span>, <span style="color:#A020F0">"Units"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Attributes(4).Name = <span style="color:#A020F0">"_FillValue"</span>;
+nasa_pps.Groups(1).Datasets(2).Attributes(4).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Longitude"</span>, <span style="color:#A020F0">"_FillValue"</span>);
+
+nasa_pps.Groups(1).Datasets(2).Attributes(5).Name = <span style="color:#A020F0">"CodeMissingValue"</span>;
+nasa_pps.Groups(1).Datasets(2).Attributes(5).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/Longitude"</span>, <span style="color:#A020F0">"CodeMissingValue"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Attributes(1).Name = <span style="color:#A020F0">"units"</span>;
+nasa_pps.Groups(1).Datasets(3).Attributes(1).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>, <span style="color:#A020F0">"units"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Attributes(2).Name = <span style="color:#A020F0">"_FillValue"</span>;
+nasa_pps.Groups(1).Datasets(3).Attributes(2).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>, <span style="color:#A020F0">"_FillValue"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Attributes(3).Name = <span style="color:#A020F0">"DimensionNames"</span>;
+nasa_pps.Groups(1).Datasets(3).Attributes(3).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>, <span style="color:#A020F0">"DimensionNames"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Attributes(4).Name = <span style="color:#A020F0">"CodeMissingValue"</span>;
+nasa_pps.Groups(1).Datasets(3).Attributes(4).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>, <span style="color:#A020F0">"CodeMissingValue"</span>);
+
+nasa_pps.Groups(1).Datasets(3).Attributes(5).Name = <span style="color:#A020F0">"Units"</span>;
+nasa_pps.Groups(1).Datasets(3).Attributes(5).Value = h5readatt(filename, <span style="color:#A020F0">"/S1/probabilityOfPrecip"</span>, <span style="color:#A020F0">"Units"</span>);
+
+clear <span style="color:#A020F0">filename</span></pre></div></div></div><span id="InteractivelyReadDataFromHDF5FileExample-2" class="anchor_target"></span><p class="title" id="InteractivelyReadDataFromHDF5FileExample-2"><b>Organize and Prepare Data</b></p><p>Extract data from the three datasets as column vectors using the colon operator (<code class="literal">:</code>).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lats = nasa_pps.Groups.Datasets(1).Value(:);
+lons = nasa_pps.Groups.Datasets(2).Value(:);
+probs = nasa_pps.Groups.Datasets(3).Value(:);</pre></div></div></div><p>Clean up the data in preparation for plotting. Valid indices in these three datasets conform to these conditions:</p><div class="itemizedlist"><ul><li><p>The value in <code class="literal">probs</code> is in the interval [0, 100].</p></li><li><p>The value in <code class="literal">lats</code> is in the interval [&#8211;90, 90].</p></li><li><p>The value in <code class="literal">lons</code> is in the interval [&#8211;180, 180].</p></li></ul></div><p>Keep only the values at the valid indices in the three datasets by using logical indexing. This step removes invalid latitude and longitude values as well as invalid percent values for the probability estimates.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>isValid = 0&lt;=probs &amp; probs&lt;=100 &amp; abs(lats)&lt;=90 &amp; abs(lons)&lt;=180;
+
+probs = probs(isValid);
+lats = lats(isValid);
+lons = lons(isValid);</pre></div></div></div><span id="InteractivelyReadDataFromHDF5FileExample-3" class="anchor_target"></span><p class="title" id="InteractivelyReadDataFromHDF5FileExample-3"><b>Plot Data</b></p><p>Create a geographic density plot for the valid data in the datasets. The "warmer" colors represent greater probabilities of precipitation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>g = geodensityplot(lats,lons,probs,FaceColor=<span style="color:#A020F0">"interp"</span>);
+geobasemap <span style="color:#A020F0">grayland</span>
+geolimits([-80 80],[-180 -90])
+title(<span style="color:#A020F0">"Probability of Precipitation vs. Location"</span>)
+colormap <span style="color:#A020F0">turbo</span></pre></div></div></div><div class="informalfigure"><div id="d126e13937" class="mediaobject"><p><img src="../../examples/matlab/win64/InteractivelyReadDataFromHDF5FileExample_02.png" alt="Figure contains an axes object with type geoaxes. The geoaxes object contains an object of type densityplot." width="560"></p></div></div><span id="InteractivelyReadDataFromHDF5FileExample-4" class="anchor_target"></span><p class="title" id="InteractivelyReadDataFromHDF5FileExample-4"><b>Credits</b></p><p>Global precipitation data provided by NASA Precipitation Processing System, from their website at <a href="https://gpm.nasa.gov/data/directory" target="_blank"><span class="emphasis underline"><code class="literal">https://gpm.nasa.gov/data/directory</code></span></a>.</p></div></section><section><h3 class="title" id="mw_fd037366-f9aa-4dc7-b1c8-b88c37bbd456">Read HDF5 Dataset Using Dynamically Loaded Filters</h3><p>MATLAB supports reading and writing HDF5 datasets using dynamically loaded
+                filters. The HDF Group maintains a list of registered filters at <a href="https://github.com/HDFGroup/hdf5_plugins/blob/master/docs/RegisteredFilterPlugins.md" target="_blank">Filters</a> on their website.</p><p>To read a dataset that has been written using a user-defined, third-party filter,
+                follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Install the HDF5 filter plugin on your system as a shared library or
+                            DLL.</p></li><li><p>Set the <code class="literal">HDF5_PLUGIN_PATH</code> environment variable to
+                            point to the local installation of the plugin, and then start
+                                MATLAB:</p>
+<div class="itemizedlist"><ul><li><p>On Windows<sup>&#x00AE;</sup> &#8212; Set the environment variable using <strong class="emphasis bold">System Properties &gt; Advanced &gt; Environment
+                                            Variables</strong>, and then start MATLAB.</p></li><li><p>On Linux<sup>&#x00AE;</sup> and <span class="entity">Mac</span> &#8212; Set the environment variable from the
+                                        terminal, and then start MATLAB from the same terminal.</p></li></ul></div><p>
+</p></li></ol></div><p>
+After you complete these steps, you can use the high-level or
+                low-level MATLAB HDF5 functions to read and access datasets that have been compressed
+                using the third-party filter. For more information, see <a href="https://support.hdfgroup.org/archive/support/HDF5/doc/Advanced/DynamicallyLoadedFilters/HDF5DynamicallyLoadedFilters.pdf" target="_blank">HDF5 Dynamically Loaded Filters</a> on The HDF Group website.</p><section><h4 class="title" id="mw_da6faa9b-0611-4302-8432-51626f020949"><span class="trademark entity">Linux</span> Users Only: Rebuild Filter Plugins Using <span class="trademark entity">MATLAB</span> HDF5 Shared Library</h4><p>Starting in R2021b, in certain cases, Linux users using a filter plugin with callbacks to core HDF5 library
+                    functions must rebuild the plugin using the shipping MATLAB HDF5 shared library,
+                        <code class="literal">/matlab/bin/glnxa64/libhdf5.so.x.x.x</code>. If you do not
+                    rebuild the plugin using this version of the shared library, you might
+                    experience issues ranging from undefined behavior to crashes. For more
+                    information, see <a href="https://www.mathworks.com/matlabcentral/answers/880033-build-hdf5-filter-plugins-on-linux-using-matlab-hdf5-shared-library-or-gnu-export-map">Build HDF5 Filter Plugins on <span class="trademark entity">Linux</span> Using <span class="trademark entity">MATLAB</span> HDF5 Shared Library or GNU Export Map</a>.</p></section></section>
+            
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e14035">Topics</h3><ul class="list-unstyled"><li><a href="export-to-hdf5-files.html" class="a">Export to HDF5 Files</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

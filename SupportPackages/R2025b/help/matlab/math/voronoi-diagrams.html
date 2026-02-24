@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Voronoi Diagrams</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../computational-geometry.html",
+          "name": "Computational Geometry"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../voronoi-diagram.html",
+          "name": "Voronoi Diagram"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "voronoi-diagram"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This topic explains what a Voronoi diagram is and how to create one."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../computational-geometry.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Computational Geometry</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../voronoi-diagram.html?s_tid=CRUX_lftnav" itemprop="url" id="voronoi-diagram"><span itemprop="title">Voronoi Diagram</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Voronoi Diagrams</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bt_cr8z" class="nav-link intrnllnk">Plot 2-D Voronoi Diagram and Delaunay Triangulation</a></li><li class="nav-item"><a href="#bsp2op_" class="nav-link intrnllnk">Computing the Voronoi Diagram</a><ul class="nav"><li class="nav-item"><a href="#mw_f190d7cf-fd1e-4790-b7a5-7f45452bd964" class="nav-link intrnllnk">Computing the Voronoi Diagram</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=voronoi-diagram&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=voronoi-diagram&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=voronoi-diagram&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=voronoi-diagram&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=voronoi-diagram&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=voronoi-diagram&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bspqjqq-1">Voronoi Diagrams</h2><p>The Voronoi diagram of a discrete set of points <code class="literal">X</code> decomposes
+the space around each point <code class="literal">X</code>(<code class="literal">i</code>)
+into a region of influence <code class="literal">R</code>{<code class="literal">i</code>}.
+This decomposition has the property that an arbitrary point <code class="literal">P</code> within
+the region <code class="literal">R</code>{<code class="literal">i</code>} is closer to
+point <code class="literal">i</code> than any other point. The region of influence
+is called a Voronoi region and the collection of all the Voronoi regions
+is the Voronoi diagram.</p><p>The Voronoi diagram is an N-D geometric construct, but most
+practical applications are in 2-D and 3-D space. The properties of
+the Voronoi diagram are best understood using an example.</p><section><h3 class="title" id="bt_cr8z">Plot 2-D Voronoi Diagram and Delaunay Triangulation</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/Plot2DVoronoiDiagramAndDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Plot 2-D Voronoi Diagram and Delaunay Triangulation",
+          "description": "The Voronoi diagram and the Delaunay triangulation on the same 2-D plot.",
+          "thumbnailURL": "../../examples/matlab/win64/Plot2DVoronoiDiagramAndDelaunayTriangulationExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "voronoi-diagrams.html"
+
+        },
+          "identifier": "matlab.Plot2DVoronoiDiagramAndDelaunayTriangulationExample",
+          "name": "Plot2DVoronoiDiagramAndDelaunayTriangulationExample",
+          "url": "voronoi-diagrams.html#bt_cr8z"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/Plot2DVoronoiDiagramAndDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "Plot2DVoronoiDiagramAndDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-Plot2DVoronoiDiagramAndDelaunayTriangulationExample"><meta itemprop="exampletitle" content="Plot 2D Voronoi Diagram and Delaunay Triangulation"></div><span id="Plot2DVoronoiDiagramAndDelaunayTriangulationExample" class="anchor_target"></span><p class="shortdesc">This example shows the Voronoi diagram and the Delaunay triangulation on the same 2-D plot.</p><p>Use the 2-D <code class="literal">voronoi</code> function to plot the Voronoi diagram for a set of points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure()
+X = [-1.5 3.2; 1.8 3.3; -3.7 1.5; -1.5 1.3; <span style="color:#0000FF">...</span>
+      0.8 1.2; 3.3 1.5; -4.0 -1.0;-2.3 -0.7; <span style="color:#0000FF">...</span>
+      0 -0.5; 2.0 -1.5; 3.7 -0.8; -3.5 -2.9; <span style="color:#0000FF">...</span>
+     -0.9 -3.9; 2.0 -3.5; 3.5 -2.25];
+ 
+voronoi(X(:,1),X(:,2))
+
+<span style="color:#228B22">% Assign labels to the points.</span>
+nump = size(X,1);
+plabels = arrayfun(@(n) {sprintf(<span style="color:#A020F0">'X%d'</span>, n)}, (1:nump)');
+hold <span style="color:#A020F0">on</span>
+Hpl = text(X(:,1), X(:,2), plabels, <span style="color:#A020F0">'FontWeight'</span>, <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'bold'</span>, <span style="color:#A020F0">'HorizontalAlignment'</span>,<span style="color:#A020F0">'center'</span>, <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'BackgroundColor'</span>, <span style="color:#A020F0">'none'</span>);
+
+<span style="color:#228B22">% Add a query point, P, at (0, -1.5).</span>
+P = [0 -1];
+plot(P(1),P(2), <span style="color:#A020F0">'*r'</span>);
+text(P(1), P(2), <span style="color:#A020F0">'P'</span>, <span style="color:#A020F0">'FontWeight'</span>, <span style="color:#A020F0">'bold'</span>, <span style="color:#0000FF">...</span>
+     <span style="color:#A020F0">'HorizontalAlignment'</span>,<span style="color:#A020F0">'center'</span>, <span style="color:#0000FF">...</span>
+     <span style="color:#A020F0">'BackgroundColor'</span>, <span style="color:#A020F0">'none'</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e21606" class="mediaobject"><p><img src="../../examples/matlab/win64/Plot2DVoronoiDiagramAndDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object contains 19 objects of type line, text. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>Observe that <code class="literal">P</code> is closer to <code class="literal">X9</code> than to any other point in <code class="literal">X</code>, which is true for any point <code class="literal">P</code> within the region that bounds <code class="literal">X9</code>.</p><p>The Voronoi diagram of a set of points <code class="literal">X</code> is closely related to the Delaunay triangulation of <code class="literal">X</code>. To see this relationship, construct a Delaunay triangulation of the point set <code class="literal">X</code> and superimpose the triangulation plot on the Voronoi diagram.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dt = delaunayTriangulation(X);
+hold <span style="color:#A020F0">on</span>
+triplot(dt,<span style="color:#A020F0">'-r'</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e21633" class="mediaobject"><p><img src="../../examples/matlab/win64/Plot2DVoronoiDiagramAndDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object contains 20 objects of type line, text. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>From the plot you can see that the Voronoi region associated with the point <code class="literal">X9</code> is defined by the perpendicular bisectors of the Delaunay edges attached to <code class="literal">X9</code>. Also, the vertices of the Voronoi edges are located at the circumcenters of the Delaunay triangles. You can illustrate these associations by plotting the circumcenter of triangle {|X9|,|X4|,|X8|}.</p><p>To find the index of this triangle, query the triangulation. The triangle contains the location (-1, 0).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tidx = pointLocation(dt,-1,0);</pre></div></div></div><p>Now, find the circumcenter of this triangle and plot it in green.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cc = circumcenter(dt,tidx);
+hold <span style="color:#A020F0">on</span>
+plot(cc(1),cc(2),<span style="color:#A020F0">'*g'</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e21651" class="mediaobject"><p><img src="../../examples/matlab/win64/Plot2DVoronoiDiagramAndDelaunayTriangulationExample_03.png" alt="Figure contains an axes object. The axes object contains 21 objects of type line, text. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>The Delaunay triangulation and Voronoi diagram are geometric duals of each other. You can compute the Voronoi diagram from the Delaunay triangulation and vice versa. </p><p>Observe that the Voronoi regions associated with points on the convex hull are unbounded (for example, the Voronoi region associated with <code class="literal">X13</code>). The edges in this region "end" at infinity. The Voronoi edges that bisect Delaunay edges (<code class="literal">X13</code>, <code class="literal">X12</code>) and (<code class="literal">X13</code>, <code class="literal">X14</code>) extend to infinity. While the Voronoi diagram provides a nearest-neighbor decomposition of the space around each point in the set, it does not directly support nearest-neighbor queries. However, the geometric constructions used to compute the Voronoi diagram are also used to perform nearest-neighbor searches.</p><div class="procedure"></div></section><section><h3 class="title" id="bsp2op_">Computing the Voronoi Diagram</h3><p>This example shows how to compute a 2&#8211;D and 3&#8211;D
+Voronoi diagram.</p><p>MATLAB<sup>&#x00AE;</sup> provides functions to plot the Voronoi diagram in
+2-D and to compute the topology of the Voronoi diagram in N-D. In
+practice, Voronoi computation is not practical in dimensions beyond
+6-D for moderate to large data sets, due to the exponential growth
+in required memory.</p><p>The <code class="function">voronoi</code> plot function plots the Voronoi
+diagram for a set of points in 2-D space. In MATLAB there are
+two ways to compute the topology of the Voronoi diagram of a point
+set:</p>
+<div class="itemizedlist"><ul><li><p>Using the function <a href="../ref/voronoin.html"><code class="function">voronoin</code></a></p></li><li><p>Using the <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> method, <a href="../ref/delaunaytriangulation.voronoidiagram.html"><code class="method">voronoiDiagram</code></a>.</p></li></ul></div><p>
+</p><p>The <a href="../ref/voronoin.html"><code class="function">voronoin</code></a> function
+supports the computation of the Voronoi topology for discrete points
+in N-D (<span class="inlineequation">N ≥ 2</span>).  The <code class="method">voronoiDiagram</code> method
+supports computation of the Voronoi topology for discrete points 2-D
+or 3-D. </p><p>The <code class="method">voronoiDiagram</code> method
+is recommended for 2-D or 3-D topology computations as it is more
+robust and gives better performance for large data sets.  This method
+supports incremental insertion and removal of points and complementary
+queries, such as nearest-neighbor point search.</p><p>The <a href="../ref/voronoin.html"><code class="function">voronoin</code></a> function
+and the <code class="method">voronoiDiagram</code> method
+represent the topology of the Voronoi diagram using a matrix format.
+See <a href="triangulation-representations.html#bspqjgt" class="a">Triangulation Matrix Format</a> for
+further details on this data structure.</p><section><h4 class="title" id="mw_f190d7cf-fd1e-4790-b7a5-7f45452bd964">Computing the Voronoi Diagram</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ComputingTheVoronoiDiagramExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Computing the Voronoi Diagram",
+          "description": "Compute a 2-D and 3-D Voronoi diagram.",
+          "thumbnailURL": "../../examples/matlab/win64/ComputingTheVoronoiDiagramExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "voronoi-diagrams.html"
+
+        },
+          "identifier": "matlab.ComputingTheVoronoiDiagramExample",
+          "name": "ComputingTheVoronoiDiagramExample",
+          "url": "voronoi-diagrams.html#mw_f190d7cf-fd1e-4790-b7a5-7f45452bd964"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ComputingTheVoronoiDiagramExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ComputingTheVoronoiDiagramExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ComputingTheVoronoiDiagramExample"><meta itemprop="exampletitle" content="Computing the Voronoi Diagram"></div><span id="ComputingTheVoronoiDiagramExample" class="anchor_target"></span><p class="shortdesc">This example shows how to compute a 2-D and 3-D Voronoi diagram.</p><p>Given a set of points, <code class="literal">X</code>, obtain the topology of the Voronoi diagram as follows:</p><div class="itemizedlist"><ul><li><p>Using the <code class="literal">voronoin</code> function</p></li></ul></div><p><code class="literal">   [V,R] = voronoin(X)</code></p><div class="itemizedlist"><ul><li><p>Using the <code class="literal">voronoiDiagram</code> method</p></li></ul></div><p><code class="literal">   dt = delaunayTriangulation(X);</code></p><p><code class="literal">   [V,R] = voronoiDiagram(dt)</code></p><p><code class="literal">V</code> is a matrix representing the coordinates of the Voronoi vertices (the vertices are the end points of the Voronoi edges). By convention the first vertex in <code class="literal">V</code> is the infinite vertex. <code class="literal">R</code> is a vector cell array length <code class="literal">size(X,1)</code>, representing the Voronoi region associated with each point. Hence, the Voronoi region associated with the point <code class="literal">X(i)</code> is <code class="literal">R{i}</code>.</p><p>Define and plot the voronoi diagram for a set of points</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [-1.5 3.2; 1.8 3.3; -3.7 1.5; -1.5 1.3; 0.8 1.2; <span style="color:#0000FF">...</span>
+      3.3 1.5; -4.0 -1.0; -2.3 -0.7; 0 -0.5; 2.0 -1.5; <span style="color:#0000FF">...</span>
+      3.7 -0.8; -3.5 -2.9; -0.9 -3.9; 2.0 -3.5; 3.5 -2.25];
+[VX,VY] = voronoi(X(:,1),X(:,2));
+h = plot(VX,VY,<span style="color:#A020F0">"-b"</span>,X(:,1),X(:,2),<span style="color:#A020F0">".r"</span>);
+xlim([-4 4])
+ylim([-4 4])
+
+<span style="color:#228B22">% Assign labels to the points X.</span>
+nump = size(X,1);
+plabels = arrayfun(@(n) {sprintf(<span style="color:#A020F0">'X%d'</span>, n)},(1:nump)');
+hold <span style="color:#A020F0">on</span>
+Hpl = text(X(:,1),X(:,2)+0.2,plabels,color=<span style="color:#A020F0">"r"</span>,FontWeight=<span style="color:#A020F0">"bold"</span>, <span style="color:#0000FF">...</span>
+    HorizontalAlignment=<span style="color:#A020F0">"center"</span>,BackgroundColor=<span style="color:#A020F0">"none"</span>);
+  
+<span style="color:#228B22">% Compute the Voronoi diagram.</span>
+dt = delaunayTriangulation(X);
+[V,R] = voronoiDiagram(dt);
+
+
+<span style="color:#228B22">% Assign labels to the Voronoi vertices V.</span>
+<span style="color:#228B22">% By convention the first vertex is at infinity.</span>
+numv = size(V,1);
+vlabels = arrayfun(@(n) {sprintf(<span style="color:#A020F0">"V%d"</span>, n)},(2:numv)');
+hold <span style="color:#A020F0">on</span>
+Hpl = text(V(2:end,1),V(2:end,2)+.2,vlabels,FontWeight=<span style="color:#A020F0">"bold"</span>, <span style="color:#0000FF">...</span>
+    HorizontalAlignment=<span style="color:#A020F0">"center"</span>,BackgroundColor=<span style="color:#A020F0">"none"</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e21780" class="mediaobject"><p><img src="../../examples/matlab/win64/ComputingTheVoronoiDiagramExample_01.png" alt="Figure contains an axes object. The axes object contains 66 objects of type line, text. One or more of the lines displays its values using only markers" width="560"></p></div></div><p><code class="literal">R{9}</code> gives the indices of the Voronoi vertices associated with the point site <code class="literal">X9</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R{9}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×5</em></span>
+
+     8    12    17    10    14
+
+</pre></div></div></div><p>The indices of the Voronoi vertices are the indices with respect to the <code class="literal">V</code> array.</p><p>Similarly, <code class="literal">R{4}</code> gives the indices of the Voronoi vertices associated with the point site <code class="literal">X4</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R{4}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×5</em></span>
+
+     4     8    14     9     7
+
+</pre></div></div></div><p>In 3-D a Voronoi region is a convex polyhedron, the syntax for creating the Voronoi diagram is similar. However the geometry of the Voronoi region is more complex. The following example illustrates the creation of a 3-D Voronoi diagram and the plotting of a single region.</p><p>Create a sample of 25 points in 3-D space and compute the topology of the Voronoi diagram for this point set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">"default"</span>)
+X = -3 + 6.*rand([25 3]);
+dt = delaunayTriangulation(X);</pre></div></div></div><p>Compute the topology of the Voronoi diagram.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[V,R] = voronoiDiagram(dt);</pre></div></div></div><p>Find the point closest to the origin and plot the Voronoi region associated with this point.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tid = nearestNeighbor(dt,0,0,0);
+XR10 = V(R{tid},:);
+K = convhull(XR10);
+defaultFaceColor = [0.6875 0.8750 0.8984];
+trisurf(K,XR10(:,1),XR10(:,2),XR10(:,3) , <span style="color:#0000FF">...</span>
+        FaceColor=defaultFaceColor,FaceAlpha=0.8)
+title(<span style="color:#A020F0">"3-D Voronoi Region"</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e21824" class="mediaobject"><p><img src="../../examples/matlab/win64/ComputingTheVoronoiDiagramExample_02.png" alt="Figure contains an axes object. The axes object with title 3-D Voronoi Region contains an object of type patch." width="560"></p></div></div><div class="procedure"></div></section></section>
+
+
+<h2 id="seealsoref">See Also</h2><h3 id="d126e21836">Topics</h3><ul class="list-unstyled"><li><a href="spatial-searching.html" class="a">Spatial Searching</a></li></ul>
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

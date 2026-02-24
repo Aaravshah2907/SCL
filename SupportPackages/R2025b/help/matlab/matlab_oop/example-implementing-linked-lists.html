@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Implementing Linked Lists with Classes</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../sample-classes.html",
+          "name": "Sample Class Implementations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sample-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="MATLAB handle objects enable you to implement an efficient linked-list data structure."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sample-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="buo11mr"><span itemprop="title">Sample Class Implementations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Implementing Linked Lists with Classes</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brfz4oy-1" class="nav-link intrnllnk">Class Definition Code</a></li><li class="nav-item"><a href="#brfz3yz" class="nav-link intrnllnk">dlnode Class Design</a><ul class="nav"><li class="nav-item"><a href="#brikpdk" class="nav-link intrnllnk">Class Properties</a></li><li class="nav-item"><a href="#brikpg6" class="nav-link intrnllnk">Class Methods</a></li></ul></li><li class="nav-item"><a href="#brikpee" class="nav-link intrnllnk">Create Doubly Linked List</a></li><li class="nav-item"><a href="#brfypkf" class="nav-link intrnllnk">Why Use a Handle Class for Linked Lists?</a><ul class="nav"><li class="nav-item"><a href="#bt_7h5z" class="nav-link intrnllnk">Related Information</a></li></ul></li><li class="nav-item"><a href="#brik0u3" class="nav-link intrnllnk">dlnode Class Synopsis</a><ul class="nav"><li class="nav-item"><a href="#brik2q7" class="nav-link intrnllnk">Class Properties</a></li><li class="nav-item"><a href="#brinzo9" class="nav-link intrnllnk">Construct a Node Object</a></li><li class="nav-item"><a href="#brik2ku" class="nav-link intrnllnk">Insert Nodes</a></li><li class="nav-item"><a href="#bt_71__-1" class="nav-link intrnllnk">Remove a Node</a></li><li class="nav-item"><a href="#bupeu6v" class="nav-link intrnllnk">Removing a Node from a List</a></li><li class="nav-item"><a href="#brimeac" class="nav-link intrnllnk">Delete a Node</a></li><li class="nav-item"><a href="#bt_xuvs" class="nav-link intrnllnk">Delete the List</a></li><li class="nav-item"><a href="#bt_709s" class="nav-link intrnllnk">The delete Method</a></li></ul></li><li class="nav-item"><a href="#f2-86885" class="nav-link intrnllnk">Specialize the dlnode Class</a><ul class="nav"><li class="nav-item"><a href="#bsmnrnt" class="nav-link intrnllnk">NamedNode Class Definition</a></li><li class="nav-item"><a href="#brimubg" class="nav-link intrnllnk">Use NamedNode to Create a Doubly Linked List</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sample-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sample-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f2-86100">Implementing Linked Lists with Classes</h2><section><h3 class="title" id="brfz4oy-1">Class Definition Code</h3><p>For the class definition code listing, see <a href="example-implementing-linked-lists.html#brik0u3" class="intrnllnk">dlnode Class Synopsis</a>.</p><p>To use the class, create a folder named <code class="literal">@dlnode</code> and save <code class="literal">dlnode.m</code> to this folder. The parent folder of <code class="literal">@dlnode</code> must be on the MATLAB<sup>&#x00AE;</sup> path. Alternatively, save <code class="literal">dlnode.m</code> to a path folder.</p></section><section><h3 class="title" id="brfz3yz"><code class="literal">dlnode</code> Class Design</h3><p><code class="literal">dlnode</code> is a class for creating doubly linked lists in which each node contains:</p><div class="itemizedlist"><ul><li><p>Data array</p></li><li><p>Handle to the next node</p></li><li><p>Handle to the previous node</p></li></ul></div><p>Each node has methods that enable the node to be:</p><div class="itemizedlist"><ul><li><p>Inserted before a specified node in a linked list</p></li><li><p>Inserted after a specific node in a linked list</p></li><li><p>Removed from a list</p></li></ul></div><section><h4 class="title" id="brikpdk">Class Properties</h4><p>The <code class="literal">dlnode</code> class implements each node as a handle object with three properties:</p><div class="itemizedlist"><ul><li><p><code class="literal">Data</code> &#8212; Contains the data for this node</p></li><li><p><code class="literal">Next</code> &#8212; Contains the handle of the next node in the list (<code class="literal">SetAccess = private</code>)</p></li><li><p><code class="literal">Prev</code> &#8212; Contains the handle of the previous node in the list (<code class="literal">SetAccess = private</code>)</p></li></ul></div><p>This diagram shows a list with three-nodes <code class="literal">n1</code>, <code class="literal">n2</code>, and <code class="literal">n3</code>. It also shows how the nodes reference the next and previous nodes.</p><div class="informalfigure"><div id="d126e2482" class="mediaobject"><p><img src="doublelink_new.png" alt="Three nodes of a doubly linked list" height="119" width="535"></p></div></div></section><section><h4 class="title" id="brikpg6">Class Methods</h4><p>The <code class="literal">dlnode</code> class implements the following methods:</p><div class="itemizedlist"><ul><li><p><code class="literal">dlnode</code> &#8212; Construct a node and assign the value passed as an input to the <code class="literal">Data</code> property</p></li><li><p><code class="literal">insertAfter</code> &#8212; Insert this node after the specified node</p></li><li><p><code class="literal">insertBefore</code> &#8212; Insert this node before the specified node</p></li><li><p><code class="literal">removeNode</code> &#8212; Remove this node from the list and reconnect the remaining nodes</p></li><li><p><code class="literal">clearList</code> &#8212; Remove large lists efficiently</p></li><li><p><code class="literal">delete</code> &#8212; Private method called by MATLAB when deleting the list.</p></li></ul></div></section></section><section><h3 class="title" id="brikpee">Create Doubly Linked List</h3><p>Create a node by passing the node's data to the <code class="literal">dlnode</code> class constructor. For example, these statements create three nodes with data values <code class="literal">1</code>, <code class="literal">2</code>, and <code class="literal">3</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1 = dlnode(1);
+n2 = dlnode(2);
+n3 = dlnode(3);</pre></div></div></div><p>Build these nodes into a doubly linked list using the class methods designed for this purpose:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n2.insertAfter(n1) <span style="color:#228B22">% Insert n2 after n1</span>
+n3.insertAfter(n2) <span style="color:#228B22">% Insert n3 after n2</span></pre></div></div></div><p>Now the three nodes are linked:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1.Next <span style="color:#228B22">% Points to n2</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 2
+    Next: [1x1 dlnode]
+    Prev: [1x1 dlnode]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n2.Next.Prev <span style="color:#228B22">% Points back to n2</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 2
+    Next: [1x1 dlnode]
+    Prev: [1x1 dlnode]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1.Next.Next <span style="color:#228B22">% Points to n3</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 3
+    Next: []
+    Prev: [1x1 dlnode]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n3.Prev.Prev <span style="color:#228B22">% Points to n1</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 1
+    Next: [1x1 dlnode]
+    Prev: []</pre></div></div></div></section><section><h3 class="title" id="brfypkf">Why Use a Handle Class for Linked Lists?</h3><p>Each node is unique in that no two nodes can be previous to or next to the same node.
+            For example, a node object, <code class="literal">node</code>, contains in its
+               <code class="literal">Next</code> property the handle of the next node object,
+               <code class="literal">node.Next</code>. Similarly, the <code class="literal">Prev</code> property
+            contains the handle of the previous node, <code class="literal">node.Prev</code>. Using the
+            three-node linked list defined in the previous section, you can demonstrate that the
+            following statements are true:</p><div class="code_responsive"><pre class="programlisting">n1.Next == n2
+n2.Prev == n1
+</pre></div><p>Now suppose that you assign <code class="literal">n2</code> to <code class="literal">x</code>:</p><div class="code_responsive"><pre class="programlisting">x = n2;</pre></div><p>The following two equalities are then true:</p><div class="code_responsive"><pre class="programlisting">x == n1.Next
+x.Prev == n1
+</pre></div><p>But each instance of a node is unique so there is only one node in the list that can satisfy the conditions of being equal to <code class="literal">n1.Next</code> and having a <code class="literal">Prev</code> property that contains a handle to <code class="literal">n1</code>. Therefore, <code class="literal">x</code> must point to the same node as <code class="literal">n2</code>. </p><p>There has to be a way for multiple variables to refer to the same object. The MATLAB
+            <code class="literal">handle</code> class provides a means for both <code class="literal">x</code> and <code class="literal">n2</code> to refer to the same node.</p><p>The handle class defines the <code class="literal">eq</code> method (use <code class="literal">methods('handle')</code> to list the handle class methods), which enables the use of the <code class="literal">==</code> operator with all handle objects.</p><section><h4 class="title" id="bt_7h5z">Related Information</h4><p>For more information on handle classes, see <a href="comparing-handle-and-value-classes.html" class="a">Comparison of Handle and Value Classes</a>.</p></section></section><section><h3 class="title" id="brik0u3"><code class="literal">dlnode</code> Class Synopsis</h3><p>This section describes the implementation of the <code class="literal">dlnode</code> class.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="52%"><col class="tcol2" width="48%"></colgroup><thead><tr><th>Example Code</th><th>Discussion</th></tr></thead><tbody><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> dlnode &lt; handle
+</pre></div></div></div>
+                     </td><td><p>
+                           <a href="example-implementing-linked-lists.html#brfz3yz" class="intrnllnk">dlnode Class Design</a>
+                        </p><p>
+                           <a href="example-implementing-linked-lists.html#brfypkf" class="intrnllnk">Why Use a Handle Class for Linked Lists?</a>
+                        </p><p>
+                           <a href="comparing-handle-and-value-classes.html" class="a">Comparison of Handle and Value Classes</a>
+                        </p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties
+      Data
+   <span style="color:#0000FF">end</span></pre></div></div></div>
+                     </td><td><a href="example-implementing-linked-lists.html#brfz3yz" class="intrnllnk">dlnode Class Design</a></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   properties (SetAccess = private)
+      Next = dlnode.empty
+      Prev = dlnode.empty
+   <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p><a href="property-attributes.html" class="a">Property Attributes</a>: <code class="literal">SetAccess</code>.</p><p>Initialize these properties to <a href="../ref/empty.html"><code class="function">empty</code></a>
+                           <code class="literal">dlnode</code> objects. </p><p>For general information about properties, see <a href="defining-properties.html" class="a">Property Syntax</a></p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods
+</pre></div></div></div>
+                     </td><td><p>For general information about methods, see <a href="how-to-use-methods.html" class="a">Methods in Class Design</a></p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> node = dlnode(Data)
+         <span style="color:#0000FF">if</span> (nargin &gt; 0)
+            node.Data = Data;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Creating an individual node (not connected) requires only the data. </p><p>For general information about constructors, see <a href="class-constructor-methods.html#brd2m9e-3" class="a">Guidelines for Constructors</a></p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> insertAfter(newNode, nodeBefore)
+         removeNode(newNode);
+         newNode.Next = nodeBefore.Next;
+         newNode.Prev = nodeBefore;
+         <span style="color:#0000FF">if</span> ~isempty(nodeBefore.Next)
+            nodeBefore.Next.Prev = newNode;
+         <span style="color:#0000FF">end</span>
+         nodeBefore.Next = newNode;
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Insert node into a doubly linked list after specified node, or link the two specified nodes if there is not already a list. Assigns the correct values for <code class="literal">Next</code> and <code class="literal">Prev</code> properties.</p><p>
+                           <a href="example-implementing-linked-lists.html#brik2ku" class="intrnllnk">Insert Nodes</a>
+                        </p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> insertBefore(newNode, nodeAfter)
+         removeNode(newNode);
+         newNode.Next = nodeAfter;
+         newNode.Prev = nodeAfter.Prev;
+         <span style="color:#0000FF">if</span> ~isempty(nodeAfter.Prev)
+            nodeAfter.Prev.Next = newNode;
+         <span style="color:#0000FF">end</span>
+         nodeAfter.Prev = newNode;
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Insert node into doubly linked list before specified node, or link the two specified nodes if there is not already a list. This method assigns correct values for <code class="literal">Next</code> and <code class="literal">Prev</code> properties.</p><p>See <a href="example-implementing-linked-lists.html#brik2ku" class="intrnllnk">Insert Nodes</a></p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> removeNode(node)
+         <span style="color:#0000FF">if</span> ~isscalar(node)
+            error(<span style="color:#A020F0">'Nodes must be scalar'</span>)
+         <span style="color:#0000FF">end</span>
+         prevNode = node.Prev;
+         nextNode = node.Next;
+         <span style="color:#0000FF">if</span> ~isempty(prevNode)
+            prevNode.Next = nextNode;
+         <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">if</span> ~isempty(nextNode)
+            nextNode.Prev = prevNode;
+         <span style="color:#0000FF">end</span>
+         node.Next =  = dlnode.empty;
+         node.Prev =  = dlnode.empty;
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Remove node and fix the list so that remaining nodes are properly connected. <code class="literal">node</code> argument must be scalar.</p><p>Once there are no references to node, MATLAB deletes it.</p><p>
+                           <a href="example-implementing-linked-lists.html#bt_71__-1" class="intrnllnk">Remove a Node</a>
+                        </p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>      <span style="color:#0000FF">function</span> clearList(node)
+         prev = node.Prev;
+         next = node.Next;
+         removeNode(node)
+         <span style="color:#0000FF">while</span> ~isempty(next)
+            node = next;
+            next = node.Next;
+            removeNode(node);
+         <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">while</span> ~isempty(prev)
+            node = prev;
+            prev = node.Prev;
+            removeNode(node)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Avoid recursive calls to destructor as a result of clearing the list variable. Loop through list to disconnect each node. When there are no references to a node, MATLAB calls the class destructor (see the <code class="literal">delete</code> method) before deleting it.</p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   methods (Access = private)
+      <span style="color:#0000FF">function</span> delete(node)
+         clearList(node)
+      <span style="color:#0000FF">end</span>
+</pre></div></div></div>
+                     </td><td><p>Class destructor method. MATLAB calls the <code class="literal">delete</code> method you delete a node that is still connected to the list. </p></td></tr><tr><td>
+                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>  </pre></div></div></div>
+                     </td><td><p>End of private methods and end of class definition.</p></td></tr></tbody></table></div><p><a href="#" onclick="return toggleexpander('d126e2796_block','d126e2796_expandable_text');"><img style="border:0;" id="d126e2796_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e2796_block','d126e2796_expandable_text');">Expand for Class Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e2796_block"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> dlnode &lt; handle
+   <span style="color:#228B22">% dlnode A class to represent a doubly-linked node.</span>
+   <span style="color:#228B22">% Link multiple dlnode objects together to create linked lists.</span>
+   <span style="color:#0000FF">properties</span>
+      Data
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">properties</span>(SetAccess = private)
+      Next = dlnode.empty
+      Prev = dlnode.empty
+   <span style="color:#0000FF">end</span>
+   
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> node = dlnode(Data)
+         <span style="color:#228B22">% Construct a dlnode object</span>
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            node.Data = Data;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> insertAfter(newNode, nodeBefore)
+         <span style="color:#228B22">% Insert newNode after nodeBefore.</span>
+         removeNode(newNode);
+         newNode.Next = nodeBefore.Next;
+         newNode.Prev = nodeBefore;
+         <span style="color:#0000FF">if</span> ~isempty(nodeBefore.Next)
+            nodeBefore.Next.Prev = newNode;
+         <span style="color:#0000FF">end</span>
+         nodeBefore.Next = newNode;
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> insertBefore(newNode, nodeAfter)
+         <span style="color:#228B22">% Insert newNode before nodeAfter.</span>
+         removeNode(newNode);
+         newNode.Next = nodeAfter;
+         newNode.Prev = nodeAfter.Prev;
+         <span style="color:#0000FF">if</span> ~isempty(nodeAfter.Prev)
+            nodeAfter.Prev.Next = newNode;
+         <span style="color:#0000FF">end</span>
+         nodeAfter.Prev = newNode;
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> removeNode(node)
+         <span style="color:#228B22">% Remove a node from a linked list.</span>
+         <span style="color:#0000FF">if</span> ~isscalar(node)
+            error(<span style="color:#A020F0">'Input must be scalar'</span>)
+         <span style="color:#0000FF">end</span>
+         prevNode = node.Prev;
+         nextNode = node.Next;
+         <span style="color:#0000FF">if</span> ~isempty(prevNode)
+            prevNode.Next = nextNode;
+         <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">if</span> ~isempty(nextNode)
+            nextNode.Prev = prevNode;
+         <span style="color:#0000FF">end</span>
+         node.Next = dlnode.empty;
+         node.Prev = dlnode.empty;
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> clearList(node)
+         <span style="color:#228B22">% Clear the list before</span>
+         <span style="color:#228B22">% clearing list variable</span>
+         prev = node.Prev;
+         next = node.Next;
+         removeNode(node)
+         <span style="color:#0000FF">while</span> ~isempty(next)
+            node = next;
+            next = node.Next;
+            removeNode(node);
+         <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">while</span> ~isempty(prev)
+            node = prev;
+            prev = node.Prev;
+            removeNode(node)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+   
+   <span style="color:#0000FF">methods</span> (Access = private)
+      <span style="color:#0000FF">function</span> delete(node)
+         clearList(node)
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></div><section><h4 class="title" id="brik2q7">Class Properties</h4><p>Only <code class="literal">dlnode</code> class methods can set the <code class="literal">Next</code> and <code class="literal">Prev</code> properties because these properties have private set access (<code class="literal">SetAccess = private</code>). Using private set access prevents client code from performing any incorrect operation with these properties. The <code class="literal">dlnode</code> class methods perform all the operations that are allowed on these nodes. </p><p>The <code class="literal">Data</code> property has public set and get access, allowing you to query and modify the value of <code class="literal">Data</code> as required.</p><p>Here is how the <code class="literal">dlnode</code> class defines the properties:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>properties
+   Data
+<span style="color:#0000FF">end</span>
+properties(SetAccess = private)
+   Next = dlnode.empty;
+   Prev = dlnode.empty;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="brinzo9">Construct a Node Object</h4><p>To create a node object, specify the node's data as an argument to the constructor:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> node = dlnode(Data)
+   <span style="color:#0000FF">if</span> nargin &gt; 0
+      node.Data = Data;
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="brik2ku">Insert Nodes</h4><p>There are two methods for inserting nodes into the list &#8212; <code class="literal">insertAfter</code> and <code class="literal">insertBefore</code>. These methods perform similar operations, so this section describes only <code class="literal">insertAfter</code> in detail.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> insertAfter(newNode, nodeBefore)
+   removeNode(newNode);
+   newNode.Next = nodeBefore.Next;
+   newNode.Prev = nodeBefore;
+   <span style="color:#0000FF">if</span> ~isempty(nodeBefore.Next)
+      nodeBefore.Next.Prev = newNode;
+   <span style="color:#0000FF">end</span>
+   nodeBefore.Next = newNode;
+<span style="color:#0000FF">end</span></pre></div></div></div><p><strong id="brw4aor">How <code class="literal">insertAfter</code> Works.&nbsp;&nbsp;</strong>First, <code class="literal">insertAfter</code> calls the <code class="literal">removeNode</code> method to ensure that the new node is not connected to any other nodes. Then, <code class="literal">insertAfter</code> assigns the <code class="literal">newNode</code>
+                  <code class="literal">Next</code> and <code class="literal">Prev</code> properties to the handles of the nodes that are after and before the <code class="literal">newNode</code> location in the list.</p><p>For example, suppose that you want to insert a new node, <code class="literal">nnew</code>, after an existing node, <code class="literal">n1</code>, in a list containing <code class="literal">n1&#8212;n2&#8212;n3</code>. </p><p>First, create <code class="literal">nnew</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnew = dlnode(rand(3));</pre></div></div></div><p>Next, call <code class="literal">insertAfter</code> to insert <code class="literal">nnew</code> into the list after <code class="literal">n1</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnew.insertAfter(n1)</pre></div></div></div><p>The <code class="literal">insertAfter</code> method performs the following steps to insert <code class="literal">nnew</code> in the list between <code class="literal">n1</code> and <code class="literal">n2</code>:</p><div class="itemizedlist"><ul><li><p>Set <code class="literal">nnew.Next</code> to <code class="literal">n1.Next</code> (<code class="literal">n1.Next</code> is <code class="literal">n2</code>):</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnew.Next = n1.Next;</pre></div></div></div></li><li><p>Set <code class="literal">nnew.Prev</code> to <code class="literal">n1</code></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnew.Prev = n1;</pre></div></div></div></li><li><p>If <code class="literal">n1.Next</code> is not empty, then <code class="literal">n1.Next</code> is still <code class="literal">n2</code>, so <code class="literal">n1.Next.Prev</code> is <code class="literal">n2.Prev</code>, which is set to <code class="literal">nnew</code></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1.Next.Prev = nnew;</pre></div></div></div></li><li><p><code class="literal">n1.Next</code> is now set to<code class="literal"> nnew</code></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1.Next = nnew;</pre></div></div></div></li></ul></div><div class="informalfigure"><div id="d126e2949" class="mediaobject"><p><img src="two2-01.png" alt="New node inserted into doubly linked list" height="118" width="465"></p></div></div></section><section><h4 class="title" id="bt_71__-1">Remove a Node</h4><p>The <code class="literal">removeNode</code> method removes a node from a list and reconnects the remaining nodes. The <code class="literal">insertBefore</code> and <code class="literal">insertAfter</code> methods always call <code class="literal">removeNode</code> on the node to insert before attempting to connect it to a linked list. </p><p>Calling <code class="literal">removeNode</code> ensures that the node is in a known state before assigning it to the <code class="literal">Next</code> or <code class="literal">Prev</code> property:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> removeNode(node)
+   <span style="color:#0000FF">if</span> ~isscalar(node)
+      error(<span style="color:#A020F0">'Input must be scalar'</span>)
+   <span style="color:#0000FF">end</span>
+   prevNode = node.Prev;
+   nextNode = node.Next;
+   <span style="color:#0000FF">if</span> ~isempty(prevNode)
+      prevNode.Next = nextNode;
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">if</span> ~isempty(nextNode)
+      nextNode.Prev = prevNode;
+   <span style="color:#0000FF">end</span>
+   node.Next = dlnode.empty;
+   node.Prev = dlnode.empty;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For example, suppose that you remove <code class="literal">n2</code> from a three-node list (<code class="literal">n1&#8211;n2&#8211;n3</code>):</p><div class="code_responsive"><pre class="programlisting">n2.removeNode;</pre></div><div class="informalfigure"><div id="d126e2983" class="mediaobject"><p><img src="one.png" alt="Disconnecting links after removing a node from doubly linked list" height="177" width="527"></p></div></div><p><code class="literal">removeNode</code> removes <code class="literal">n2</code> from the list and reconnects the remaining nodes with the following steps:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n1 = n2.Prev;
+n3 = n2.Next;
+<span style="color:#0000FF">if</span> n1 exists, then
+   n1.Next = n3;
+<span style="color:#0000FF">if</span> n3 exists, then
+   n3.Prev = n1</pre></div></div></div><p>The list is rejoined because <code class="literal">n1</code> connects to <code class="literal">n3</code> and <code class="literal">n3</code> connects to <code class="literal">n1</code>. The final step is to ensure that <code class="literal">n2.Next</code> and <code class="literal">n2.Prev</code> are both empty (that is, <code class="literal">n2</code> is not connected):</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n2.Next = dlnode.empty;
+n2.Prev = dlnode.empty;</pre></div></div></div></section><section><h4 class="title" id="bupeu6v">Removing a Node from a List</h4><p>Suppose that you create a list with 10 nodes and save the handle to the head of the list:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head = dlnode(1);
+<span style="color:#0000FF">for</span> i = 10:-1:2
+   new = dlnode(i);
+   insertAfter(new,head);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Now remove the third node (<code class="literal">Data</code> property assigned the value <code class="literal">3</code>):</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>removeNode(head.Next.Next)</pre></div></div></div><p>Now the third node in the list has a data value of <code class="literal">4</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head.Next.Next
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 4
+    Next: [1x1 dlnode]
+    Prev: [1x1 dlnode]</pre></div></div></div><p>And the previous node has a <code class="literal">Data</code> value of <code class="literal">2</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head.Next
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 2
+    Next: [1x1 dlnode]
+    Prev: [1x1 dlnode]</pre></div></div></div></section><section><h4 class="title" id="brimeac">Delete a Node</h4><p>To delete a node, call the <code class="literal">removeNode</code> method on that node. The <code class="literal">removeNode</code> method disconnects the node and reconnects the list before allowing MATLAB to destroy the removed node. MATLAB destroys the node once references to it by other nodes are removed and the list is reconnected.</p><div class="informalfigure"><div id="d126e3059" class="mediaobject"><p><img src="removenode.png" alt="Reconnecting links after deleting node from doubly linked list" height="311" width="527"></p></div></div></section><section><h4 class="title" id="bt_xuvs">Delete the List</h4><p>When you create a linked list and assign a variable that contains, for example, the head or tail of the list, clearing that variable causes the destructor to recurse through the entire list. With large enough list, clearing the list variable can result in MATLAB exceeding its recursion limit.</p><p>The <code class="literal">clearList</code> method avoids recursion and improves the performance of deleting large lists by looping over the list and disconnecting each node. <code class="literal">clearList</code> accepts the handle of any node in the list and removes the remaining nodes.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> clearList(node)
+   <span style="color:#0000FF">if</span> ~isscalar(node)
+      error(<span style="color:#A020F0">'Input must be scalar'</span>)
+   <span style="color:#0000FF">end</span>
+   prev = node.Prev;
+   next = node.Next;
+   removeNode(node)
+   <span style="color:#0000FF">while</span> ~isempty(next)
+      node = next;
+      next = node.Next;
+      removeNode(node);
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">while</span> ~isempty(prev)
+      node = prev;
+      prev = node.Prev;
+      removeNode(node)
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For example, suppose that you create a list with many nodes:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head = dlnode(1);
+<span style="color:#0000FF">for</span> k = 100000:-1:2
+   nextNode = dlnode(k);
+   insertAfter(nextNode,head)
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The variable <code class="literal">head</code> contains the handle to the node at the head of the list:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>head = 
+
+  dlnode with properties:
+
+    Data: 1
+    Next: [1x1 dlnode]
+    Prev: []</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head.Next</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  dlnode with properties:
+
+    Data: 2
+    Next: [1x1 dlnode]
+    Prev: [1x1 dlnode]</pre></div></div></div><p>You can call <code class="literal">clearList</code> to remove the whole list:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clearList(head)</pre></div></div></div><p>The only nodes that have not been deleted by MATLAB are those nodes for which there exists an explicit reference. In this case, those references are <code class="literal">head</code> and <code class="literal">nextNode</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>head = 
+
+  dlnode with properties:
+
+    Data: 1
+    Next: []
+    Prev: []
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nextNode</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>nextNode = 
+
+  dlnode with properties:
+
+    Data: 2
+    Next: []
+    Prev: []</pre></div></div></div><p>You can remove these nodes by clearing the variables:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear <span style="color:#A020F0">head</span> <span style="color:#A020F0">nextNode</span></pre></div></div></div></section><section><h4 class="title" id="bt_709s">The delete Method</h4><p>The <code class="literal">delete</code> method simply calls the <code class="literal">clearList</code> method:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods (Access = private)
+   <span style="color:#0000FF">function</span> delete(node)
+      clearList(node)
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The <code class="literal">delete</code> method has private access to prevent users from calling <code class="literal">delete</code> when intending to delete a single node. MATLAB calls <code class="literal">delete</code> implicitly when the list is destroyed.</p><p>To delete a single node from the list, use the <code class="literal">removeNode</code> method.</p></section></section><section><h3 class="title" id="f2-86885">Specialize the <code class="literal">dlnode</code> Class</h3><span id="deriving_from_simplenode_class" class="anchor_target"></span><p>The <code class="literal">dlnode</code> class implements a doubly linked list and provides a convenient starting point for creating more specialized types of linked lists. For example, suppose that you want to create a list in which each node has a name. </p><p>Rather than copying the code used to implement the <code class="literal">dlnode</code> class, and then expanding upon it, you can derive a new class from <code class="literal">dlnode</code> (that is, subclass <code class="literal">dlnode</code>). You can create a class that has all the features of <code class="literal">dlnode</code> and also defines its own additional features. And because <code class="literal">dlnode</code> is a handle class, this new class is a handle class too.</p><section><h4 class="title" id="bsmnrnt"><code class="literal">NamedNode</code> Class Definition</h4><p>To use the class, create a folder named <code class="literal">@NamedNode</code> and save <code class="literal">NamedNode.m</code> to this folder. The parent folder of <code class="literal">@NamedNode</code> must be on the MATLAB path. Alternatively, save <code class="literal">NamedNode.m</code> to a path folder.</p><p>The following class definition shows how to derive the <code class="literal">NamedNode</code> class from the <code class="literal">dlnode</code> class:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> NamedNode &lt; dlnode
+   <span style="color:#0000FF">properties</span>
+      Name = <span style="color:#A020F0">''</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> n = NamedNode (name,data)
+         <span style="color:#0000FF">if</span> nargin == 0
+            name = <span style="color:#A020F0">''</span>;
+            data = [];
+         <span style="color:#0000FF">end</span>
+         n = n@dlnode(data);
+         n.Name = name;
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The <code class="literal">NamedNode</code> class adds a <code class="literal">Name</code> property to store the node name.</p><p>The constructor calls the class constructor for the <code class="literal">dlnode</code> class, and then assigns a value to the <code class="literal">Name</code> property. </p></section><section><h4 class="title" id="brimubg">Use <code class="literal">NamedNode</code> to Create a Doubly Linked List</h4><p>Use the <code class="literal">NamedNode</code> class like the <code class="literal">dlnode</code>
+               class, except that you specify a name for each node object. For example: </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n(1) = NamedNode(<span style="color:#A020F0">'First Node'</span>,100);
+n(2) = NamedNode(<span style="color:#A020F0">'Second Node'</span>,200);
+n(3) = NamedNode(<span style="color:#A020F0">'Third Node'</span>,300);
+</pre></div></div></div><p>Now use the insert methods inherited from <code class="literal">dlnode</code> to build the list:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n(2).insertAfter(n(1))
+n(3).insertAfter(n(2))</pre></div></div></div><p>A single node displays its name and data when you query its properties:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n(1).Next</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  NamedNode with properties:
+
+    Name: 'Second Node'
+    Data: 200
+    Next: [1x1 NamedNode]
+    Prev: [1x1 NamedNode]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n(1).Next.Next</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  NamedNode with properties:
+
+    Name: 'Third Node'
+    Data: 300
+    Next: []
+    Prev: [1x1 NamedNode]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n(3).Prev.Prev</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  NamedNode with properties:
+
+    Name: 'First Node'
+    Data: 100
+    Next: [1x1 NamedNode]
+    Prev: []</pre></div></div></div></section></section>
+         <h2 id="seealsoref">See Also</h2><h3 id="d126e3240">Topics</h3><ul class="list-unstyled"><li><a href="the-handle-superclass.html" class="a">The Handle Superclass</a></li></ul>
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

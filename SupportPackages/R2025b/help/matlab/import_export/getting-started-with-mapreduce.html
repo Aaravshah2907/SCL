@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Getting Started with MapReduce</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mapreduce.html",
+          "name": "MapReduce"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mapreduce",
+        "large-files-and-big-data"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn about the MapReduce programming technique and run an example calculation."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mapreduce.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetb8-1"><span itemprop="title">MapReduce</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav">Data Import and Analysis</a></li><li><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" id="bugetan">Large Files and Big Data</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Getting Started with MapReduce</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bug4l7w-2" class="nav-link intrnllnk">What Is MapReduce?</a></li><li class="nav-item"><a href="#bug4l7w-4" class="nav-link intrnllnk">MapReduce Algorithm Phases</a></li><li class="nav-item"><a href="#bug4okz" class="nav-link intrnllnk">Example MapReduce Calculation</a><ul class="nav"><li class="nav-item"><a href="#bug4l7w-5" class="nav-link intrnllnk">Prepare Data</a></li><li class="nav-item"><a href="#bug4l7w-6" class="nav-link intrnllnk">Write Map and Reduce Functions</a></li><li class="nav-item"><a href="#bug4l7w-7" class="nav-link intrnllnk">Run mapreduce</a></li><li class="nav-item"><a href="#buj0p5l-9" class="nav-link intrnllnk">View Results</a></li></ul></li><li class="nav-item"><a href="#d126e24845" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bug4l7w-1">Getting Started with MapReduce</h2>
+<p class="shortdesc">As the number and type of data acquisition
+devices grows annually, the sheer size and rate of data being collected
+is rapidly expanding. These big data sets  can contain gigabytes or
+terabytes of data, and can grow on the order of megabytes or gigabytes
+per day. While the collection of this information presents opportunities
+for insight, it also presents many challenges. Most algorithms are
+not designed to process big data sets in a reasonable amount of time
+or with a reasonable amount of memory. MapReduce allows you to meet
+many of these challenges to gain important insights from large data
+sets.</p>
+<ul><li><p><a class="intrnllnk" href="#bug4l7w-2">What Is MapReduce?</a></p></li><li><p><a class="intrnllnk" href="#bug4l7w-4">MapReduce Algorithm Phases</a></p></li><li><p><a class="intrnllnk" href="#bug4okz">Example MapReduce Calculation</a></p></li></ul><section><h3 class="title" id="bug4l7w-2">What Is MapReduce?</h3><p>MapReduce is a programming technique for analyzing data sets that do not fit in memory. You
+        may be familiar with Hadoop<sup>&#x00AE;</sup> MapReduce, which is a popular implementation that works with the Hadoop Distributed File System (HDFS&#x2122;). MATLAB<sup>&#x00AE;</sup> provides a slightly different implementation of the MapReduce technique with
+        the <code class="function">mapreduce</code> function.</p><p><code class="function">mapreduce</code> uses a datastore to process data in small blocks that
+        individually fit into memory. Each block goes through a Map phase, which formats the data to
+        be processed. Then the intermediate data blocks go through a Reduce phase, which aggregates
+        the intermediate results to produce a final result. The Map and Reduce phases are encoded by
+          <span class="emphasis"><em>map</em></span> and <span class="emphasis"><em>reduce</em></span> functions, which are primary
+        inputs to <code class="function">mapreduce</code>. There are endless combinations of map and reduce
+        functions to process data, so this technique is both flexible and extremely powerful for
+        tackling large data processing tasks.</p><p><code class="function">mapreduce</code> lends itself to being extended
+to run in several environments. For more information about these capabilities,
+see <a href="speed-up-and-deploy-mapreduce-using-other-products.html" class="a">Speed Up and Deploy MapReduce Using Other Products</a>.</p><p>The utility of the <code class="function">mapreduce</code> function lies
+in its ability to perform calculations on large collections of data.
+Thus, <code class="function">mapreduce</code> is not well-suited for performing
+calculations on <span class="emphasis"><em>normal</em></span> sized data sets which
+can be loaded directly into computer memory and analyzed with traditional
+techniques. Instead, use <code class="function">mapreduce</code> to perform
+a statistical or analytical calculation on a data set that does not
+fit in memory.</p><p>Each call to the map or reduce function by <code class="function">mapreduce</code> is
+independent of all others. For example, a call to the map function
+cannot depend on inputs or results from a previous call to the map
+function. It is best to break up such calculations into multiple calls
+to <code class="function">mapreduce</code>.</p></section><section><h3 class="title" id="bug4l7w-4">MapReduce Algorithm Phases</h3><p><code class="function">mapreduce</code> moves each block of data in the input datastore through several
+        phases before reaching the final output. The following figure outlines the phases of the
+        algorithm for <code class="function">mapreduce</code>.</p><div class="informalfigure"><div id="d126e24506" class="mediaobject"><p><img src="mrworkflow.png" alt="Illustration of MapReduce algorithm phases: input datastore, map phase, intermediate sorting phase, reduce phase, and output datastore." height="290" width="730"></p></div></div><p>The algorithm has the following steps:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p><code class="function">mapreduce</code> reads a block of data from the input datastore using
+              <code class="literal">[data,info] = read(ds)</code>, and then calls the map function to work on
+            that block.</p></li><li><p>The map function receives the block of data, organizes it or performs a precursory
+            calculation, and then uses the <code class="function">add</code> and
+              <code class="function">addmulti</code> functions to add key-value pairs to an intermediate data
+            storage object called a <a href="../ref/matlab.mapreduce.keyvaluestore.html"><code class="object">KeyValueStore</code></a>. The number of calls to the map
+            function by <code class="function">mapreduce</code> is equal to the number of blocks in the input
+            datastore.</p></li><li><p>After the map function works on all of the blocks of data in the datastore,
+              <code class="function">mapreduce</code> groups all of the values in the intermediate
+              <code class="literal">KeyValueStore</code> object by unique key.</p></li><li><p>Next, <code class="function">mapreduce</code> calls the reduce
+function once for each unique key added by the map function. Each
+unique key can have many associated values. <code class="function">mapreduce</code> passes
+the values to the reduce function as a <a href="../ref/matlab.mapreduce.valueiterator.html"><code class="object">ValueIterator</code></a> object, which
+is an object used to iterate over the values. The <code class="literal">ValueIterator</code> object
+for each unique key contains all the associated values for that key.</p></li><li><p>The reduce function uses the <code class="function">hasnext</code> and <code class="function">getnext</code> functions
+to iterate through the values in the <code class="literal">ValueIterator</code> object
+one at a time. Then, after aggregating the intermediate results from
+the map function, the reduce function adds final key-value pairs to
+the output using the <code class="function">add</code> and <code class="function">addmulti</code> functions.
+The order of the keys in the output is the same as the order in which
+the reduce function adds them to the final <code class="literal">KeyValueStore</code> object.
+That is, <code class="function">mapreduce</code> does not explicitly sort the
+output.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The reduce function writes the final key-value pairs to a final <a href="../ref/matlab.mapreduce.keyvaluestore.html"><code class="object">KeyValueStore</code></a> object.
+From this object, <code class="function">mapreduce</code> pulls the key-value
+pairs into the output datastore, which is a <a href="../ref/matlab.io.datastore.keyvaluedatastore.html"><code class="object">KeyValueDatastore</code></a> object
+by default.</p></div></li></ol></div></section><section><h3 class="title" id="bug4okz">Example MapReduce Calculation</h3>
+<p class="shortdesc">This example uses a simple calculation (the
+mean travel distance in a set of flight data) to illustrate the steps
+needed to run <code class="function">mapreduce</code>.</p>
+<section><h4 class="title" id="bug4l7w-5">Prepare Data</h4><p>The first step to using <code class="function">mapreduce</code> is to construct a datastore for the
+          data set. Along with the map and reduce functions, the datastore for a data set is a
+          required input to <code class="function">mapreduce</code>, since it allows
+            <code class="function">mapreduce</code> to process the data in blocks.</p><p><code class="function">mapreduce</code> works with most types of datastores. For example, create a
+            <code class="literal">TabularTextDatastore</code> object for the
+            <code class="literal">airlinesmall.csv</code> data set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>,<span style="color:#A020F0">'TreatAsMissing'</span>,<span style="color:#A020F0">'NA'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ds = 
+
+  TabularTextDatastore with properties:
+
+                      Files: {
+                             ' ...\matlab\toolbox\matlab\demos\airlinesmall.csv'
+                             }
+                    Folders: {
+                             ' ...\matlab\toolbox\matlab\demos'
+                             }
+               FileEncoding: 'UTF-8'
+   AlternateFileSystemRoots: {}
+      PreserveVariableNames: false
+          ReadVariableNames: true
+              VariableNames: {'Year', 'Month', 'DayofMonth' ... and 26 more}
+             DatetimeLocale: en_US
+
+  Text Format Properties:
+             NumHeaderLines: 0
+                  Delimiter: ','
+               RowDelimiter: '\r\n'
+             TreatAsMissing: 'NA'
+               MissingValue: NaN
+
+  Advanced Text Format Properties:
+            TextscanFormats: {'%f', '%f', '%f' ... and 26 more}
+                   TextType: 'char'
+         ExponentCharacters: 'eEdD'
+               CommentStyle: ''
+                 Whitespace: ' \b\t'
+    MultipleDelimitersAsOne: false
+
+  Properties that control the table returned by preview, read, readall:
+      SelectedVariableNames: {'Year', 'Month', 'DayofMonth' ... and 26 more}
+            SelectedFormats: {'%f', '%f', '%f' ... and 26 more}
+                   ReadSize: 20000 rows
+                 OutputType: 'table'
+                   RowTimes: []
+
+  Write-specific Properties:
+     SupportedOutputFormats: ["txt"    "csv"    "xlsx"    "xls"    "parquet"    "parq"]
+        DefaultOutputFormat: "txt"</pre></div></div></div><p>Several of the previously described options are useful in the context of
+            <code class="function">mapreduce</code>. The <code class="function">mapreduce</code> function executes
+            <code class="function">read</code> on the datastore to retrieve data to pass to the map function.
+          Therefore, you can use the <code class="literal">SelectedVariableNames</code>,
+            <code class="literal">SelectedFormats</code>, and <code class="literal">ReadSize</code> options to directly
+          configure the block size and type of data that <code class="function">mapreduce</code> passes to
+          the map function.</p><p>For example, to select the <code class="literal">Distance</code> (total
+flight distance) variable as the only variable of interest, specify <code class="literal">SelectedVariableNames</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds.SelectedVariableNames = <span style="color:#A020F0">'Distance'</span>;</pre></div></div></div><p>Now, whenever the <code class="function">read</code>, <code class="function">readall</code>,
+or <code class="function">preview</code> functions act on <code class="literal">ds</code>,
+they will return only information for the <code class="literal">Distance</code> variable.
+To confirm this, you can preview the first few rows of data in the
+datastore. This allows you to examine the format of the data that
+the <code class="function">mapreduce</code> function will pass to the map function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>preview(ds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  8×1 table
+
+    Distance
+    ________
+
+      308   
+      296   
+      480   
+      296   
+      373   
+      308   
+      447   
+      954 </pre></div></div></div><p>To view the <span class="emphasis"><em>exact</em></span> data that <code class="function">mapreduce</code> will
+pass to the map function, use <code class="function">read</code>.</p><p>For additional information and a complete summary of the available
+options,  see <a href="../datastore.html" class="a">Datastore</a>.</p></section><section><h4 class="title" id="bug4l7w-6">Write Map and Reduce Functions</h4><p>The <code class="function">mapreduce</code> function automatically calls
+the map and reduce functions during execution, so these functions
+must meet certain requirements to run properly.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>The inputs to the map function are <code class="literal">data</code>, <code class="literal">info</code>,
+and <code class="literal">intermKVStore</code>:</p><div class="itemizedlist"><ul><li><p><code class="literal">data</code> and <code class="literal">info</code> are the result of a call
+                  to the <code class="function">read</code> function on the input datastore, which
+                    <code class="function">mapreduce</code> executes automatically before each call to the
+                  map function.</p></li><li><p><code class="literal">intermKVStore</code> is the name of the
+intermediate <a href="../ref/matlab.mapreduce.keyvaluestore.html"><code class="object">KeyValueStore</code></a> object
+to which the map function needs to add key-value pairs. The <code class="function">add</code> and <code class="function">addmulti</code> functions
+use this object name to add key-value pairs. If none of the calls
+to the map function add key-value pairs to <code class="literal">intermKVStore</code>,
+then <code class="function">mapreduce</code> does not call the reduce function
+and the resulting datastore is empty.</p></li></ul></div><p>A simple example of a map function is:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> MeanDistMapFun(data, info, intermKVStore)
+    distances = data.Distance(~isnan(data.Distance));
+    sumLenValue = [sum(distances)  length(distances)];
+    add(intermKVStore, <span style="color:#A020F0">'sumAndLength'</span>, sumLenValue);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This map function has only three lines, which perform some straightforward roles. The first
+              line filters out all <code class="literal">NaN</code> values in the block of distance data. The
+              second line creates a two-element vector with the total distance and count for the
+              block, and the third line adds that vector of values to
+                <code class="literal">intermKVStore</code> with the key, <code class="literal">'sumAndLength'</code>.
+              After this map function runs on all of the blocks of data in <code class="literal">ds</code>,
+              the <code class="literal">intermKVStore</code> object contains the total distance and count for
+              each block of distance data.</p><p>Save this function in your current folder as <code class="literal">MeanDistMapFun.m</code>.</p></li><li><p>The inputs to the reduce function are <code class="literal">intermKey</code>, <code class="literal">intermValIter</code>,
+and <code class="literal">outKVStore</code>:</p><div class="itemizedlist"><ul><li><p><code class="literal">intermKey</code> is for the active key
+added by the map function. Each call to the reduce function by <code class="function">mapreduce</code> specifies
+a new unique key from the keys in the intermediate <code class="literal">KeyValueStore</code> object.</p></li><li><p><code class="literal">intermValIter</code> is the <code class="literal">ValueIterator</code> associated
+with the active key, <code class="literal">intermKey</code>. This <code class="literal">ValueIterator</code> object
+contains all of the values associated with the active key. Scroll
+through the values using the <code class="literal">hasnext</code> and <code class="literal">getnext</code> functions.</p></li><li><p><code class="literal">outKVStore</code> is the name for the final
+                    <code class="literal">KeyValueStore</code> object to which the reduce function needs to
+                  add key-value pairs. <code class="function">mapreduce</code> takes the output key-value
+                  pairs from <code class="literal">outKVStore</code> and returns them in the output datastore,
+                  which is a <code class="literal">KeyValueDatastore</code> object by default. If none of the
+                  calls to the reduce function add key-value pairs to <code class="literal">outKVStore</code>,
+                  then <code class="function">mapreduce</code> returns an empty datastore.</p></li></ul></div><p>A simple example of a reduce function is:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> MeanDistReduceFun(intermKey, intermValIter, outKVStore)
+    sumLen = [0 0];
+    <span style="color:#0000FF">while</span> hasnext(intermValIter)
+        sumLen = sumLen + getnext(intermValIter);
+    <span style="color:#0000FF">end</span>
+    add(outKVStore, <span style="color:#A020F0">'Mean'</span>, sumLen(1)/sumLen(2));
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This reduce function loops through each of the distance and
+count values in <code class="literal">intermValIter</code>, keeping a running
+total of the distance and count after each pass. After this loop,
+the reduce function calculates the overall mean flight distance with
+a simple division, and then adds a single key to <code class="literal">outKVStore</code>.</p><p>Save this function in your current folder as <code class="literal">MeanDistReduceFun.m</code>.</p></li></ol></div><p>For information about writing more advanced map and reduce functions,
+see <a href="write-a-map-function.html" class="a">Write a Map Function</a> and <a href="write-a-reduce-function.html" class="a">Write a Reduce Function</a>.</p></section><section><h4 class="title" id="bug4l7w-7">Run <code class="function">mapreduce</code></h4><p>After you have a datastore, a map function, and a reduce function, you can call
+            <code class="function">mapreduce</code> to perform the calculation. To calculate the average
+          flight distance in the data set, call <code class="function">mapreduce</code> using
+            <code class="literal">ds</code>, <code class="literal">MeanDistMapFun</code>, and
+            <code class="literal">MeanDistReduceFun</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outds = mapreduce(ds, @MeanDistMapFun, @MeanDistReduceFun);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>********************************
+*      MAPREDUCE PROGRESS      *
+********************************
+Map   0% Reduce   0%
+Map  16% Reduce   0%
+Map  32% Reduce   0%
+Map  48% Reduce   0%
+Map  65% Reduce   0%
+Map  81% Reduce   0%
+Map  97% Reduce   0%
+Map 100% Reduce   0%
+Map 100% Reduce 100%</pre></div></div></div><p>By default, the <code class="function">mapreduce</code> function displays progress information
+          at the command line and returns a <code class="literal">KeyValueDatastore</code> object that points
+          to files in the current folder. You can adjust all three of these options using the
+            <code class="literal">Name,Value</code> pair arguments for <code class="literal">'OutputFolder'</code>,
+            <code class="literal">'OutputType'</code>, and <code class="literal">'Display'</code>. For more information,
+          see the reference page for <a href="../ref/mapreduce.html"><code class="function">mapreduce</code></a>.</p></section><section><h4 class="title" id="buj0p5l-9">View Results</h4><p>Use the <code class="function">readall</code> function to read the key-value
+pairs from the output datastore.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>readall(outds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  1×2 table
+
+      Key          Value    
+    ________    ____________
+
+    {'Mean'}    {[702.1630]}</pre></div></div></div></section></section>
+<h2 id="d126e24845">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.tabulartextdatastore.html"><span itemprop="name"><code class="function">tabularTextDatastore</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreduce.html"><span itemprop="name"><code class="function">mapreduce</code></span></a></span></p>
+<h3 id="d126e24854">Topics</h3><ul class="list-unstyled"><li><a href="write-a-map-function.html" class="a">Write a Map Function</a></li><li><a href="write-a-reduce-function.html" class="a">Write a Reduce Function</a></li><li><a href="speed-up-and-deploy-mapreduce-using-other-products.html" class="a">Speed Up and Deploy MapReduce Using Other Products</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

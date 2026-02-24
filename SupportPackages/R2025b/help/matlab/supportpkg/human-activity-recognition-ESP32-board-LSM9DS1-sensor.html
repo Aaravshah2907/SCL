@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Human Activity Recognition Using ESP32 Board and LSM9DS1 IMU Sensor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../hardware-network-comm.html",
+          "name": "Hardware and Network Communication"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../hardware-boards-and-kits.html",
+          "name": "Hardware Boards and Kits"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../arduinoio.html",
+          "name": "Arduino Hardware"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 7,
+
+          "item": {
+          "@id": "../arduinoio-sensors.html",
+          "name": "Sensors"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "arduinoio-sensors"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Human Activity Recognition Using ESP32 Board and LSM9DS1 IMU Sensor",
+          "description": "Classify and predict one of three different physical human activities: Sitting, Standing and Walking based on data acquired using an ESP32 board and an LSM9DS1 sensor. This example uses Classification Learner app to train a machine learning model with the sensor data. To access all the files for this example, click Open Live Script and download the attached files.",
+          "thumbnailURL": "../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_04.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "arduinoio.HumanActivityRecognitionESP32LSM9DS1Example",
+          "name": "HumanActivityRecognitionESP32LSM9DS1Example",
+          "url": "human-activity-recognition-ESP32-board-LSM9DS1-sensor.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('arduinoio/HumanActivityRecognitionESP32LSM9DS1Example')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "HumanActivityRecognitionESP32LSM9DS1Example.mlx",
+        "Sitting_raw_data.mat",
+        "Standing_raw_data.mat",
+        "Walking_raw_data.mat",
+        "collectData.m",
+        "extractFeatures.m",
+        "predictActivity.m",
+        "trainedModel.mat"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to classify and predict one of three different physical human activities: Sitting, Standing and Walking based on data acquired using an ESP32 board and an LSM9DS1 sensor."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_04.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/livecontrolpopover.js"></script>
+
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-network-comm.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware and Network Communication</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-boards-and-kits.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware Boards and Kits</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Arduino Hardware</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio-sensors.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_a50129d8-52cc-41a2-a650-07e612c999b7"><span itemprop="title">Sensors</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Human Activity Recognition Using ESP32 Board and LSM9DS1 IMU Sensor</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-1" class="nav-link intrnllnk">Required Hardware</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-2" class="nav-link intrnllnk">Required MathWorks&#174; Products</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-3" class="nav-link intrnllnk">Hardware Setup</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-4" class="nav-link intrnllnk">Capture Dataset</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-5" class="nav-link intrnllnk">Feature Extraction</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-6" class="nav-link intrnllnk">Model Training</a></li><li class="nav-item"><a href="#HumanActivityRecognitionESP32LSM9DS1Example-7" class="nav-link intrnllnk">Prediction</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_fc378091-6441-4b2b-81d2-21186cb1ea34">Human Activity Recognition Using ESP32 Board and LSM9DS1 IMU Sensor</h1><div class="examples_short_list hidden_ios_android" data-products="ML ML_ARDUINO ST SG"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.addons.showAddon('ML_ARDUINO')">MATLAB Support Package for Arduino Hardware</a></li><li><a href="matlab:matlab.internal.addons.showAddon('ST')">Statistics and Machine Learning Toolbox</a></li><li><a href="matlab:matlab.internal.addons.showAddon('SG')">Signal Processing Toolbox</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('arduinoio/HumanActivityRecognitionESP32LSM9DS1Example')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="arduinoio-HumanActivityRecognitionESP32LSM9DS1Example"><meta itemprop="exampletitle" content="Human Activity Recognition Using ESP32 Board and LSM9DS1 IMU Sensor"></div><span id="HumanActivityRecognitionESP32LSM9DS1Example" class="anchor_target"></span><p class="shortdesc">This example shows how to classify and predict one of three different physical human activities: <span class="emphasis"><em>Sitting</em></span>, <span class="emphasis"><em>Standing </em></span>and<span class="emphasis"><em> Walking </em></span>based on data acquired using an ESP32 board and an <a href="raspberrypiio.lsm9ds1.html" data-docid="mlsupportpkg#mw_dcb23e4d-75d4-465e-8b7d-e8c6caae9fb4" class="a"><code class="olink">lsm9ds1</code></a> sensor. This example uses <a href="../../stats/classificationlearner-app.html" data-docid="stats_ug#buggk6h" class="a">Classification Learner</a><span role="cross_prod"> (Statistics and Machine Learning Toolbox)</span> app to train a machine learning model with the sensor data. To access all the files for this example, click <strong class="emphasis bold">Open Live Script</strong> and download the attached files.</p><div class="procedure"><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-1">Required Hardware</h3><div class="itemizedlist"><ul><li><p>ESP32-WROOM-DevKitV1</p></li><li><p>LSM9DS1 IMU sensor</p></li></ul></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-2">Required MathWorks&#174; Products</h3><div class="itemizedlist"><ul><li><p>MATLAB&#174;</p></li><li><p>Statistics and Machine Learning Toolbox&#8482;</p></li><li><p>Signal Processing Toolbox</p></li><li><p>MATLAB Support Package for Arduino Hardware</p></li></ul></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-3">Hardware Setup</h3><div class="itemizedlist"><ul><li><p>Configure ESP32 hardware for WiFi based workflow. For more information, see <a href="configure-setup-for-arduino-hardware.html#bvn8wpb-1" data-docid="mlsupportpkg#bvn8wpb-1" class="a">Connection over Wi-Fi</a>.</p></li><li><p>Connect SCL and SDA of ESP32 to SCL and SDA of LSM9DS1 IMU.</p></li><li><p>Connect the ground and 3.3V pin of ESP32 to ground and VDD of LSM9DS1 IMU.</p></li><li><p>Place the entire setup in a pocket with the sensor facing away from you.</p></li></ul></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-4">Capture Dataset</h3><p>You can either use the three data sets, <code class="literal">Sitting_raw_data.mat, Standing_raw_data.mat </code>and<code class="literal"> Walking_raw_data.mat</code> corresponding to the three different types of physical activities: <span class="emphasis"><em>Sitting</em></span>, <span class="emphasis"><em>Standing </em></span>and<span class="emphasis"><em> Walking,</em></span> provided with this example or capture the data manually.</p><p>To use the three data set, click <strong class="emphasis bold">Open Live Script</strong> and download <code class="literal">Sitting_raw_data.mat, Standing_raw_data.mat </code>and<code class="literal"> Walking_raw_data.mat</code> files. </p><p>To capture the data manually, place the setup in your pocket with the sensor facing away from you. Click the checkbox for <code class="literal">iscollectData</code> and start capturing the data. For this example, the data set contains 3200 samples, as defined by the variable <code class="literal">noOfSamples</code>, for each of the three physical human activities. Once the prompt '<span class="emphasis"><em><code class="literal">*** Collecting data for activity = ' Sitting ' ***</code></em></span>'' appears on the screen, start capturing data for the <span class="emphasis"><em>Sitting</em></span> activity. Continue capturing the <span class="emphasis"><em>Sitting</em></span> data until a new prompt appears, asking you to capture the data for <span class="emphasis"><em>Standing</em></span> and <span class="emphasis"><em>Walking</em></span> activities, respectively. At the end of data collection, you will have <code class="literal">Sitting_raw_data.mat, Standing_raw_data.mat </code>and<code class="literal"> Walking_raw_data.mat</code> dataset corresponding to the three different types of physical activities.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Check this if you want to manually collect the data</span>
+iscollectData = <span class="live_control_container"><img tabindex="-1" alt="" src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_09.png"><span data-examplename="openExample('arduinoio/HumanActivityRecognitionESP32LSM9DS1Example')" tabindex="0" data-controlvalue="false" data-bs-trigger="focus" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-html="true" class="popover_trigger add_cursor_pointer live_control_equivalent_value">false</span></span>;
+
+<span style="color:#228B22">% Create activity list</span>
+activityList = {<span style="color:#A020F0">'Sitting'</span> , <span style="color:#A020F0">'Standing'</span>, <span style="color:#A020F0">'Walking'</span>};
+
+<span style="color:#228B22">% Collect data for all activities</span>
+noOfSamples = 3200;
+<span style="color:#0000FF">if</span> iscollectData    
+    <span style="color:#0000FF">for</span> idx = 1:length(activityList)
+        collectData(activityList{idx},noOfSamples);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-5">Feature Extraction</h3><p>Choose a buffer size based on the required granularity of the extracted features. For this example, set <code class="literal">bufferSize to</code> <code class="literal">32. </code></p><p>The <code class="literal">extractFeatures</code> function is used to extract features from the data acquired using the accelerometer on the LSM9DS1 IMU sensor. The extracted features are stored in the variable <code class="literal">features</code>. To use the <code class="literal">extractFeatures</code> function, click <strong class="emphasis bold">Open Live Script</strong> and download the <code class="literal">extractFeatures.m</code> file. </p><p>The <code class="literal">activityIDList </code>contains the IDs corresponding to the physical activities where activity ID <code class="literal">1</code> corresponds to <span class="emphasis"><em>Sitting</em></span>, <code class="literal">2</code> corresponds to <span class="emphasis"><em>Standing</em></span>, and <code class="literal">3</code> corresponds to <span class="emphasis"><em>Walking.</em></span></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Initialize buffer size</span>
+bufferSize = 32;
+
+features =[];
+activityIDList = [];
+
+<span style="color:#228B22">% Extract features</span>
+<span style="color:#0000FF">for</span> idx = 1: length(activityList)
+    data = load([activityList{idx} <span style="color:#A020F0">'_raw_data.mat'</span>],<span style="color:#A020F0">'data'</span>);
+    data = data.data;
+
+    <span style="color:#228B22">% Calculate the number of groups</span>
+    numGroups = floor(size(data,1) / bufferSize);
+    <span style="color:#0000FF">for</span> i = 1:numGroups
+        startIndex = (i-1) * bufferSize + 1;
+        endIndex = i * bufferSize;
+        xBuffer = data(startIndex:endIndex,1);
+        yBuffer = data(startIndex:endIndex,2);
+        zBuffer = data(startIndex:endIndex,3);
+        features = [features; extractFeatures(xBuffer, yBuffer, zBuffer)];
+    <span style="color:#0000FF">end</span>
+    
+    activityIDList = [activityIDList;ones(numGroups,1)*idx];
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-6">Model Training</h3><p>Use the Classification Learner app to train a classification model. To open the Classification Learner app, type <code class="literal">classificationLearner</code> at the MATLAB command line.</p><p>Alternatively, in the <strong class="emphasis bold">Apps</strong> tab click the arrow at the right of the <strong class="emphasis bold">Apps</strong> section to open the gallery. Then, under <strong class="emphasis bold">Machine Learning and Deep Learning</strong>, click <strong class="emphasis bold">Classification Learner</strong>.</p><div class="informalfigure"><div id="d126e71201" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_01.png" alt="Figure shows the Classification Learner App under the APPS tab." height="204" width="539"></p></div></div><p>In the app, click the <strong class="emphasis bold">New Session</strong> button, and then click <strong class="emphasis bold">From Workspace</strong>.</p><div class="informalfigure"><div id="d126e71214" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_02.png" alt="Figure shows how to click on new session and then click on &#34;From Workspace&#34;." height="259" width="517"></p></div></div><p>In the <strong class="emphasis bold">Data set</strong> pane, click the arrow under <strong class="emphasis bold">Data Set Variable</strong>, and then select <code class="literal">features</code>. Select <strong class="emphasis bold">From Workspace </strong>under <strong class="emphasis bold">Response</strong> and select <code class="literal">activityIDList</code>. The default option or the <strong class="emphasis bold">Validation Scheme </strong>is 5-fold cross-validation, which protects against over-fitting. </p><p>Click <strong class="emphasis bold">Start Session</strong>. </p><div class="informalfigure"><div id="d126e71246" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_03.png" alt="Figure shows the &#34;New Session from Workspace&#34; window." height="561" width="712"></p></div></div><p>Classification Learner app loads the data set and plots a scatter plot of the first two features.</p><div class="informalfigure"><div id="d126e71252" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_04.png" alt="Figure shows the Classification Learner app with the loaded data set and scatter plot of the first two features." height="496" width="715"></p></div></div><p>On the app toolstrip, in the <strong class="emphasis bold">Train</strong> section, click <strong class="emphasis bold">Train All</strong> and select <strong class="emphasis bold">Train Selected</strong>. When the training is complete, the <strong class="emphasis bold">Models</strong> pane displays the 5-fold, cross-validated classification accuracy. For this example the accuracy is <code class="literal">99.3%</code>, corresponding to the data set provided with this example.</p><div class="informalfigure"><div id="d126e71274" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_05.png" alt="Figure shows the accuracy." height="104" width="307"></p></div></div><p>To see the Validation Confusion Matrix, in the <strong class="emphasis bold">Plots and Results </strong>section of the app toolstrip, click <strong class="emphasis bold">Confusion Matrix (Validation).</strong></p><div class="informalfigure"><div id="d126e71286" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_06.png" alt="Figure shows the Validation Confusion Matrix." height="329" width="352"></p></div></div><p>On the app toolstrip, in the <strong class="emphasis bold">Export</strong> section,<strong class="emphasis bold"> </strong>and then click <strong class="emphasis bold">Export Model.</strong> </p><div class="informalfigure"><div id="d126e71302" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_07.png" alt="Figure shows the Export Model button." height="90" width="191"></p></div></div><p>In the Export Classification Model dialog box, clear the check box to exclude the training data and export a compact model, and then click<strong class="emphasis bold"> </strong><strong class="emphasis bold">OK</strong>. </p><div class="informalfigure"><div id="d126e71314" class="mediaobject"><p><img src="../../examples/arduinoio/win64/HumanActivityRecognitionESP32LSM9DS1Example_08.png" alt="Figure shows Export Classification Model dialog box." height="235" width="499"></p></div></div><p>The structure <code class="literal">trainedModel</code> appears in the MATLAB workspace. Save the model using the following command.</p><div class="code_responsive"><pre id="d126e71322" class="programlisting">save(<span style="color:#A020F0">'trainedModel.mat'</span>,<span style="color:#A020F0">'trainedModel'</span>);
+</pre></div><h3 class="title" id="HumanActivityRecognitionESP32LSM9DS1Example-7">Prediction</h3><p>Run this MATLAB code to predict the activity.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Create an arduino object for ESP32 board over WiFi</span>
+aObj = arduino;
+
+<span style="color:#228B22">% Create IMU sensor object</span>
+imuObj = lsm9ds1(aObj);
+
+<span style="color:#228B22">% Predict the activity for three minutes</span>
+tic;
+<span style="color:#0000FF">while</span>(toc &lt; 180)
+    <span style="color:#228B22">% Initialize buffer and buffer size</span>
+    xBuffer = [];
+    yBuffer = [];
+    zBuffer = [];
+    bufferSize = 32;
+
+    <span style="color:#228B22">% Get buffered sensor values</span>
+    <span style="color:#0000FF">for</span> idx = 1:bufferSize
+        <span style="color:#228B22">% Read the sensor values and calibrate</span>
+        accelerationValues = readAcceleration(imuObj);
+
+        <span style="color:#228B22">% Calibrate the acceleration values</span>
+        xBuffer(end+1) = accelerationValues(1);
+        yBuffer(end+1) = accelerationValues(2);
+        zBuffer(end+1) = accelerationValues(3);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Extract features</span>
+    features  = extractFeatures(xBuffer', yBuffer', zBuffer');
+
+    <span style="color:#228B22">% Predict activity</span>
+    y = predictActivity(features);
+    disp([<span style="color:#A020F0">'Detected activity = '</span> activityList{y}]);
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+Detected activity = Sitting
+</pre></div></div></div></div></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

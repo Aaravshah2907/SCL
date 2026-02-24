@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create C Source MEX File arrayProduct.c</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1",
+        "c-language"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to create the arrayProduct C MEX function built with the C Matrix API."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav">External Language Interfaces</a></li><li><a href="../c-language.html?s_tid=CRUX_lftnav" id="mw_f811a117-4002-48ab-9e86-f20151006948">C with MATLAB</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create C Source MEX File arrayProduct.c</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#d126e35950" class="nav-link intrnllnk">C function arrayProduct</a></li><li class="nav-item"><a href="#d126e35965" class="nav-link intrnllnk">Create Source File</a></li><li class="nav-item"><a href="#d126e35994" class="nav-link intrnllnk">Create Gateway Routine</a></li><li class="nav-item"><a href="#d126e36047" class="nav-link intrnllnk">Verify MEX File Input and Output Parameters</a></li><li class="nav-item"><a href="#d126e36096" class="nav-link intrnllnk">Create Computational Routine</a></li><li class="nav-item"><a href="#d126e36113" class="nav-link intrnllnk">Write Code for Cross-Platform Flexibility</a></li><li class="nav-item"><a href="#d126e36133" class="nav-link intrnllnk">Declare Variables for Computational Routine</a></li><li class="nav-item"><a href="#d126e36159" class="nav-link intrnllnk">Read Input Data</a></li><li class="nav-item"><a href="#d126e36178" class="nav-link intrnllnk">Prepare Output Data</a></li><li class="nav-item"><a href="#d126e36196" class="nav-link intrnllnk">Perform Calculation</a></li><li class="nav-item"><a href="#mw_76ad0304-b37d-4b28-bf05-52a48b6fe06c" class="nav-link intrnllnk">View Complete Source File</a></li><li class="nav-item"><a href="#d126e36225" class="nav-link intrnllnk">Build MEX Function</a></li><li class="nav-item"><a href="#d126e36237" class="nav-link intrnllnk">Test the MEX Function</a></li><li class="nav-item"><a href="#d126e36244" class="nav-link intrnllnk">Validate MEX File Input Arguments</a></li><li class="nav-item"><a href="#d126e36259" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt37gu7-1">Create C Source MEX File <code class="literal">arrayProduct.c</code></h2><span id="introducing_mex_files" class="anchor_target"></span>
+            <p class="shortdesc">This example shows how to write a MEX file to call a C function
+                    <code class="literal">arrayProduct</code> in MATLAB<sup>&#x00AE;</sup> using a MATLAB array defined in the <a href="../cc-mx-matrix-library.html" class="a">C Matrix API</a>. You can view the complete
+                source file <a href="standalone-example.html#mw_76ad0304-b37d-4b28-bf05-52a48b6fe06c" class="intrnllnk">here</a>.</p>
+            <p>To use this example, you need:</p>
+<div class="itemizedlist"><ul><li><p>The ability to write C or C++ source code. You create these files with
+                            the MATLAB Editor.</p></li><li><p>Compiler supported by MATLAB. For an up-to-date list of supported
+                            compilers, see the <a href="https://www.mathworks.com/support/requirements/supported-compilers.html">Supported and Compatible Compilers</a> website.</p></li><li><p>Functions in the <a href="../cc-mx-matrix-library.html" class="a">C Matrix API</a> and the
+                                <a href="../call-mex-files-1.html" class="a">C MEX API</a>.</p></li><li><p><a href="../ref/mex.html"><code class="function">mex</code></a> build
+                            script.</p></li></ul></div><p>
+</p>
+            <p>If you want to use your own C development environment, see <a href="using-mex-script-options-to-custom-build.html" class="a">Custom Build with MEX Script Options</a> for more information.</p>
+        <div class="procedure"><h3 class="title" id="d126e35950">C function <code class="literal">arrayProduct</code></h3><p>The following code defines the <code class="literal">arrayProduct</code> function, which
+                    multiplies a 1xn matrix <code class="literal">y</code> by a scalar value
+                        <code class="literal">x</code> and returns the results in array <code class="literal">z</code>.
+                    You can use these same C statements in a C++ application.</p><div class="code_responsive"><pre class="programlisting">void arrayProduct(double x, double *y, double *z, int n)
+{
+  int i;
+  
+  for (i=0; i&lt;n; i++) {
+    z[i] = x * y[i];
+  }
+}
+</pre></div><h3 class="title" id="d126e35965">Create Source File</h3><p>Open MATLAB Editor, create a file, and document the MEX file with the
+                    following information.</p><div class="code_responsive"><pre class="programlisting">/*
+ * arrayProduct.c - example in MATLAB External Interfaces
+ *
+ * Multiplies an input scalar (multiplier) 
+ * times a 1xN matrix (inMatrix)
+ * and outputs a 1xN matrix (outMatrix)
+ *
+ * The calling syntax is:
+ *
+ *		outMatrix = arrayProduct(multiplier, inMatrix)
+ *
+ * This is a MEX file for MATLAB.
+*/
+</pre></div><p>Add the C/C++ header file, <code class="literal">mex.h</code>, containing the
+                        MATLAB API function declarations.</p><div class="code_responsive"><pre class="programlisting">#include "mex.h"</pre></div><p>Save the file on your MATLAB path, for example, in <code class="literal">c:\work</code>, and name it
+                        <code class="literal">arrayProduct.c</code>. The name of your MEX file is
+                        <code class="literal">arrayProduct</code>.</p><h3 class="title" id="d126e35994">Create Gateway Routine</h3><p>Every C program has a <code class="literal">main()</code> function. MATLAB uses the gateway routine, <code class="function">mexFunction</code>, as the
+                    entry point to the function. Add the following <code class="function">mexFunction</code>
+                    code.</p><div class="code_responsive"><pre class="programlisting">/* The gateway function */
+void mexFunction(int nlhs, mxArray *plhs[],
+                 int nrhs, const mxArray *prhs[])
+{
+/* variable declarations here */
+
+/* code here */
+}
+</pre></div><p>This table describes the input parameters for
+                    <code class="function">mexFunction</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="83%"></colgroup><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">nlhs</code></td><td>Number of output (left-side) arguments, or the size of the
+                                        <code class="literal">plhs</code> array.</td></tr><tr><td><code class="literal">plhs</code></td><td>Array of output arguments.</td></tr><tr><td><code class="literal">nrhs</code></td><td>Number of input (right-side) arguments, or the size of the
+                                        <code class="literal">prhs</code> array.</td></tr><tr><td><code class="literal">prhs</code></td><td>Array of input arguments.</td></tr></tbody></table></div><h3 class="title" id="d126e36047">Verify MEX File Input and Output Parameters</h3><p>Verify the number of MEX file input and output arguments using the
+                        <code class="literal">nrhs</code> and <code class="literal">nlhs</code> arguments.</p><p>To check for two input arguments, <code class="literal">multiplier</code> and
+                        <code class="literal">inMatrix</code>, use this code.</p><div class="code_responsive"><pre class="programlisting">if(nrhs != 2) {
+    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:nrhs",
+                      "Two inputs required.");
+}
+</pre></div><p>Use this code to check for one output argument, the product
+                        <code class="literal">outMatrix</code>.</p><div class="code_responsive"><pre class="programlisting">if(nlhs != 1) {
+    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:nlhs",
+                      "One output required.");
+}
+</pre></div><p>Verify the argument types using the <code class="literal">plhs</code> and
+                        <code class="literal">prhs</code> arguments. This code validates that
+                        <code class="literal">multiplier</code>, represented by <code class="literal">prhs[0]</code>, is
+                    a scalar.</p><div class="code_responsive"><pre class="programlisting">/* make sure the first input argument is scalar */
+if( !mxIsDouble(prhs[0]) || 
+     mxIsComplex(prhs[0]) ||
+     mxGetNumberOfElements(prhs[0]) != 1 ) {
+    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:notScalar",
+                      "Input multiplier must be a scalar.");
+}
+</pre></div><p>This code validates that <code class="literal">inMatrix</code>, represented by
+                        <code class="literal">prhs[1]</code>, is type <code class="literal">double</code>.</p><div class="code_responsive"><pre class="programlisting">if( !mxIsDouble(prhs[1]) || 
+     mxIsComplex(prhs[1])) {
+    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:notDouble",
+        "Input matrix must be type double.");
+}
+</pre></div><p>Validate that <code class="literal">inMatrix</code> is a row vector.</p><div class="code_responsive"><pre class="programlisting">/* check that number of rows in second input argument is 1 */
+if(mxGetM(prhs[1]) != 1) {
+    mexErrMsgIdAndTxt("MyToolbox:arrayProduct:notRowVector",
+                      "Input must be a row vector.");
+}</pre></div><h3 class="title" id="d126e36096">Create Computational Routine</h3><p>Add the <code class="literal">arrayProduct</code> code. This function is your
+                        <span class="emphasis"><em>computational routine</em></span>, the source code that performs
+                    the functionality you want to use in MATLAB.</p><div class="code_responsive"><pre class="programlisting">void arrayProduct(double x, double *y, double *z, int n)
+{
+  int i;
+  
+  for (i=0; i&lt;n; i++) {
+    z[i] = x * y[i];
+  }
+}
+</pre></div><p>A computational routine is optional. Alternatively, you can place the code
+                    within the <code class="function">mexFunction</code> function block.</p><h3 class="title" id="d126e36113">Write Code for Cross-Platform Flexibility</h3><p>MATLAB provides a preprocessor macro, <code class="function">mwsize</code>, that
+                    represents size values for integers, based on the platform. The computational
+                    routine declares the size of the array as <code class="literal">int</code>. Replace the
+                        <code class="literal">int</code> declaration for variables <code class="literal">n</code> and
+                        <code class="literal">i</code> with <code class="function">mwsize</code>.</p><div class="code_responsive"><pre class="programlisting">void arrayProduct(double x, double *y, double *z, mwSize n)
+{
+  mwSize i;
+  
+  for (i=0; i&lt;n; i++) {
+    z[i] = x * y[i];
+  }
+}
+</pre></div><h3 class="title" id="d126e36133">Declare Variables for Computational Routine</h3><p>Put the following variable declarations in
+                    <code class="function">mexFunction</code>.</p><div class="itemizedlist"><ul><li><p>Declare variables for the input arguments.</p><div class="code_responsive"><pre class="programlisting">double multiplier;      /* input scalar */
+double *inMatrix;       /* 1xN input matrix */
+</pre></div></li><li><p>Declare <code class="literal">ncols</code> for the size of the input
+                            matrix.</p><div class="code_responsive"><pre class="programlisting">mwSize ncols;           /* size of matrix */
+</pre></div></li><li><p>Declare the output argument, <code class="literal">outMatrix</code>.</p><div class="code_responsive"><pre class="programlisting">double *outMatrix;      /* output matrix */
+</pre></div></li></ul></div><p>Later you assign the <code class="function">mexFunction</code> arguments to these
+                    variables.</p><h3 class="title" id="d126e36159">Read Input Data</h3><p>To read the scalar input, use the <code class="function">mxGetScalar</code>
+                    function.</p><div class="code_responsive"><pre class="programlisting">/* get the value of the scalar input  */
+multiplier = mxGetScalar(prhs[0]);
+</pre></div><p>Use the <code class="literal">mxGetDoubles</code> function to point to the input matrix
+                    data.</p><div class="code_responsive"><pre class="programlisting">/* create a pointer to the real data in the input matrix  */
+inMatrix = mxGetDoubles(prhs[1]);
+</pre></div><p>Use the <code class="literal">mxGetN</code> function to get the size of the
+                    matrix.</p><div class="code_responsive"><pre class="programlisting">/* get dimensions of the input matrix */
+ncols = mxGetN(prhs[1]);</pre></div><h3 class="title" id="d126e36178">Prepare Output Data</h3><p>To create the output argument, <code class="literal">plhs[0]</code>, use the
+                        <code class="literal">mxCreateDoubleMatrix</code> function.</p><div class="code_responsive"><pre class="programlisting">/* create the output matrix */
+plhs[0] = mxCreateDoubleMatrix(1,ncols,mxREAL);
+</pre></div><p>Use the <code class="literal">mxGetDoubles</code> function to assign the
+                        <code class="literal">outMatrix</code> argument to <code class="literal">plhs[0]</code></p><div class="code_responsive"><pre class="programlisting">/* get a pointer to the real data in the output matrix */
+outMatrix = mxGetDoubles(plhs[0]);</pre></div><h3 class="title" id="d126e36196">Perform Calculation</h3><p>Pass the arguments to <code class="literal">arrayProduct</code>.</p><div class="code_responsive"><pre class="programlisting">/* call the computational routine */
+arrayProduct(multiplier,inMatrix,outMatrix,ncols);</pre></div><h3 class="title" id="mw_76ad0304-b37d-4b28-bf05-52a48b6fe06c">View Complete Source File</h3><p>Compare your source file with <code class="literal">arrayProduct.c</code> located in
+                            <code class="literal"><em class="replaceable"><code>matlabroot</code></em>/extern/examples/mex</code>.
+                    Open the file <a href="matlab:edit([matlabroot '/extern/examples/mex/arrayProduct.c']);" target="_blank"><code class="literal">arrayProduct.c</code></a> in the editor.</p><p>For a C++ MEX file example using the <a href="../matlab-data-array.html" class="a">MATLAB Data API for C++</a>, see <a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/arrayProduct.cpp']);" target="_blank"><code class="literal">arrayProduct.cpp</code></a>. For information about
+                    creating MEX files with this API, see <a href="c-mex-functions.html" class="a">C++ MEX Functions</a>.</p><h3 class="title" id="d126e36225">Build MEX Function</h3><p>At the MATLAB command prompt, build the function with the <a href="../ref/mex.html"><code class="function">mex</code></a> command.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">arrayProduct.c</span> <span style="color:#A020F0">-R2018a</span></pre></div></div></div><h3 class="title" id="d126e36237">Test the MEX Function</h3><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = 5; 
+A = [1.5, 2, 9];
+B = arrayProduct(s,A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>B =
+    7.5000   10.0000   45.0000 
+</pre></div></div></div><h3 class="title" id="d126e36244">Validate MEX File Input Arguments</h3><p>It is good practice to validate the type of a MATLAB variable before calling a MEX function. To test the input
+                    variable, <code class="literal">inputArg</code>, and convert it to
+                        <code class="literal">double</code> if necessary, use this code.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = 5; 
+A = [1.5, 2, 9];
+inputArg = int16(A);
+<span style="color:#0000FF">if</span> ~strcmp(class(inputArg),<span style="color:#A020F0">'double'</span>)
+    inputArg = double(inputArg);
+<span style="color:#0000FF">end</span>
+B = arrayProduct(s,inputArg)
+</pre></div></div></div></div>
+            <h2 id="d126e36259">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mex.html"><span itemprop="name"><code class="function">mex</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/mexfunction.html"><span itemprop="name"><code class="function">mexFunction</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/mxcreatedoublematrix.html"><span itemprop="name"><code class="function">mxCreateDoubleMatrix</code></span></a></span></p>
+            <h3 id="d126e36271">Topics</h3><ul class="list-unstyled"><li><a href="matlab:edit([matlabroot '/extern/examples/mex/arrayProduct.c']);" target="_blank"><code class="literal">arrayProduct.c</code></a></li><li><a href="../cc-mx-matrix-library.html" class="a">C Matrix API</a></li><li><a href="creating-c-mex-files.html" class="a">Create C++ MEX Functions with C Matrix API</a></li><li><a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/arrayProduct.cpp']);" target="_blank"><code class="literal">arrayProduct.cpp</code></a></li><li><a href="../matlab-data-array.html" class="a">MATLAB Data API for C++</a></li><li><a href="c-mex-functions.html" class="a">C++ MEX Functions</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

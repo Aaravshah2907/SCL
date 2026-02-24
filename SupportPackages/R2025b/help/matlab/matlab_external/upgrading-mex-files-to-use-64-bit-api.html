@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Upgrade MEX Files to Use 64-Bit API</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to build MEX files with the 64-bit API by default."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Upgrade MEX Files to Use 64-Bit API</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsgpkjp-2" class="nav-link intrnllnk">Back Up Files and Create Tests</a></li><li class="nav-item"><a href="#bsgpkjp-3" class="nav-link intrnllnk">Update Variables</a></li><li class="nav-item"><a href="#bsgpkjp-4" class="nav-link intrnllnk">Update Arguments Used to Call Functions in the 64-Bit API</a></li><li class="nav-item"><a href="#bsgpkjp-5" class="nav-link intrnllnk">Update Variables Used for Array Indices and Sizes</a></li><li class="nav-item"><a href="#bsgpkjp-6" class="nav-link intrnllnk">Analyze Other Variables</a></li><li class="nav-item"><a href="#bsgpkjp-8" class="nav-link intrnllnk">Test, Debug, and Resolve Differences After Each Refactoring Iteration</a></li><li class="nav-item"><a href="#bsgpkjp-9" class="nav-link intrnllnk">Resolve -largeArrayDims Build Failures and Warnings</a></li><li class="nav-item"><a href="#bsgpkjp-10" class="nav-link intrnllnk">Execute 64-Bit MEX File and Compare Results with 32-Bit Version</a></li><li class="nav-item"><a href="#bsgpkjp-11" class="nav-link intrnllnk">Experiment with Large Arrays</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bsflnue-1">Upgrade MEX Files to Use 64-Bit API</h2><p>The <code class="function">mex</code> command uses the <code class="literal remove_text_wrapping">-largeArrayDims</code>
+            option by default. This topic describes how to upgrade your MEX files to use the 64-bit
+            API.</p><p>You can continue to use the 32-bit API by calling the <code class="function">mex</code> command
+            with the <code class="literal remove_text_wrapping">-compatibleArrayDims</code> option. However, for more information
+            about using this option, see <a href="what-if-i-do-not-upgrade.html" class="a">What If I Do Not Upgrade?</a>.</p><p>To review and update MEX file source code, use the following checklist.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Prepare your code before editing &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-2" class="intrnllnk">Back Up Files and Create Tests</a>.</p></li><li><p>Iteratively change and test code.</p><p>Before building your MEX files with the 64-bit API, refactor your existing
+                    code using <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-3" class="intrnllnk">Update Variables</a> and, for Fortran, <a href="additional-steps-to-update-fortran-source-code.html" class="a">Upgrade Fortran MEX Files to use 64-bit API</a>.</p><p>After each change, build and test your code:</p><div class="itemizedlist"><ul><li><p>Build with the 32-bit API. For example, to build
+                                <code class="literal">myMexFile.c</code>, type:</p><div class="code_responsive"><pre class="programlisting">mex -compatibleArrayDims myMexFile.c</pre></div></li><li><p>Test after each refactoring &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-8" class="intrnllnk">Test, Debug, and Resolve Differences After Each Refactoring Iteration</a>.</p></li></ul></div></li><li><p>Compile using the 64-bit API. To build <code class="literal">myMexFile.c</code>,
+                    type:<div class="code_responsive"><pre class="programlisting">mex myMexFile.c</pre></div></p></li><li><p>Resolve failures and warnings &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-9" class="intrnllnk">Resolve -largeArrayDims Build Failures and Warnings</a>.</p></li><li><p>Compare Results &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-10" class="intrnllnk">Execute 64-Bit MEX File and Compare Results with 32-Bit Version</a>.</p></li><li><p>Check memory &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-11" class="intrnllnk">Experiment with Large Arrays</a>.</p></li></ol></div><p>The following procedures use C/C++ terminology and example code. Fortran MEX files
+            share issues, with more tasks described in <a href="additional-steps-to-update-fortran-source-code.html" class="a">Upgrade Fortran MEX Files to use 64-bit API</a>.</p><section><h3 class="title" id="bsgpkjp-2">Back Up Files and Create Tests</h3><p>Before modifying your code, verify that the MEX file works with the 32-bit API. At
+                a minimum, build a list of expected inputs and outputs, or create a full test suite.
+                Use these tests to compare the results with the updated source code. The results
+                should be identical.</p><p>Back up all source, binary, and test files.</p></section><section><h3 class="title" id="bsgpkjp-3">Update Variables</h3><p>To handle large arrays, convert variables containing array indices or sizes to use
+                the <code class="function">mwSize</code> and <code class="function">mwIndex</code> types instead of
+                the 32-bit <code class="literal">int</code> type. Review your code to see if it contains the
+                following types of variables:</p><div class="itemizedlist"><ul><li><p>Variables used directly by the Matrix API functions &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-4" class="intrnllnk">Update Arguments Used to Call Functions in the 64-Bit API</a>.</p></li><li><p>Intermediate variables &#8212; see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-5" class="intrnllnk">Update Variables Used for Array Indices and Sizes</a>.</p></li><li><p>Variables used as both size/index values and as 32-bit integers &#8212;
+                        see <a href="upgrading-mex-files-to-use-64-bit-api.html#bsgpkjp-6" class="intrnllnk">Analyze Other Variables</a>.</p></li></ul></div></section><section><h3 class="title" id="bsgpkjp-4">Update Arguments Used to Call Functions in the 64-Bit API</h3><p>Identify the 64-bit API functions in your code that use the
+                    <code class="literal">mwSize</code> / <code class="literal">mwIndex</code> types. For the list of
+                functions, see <a href="handling-large-mxarrays.html#brb3bpx" class="a">Using the 64-Bit API</a>. Search for the variables
+                that you use to call the functions. Check the function signature, shown under the
+                    <strong class="emphasis bold">Syntax</strong> heading on the function reference
+                documentation. The signature identifies the variables that take
+                    <code class="literal">mwSize</code> / <code class="literal">mwIndex</code> values as input or output
+                values. Change your variables to use the correct type.</p><p>For example, suppose that your code uses the
+                    <code class="function">mxCreateDoubleMatrix</code> function, as shown in the following
+                statements:</p><div class="code_responsive"><pre class="programlisting">int nrows,ncolumns;
+...
+y_out = mxCreateDoubleMatrix(nrows, ncolumns, mxREAL);
+</pre></div><p>To see the function signature, type:</p><div class="code_responsive"><pre class="programlisting">doc mxCreateDoubleMatrix</pre></div><p>The signature is:</p><div class="code_responsive"><pre class="programlisting">mxArray *mxCreateDoubleMatrix(mwSize m, mwSize n, 
+    mxComplexity ComplexFlag)</pre></div><p>The type for input arguments <code class="literal">m</code> and <code class="literal">n</code> is
+                    <code class="literal">mwSize</code>. Change your code as shown in the table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">int nrows,ncolumns;
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">mwSize nrows,ncolumns;
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="bsgpkjp-5">Update Variables Used for Array Indices and Sizes</h3><p>If your code uses intermediate variables to calculate size and index values, use
+                    <code class="literal">mwSize</code> / <code class="literal">mwIndex</code> for these variables. For
+                example, the following code declares the inputs to
+                    <code class="function">mxCreateDoubleMatrix</code> as type
+                <code class="literal">mwSize</code>:</p><div class="code_responsive"><pre class="programlisting">mwSize nrows,ncolumns;	/* inputs to mxCreateDoubleMatrix */
+int numDataPoints;
+nrows = 3;
+numDataPoints = nrows * 2;
+ncolumns = numDataPoints + 1;
+...
+y_out = mxCreateDoubleMatrix(nrows, ncolumns, mxREAL);
+</pre></div><p>This example uses the intermediate variable, <em class="varname">numDataPoints</em> (of
+                type <code class="literal">int</code>), to calculate the value of <em class="varname">ncolumns</em>.
+                If you copy a 64-bit value from <em class="varname">nrows</em> into the 32-bit variable,
+                    <em class="varname">numDataPoints</em>, the resulting value truncates. Your MEX file
+                could crash or produce incorrect results. Use type <code class="literal">mwSize</code> for
+                    <em class="varname">numDataPoints</em>, as shown in the following table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">int numDataPoints;</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">mwSize numDataPoints;</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="bsgpkjp-6">Analyze Other Variables</h3><p>You do not need to change every integer variable in your code. For example, field
+                numbers in structures and status codes are of type <code class="literal">int</code>. However,
+                you need to identify variables used for multiple purposes and, if necessary, replace
+                them with multiple variables.</p><p>The following example creates a matrix, <em class="varname">myNumeric</em>, and a
+                structure, <em class="varname">myStruct</em>, based on the number of sensors. The code
+                uses one variable, <em class="varname">numSensors</em>, for both the size of the array and
+                the number of fields in the structure.</p><div class="code_responsive"><pre class="programlisting">mxArray *myNumeric, *myStruct;
+int numSensors;
+mwSize m, n;
+char **fieldnames;
+...
+myNumeric = mxCreateDoubleMatrix(numSensors, n, mxREAL);
+myStruct = mxCreateStructMatrix(m, n, numSensors, fieldnames);
+</pre></div><p>The function signatures for <code class="function">mxCreateDoubleMatrix</code> and
+                    <code class="function">mxCreateStructMatrix</code> are:</p><div class="code_responsive"><pre class="programlisting">mxArray *mxCreateDoubleMatrix(mwSize m, mwSize n,
+    mxComplexity ComplexFlag)
+mxArray *mxCreateStructMatrix(mwSize m, mwSize n,
+    int nfields, const char **fieldnames);
+</pre></div><p>For the <code class="function">mxCreateDoubleMatrix</code> function, your code uses
+                    <em class="varname">numSensors</em> for the variable <em class="varname">m</em>. The type
+                for <em class="varname">m</em> is <code class="literal">mwSize</code>. For the
+                    <code class="function">mxCreateStructMatrix</code> function, your code uses
+                    <em class="varname">numSensors</em> for the variable <em class="varname">nfields</em>. The
+                type for <em class="varname">nfields</em> is <code class="literal">int</code>. To handle both
+                functions, replace <em class="varname">numSensors</em> with two new variables, as shown in
+                the following table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">int numSensors;
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">/* create 2 variables   */
+/* of different types */
+mwSize numSensorSize;
+int numSensorFields;
+</pre></div>
+                            </td></tr><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">myNumeric = 
+    mxCreateDoubleMatrix(
+    numSensors,
+    n, mxREAL);
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">/* use mwSize variable */
+/* numSensorSize       */
+myNumeric = 
+    mxCreateDoubleMatrix(
+    numSensorSize,
+    n, mxREAL);
+</pre></div>
+                            </td></tr><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">myStruct = 
+    mxCreateStructMatrix(
+    m, n,
+    numSensors,
+    fieldnames);
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">/* use int variable */
+/* numSensorFields  */
+myStruct = 
+    mxCreateStructMatrix(
+    m, n,
+    numSensorFields,
+    fieldnames);
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="bsgpkjp-8">Test, Debug, and Resolve Differences After Each Refactoring Iteration</h3><p>To build <code class="literal">myMexFile.c</code> with the 32-bit API, type:</p><div class="code_responsive"><pre class="programlisting">mex -compatibleArrayDims myMexFile.c</pre></div><p>Use the tests you created at the beginning of this process to compare the results
+                of your updated MEX file with your original binary file. Both MEX files should
+                return identical results. If not, debug and resolve any differences. Differences are
+                easier to resolve now than when you build using the 64-bit API.</p></section><section><h3 class="title" id="bsgpkjp-9">Resolve <code class="literal remove_text_wrapping">-largeArrayDims</code> Build Failures and Warnings</h3><p>After reviewing and updating your code, compile your MEX file using the large
+                array handling API. To build <code class="literal">myMexFile.c</code> with the 64-bit API,
+                type:</p><div class="code_responsive"><pre class="programlisting">mex myMexFile.c</pre></div><p>Since the <code class="literal">mwSize</code> / <code class="literal">mwIndex</code> types are
+                    MATLAB<sup>&#x00AE;</sup> types, your compiler sometimes refers to them as
+                    <code class="literal">size_t</code>, <code class="literal">unsigned_int64</code>, or by other
+                similar names.</p><p>Most build problems are related to type mismatches between 32-bit and 64-bit
+                types. Refer to Step 5 in <a href="https://www.mathworks.com/matlabcentral/answers/99144-how-do-i-update-mex-files-to-use-the-large-array-handling-api-largearraydims">How do I update MEX-files to use the large array handling API
+                    (-largeArrayDims)?</a> to identify common build problems for specific
+                compilers, and possible solutions.</p></section><section><h3 class="title" id="bsgpkjp-10">Execute 64-Bit MEX File and Compare Results with 32-Bit Version</h3><p>Compare the results of running your MEX file compiled with the 64-bit API with the
+                results from your original binary. If there are any differences or failures, use a
+                debugger to investigate the cause. 
+                For information on the capabilities of your debugger, refer to your compiler
+                documentation.</p><p>To identify issues&#8212;and possible solutions&#8212;you might encounter when
+                running your MEX files, refer to Step 6 in <a href="https://www.mathworks.com/matlabcentral/answers/99144-how-do-i-update-mex-files-to-use-the-large-array-handling-api-largearraydims">How do I update MEX-files to use the large array handling API
+                    (-largeArrayDims)?</a>.</p><p>After you resolve issues and upgrade your MEX file, it replicates the
+                functionality of your original code while using the large array handling API.</p></section><section><h3 class="title" id="bsgpkjp-11">Experiment with Large Arrays</h3><p>If you have access to a machine with large amounts of memory, you can experiment
+                with large arrays. An array of double-precision floating-point numbers (the default
+                in MATLAB) with 2<sup>32</sup> elements takes approximately 32
+                GB of memory.</p><p>For an example that demonstrates the use of large arrays, see the
+                    <code class="literal">arraySize.c</code> MEX file in <a href="handling-large-mxarrays.html" class="a">Handling Large mxArrays in C MEX Files</a>.</p></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e33697">Topics</h3><ul class="list-unstyled"><li><a href="additional-steps-to-update-fortran-source-code.html" class="a">Upgrade Fortran MEX Files to use 64-bit API</a></li><li><a href="handling-large-mxarrays.html" class="a">Handling Large mxArrays in C MEX Files</a></li><li><a href="what-if-i-do-not-upgrade.html" class="a">What If I Do Not Upgrade?</a></li><li><a href="handling-large-mxarrays.html#brb3bpx" class="a">Using the 64-Bit API</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

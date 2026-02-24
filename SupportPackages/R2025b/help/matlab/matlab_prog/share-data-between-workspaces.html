@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Share Data Between Workspaces</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../functions.html",
+          "name": "Functions"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../scope-variables-and-generate-names.html",
+          "name": "Scope Variables and Generate Names"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "scope-variables-and-generate-names"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="There are several ways to share variables between workspaces or allow them to persist between function executions, including passing arguments and using nested functions or persistent variables."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Functions</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../scope-variables-and-generate-names.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_67305db2-32ed-4030-ab04-23c843f78f13"><span itemprop="title">Scope Variables and Generate Names</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Share Data Between Workspaces</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bth6ij7" class="nav-link intrnllnk">Introduction</a></li><li class="nav-item"><a href="#bqpl6fc" class="nav-link intrnllnk">Best Practice: Passing Arguments</a></li><li class="nav-item"><a href="#f0-50984" class="nav-link intrnllnk">Nested Functions</a></li><li class="nav-item"><a href="#f0-38521" class="nav-link intrnllnk">Persistent Variables</a></li><li class="nav-item"><a href="#f0-38470" class="nav-link intrnllnk">Global Variables</a></li><li class="nav-item"><a href="#bqpl6dw" class="nav-link intrnllnk">Evaluating in Another Workspace</a></li><li class="nav-item"><a href="#mw_c8f35a64-7b6c-4af6-8edc-4b59d2c74ae0" class="nav-link intrnllnk">Store Variables in Workspace Object</a></li><li class="nav-item"><a href="#d126e50376" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=scope-variables-and-generate-names&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f0-38068">Share Data Between Workspaces</h2><a class="indexterm" name="d126e50178"></a><span id="CA_GVMIS" class="anchor_target"></span><section><h3 class="title" id="bth6ij7">Introduction</h3><p>This topic shows how to share variables between workspaces or allow them to
+                persist between function executions.</p><p>In most cases, variables created within a function are <span class="emphasis"><em>local</em></span>
+                variables known only within that function. Local variables are not available at the
+                command line or to any other function. However, there are several ways to share data
+                between functions or workspaces.</p></section><section><h3 class="title" id="bqpl6fc">Best Practice: Passing Arguments</h3><p>The most secure way to extend the scope of a function variable is to use function
+                input and output arguments, which allow you to pass values of variables.</p><p>For example, create two functions, <code class="literal">update1</code> and
+                    <code class="literal">update2</code>, that share and modify an input value.
+                    <code class="literal">update2</code> can be a local function in the file
+                    <code class="literal">update1.m</code>, or can be a function in its own file,
+                    <code class="literal">update2.m</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> y1 = update1(x1)
+   y1 = 1 + update2(x1);
+
+<span style="color:#0000FF">function</span> y2 = update2(x2)
+   y2 = 2 * x2;</pre></div></div></div><p>Call the <code class="literal">update1</code> function from the command line and assign to
+                variable <code class="literal">Y</code> in the base workspace:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [1,2,3];
+Y = update1(X)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Y =
+     3     5     7</pre></div></div></div></section><section><h3 class="title" id="f0-50984">Nested Functions</h3><a class="indexterm" name="d126e50219"></a><p>A nested function has access to the workspaces of all functions in which it is
+                nested. So, for example, a nested function can use a variable (in this case,
+                    <code class="literal">x</code>) that is defined in its parent function:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> primaryFx
+   x = 1;
+   nestedFx
+
+   <span style="color:#0000FF">function</span> nestedFx
+      x = x + 1;
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>When parent functions do not use a given variable, the variable remains local to
+                the nested function. For example, in this version of <code class="literal">primaryFx</code>,
+                the two nested functions have their own versions of <code class="literal">x</code> that cannot
+                interact with each other.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> primaryFx
+   nestedFx1
+   nestedFx2
+
+   <span style="color:#0000FF">function</span> nestedFx1
+      x = 1;
+   <span style="color:#0000FF">end</span>
+
+   <span style="color:#0000FF">function</span> nestedFx2
+      x = 2;
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For more information, see <a href="nested-functions.html" class="a">Nested Functions</a>.</p></section><section><h3 class="title" id="f0-38521">Persistent Variables</h3><a class="indexterm" name="d126e50243"></a><a class="indexterm" name="d126e50246"></a><span id="persistent_variables" class="anchor_target"></span><p>When you declare a variable within a function as persistent, the variable retains
+                its value from one function call to the next. Other local variables retain their
+                value only during the current execution of a function. Persistent variables are
+                equivalent to static variables in other programming languages.</p><p>Declare variables using the <code class="literal">persistent</code> keyword before you use
+                them. MATLAB<sup>&#x00AE;</sup> initializes persistent variables to an empty matrix,
+                    <code class="literal">[]</code>.</p><p>For example, define a function in a file named <code class="literal">findSum.m</code> that
+                initializes a sum to <code class="literal">0</code>, and then adds to the value on each
+                iteration.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> findSum(inputvalue)
+<span style="color:#0000FF">persistent</span> SUM_X
+
+<span style="color:#0000FF">if</span> isempty(SUM_X)
+   SUM_X = 0;
+<span style="color:#0000FF">end</span>
+SUM_X = SUM_X + inputvalue;</pre></div></div></div><p>When you call the function, the value of <code class="literal">SUM_X</code> persists between
+                subsequent executions.</p><p>These operations clear the persistent variables for a function:</p><div class="itemizedlist"><ul><li><p><code class="literal">clear all</code></p></li><li><p><code class="literal">clear <em class="replaceable"><code>functionname</code></em></code></p></li><li><p>Editing the function file</p></li></ul></div><p>To prevent clearing persistent variables, lock the function file using
+                    <code class="literal">mlock</code>.</p></section><section><h3 class="title" id="f0-38470">Global Variables</h3><a class="indexterm" name="d126e50290"></a><a class="indexterm" name="d126e50293"></a><span id="global_variables" class="anchor_target"></span><p>Global variables are variables that you can access from functions or from the
+                command line. They have their own workspace, which is separate from the base and
+                function workspaces.</p><p>However, global variables carry notable risks. For example:</p><div class="itemizedlist"><ul><li><p>Any function can access and update a global variable. Other functions that
+                        use the variable might return unexpected results.</p></li><li><p>If you unintentionally give a “new” global variable the same
+                        name as an existing global variable, one function can overwrite the values
+                        expected by another. This error is difficult to diagnose.</p></li></ul></div><p>Use global variables sparingly, if at all.</p><p>If you use global variables, declare them using the <code class="literal">global</code>
+                keyword before you access them within any particular location (function or command
+                line). For example, create a function in a file called
+                <code class="literal">falling.m</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> h = falling(t)
+   <span style="color:#0000FF">global</span> GRAVITY
+   h = 1/2*GRAVITY*t.^2;</pre></div></div></div><p>Then, enter these commands at the prompt:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">global</span> GRAVITY
+GRAVITY = 32;
+y = falling((0:.1:5)');</pre></div></div></div><p>The two global statements make the value assigned to <code class="literal">GRAVITY</code> at
+                the command prompt available inside the function. However, as a more robust
+                alternative, redefine the function to accept the value as an input:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> h = falling(t,gravity)
+   h = 1/2*gravity*t.^2;</pre></div></div></div><p>Then, enter these commands at the prompt:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>GRAVITY = 32;
+y = falling((0:.1:5)',GRAVITY);</pre></div></div></div></section><section><h3 class="title" id="bqpl6dw">Evaluating in Another Workspace</h3><p>The <code class="literal">evalin</code> and <code class="literal">assignin</code> functions allow you
+                to evaluate commands or variable names from character vectors and specify whether to
+                use the current or base workspace.</p><p>Like global variables, these functions carry risks of overwriting existing data.
+                Use them sparingly.</p><p><code class="literal">evalin</code> and <code class="literal">assignin</code> are sometimes useful for
+                callback functions in graphical user interfaces to evaluate against the base
+                workspace. For example, create a list box of variable names from the base
+                workspace:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> listBox
+figure
+lb = uicontrol(<span style="color:#A020F0">'Style'</span>,<span style="color:#A020F0">'listbox'</span>,<span style="color:#A020F0">'Position'</span>,[10 10 100 100],<span style="color:#0000FF">...</span>
+              <span style="color:#A020F0">'Callback'</span>,@update_listBox);
+update_listBox(lb)
+
+<span style="color:#0000FF">function</span> update_listBox(src,~)
+vars = evalin(<span style="color:#A020F0">'base'</span>,<span style="color:#A020F0">'who'</span>);
+src.String = vars;</pre></div></div></div><p>For other programming applications, consider argument passing and the techniques
+                described in <a href="string-evaluation.html" class="a">Alternatives to the eval Function</a>.</p></section><section><h3 class="title add_margin_0" id="mw_c8f35a64-7b6c-4af6-8edc-4b59d2c74ae0">Store Variables in Workspace Object</h3><p><em>Since R2025a</em></p><p>Use <a href="../ref/matlab.lang.workspace.baseworkspace.html"><code class="function">matlab.lang.Workspace.baseWorkspace</code></a> to create a <a href="../ref/matlab.lang.workspace.html"><code class="object">matlab.lang.Workspace</code></a> object containing a copy of variables in the
+                base workspace. The base workspace stores variables that you create at the command
+                line. This includes any variables that scripts create, if you run the script from
+                the command line or from the Editor. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wBase = matlab.lang.Workspace.baseWorkspace</pre></div></div></div><p>Use <a href="../ref/matlab.lang.workspace.currentworkspace.html"><code class="function">matlab.lang.Workspace.currentWorkspace</code></a> to create a workspace object
+                containing a copy of variables in the current workspace. For instance, call
+                    <code class="literal">matlab.lang.Workspace.currentWorkspace</code> inside a function to
+                create a workspace object containing variables in the function workspace.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wCurrent = matlab.lang.Workspace.currentWorkspace;</pre></div></div></div><p>Use <a href="../ref/matlab.lang.workspace.globalworkspace.html"><code class="function">matlab.lang.Workspace.globalWorkspace</code></a> to create a workspace object
+                containing a copy of global variables.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>wGlobal = matlab.lang.Workspace.globalWorkspace</pre></div></div></div></section>
+            <h2 id="d126e50376">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.lang.workspace.html"><span itemprop="name"><code class="object">matlab.lang.Workspace</code></span></a></span></p>
+            <h3 id="d126e50382">Topics</h3><ul class="list-unstyled"><li><a href="base-and-function-workspaces.html" class="a">Base and Function Workspaces</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

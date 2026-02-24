@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Event Data for Custom UI Component Callbacks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../developing-custom-ui-component-classes.html",
+          "name": "Create Custom UI Components"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-custom-ui-component-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Define event data associated with a callback that provides information about a user interaction."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-custom-ui-component-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4599001b-126d-40d9-b094-1d13710d02e2"><span itemprop="title">Create Custom UI Components</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Event Data for Custom UI Component Callbacks</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_ce1360db-3c6f-4ff2-ae2d-6f4d4f4a810f" class="nav-link intrnllnk">View Default Event Data</a></li><li class="nav-item"><a href="#mw_31fcfd37-90be-4a88-a7f6-310f45be69ab" class="nav-link intrnllnk">Define Custom Event Data</a></li><li class="nav-item"><a href="#mw_ee1840ec-9ed1-4de0-bff3-693ae4e89615" class="nav-link intrnllnk">Example: UI Component with Custom Event Data</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_35f6e4f0-78e5-43a7-9bd1-d95fc14e5c4e">Create Event Data for Custom UI Component Callbacks</h2><p>Every UI component callback has associated <em class="firstterm">event data</em>. This data
+      provides information about the specific user interaction associated with the callback.
+        MATLAB<sup>&#x00AE;</sup> automatically passes this event data as the second argument to any callback
+      function. For example, when you specify a <code class="literal">ValueChangedFcn</code> callback function
+      for a slider UI component, MATLAB passes the event data as the second argument to the callback function. The event
+      data has properties that provide specific information about the user interaction, including a
+        <code class="literal">Value</code> and <code class="literal">PreviousValue</code> property. This information is
+      often useful for app authors to access when programming a response to a user
+      interaction.</p><p>When you create a custom UI component with a public callback, that callback has some
+      default associated event data. However, you can also define your own custom event data to
+      provide additional information about the user interaction that executes the callback.</p><section><h3 class="title" id="mw_ce1360db-3c6f-4ff2-ae2d-6f4d4f4a810f">View Default Event Data</h3><p>When you create an event&#8211;public callback pair for a custom UI component, the event data
+        associated with the pair has two properties:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Source</code> &#8212; The component that executes the callback</p></li><li><p><code class="literal">EventName</code> &#8212; The name of the event associated with the
+              callback</p></li></ul></div><p>
+</p><p>For more information about creating event&#8211;public callback pairs, see <a href="create-callbacks-for-custom-ui-components-in-app-designer.html" class="a">Create Callbacks for Custom UI Components in App Designer</a>.</p><p>For example, in App Designer, create a custom RGB picker UI component that consists of
+        three sliders to choose red, green, and blue values to define a color. Save the component as
+          <code class="literal">RGBPicker.mlapp</code>.</p><div class="informalfigure"><div id="d126e17994" class="mediaobject"><p><img src="appd-component-rgbpicker.png" alt="RGB picker custom UI component" height="138" width="245"></p></div></div><p>Create an event named <code class="literal">ColorChanged</code> with associated public callback
+          <code class="literal">ColorChangedFcn</code>. Trigger the event to execute the callback whenever a
+        user changes the value of one of the sliders by adding this code to the
+          <code class="literal">ValueChangedFcn</code> callback of the underlying slider
+        components.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>notify(comp,<span style="color:#A020F0">"ColorChanged"</span>)</pre></div></div></div></p><p>This code executes the <code class="literal">ColorChangedFcn</code> callback and passes it the
+        default event data. To view the event data, create a <code class="literal">ColorChangedFcn</code>
+        callback that displays the event data by typing these commands in the MATLAB Command Window.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = RGBPicker;
+comp.ColorChangedFcn = @(src,event)disp(event);</pre></div></div></div><p>Adjust one of the sliders. The event data displays in the Command
+        Window.<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  EventData with properties:
+
+       Source: [1×1 RGBPicker]
+    EventName: 'ColorChanged'</pre></div></div></div></p><p>For more information about the default event data, see <a href="../ref/event.eventdata-class.html"><code class="class">event.EventData</code></a>.</p></section><section><h3 class="title" id="mw_31fcfd37-90be-4a88-a7f6-310f45be69ab">Define Custom Event Data</h3><p>Define custom event data when you want to provide additional information about a user
+        interaction to a callback function. For example, an app creator who uses the RGB picker
+        component might want to access the new and previous selected color when an app user
+        interacts with the component.</p><p>To customize event data, create a new class as a subclass of the
+          <code class="class">event.EventData</code> class and define any additional event data properties. For
+        example, to create custom event data for the RGB picker component, create a new file named
+          <code class="literal">RGBEventData.m</code> and save it in the same folder as the custom RGB picker
+        component file. Add code to the file to:</p>
+<div class="itemizedlist"><ul><li><p>Define a new class named <code class="literal">RGBEventData</code>.</p></li><li><p>Define two properties to store the previous RGB triplet and the new RGB
+              triplet.</p></li><li><p>Define the class constructor to take in the previous and new RGB triplets and
+              assign the values to the properties.</p></li></ul></div><p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> RGBEventData &lt; event.EventData
+    <span style="color:#0000FF">properties</span>
+        PreviousRGB
+        RGB
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> eventData = RGBEventData(prevRGB,newRGB)
+            eventData.PreviousRGB = prevRGB;
+            eventData.RGB = newRGB;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>To create and use this event data for the custom UI component, add code to the
+          <code class="literal">RGBPicker.mlapp</code> file to:</p>
+<div class="itemizedlist"><ul><li><p>Create a public property for the component named <code class="literal">RGB</code> that
+              stores the slider values as an RGB triplet. For more information, see <a href="manage-properties-of-custom-ui-components-in-app-designer.html" class="a">Create Public Properties for Custom UI Components in App Designer</a>.</p></li><li><p>In the <code class="literal">ValueChangedFcn</code> callback of the underlying slider
+              components, query the previous RGB value and the new RGB value, and use them to create
+              the event data.</p></li><li><p>Trigger the <code class="literal">ColorChanged</code> event to execute the
+                <code class="literal">ColorChangedFcn</code> callback with the custom event data by calling
+              the <a href="../ref/handle.notify.html"><code class="function">notify</code></a> function.</p></li></ul></div><p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>prevRGB = comp.RGB;
+newRGB = [comp.RSlider.Value comp.GSlider.Value comp.BSlider.Value];
+comp.RGB = newRGB;
+eventData = RGBEventData(prevRGB,newRGB);
+notify(comp,<span style="color:#A020F0">"ColorChanged"</span>,eventData);</pre></div></div></div></p><p>To view the full <code class="literal">RGBPicker</code> component code in App Designer, open the
+        example in <a href="create-event-data-for-custom-ui-component-callbacks.html#mw_ee1840ec-9ed1-4de0-bff3-693ae4e89615" class="intrnllnk">Example: UI Component with Custom Event Data</a>.</p><p> To view the event data, create a <code class="literal">ColorChangedFcn</code> callback that
+        displays the event data by typing these commands in the MATLAB Command Window.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = RGBPicker;
+comp.ColorChangedFcn = @(src,event)disp(event);</pre></div></div></div><p>Adjust one of the sliders. The custom event data displays in the Command
+        Window.<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  RGBEventData with properties:
+
+    PreviousRGB: [0 0 0]
+            RGB: [0.5630 0 0]
+         Source: [1×1 RGBPicker]
+      EventName: 'ColorChanged'</pre></div></div></div></p></section><section><h3 class="title" id="mw_ee1840ec-9ed1-4de0-bff3-693ae4e89615">Example: UI Component with Custom Event Data</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/UIComponentWithCustomEventDataExample')" data-ex-genre="App">Open App</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Example: UI Component with Custom Event Data",
+          "description": "Use the custom event data of the RGBPicker UI component to update the background color of a panel when the slider values changes.",
+          "thumbnailURL": "../../examples/matlab/win64/UIComponentWithCustomEventDataExample_01.png",
+          "genre": "App",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "create-event-data-for-custom-ui-component-callbacks.html"
+
+        },
+          "identifier": "matlab.UIComponentWithCustomEventDataExample",
+          "name": "UIComponentWithCustomEventDataExample",
+          "url": "create-event-data-for-custom-ui-component-callbacks.html#mw_ee1840ec-9ed1-4de0-bff3-693ae4e89615"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/UIComponentWithCustomEventDataExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "UIComponentWithCustomEventDataExample.m",
+        "RGBEventData.m",
+        "RGBPicker.mlapp"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-UIComponentWithCustomEventDataExample"><meta itemprop="exampletitle" content="Example: UI Component with Custom Event Data"></div><span id="UIComponentWithCustomEventDataExample" class="anchor_target"></span><div class="procedure"><p class="shortdesc">Use the custom event data of the <code class="literal">RGBPicker</code> UI component to update the background color of a panel when the slider values changes.</p><div class="itemizedlist"><ul><li><p>Create an <code class="literal">RGBPicker</code> component and a panel in a UI figure.</p></li><li><p>Define a <code class="literal">ColorChangedFcn</code> callback for the component that executes when a user updates one of the slider values.</p></li><li><p>In the callback function, use the event input argument to access the new RGB triplet value associated with the user interaction and update the panel background color.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+fig.Position(3:4) = [550 170];
+c = RGBPicker(fig);
+p = uipanel(fig);
+p.Position = [300 10 200 130];
+p.BackgroundColor = c.RGB;
+c.ColorChangedFcn = @(src,event)updatePanelColor(src,event,p);
+
+<span style="color:#0000FF">function</span> updatePanelColor(src,event,p)
+color = event.RGB;
+p.BackgroundColor = color;
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><div class="informalfigure"><div id="d126e18151" class="mediaobject"><p><img src="../../examples/matlab/win64/UIComponentWithCustomEventDataExample_01.png"></p></div></div></div></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e18159">Topics</h3><ul class="list-unstyled"><li><a href="create-callbacks-for-custom-ui-components-in-app-designer.html" class="a">Create Callbacks for Custom UI Components in App Designer</a></li><li><a href="../matlab_oop/events-and-listeners-syntax-and-techniques.html" class="a">Events and Listeners Syntax</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

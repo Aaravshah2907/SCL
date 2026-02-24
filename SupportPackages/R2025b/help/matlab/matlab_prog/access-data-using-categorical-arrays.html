@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Access Data Using Categorical Arrays</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-types.html",
+          "name": "Data Types"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../categorical-arrays.html",
+          "name": "Categorical Arrays"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "categorical-arrays"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Search, select, and delete elements from categorical arrays."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../language-fundamentals.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Language Fundamentals</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Types</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../categorical-arrays.html?s_tid=CRUX_lftnav" itemprop="url" id="bt0k2hx"><span itemprop="title">Categorical Arrays</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Access Data Using Categorical Arrays</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bt2kjs7-2" class="nav-link intrnllnk">Select Data By Category</a></li><li class="nav-item"><a href="#bt2kjs7-3" class="nav-link intrnllnk">Common Ways to Access Data Using Categorical Arrays</a><ul class="nav"><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-1" class="nav-link intrnllnk">Load Sample Data</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-2" class="nav-link intrnllnk">Create Categorical Arrays</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-3" class="nav-link intrnllnk">Search for Members of a Single Category</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-4" class="nav-link intrnllnk">Search for Members of a Group of Categories</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-5" class="nav-link intrnllnk">Select Elements in a Particular Category to Plot</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-6" class="nav-link intrnllnk">Delete Data from a Particular Category</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-7" class="nav-link intrnllnk">Delete Element</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-8" class="nav-link intrnllnk">Test for Undefined Elements</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-9" class="nav-link intrnllnk">Set Undefined Elements</a></li><li class="nav-item"><a href="#CommonWaystoAccessDataUsingCategoricalArraysExample-10" class="nav-link intrnllnk">Preallocate Categorical Arrays with Undefined Elements</a></li></ul></li><li class="nav-item"><a href="#d126e24169" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=categorical-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=categorical-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=categorical-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=categorical-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=categorical-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=categorical-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt2kjs7-1">Access Data Using Categorical Arrays</h2><section><h3 class="title" id="bt2kjs7-2">Select Data By Category</h3><p>Selecting data based on its values is often useful. This type
+of data selection can involve creating a logical vector based on values
+in one variable, and then using that logical vector to select a subset
+of values in other variables. You can create a logical vector for
+selecting data by finding values in a numeric array that fall within
+a certain range. Additionally, you can create the logical vector by
+finding specific discrete values. When using categorical arrays, you
+can easily:</p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Select elements from particular
+categories.</strong> For categorical arrays, use the logical operators <code class="literal">==</code> or <code class="literal">~=</code> to
+select data that is in, or not in, a particular category. To select
+data in a particular group of categories, use the <code class="function">ismember</code> function.</p><p>For ordinal categorical arrays, use inequalities <code class="literal">&gt;</code>, <code class="literal">&gt;=</code>, <code class="literal">&lt;</code>,
+or <code class="literal">&lt;=</code> to find data in categories above or below
+a particular category.</p></li><li><p><strong class="emphasis bold">Delete data that is in a particular
+category.</strong> Use logical operators to include or exclude data
+from particular categories.</p></li><li><p><strong class="emphasis bold">Find elements that are not in
+a defined category.</strong> Categorical arrays indicate which elements
+do not belong to a defined category by <code class="literal">&lt;undefined&gt;</code>.
+Use the <code class="literal">isundefined</code> function to find observations
+without a defined value.</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="bt2kjs7-3">Common Ways to Access Data Using Categorical Arrays</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CommonWaystoAccessDataUsingCategoricalArraysExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Common Ways to Access Data Using Categorical Arrays",
+          "description": "Index and search using categorical arrays. You can access data using categorical arrays stored within a table in a similar manner.",
+          "thumbnailURL": "../../examples/matlab/win64/CommonWaystoAccessDataUsingCategoricalArraysExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "access-data-using-categorical-arrays.html"
+
+        },
+          "identifier": "matlab.CommonWaystoAccessDataUsingCategoricalArraysExample",
+          "name": "CommonWaystoAccessDataUsingCategoricalArraysExample",
+          "url": "access-data-using-categorical-arrays.html#bt2kjs7-3"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CommonWaystoAccessDataUsingCategoricalArraysExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CommonWaystoAccessDataUsingCategoricalArraysExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-CommonWaystoAccessDataUsingCategoricalArraysExample"><meta itemprop="exampletitle" content="Common Ways to Access Data Using Categorical Arrays"></div><span id="CommonWaystoAccessDataUsingCategoricalArraysExample" class="anchor_target"></span><p class="shortdesc">This example shows how to index and search using categorical arrays. You can access data using categorical arrays stored within a table in a similar manner.</p><div class="procedure"><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-1" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-1"><b>Load Sample Data</b></p><p>Load data about 100 patients from the sample <code class="literal">patients.mat</code> MAT-file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">patients.mat</span>
+whos</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name                            Size            Bytes  Class      Attributes
+
+  Age                           100x1               800  double               
+  Diastolic                     100x1               800  double               
+  Gender                        100x1             13012  cell                 
+  Height                        100x1               800  double               
+  LastName                      100x1             13216  cell                 
+  Location                      100x1             15808  cell                 
+  SelfAssessedHealthStatus      100x1             13140  cell                 
+  Smoker                        100x1               100  logical              
+  Systolic                      100x1               800  double               
+  Weight                        100x1               800  double               
+</pre></div></div></div><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-2" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-2"><b>Create Categorical Arrays</b></p><p>The arrays <code class="literal">Location</code> and <code class="literal">SelfAssessedHealthStatus</code> contain data that belong in categories. Each array contains text taken from a small set of unique values (indicating three locations and four health statuses respectively). To convert <code class="literal">Location</code> and <code class="literal">SelfAssessedHealthStatus</code> to categorical arrays, use the <code class="literal">categorical</code> function. On the other hand, the array <code class="literal">LastName</code> has a list of last names that are not categories. So, convert <code class="literal">LastName</code> to a string array using the <code class="literal">string</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location = categorical(Location);
+SelfAssessedHealthStatus = categorical(SelfAssessedHealthStatus);
+LastName = string(LastName);</pre></div></div></div><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-3" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-3"><b>Search for Members of a Single Category</b></p><p>For categorical arrays, you can use the logical operators <code class="literal">==</code> and <code class="literal">~=</code> to find the data that is in, or not in, a particular category.</p><p>Determine if there are any patients observed at the location, <code class="literal">Rampart General Hospital</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>any(Location == <span style="color:#A020F0">"Rampart General Hospital"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre></div></div></div><p>There are no patients observed at <code class="literal">Rampart General Hospital</code>.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-4" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-4"><b>Search for Members of a Group of Categories</b></p><p>You can use <code class="literal">ismember</code> to find data in a particular group of categories. For example, call <code class="literal">ismember</code> using <code class="literal">Location</code> as input data. Create a logical vector that identifies patients observed at either <code class="literal">County General Hospital</code> or <code class="literal">VA Hospital</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location = <span class="emphasis"><em>100×1 categorical</em></span>
+     County General Hospital 
+     VA Hospital 
+     St. Mary's Medical Center 
+     VA Hospital 
+     County General Hospital 
+     St. Mary's Medical Center 
+     VA Hospital 
+     VA Hospital 
+     St. Mary's Medical Center 
+     County General Hospital 
+     County General Hospital 
+     St. Mary's Medical Center 
+     VA Hospital 
+     VA Hospital 
+     St. Mary's Medical Center 
+     VA Hospital 
+     St. Mary's Medical Center 
+     VA Hospital 
+     County General Hospital 
+     County General Hospital 
+     VA Hospital 
+     VA Hospital 
+     VA Hospital 
+     County General Hospital 
+     County General Hospital 
+     VA Hospital 
+     VA Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+      &#x22EE;
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>VA_CountyGenIndex = <span style="color:#0000FF">...</span>
+    ismember(Location,[<span style="color:#A020F0">"County General Hospital"</span>,<span style="color:#A020F0">"VA Hospital"</span>])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>VA_CountyGenIndex = <span class="emphasis"><em>100×1 logical array</em></span>
+
+   1
+   1
+   0
+   1
+   1
+   0
+   1
+   1
+   0
+   1
+   1
+   0
+   1
+   1
+   0
+      &#x22EE;
+
+</pre></div></div></div><p><code class="literal">VA_CountyGenIndex</code> is a 100-by-1 logical array containing logical <code class="literal">true</code> (<code class="literal">1</code>) for each element in <code class="literal">Location</code> that is a member of the categories <code class="literal">County General Hospital</code> or <code class="literal">VA Hospital</code>. The output, <code class="literal">VA_CountyGenIndex</code> contains 76 nonzero elements.</p><p>Use the logical vector, <code class="literal">VA_CountyGenIndex</code> to select the <code class="literal">LastName</code> of the patients observed at either <code class="literal">County General Hospital</code> or <code class="literal">VA Hospital</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>VA_CountyGenPatients = LastName(VA_CountyGenIndex)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>VA_CountyGenPatients = <span class="emphasis"><em>76×1 string</em></span>
+    "Smith"
+    "Johnson"
+    "Jones"
+    "Brown"
+    "Miller"
+    "Wilson"
+    "Taylor"
+    "Anderson"
+    "Jackson"
+    "White"
+    "Martin"
+    "Garcia"
+    "Martinez"
+    "Robinson"
+    "Clark"
+    "Rodriguez"
+    "Lewis"
+    "Lee"
+    "Walker"
+    "Hall"
+    "Allen"
+    "Young"
+    "Hernandez"
+    "King"
+    "Wright"
+    "Lopez"
+    "Green"
+    "Adams"
+    "Baker"
+    "Mitchell"
+      &#x22EE;
+
+</pre></div></div></div><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-5" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-5"><b>Select Elements in a Particular Category to Plot</b></p><p>Use the <code class="literal">summary</code> function to print a summary containing the category names and the number of elements in each category.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location: 100×1 categorical
+
+     County General Hospital       39 
+     St. Mary's Medical Center      24 
+     VA Hospital                   37 
+     &lt;undefined&gt;                    0 
+</pre></div></div></div><p><code class="literal">Location</code> is a 100-by-1 categorical array with three categories. <code class="literal">County General Hospital</code> occurs in 39 elements, <code class="literal">St. Mary's Medical Center</code> in 24 elements, and <code class="literal">VA Hospital</code> in 37 elements.</p><p>Use the <code class="literal">summary</code> function to print a summary of <code class="literal">SelfAssessedHealthStatus</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(SelfAssessedHealthStatus)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>SelfAssessedHealthStatus: 100×1 categorical
+
+     Excellent        34 
+     Fair             15 
+     Good             40 
+     Poor             11 
+     &lt;undefined&gt;       0 
+</pre></div></div></div><p><code class="literal">SelfAssessedHealthStatus</code> is a 100-by-1 categorical array with four categories.</p><p>Use logical operator <code class="literal">==</code> to access the ages of patients who assess their own health status as <code class="literal">Good</code>. Then plot a histogram of this data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure()
+histogram(Age(SelfAssessedHealthStatus == <span style="color:#A020F0">"Good"</span>))
+title(<span style="color:#A020F0">"Ages of Patients with Good Health Status"</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23966" class="mediaobject"><p><img src="../../examples/matlab/win64/CommonWaystoAccessDataUsingCategoricalArraysExample_01.png" alt="Figure contains an axes object. The axes object with title Ages of Patients with Good Health Status contains an object of type histogram." width="560"></p></div></div><p><code class="literal">histogram(Age(SelfAssessedHealthStatus == "Good"))</code> plots the age data for the 40 patients who reported <code class="literal">Good</code> as their health status.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-6" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-6"><b>Delete Data from a Particular Category</b></p><p>You can use logical operators to include or exclude data from particular categories. Delete all patients observed at <code class="literal">VA Hospital</code> from the workspace variables, <code class="literal">Age</code> and <code class="literal">Location</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Age = Age(Location ~= <span style="color:#A020F0">"VA Hospital"</span>);
+Location = Location(Location ~= <span style="color:#A020F0">"VA Hospital"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location = <span class="emphasis"><em>63×1 categorical</em></span>
+     County General Hospital 
+     St. Mary's Medical Center 
+     County General Hospital 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     County General Hospital 
+     County General Hospital 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     County General Hospital 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     County General Hospital 
+     St. Mary's Medical Center 
+      &#x22EE;
+
+</pre></div></div></div><p>Now, <code class="literal">Age</code> is a 63-by-1 numeric array, and <code class="literal">Location</code> is a 63-by-1 categorical array.</p><p>List the categories of <code class="literal">Location</code>, as well as the number of elements in each category.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location: 63×1 categorical
+
+     County General Hospital       39 
+     St. Mary's Medical Center      24 
+     VA Hospital                    0 
+     &lt;undefined&gt;                    0 
+</pre></div></div></div><p>The patients observed at <code class="literal">VA Hospital</code> are deleted from <code class="literal">Location</code>, but <code class="literal">VA Hospital</code> is still a category.</p><p>Use the <code class="literal">removecats</code> function to remove <code class="literal">VA Hospital</code> from the categories of <code class="literal">Location</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location = removecats(Location,<span style="color:#A020F0">"VA Hospital"</span>);</pre></div></div></div><p>Verify that the category, <code class="literal">VA Hospital</code>, was removed.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>categories(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>2×1 cell</em></span>
+    {'County General Hospital'  }
+    {'St. Mary's Medical Center'}
+
+</pre></div></div></div><p><code class="literal">Location</code> is a 63-by-1 categorical array that has two categories.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-7" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-7"><b>Delete Element</b></p><p>You can delete elements by indexing. For example, you can remove the first element of <code class="literal">Location</code> by selecting the rest of the elements with  <code class="literal">Location(2:end)</code>. However, an easier way to delete elements is to use <code class="literal">[]</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location(1) = [];
+summary(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location: 62×1 categorical
+
+     County General Hospital       38 
+     St. Mary's Medical Center      24 
+     &lt;undefined&gt;                    0 
+</pre></div></div></div><p><code class="literal">Location</code> is a 62-by-1 categorical array that has two categories. Deleting the first element has no effect on other elements from the same category and does not delete the category itself.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-8" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-8"><b>Test for Undefined Elements</b></p><p>Remove the category <code class="literal">County General Hospital</code> from <code class="literal">Location</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location = removecats(Location,<span style="color:#A020F0">"County General Hospital"</span>);</pre></div></div></div><p>Display the first eight elements of the categorical array, <code class="literal">Location</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location(1:8)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>8×1 categorical</em></span>
+     St. Mary's Medical Center 
+     &lt;undefined&gt; 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     &lt;undefined&gt; 
+     &lt;undefined&gt; 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+
+</pre></div></div></div><p>After removing the category, <code class="literal">County General Hospital</code>, elements that previously belonged to that category no longer belong to any category defined for <code class="literal">Location</code>. The categorical elements that do not belong to any category are undefined, and display <code class="literal">&lt;undefined&gt;</code> as their values.</p><p>Use the function <code class="literal">isundefined</code> to find elements of a categorical array that do not belong to any category.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>undefinedIndex = isundefined(Location);</pre></div></div></div><p><code class="literal">undefinedIndex</code> is a 62-by-1 categorical array containing logical <code class="literal">true</code> (<code class="literal">1</code>) for all undefined elements in <code class="literal">Location</code>.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-9" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-9"><b>Set Undefined Elements</b></p><p>Use the <code class="literal">summary</code> function to print the number of undefined elements in <code class="literal">Location</code>. Then display the first five elements of <code class="literal">Location</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location: 62×1 categorical
+
+     St. Mary's Medical Center      24 
+     &lt;undefined&gt;                   38 
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location(1:5)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>5×1 categorical</em></span>
+     St. Mary's Medical Center 
+     &lt;undefined&gt; 
+     St. Mary's Medical Center 
+     St. Mary's Medical Center 
+     &lt;undefined&gt; 
+
+</pre></div></div></div><p>The first element of <code class="literal">Location</code> belongs to the category, <code class="literal">St. Mary's Medical Center</code>. Set the first element to be an undefined value so that it no longer belongs to any category. The recommended way is to use the <code class="literal">missing</code> function to create undefined values. Another way is to assign <code class="literal">''</code> or <code class="literal">""</code> to elements of the array. When you assign such values to elements of a categorical array, it converts them to undefined values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Location(1) = missing;
+Location(3) = <span style="color:#A020F0">''</span>;
+Location(1:5)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>5×1 categorical</em></span>
+     &lt;undefined&gt; 
+     &lt;undefined&gt; 
+     &lt;undefined&gt; 
+     St. Mary's Medical Center 
+     &lt;undefined&gt; 
+
+</pre></div></div></div><p>The <code class="literal">summary</code> function shows that these assignments increased the number of undefined elements.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(Location)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Location: 62×1 categorical
+
+     St. Mary's Medical Center      22 
+     &lt;undefined&gt;                   40 
+</pre></div></div></div><p>You can make selected elements <code class="literal">undefined</code> without removing a category or changing the categories of other elements. Set undefined elements to indicate elements with values that are unknown.</p><span id="CommonWaystoAccessDataUsingCategoricalArraysExample-10" class="anchor_target"></span><p class="title" id="CommonWaystoAccessDataUsingCategoricalArraysExample-10"><b>Preallocate Categorical Arrays with Undefined Elements</b></p><p>You can use undefined elements to preallocate the size of a categorical array for better performance. Create a categorical array that has elements with known locations only.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>definedIndex = ~isundefined(Location);
+newLocation = Location(definedIndex);
+summary(newLocation)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>newLocation: 22×1 categorical
+
+     St. Mary's Medical Center      22 
+     &lt;undefined&gt;                    0 
+</pre></div></div></div><p>Expand the size of <code class="literal">newLocation</code> so that it is a 200-by-1 categorical array. Set the last new element to be an undefined element. All of the other new elements are also assigned undefined values. The 22 original elements keep the values that they had.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>newLocation(200) = missing;
+summary(newLocation)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>newLocation: 200×1 categorical
+
+     St. Mary's Medical Center       22 
+     &lt;undefined&gt;                   178 
+</pre></div></div></div><p><code class="literal">newLocation</code> has room for values you plan to store in the array later.</p></div></section>
+<h2 id="d126e24169">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/categorical.html"><span itemprop="name"><code class="function">categorical</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/categorical.categories.html"><span itemprop="name"><code class="function">categories</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.summary.html"><span itemprop="name"><code class="function">summary</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/any.html"><span itemprop="name"><code class="function">any</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chart.primitive.histogram.html"><span itemprop="name"><code class="function">histogram</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/categorical.removecats.html"><span itemprop="name"><code class="function">removecats</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/categorical.isundefined.html"><span itemprop="name"><code class="function">isundefined</code></span></a></span></p>
+<h3 id="d126e24187">Topics</h3><ul class="list-unstyled"><li><a href="create-categorical-arrays.html" class="a">Create Categorical Arrays</a></li><li><a href="convert-table-variables-containing-strings-to-categorical.html" class="a">Convert Text in Table Variables to Categorical</a></li><li><a href="plot-categorical-data.html" class="a">Plot Categorical Data</a></li><li><a href="compare-categorical-array-elements.html" class="a">Compare Categorical Array Elements</a></li><li><a href="work-with-protected-categorical-arrays.html" class="a">Work with Protected Categorical Arrays</a></li><li><a href="advantages-of-using-categorical-arrays.html" class="a">Advantages of Using Categorical Arrays</a></li><li><a href="ordinal-categorical-arrays.html" class="a">Ordinal Categorical Arrays</a></li></ul>
+
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

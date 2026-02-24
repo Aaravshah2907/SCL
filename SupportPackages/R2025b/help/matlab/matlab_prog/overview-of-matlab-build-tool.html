@@ -1,0 +1,258 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Overview of MATLAB Build Tool</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../build-automation.html",
+          "name": "Build Automation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-automation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the build tool to define and run a build."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-automation.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_ffa65eba-3ea4-4023-8cda-f17c6894f34b"><span itemprop="title">Build Automation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Overview of MATLAB Build Tool</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_8f2b6b53-0807-4517-a4c1-4a10ebab6914" class="nav-link intrnllnk">Create Plan with Tasks</a></li><li class="nav-item"><a href="#mw_7a602a02-8f44-4134-b93f-066d2655b9db" class="nav-link intrnllnk">Run Tasks in Plan</a></li><li class="nav-item"><a href="#d126e101160" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-automation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-automation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-automation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-automation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-automation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-automation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a2525f99-724d-475b-88a6-b41b551bacfc">Overview of <span class="trademark entity">MATLAB</span> Build Tool<span id="BuildToolOverview" class="anchor_target"></span></h2><div class="doc_topic_desc"><div class="purpose_container"><em>Since R2022b</em></div></div>
+            <p class="shortdesc">The MATLAB<sup>&#x00AE;</sup> build tool is a build system that provides a standard programming
+                interface to create and run tasks in a uniform and efficient way. For
+                example, you can create tasks that identify code issues, run tests, and package a
+                toolbox in a single build file in your project root folder, and then invoke the
+                build tool to run these tasks.</p>
+        <section><h3 class="title" id="mw_8f2b6b53-0807-4517-a4c1-4a10ebab6914">Create Plan with Tasks</h3><p>To define a build for your project, create a build file in your project root
+                folder. A build file is a function file that creates a plan with tasks. Each task in
+                the plan represents a single unit of work in a build and has three fundamental characteristics:</p>
+<div class="itemizedlist"><ul><li><p>Name &#8212; The name of a task uniquely identifies the task in the
+                            plan.</p></li><li><p>Dependencies &#8212; The dependencies of a task are other tasks in the plan
+                            that must run before the task runs.</p></li><li><p>Actions &#8212; The actions of a task define functions that execute when the
+                            task runs.</p></li></ul></div><p>
+</p><p>To create a plan, include the function call
+                    <code class="literal">buildplan(localfunctions)</code> in the main function of the build
+                file. Then, add tasks to the plan using task classes or local task functions:</p>
+<div class="itemizedlist"><ul><li><p>Task classes &#8212; In the main function, create tasks from built-in task
+                            classes in the <a href="../ref/matlab.buildtool.tasks-package.html"><code class="package">matlab.buildtool.tasks</code></a> namespace or custom task classes,
+                            and add them to the plan.</p></li><li><p>Local task functions &#8212; In local task functions, specify the name,
+                            optional description, and action of tasks that are not available through
+                            task classes. Task functions are local functions in the build file whose
+                            names end with the word "Task", which is case insensitive.</p></li></ul></div><p>
+</p><p>For example, in your current folder, create a build file named
+                    <code class="literal">buildfile.m</code> with three tasks. Create the
+                    <code class="literal">"check"</code> and <code class="literal">"test"</code> tasks using built-in
+                task classes, and create the <code class="literal">"archive"</code> task using a local task
+                function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> plan = buildfile
+import <span style="color:#A020F0">matlab.buildtool.tasks.CodeIssuesTask</span>
+import <span style="color:#A020F0">matlab.buildtool.tasks.TestTask</span>
+
+<span style="color:#228B22">% Create a plan from task functions</span>
+plan = buildplan(localfunctions);
+
+<span style="color:#228B22">% Add a task to identify code issues</span>
+plan(<span style="color:#A020F0">"check"</span>) = CodeIssuesTask;
+
+<span style="color:#228B22">% Add a task to run tests</span>
+plan(<span style="color:#A020F0">"test"</span>) = TestTask;
+
+<span style="color:#228B22">% Make the "archive" task the default task in the plan</span>
+plan.DefaultTasks = <span style="color:#A020F0">"archive"</span>;
+
+<span style="color:#228B22">% Make the "archive" task dependent on the "check" and "test" tasks</span>
+plan(<span style="color:#A020F0">"archive"</span>).Dependencies = [<span style="color:#A020F0">"check"</span> <span style="color:#A020F0">"test"</span>];
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> archiveTask(~)
+<span style="color:#228B22">% Create ZIP file</span>
+filename = <span style="color:#A020F0">"source_"</span> + <span style="color:#0000FF">...</span>
+    string(datetime(<span style="color:#A020F0">"now"</span>,Format=<span style="color:#A020F0">"yyyyMMdd'T'HHmmss"</span>));
+zip(filename,<span style="color:#A020F0">"*"</span>)
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For more information on how to create a build file, see <a href="create-and-run-tasks-using-build-tool.html" class="a">Create and Run Tasks Using Build Tool</a>.</p></section><section><h3 class="title" id="mw_7a602a02-8f44-4134-b93f-066d2655b9db">Run Tasks in Plan</h3><p class="shortdesc">You can run the tasks in your plan using either the <a href="../ref/buildtool.html"><code class="function">buildtool</code></a> command or the <a href="../ref/matlab.buildtool.plan.run.html"><code class="method">run</code></a>
+                method of the <a href="../ref/matlab.buildtool.plan-class.html"><code class="class">matlab.buildtool.Plan</code></a> class:</p>
+<div class="itemizedlist"><ul><li><p><code class="function">buildtool</code> command &#8212; Use this command to run the
+                            tasks defined in the build file for your project. Do not use
+                                <code class="function">buildtool</code> if you create or modify your plan
+                            outside of the build file or if you want to programmatically access the
+                            result of the build.</p></li><li><p><code class="method">run</code> method &#8212; Use this method if you create or modify
+                            your plan outside of the build file for your project or if you want to
+                            programmatically access the result of the build. The method returns a
+                                <a href="../ref/matlab.buildtool.buildresult-class.html"><code class="class">matlab.buildtool.BuildResult</code></a> object, which includes
+                            information about the build as well as each task that was part of the
+                            build.</p></li></ul></div><p>
+</p><p>To run a task, the build runner first runs all its dependencies and then performs
+                actions of the task in the order they appear in the <code class="property">Actions</code>
+                property of the corresponding <a href="../ref/matlab.buildtool.task-class.html"><code class="class">Task</code></a>
+                object.</p><p>For example, run the default task in the plan created by the file
+                    <code class="literal">buildfile.m</code> in your current folder. The build tool first runs
+                the <code class="literal">"check"</code> and <code class="literal">"test"</code> tasks because the
+                    <code class="literal">"archive"</code> task depends on them. Your results might vary,
+                depending on the files in your current folder and its subfolders.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>buildtool</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>** Starting check
+Analysis Summary:
+    Total Files: 3
+         Errors: 0 (Threshold: 0)
+       Warnings: 0 (Threshold: Inf)
+** Finished check
+
+** Starting test
+...
+
+Test Summary:
+    Total Tests: 3
+         Passed: 3
+         Failed: 0
+     Incomplete: 0
+       Duration: 0.13274 seconds testing time.
+                 
+** Finished test
+
+** Starting archive
+** Finished archive</pre></div></div></div><p class="shortdesc">You can
+    also run the tasks in your build file interactively from the MATLAB Toolstrip. For more information, see <a href="run-build-from-toolstrip.html" class="a">Run Build from Toolstrip</a>.<em> (since R2025a)</em></p></section>
+            <h2 id="d126e101160">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/buildplan.html"><span itemprop="name"><code class="function">buildplan</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/buildtool.html"><span itemprop="name"><code class="function">buildtool</code></span></a></span></li></ul><h3>Namespaces</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.buildtool.tasks-package.html"><span itemprop="name"><code class="package">matlab.buildtool.tasks</code></span></a></span></li></ul>
+            <h3 id="d126e101178">Topics</h3><ul class="list-unstyled"><li><a href="create-and-run-tasks-using-build-tool.html" class="a">Create and Run Tasks Using Build Tool</a></li><li><a href="run-build-from-toolstrip.html" class="a">Run Build from Toolstrip</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

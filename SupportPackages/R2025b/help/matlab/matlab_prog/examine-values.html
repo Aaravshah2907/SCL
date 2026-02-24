@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Examine Values While Debugging</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../debugging-code.html",
+          "name": "Debugging and Analysis"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "debugging-code"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="View the value of any variable currently in the workspace while debugging to see if a line of code produces the expected result."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../debugging-code.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6v6i4"><span itemprop="title">Debugging and Analysis</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Examine Values While Debugging</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#buvy0bm" class="nav-link intrnllnk">View Variable Value</a></li><li class="nav-item"><a href="#buvyz_o" class="nav-link intrnllnk">View Variable Value Outside Current Workspace</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="buvttxu">Examine Values While Debugging</h2><div class="doc_topic_desc"><div class="purpose_container"><em>Since R2021b. Replaces <a href="https://www.mathworks.com/help/releases/R2021a/matlab/matlab_prog/examine-values.html">Examine Value While Debugging</a><span role="archived_release_number"> (R2021a)</span>. </em></div></div><p>When debugging a code file, you can view the value of any variable currently in the
+            workspace while MATLAB<sup>&#x00AE;</sup> is paused. If you want to determine whether a line of code produces the
+            expected result or not, examining values is useful. If the result is as expected, you
+            can continue running the code or step to the next line. If the result is not as you
+            expect, then that line, or a previous line, might contain an error.</p><section><h3 class="title" id="buvy0bm">View Variable Value</h3><p>There are several ways to view the value of a variable while debugging:</p><div class="itemizedlist"><ul><li><p>Workspace panel &#8212; The Workspace panel displays all variables in the
+                        current workspace. The <strong class="emphasis bold">Value</strong> column of the
+                        Workspace panel shows the current value of the variable. To view more
+                        details, double-click the variable. The Variables Editor opens, displaying
+                        the content for that variable. You also can use the <a href="../ref/variableseditor.html"><code class="function">openvar</code></a> function to open a
+                        variable in the Variables Editor.</p><div class="informalfigure"><div id="d126e55062" class="mediaobject"><p class="listimage"><img src="variable_workspace_editor.png" alt="Workspace panel showing two variables, n and x, with the current value for each variable displayed in the Value column" height="143" width="356"></p></div></div></li><li><p>Editor and Live Editor &#8212; To view the value of a variable in the
+                        Editor and Live Editor, place your cursor over the variable. The current
+                        value of the variable appears in a data tip. The data tip stays in view
+                        until you move the cursor. If you have trouble getting the data tip to
+                        appear, click the line containing the variable, and then move the pointer
+                        next to the variable.</p><p>Data tips are always enabled when debugging in the Editor. To disable data
+                        tips in the Live Editor or when editing a file in the Editor, go to the
+                            <strong class="guilabel">View</strong> tab and click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="datatips_icon.png" alt="" height="15" width="22"></span></span>
+                        <strong class="guibutton">Datatips</strong> button off.</p><div class="informalfigure"><div id="d126e55080" class="mediaobject"><p class="listimage"><img src="variable_datatip.png" alt="Script with a data tip showing the value of the variable n" height="131" width="225"></p></div></div><p>You also can view the value of a variable or equation by selecting it in
+                        the Editor and Live Editor, right-clicking, and selecting
+                            <strong class="guimenuitem">Evaluate Selection in Command Window</strong>.
+                            MATLAB displays the value of the variable or equation in the Command
+                        Window. </p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>You cannot evaluate a selection while MATLAB is busy, for example, running a file.</p></div></li><li><p>Command Window &#8212; To view the value of a variable in the Command
+                        Window, type the variable name. For the example, to see the value of a
+                        variable <code class="literal">n</code>, type <code class="literal">n</code> and press
+                            <strong class="keycap">Enter</strong>. The Command Window displays the variable name
+                        and its value. To view all the variables in the current workspace, call the
+                            <a href="../ref/who.html"><code class="function">who</code></a> function.</p></li></ul></div></section><section><h3 class="title" id="buvyz_o">View Variable Value Outside Current Workspace</h3><p>When you are debugging a function or when
+                you step into a called function or file, the Debugger panel displays the list of the
+                functions it executed before pausing at the current line in the <strong class="guilabel">Function
+                    call stack</strong> section. The list, also called the <em class="firstterm">function
+                    call stack</em>, displays the functions in order, with the current script
+                or function in which MATLAB is paused at the top of the list, and the first called script or
+                function at the bottom of the list. <em> (since R2025a)</em></p><p>To open the Debugger panel if it is not open, go to the
+                    <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab, and in the
+                    <strong class="guilabel">Analyze</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="debugger_icon.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Debugger</strong>. You also can open the panel using the Open more
+                panels button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="meatballmenuui9a7875500214701883b733f8feb35ca6.png" alt="" height="16" width="16"></span></span> on a sidebar.</p><div class="informalfigure"><div id="d126e55142" class="mediaobject"><p><img src="debugger_panel_callstack.png" alt="Debugger panel with the Function call stack section showing that the debugger is paused at line 3 of plotRand.m" height="261" width="250"></p></div></div><p><em>Before R2025a: The function call stack is shown at the top
+                of the file and displays the functions in order, starting on the left with the first
+                called script or function, and ending on the right with the current script or
+                function in which MATLAB is paused.</em></p><p>You also can use the <a href="../ref/dbstack.html"><code class="function">dbstack</code></a> function to view the
+                current workspace in the Command
+                Window:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dbstack</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>&gt; In mean (line 48)
+In plotRand (line 5)</pre></div></div></div></p><p>For each function in the function call stack, there is a corresponding workspace.
+                Workspaces contain variables that you create within MATLAB or import from data files or other programs. Variables that you assign
+                through the Command Window or create by using scripts belong to the base workspace.
+                Variables that you create in a function belong to their own function workspace. To
+                examine the values of variables outside of the current workspace, select the
+                corresponding function in the Debugger panel <strong class="guilabel">Function call
+                    stack</strong> section.</p><p>You also can use the <a href="../ref/dbup.html"><code class="function">dbup</code></a> and <a href="../ref/dbdown.html"><code class="function">dbdown</code></a> functions in the Command
+                Window to select the previous or next workspace in the function call stack. To list
+                the variables in the current workspace, use the <a href="../ref/who.html"><code class="function">who</code></a> or <a href="../ref/whos.html"><code class="function">whos</code></a> functions.</p><p>If you attempt to view the value of a variable in a different workspace while
+                    MATLAB is in the process of overwriting it, MATLAB displays an error in the Command
+                Window.<div class="code_responsive"><pre class="programlisting">K&gt;&gt; x
+Variable "x" is inaccessible. When a variable appears on both sides of an assignment
+statement, the variable may become temporarily unavailable during processing. </pre></div>The
+                error occurs whether you select the workspace by using the drop-down list to the
+                right of the function call stack or the <code class="function">dbup</code> command.</p></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e55196">Topics</h3><ul class="list-unstyled"><li><a href="debugging-process-and-features.html" class="a">Debug MATLAB Code Files</a></li><li><a href="set-breakpoints.html" class="a">Set Breakpoints</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

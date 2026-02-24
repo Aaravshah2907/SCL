@@ -1,0 +1,671 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Interpolating Scattered Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../interpolation.html",
+          "name": "Interpolation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../2-and-3d-plots.html",
+          "name": "2-D and 3-D Plots"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../stem-and-stair-plots.html",
+          "name": "Discrete Data Plots"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interpolation",
+        "stem-and-stair-plots"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Interpolating scattered data using scatteredInterpolant."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interpolation.html?s_tid=CRUX_lftnav" itemprop="url" id="btfpj5e"><span itemprop="title">Interpolation</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../graphics.html?s_tid=CRUX_lftnav">Graphics</a></li><li><a href="../2-and-3d-plots.html?s_tid=CRUX_lftnav">2-D and 3-D Plots</a></li><li><a href="../stem-and-stair-plots.html?s_tid=CRUX_lftnav" id="btfmh6g-1">Discrete Data Plots</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Interpolating Scattered Data</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsp7tnf" class="nav-link intrnllnk">Scattered Data</a></li><li class="nav-item"><a href="#bsovi2t" class="nav-link intrnllnk">Interpolating Scattered Data Using griddata and griddatan</a></li><li class="nav-item"><a href="#bt7o6f0" class="nav-link intrnllnk">scatteredInterpolant Class</a></li><li class="nav-item"><a href="#bsow6g6-1" class="nav-link intrnllnk">Interpolating Scattered Data Using the scatteredInterpolant Class</a><ul class="nav"><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-1" class="nav-link intrnllnk">Create the scattered data set.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-2" class="nav-link intrnllnk">Create the interpolant.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-3" class="nav-link intrnllnk">Evaluate the interpolant.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-4" class="nav-link intrnllnk">Change the interpolation method.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-5" class="nav-link intrnllnk">Replace the values at the sample data locations.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-6" class="nav-link intrnllnk">Add additional point locations and values to the existing interpolant.</a></li><li class="nav-item"><a href="#InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-7" class="nav-link intrnllnk">Remove data from the interpolant.</a></li></ul></li><li class="nav-item"><a href="#btdzf16" class="nav-link intrnllnk">Interpolation of Complex Scattered Data</a></li><li class="nav-item"><a href="#bsphz74-1" class="nav-link intrnllnk">Addressing Problems in Scattered Data Interpolation</a><ul class="nav"><li class="nav-item"><a href="#bsph06v" class="nav-link intrnllnk">Input Data Containing NaNs</a></li><li class="nav-item"><a href="#bsph0_u-1" class="nav-link intrnllnk">Interpolant Outputs NaN Values</a></li><li class="nav-item"><a href="#bspiel6-1" class="nav-link intrnllnk">Handling Duplicate Point Locations</a></li><li class="nav-item"><a href="#bsv_6kd-1" class="nav-link intrnllnk">Achieving Efficiency When Editing a scatteredInterpolant</a></li><li class="nav-item"><a href="#bspy6dx-1" class="nav-link intrnllnk">Interpolation Results Poor Near the Convex Hull</a></li></ul></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bsou4rj-1">Interpolating Scattered Data</h2><section><h3 class="title" id="bsp7tnf">Scattered Data</h3><p>Scattered data consists of a set of points <code class="literal">X</code> and
+corresponding values <code class="literal">V</code>, where the points have no
+structure or order between their relative locations.  There are various
+approaches to interpolating scattered data. One widely used approach
+uses a Delaunay triangulation of the points.</p><p class="shortdesc">This example shows how to construct an interpolating surface by triangulating the points and lifting the vertices by a magnitude <code class="literal">V</code> into a dimension orthogonal to <code class="literal">X</code>.</p><p>There are variations on how you can apply this approach. In this example, the interpolation is broken down into separate steps; typically, the overall interpolation process is accomplished with one function call.</p><p>Create a scattered data set on the surface of a paraboloid.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [-1.5 3.2; 1.8 3.3; -3.7 1.5; -1.5 1.3; <span style="color:#0000FF">...</span>
+      0.8 1.2; 3.3 1.5; -4.0 -1.0; -2.3 -0.7; 
+      0 -0.5; 2.0 -1.5; 3.7 -0.8; -3.5 -2.9; <span style="color:#0000FF">...</span>
+      -0.9 -3.9; 2.0 -3.5; 3.5 -2.25];
+V = X(:,1).^2 + X(:,2).^2;
+hold <span style="color:#A020F0">on</span>
+plot3(X(:,1),X(:,2),zeros(15,1), <span style="color:#A020F0">'*r'</span>)
+axis([-4, 4, -4, 4, 0, 25]);
+grid
+stem3(X(:,1),X(:,2),V,<span style="color:#A020F0">'^'</span>,<span style="color:#A020F0">'fill'</span>)
+hold <span style="color:#A020F0">off</span>
+view(322.5, 30);</pre></div></div></div><div class="informalfigure"><div id="d126e23092" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line, stem. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>Create a Delaunay triangulation, lift the vertices, and evaluate the interpolant at the query point <code class="literal">Xq</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(<span style="color:#A020F0">'Color'</span>, <span style="color:#A020F0">'white'</span>)
+t = delaunay(X(:,1),X(:,2));
+
+hold <span style="color:#A020F0">on</span>
+
+trimesh(t,X(:,1),X(:,2), zeros(15,1), <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'r'</span>, <span style="color:#A020F0">'FaceColor'</span>,<span style="color:#A020F0">'none'</span>)
+defaultFaceColor  = [0.6875 0.8750 0.8984];
+trisurf(t,X(:,1),X(:,2), V, <span style="color:#A020F0">'FaceColor'</span>, <span style="color:#0000FF">...</span>
+    defaultFaceColor, <span style="color:#A020F0">'FaceAlpha'</span>,0.9);
+plot3(X(:,1),X(:,2),zeros(15,1), <span style="color:#A020F0">'*r'</span>)
+axis([-4, 4, -4, 4, 0, 25]);
+grid
+plot3(-2.6,-2.6,0,<span style="color:#A020F0">'*b'</span>,<span style="color:#A020F0">'LineWidth'</span>, 1.6)
+plot3([-2.6 -2.6]',[-2.6 -2.6]',[0 13.52]',<span style="color:#A020F0">'-b'</span>,<span style="color:#A020F0">'LineWidth'</span>,1.6)
+hold <span style="color:#A020F0">off</span>
+
+view(322.5, 30);
+
+text(-2.0, -2.6, <span style="color:#A020F0">'Xq'</span>, <span style="color:#A020F0">'FontWeight'</span>, <span style="color:#A020F0">'bold'</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'HorizontalAlignment'</span>,<span style="color:#A020F0">'center'</span>, <span style="color:#A020F0">'BackgroundColor'</span>, <span style="color:#A020F0">'none'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23103" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object contains 6 objects of type patch, line, text. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>This step generally involves traversing of the triangulation data structure to find the triangle that encloses the query point. Once you find the point, the subsequent steps to compute the value depend on the interpolation method. You could compute the nearest point in the neighborhood and use the value at that point (the nearest-neighbor interpolation method). You could also compute the weighted sum of values of the three vertices of the enclosing triangle (the linear interpolation method). These methods and their variants are covered in texts and references on scattered data interpolation.</p><p>Though the illustration highlights 2-D interpolation, you can apply this technique to higher dimensions. In more general terms, given a set of points <code class="literal">X</code> and corresponding values <code class="literal">V</code>, you can construct an interpolant of the form <code class="literal">V = F(X)</code>. You can evaluate the interpolant at a query point <code class="literal">Xq</code>, to give <code class="literal">Vq = F(Xq)</code>. This is a single-valued function; for any query point <code class="literal">Xq</code> within the convex hull of <code class="literal">X</code>, it will produce a unique value <code class="literal">Vq</code>. The sample data is assumed to respect this property in order to produce a satisfactory interpolation.</p><p>MATLAB<sup>&#x00AE;</sup> provides two ways to perform triangulation-based
+scattered data interpolation:</p>
+<div class="itemizedlist"><ul><li><p>The functions <a href="../ref/griddata.html"><code class="function">griddata</code></a> and <a href="../ref/griddatan.html"><code class="function">griddatan</code></a></p></li><li><p>The <a href="../ref/scatteredinterpolant.html"><code class="object">scatteredInterpolant</code></a> class</p></li></ul></div><p>
+</p><p>The <code class="function">griddata</code> function supports 2-D scattered
+data interpolation. The <code class="function">griddatan</code> function supports
+scattered data interpolation in N-D; however, it is not practical
+in dimensions higher than 6-D for moderate to large point sets, due
+to the exponential growth in memory required by the underlying triangulation.</p><p>The <code class="class">scatteredInterpolant</code> class
+supports scattered data interpolation in 2-D and 3-D space. Use of
+this class is encouraged as it is more efficient and readily adapts
+to a wider range of interpolation problems.</p></section><section><h3 class="title" id="bsovi2t">Interpolating Scattered Data Using griddata and griddatan</h3><p>The <a href="../ref/griddata.html"><code class="function">griddata</code></a> and <a href="../ref/griddatan.html"><code class="function">griddatan</code></a> functions take a set of sample
+points, <code class="literal">X</code>, corresponding values, <code class="literal">V</code>,
+and query points, <code class="literal">Xq</code>, and return the interpolated
+values, <code class="literal">Vq</code>. The calling syntax is similar for each
+function; the primary distinction is the 2-D / 3&#8211;D <code class="function">griddata</code> function
+lets you define the points in terms of <code class="literal">X</code>, <code class="literal">Y</code> / <code class="literal">X</code>, <code class="literal">Y</code>, <code class="literal">Z</code> coordinates.
+These two functions interpolate scattered data at predefined grid-point
+locations; the intent is to produce gridded data, hence the name.
+Interpolation is more general in practice. You might want to query
+at arbitrary locations within the convex hull of the points.</p><p class="shortdesc">This example shows how the <code class="literal">griddata</code> function interpolates scattered data at a set of grid points and uses this gridded data to create a contour plot.</p><p>Plot the <code class="literal">seamount</code> data set (a <span class="emphasis"><em>seamount</em></span> is an underwater mountain). The data set consists of a set of longitude (<code class="literal">x</code>) and latitude (<code class="literal">y</code>) locations, and corresponding <code class="literal">seamount</code> elevations (<code class="literal">z</code>) measured at those coordinates.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">seamount</span>
+plot3(x,y,z,<span style="color:#A020F0">'.'</span>,<span style="color:#A020F0">'markersize'</span>,12)
+xlabel(<span style="color:#A020F0">'Longitude'</span>)
+ylabel(<span style="color:#A020F0">'Latitude'</span>)
+zlabel(<span style="color:#A020F0">'Depth in Feet'</span>)
+grid <span style="color:#A020F0">on</span></pre></div></div></div><div class="informalfigure"><div id="d126e23211" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingGriddataAndGriddatanExample_01.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains a line object which displays its values using only markers." width="560"></p></div></div><p>Use <code class="literal">meshgrid</code> to create a set of 2-D grid points in the longitude-latitude plane and then use <code class="literal">griddata</code> to interpolate the corresponding depth at those points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+[xi,yi] = meshgrid(210.8:0.01:211.8, -48.5:0.01:-47.9);
+zi = griddata(x,y,z,xi,yi);
+surf(xi,yi,zi);
+xlabel(<span style="color:#A020F0">'Longitude'</span>)
+ylabel(<span style="color:#A020F0">'Latitude'</span>)
+zlabel(<span style="color:#A020F0">'Depth in Feet'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23224" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingGriddataAndGriddatanExample_02.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains an object of type surface." width="560"></p></div></div><p>Now that the data is in a gridded format, compute and plot the contours.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+[c,h] = contour(xi,yi,zi);
+clabel(c,h);
+xlabel(<span style="color:#A020F0">'Longitude'</span>)
+ylabel(<span style="color:#A020F0">'Latitude'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23233" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingGriddataAndGriddatanExample_03.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains an object of type contour." width="560"></p></div></div><p>You can also use <code class="function">griddata</code> to interpolate
+at arbitrary locations within the convex hull of the dataset. For
+example, the depth at coordinates (211.3, -48.2) is given by:<div class="code_responsive"><pre class="programlisting">zi = griddata(x,y,z, 211.3, -48.2);</pre></div></p><p>The underlying triangulation is computed each time the <code class="function">griddata</code> function
+is called. This can impact performance if the same data set is interpolated
+repeatedly with different query points. The <a href="../ref/scatteredinterpolant.html"><code class="object">scatteredInterpolant</code></a> class described in <a href="interpolating-scattered-data.html#bsow6g6-1" class="intrnllnk">Interpolating Scattered Data Using the scatteredInterpolant Class</a> is
+more efficient in this respect.</p><p>MATLAB software also provides <code class="function">griddatan</code> to
+support interpolation in higher dimensions. The calling syntax is
+similar to <code class="function">griddata</code>.</p></section><section><h3 class="title" id="bt7o6f0">scatteredInterpolant Class</h3><p>The <a href="../ref/griddata.html"><code class="function">griddata</code></a> function
+is useful when you need to interpolate to find the values at a set
+of predefined grid-point locations. In practice, interpolation problems
+are often more general, and the <a href="../ref/scatteredinterpolant.html"><code class="object">scatteredInterpolant</code></a> class
+provides greater flexibility. The class has the following advantages:
+ </p>
+<div class="itemizedlist"><ul><li><p>It produces an interpolating function that can be
+queried efficiently. That is, the underlying triangulation is created
+once and reused for subsequent queries. </p></li><li><p>The interpolation method can be changed independently
+of the triangulation.</p></li><li><p>The values at the data points can be changed independently
+of the triangulation.</p></li><li><p>Data points can be incrementally added to the existing
+interpolant without triggering a complete recomputation. Data points
+can also be removed and moved efficiently, provided the number of
+points edited is small relative to the total number of sample points.</p></li><li><p>It provides extrapolation functionality for approximating
+values at points that fall outside the convex hull. See <a href="scattered-data-extrapolation.html" class="a">Extrapolating Scattered Data</a> for more information.</p></li></ul></div><p>
+</p><p><code class="class">scatteredInterpolant</code> provides
+the following interpolation methods:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">'nearest'</code> &#8212; Nearest-neighbor
+interpolation, where the interpolating surface is discontinuous.</p></li><li><p><code class="literal">'linear'</code> &#8212; Linear interpolation
+(default), where the interpolating surface is C0 continuous.</p></li><li><p><code class="literal">'natural'</code> &#8212; Natural-neighbor
+interpolation, where the interpolating surface is C1 continuous except
+at the sample points.</p></li></ul></div><p>
+</p><p>The <code class="class">scatteredInterpolant</code> class
+supports scattered data interpolation in 2-D and 3-D space. You can
+create the interpolant by calling <code class="class">scatteredInterpolant</code> and
+passing the point locations and corresponding values, and optionally
+the interpolation and extrapolation methods. See the <a href="../ref/scatteredinterpolant.html"><code class="object">scatteredInterpolant</code></a> reference
+page for more information about the syntaxes you can use to create
+and evaluate a <code class="class">scatteredInterpolant</code>.</p></section><section><h3 class="title" id="bsow6g6-1">Interpolating Scattered Data Using the scatteredInterpolant Class</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolating Scattered Data Using the scatteredInterpolant Class",
+          "description": "Use scatteredInterpolant to interpolate a scattered sampling of the peaks function.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_06.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "interpolating-scattered-data.html"
+
+        },
+          "identifier": "matlab.InterpolatingScatteredDataUsingTheScatteredInterpolantClExample",
+          "name": "InterpolatingScatteredDataUsingTheScatteredInterpolantClExample",
+          "url": "interpolating-scattered-data.html#bsow6g6-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolatingScatteredDataUsingTheScatteredInterpolantClExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolatingScatteredDataUsingTheScatteredInterpolantClExample"><meta itemprop="exampletitle" content="Interpolating Scattered Data Using the scatteredInterpolant Class"></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use <code class="literal">scatteredInterpolant</code> to interpolate a scattered sampling of the <code class="literal">peaks</code> function.</p><div class="procedure"><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-1" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-1"><b>Create the scattered data set.</b></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng <span style="color:#A020F0">default</span>;
+X = -3 + 6.*rand([250 2]);
+V = peaks(X(:,1),X(:,2));</pre></div></div></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-2" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-2"><b>Create the interpolant.</b></p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F = scatteredInterpolant(X,V)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>F = 
+  scatteredInterpolant with properties:
+
+                 Points: [250×2 double]
+                 Values: [250×1 double]
+                 Method: 'linear'
+    ExtrapolationMethod: 'linear'
+
+</pre></div></div></div><p>The <code class="literal">Points</code> property represents the coordinates of the data points, and the <code class="literal">Values</code> property represents the associated values. The <code class="literal">Method</code> property represents the interpolation method that performs the interpolation. The <code class="literal">ExtrapolationMethod</code> property represents the extrapolation method used when query points fall outside the convex hull.</p><p>You can access the properties of <code class="literal">F</code> in the same way you access the fields of a <code class="literal">struct</code>. For example, use <code class="literal">F.Points</code> to examine the coordinates of the data points.</p><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-3" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-3"><b>Evaluate the interpolant.</b></p><p><code class="literal">scatteredInterpolant</code> provides subscripted evaluation of the interpolant. It is evaluated the same way as a function. You can evaluate the interpolant as follows. In this case, the value at the query location is given by <code class="literal">Vq</code>. You can evaluate at a single query point:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F([1.5 1.25])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Vq = 
+1.4838
+</pre></div></div></div><p>You can also pass individual coordinates:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F(1.5, 1.25)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Vq = 
+1.4838
+</pre></div></div></div><p>You can evaluate at a vector of point locations:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Xq = [0.5 0.25; 0.75 0.35; 1.25 0.85];
+Vq = F(Xq)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Vq = <span class="emphasis"><em>3×1</em></span>
+
+    0.4057
+    1.2199
+    2.1639
+
+</pre></div></div></div><p>You can evaluate <code class="literal">F</code> at grid point locations and plot the result.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[Xq,Yq] = meshgrid(-2.5:0.125:2.5);
+Vq = F(Xq,Yq);
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);
+title(<span style="color:#A020F0">'Linear Interpolation Method'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23393" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_01.png" alt="Figure contains an axes object. The axes object with title Linear Interpolation Method, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-4" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-4"><b>Change the interpolation method.</b></p><p>You can change the interpolation method on the fly. Set the method to <code class="literal">'nearest'</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Method = <span style="color:#A020F0">'nearest'</span>;</pre></div></div></div><p>Reevaluate and plot the interpolant as before.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F(Xq,Yq);
+figure
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>),ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>) 
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+title(<span style="color:#A020F0">'Nearest neighbor Interpolation Method'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23409" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_02.png" alt="Figure contains an axes object. The axes object with title Nearest neighbor Interpolation Method, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><p>Change the interpolation method to natural neighbor, reevaluate, and plot the results.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Method = <span style="color:#A020F0">'natural'</span>;
+Vq = F(Xq,Yq);
+figure
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>),ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>) 
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+title(<span style="color:#A020F0">'Natural neighbor Interpolation Method'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23417" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_03.png" alt="Figure contains an axes object. The axes object with title Natural neighbor Interpolation Method, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-5" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-5"><b>Replace the values at the sample data locations.</b></p><p>You can change the values <code class="literal">V</code> at the sample data locations, <code class="literal">X</code>, on the fly. This is useful in practice as some interpolation problems may have multiple sets of values at the same locations. For example, suppose you want to interpolate a 3-D velocity field that is defined by locations (<code class="literal">x</code>, <code class="literal">y</code>, <code class="literal">z</code>) and corresponding componentized velocity vectors (<code class="literal">Vx</code>, <code class="literal">Vy</code>, <code class="literal">Vz</code>). You can interpolate each of the velocity components by assigning them to the values property (<code class="literal">V</code>) in turn. This has important performance benefits, because it allows you to reuse the same interpolant without incurring the overhead of computing a new one each time.</p><p>The following steps show how to change the values in our example. You will compute the values using the expression, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>v</mi><mo>=</mo><mi>x</mi><msup><mrow><mi>e</mi></mrow><mrow><mo>-</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>-</mo><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></msup></mrow></math></span>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>V = X(:,1).*exp(-X(:,1).^2-X(:,2).^2);
+F.Values = V;</pre></div></div></div><p>Evaluate the interpolant and plot the result.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F(Xq,Yq);
+figure
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>) 
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+title(<span style="color:#A020F0">'Natural neighbor interpolation of v = x.*exp(-x.^2-y.^2)'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23475" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_04.png" alt="Figure contains an axes object. The axes object with title Natural neighbor interpolation of v = blank x.*exp(-x. Squared baseline -y. Squared baseline ), xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-6" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-6"><b>Add additional point locations and values to the existing interpolant.</b></p><p>This performs an efficient update as opposed to a complete recomputation using the augmented data set.</p><p>When adding sample data, it is important to add both the point locations and the corresponding values.</p><p>Continuing the example, create new sample points as follows:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = -1.5 + 3.*rand(100,2);
+V = X(:,1).*exp(-X(:,1).^2-X(:,2).^2);</pre></div></div></div><p>Add the new points and corresponding values to the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Points(end+(1:100),:) = X;
+F.Values(end+(1:100)) = V;</pre></div></div></div><p>Evaluate the refined interpolant and plot the result.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F(Xq,Yq);
+figure
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23493" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_05.png" alt="Figure contains an axes object. The axes object with xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><span id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-7" class="anchor_target"></span><p class="title" id="InterpolatingScatteredDataUsingTheScatteredInterpolantClExample-7"><b>Remove data from the interpolant.</b></p><p>You can incrementally remove sample data points from the interpolant. You also can remove data points and corresponding values from the interpolant. This is useful for removing spurious outliers.</p><p>When removing sample data, it is important to remove both the point location and the corresponding value.</p><p>Remove the 25th point.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Points(25,:) = [];
+F.Values(25) = [];</pre></div></div></div><p>Remove points 5 to 15.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Points(5:15,:) = [];
+F.Values(5:15) = [];</pre></div></div></div><p>Retain 150 points and remove the rest.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F.Points(150:end,:) = [];
+F.Values(150:end) = [];</pre></div></div></div><p>This creates a coarser surface when you evaluate and plot:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vq = F(Xq,Yq);
+figure
+surf(Xq,Yq,Vq);
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);
+title(<span style="color:#A020F0">'Interpolation of v = x.*exp(-x.^2-y.^2) with sample points removed'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23515" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolatingScatteredDataUsingTheScatteredInterpolantClExample_06.png" alt="Figure contains an axes object. The axes object with title Interpolation of v = blank x.*exp(-x. Squared baseline -y. Squared baseline ) with sample points removed, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div></div></section><section><h3 class="title" id="btdzf16">Interpolation of Complex Scattered Data</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolationOfComplexScatteredDataExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation of Complex Scattered Data",
+          "description": "Interpolate scattered data when the value at each sample location is complex.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolationOfComplexScatteredDataExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "interpolating-scattered-data.html"
+
+        },
+          "identifier": "matlab.InterpolationOfComplexScatteredDataExample",
+          "name": "InterpolationOfComplexScatteredDataExample",
+          "url": "interpolating-scattered-data.html#btdzf16"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolationOfComplexScatteredDataExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolationOfComplexScatteredDataExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolationOfComplexScatteredDataExample"><meta itemprop="exampletitle" content="Interpolation of Complex Scattered Data"></div><span id="InterpolationOfComplexScatteredDataExample" class="anchor_target"></span><p class="shortdesc">This example shows how to interpolate scattered data when the value at each sample location is complex.</p><p>Create the sample data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>)
+X = -3 + 6*rand([250 2]);
+V = complex(X(:,1).*X(:,2), X(:,1).^2 + X(:,2).^2);</pre></div></div></div><p>Create the interpolant.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>F = scatteredInterpolant(X,V);</pre></div></div></div><p>Create a grid of query points and evaluate the interpolant at the grid points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[Xq,Yq] = meshgrid(-2.5:0.125:2.5);
+Vq = F(Xq,Yq);</pre></div></div></div><p>Plot the real component of <code class="literal">Vq</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>VqReal = real(Vq);
+figure
+surf(Xq,Yq,VqReal);
+xlabel(<span style="color:#A020F0">'X'</span>);
+ylabel(<span style="color:#A020F0">'Y'</span>);
+zlabel(<span style="color:#A020F0">'Real Value - V'</span>);
+title(<span style="color:#A020F0">'Real Component of Interpolated Value'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23555" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationOfComplexScatteredDataExample_01.png" alt="Figure contains an axes object. The axes object with title Real Component of Interpolated Value, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><p>Plot the imaginary component of <code class="literal">Vq</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>VqImag = imag(Vq);
+figure
+surf(Xq,Yq,VqImag);
+xlabel(<span style="color:#A020F0">'X'</span>);
+ylabel(<span style="color:#A020F0">'Y'</span>);
+zlabel(<span style="color:#A020F0">'Imaginary Value - V'</span>);
+title(<span style="color:#A020F0">'Imaginary Component of Interpolated Value'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23567" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationOfComplexScatteredDataExample_02.png" alt="Figure contains an axes object. The axes object with title Imaginary Component of Interpolated Value, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><div class="procedure"></div></section><section><h3 class="title" id="bsphz74-1">Addressing Problems in Scattered Data Interpolation</h3><p>Many of the illustrative examples in the previous sections dealt
+with the interpolation of point sets that were sampled on smooth surfaces.
+In addition, the points were relatively uniformly spaced. For example,
+clusters of points were not separated by relatively large distances.
+In addition, the interpolant was evaluated well within the convex
+hull of the point locations.</p><p>When dealing with real-world interpolation problems the data
+may be more challenging. It may come from measuring equipment that
+is likely to produce inaccurate readings or outliers. The underlying
+data may not vary smoothly, the values may jump abruptly from point
+to point.  This section provides you with some guidelines to identify
+and address problems with scattered data interpolation.</p><section><h4 class="title" id="bsph06v">Input Data Containing NaNs</h4><p>You should preprocess sample data that contains <code class="literal">NaN</code> values
+to remove the <code class="literal">NaN</code> values as this data cannot contribute
+to the interpolation. If a <code class="literal">NaN</code> is removed, the
+corresponding data values/coordinates should also be removed to ensure
+consistency. If <code class="literal">NaN</code> values are present in the sample
+data, the constructor will error when called. </p><p>The following example illustrates how to remove <code class="literal">NaN</code>s.</p><p>Create some data and replace some entries with <code class="literal">NaN</code>:<div class="code_responsive"><pre class="programlisting">x = rand(25,1)*4-2;
+y = rand(25,1)*4-2;
+V = x.^2 + y.^2;
+
+x(5) = NaN; x(10) = NaN; y(12) = NaN; V(14) = NaN;</pre></div>This
+code errors:<div class="code_responsive"><pre class="programlisting">F = scatteredInterpolant(x,y,V);</pre></div>Instead,
+find the sample point indices of the <code class="literal">NaN</code>s and then
+construct the interpolant:<div class="code_responsive"><pre class="programlisting">nan_flags = isnan(x) | isnan(y) | isnan(V);
+
+x(nan_flags) = [];
+y(nan_flags) = [];
+V(nan_flags) = [];
+
+F = scatteredInterpolant(x,y,V);</pre></div>The following example
+is similar if the point locations are in matrix form. First, create
+data and replace some entries with <code class="literal">NaN</code> values.<div class="code_responsive"><pre class="programlisting">X = rand(25,2)*4-2;
+V = X(:,1).^2 + X(:,2).^2;
+
+X(5,1) = NaN; X(10,1) = NaN; X(12,2) = NaN; V(14) = NaN;</pre></div>This
+code errors:<div class="code_responsive"><pre class="programlisting">F = scatteredInterpolant(X,V);</pre></div>Find
+the sample point indices of the NaN and then construct the interpolant:<div class="code_responsive"><pre class="programlisting">nan_flags = isnan(X(:,1)) | isnan(X(:,2)) | isnan(V);
+
+X(nan_flags,:) = [];
+V(nan_flags) = [];
+
+F = scatteredInterpolant(X,V);</pre></div></p></section><section><h4 class="title" id="bsph0_u-1">Interpolant Outputs NaN Values</h4><p><a href="../ref/griddata.html"><code class="function">griddata</code></a> and <a href="../ref/griddatan.html"><code class="function">griddatan</code></a> return <code class="literal">NaN</code> values
+when you query points outside the convex hull using the <code class="literal">'linear'</code> or <code class="literal">'natural'</code> methods.
+However, you can expect numeric results if you query the same points
+using the <code class="literal">'nearest'</code> method. This is because the
+nearest neighbor to a query point exists both inside and outside the
+convex hull.</p><p>If you want to compute approximate values outside the convex
+hull, you should use <a href="../ref/scatteredinterpolant.html"><code class="object">scatteredInterpolant</code></a>.
+See <a href="scattered-data-extrapolation.html" class="a">Extrapolating Scattered Data</a> for
+more information.</p></section><section><h4 class="title" id="bspiel6-1">Handling Duplicate Point Locations</h4><p>Input data is rarely “perfect” and your application
+could have to handle duplicate data point locations. Two or more data
+points at the same location in your data set can have different corresponding
+values.  In this scenario, <code class="class">scatteredInterpolant</code> merges
+the points and computes the average of the corresponding values. This
+example shows how <code class="class">scatteredInterpolant</code> performs
+an interpolation on a data set with duplicate points.</p><div class="procedure"><ol type="1"><li><p>Create some sample data that lies on a planar surface:<div class="code_responsive"><pre class="programlisting">x = rand(100,1)*6-3;
+y = rand(100,1)*6-3;
+
+V = x + y;
+</pre></div></p></li><li><p>Introduce a duplicate point location by assigning the
+coordinates of point 50 to point 100:<div class="code_responsive"><pre class="programlisting">x(50) = x(100);
+y(50) = y(100);</pre></div></p></li><li><p>Create the interpolant. Notice that <code class="literal">F</code> contains
+99 unique data points:<div class="code_responsive"><pre class="programlisting">F = scatteredInterpolant(x,y,V)</pre></div></p></li><li><p>Check the value associated with the 50th point:<div class="code_responsive"><pre class="programlisting">F.Values(50)</pre></div></p></li></ol></div><p>This value is the average of the original 50th and 100th value,
+as these two data points have the same location:<div class="code_responsive"><pre class="programlisting">(V(50)+V(100))/2</pre></div>In
+this scenario the interpolant resolves the ambiguity in a reasonable
+manner. However in some instances, data points can be close rather
+than coincident, and the values at those locations can be different.</p><p>In some interpolation problems, multiple sets of sample values
+might correspond to the same locations. For example, a set of values
+might be recorded at the same locations at different periods in time.
+For efficiency, you can interpolate one set of readings and then replace
+the values to interpolate the next set.</p><p>Always use consistent data management when replacing values
+in the presence of duplicate point locations. Suppose you have two
+sets of values associated with the 100 data point locations and you
+would like to interpolate each set in turn by replacing the values.</p><div class="procedure"><ol type="1"><li><p>Consider two sets of values:<div class="code_responsive"><pre class="programlisting">V1 = x + 4*y;
+V2 = 3*x + 5*y
+</pre></div></p></li><li><p>Create the interpolant. <code class="class">scatteredInterpolant</code> merges
+the duplicate locations and the interpolant contains 99 unique sample
+points:<div class="code_responsive"><pre class="programlisting">F = scatteredInterpolant(x,y,V1)</pre></div>Replacing
+the values directly via <code class="literal">F.Values = V2</code> means assigning
+100 values to 99 samples. The context of the previous merge operation
+is lost; the number of sample locations will not match the number
+of sample values. The interpolant will require the inconsistency to
+be resolved to support queries.</p></li></ol></div><p>In this more complex scenario, it is necessary to remove the
+duplicates prior to creating and editing the interpolant. Use the <a href="../ref/double.unique.html"><code class="function">unique</code></a> function to find the indices of
+the unique points. <code class="function">unique</code> can also output arguments
+that identify the indices of the duplicate points.<div class="code_responsive"><pre class="programlisting">[~, I, ~] = unique([x y],'first','rows');
+I = sort(I);
+x = x(I);
+y = y(I);
+V1 = V1(I);
+V2 = V2(I);
+F = scatteredInterpolant(x,y,V1)</pre></div>Now you can use <code class="literal">F</code> to
+interpolate the first data set. Then you can replace the values to
+interpolate the second data set.<div class="code_responsive"><pre class="programlisting">F.Values = V2;</pre></div></p></section><section><h4 class="title" id="bsv_6kd-1">Achieving Efficiency When Editing a scatteredInterpolant</h4><p><code class="literal">scatteredInterpolant</code> allows you to edit the
+properties representing the sample values (<code class="literal">F.Values</code>)
+and the interpolation method (<code class="literal">F.Method</code>). Since
+these properties are independent of the underlying triangulation,
+the edits can be performed efficiently. However, like working with
+a large array, you should take care not to accidentally create unnecessary
+copies when editing the data. Copies are made when more than one variable
+references an array and that array is then edited.</p><p>A copy is not made in the following:<div class="code_responsive"><pre class="programlisting">A1 = magic(4)
+A1(4,4) = 11
+</pre></div>However, a copy is made in this scenario because
+the array is referenced by another variable. The arrays <code class="literal">A1</code> and <code class="literal">A2</code> can
+no longer share the same data once the edit is made:<div class="code_responsive"><pre class="programlisting">A1 = magic(4)
+A2 = A1
+A1(4,4) = 32</pre></div>Similarly, if you pass the array to a
+function and edit the array within that function, a deep copy may
+be made depending on how the data is managed. <code class="literal">scatteredInterpolant</code> contains
+data and it behaves like an array&#8212;in MATLAB language,
+it is called a value object. The MATLAB language is designed
+to give optimum performance when your application is structured into
+functions that reside in files. Prototyping at the command line may
+not yield the same level of performance.</p><p>The following example demonstrates this behavior, but it should
+be noted that performance gains in this example do not generalize
+to other functions in MATLAB.</p><p>This code does not produce optimal performance:<div class="code_responsive"><pre class="programlisting">x = rand(1000000,1)*4-2;
+y = rand(1000000,1)*4-2;
+z = x.*exp(-x.^2-y.^2);
+tic; F = scatteredInterpolant(x,y,z); toc
+tic; F.Values = 2*z; toc</pre></div>You can place the code in
+a function file to execute it more efficiently.</p><p>When MATLAB executes a program that is composed of functions
+that reside in files, it has a complete picture of the execution of
+the code; this allows MATLAB to optimize for performance. When
+you type the code at the command line, MATLAB cannot anticipate
+what you are going to type next, so it cannot perform the same level
+of optimization. Developing applications through the creation of reusable
+functions is general and recommended practice, and MATLAB will
+optimize the performance in this setting.</p></section><section><h4 class="title" id="bspy6dx-1">Interpolation Results Poor Near the Convex Hull</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolationResultsPoorNearTheConvexHullExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation Results Poor Near the Convex Hull",
+          "description": "The Delaunay triangulation is well suited to scattered data interpolation problems because it has favorable geometric properties that produce good results. These properties are:",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolationResultsPoorNearTheConvexHullExample_04.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "interpolating-scattered-data.html"
+
+        },
+          "identifier": "matlab.InterpolationResultsPoorNearTheConvexHullExample",
+          "name": "InterpolationResultsPoorNearTheConvexHullExample",
+          "url": "interpolating-scattered-data.html#bspy6dx-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolationResultsPoorNearTheConvexHullExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolationResultsPoorNearTheConvexHullExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolationResultsPoorNearTheConvexHullExample"><meta itemprop="exampletitle" content="Interpolation Results Poor Near the Convex Hull"></div><span id="InterpolationResultsPoorNearTheConvexHullExample" class="anchor_target"></span><p class="shortdesc">The Delaunay triangulation is well suited to scattered data interpolation problems because it has favorable geometric properties that produce good results. These properties are:</p><div class="itemizedlist"><ul><li><p>The rejection of sliver-shaped triangles/tetrahedra in favor of more equilateral-shaped ones.</p></li><li><p>The empty circumcircle property that implicitly defines a nearest-neighbor relation between the points.</p></li></ul></div><p>The empty circumcircle property ensures the interpolated values are influenced by sample points in the neighborhood of the query location. Despite these qualities, in some situations the distribution of the data points may lead to poor results and this typically happens near the convex hull of the sample data set. When the interpolation produces unexpected results, a plot of the sample data and underlying triangulation can often provide insight into the problem.</p><p>This example shows an interpolated surface that deteriorates near the boundary.</p><p>Create a sample data set that will exhibit problems near the boundary.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = 0.4*pi:0.02:0.6*pi;
+x1 = cos(t)';
+y1 = sin(t)'-1.02;
+x2 = x1;
+y2 = y1*(-1);
+x3 = linspace(-0.3,0.3,16)';
+y3 = zeros(16,1);
+x = [x1;x2;x3];
+y = [y1;y2;y3];</pre></div></div></div><p>Now lift these sample points onto the surface <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>z</mi><mo>=</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> and interpolate the surface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>z = x.^2 + y.^2;
+F = scatteredInterpolant(x,y,z);
+[xi,yi] = meshgrid(-0.3:.02:0.3, -0.0688:0.01:0.0688);
+zi = F(xi,yi);
+mesh(xi,yi,zi)
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>) 
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+title(<span style="color:#A020F0">'Interpolated Surface'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23800" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationResultsPoorNearTheConvexHullExample_01.png" alt="Figure contains an axes object. The axes object with title Interpolated Surface, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><p>The actual surface is:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>zi = xi.^2 + yi.^2;
+figure
+mesh(xi,yi,zi)
+title(<span style="color:#A020F0">'Actual Surface'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e23809" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationResultsPoorNearTheConvexHullExample_02.png" alt="Figure contains an axes object. The axes object with title Actual Surface contains an object of type surface." width="560"></p></div></div><p>To understand why the interpolating surface deteriorates near the boundary, it is helpful to look at the underlying triangulation:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dt = delaunayTriangulation(x,y);
+figure
+plot(x,y,<span style="color:#A020F0">'*r'</span>)
+axis <span style="color:#A020F0">equal</span>
+hold <span style="color:#A020F0">on</span>
+triplot(dt)
+plot(x1,y1,<span style="color:#A020F0">'-r'</span>)
+plot(x2,y2,<span style="color:#A020F0">'-r'</span>)
+title(<span style="color:#A020F0">'Triangulation Used to Create the Interpolant'</span>)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e23817" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationResultsPoorNearTheConvexHullExample_03.png" alt="Figure contains an axes object. The axes object with title Triangulation Used to Create the Interpolant contains 4 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>The triangles within the red boundaries are relatively well shaped; they are constructed from points that are in close proximity and the interpolation works well in this region. Outside the red boundary, the triangles are sliver-like and connect points that are remote from each other. There is not sufficient sampling to accurately capture the surface, so it is not surprising that the results in these regions are poor. In 3-D, visual inspection of the triangulation gets a bit trickier, but looking at the point distribution can often help illustrate potential problems.</p><p>The MATLAB&#174; 4 <code class="literal">griddata</code> method, <code class="literal">'v4'</code>, is not triangulation-based and is not affected by deterioration of the interpolation surface near the boundary.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[xi,yi] = meshgrid(-0.3:.02:0.3, -0.0688:0.01:0.0688);
+zi = griddata(x,y,z,xi,yi,<span style="color:#A020F0">'v4'</span>);
+mesh(xi,yi,zi)
+xlabel(<span style="color:#A020F0">'X'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>), ylabel(<span style="color:#A020F0">'Y'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+zlabel(<span style="color:#A020F0">'Value - V'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>)
+title(<span style="color:#A020F0">'Interpolated surface from griddata with v4 method'</span>,<span style="color:#A020F0">'fontweight'</span>,<span style="color:#A020F0">'b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e23831" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationResultsPoorNearTheConvexHullExample_04.png" alt="Figure contains an axes object. The axes object with title Interpolated surface from griddata with v4 method, xlabel X, ylabel Y contains an object of type surface." width="560"></p></div></div><p>The interpolated surface from <code class="literal">griddata</code> using the <code class="literal">'v4'</code> method corresponds to the expected actual surface.</p><div class="procedure"></div></section></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

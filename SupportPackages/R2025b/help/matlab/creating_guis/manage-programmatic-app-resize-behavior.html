@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Manage App Resize Behavior Programmatically</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../develop-apps-programmatically.html",
+          "name": "Develop Apps Programmatically"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "develop-apps-programmatically"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Manage the default automatic resizing behavior for programmatic apps."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../develop-apps-programmatically.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_f9a6ab69-acba-4d90-9e05-e852423494b0"><span itemprop="title">Develop Apps Programmatically</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Manage App Resize Behavior Programmatically</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_56681687-b9ae-4567-99a4-c2417fe54ff6" class="nav-link intrnllnk">Use a Grid Layout Manager</a><ul class="nav"><li class="nav-item"><a href="#mw_5815c647-8f01-48b4-9eb5-02a6f7293c86" class="nav-link intrnllnk">Example: Resizable App Using a Grid Layout Manager</a></li></ul></li><li class="nav-item"><a href="#mw_9d3862d6-2674-43f8-9f4b-d9f004531058" class="nav-link intrnllnk">Write Code to Manage Resize Behavior</a><ul class="nav"><li class="nav-item"><a href="#mw_81831a04-c39c-4804-80d4-fdd76d2421c1" class="nav-link intrnllnk">Example: Resizable App Using SizeChangedFcn</a></li></ul></li><li class="nav-item"><a href="#mw_a879c4f0-de58-4d40-9468-2e6bfb2acb1f" class="nav-link intrnllnk">Turn Off Resizing of Specific Components</a></li><li class="nav-item"><a href="#mw_5e6d8c34-9691-4429-b363-43dc5d334836" class="nav-link intrnllnk">Turn Off App Resizing Entirely</a></li><li class="nav-item"><a href="#d126e12442" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-apps-programmatically&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_203417e3-4ac5-41f2-be71-85d92132ba6a">Manage App Resize Behavior Programmatically</h2><span id="app-designer-uifigure-resize" class="anchor_target"></span><p>Apps created using the <a href="../ref/uifigure.html"><code class="function">uifigure</code></a> function are resizable by
+            default. The components reposition and resize automatically as the app user changes the
+            size of the window at run-time. </p><p>If you want more flexibility over how your app resizes, use one of these methods:</p>
+<div class="itemizedlist"><ul><li><p><a href="manage-programmatic-app-resize-behavior.html#mw_56681687-b9ae-4567-99a4-c2417fe54ff6" class="intrnllnk">Use a Grid Layout Manager</a> &#8212;
+                        Add components to a grid, and specify how the rows and columns of the grid
+                        resize.</p></li><li><p><a href="manage-programmatic-app-resize-behavior.html#mw_9d3862d6-2674-43f8-9f4b-d9f004531058" class="intrnllnk">Write Code to Manage Resize Behavior</a> &#8212;
+                        Write a <code class="property">SizeChangedFcn</code> callback that resizes UI
+                        components. The callback executes whenever the figure window size
+                        changes.</p></li><li><p><a href="manage-programmatic-app-resize-behavior.html#mw_a879c4f0-de58-4d40-9468-2e6bfb2acb1f" class="intrnllnk">Turn Off Resizing of Specific Components</a> &#8212;
+                        Specify the <code class="property">AutoResizeChildren</code> property of specific
+                        containers in your app.</p></li><li><p><a href="manage-programmatic-app-resize-behavior.html#mw_5e6d8c34-9691-4429-b363-43dc5d334836" class="intrnllnk">Turn Off App Resizing Entirely</a> &#8212;
+                        Set the <code class="property">Resize</code> property of the figure to
+                            <code class="literal">'off'</code>.</p></li></ul></div><p>
+</p><section><h3 class="title" id="mw_56681687-b9ae-4567-99a4-c2417fe54ff6">Use a Grid Layout Manager</h3><p>A grid layout manager is a container that allows you to lay out UI components in a
+                grid. You can configure grid layout managers to specify the initial layout and
+                resize behavior of the components in the grid. </p><p>Create a grid layout manager in a UI figure window by calling the <a href="../ref/uigridlayout.html"><code class="function">uigridlayout</code></a> function and specifying the figure as the first
+                argument. Set the <code class="property">RowHeight</code> and
+                    <code class="property">ColumnWidth</code> properties of the grid layout manager to
+                specify how each row and column behaves when the app user resizes the figure window.
+                Specify <code class="property">RowHeight</code> and <code class="property">ColumnWidth</code> as a
+                cell array with one value for each row or column. There are three different types of
+                row heights and column widths:</p>
+<div class="itemizedlist"><ul><li><p>Fit size &#8212; Specify <code class="literal">'fit'</code>. The row height or column
+                            width is fixed to automatically fit its contents. The dimension does not
+                            change when the app is resized.</p></li><li><p>Fixed size &#8212; Specify a number in pixels. The row height or column
+                            width is fixed at the number of pixels you specify. The dimension does
+                            not changed when the app is resized.</p></li><li><p>Variable size &#8212; Specify a number paired with an <code class="literal">'x'</code>
+                            character (for example, <code class="literal">'1x'</code>). Variable-height rows
+                            fill the remaining vertical space that the fixed-height rows do not use,
+                            and variable-width columns fill the remaining horizontal space that
+                            fixed-width rows do not use. The number you pair with the
+                                <code class="literal">'x'</code> character is a weight for dividing up the
+                            remaining space, where the amount of space is proportional to the
+                            number. For instance, if one row has a width of <code class="literal">'2x'</code>
+                            and another has a width of <code class="literal">'1x'</code>, the first row grows
+                            or shrinks twice as much as the second when the app is resized.</p></li></ul></div><p>
+</p><p>For example, this code creates a grid layout manager with four rows. The height of
+                the first row is sized to fit its content, the second row is fixed at 200 pixels,
+                and the last two rows share the remaining vertical space unequally. The third row
+                uses twice as much space as the fourth row.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+gl = uigridlayout(fig,[4 1]);
+gl.RowHeight = {<span style="color:#A020F0">'fit'</span>,200,<span style="color:#A020F0">'2x'</span>,<span style="color:#A020F0">'1x'</span>};</pre></div></div></div><p>For more information about laying out apps using a grid layout manager, see <a href="lay-out-apps-programmatically.html" class="a">Lay Out Apps Programmatically</a>.</p><section><h4 class="title" id="mw_5815c647-8f01-48b4-9eb5-02a6f7293c86">Example: Resizable App Using a Grid Layout Manager</h4><p>This example demonstrates how to configure a grid layout manager to specify
+                    app resize behavior. The app contains a drop-down, a list box, and a table with
+                    some data. Create a UI figure window with a 3-by-2 grid layout. Then, create the
+                    UI components and add them to the grid layout by specifying the
+                        <code class="literal">Layout.Row</code> and <code class="literal">Layout.Column</code>
+                    properties.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+gl = uigridlayout(fig,[3 2]);
+
+dd = uidropdown(gl);
+dd.Layout.Row = 1;
+dd.Layout.Column = 1;
+
+lb = uilistbox(gl);
+lb.Layout.Row = 2;
+lb.Layout.Column = 1;
+
+tbl = uitable(gl);
+tbl.Data = rand(100);
+tbl.Layout.Row = [1 3];
+tbl.Layout.Column = 2;</pre></div></div></div><p>Configure the app layout and resize behavior by setting the
+                        <code class="property">RowHeight</code> and <code class="property">ColumnWidth</code>
+                    properties of the grid layout manager:</p>
+<div class="itemizedlist"><ul><li><p>Specify <code class="literal">'fit'</code> for the first row. This
+                                automatically adjusts the row height to fit the height of the
+                                drop-down.</p></li><li><p>Specify a height of 80 pixels for the second row. This fixes the
+                                list box height when the app is resized.</p></li><li><p>Specify a height of <code class="literal">'1x'</code> for the third row.
+                                This fills the remaining vertical space.</p></li><li><p>Specify a width of <code class="literal">'1x'</code> for the first column
+                                and <code class="literal">'2x'</code> for the second. This ensures that all
+                                components resize horizontally, and the table always occupies twice
+                                as much horizontal space as the other components.</p></li></ul></div><p>
+</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gl.RowHeight = {<span style="color:#A020F0">'fit'</span>,80,<span style="color:#A020F0">'1x'</span>};
+gl.ColumnWidth = {<span style="color:#A020F0">'1x'</span>,<span style="color:#A020F0">'2x'</span>};</pre></div></div></div><div class="informalfigure"><div id="d126e12204" class="mediaobject"><p><img src="pr_resize_gridlayout1.png" alt="UI figure window with two columns. The first column is half as wide as the second, and contains a drop-down above a list box. The second column contains a table that fills the entire vertical space of the figure window." height="452" width="562"></p></div></div><p>Resize the figure window by dragging one of the window corners. The UI
+                    components resize according to the grid layout specifications.</p><div class="informalfigure"><div id="d126e12210" class="mediaobject"><p><img src="pr_resize_gridlayout2.png" alt="Resized UI figure window. The first column is half as wide as the second, and the drop-down and list box have not changed height. The table fills the entire vertical space of the figure window." height="201" width="488"></p></div></div></section></section><section><h3 class="title" id="mw_9d3862d6-2674-43f8-9f4b-d9f004531058">Write Code to Manage Resize Behavior</h3><p>When you want to provide resize behavior that the grid layout manager does not
+                support, consider managing your app layout using <code class="property">SizeChangedFcn</code>
+                callbacks. For example, use this method if you want to:</p><div class="itemizedlist"><ul><li><p>Resize a component up to a minimum or maximum size that you define.</p></li><li><p>Implement non-linear resize behaviors.</p></li></ul></div><p>To specify resize behavior in this way, follow these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Write callback functions for each container in your app to manage the
+                            layout of its children when the window size changes.</p></li><li><p>Turn off automatic resizing by setting the
+                                <code class="property">AutoResizeChildren</code> property of each container
+                            to <code class="literal">'off'</code>. This step is required because the
+                                <code class="property">SizeChangedFcn</code> callback for a container does
+                            not execute when the <code class="property">AutoResizeChildren</code> property is
+                                <code class="literal">'on'</code>.</p></li><li><p>Set the <code class="property">SizeChangedFcn</code> property of each container
+                            to a handle to the appropriate callback function.</p></li></ol></div><p>
+It is a good practice to put all the layout code for each container
+                inside the <code class="argument">SizeChangedFcn</code> callback to ensure the most accurate
+                results.</p><p>The <code class="property">SizeChangedFcn</code> callback executes when one of these happens:</p>
+<div class="itemizedlist"><ul><li><p>The container becomes visible for the first time.</p></li><li><p>The container is visible while its size changes.</p></li><li><p>The container becomes visible for the first time after its size
+                            changes. This occurs when the size changes while the container is
+                            invisible, and then it becomes visible later.</p></li></ul></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>It is a good practice to delay the display of the container until after all
+                    the variables that the <code class="property">SizeChangedFcn</code> uses are defined.
+                    This practice can prevent the <code class="property">SizeChangedFcn</code> callback from
+                    returning an error. To delay the display of the container, set its
+                        <code class="property">Visible</code> property to <code class="literal">'off'</code>. Then, set
+                    the <code class="property">Visible</code> property to <code class="literal">'on'</code> after you
+                    define the variables that your <code class="property">SizeChangedFcn</code> callback
+                    uses.</p></div><section><h4 class="title" id="mw_81831a04-c39c-4804-80d4-fdd76d2421c1">Example: Resizable App Using <code class="property">SizeChangedFcn</code></h4><p>This example demonstrates how to create an app that uses custom resize logic
+                    to manage the size of toggle buttons within a button group, and to fix the
+                    aspect ratio of a set of axes. Create a file named
+                        <code class="literal">sizeChangedApp.m</code> in your current folder, and define the
+                    main <code class="literal">sizeChangedApp</code> function at the top of the file. </p><p>Write a helper function named <code class="literal">createComponents</code> to create
+                    the figure and UI components, and store the UI components in the
+                        <code class="property">UserData</code> of the figure. This allows you to access your
+                    app data within the figure <code class="argument">SizeChangedFcn</code> callback
+                    function. For more information about sharing app data, see <a href="share-data-among-callbacks.html" class="a">Share Data Among Callbacks</a>.</p><p>Call the <code class="literal">createComponents</code> function in your main app
+                    function, and then make the figure window visible.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> sizeChangedApp
+  fig = createComponents;
+  fig.Visible = <span style="color:#A020F0">'on'</span>;
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Create UI components</span>
+<span style="color:#0000FF">function</span> fig = createComponents
+  fig = uifigure(<span style="color:#A020F0">'Visible'</span>,<span style="color:#A020F0">'off'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'AutoResizeChildren'</span>,<span style="color:#A020F0">'off'</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'SizeChangedFcn'</span>,@figResize);
+  btngrp = uibuttongroup(fig, <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'AutoResizeChildren'</span>,<span style="color:#A020F0">'off'</span>, <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'SizeChangedFcn'</span>,@bgResize);
+  btn1 = uitogglebutton(btngrp);
+  btn2 = uitogglebutton(btngrp);
+  ax = uiaxes(fig);
+  
+  <span style="color:#228B22">% Store components</span>
+  fig.UserData = struct(<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'ButtonGroup'</span>,btngrp, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Button1'</span>,btn1, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Button2'</span>,btn2, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Axes'</span>,ax);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Then, write one <code class="property">SizeChangedFcn</code> resize function for the
+                    figure window and another one for the button group. Each function manages the
+                    resize behavior of its immediate children. </p><p>For the figure window, write a callback named <code class="literal">figResize</code> to
+                    manage the location and size of the <code class="literal">ButtonGroup</code> and
+                        <code class="literal">Axes</code> objects whenever the user resizes the window:</p>
+<div class="itemizedlist"><ul><li><p>Position the button group to span the entire left half of the
+                                figure.</p></li><li><p>Position the axes to maintain a square aspect ratio and a position
+                                in the center of the right half of the figure:</p>
+<div class="itemizedlist"><ul><li><p>Set the width and height of the
+                                                <code class="literal">Axes</code> object to be the same, with
+                                            the number of pixels given by <code class="literal">axdim</code>.
+                                            The value of <code class="literal">axdim</code> is the value that
+                                            fills the right half of the figure to its fullest,
+                                            allowing for 10 pixels of space on each size of the axes
+                                            and subject to the constraint that the axes remains
+                                            square. The command <code class="literal">axdim =
+                                                max(axdim,0)</code> ensures the dimensions of the
+                                            axes are never negative.</p></li><li><p>Set the left edge of the axes,
+                                                <code class="literal">axleft</code>, so that the axes is
+                                            horizontally centered in the right half of the
+                                            figure.</p></li><li><p>Set the bottom edge of the axes,
+                                                <code class="literal">axbottom</code>, so that the axes is
+                                            vertically centered in the figure.</p></li></ul></div><p>
+</p></li></ul></div><p>
+</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> figResize(src,event)
+  <span style="color:#228B22">% Get UserData to access components</span>
+  data = src.UserData;
+  
+  <span style="color:#228B22">% Get figure size</span>
+  figwidth = src.Position(3);
+  figheight = src.Position(4);
+  
+  <span style="color:#228B22">% Resize button group</span>
+  data.ButtonGroup.Position = [1 1 figwidth/2 figheight];
+  
+  <span style="color:#228B22">% Resize axes</span>
+  axdim = min(figwidth/2,figheight) - 20;
+  axdim = max(axdim,0);
+  axleft = figwidth/2 + (figwidth/2-axdim)/2;
+  axbottom = (figheight-axdim)/2;
+  data.Axes.Position = [axleft axbottom axdim axdim];
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For the button group, write a callback named <code class="literal">bgResize</code> to
+                    manage the location and size of the <code class="literal">ToggleButton</code> objects.
+                    This callback is executed whenever the <code class="literal">ButtonGroup</code> object
+                    changes size, which occurs whenever the user resizes the figure window. In this
+                    function, position the two toggle buttons relative to the size of the
+                        <code class="literal">ButtonGroup</code> object:</p>
+<div class="itemizedlist"><ul><li><p>Set the left edge and width of each toggle button,
+                                    <code class="literal">btnleft</code> and <code class="literal">btnwidth</code>, to
+                                allow for 20 pixels of space between the button edges and the
+                                container edges on both the left and the right side.</p></li><li><p>Set the height of each toggle button,
+                                <code class="literal">btnheight</code>, to 1/6 the height of the button
+                                group.</p></li><li><p>Set the bottom of each toggle button,
+                                    <code class="literal">btn1bottom</code> and <code class="literal">btn2bottom</code>,
+                                so that the space above the top button and below the bottom button
+                                is 1/4 the height of the button group.</p></li></ul></div><p>
+</p><p>This is the code for the
+                    app:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> bgResize(src,event)
+  <span style="color:#228B22">% Get UserData to access components</span>
+  fig = ancestor(src,<span style="color:#A020F0">'figure'</span>,<span style="color:#A020F0">'toplevel'</span>);
+  data = fig.UserData;
+  
+  <span style="color:#228B22">% Get button group size</span>
+  bgwidth = src.Position(3);
+  bgheight = src.Position(4);
+  
+  <span style="color:#228B22">% Resize button group</span>
+  btnleft = 20;
+  btn1bottom = bgheight/4;
+  btn2bottom = (7/12)*bgheight;
+  btnwidth = bgwidth-40;
+  btnheight = bgheight/6;
+  data.Button1.Position = [btnleft btn1bottom btnwidth btnheight];
+  data.Button2.Position = [btnleft btn2bottom btnwidth btnheight];
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>Run the app, and then resize the figure window. The components in the app
+                    resize relative to the size of the figure window.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sizeChangedApp</pre></div></div></div><div class="informalfigure"><div id="d126e12387" class="mediaobject"><p><img src="pr_resize_sizechanged.png" alt="Two figure window of different sizes. The UI component scale in proportion to the window size." height="320" width="1174"></p></div></div></section></section><section><h3 class="title" id="mw_a879c4f0-de58-4d40-9468-2e6bfb2acb1f">Turn Off Resizing of Specific Components</h3><p>The <code class="property">AutoResizeChildren</code> property controls automatic resize
+                behavior for apps without a grid layout manager or a
+                    <code class="property">SizeChangedFcn</code> callback. Every app container, such as a UI
+                figure, panel, or tab, has an <code class="property">AutoResizeChildren</code> property,
+                which is set to <code class="literal">'on'</code> by default. When a container has
+                    <code class="property">AutoResizeChildren</code> set to <code class="literal">'on'</code>, the app
+                automatically resizes the children of that container when the app user resizes the
+                figure window. Use this property to selectively turn off resizing for specific components:</p>
+<div class="itemizedlist"><ul><li><p>To turn off automatic resizing entirely, set
+                                <code class="property">AutoResizeChildren</code> of the main figure window to
+                                <code class="literal">'off'</code>.</p></li><li><p>To turn off automatic resizing for specific components, parent those
+                            components to a container with <code class="property">AutoResizeChildren</code>
+                            set to <code class="literal">'off'</code>.</p></li></ul></div><p>
+When you change the <code class="property">AutoResizeChildren</code> property
+                of both a parent container and one of its children, first set the value for the
+                parent container, then set it for the child container.</p></section><section><h3 class="title" id="mw_5e6d8c34-9691-4429-b363-43dc5d334836">Turn Off App Resizing Entirely</h3><p>The <code class="property">Resize</code> property of a figure window controls whether the
+                app user can interactively resize the window. The default value of
+                    <code class="property">Resize</code> is <code class="literal">'on'</code>. Consider setting
+                    <code class="property">Resize</code> to <code class="literal">'off'</code> if a consistent window
+                size is important to the layout or behavior of your app.</p></section>
+            <h2 id="d126e12442">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/uifigure.html"><span itemprop="name"><code class="function">uifigure</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/uigridlayout.html"><span itemprop="name"><code class="function">uigridlayout</code></span></a></span></p>
+            <h3 id="d126e12451">Topics</h3><ul class="list-unstyled"><li><a href="write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a></li><li><a href="lay-out-apps-programmatically.html" class="a">Lay Out Apps Programmatically</a></li><li><a href="managing-resizable-apps-in-app-designer.html" class="a">Manage Resizable Apps in App Designer</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

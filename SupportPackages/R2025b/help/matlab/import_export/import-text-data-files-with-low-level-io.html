@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Import Text Data Files with Low-Level I/O</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../low-level-file-i-o.html",
+          "name": "Low-Level File I/O"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "low-level-file-i-o"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read data from text files at the character level using low-level I/O functions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../low-level-file-i-o.html?s_tid=CRUX_lftnav" itemprop="url" id="lowlevel-file-io"><span itemprop="title">Low-Level File I/O</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Import Text Data Files with Low-Level I/O</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#btikkmd" class="nav-link intrnllnk">Overview</a></li><li class="nav-item"><a href="#f5-6432" class="nav-link intrnllnk">Reading Data in a Formatted Pattern</a><ul class="nav"><li class="nav-item"><a href="#br6jg9u-1" class="nav-link intrnllnk">Opening the File</a></li><li class="nav-item"><a href="#br6jha7-1" class="nav-link intrnllnk">Describing the Data</a></li><li class="nav-item"><a href="#br6t2kx" class="nav-link intrnllnk">Specifying the Number of Values to Read</a></li><li class="nav-item"><a href="#br6jheq-1" class="nav-link intrnllnk">Creating Variables in the Workspace</a></li></ul></li><li class="nav-item"><a href="#f5-6402" class="nav-link intrnllnk">Reading Data Line-by-Line</a></li><li class="nav-item"><a href="#br4lu0d" class="nav-link intrnllnk">Testing for End of File (EOF)</a><ul class="nav"><li class="nav-item"><a href="#br4s67b" class="nav-link intrnllnk">Testing for EOF with feof</a></li><li class="nav-item"><a href="#br4ssin" class="nav-link intrnllnk">Testing for EOF with fgetl and fgets</a></li></ul></li><li class="nav-item"><a href="#br4sz4c" class="nav-link intrnllnk">Opening Files with Different Character Encodings</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="br5_i4d">Import Text Data Files with Low-Level I/O</h2><section><h3 class="title" id="btikkmd">Overview</h3><p><span class="emphasis"><em>Low-level file I/O functions</em></span> allow the most control over
+                reading or writing data to a file. However, these functions require that you specify
+                more detailed information about your file than the easier-to-use
+                    <span class="emphasis"><em>high-level functions</em></span>, such as
+                <code class="literal">importdata</code>. For more information on the high-level functions that
+                read text files, see <a href="ways-to-import-text-files.html" class="a">Import Text Files</a>.</p><p>If the high-level functions cannot import your data, use one of the
+                following:</p><div class="itemizedlist"><ul><li><p><code class="literal">fscanf</code>, which reads formatted data in a text or ASCII
+                        file; that is, a file you can view in a text editor. For more information,
+                        see <a href="import-text-data-files-with-low-level-io.html#f5-6432" class="intrnllnk">Reading Data in a Formatted Pattern</a>.</p></li><li><p><code class="literal">fgetl</code> and <code class="literal">fgets</code>, which read one line
+                        of a file at a time, where a newline character separates each line. For more
+                        information, see <a href="import-text-data-files-with-low-level-io.html#f5-6402" class="intrnllnk">Reading Data Line-by-Line</a>.</p></li><li><p><code class="literal">fread</code>, which reads a stream of data at the byte or bit
+                        level. For more information, see <a href="importing-binary-data-with-low-level-i-o.html" class="a">Import Binary Data with Low-Level I/O</a>.</p></li></ul></div><p>For additional information, see:</p><div class="itemizedlist"><ul><li><p><a href="import-text-data-files-with-low-level-io.html#br4lu0d" class="intrnllnk">Testing for End of File (EOF)</a></p></li><li><p><a href="import-text-data-files-with-low-level-io.html#br4sz4c" class="intrnllnk">Opening Files with Different Character Encodings</a></p></li></ul></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The low-level file I/O functions are based on functions in the ANSI<sup>&#x00AE;</sup> Standard C Library. However, MATLAB<sup>&#x00AE;</sup> includes <span class="emphasis"><em>vectorized</em></span> versions of the
+                    functions, to read and write data in an array with minimal control loops.</p></div></section><section><h3 class="title" id="f5-6432">Reading Data in a Formatted Pattern</h3><a class="indexterm" name="d126e6724"></a><a class="indexterm" name="d126e6727"></a><a class="indexterm" name="d126e6731"></a><p>To import text files that <code class="literal">importdata</code> and
+                    <code class="literal">textscan</code> cannot read, consider using
+                    <code class="literal">fscanf</code>. The <code class="literal">fscanf</code> function requires that
+                you describe the format of your file, but includes many options for this format
+                description.</p><p>For example, create a text file <code class="literal">mymeas.dat</code> as shown. The data
+                in <code class="literal">mymeas.dat</code> includes repeated sets of times, dates, and
+                measurements. The header text includes the number of sets of measurements,
+                    <code class="literal">N</code>:</p><div class="code_responsive"><pre class="programlisting">Measurement Data
+N=3
+
+12:00:00
+01-Jan-1977
+4.21  6.55  6.78  6.55
+9.15  0.35  7.57  NaN
+7.92  8.49  7.43  7.06
+9.59  9.33  3.92  0.31
+09:10:02
+23-Aug-1990
+2.76  6.94  4.38  1.86
+0.46  3.17  NaN   4.89
+0.97  9.50  7.65  4.45
+8.23  0.34  7.95  6.46
+15:03:40
+15-Apr-2003
+7.09  6.55  9.59  7.51
+7.54  1.62  3.40  2.55
+NaN   1.19  5.85  5.05
+6.79  4.98  2.23  6.99</pre></div><section><h4 class="title" id="br6jg9u-1">Opening the File</h4><p>As with any of the low-level I/O functions, before reading, open the file with
+                        <a href="../ref/fopen.html"><code class="function">fopen</code></a>, and obtain a file
+                    identifier. By default, <code class="literal">fopen</code> opens files for read access,
+                    with a permission of <code class="literal">'r'</code>.</p><p>When you finish processing the file, close it with <a href="../ref/fclose.html"><code class="function">fclose</code></a><code class="literal">(<em class="replaceable"><code>fid</code></em>)</code>.</p></section><section><h4 class="title" id="br6jha7-1">Describing the Data</h4><p>Describe the data in the file with format specifiers, such as
+                        <code class="literal">'%s'</code> for text, <code class="literal">'%d'</code> for an integer, or
+                        <code class="literal">'%f'</code> for a floating-point number. (For a complete list of
+                    specifiers, see the <a href="../ref/fscanf.html"><code class="function">fscanf</code></a> reference page.)</p><p>To skip literal characters in the file, include them in the format
+                    description. To skip a data field, use an asterisk (<code class="literal">'*'</code>) in
+                    the specifier.</p><p>For example, consider the header lines of
+                    <code class="literal">mymeas.dat</code>:</p><div class="code_responsive"><pre class="programlisting">Measurement Data   % skip the first 2 words, go to next line:  %*s %*s\n
+N=3                % ignore 'N=', read integer:  N=%d\n
+                   % go to next line:  \n
+12:00:00
+01-Jan-1977
+4.21  6.55  6.78  6.55
+...</pre></div><p>To read the headers and return the single value for
+                    <code class="literal">N</code>:</p><div class="code_responsive"><pre class="programlisting">N = fscanf(fid, '%*s %*s\nN=%d\n\n', 1);
+</pre></div></section><section><h4 class="title" id="br6t2kx">Specifying the Number of Values to Read</h4><p>By default, <code class="literal">fscanf</code> reapplies your format description until
+                    it cannot match the description to the data, or it reaches the end of the
+                    file.</p><p>Optionally, specify the number of values to read, so that
+                        <code class="literal">fscanf</code> does not attempt to read the entire file. For
+                    example, in <code class="literal">mymeas.dat</code>, each set of measurements includes a
+                    fixed number of rows and columns:</p><div class="code_responsive"><pre class="programlisting">measrows = 4;
+meascols = 4;
+meas  = fscanf(fid, '%f', [measrows, meascols])';
+</pre></div></section><section><h4 class="title" id="br6jheq-1">Creating Variables in the Workspace</h4><p>There are several ways to store <code class="literal">mymeas.dat</code> in the
+                        MATLAB workspace. In this case, read the values into a structure. Each
+                    element of the structure has three fields: <code class="literal">mtime</code>,
+                        <code class="literal">mdate</code>, and <code class="literal">meas</code>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><code class="literal">fscanf</code> fills arrays with numeric values in column
+                        order. To make the output array match the orientation of numeric data in a
+                        file, transpose the array.</p></div><div class="code_responsive"><pre class="programlisting">filename = 'mymeas.dat';
+measrows = 4;
+meascols = 4;
+
+% open the file
+fid = fopen(filename);
+
+% read the file headers, find N (one value)
+N = fscanf(fid, '%*s %*s\nN=%d\n\n', 1);
+
+% read each set of measurements
+for n = 1:N
+    mystruct(n).mtime = fscanf(fid, '%s', 1);
+    mystruct(n).mdate = fscanf(fid, '%s', 1);
+
+    % fscanf fills the array in column order,
+    % so transpose the results
+    mystruct(n).meas  = ...
+      fscanf(fid, '%f', [measrows, meascols])';
+end
+
+% close the file
+fclose(fid);</pre></div></section></section><section><h3 class="title" id="f5-6402">Reading Data Line-by-Line</h3><p>MATLAB provides two functions that read lines from files and store them as
+                character vectors: <code class="literal">fgetl</code> and <code class="literal">fgets</code>. The
+                    <code class="literal">fgets</code> function copies the line along with the newline
+                character to the output, but <code class="literal">fgetl</code> does not.</p><p>The following example uses <code class="literal">fgetl</code> to read an entire file one
+                line at a time. The function <code class="literal">litcount</code> determines whether a given
+                character sequence (<code class="literal">literal</code>) appears in each line. If it does,
+                the function prints the entire line preceded by the number of times the literal
+                appears on the line.</p><div class="code_responsive"><pre class="programlisting">function y = litcount(filename, literal)
+% Count the number of times a given literal appears in each line.
+
+fid = fopen(filename);
+y = 0;
+tline = fgetl(fid);
+while ischar(tline)
+   matches = strfind(tline, literal);
+   num = length(matches);
+   if num &gt; 0
+      y = y + num;
+      fprintf(1,'%d:%s\n',num,tline);
+   end
+   tline = fgetl(fid);
+end
+fclose(fid);</pre></div><p>Create an input data file called <code class="literal">badpoem</code>:</p><div class="code_responsive"><pre class="programlisting">Oranges and lemons,
+Pineapples and tea.
+Orangutans and monkeys,
+Dragonflys or fleas.</pre></div><p>To find out how many times <code class="literal">'an'</code> appears in this file, call
+                    <code class="literal">litcount</code>:</p><div class="code_responsive"><pre class="programlisting">litcount('badpoem','an')
+</pre></div><p>This returns:</p><div class="code_responsive"><pre class="programlisting">2: Oranges and lemons,
+1: Pineapples and tea.
+3: Orangutans and monkeys,
+ans =
+     6</pre></div></section><section><h3 class="title" id="br4lu0d">Testing for End of File (EOF)</h3><a class="indexterm" name="d126e6873"></a><a class="indexterm" name="d126e6875"></a><p>When you read a portion of your data at a time, you can use
+                    <code class="function">feof</code> to check whether you have reached the end of the file.
+                    <code class="literal">feof</code> returns a value of <code class="literal">1</code> when the file
+                pointer is at the end of the file. Otherwise, it returns
+                <code class="literal">0</code>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Opening an empty file does <span class="emphasis"><em>not</em></span> move the file position
+                    indicator to the end of the file. Read operations, and the
+                        <code class="literal">fseek</code> and <code class="literal">frewind</code> functions, move the
+                    file position indicator.</p></div><section><h4 class="title" id="br4s67b">Testing for EOF with feof</h4><p>When you use <a href="../ref/textscan.html"><code class="function">textscan</code></a>, <a href="../ref/fscanf.html"><code class="function">fscanf</code></a>, or <a href="../ref/fread.html"><code class="function">fread</code></a> to read portions of data
+                    at a time, use <code class="function">feof</code> to check whether you have reached the
+                    end of the file.</p><p>For example, suppose that the hypothetical file <code class="literal">mymeas.dat</code>
+                    has the following form, with no information about the number of measurement
+                    sets. Read the data into a structure with fields for <code class="literal">mtime</code>,
+                        <code class="literal">mdate</code>, and <code class="literal">meas</code>:</p><div class="code_responsive"><pre class="programlisting">12:00:00
+01-Jan-1977
+4.21  6.55  6.78  6.55
+9.15  0.35  7.57  NaN
+7.92  8.49  7.43  7.06
+9.59  9.33  3.92  0.31
+09:10:02
+23-Aug-1990
+2.76  6.94  4.38  1.86
+0.46  3.17  NaN   4.89
+0.97  9.50  7.65  4.45
+8.23  0.34  7.95  6.46
+</pre></div><p>To read the file:</p><div class="code_responsive"><pre class="programlisting">filename = 'mymeas.dat';
+measrows = 4;
+meascols = 4;
+
+% open the file
+fid = fopen(filename);
+
+% make sure the file is not empty
+finfo = dir(filename);
+fsize = finfo.bytes;
+
+if fsize &gt; 0 
+
+    % read the file
+    block = 1;
+    while ~feof(fid)
+        mystruct(block).mtime = fscanf(fid, '%s', 1);
+        mystruct(block).mdate = fscanf(fid, '%s', 1);
+
+        % fscanf fills the array in column order,
+        % so transpose the results
+        mystruct(block).meas  = ...
+          fscanf(fid, '%f', [measrows, meascols])';
+
+        block = block + 1;
+    end
+
+end
+
+% close the file
+fclose(fid);</pre></div></section><section><h4 class="title" id="br4ssin">Testing for EOF with fgetl and fgets</h4><p>If you use <a href="../ref/fgetl.html"><code class="function">fgetl</code></a> or <a href="../ref/fgets.html"><code class="function">fgets</code></a> in a control loop,
+                        <code class="function">feof</code> is not always the best way to test for end of
+                    file. As an alternative, consider checking whether the value that
+                        <code class="function">fgetl</code> or <code class="function">fgets</code> returns is a
+                    character vector.</p><p>For example, the function <code class="literal">litcount</code> described in <a href="import-text-data-files-with-low-level-io.html#f5-6402" class="intrnllnk">Reading Data Line-by-Line</a> includes the following
+                        <code class="literal">while</code> loop and <code class="literal">fgetl</code> calls :</p><div class="code_responsive"><pre class="programlisting">y = 0;
+tline = fgetl(fid);
+while ischar(tline)
+   matches = strfind(tline, literal);
+   num = length(matches);
+   if num &gt; 0
+      y = y + num;
+      fprintf(1,'%d:%s\n',num,tline);
+   end
+   tline = fgetl(fid);
+end</pre></div><p>This approach is more robust than testing <code class="literal">~feof(fid)</code> for
+                    two reasons:</p><div class="itemizedlist"><ul><li><p>If <code class="function">fgetl</code> or <code class="function">fgets</code> find data,
+                            they return a character vector. Otherwise, they return a number
+                                (<code class="literal remove_text_wrapping">-1</code>).</p></li><li><p>After each read operation, <code class="function">fgetl</code> and
+                                <code class="function">fgets</code> check the next character in the file for
+                            the end-of-file marker. Therefore, these functions sometimes set the
+                            end-of-file indicator <span class="emphasis"><em>before</em></span> they return a value of
+                                <code class="literal remove_text_wrapping">-1</code>. For example, consider the following
+                            three-line text file. Each of the first two lines ends with a newline
+                            character, and the third line contains only the end-of-file
+                            marker:</p><div class="code_responsive"><pre class="programlisting">123
+456
+</pre></div><p>Three sequential calls to <code class="literal">fgetl</code> yield the following
+                            results:</p><div class="code_responsive"><pre class="programlisting">t1 = fgetl(fid);    % t1 = '123', feof(fid) = false
+t2 = fgetl(fid);    % t2 = '456', feof(fid) = true
+t3 = fgetl(fid);    % t3 = -1,    feof(fid) = true
+</pre></div><p>This behavior does not conform to the ANSI specifications for the related C language
+                            functions.</p></li></ul></div></section></section><section><h3 class="title" id="br4sz4c">Opening Files with Different Character Encodings</h3><p><span class="emphasis"><em>Encoding schemes</em></span> support the characters
+required for particular alphabets, such as those for Japanese or European
+languages. Common encoding schemes include US-ASCII or UTF-8.</p><p>If you do not specify an encoding scheme when opening a file for reading,
+            <code class="literal">fopen</code> uses auto character-set detection to determine the encoding. If
+        you do not specify an encoding scheme when opening a file for writing,
+            <code class="literal">fopen</code> defaults to using UTF-8 in order to provide interoperability
+        between all platforms and locales without data loss or corruption.</p><p> To determine the default, open a file, and call <code class="function">fopen</code> again with the
+        syntax:</p><div class="code_responsive"><pre class="programlisting">[<em class="replaceable">filename</em>, <em class="replaceable">permission</em>, <em class="replaceable">machineformat</em>, <em class="replaceable">encoding</em>] = fopen(<em class="replaceable">fid</em>);</pre></div><p>If you specify an encoding scheme when you open a file, the
+following functions apply that scheme: <code class="function">fscanf</code>, <code class="function">fprintf</code>, <code class="function">fgetl</code>, <code class="function">fgets</code>, <code class="literal">fread</code>,
+and <code class="literal">fwrite</code>.</p><p>For a complete list of supported encoding schemes, and the syntax
+for specifying the encoding, see the <a href="../ref/fopen.html"><code class="function">fopen</code></a> reference
+page.</p></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

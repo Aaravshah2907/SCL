@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Linear Regression</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../descriptive-statistics.html",
+          "name": "Descriptive Statistics"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "descriptive-statistics"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Least squares fitting is a common type of linear regression that is useful for modeling relationships within data."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../descriptive-statistics.html?s_tid=CRUX_lftnav" itemprop="url" id="bvfkb0n-1"><span itemprop="title">Descriptive Statistics</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Linear Regression</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bq42ad8" class="nav-link intrnllnk">Introduction</a></li><li class="nav-item"><a href="#buva8q5" class="nav-link intrnllnk">Simple Linear Regression</a></li><li class="nav-item"><a href="#f1-15010" class="nav-link intrnllnk">Residuals and Goodness of Fit</a><ul class="nav"><li class="nav-item"><a href="#bswj6xx" class="nav-link intrnllnk">Example: Computing R2 from Polynomial Fits</a></li><li class="nav-item"><a href="#bswinlz" class="nav-link intrnllnk">Computing Adjusted R2 for Polynomial Regressions</a></li></ul></li><li class="nav-item"><a href="#f1-16693" class="nav-link intrnllnk">Fitting Data with Curve Fitting Toolbox Functions</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=descriptive-statistics&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=descriptive-statistics&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=descriptive-statistics&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=descriptive-statistics&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=descriptive-statistics&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=descriptive-statistics&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f1-5937">Linear Regression</h2><section><h3 class="title" id="bq42ad8">Introduction</h3><p>A data <span class="emphasis"><em>model</em></span> explicitly describes a relationship between
+                    <em class="firstterm">predictor</em> and <em class="firstterm">response</em> variables.
+                Linear regression fits a data model that is linear in the model coefficients. The
+                most common type of linear regression is a <em class="firstterm">least-squares fit</em>,
+                which can fit both lines and polynomials, among other linear models.</p><p>Before you model the relationship between pairs of quantities, it is a good idea
+                to perform correlation analysis to establish if a linear relationship exists between
+                these quantities. Be aware that variables can have nonlinear relationships, which
+                correlation analysis cannot detect. For more information, see <a href="linear-correlation.html" class="a">Linear Correlation</a>.</p><p>The MATLAB<sup>&#x00AE;</sup> Basic Fitting UI helps you to fit your data, so you can calculate
+                model coefficients and plot the model on top of the data. For an example, see <a href="interactive-fitting.html#f1-8561" class="a">Example: Using Basic Fitting UI</a>. You also can use the
+                    MATLAB
+                <a href="../ref/polyfit.html"><code class="function">polyfit</code></a> and <a href="../ref/polyval.html"><code class="function">polyval</code></a> functions to fit your data
+                to a model that is linear in the coefficients. For an example, see <a href="programmatic-fitting.html#f1-7407" class="a">Programmatic Fitting</a>.</p><p>If you need to fit data with a nonlinear model, transform the variables to make
+                the relationship linear. Alternatively, try to fit a nonlinear function directly
+                using either the Statistics and Machine Learning Toolbox&#x2122;
+                <code class="function">nlinfit</code> function, the Optimization Toolbox&#x2122;
+                <code class="function">lsqcurvefit</code> function, or by applying functions in the
+                    Curve Fitting Toolbox&#x2122;. </p><p>This topic explains how to:</p><div class="itemizedlist"><ul><li><p>Perform simple linear regression using the <code class="function">\</code>
+                        operator.</p></li><li><p>Use correlation analysis to determine whether two quantities are related
+                        to justify fitting the data.</p></li><li><p>Fit a linear model to the data.</p></li><li><p>Evaluate the goodness of fit by plotting residuals and looking for
+                        patterns.</p></li><li><p>Calculate measures of goodness of fit R<sup>2</sup> and
+                        adjusted R<sup>2</sup></p></li></ul></div></section><section><h3 class="title" id="buva8q5">Simple Linear Regression</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/LinearRegressionShortExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Simple Linear Regression",
+          "description": "Perform simple linear regression using the accidents dataset. The example also shows you how to calculate the coefficient of determination R2 to evaluate the regressions. The accidents dataset contains data for fatal traffic accidents in US states.",
+          "thumbnailURL": "../../examples/matlab/win64/LinearRegressionShortExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "linear-regression.html"
+
+        },
+          "identifier": "matlab.LinearRegressionShortExample",
+          "name": "LinearRegressionShortExample",
+          "url": "linear-regression.html#buva8q5"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/LinearRegressionShortExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "LinearRegressionShortExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-LinearRegressionShortExample"><meta itemprop="exampletitle" content="Simple Linear Regression"></div><span id="LinearRegressionShortExample" class="anchor_target"></span><p class="shortdesc">This example shows how to perform simple linear regression using the <code class="literal">accidents</code> dataset. The example also shows you how to calculate the coefficient of determination <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> to evaluate the regressions. The <code class="literal">accidents</code> dataset contains data for fatal traffic accidents in US states. </p><p>Linear regression models the relation between a dependent, or response, variable <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> and one or more independent, or predictor, variables <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>,</mo><mo stretchy="false">.</mo><mo stretchy="false">.</mo><mo stretchy="false">.</mo><mo>,</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></math></span>. Simple linear regression considers only one independent variable using the relation</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi><mo>=</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>+</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>x</mi><mo>+</mo><mi>ϵ</mi><mo>,</mo></mrow></math></p></div><p></p><p>where <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math></span> is the y-intercept, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></math></span> is the slope (or regression coefficient), and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>ϵ</mi></mrow></math></span> is the error term.</p><p>Start with a set of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>n</mi></mrow></math></span> observed values of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>x</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> given by <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>,</mo><msub><mrow><mi>y</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math></span>, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>,</mo><msub><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math></span>, ..., <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mo stretchy="false">(</mo><msub><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></msub><mo>,</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>n</mi></mrow></msub><mo stretchy="false">)</mo></mrow></math></span>. Using the simple linear regression relation, these values form a system of linear equations. Represent these equations in matrix form as</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo>=</mo><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo stretchy="false">.</mo></mrow></math></p></div><p></p><p>Let</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>Y</mi><mo>=</mo><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>y</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo>,</mo><mi>X</mi><mo>=</mo><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd><mtd><mrow><mo>&#x22EE;</mo></mrow></mtd></mtr><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><msub><mrow><mi>x</mi></mrow><mrow><mi>n</mi></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo>,</mo><mi>B</mi><mo>=</mo><mrow><mo>[</mo><mtable columnalign="center"><mtr><mtd><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow></mtd></mtr></mtable><mo>]</mo></mrow><mo stretchy="false">.</mo></mrow></math></p></div><p></p><p>The relation is now <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>Y</mi><mo>=</mo><mi>X</mi><mi>B</mi></mrow></math></span>.</p><p>In MATLAB, you can find <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>B</mi></mrow></math></span> using the <a href="../ref/double.mldivide.html" data-docid="matlab_ref#btg5qam" class="a"><code class="olink">mldivide</code></a> operator as <code class="literal">B = X\Y</code>.</p><p>From the dataset <code class="literal">accidents</code>, load accident data in <code class="literal">y</code> and state population data in <code class="literal">x</code>. Find the linear regression relation <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi><mo>=</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>x</mi></mrow></math></span> between the accidents in a state and the population of a state using the <code class="literal">\</code> operator. The <code class="literal">\</code> operator performs a least-squares regression. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">accidents</span>
+x = hwydata(:,14); <span style="color:#228B22">%Population of states</span>
+y = hwydata(:,4); <span style="color:#228B22">%Accidents per state</span>
+format <span style="color:#A020F0">long</span>
+b1 = x\y</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b1 = 
+     1.372716735564871e-04
+
+</pre></div></div></div><p><code class="literal">b1</code> is the slope or regression coefficient. The linear relation is <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi><mo>=</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>x</mi><mo>=</mo><mn>0</mn><mo stretchy="false">.</mo><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>3</mn><mn>7</mn><mn>2</mn><mi>x</mi></mrow></math></span>.</p><p>Calculate the accidents per state <code class="literal">yCalc</code> from <code class="literal">x</code> using the relation. Visualize the regression by plotting the actual values <code class="literal">y</code> and the calculated values <code class="literal">yCalc</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>yCalc1 = b1*x;
+scatter(x,y)
+hold <span style="color:#A020F0">on</span>
+plot(x,yCalc1)
+xlabel(<span style="color:#A020F0">'Population of state'</span>)
+ylabel(<span style="color:#A020F0">'Fatal traffic accidents per state'</span>)
+title(<span style="color:#A020F0">'Linear Regression Relation Between Accidents &amp; Population'</span>)
+grid <span style="color:#A020F0">on</span></pre></div></div></div><div class="informalfigure"><div id="d126e3601" class="mediaobject"><p><img src="../../examples/matlab/win64/LinearRegressionShortExample_01.png" alt="Figure contains an axes object. The axes object with title Linear Regression Relation Between Accidents &amp; Population, xlabel Population of state, ylabel Fatal traffic accidents per state contains 2 objects of type scatter, line." width="560"></p></div></div><p>Improve the fit by including a y-intercept <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math></span> in your model as <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi><mo>=</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>+</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>x</mi></mrow></math></span>. Calculate <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math></span> by padding <code class="literal">x</code> with a column of ones and using the <code class="literal">\</code> operator. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = [ones(length(x),1) x];
+b = X\y</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b = <span class="emphasis"><em>2×1</em></span>
+10<sup>2</sup> ×
+
+   1.427120171726538
+   0.000001256394274
+
+</pre></div></div></div><p>This result represents the relation <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi><mo>=</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>0</mn></mrow></msub><mo>+</mo><msub><mrow><mi>β</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>x</mi><mo>=</mo><mn>1</mn><mn>4</mn><mn>2</mn><mo stretchy="false">.</mo><mn>7</mn><mn>1</mn><mn>2</mn><mn>0</mn><mo>+</mo><mn>0</mn><mo stretchy="false">.</mo><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>2</mn><mn>5</mn><mn>6</mn><mi>x</mi></mrow></math></span>.</p><p>Visualize the relation by plotting it on the same figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>yCalc2 = X*b;
+plot(x,yCalc2,<span style="color:#A020F0">'--'</span>)
+legend(<span style="color:#A020F0">'Data'</span>,<span style="color:#A020F0">'Slope'</span>,<span style="color:#A020F0">'Slope &amp; Intercept'</span>,<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'best'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e3704" class="mediaobject"><p><img src="../../examples/matlab/win64/LinearRegressionShortExample_02.png" alt="Figure contains an axes object. The axes object with title Linear Regression Relation Between Accidents &amp; Population, xlabel Population of state, ylabel Fatal traffic accidents per state contains 3 objects of type scatter, line. These objects represent Data, Slope, Slope &amp; Intercept." width="560"></p></div></div><p>From the figure, the two fits look similar. One method to find the better fit is to calculate the coefficient of determination, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span>. <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> is one measure of how well a model can predict the data, and falls between <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mn>0</mn></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mn>1</mn></mrow></math></span>. The higher the value of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span>, the better the model is at predicting the data.</p><p>Where <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><munderover accent="true"><mrow><mi>y</mi></mrow><mrow/><mrow><mo>ˆ</mo></mrow></munderover></mrow></math></span> represents the calculated values of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><munderover accent="true"><mrow><mi>y</mi></mrow><mrow/><mrow><mo stretchy="false">‾</mo></mrow></munderover></mrow></math></span> is the mean of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>y</mi></mrow></math></span>, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> is defined as</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>=</mo><mn>1</mn><mo>-</mo><mfrac><mrow><munderover><mrow><mo>∑</mo></mrow><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi></mrow></munderover><msup><mrow><mo>(</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>-</mo><msub><mrow><munderover accent="true"><mrow><mi>y</mi></mrow><mrow/><mrow><mo>ˆ</mo></mrow></munderover></mrow><mrow><mi>i</mi></mrow></msub><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow><mrow><munderover><mrow><mo>∑</mo></mrow><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi></mrow></munderover><msup><mrow><mo>(</mo><msub><mrow><mi>y</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>-</mo><munderover accent="true"><mrow><mi>y</mi></mrow><mrow/><mrow><mo stretchy="false">‾</mo></mrow></munderover><mo>)</mo></mrow><mrow><mn>2</mn></mrow></msup></mrow></mfrac><mo stretchy="false">.</mo></mrow></math></p></div><p></p><p>Find the better fit of the two fits by comparing values of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span>. As the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><msup><mrow><mi>R</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math></span> values show, the second fit that includes a y-intercept is better.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Rsq1 = 1 - sum((y - yCalc1).^2)/sum((y - mean(y)).^2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Rsq1 = 
+   0.822235650485566
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Rsq2 = 1 - sum((y - yCalc2).^2)/sum((y - mean(y)).^2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Rsq2 = 
+   0.838210531103428
+
+</pre></div></div></div><div class="procedure"></div></section><section><h3 class="title" id="f1-15010">Residuals and Goodness of Fit</h3><a class="indexterm" name="d126e3897"></a><a class="indexterm" name="d126e3900"></a><a class="indexterm" name="d126e3902"></a><p>Residuals are the difference between the <span class="emphasis"><em>observed</em></span> values of
+                the response (dependent) variable and the values that a model
+                    <span class="emphasis"><em>predicts</em></span>. When you fit a model that is appropriate for your
+                data, the residuals approximate independent random errors. That is, the distribution
+                of residuals ought not to exhibit a discernible pattern.</p><p>Producing a fit using a linear model requires minimizing the sum of the squares of
+                the residuals. This minimization yields what is called a least-squares fit. You can
+                gain insight into the “goodness” of a fit by visually examining a plot
+                of the residuals. If the residual plot has a pattern (that is, residual data points
+                do not appear to have a random scatter), the randomness indicates that the model
+                does not properly fit the data.</p><p>Evaluate each fit you make in the context of your data. For example, if your goal
+                of fitting the data is to extract coefficients that have physical meaning, then it
+                is important that your model reflect the physics of the data. Understanding what
+                your data represents, how it was measured, and how it is modeled is important when
+                evaluating the goodness of fit.</p><p>One measure of goodness of fit is the <em class="firstterm">coefficient of
+                    determination</em>, or R<sup>2</sup> (pronounced
+                r-square). This statistic indicates how closely values you obtain from fitting a
+                model match the dependent variable the model is intended to predict. Statisticians
+                often define R<sup>2</sup> using the residual variance from a fitted
+                model: <div itemprop="content"><p class="programlistingindent">R<sup>2</sup> = 1 &#8211; SS<sub>resid</sub> /
+                            SS<sub>total</sub>
+                    </p></div></p><p><em class="varname">SS<sub>resid</sub></em> is the sum of the squared
+                residuals from the regression. <em class="varname">SS<sub>total</sub></em> is
+                the sum of the squared differences from the mean of the dependent variable
+                    (<span class="emphasis"><em>total sum of squares</em></span>). Both are positive scalars.</p><p>To learn how to compute R<sup>2</sup> when you use the Basic
+                Fitting tool, see <a href="interactive-fitting.html#bswij4t" class="a">R2, the Coefficient of Determination</a>. To learn more about calculating the R<sup>2</sup> statistic and
+                its multivariate generalization, continue reading here. </p><section><h4 class="title" id="bswj6xx">Example: Computing R<sup>2</sup> from Polynomial Fits</h4><p>You can derive R<sup>2</sup> from the coefficients of a
+                    polynomial regression to determine how much variance in <code class="literal">y</code> a
+                    linear model explains, as the following example describes:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create two variables, <code class="literal">x</code> and <code class="literal">y</code>,
+                            from the first two columns of the <code class="literal">count</code> variable in
+                            the data file
+                            <code class="literal">count.dat</code>:<div class="code_responsive"><pre class="programlisting">load count.dat
+x = count(:,1);
+y = count(:,2);</pre></div></p></li><li><p>Use <a href="../ref/polyfit.html"><code class="function">polyfit</code></a> to compute a
+                            linear regression that predicts <code class="literal">y</code> from
+                                <code class="literal">x</code>:<div class="code_responsive"><pre class="programlisting">p = polyfit(x,y,1)
+
+p =
+    1.5229   -2.1911
+</pre></div></p><p><code class="literal">p(1)</code> is the slope and <code class="literal">p(2)</code> is
+                            the intercept of the linear predictor. You can also obtain regression
+                            coefficients using the <a href="interactive-fitting.html#f1-15488" class="a">Basic Fitting
+                                UI</a>.</p></li><li><p>Call <a href="../ref/polyval.html"><code class="function">polyval</code></a> to use
+                                <code class="literal">p</code> to predict <code class="literal">y</code>, calling the
+                            result
+                            <code class="literal">yfit</code>:<div class="code_responsive"><pre class="programlisting">yfit = polyval(p,x);</pre></div></p><p>Using <code class="function">polyval</code> saves you from typing the fit
+                            equation yourself, which in this case looks like:</p><div class="code_responsive"><pre class="programlisting">yfit =  p(1) * x + p(2);</pre></div></li><li><p>Compute the residual values as a vector of signed
+                            numbers:<div class="code_responsive"><pre class="programlisting">yresid = y - yfit;</pre></div></p></li><li><p>Square the residuals and total them to obtain the residual sum of
+                            squares:<div class="code_responsive"><pre class="programlisting">SSresid = sum(yresid.^2);</pre></div></p></li><li><p>Compute the total sum of squares of <code class="literal">y</code> by
+                            multiplying the variance of <code class="literal">y</code> by the number of
+                            observations minus
+                            <code class="literal">1</code>:<div class="code_responsive"><pre class="programlisting">SStotal = (length(y)-1) * var(y);
+</pre></div></p></li><li><p>Compute R<sup>2</sup> using the formula given in the
+                            introduction of this
+                            topic:<div class="code_responsive"><pre class="programlisting">rsq = 1 - SSresid/SStotal
+
+rsq =
+    0.8707</pre></div>This
+                            demonstrates that the linear equation <code class="literal">1.5229 * x
+                                -2.1911</code> predicts 87% of the variance in the variable
+                                <code class="literal">y</code>.</p></li></ol></div></section><section><h4 class="title" id="bswinlz">Computing Adjusted R<sup>2</sup> for Polynomial                     Regressions</h4><p>You can usually reduce the residuals in a model by fitting a higher degree
+                    polynomial. When you add more terms, you increase the coefficient of
+                    determination, R<sup>2</sup>. You get a closer fit to the data,
+                    but at the expense of a more complex model, for which
+                        R<sup>2</sup> cannot account. However, a refinement of this
+                    statistic, <em class="firstterm">adjusted R<sup>2</sup></em>, does
+                    include a penalty for the number of terms in a model. Adjusted
+                        R<sup>2</sup>, therefore, is more appropriate for comparing
+                    how different models fit to the same data. The adjusted
+                        R<sup>2</sup> is defined as:<div itemprop="content"><p class="programlistingindent">R<sup>2</sup><sub>adjusted</sub> = 1
+                            - (SS<sub>resid</sub> /
+                                SS<sub>total</sub>)*((<em class="varname">n</em>-1)/(<em class="varname">n</em>-<em class="varname">d</em>-1))
+                        </p></div>where <em class="varname">n</em> is the number of observations in your
+                    data, and <em class="varname">d</em> is the degree of the polynomial. (A linear fit
+                    has a degree of 1, a quadratic fit 2, a cubic fit 3, and so on.) </p><p>The following example repeats the steps of the previous example, <a href="linear-regression.html#bswj6xx" class="intrnllnk">Example: Computing R2 from Polynomial Fits</a>, but performs a cubic (degree 3) fit instead of a linear (degree 1) fit. From
+                    the cubic fit, you compute both simple and adjusted
+                        R<sup>2</sup> values to evaluate whether the extra terms
+                    improve predictive power:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create two variables, <code class="literal">x</code> and <code class="literal">y</code>,
+                            from the first two columns of the <code class="literal">count</code> variable in
+                            the data file
+                            <code class="literal">count.dat</code>:<div class="code_responsive"><pre class="programlisting">load count.dat
+x = count(:,1);
+y = count(:,2);</pre></div></p></li><li><p>Call <code class="function">polyfit</code> to generate a cubic fit to predict
+                                <code class="literal">y</code> from
+                            <code class="literal">x</code>:<div class="code_responsive"><pre class="programlisting">p = polyfit(x,y,3)
+
+p =
+   -0.0003    0.0390    0.2233    6.2779</pre></div></p><p><code class="literal">p(4)</code> is the intercept of the cubic predictor. You
+                            can also obtain regression coefficients using the <a href="interactive-fitting.html#f1-15488" class="a">Basic Fitting
+                                UI</a>.</p></li><li><p>Call <a href="../ref/polyval.html"><code class="function">polyval</code></a> to use the
+                            coefficients in <code class="literal">p</code> to predict <code class="literal">y</code>,
+                            naming the result
+                            <code class="literal">yfit</code>:<div class="code_responsive"><pre class="programlisting">yfit = polyval(p,x);</pre></div></p><p><code class="function">polyval</code> evaluates the explicit equation you could
+                            manually enter
+                            as:<div class="code_responsive"><pre class="programlisting">yfit =  p(1) * x.^3 + p(2) * x.^2 + p(3) * x + p(4);</pre></div></p></li><li><p>Compute the residual values as a vector of signed
+                            numbers:<div class="code_responsive"><pre class="programlisting">yresid = y - yfit;</pre></div></p></li><li><p>Square the residuals and total them to obtain the residual sum of
+                            squares:<div class="code_responsive"><pre class="programlisting">SSresid = sum(yresid.^2);</pre></div></p></li><li><p>Compute the total sum of squares of <code class="literal">y</code> by
+                            multiplying the variance of <code class="literal">y</code> by the number of
+                            observations minus
+                            <code class="literal">1</code>:<div class="code_responsive"><pre class="programlisting">SStotal = (length(y)-1) * var(y);
+</pre></div></p></li><li><p>Compute simple R<sup>2</sup> for the cubic fit using
+                            the formula given in the introduction of this
+                            topic:<div class="code_responsive"><pre class="programlisting">rsq = 1 - SSresid/SStotal
+
+rsq =
+    0.9083</pre></div></p></li><li><p>Finally, compute adjusted R<sup>2</sup> to account for
+                            degrees of freedom:
+                            <div class="code_responsive"><pre class="programlisting">rsq_adj = 1 - SSresid/SStotal * (length(y)-1)/(length(y)-length(p))
+
+rsq_adj =
+    0.8945</pre></div>The
+                            adjusted R<sup>2</sup>, 0.8945, is smaller than simple
+                                R<sup>2</sup>, .9083. It provides a more reliable
+                            estimate of the power of your polynomial model to predict.</p></li></ol></div><p>In many polynomial regression models, adding terms to the equation increases
+                    both R<sup>2</sup> and adjusted R<sup>2</sup>.
+                    In the preceding example, using a cubic fit increased both statistics compared
+                    to a linear fit. (You can compute adjusted R<sup>2</sup> for the
+                    linear fit for yourself to demonstrate that it has a lower value.) However, it
+                    is not always true that a linear fit is worse than a higher-order fit: a more
+                    complicated fit can have a lower adjusted R<sup>2</sup> than a
+                    simpler fit, indicating that the increased complexity is not justified. Also,
+                    while R<sup>2</sup> always varies between 0 and 1 for the
+                    polynomial regression models that the Basic Fitting tool generates, adjusted
+                        R<sup>2</sup> for some models can be negative, indicating
+                    that a model that has too many terms.</p><p>Correlation does not imply causality. Always interpret coefficients of
+                    correlation and determination cautiously. The coefficients only quantify how
+                    much variance in a dependent variable a fitted model removes. Such measures do
+                    not describe how appropriate your model&#8212;or the independent variables you
+                    select&#8212;are for explaining the behavior of the variable the model
+                    predicts.</p></section></section><section><h3 class="title" id="f1-16693">Fitting Data with <span class="trademark entity">Curve Fitting Toolbox</span> Functions</h3><a class="indexterm" name="d126e4191"></a><p>Curve Fitting Toolbox extends core MATLAB functionality by enabling the following data-fitting
+                capabilities:</p><div class="itemizedlist"><ul><li><p>Linear and nonlinear parametric fitting, including standard linear least
+                        squares, nonlinear least squares, weighted least squares, constrained least
+                        squares, and robust fitting procedures</p></li><li><p>Nonparametric fitting</p></li><li><p>Statistics for determining the goodness of fit</p></li><li><p>Extrapolation, differentiation, and integration</p></li><li><p>Dialog box that facilitates data sectioning and smoothing</p></li><li><p>Saving fit results in various formats, including MATLAB code files, MAT-files, and workspace variables </p></li></ul></div><p>For more information, see <a href="https://www.mathworks.com/products/curvefitting.html"><span class="trademark entity">Curve Fitting Toolbox</span></a>.</p></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

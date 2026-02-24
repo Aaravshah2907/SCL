@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Callbacks for Graphics Objects</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../graphics-objects.html",
+          "name": "Graphics Objects"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../interactive-control-and-callbacks.html",
+          "name": "Interactive Control and Callbacks"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interactive-control-and-callbacks"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Program a response to user interaction, such as clicking on a graphics object or closing a figure window."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics-objects.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics Objects</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interactive-control-and-callbacks.html?s_tid=CRUX_lftnav" itemprop="url" id="bufy7b7"><span itemprop="title">Interactive Control and Callbacks</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Callbacks for Graphics Objects</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_d7cc37e9-0081-4917-91d6-487e9b974ae7" class="nav-link intrnllnk">What Is a Callback?</a></li><li class="nav-item"><a href="#mw_0b5e9ece-e968-435c-b8a9-ddf03485f8a6" class="nav-link intrnllnk">Create Basic Callback</a><ul class="nav"><li class="nav-item"><a href="#mw_5b957f3f-3efa-49da-8ee6-41d027305edd" class="nav-link intrnllnk">Define Callback Function</a></li><li class="nav-item"><a href="#mw_211642c1-76ed-45bd-b7ab-ed1d014a38ba" class="nav-link intrnllnk">Assign Callback Function to Callback Property</a></li></ul></li><li class="nav-item"><a href="#mw_915e884a-68a1-474e-8a4d-601cd0137af4" class="nav-link intrnllnk">Create Callback with Additional Input Arguments</a><ul class="nav"><li class="nav-item"><a href="#mw_76e2b1d3-1aaf-4dbe-9963-f3e7a9bbb495" class="nav-link intrnllnk">Define Callback Function</a></li><li class="nav-item"><a href="#mw_b6d95ffc-34ef-4242-a72f-f397f7bed2d7" class="nav-link intrnllnk">Assign Callback Function to Callback Property</a></li></ul></li><li class="nav-item"><a href="#mw_3103ae79-353a-41ae-9e49-88eb36c34da8" class="nav-link intrnllnk">Create Callback as a Default</a><ul class="nav"><li class="nav-item"><a href="#mw_ec7db0b3-5dd4-4ed1-b16c-c06f31ea7551" class="nav-link intrnllnk">Define Callback Function</a></li><li class="nav-item"><a href="#mw_9c6354d9-b469-424d-8e0c-e7959a5c025c" class="nav-link intrnllnk">Assign Callback Function to Callback Property</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interactive-control-and-callbacks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bt_h1z8">Create Callbacks for Graphics Objects</h2><span id="function_handle_callbacks" class="anchor_target"></span><span id="function_handle_syntax" class="anchor_target"></span><section><h3 class="title" id="mw_d7cc37e9-0081-4917-91d6-487e9b974ae7">What Is a Callback?</h3><p>A <em class="firstterm">callback</em> is a command that executes in response to some
+            predefined user action, such as clicking on a graphics object or closing a figure
+            window. You can program a response to specific user action by writing a
+               <em class="firstterm">callback function</em> to process the action and then assigning the
+            function to the <em class="firstterm">callback property</em> associated with that user
+            action. For example, you can create a <code class="literal">ButtonDownFcn</code> callback for a
+            figure to program a response to a user clicking the figure.</p><p>This topic contains examples of writing callbacks for graphics objects such as
+               <code class="literal">Line</code>, <code class="literal">Axes</code>, or <code class="literal">Figure</code>
+            objects. For a list of callbacks associated with a specific graphics object, see the
+            properties of that object. For example, for a list of <code class="literal">Figure</code>
+            callbacks, see <a href="../ref/matlab.ui.figure.html" class="a"><code class="olink">Figure</code></a>.</p><p>For information about writing callbacks for UI components in an app, see <a href="../creating_guis/write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a>.</p></section><section><h3 class="title" id="mw_0b5e9ece-e968-435c-b8a9-ddf03485f8a6">Create Basic Callback</h3><p>Graphics callback functions must accept at least two input arguments:</p><div class="itemizedlist"><ul><li><p>The graphics object whose callback is executing &#8212; Use this argument within your
+                  callback function to refer to the object.</p></li><li><p>The event data structure &#8212; Use this argument within your callback function to
+                  access information about the user action that is specific to the callback property
+                  and the object. This structure is empty for many graphics object callbacks.</p></li></ul></div><p>Whenever a callback executes in response to a user action, MATLAB<sup>&#x00AE;</sup> calls the callback function and passes these two arguments to the
+            function.</p><p>To create a callback, first define a callback function with the required input
+            arguments. Then, assign a handle to the function to the relevant callback
+            property.</p><section><h4 class="title" id="mw_5b957f3f-3efa-49da-8ee6-41d027305edd">Define Callback Function</h4><p>For example, create a new file named <code class="literal">figureCallback.m</code> and
+               define a callback function named <code class="literal">figureCallback</code>. The callback
+               function processes the action when a user presses a key in a figure window. Define
+               the callback function to accept two input arguments:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">src</code> &#8212; Use the first argument to refer to the specific
+                        figure whose callback is executing to find the <code class="literal">Line</code>
+                        object plotted in the figure.</p></li><li><p><code class="literal">event</code> &#8212; Use the second argument to access specific
+                        information about the key press user action. If the key that was pressed is
+                           <strong class="keycap">+</strong>, increase the width of the line, and if it is
+                           <strong class="keycap">-</strong>, decrease the width of the line.</p></li></ul></div><p>
+</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> figureCallback(src,event)
+line = findobj(src,<span style="color:#A020F0">"Type"</span>,<span style="color:#A020F0">"Line"</span>);
+<span style="color:#0000FF">if</span> event.Character == <span style="color:#A020F0">"+"</span>
+    line.LineWidth = line.LineWidth+1;
+<span style="color:#0000FF">elseif</span> event.Character == <span style="color:#A020F0">"-"</span>
+    line.LineWidth = max(line.LineWidth-1,0.5);
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_211642c1-76ed-45bd-b7ab-ed1d014a38ba">Assign Callback Function to Callback Property</h4><p>In the Command Window, create a <code class="literal">Figure</code> object. Use the
+                  <code class="literal">@</code> operator to assign the function handle to the
+                  <code class="literal">WindowKeyPressFcn</code> property of the figure. This callback
+               executes when a user presses a key in the figure window. Then, plot some data in the
+               current figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>f = figure(WindowKeyPressFcn=@figureCallback);
+plot(1:10)
+</pre></div></div></div><p>Run the code and press <strong class="keycap">+</strong>. The line width increases.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Keyboard-based callbacks are not currently supported for figures in the Live
+                  Editor. For more information, see <a href="../ref/matlab.ui.figure.html" class="a"><code class="olink">Figure</code></a>.</p></div></section></section><section><h3 class="title" id="mw_915e884a-68a1-474e-8a4d-601cd0137af4">Create Callback with Additional Input Arguments</h3><p>You can create a callback with additional input arguments by using an
+               <em class="firstterm">anonymous function</em>. First, define a callback function with any
+            number of input arguments. Then, specify the relevant callback property value as an
+            anonymous function that accepts the required source and event arguments that MATLAB passes to the callback, and then calls your callback function with the
+            appropriate inputs.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Creating a callback as an anonymous function is not currently supported for
+               figures in the Live Editor. </p></div><section><h4 class="title" id="mw_76e2b1d3-1aaf-4dbe-9963-f3e7a9bbb495">Define Callback Function</h4><p>For example, define a callback function that changes the marker edge color and
+               then displays <em class="varname">x</em>- and <em class="varname">y</em>-coordinates in the
+               Command Window when a user clicks a marker. Create a new file named
+                  <code class="literal">displayCoordinates.m</code> and define a callback function named
+                  <code class="literal">displayCoordinates</code>. Define the callback function to accept
+               three input arguments:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">src</code> &#8212; Use the first argument to refer to the specific
+                        graphics object whose callback is executing.</p></li><li><p><code class="literal">~</code> &#8212; Specify the <code class="literal">~</code> character for the
+                        second argument to indicate that the function does not use the callback
+                        event data.</p></li><li><p><code class="literal">ax</code> &#8212; Use the third argument to access the location of
+                        the mouse pointer on the axes.</p></li></ul></div><p>
+</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> displayCoordinates(src,~,ax)
+src.MarkerEdgeColor = rand(1,3);
+disp(ax.CurrentPoint(1,1:2))
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_b6d95ffc-34ef-4242-a72f-f397f7bed2d7">Assign Callback Function to Callback Property</h4><p>In the Command Window, plot some data on an axes object using the
+                  <code class="function">scatter</code> function. Specify the
+                  <code class="literal">ButtonDownFcn</code> callback property of the
+                  <code class="literal">Scatter</code> object using an anonymous function. The anonymous
+               function accepts the source and event arguments that MATLAB passes to the callback and then calls the
+                  <code class="literal">displayCoordinates</code> function with the required inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ax = axes;
+x = randn(100,1);
+y = randn(100,1);
+scatter(x,y,<span style="color:#A020F0">"ButtonDownFcn"</span>,@(src,event)displayCoordinates(src,event,ax))</pre></div></div></div><p>Run the code and click a marker. The marker edge color changes, and the
+                  <em class="varname">x</em>- and <em class="varname">y</em>-coordinates display in the Command
+               Window.</p><p>For more information, see <a href="../matlab_prog/anonymous-functions.html" class="a">Anonymous Functions</a>.</p><p>While anonymous functions provide the most flexibility for specifying callback
+               input arguments beyond the source and event inputs, in certain cases an alternative
+               is to specify a callback using a cell array. If your callback function accepts both
+               the source and event inputs followed by any other arguments, you can assign the
+               callback by specifying a cell array. The first element of the cell array is the
+               callback function handle, and any additional elements are the inputs to pass to the
+               function after the source and event.</p><p>For example, you can instead specify the <code class="literal">ButtonDownFcn</code> callback
+               property of the <code class="literal">Scatter</code> object using a cell array. The first
+               element of the array is a handle to the <code class="literal">displayCoordinates</code>
+               function, and the second element is the axes object that is passed to the
+                  <code class="literal">displayCoordinates</code> function after the source and event
+               arguments.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ax = axes;
+x = randn(100,1);
+y = randn(100,1);
+scatter(x,y,<span style="color:#A020F0">"ButtonDownFcn"</span>,{@displayCoordinates,ax})</pre></div></div></div></p></section></section><section><h3 class="title" id="mw_3103ae79-353a-41ae-9e49-88eb36c34da8">Create Callback as a Default</h3><p>When you call a plotting function, such as <code class="literal">plot</code> or
+               <code class="literal">bar</code>, MATLAB creates new graphics objects and resets most figure and axes properties.
+            Therefore, callback functions that you have defined for specific graphics objects might
+            be removed by MATLAB. To instead create a callback that executes for <span class="emphasis"><em>all</em></span>
+            objects of a specific type, assign a callback function as a default on the root
+            level.</p><section><h4 class="title" id="mw_ec7db0b3-5dd4-4ed1-b16c-c06f31ea7551">Define Callback Function</h4><p>Define a function named <code class="literal">customizeGrid</code> in a new file named
+                  <code class="literal">customizeGrid.m</code>. The function takes in an axes object and turns
+               on and customizes its grid lines.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> customizeGrid(ax)
+ax.XGrid = <span style="color:#A020F0">'on'</span>;
+ax.YGrid = <span style="color:#A020F0">'on'</span>;
+ax.GridLineStyle = <span style="color:#A020F0">'--'</span>;
+ax.GridAlpha = 0.5;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_9c6354d9-b469-424d-8e0c-e7959a5c025c">Assign Callback Function to Callback Property</h4><p>Execute the <code class="literal">customizeGrid</code> function whenever MATLAB creates a new axes object by setting a default axes
+                  <code class="literal">CreateFcn</code> callback on the <a href="../ref/groot.html"><code class="function">groot</code></a> object. Assign the property as an anonymous function that takes
+               in the two required callback inputs and then calls the
+                  <code class="literal">customizeGrid</code> function for the <code class="literal">Axes</code> object
+               being created.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(groot,<span style="color:#A020F0">"defaultAxesCreateFcn"</span>,@(src,~)customizeGrid(src))</pre></div></div></div><p>Create multiple axes in a figure. The customized grid appears for each of
+               them.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ax1 = axes(<span style="color:#A020F0">"Position"</span>,[0.1 0.1 0.8 0.35]);
+ax2 = axes(<span style="color:#A020F0">"Position"</span>,[0.1 0.55 0.8 0.35]);</pre></div></div></div><p>For more information, see <a href="default-property-values.html" class="a">Default Property Values</a>.</p><p>The default callback remains set for the MATLAB session. To set a default callback for every MATLAB session, add the default value assignment to your
+                  <code class="literal">startup.m</code> file. For more information, see <a href="../ref/startup.html"><code class="function">startup</code></a>.</p></section></section>
+         
+         <h2 id="seealsoref">See Also</h2><h3 id="d126e29153">Topics</h3><ul class="list-unstyled"><li><a href="../creating_guis/write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a></li><li><a href="../creating_guis/share-data-among-callbacks.html" class="a">Share Data Among Callbacks</a></li><li><a href="../creating_guis/interrupt-callback-execution.html" class="a">Interrupt Callback Execution</a></li><li><a href="../matlab_oop/class-methods-for-graphics-callbacks.html" class="a">Class Methods for Graphics Callbacks</a></li></ul>
+         
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

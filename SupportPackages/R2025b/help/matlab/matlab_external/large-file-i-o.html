@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Handling Large File I/O in MEX Files</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to use 64-bit file I/O in your MEX file."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Handling Large File I/O in MEX Files</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#f48450" class="nav-link intrnllnk">Prerequisites to Using 64-Bit I/O</a><ul class="nav"><li class="nav-item"><a href="#f46848" class="nav-link intrnllnk">Header File</a></li><li class="nav-item"><a href="#f46772" class="nav-link intrnllnk">Type Declarations</a></li><li class="nav-item"><a href="#f46881" class="nav-link intrnllnk">Functions</a></li></ul></li><li class="nav-item"><a href="#f45401" class="nav-link intrnllnk">Specifying Constant Literal Values</a></li><li class="nav-item"><a href="#f45439" class="nav-link intrnllnk">Opening a File</a></li><li class="nav-item"><a href="#f47871" class="nav-link intrnllnk">Printing Formatted Messages</a></li><li class="nav-item"><a href="#f46192" class="nav-link intrnllnk">Replacing fseek and ftell with 64-Bit Functions</a></li><li class="nav-item"><a href="#f47811" class="nav-link intrnllnk">Determining the Size of an Open File</a><ul class="nav"><li class="nav-item"><a href="#f47848" class="nav-link intrnllnk">Refreshing the File Size Record</a></li><li class="nav-item"><a href="#f47834" class="nav-link intrnllnk">Getting the File Size</a></li></ul></li><li class="nav-item"><a href="#f47794" class="nav-link intrnllnk">Determining the Size of a Closed File</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f32436">Handling Large File I/O in MEX Files</h2><span id="cmex_large_file_io" class="anchor_target"></span><section><h3 class="title" id="f48450">Prerequisites to Using 64-Bit I/O</h3><p>MATLAB<sup>&#x00AE;</sup> supports the use of 64-bit file I/O operations in your MEX file
+                programs. You can read and write data to files that are up to and greater than 2 GB
+                (2 <sup>31-1</sup> bytes) in size. Some operating systems or
+                compilers do not support files larger than 2 GB. The following topics describe how
+                to use 64-bit file I/O in your MEX files.</p><section><h4 class="title" id="f46848">Header File</h4><p>Header file <code class="literal">io64.h</code> defines many of the types and functions
+                    required for 64-bit file I/O. The statement to include this file must be the
+                        <span class="emphasis"><em>first</em></span>
+                    <code class="literal">#include</code> statement in your source file and must also precede
+                    any system header include statements:</p><div class="code_responsive"><pre class="programlisting">#include "io64.h"
+#include "mex.h"
+</pre></div></section><section><h4 class="title" id="f46772">Type Declarations</h4><p>To declare variables used in 64-bit file I/O, use the following types.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="42%"><col class="tcol3" width="25%"></colgroup><thead><tr><th><p>MEX Type</p></th><th><p>Description</p></th><th><p>POSIX</p></th></tr></thead><tbody><tr><td><p><code class="literal">fpos_T</code></p></td><td><p>Declares a 64-bit <code class="literal">int</code> type for
+                                            <code class="literal">setFilePos()</code> and
+                                            <code class="literal">getFilePos()</code>. Defined in
+                                            <code class="literal">io64.h</code>.</p></td><td><p><code class="literal">fpos_t</code></p></td></tr><tr><td><p><code class="literal">int64_T, uint64_T</code></p></td><td><p>Declares 64-bit signed and unsigned integer types.
+                                        Defined in <code class="literal">tmwtypes.h</code>.</p></td><td><p><code class="literal">long</code>,
+                                    <code class="literal">long</code></p></td></tr><tr><td><p><code class="literal">structStat</code></p></td><td><p>Declares a structure to hold the size of a file.
+                                        Defined in <code class="literal">io64.h</code>.</p></td><td><p><code class="literal">struct stat</code></p></td></tr><tr><td><p><code class="literal">FMT64</code></p></td><td><p>Used in <code class="literal">mexPrintf</code> to specify length
+                                        within a format specifier such as <code class="literal">%d</code>. See
+                                        example in the section <a href="large-file-i-o.html#f47871" class="intrnllnk">Printing Formatted Messages</a>. <code class="literal">FMT64</code> is defined in
+                                            <code class="literal">tmwtypes.h</code>.</p></td><td><p><code class="literal">%lld</code></p></td></tr><tr><td><p><code class="literal">LL, LLU</code></p></td><td><p>Suffixes for literal <code class="literal">int</code> constant
+                                        64-bit values (C Standard ISO<sup>&#x00AE;</sup>/IEC 9899:1999(E) Section 6.4.4.1). Used only
+                                        on UNIX<sup>&#x00AE;</sup> systems.</p></td><td><p><code class="literal">LL</code>,
+                                    <code class="literal">LLU</code></p></td></tr></tbody></table></div></section><section><h4 class="title" id="f46881">Functions</h4><p>Use the following functions for 64-bit file I/O. All are defined in the header
+                    file <code class="literal">io64.h</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="42%"><col class="tcol3" width="25%"></colgroup><thead><tr><th><p>Function</p></th><th><p>Description</p></th><th><p>POSIX</p></th></tr></thead><tbody><tr><td><p><code class="literal">fileno()</code></p></td><td><p>Gets a file descriptor from a file
+                                    pointer</p></td><td><p><code class="literal">fileno()</code></p></td></tr><tr><td><p><code class="literal">fopen()</code></p></td><td><p>Opens the file and obtains the file
+                                    pointer</p></td><td><p><code class="literal">fopen()</code></p></td></tr><tr><td><p><code class="literal">getFileFstat()</code></p></td><td><p>Gets the file size of a given file
+                                    pointer</p></td><td><p><code class="literal">fstat()</code></p></td></tr><tr><td><p><code class="literal">getFilePos()</code></p></td><td><p>Gets the file position for the next I/O</p></td><td><p><code class="literal">fgetpos()</code></p></td></tr><tr><td><p><code class="literal">getFileStat()</code></p></td><td><p>Gets the file size of a given file name</p></td><td><p><code class="literal">stat()</code></p></td></tr><tr><td><p><code class="literal">setFilePos()</code></p></td><td><p>Sets the file position for the next I/O</p></td><td><p><code class="literal">fsetpos()</code></p></td></tr></tbody></table></div></section></section><section><h3 class="title" id="f45401">Specifying Constant Literal Values</h3><p>To assign signed and unsigned 64-bit integer literal values, use type definitions
+                    <code class="literal">int64_T</code> and <code class="literal">uint64_T</code>.</p><p>On UNIX systems, to assign a literal value to an integer variable where the
+                value to be assigned is greater than <code class="literal">2
+                    <sup>31</sup>-1</code> signed, you must suffix the value with
+                    <code class="literal">LL</code>. If the value is greater than <code class="literal">2
+                        <sup>32</sup>-1</code> unsigned, then use
+                    <code class="literal">LLU</code> as the suffix. These suffixes are not valid on
+                    Microsoft<sup>&#x00AE;</sup>
+                Windows<sup>&#x00AE;</sup> systems.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The <code class="literal">LL</code> and <code class="literal">LLU</code> suffixes are not required
+                    for hardcoded (literal) values less than <code class="literal">2 G (2
+                            <sup>31</sup>-1)</code>, even if they are assigned to
+                    a 64-bit <code class="literal">int</code> type.</p></div><p>The following example declares a 64-bit integer variable initialized with a large
+                literal <code class="literal">int</code> value, and two 64-bit integer variables:</p><div class="code_responsive"><pre class="programlisting">void mexFunction(int nlhs, mxArray *plhs[], int nrhs, 
+                  const mxArray *prhs[])
+{
+#if defined(_MSC_VER) || defined(__BORLANDC__)     /* Windows */
+   int64_T large_offset_example = 9000222000;
+#else                                              /* UNIX    */
+   int64_T large_offset_example = 9000222000LL;
+#endif
+
+int64_T offset   = 0;
+int64_T position = 0;</pre></div></section><section><h3 class="title" id="f45439">Opening a File</h3><p>To open a file for reading or writing, use the C/C++ <code class="function">fopen</code>
+                function as you normally would. As long as you have included
+                    <code class="literal">io64.h</code> at the start of your program, <code class="literal">fopen</code>
+                works correctly for large files. No changes at all are required for
+                    <code class="function">fread</code>, <code class="function">fwrite</code>,
+                    <code class="function">fprintf</code>, <code class="function">fscanf</code>, and
+                    <code class="function">fclose</code>.</p><p>The following statements open an existing file for reading and updating in binary
+                mode.</p><div class="code_responsive"><pre class="programlisting">fp = fopen(filename, "r+b");
+if (NULL == fp)
+   {
+   /* File does not exist. Create new file for writing 
+    * in binary mode.
+    */
+   fp = fopen(filename, "wb");
+   if (NULL == fp)
+      {
+      sprintf(str, "Failed to open/create test file '%s'",
+        filename);
+      mexErrMsgIdAndTxt( "MyToolbox:myfcn:fileCreateError",
+        str);
+      return;
+      }
+   else
+      {
+      mexPrintf("New test file '%s' created\n",filename);
+      }
+   }
+else mexPrintf("Existing test file '%s' opened\n",filename);</pre></div></section><section><h3 class="title" id="f47871">Printing Formatted Messages</h3><p>You cannot print 64-bit integers using the <code class="literal">%d</code> conversion
+                specifier. Instead, use <code class="literal">FMT64</code> to specify the appropriate format
+                for your platform. <code class="literal">FMT64</code> is defined in the header file
+                    <code class="literal">tmwtypes.h</code>. The following example shows how to print a
+                message showing the size of a large file:</p><div class="code_responsive"><pre class="programlisting">int64_T large_offset_example = 9000222000LL;
+
+mexPrintf("Example large file size: %" FMT64 "d bytes.\n",
+           large_offset_example);</pre></div></section><section><h3 class="title" id="f46192">Replacing <code class="literal">fseek</code> and <code class="literal">ftell</code> with 64-Bit                 Functions</h3><p>The <span class="entity">ANSI<sup>&#x00AE;</sup> C</span>
+                <code class="function">fseek</code> and <code class="function">ftell</code> functions are not 64-bit
+                file I/O capable on most platforms. The functions <code class="literal">setFilePos</code> and
+                    <code class="literal">getFilePos</code>, however, are defined as the corresponding
+                    POSIX<sup>&#x00AE;</sup>
+                <code class="literal">fsetpos</code> and <code class="literal">fgetpos</code> (or
+                    <code class="literal">fsetpos64</code> and <code class="literal">fgetpos64</code>) as required by
+                your platform/OS. These functions are 64-bit file I/O capable on all
+                platforms.</p><p>The following example shows how to use <code class="literal">setFilePos</code> instead of
+                    <code class="literal">fseek</code>, and <code class="literal">getFilePos</code> instead of
+                    <code class="literal">ftell</code>. The example uses <code class="literal">getFileFstat</code> to
+                find the size of the file. It then uses <code class="literal">setFilePos</code> to seek to the
+                end of the file to prepare for adding data at the end of the file.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Although the <code class="literal">offset</code> parameter to
+                        <code class="literal">setFilePos</code> and <code class="literal">getFilePos</code> is really a
+                    pointer to a signed 64-bit integer, <code class="literal">int64_T</code>, it must be cast
+                    to an <code class="literal">fpos_T*</code>. The <code class="literal">fpos_T</code> type is defined
+                    in <code class="literal">io64.h</code> as the appropriate <code class="literal">fpos64_t</code> or
+                        <code class="literal">fpos_t</code>, as required by your platform OS.</p></div><div class="code_responsive"><pre class="programlisting">getFileFstat(fileno(fp), &amp;statbuf);
+fileSize = statbuf.st_size;
+offset = fileSize;
+
+setFilePos(fp, (fpos_T*) &amp;offset);
+getFilePos(fp, (fpos_T*) &amp;position );</pre></div><p>Unlike <code class="literal">fseek</code>, <code class="literal">setFilePos</code> supports only
+                absolute seeking relative to the beginning of the file. If you want to do a relative
+                seek, first call <code class="literal">getFileFstat</code> to obtain the file size. Then
+                convert the relative offset to an absolute offset that you can pass to
+                    <code class="literal">setFilePos</code>.</p></section><section><h3 class="title" id="f47811">Determining the Size of an Open File</h3><p>To get the size of an open file:</p><div class="itemizedlist"><ul><li><p id="bsco3sr-1">Refresh the record of the file size stored in memory
+                        using <code class="literal">getFilePos</code> and
+                        <code class="literal">setFilePos</code>.</p></li><li><p id="bsco3sx-1">Retrieve the size of the file using
+                            <code class="literal">getFileFstat</code>.</p></li></ul></div><section><h4 class="title" id="f47848">Refreshing the File Size Record</h4><p>Before attempting to retrieve the size of an open file, first refresh the
+                    record of the file size residing in memory. If you skip this step on a file that
+                    is opened for writing, the file size returned might be incorrect or 0.</p><p>To refresh the file size record, seek to any offset in the file using
+                        <code class="literal">setFilePos</code>. If you do not want to change the position of
+                    the file pointer, you can seek to the current position in the file. This example
+                    obtains the current offset from the start of the file. It then seeks to the
+                    current position to update the file size without moving the file pointer.</p><div class="code_responsive"><pre class="programlisting">getFilePos( fp, (fpos_T*) &amp;position);
+setFilePos( fp, (fpos_T*) &amp;position);</pre></div></section><section><h4 class="title" id="f47834">Getting the File Size</h4><p>The <code class="literal">getFileFstat</code> function takes a file descriptor input
+                    argument. Use <code class="literal">fileno</code> function to get the file pointer of the
+                    open file. <code class="literal">getFileFstat</code> returns the size of that file in
+                    bytes in the <code class="literal">st_size</code> field of a <code class="literal">structStat</code>
+                    structure.</p><div class="code_responsive"><pre class="programlisting">structStat statbuf;
+int64_T fileSize = 0;
+
+if (0 == getFileFstat(fileno(fp), &amp;statbuf))
+   {
+   fileSize = statbuf.st_size;
+   mexPrintf("File size is %" FMT64 "d bytes\n", fileSize);
+   }</pre></div></section></section><section><h3 class="title" id="f47794">Determining the Size of a Closed File</h3><p>The <code class="literal">getFileStat</code> function takes the file name of a closed file
+                as an input argument. <code class="literal">getFileStat</code> returns the size of the file in
+                bytes in the <code class="literal">st_size</code> field of a <code class="literal">structStat</code>
+                structure.</p><div class="code_responsive"><pre class="programlisting">structStat statbuf;
+int64_T fileSize = 0;
+
+if (0 == getFileStat(filename, &amp;statbuf))
+   {
+   fileSize = statbuf.st_size;
+   mexPrintf("File size is %" FMT64 "d bytes\n", fileSize);
+   }</pre></div></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

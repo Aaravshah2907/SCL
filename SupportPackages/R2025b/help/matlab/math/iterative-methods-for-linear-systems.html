@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Iterative Methods for Linear Systems</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../sparse-matrices.html",
+          "name": "Sparse Matrices"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sparse-matrices"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="One of the most important and common applications of numerical linear algebra is the solution of linear systems that can be expressed in the form A*x = b."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sparse-matrices.html?s_tid=CRUX_lftnav" itemprop="url" id="sparse-matrices"><span itemprop="title">Sparse Matrices</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Iterative Methods for Linear Systems</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_f2a5da66-4de2-47a5-b948-7b0bfaa2b4a4" class="nav-link intrnllnk">Direct vs. Iterative Methods</a></li><li class="nav-item"><a href="#mw_d9872ed1-e4ff-44b0-8eb3-f20ef92902d0" class="nav-link intrnllnk">Generic Iterative Algorithm</a></li><li class="nav-item"><a href="#f6-14578" class="nav-link intrnllnk">Summary of Iterative Methods</a></li><li class="nav-item"><a href="#mw_72f46e8e-dac3-45c8-bd5d-923186d821bb" class="nav-link intrnllnk">Choosing an Iterative Solver</a></li><li class="nav-item"><a href="#mw_3e3b2d9d-91a6-4eb0-96d8-2ec05150997e" class="nav-link intrnllnk">Preconditioners</a><ul class="nav"><li class="nav-item"><a href="#mw_c1a3579f-09ab-482e-9793-b7458bf50e93" class="nav-link intrnllnk">Preconditioner Example</a></li></ul></li><li class="nav-item"><a href="#mw_7f290832-2144-4e82-b705-a9bb9911764c" class="nav-link intrnllnk">Equilibration and Reordering</a></li><li class="nav-item"><a href="#mw_5db92e4c-fc78-439c-87d7-48ec23d9acdb" class="nav-link intrnllnk">Using Linear Operators Instead of Matrices</a></li><li class="nav-item"><a href="#mw_5b197c5f-306c-4527-bdbd-d2861ad80ff4" class="nav-link intrnllnk">References</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_983a197c-c8a1-457a-949e-a146251391cb">Iterative Methods for Linear Systems</h2><p>One of the most important and common applications of numerical linear algebra is the
+      solution of linear systems that can be expressed in the form <code class="literal">A*x = b</code>. When
+        <code class="literal">A</code> is a large sparse matrix, you can solve the linear system using
+      iterative methods, which enable you to trade off between the run time of the calculation and
+      the precision of the solution. This topic describes the iterative methods available in
+        MATLAB<sup>&#x00AE;</sup> to solve the equation <code class="literal">A*x = b</code>.</p><section><h3 class="title" id="mw_f2a5da66-4de2-47a5-b948-7b0bfaa2b4a4">Direct vs. Iterative Methods</h3><p>There are two types of methods for solving linear equations <code class="literal">A*x =
+        b</code>:</p><div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Direct methods</strong> are variants of Gaussian
+            elimination. These methods use the individual matrix elements directly, through matrix
+            operations such as LU, QR, or Cholesky factorization. You can use direct methods to
+            solve linear equations with a high level of precision, but these methods can be slow
+            when operating on large sparse matrices. The speed of solving a linear system with a
+            direct method strongly depends on the density and fill pattern of the coefficient
+            matrix.</p><p>For example, this code solves a small linear system.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = magic(5);
+b = sum(A,2);
+x = A\b;
+norm(A*x-b)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   1.4211e-14</pre></div></div></div><p>MATLAB implements direct methods through the matrix division operators <a href="../ref/double.mrdivide.html"><code class="function">/</code></a> and <a href="../ref/double.mldivide.html"><code class="function">\</code></a>, as well as functions such as <a href="../ref/decomposition.html"><code class="object">decomposition</code></a>, <a href="../ref/lsqminnorm.html"><code class="function">lsqminnorm</code></a>,
+            and <a href="../ref/linsolve.html"><code class="function">linsolve</code></a>.</p></li><li><p><strong class="emphasis bold">Iterative methods</strong> produce an approximate solution
+            to the linear system after a finite number of steps. These methods are useful for large
+            systems of equations where it is reasonable to trade off precision for a shorter run
+            time. Iterative methods use the coefficient matrix only indirectly, through a
+            matrix-vector product or an abstract linear operator. Iterative methods can be used with
+            any matrix, but they are typically applied to large sparse matrices for which direct
+            solves are slow. The speed of solving a linear system with an indirect method does not
+            depend as strongly on the fill pattern of the coefficient matrix as a direct method.
+            However, using an iterative method typically requires tuning parameters for each
+            specific problem.</p><p>For example, this code solves a large sparse linear system that has a symmetric
+            positive definite coefficient matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = delsq(numgrid(<span style="color:#A020F0">'L'</span>,400));
+b = ones(size(A,1),1);
+x = pcg(A,b,[],1000);
+norm(b-A*x)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pcg converged at iteration 796 to a solution with relative residual 9.9e-07.
+
+ans =
+
+   3.4285e-04</pre></div></div></div><p>MATLAB implements a variety of iterative methods that have different strengths
+            and weaknesses depending on the properties of the coefficient matrix
+              <code class="literal">A</code>.</p></li></ul></div><p>Direct methods are usually faster and more generally applicable than indirect methods if
+        there is enough storage available to carry them out. Generally, you should attempt to use
+          <code class="literal">x = A\b</code> first. If the direct solve is too slow, then you can try using
+        iterative methods.</p></section><section><h3 class="title" id="mw_d9872ed1-e4ff-44b0-8eb3-f20ef92902d0">Generic Iterative Algorithm</h3><p>Most iterative algorithms that solve linear equations follow a similar process:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Start with an initial guess for the solution vector <code class="literal">x0</code>. (This
+              is usually a vector of zeros unless you specify a better guess.)</p></li><li><p>Compute the residual norm <code class="literal">res = norm(b-A*x0)</code>.</p></li><li><p>Compare the residual against the specified tolerance. If <code class="literal">res &lt;=
+                tol</code>, end the computation and return the computed answer for
+                <code class="literal">x0</code>.</p></li><li><p>Apply <code class="literal">A*x0</code> and update the magnitude and direction of the vector
+                <code class="literal">x0</code> based on the value of the residual and other calculated
+              quantities. This is the step where most computation is done.</p></li><li><p>Repeat Steps 2 through 4 until the value of <code class="literal">x0</code> is good enough
+              to satisfy the tolerance.</p></li></ol></div><p>
+
+      </p><p>Iterative methods differ in how they update the magnitude and direction of
+          <code class="literal">x0</code> in Step 4, and some have slightly different convergence criteria in
+        Steps 2 and 3, but this captures the basic process that all iterative solvers follow.</p></section><section><h3 class="title" id="f6-14578">Summary of Iterative Methods</h3><p>MATLAB has several functions that implement iterative methods for systems of linear
+        equations. These methods are designed to solve <span class="inlineequation"><em class="varname">A</em><em class="varname">x</em> = <em class="varname">b</em></span> or minimize the norm <span class="inlineequation">||<em class="varname">b</em> &#8211;
+            <em class="varname">A</em><em class="varname">x</em>||</span>. Several of these methods have similarities and are based on the same
+        underlying algorithms, but each algorithm has benefits in certain situations <a href="iterative-methods-for-linear-systems.html#mw_940f70c5-e98f-4cd0-90b9-3980208a5c3c" class="intrnllnk">[1]</a>, <a href="iterative-methods-for-linear-systems.html#mw_3b1efa0e-3890-4fe5-a6df-c7237749b9c1" class="intrnllnk">[2]</a>.</p><span id="mw_a9f06599-ac34-4488-bd71-396538e79fdb" class="anchor_target"></span><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="58%"><col class="tcol2" width="42%"></colgroup><thead><tr><th><p>Description</p></th><th><p>Notes</p></th></tr></thead><tbody><tr><td><p id="f6-15063"><a href="../ref/pcg.html"><code class="function">pcg</code></a> (preconditioned conjugate
+                  gradients)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be symmetric positive definite.</p></li><li><p>Most effective solver for symmetric positive definite systems since
+                      storage for only a limited number of vectors is required.</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-21450"><a href="../ref/lsqr.html"><code class="function">lsqr</code></a> (least
+                squares)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>The only solver available for rectangular systems.</p></li><li><p>Analytically equivalent to the method of conjugate gradients (PCG) applied
+                      to the normal equations <code class="literal">(A'*A)*x = A'*b</code>.</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-21454"><a href="../ref/minres.html"><code class="function">minres</code></a> (minimum
+                residual)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be symmetric but does not need to be positive
+                      definite.</p></li><li><p>Each iteration minimizes the residual error in the 2-norm, so the
+                      algorithm is guaranteed to make progress from step to step.</p></li><li><p>Does not suffer from breakdowns (when an algorithm becomes unable to make
+                      progress toward a solution and halts).</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-21458"><a href="../ref/symmlq.html"><code class="function">symmlq</code></a> (symmetric
+                LQ)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be symmetric but does not need to be positive
+                      definite.</p></li><li><p>Solves a projected system and keeps the residual orthogonal to all
+                      previous ones.</p></li><li><p>Does not suffer from breakdowns (when an algorithm becomes unable to make
+                      progress toward a solution and halts).</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-15047"><a href="../ref/bicg.html"><code class="function">bicg</code></a> (biconjugate
+                gradient)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p><code class="function">bicg</code> is computationally cheap, but convergence is
+                      irregular and unreliable.</p></li><li><p><code class="function">bicg</code> is historically important because many other
+                      iterative algorithms were developed as improvements on it.</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-15051"><a href="../ref/bicgstab.html"><code class="function">bicgstab</code></a> (biconjugate gradient
+                  stabilized)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>Uses BiCG steps alternating with GMRES(1) steps for additional
+                      stability.</p></li></ul></div>
+              </td></tr><tr><td><p><a href="../ref/bicgstabl.html"><code class="function">bicgstabl</code></a> (biconjugate gradient
+                  stabilized (l))</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>Uses BiCG steps alternating with GMRES(2) steps for additional
+                      stability.</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-15055"><a href="../ref/cgs.html"><code class="function">cgs</code></a> (conjugate gradient
+                  squared)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>Requires the same number of operations per iteration as
+                        <code class="function">bicg</code>, but avoids using the transpose by working with a
+                      squared residual.</p></li></ul></div>
+              </td></tr><tr><td><p><a href="../ref/gmres.html"><code class="function">gmres</code></a> (generalized minimum
+                  residual)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>One of the most dependable algorithms, since the residual norm is
+                      minimized in each iteration.</p></li><li><p>Work and required storage rise linearly with iteration count.</p></li><li><p>Choosing an appropriate <a href="../ref/gmres.html#mw_24201e19-dce2-43f8-ba6a-7fc8cc4f6727"><code class="argument">restart</code></a> value is essential to avoid unnecessary work and
+                      storage.</p></li></ul></div>
+              </td></tr><tr><td><p id="f6-15067"><a href="../ref/qmr.html"><code class="function">qmr</code></a> (quasi-minimal
+                  residual)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>Overhead per iteration is slightly more than <code class="function">bicg</code>,
+                      but this provides more stability.</p></li></ul></div>
+              </td></tr><tr><td><p><a href="../ref/tfqmr.html"><code class="function">tfqmr</code></a> (transpose-free quasi-minimal
+                  residual)</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Coefficient matrix must be square.</p></li><li><p>Best solver to try for symmetric indefinite systems when memory is
+                      limited.</p></li></ul></div>
+              </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_72f46e8e-dac3-45c8-bd5d-923186d821bb">Choosing an Iterative Solver</h3><p>This flow chart of iterative solvers in MATLAB gives a rough idea of the situations where each solver is useful. You can
+        generally use <code class="function">gmres</code> for almost all square, nonsymmetric problems. There
+        are some cases where the biconjugate gradients algorithms (<code class="function">bicg</code>,
+          <code class="function">bicgstab</code>, <code class="function">cgs</code>, and so on) are more efficient
+        than <code class="function">gmres</code>, but their unpredictable convergence behavior often makes
+          <code class="function">gmres</code> a better initial choice.</p><div class="informalfigure"><div id="d126e15209" class="mediaobject"><p><img src="iterativemethods.png" alt="Workflow to choose an appropriate iterative solver to use for a given problem." height="574" width="671"></p></div></div></section><section><h3 class="title" id="mw_3e3b2d9d-91a6-4eb0-96d8-2ec05150997e">Preconditioners</h3><p>The convergence rate of iterative methods is dependent on the spectrum (eigenvalues) of
+        the coefficient matrix. Therefore, you can improve the convergence and stability of most
+        iterative methods by transforming the linear system to have a more favorable spectrum
+        (clustered eigenvalues or a condition number near 1). This transformation is performed by
+        applying a second matrix, called a <em class="firstterm">preconditioner</em>, to the system.
+        This process transforms the linear system</p>
+<div id="d126e15221" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>A</mi><mi>x</mi><mo>=</mo><mi>b</mi></mrow></math></p></div></div><p></p><p>into an equivalent system</p><div id="d126e15226" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-7px" display="block"><mrow><mover accent="true"><mrow><mi>A</mi><mtext> </mtext></mrow><mo stretchy="true">˜</mo></mover><mover accent="true"><mi>x</mi><mo stretchy="true">˜</mo></mover><mo>=</mo><mover accent="true"><mi>b</mi><mo stretchy="true">˜</mo></mover><mtext> </mtext><mo>.</mo></mrow></math></p></div></div><p>The ideal preconditioner transforms the coefficient matrix <em class="varname">A</em> into an
+        identity matrix, since any iterative method will converge in one iteration with such a
+        preconditioner. In practice, finding a good preconditioner requires tradeoffs. The
+        transformation is performed in one of three ways: left preconditioning, right
+        preconditioning, or split preconditioning.</p><p>The first case is called <span class="emphasis"><em>left preconditioning</em></span> since the
+        preconditioner matrix <em class="varname">M</em> appears on the left of
+        <em class="varname">A</em>:</p><div id="d126e15242" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-12px" display="block"><mrow><mrow><mo>(</mo><mrow><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>A</mi><mtext> </mtext></mrow><mo>)</mo></mrow><mi>x</mi><mo>=</mo><mrow><mo>(</mo><mrow><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mtext> </mtext><mi>b</mi></mrow><mo>)</mo></mrow><mtext> </mtext><mo>.</mo></mrow></math></p></div></div><p>These iterative solvers use left preconditioning:</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/bicg.html"><code class="function">bicg</code></a></p></li><li><p><a href="../ref/gmres.html"><code class="function">gmres</code></a></p></li><li><p><a href="../ref/qmr.html"><code class="function">qmr</code></a></p></li></ul></div><p>
+</p><p>In <span class="emphasis"><em>right preconditioning</em></span>, <em class="varname">M</em> appears on the right
+        of <em class="varname">A</em>:</p><div id="d126e15269" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-12px" display="block"><mrow><mrow><mo>(</mo><mrow><mi>A</mi><mtext> </mtext><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><mo>)</mo></mrow><mrow><mo>(</mo><mrow><mi>M</mi><mtext> </mtext><mi>x</mi></mrow><mo>)</mo></mrow><mo>=</mo><mi>b</mi><mtext> </mtext><mo>.</mo></mrow></math></p></div></div><p>These iterative solvers use right preconditioning:</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/lsqr.html"><code class="function">lsqr</code></a></p></li><li><p><a href="../ref/bicgstab.html"><code class="function">bicgstab</code></a></p></li><li><p><a href="../ref/bicgstabl.html"><code class="function">bicgstabl</code></a></p></li><li><p><a href="../ref/cgs.html"><code class="function">cgs</code></a></p></li><li><p><a href="../ref/tfqmr.html"><code class="function">tfqmr</code></a></p></li></ul></div><p>
+</p><p>Finally, for symmetric coefficient matrices <code class="literal">A</code>, <span class="emphasis"><em>split
+          preconditioning</em></span> ensures that the transformed system is still symmetric. The
+        preconditioner <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><mi>M</mi><mo>=</mo><mi>H</mi><msup><mi>H</mi><mi>T</mi></msup></mrow></math></span></span> gets split and the factors appear on different sides of
+          <em class="varname">A</em>:</p><div id="d126e15310" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-11px" display="block"><mrow><mrow><mo>(</mo><mrow><msup><mi>H</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>A</mi><mtext> </mtext><msup><mi>H</mi><mrow><mo>−</mo><mi>T</mi></mrow></msup></mrow><mo>)</mo></mrow><msup><mi>H</mi><mi>T</mi></msup><mi>x</mi><mo>=</mo><mrow><mo>(</mo><mrow><msup><mi>H</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>b</mi></mrow><mo>)</mo></mrow></mrow></math></p></div></div><p>The solver algorithm for split preconditioned systems is based on the above equation,
+        but in practice there is no need to compute <em class="varname">H</em>. The solver algorithm
+        multiplies and solves with <code class="literal">M</code> directly.</p><p>These iterative solvers use split preconditioning:</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/pcg.html"><code class="function">pcg</code></a></p></li><li><p><a href="../ref/minres.html"><code class="function">minres</code></a></p></li><li><p><a href="../ref/symmlq.html"><code class="function">symmlq</code></a></p></li></ul></div><p>
+</p><p>In all cases, the preconditioner <em class="varname">M</em> is chosen to accelerate
+        convergence of the iterative method. When the residual error of an iterative solution
+        stagnates or makes little progress between iterations, it often means you need to generate a
+        preconditioner matrix to incorporate into the problem.</p><p>The iterative solvers in MATLAB allow you to specify a single preconditioner matrix <em class="varname">M</em>, or
+        two preconditioner matrix factors such that <span class="inlineequation"><em class="varname">M</em> =
+              <em class="varname">M</em><sub>1</sub><em class="varname">M</em><sub>2</sub></span>. This makes it easy to specify a preconditioner in its factorized form,
+        such as <span class="inlineequation"><em class="varname">M</em> = <em class="varname">L</em><em class="varname">U</em></span>. Note that in the split preconditioned case, where <span class="inlineequation"><em class="varname">M</em> =
+              <em class="varname">H</em><em class="varname">H</em><sup>T</sup></span> also holds, there is not a relation between the <code class="literal">M1</code> and
+          <code class="literal">M2</code> inputs and the <em class="varname">H</em> factors.</p><p>In some cases, preconditioners occur naturally in the mathematical model of a given
+        problem. In the absence of natural preconditioners, you can use one of the incomplete
+        factorizations in this table to generate a preconditioner matrix. Incomplete factorizations
+        are essentially incomplete direct solves that are quick to calculate.</p><span id="mw_803718ea-f103-4d55-9ced-fd0b49614797" class="anchor_target"></span><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Function</th><th>Factorization</th><th>Description</th></tr></thead><tbody><tr><td><a href="../ref/ilu.html"><code class="function">ilu</code></a></td><td><p>
+                  </p>
+<div id="d126e15399" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mtext>A</mtext><mo>≈</mo><mtext>LU</mtext></mrow></math></p></div></div><p>
+                </p></td><td>Incomplete LU factorization for square or rectangular matrices.</td></tr><tr><td><a href="../ref/ichol.html"><code class="function">ichol</code></a></td><td>
+                <div id="d126e15412" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-7px" display="block"><mrow><mtext>A</mtext><mo>≈</mo><mtext>L</mtext><mtext> </mtext><msup><mtext>L</mtext><mo>*</mo></msup></mrow></math></p></div></div>
+              </td><td>Incomplete Cholesky factorization for symmetric positive definite
+                matrices.</td></tr></tbody></table></div><p>See <a href="sparse-matrix-operations.html#f6-14457" class="a">Incomplete Factorizations</a> for more information about <code class="function">ilu</code>
+        and <code class="function">ichol</code>.</p><section><h4 class="title" id="mw_c1a3579f-09ab-482e-9793-b7458bf50e93">Preconditioner Example</h4><p>Consider the five-point finite difference approximation to Laplace's equation on a
+          square, two-dimensional domain. The following commands use the preconditioned conjugate
+          gradient (PCG) method with the preconditioner <code class="literal">M = L*L'</code>, where
+            <code class="literal">L</code> is the zero-fill incomplete Cholesky factor of
+          <code class="literal">A</code>. For this system, <code class="function">pcg</code> is unable to find a
+          solution without specifying a preconditioner matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = delsq(numgrid(<span style="color:#A020F0">'S'</span>,250));
+b = ones(size(A,1),1);
+tol = 1e-3;
+maxit = 100;
+L = ichol(A);
+x = pcg(A,b,tol,maxit,L,L');</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pcg converged at iteration 92 to a solution with relative residual 0.00076.</pre></div></div></div><p><code class="function">pcg</code> requires 92 iterations to achieve the specified tolerance.
+          However, using a different preconditioner can yield better results. For example, using
+            <code class="function">ichol</code> to construct a modified incomplete Cholesky allows
+            <code class="function">pcg</code> to meet the specified tolerance after only 39
+          iterations.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>L = ichol(A,struct(<span style="color:#A020F0">'type'</span>,<span style="color:#A020F0">'nofill'</span>,<span style="color:#A020F0">'michol'</span>,<span style="color:#A020F0">'on'</span>));
+x = pcg(A,b,tol,maxit,L,L');
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pcg converged at iteration 39 to a solution with relative residual 0.00098.</pre></div></div></div></p></section></section><section><h3 class="title" id="mw_7f290832-2144-4e82-b705-a9bb9911764c">Equilibration and Reordering</h3><p>For computationally tough problems, you might need a better preconditioner than the one
+        generated by <code class="function">ilu</code> or <code class="function">ichol</code> directly. For example,
+        you might want to generate a better quality preconditioner or minimize the amount of
+        computation being done. In these cases, you can use <span class="emphasis"><em>equilibration</em></span> to
+        make the coefficient matrix more diagonally dominant (which can lead to a better quality
+        preconditioner) and <span class="emphasis"><em>reordering</em></span> to minimize the number of nonzeros in
+        matrix factors (which can reduce memory requirements and may improve the efficiency of
+        subsequent calculations).</p><p>If you use both equilibration and reordering to generate a preconditioner, the process is:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Use <a href="../ref/equilibrate.html"><code class="function">equilibrate</code></a> on the coefficient matrix. </p></li><li><p>Reorder the equilibrated matrix using a sparse matrix reordering function, such as
+                <a href="../ref/dissect.html"><code class="function">dissect</code></a>
+              or <a href="../ref/symrcm.html"><code class="function">symrcm</code></a>.</p></li><li><p>Generate the final preconditioner using <a href="../ref/ilu.html"><code class="function">ilu</code></a> or <a href="../ref/ichol.html"><code class="function">ichol</code></a>.</p></li></ol></div><p>
+</p><p>Here is an example that uses equilibration and reordering to generate a preconditioner
+        for a sparse coefficient matrix.</p><div class="procedure"><ol type="1"><li id="mw_21ef83b1-101a-441f-913c-fb670c52d65c"><p>Create the coefficient matrix <code class="literal">A</code> and a vector of ones
+              <code class="literal">b</code> for the right-hand side of the linear equation. Calculate an
+            estimation of the condition number for <code class="literal">A</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">west0479</span>;
+A = west0479;
+b = ones(size(A,1),1);
+condest(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   1.4244e+12</pre></div></div></div><p>Use <code class="function">equilibrate</code> to improve the condition number of the
+            coefficient matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[P,R,C] = equilibrate(A);
+Anew = R*P*A*C;
+bnew = R*P*b;
+condest(Anew)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   5.1042e+04</pre></div></div></div></li><li id="mw_5d772847-7d3a-476b-9f04-e7d1a6bb8eb4"><p>Reorder the equilibrated matrix using <code class="function">dissect</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>q = dissect(Anew);
+Anew = Anew(q,q);
+bnew = bnew(q);</pre></div></div></div></li><li id="mw_5d362691-4498-4255-acda-4aa8deaf90e2"><p>Generate a preconditioner using an incomplete LU factorization.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[L,U] = ilu(Anew);</pre></div></div></div></li><li id="mw_ea0c5be7-64c7-419a-92d9-b3fcbecda8a8"><p>Solve the linear system with <code class="function">gmres</code> using the preconditioner
+            matrices, a tolerance of <code class="literal">1e-10</code>, 50 maximum outer iterations, and 30
+            inner iterations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tol = 1e-10;
+maxit = 50;
+restart = 30;
+[xnew, flag, relres] = gmres(Anew,bnew,restart,tol,maxit,L,U);
+x(q) = xnew;
+x = C*x(:);</pre></div></div></div><p>Now, compare the <a href="../ref/gmres.html#mw_032ce727-87cd-4658-96c8-4ce9ed6aa55c"><code class="argument">relres</code></a>
+            relative residual returned by <code class="function">gmres</code> (which includes the
+            preconditioners) to the relative residual without the preconditioners
+              <code class="literal">resnew</code> and the relative residual without equilibration
+              <code class="literal">res</code>. The results show that even though the linear systems are all
+            equivalent, the different methods apply different weights to each element, and this can
+            significantly affect the value of the residual.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>relres
+resnew = norm(Anew*xnew - bnew) / norm(bnew)
+res = norm(A*x - b) / norm(b)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>relres =
+   8.7537e-11
+resnew =
+   3.6805e-08
+res =
+   5.1415e-04</pre></div></div></div></li></ol></div></section><section><h3 class="title" id="mw_5db92e4c-fc78-439c-87d7-48ec23d9acdb">Using Linear Operators Instead of Matrices</h3><p>The iterative solvers in MATLAB do not <span class="emphasis"><em>require</em></span> that you provide a numeric matrix for
+          <code class="literal">A</code>. Since the calculations performed by the solvers use the result of
+        the matrix-vector multiplication <code class="literal">A*x</code> or <code class="literal">A'*x</code>, you can
+        instead provide a function that calculates the result of those linear operations. A function
+        that calculates these quantities is often called a <em class="firstterm">linear
+        operator</em>.</p><p>In addition to using a linear operator instead of a coefficient matrix
+          <code class="literal">A</code>, you can also use a linear operator instead of a matrix for the
+        preconditioner <code class="literal">M</code>. In that case, the function needs to calculate
+          <code class="literal">M\x</code> or <code class="literal">M'\x</code>, as indicated on the reference page for
+        the solver.</p><p>Using linear operators enables you to exploit patterns in <code class="literal">A</code> or
+          <code class="literal">M</code> to calculate the value of the linear operations more efficiently than
+        if the solver used the matrix explicitly to carry out the full matrix-vector multiplication.
+        It also means you do not need the memory to store the coefficient or preconditioner
+        matrices, since the linear operator typically calculates the result of the matrix-vector
+        multiplication without forming the matrix at all.</p><p>For example, consider the coefficient
+        matrix<div class="code_responsive"><pre class="programlisting">A = [2 -1  0  0  0  0;
+    -1  2 -1  0  0  0;
+     0 -1  2 -1  0  0;
+     0  0 -1  2 -1  0;
+     0  0  0 -1  2 -1;
+     0  0  0  0 -1  2];</pre></div></p><p>When <code class="literal">A</code> multiplies a vector, most of the elements in the resulting
+        vector are zeros. The nonzero elements in the result correspond with the nonzero tridiagonal
+        elements of <code class="literal">A</code>. So, for a given vector <code class="literal">x</code>, the linear
+        operator function simply needs to add together three vectors to calculate the value of
+          <code class="literal">A*x</code>:<div class="code_responsive"><pre class="programlisting">function y = linearOperatorA(x)
+y = -1*[0; x(1:end-1)] ...
+  + 2*x ...
+  + -1*[x(2:end); 0];
+end</pre></div></p><p>Most iterative solvers require the linear operator function for <code class="literal">A</code> to
+        return the value of <code class="literal">A*x</code>. Likewise, for the preconditioner matrix
+          <code class="literal">M</code>, the function generally must calculate <code class="literal">M\x</code>. For
+        the solvers <code class="function">lsqr</code>, <code class="function">qmr</code>, and
+          <code class="function">bicg</code>, the linear operator functions must also return the value for
+          <code class="literal">A'*x</code> or <code class="literal">M'\x</code> when requested. See the iterative
+        solver reference pages for examples and descriptions of linear operator functions.</p></section><section><h3 class="title" id="mw_5b197c5f-306c-4527-bdbd-d2861ad80ff4">References</h3><div class="bibliography"><div id="mw_940f70c5-e98f-4cd0-90b9-3980208a5c3c" class="bibliomixed"><p>[1] Barrett, R., M. Berry, T. F.
+          Chan, et al., <em class="citetitle">Templates for the Solution of Linear Systems: Building Blocks for
+            Iterative Methods</em>, SIAM, Philadelphia, 1994. </p></div><div id="mw_3b1efa0e-3890-4fe5-a6df-c7237749b9c1" class="bibliomixed"><p>[2] Saad, Yousef,
+            <em class="citetitle">Iterative Methods for Sparse Linear Equations</em>. PWS Publishing
+          Company, 1996. </p></div></div></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e15634">Topics</h3><ul class="list-unstyled"><li><a href="systems-of-linear-equations.html" class="a">Systems of Linear Equations</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

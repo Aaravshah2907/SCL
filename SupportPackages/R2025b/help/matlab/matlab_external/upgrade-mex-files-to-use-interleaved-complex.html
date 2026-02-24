@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Upgrade MEX Files to Use Interleaved Complex API</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to use an interleaved representation of complex numbers in MEX files."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Upgrade MEX Files to Use Interleaved Complex API</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_65b08ae8-d98a-4af5-8758-f0be6a8d745e" class="nav-link intrnllnk">Check Array Complexity Using mxIsComplex</a></li><li class="nav-item"><a href="#mw_a724117a-6d1e-426d-b61b-56808714bcd3" class="nav-link intrnllnk">Add MX_HAS_INTERLEAVED_COMPLEX to Support Both Complex Number Representations</a></li><li class="nav-item"><a href="#mw_cff452b0-d801-4cfd-a520-1f9d9f032abe" class="nav-link intrnllnk">Use Typed Data Access Functions</a></li><li class="nav-item"><a href="#mw_49ca196e-4fa5-4422-a91f-c90e95e3d47d" class="nav-link intrnllnk">Handle Complex mxArrays</a><ul class="nav"><li class="nav-item"><a href="#mw_487751a6-c8fc-4b31-919a-b1462a44c09a" class="nav-link intrnllnk">Complex C mxArrays</a></li><li class="nav-item"><a href="#mw_9099eab4-919e-4571-9ddb-54c36df725e8" class="nav-link intrnllnk">Complex Fortran mxArrays</a></li></ul></li><li class="nav-item"><a href="#mw_ed4d89db-745a-413b-a2b7-552bfa0bbcff" class="nav-link intrnllnk">Maintain Complexity of mxArray</a></li><li class="nav-item"><a href="#mw_278e030a-69cd-4271-aa22-9097f4e66fdb" class="nav-link intrnllnk">Replace Separate Complex Functions</a></li><li class="nav-item"><a href="#mw_d9edb7a6-31d3-4124-933a-be41cbe8003a" class="nav-link intrnllnk">Calculate Array Data Size with mxGetElementSize</a></li><li class="nav-item"><a href="#mw_1352cf80-86c1-4e7d-879a-545bb516ee98" class="nav-link intrnllnk">Consider Replacing To-Be-Phased-Out Functions</a></li><li class="nav-item"><a href="#mw_4a7a13b8-9ac7-4f8c-b6fb-8df9bd7adafd" class="nav-link intrnllnk">Add Build Information to MEX Help File</a></li><li class="nav-item"><a href="#d126e33021" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_1ff25367-be3c-4992-a2e2-4748f2019216">Upgrade MEX Files to Use Interleaved Complex API</h2><span id="UCOMPAT" class="anchor_target"></span><p>This topic describes how to upgrade your MEX files to use the interleaved complex API.
+            You can continue to use the separate complex API by calling the <code class="function">mex</code>
+            command with the <code class="literal remove_text_wrapping">-R2017b</code> option. However, for more information about
+            using this option, see <a href="do-i-need-to-upgrade-my-mex-files-to-use-interleaved-complex.html" class="a">Do I Need to Upgrade My MEX Files to Use Interleaved Complex API?</a></p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If you build your MEX files using the <code class="function">mex</code> command with the
+                    <code class="literal remove_text_wrapping">-compatibleArrayDims</code> option, then you first must update the
+                source code to use the 64-bit API. For information, see <a href="upgrading-mex-files-to-use-64-bit-api.html" class="a">Upgrade MEX Files to Use 64-Bit API</a>.</p></div><p>To update your MEX source code, use the following checklist.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Review your code for usage of <code class="literal">pr</code> and <code class="literal">pi</code>
+                    pointers, the pointers returned by the <a href="../apiref/mxgetpr.html"><code class="function">mxGetPr</code></a>/<a href="../apiref/mxgetpi.html"><code class="function">mxGetPi</code></a> and <a href="../apiref/mxgetdata.html"><code class="function">mxGetData</code></a>/<a href="../apiref/mxgetimagdata.html"><code class="function">mxGetImagData</code></a> functions. In
+                    the interleaved complex API, there is one pointer, <code class="literal">pa</code>, the
+                    value returned by <code class="function">mxGetDoubles</code> and the other typed data
+                    functions. It is important to check an input array for complexity before
+                    attempting to read the data. Calls to <code class="function">mxGetPr</code> and
+                        <code class="function">mxGetData</code> on complex arrays return different results in
+                    the interleaved complex API than in the separate complex API.</p></li><li><p>Prepare your code before editing.</p><p>Before modifying your code, verify that the MEX function works with the
+                        <code class="literal remove_text_wrapping">-R2017b</code> API. At a minimum, build a list of expected
+                    inputs and outputs, or create a full test suite. Use these tests to compare the
+                    results with the updated source code. The results should be identical.</p><p>Back up all source, binary, and test files.</p></li><li><p>Iteratively refactor your existing code by checking for the following
+                    conditions.</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_65b08ae8-d98a-4af5-8758-f0be6a8d745e" class="intrnllnk">Check Array Complexity Using mxIsComplex</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_a724117a-6d1e-426d-b61b-56808714bcd3" class="intrnllnk">Add MX_HAS_INTERLEAVED_COMPLEX to Support Both Complex Number Representations</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_cff452b0-d801-4cfd-a520-1f9d9f032abe" class="intrnllnk">Use Typed Data Access Functions</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_49ca196e-4fa5-4422-a91f-c90e95e3d47d" class="intrnllnk">Handle Complex mxArrays</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_278e030a-69cd-4271-aa22-9097f4e66fdb" class="intrnllnk">Replace Separate Complex Functions</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_d9edb7a6-31d3-4124-933a-be41cbe8003a" class="intrnllnk">Calculate Array Data Size with mxGetElementSize</a></p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_1352cf80-86c1-4e7d-879a-545bb516ee98" class="intrnllnk">Consider Replacing To-Be-Phased-Out Functions</a></p></li></ol></div></li><li><p>After each change, compile using the interleaved complex API. To build
+                        <code class="literal">myMexFile.c</code>,
+                    type:<div class="code_responsive"><pre class="programlisting">mex -R2018a myMexFile.c</pre></div>To build
+                        <code class="literal">myMexFile.F</code>, type:</p><div class="code_responsive"><pre class="programlisting">mex -R2018a myMexFile.F</pre></div></li><li><p>Resolve failures and warnings.</p></li><li><p>Test after each refactoring.</p><p>Compare the results of running your MEX function compiled with the interleaved
+                    complex API with the results from your original binary. If there are any
+                    differences or failures, use a debugger to investigate the cause. For
+                    information on the capabilities of your debugger, refer to your compiler
+                    documentation.</p></li><li><p><a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_4a7a13b8-9ac7-4f8c-b6fb-8df9bd7adafd" class="intrnllnk">Add Build Information to MEX Help File</a></p></li></ol></div><section><h3 class="title" id="mw_65b08ae8-d98a-4af5-8758-f0be6a8d745e">Check Array Complexity Using <code class="literal">mxIsComplex</code></h3><p>If your code calls the <code class="function">mxGetPi</code> function to determine if an
+                array has complex elements, use the <a href="../apiref/mxiscomplex.html"><code class="function">mxIsComplex</code></a> function instead.
+                This function builds with both the <code class="literal remove_text_wrapping">-R2017b</code> and
+                    <code class="literal remove_text_wrapping">-R2018a</code> APIs. Search your code for the following
+                patterns.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">mxArray *pa;
+...
+if (mxGetPi(pa)) { 
+    /* process complex array */
+}
+</pre></div>
+                            </td><td rowspan="2">
+                                <div class="code_responsive"><pre class="programlisting">mxArray *pa;
+...
+if (mxIsComplex(pa)) { 
+    /* process complex array */
+}</pre></div>
+                            </td></tr><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">double *ptr;
+ptr = mxGetPi(pa);
+if (ptr != NULL) { 
+    /* process complex array */
+}
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_a724117a-6d1e-426d-b61b-56808714bcd3">Add <code class="literal">MX_HAS_INTERLEAVED_COMPLEX</code> to Support Both Complex Number                 Representations</h3><p>To write code that builds with both the <code class="literal remove_text_wrapping">-R2017b</code> and
+                    <code class="literal remove_text_wrapping">-R2018a</code> APIs, add the
+                    <code class="literal">MX_HAS_INTERLEAVED_COMPLEX</code> macro. This macro returns
+                    <code class="literal">true</code> if you build the MEX file with the
+                    <code class="literal remove_text_wrapping">-R2018a</code> option.</p><p>Wrapping the following code in an <code class="literal">#if
+                    MX_HAS_INTERLEAVED_COMPLEX</code> statement ensures that this code will build
+                with either the <code class="literal remove_text_wrapping">-R2017b</code> or <code class="literal remove_text_wrapping">-R2018a</code>
+                <code class="function">mex</code> option. However, in this example, there is no code to
+                execute when built with <code class="literal remove_text_wrapping">-R2018a</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">static void
+analyze_double(const mxArray *array_ptr)
+{
+    mwSize total_num_of_elements, index;
+    double *pr, *pi;
+    total_num_of_elements = mxGetNumberOfElements(array_ptr);
+    pr = mxGetPr(array_ptr);
+    pi = mxGetPi(array_ptr);
+    for (index=0; index&lt;total_num_of_elements; index++)  {
+        if (mxIsComplex(array_ptr)) {
+            mexPrintf("%g + %gi\n", *pr++, *pi++);
+        }
+        else {
+            mexPrintf("%g\n", *pr++);
+        }
+    }
+}
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">static void
+analyze_double(const mxArray *array_ptr)
+{
+    mwSize total_num_of_elements, index;
+    total_num_of_elements = mxGetNumberOfElements(array_ptr);
+
+    #if MX_HAS_INTERLEAVED_COMPLEX
+        /* interleaved complex API processing */
+        mxComplexDouble *pc;
+        mxDouble *p;
+        if (mxIsComplex(array_ptr)) {
+            pc = mxGetComplexDoubles(array_ptr);
+            for (index=0; index&lt;total_num_of_elements; index++)  {
+                mexPrintf(" = %g + %gi\n",(*pc).real,(*pc).imag);
+                pc++;
+            }
+        }
+        else {
+            p = mxGetDoubles(array_ptr);
+            for (index=0; index&lt;total_num_of_elements; index++)  {
+                mexPrintf(" = %g\n", *p++);
+            }
+        }
+    #else
+        /* separate complex API processing */
+        double *pr, *pi;
+        pr = mxGetPr(array_ptr);
+        pi = mxGetPi(array_ptr);
+        for (index=0; index&lt;total_num_of_elements; index++)  {
+            if (mxIsComplex(array_ptr)) {
+                mexPrintf("%g + %gi\n", *pr++, *pi++);
+            }
+            else {
+                mexPrintf("%g\n", *pr++);
+            }
+        }
+    #endif
+}</pre></div>
+                            </td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace Fortran Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">mwPointer prhs(*), pr
+pr = mxGetPr(prhs(1))</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">mwPointer prhs(*), pr
+#if MX_HAS_INTERLEAVED_COMPLEX
+      pr = mxGetDoubles(prhs(1))
+#else
+      pr = mxGetPr(prhs(1))
+#endif
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_cff452b0-d801-4cfd-a520-1f9d9f032abe">Use Typed Data Access Functions</h3><p>To use the <code class="literal">mxGetData</code> and <code class="literal">mxGetImagData</code>
+                functions, you must verify the type of the input <code class="literal">mxArray</code> and
+                manually cast the pointer output to the correct type. The typed data access
+                functions verify the type of the array and return the correct pointer type. When you
+                use the <code class="function">mxGetInt16s</code> and <code class="function">mxGetComplexInt16s</code>
+                functions in the following code to process an <code class="literal">int16</code> array, you do
+                not need to remember the corresponding C type, <code class="literal">short int</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">static void
+analyze_int16(const mxArray *array_ptr)
+{
+    short int  *pr, *pi;
+    pr = (short int *)mxGetData(array_ptr);
+    pi = (short int *)mxGetImagData(array_ptr);
+    
+    if (mxIsComplex(array_ptr)) {
+         /* process complex data *pr,*pi */
+    }
+    else {
+        /* process real data *pr */
+    }
+}</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">static void
+analyze_int16(const mxArray *array_ptr)
+{
+    mxComplexInt16 *pc;
+    mxInt16 *p;
+    if(mxIsComplex(array_ptr)) {
+        pc = mxGetComplexInt16s(array_ptr);
+        /* process complex data (*pc).real,(*pc).imag */
+        }
+    }
+    else {
+        p = mxGetInt16s(array_ptr);
+        /* process real data *p */
+        }
+    }
+}</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_49ca196e-4fa5-4422-a91f-c90e95e3d47d">Handle Complex <code class="literal">mxArrays</code></h3><p>The following examples show how MATLAB<sup>&#x00AE;</sup> uses one array variable to represent a complex array. </p><section><h4 class="title" id="mw_487751a6-c8fc-4b31-919a-b1462a44c09a">Complex C <code class="literal">mxArrays</code></h4><p>Suppose that you have the following complex <code class="literal">mxArray</code>
+                    variables and want to add the real numbers and the imaginary numbers of
+                        <code class="literal">x</code> and <code class="literal">y</code> to create array
+                        <code class="literal">z</code>. Arrays <code class="literal">x</code> and <code class="literal">y</code>
+                    are the same size.</p><div class="code_responsive"><pre class="programlisting">mxArray * x, y, z;</pre></div><p>Instead of creating two pointers <code class="literal">xr</code> and
+                        <code class="literal">xi</code> for array <code class="literal">x</code>, create one pointer
+                        <code class="literal">xc</code> of type <code class="literal">mxComplexDouble</code>. To access
+                    the real and imaginary parts of element <code class="literal">xc[i]</code>, use
+                        <code class="literal">xc[i].real</code> and <code class="literal">xc[i].imag</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">double  *xr, *xi, *yr, *yi, *zr, *zi;
+/* get pointers to the real and imaginary parts of the arrays */
+xr = mxGetPr(x);
+xi = mxGetPi(x);
+yr = mxGetPr(y);
+yi = mxGetPi(y);
+zr = mxGetPr(z);
+zi = mxGetPi(z);
+
+...
+/* perform addition on element i */
+zr[i] = xr[i] + yr[i];
+zi[i] = xi[i] + yi[i];
+</pre></div>
+                                </td><td>
+                                    <div class="code_responsive"><pre class="programlisting">/* get pointers to the complex arrays */
+mxComplexDouble * xc = mxGetComplexDoubles(x);
+mxComplexDouble * yc = mxGetComplexDoubles(y);
+mxComplexDouble * zc = mxGetComplexDoubles(z);
+
+...
+/* perform addition on element i */
+zc[i].real = xc[i].real + yc[i].real;
+zc[i].imag = xc[i].imag + yc[i].imag;
+</pre></div>
+                                </td></tr></tbody></table></div><p>The following code copies an <code class="literal">mxArray</code> into an output
+                    argument. The code shows how to test for and copy complex arrays.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">mxGetPr(plhs[0])[0] = mxGetPr(prhs[0])[index];
+if (mxIsComplex(prhs[0])) {
+    mxGetPi(plhs[0])[0] = mxGetPi(prhs[0])[index];
+}
+</pre></div>
+                                </td><td>
+                                    <div class="code_responsive"><pre class="programlisting">if (mxIsComplex(prhs[0])) {
+   mxGetComplexDoubles(plhs[0])[0] = mxGetComplexDoubles(prhs[0])[index];
+}
+else {
+   mxGetDoubles(plhs[0])[0] = mxGetDoubles(prhs[0])[index];
+}
+</pre></div>
+                                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_9099eab4-919e-4571-9ddb-54c36df725e8">Complex Fortran <code class="literal">mxArrays</code></h4><p>Suppose that you have two complex double <code class="literal">mxArrays</code> and want
+                    to pass them to a Fortran function with input arguments <code class="literal">x</code> and
+                        <code class="literal">y</code> defined as follows.</p><div class="code_responsive"><pre class="programlisting">complex*16 x(*), y(*)</pre></div><p>Instead of separately converting the real and imaginary parts of each
+                        <code class="literal">mxArray</code>, use the <code class="function">mxGetComplexDoubles</code>
+                    function.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace Fortran Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">      mwPointer mxGetPr, mxGetPi
+
+C     Copy the data into native COMPLEX Fortran arrays.
+      call mxCopyPtrToComplex16(
+     +    mxGetPr(prhs(1)),
+     +    mxGetPi(prhs(1)),x,nx)
+      call mxCopyPtrToComplex16(
+     +    mxGetPr(prhs(2)),
+     +    mxGetPi(prhs(2)),y,ny)
+</pre></div>
+                                </td><td>
+                                    <div class="code_responsive"><pre class="programlisting">      mwPointer mxGetComplexDoubles
+      integer*4 status
+      integer*4 mxCopyPtrToComplex16, mxCopyComplex16ToPtr
+
+C     Copy the data into native COMPLEX Fortran arrays.
+      status = 
+     +   mxCopyPtrToComplex16(mxGetComplexDoubles(prhs(1)),x,nx)
+C     Test status for error conditions
+
+      status = 
+     +   mxCopyPtrToComplex16(mxGetComplexDoubles(prhs(2)),y,ny)
+C     Test status for error conditions
+</pre></div>
+                                </td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_ed4d89db-745a-413b-a2b7-552bfa0bbcff">Maintain Complexity of <code class="literal">mxArray</code></h3><p>This C code snippet shows how to convert a real, double, input array
+                    <code class="literal">prhs[0]</code> into a complex array. The following code sets up the
+                variables used to fill the complex part of the array with consecutive
+                numbers.</p><div class="code_responsive"><pre class="programlisting">// code to check number of arguments and expected types
+mwSize rows = mxGetM(prhs[0]);
+mwSize cols = mxGetN(prhs[0]);
+mwSize sz = mxGetElementSize(prhs[0]);</pre></div><p>The following code shows how to use <code class="function">mxMakeArrayComplex</code> to
+                convert a real, double, input array to an interleaved complex
+                    <code class="literal">mxArray</code>. For more examples, see <a href="../apiref/mxmakearraycomplex.html"><code class="function">mxMakeArrayComplex (C)</code></a>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">plhs[0] = mxDuplicateArray(prhs[0]);
+
+mxDouble *dc = (mxDouble*)mxMalloc(rows*cols*sz);
+mxSetImagData(plhs[0], dc);
+for (int i = 0 ; i &lt; rows*cols ; i++)
+{
+    dc[i] = i+1;
+}
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">plhs[0] = mxDuplicateArray(prhs[0]);
+
+if (mxMakeArrayComplex(plhs[0])) {
+    mxComplexDouble *dt = mxGetComplexDoubles(plhs[0]);
+    for (int i = 0 ; i &lt; rows*cols ; i++)
+    {
+        dt[i].imag = i+1;
+    }
+}
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_278e030a-69cd-4271-aa22-9097f4e66fdb">Replace Separate Complex Functions</h3><p>The following functions are not in the interleaved complex API. You must replace
+                them with interleaved complex functions when handling complex data.</p><div class="itemizedlist"><ul><li><p><code class="function">mxGetPi</code></p></li><li><p><code class="function">mxSetPi</code></p></li><li><p><code class="function">mxGetImagData</code></p></li><li><p><code class="function">mxSetImagData</code></p></li></ul></div><p>You can replace calls to <code class="function">mxGetPr</code> and
+                    <code class="function">mxGetPi</code> with a call to
+                    <code class="function">mxGetComplexDoubles</code>. This function verifies that your array
+                contains elements of type <code class="literal">mxComplexDouble</code>. Likewise,
+                    <code class="function">mxSetComplexDoubles</code> replaces <code class="function">mxSetPr</code>
+                and <code class="function">mxSetPi</code>.</p><p>The <code class="function">mxGetData</code> and <code class="function">mxGetImagData</code>
+                functions do not check the type of the array. Instead, you must cast the return
+                value to the pointer type that matches the type specified by the input. Replace
+                calls to <code class="function">mxGetData</code> and <code class="function">mxGetImagData</code> with
+                the single, appropriate, typed data access function, for example,
+                    <code class="function">mxGetComplexInt64s</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">mxArray *pa;
+mwSize numElements; 
+
+int64_T  *pr, *pi;
+pr = (int64_T *)mxGetData(pa);
+pi = (int64_T *)mxGetImagData(pa);
+numElements = mxGetNumberOfElements(pa);
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">mxArray *pa;
+mwSize numElements; 
+
+mxComplexInt64 *pc;
+pc = mxGetComplexInt64s(pa);
+numElements = mxGetNumberOfElements(pa);
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_d9edb7a6-31d3-4124-933a-be41cbe8003a">Calculate Array Data Size with <code class="function">mxGetElementSize</code></h3><p>In the <code class="literal remove_text_wrapping">-R2018a</code> API, the <a href="../apiref/mxgetelementsize.html"><code class="function">mxGetElementSize (C)</code></a> function
+                returns <code class="literal">sizeof(std::complex&lt;T&gt;)</code> for a complex
+                    <code class="literal">mxArray</code> with data type <code class="literal">T</code>. This value is
+                twice the value returned by the function in the <code class="literal remove_text_wrapping">-R2017b</code> API.
+                Similarly, <a href="../apiref/mxgetelementsize_fortran.html"><code class="function">mxGetElementSize (Fortran)</code></a> in the <code class="literal remove_text_wrapping">-R2018a</code> API
+                returns twice the value as the function in the <code class="literal remove_text_wrapping">-R2017b</code>
+                API.</p></section><section><h3 class="title" id="mw_1352cf80-86c1-4e7d-879a-545bb516ee98">Consider Replacing To-Be-Phased-Out Functions</h3><p>The following functions are in both the <code class="literal remove_text_wrapping">-R2017b</code> and the
+                    <code class="literal remove_text_wrapping">-R2018a</code> APIs. While you do not need replace them with typed
+                data access functions, the typed data functions provide type checking. Also, if you
+                use <code class="function">mxGetPr</code>, you might choose <code class="function">mxGetPi</code> for
+                any complex array processing. This code pattern causes errors when writing
+                    <code class="literal remove_text_wrapping">-R2018a</code> MEX functions.</p><div class="itemizedlist"><ul><li><p><code class="function">mxGetPr</code></p></li><li><p><code class="function">mxSetPr</code></p></li><li><p><a href="../apiref/mxgetdata.html"><code class="function">mxGetData (C)</code></a> and
+                            <a href="../apiref/mxgetdata_fortran.html"><code class="function">mxGetData (Fortran)</code></a> - for numeric arrays</p></li><li><p><a href="../apiref/mxsetdata.html"><code class="function">mxSetData (C)</code></a> and
+                            <a href="../apiref/mxsetdata_fortran.html"><code class="function">mxSetData (Fortran)</code></a> - for numeric arrays</p></li></ul></div><p>You can replace calls to <code class="function">mxGetPr</code> with a call to
+                    <code class="function">mxGetDoubles</code>. This function verifies that your array
+                contains elements of type <code class="literal">mxDouble</code>. Likewise,
+                    <code class="function">mxSetDoubles</code> replaces <code class="function">mxSetPr</code>. To
+                replace calls to <code class="function">mxGetData</code> and <code class="function">mxSetData</code>
+                functions, choose the appropriate typed data access function, for example,
+                    <code class="function">mxGetInt64s</code> and <code class="function">mxSetInt64s</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace C Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">double *y;
+/*  create a pointer y to input matrix */
+y = mxGetPr(prhs[1]);
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">mxDouble *p;
+p = mxGetDoubles(prhs[1]);
+</pre></div>
+                            </td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Replace Fortran Source Code:</th><th>With:</th></tr></thead><tbody><tr><td>
+                                <div class="code_responsive"><pre class="programlisting">      mwPointer pr
+      mwPointer mxGetPr
+C     Create a pointer to input matrix
+      pr = mxGetPr(prhs(1))
+</pre></div>
+                            </td><td>
+                                <div class="code_responsive"><pre class="programlisting">      mwPointer pr
+      mwPointer mxGetDoubles
+
+      pr = mxGetDoubles(prhs(1))
+</pre></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="mw_4a7a13b8-9ac7-4f8c-b6fb-8df9bd7adafd">Add Build Information to MEX Help File</h3><p>Consider creating a help file, described in <a href="using-help-files-with-mex-files.html" class="a">Use Help Files with MEX Functions</a>, that contains build information. For
+                example, create a file <code class="literal">displayTypesafeNumeric.m</code> containing the
+                following text.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% displayTypesafeNumeric.m Help file for displayTypesafeNumeric C MEX function</span>
+<span style="color:#228B22">% </span>
+<span style="color:#228B22">% Use the following command to build this MEX file:</span>
+<span style="color:#228B22">% mex -R2018a displayTypesafeNumeric.c</span></pre></div></div></div><p>At the MATLAB command prompt, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>help <span style="color:#A020F0">displayTypesafeNumeric</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>displayTypesafeNumeric.m Help file for displayTypesafeNumeric C MEX function
+  
+  Use the following command to build this MEX file:
+  mex -R2018a displayTypesafeNumeric.c</pre></div></div></div></section>
+            <h2 id="d126e33021">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mex.html"><span itemprop="name"><code class="function">mex</code></span></a></span></p>
+            <h3 id="d126e33027">Topics</h3><ul class="list-unstyled"><li><a href="troubleshooting-mex-api-incompatibilities.html" class="a">Troubleshooting MEX API Incompatibilities</a></li><li><a href="do-i-need-to-upgrade-my-mex-files-to-use-interleaved-complex.html" class="a">Do I Need to Upgrade My MEX Files to Use Interleaved Complex API?</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

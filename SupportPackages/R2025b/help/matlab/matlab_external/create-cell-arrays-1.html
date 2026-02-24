@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Cell Arrays from C++</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../calling-matlab-engine-from-cpp-programs.html",
+          "name": "Call MATLAB from C++"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "calling-matlab-engine-from-cpp-programs"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="fe">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to create heterogeneous arrays in C++ to use as MATLAB cell arrays."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../calling-matlab-engine-from-cpp-programs.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7f97b554-9eba-4c77-9873-5b8f7b753729"><span itemprop="title">Call MATLAB from C++</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Cell Arrays from C++</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_9b99b415-7bba-4bc0-9d5b-5f9c7d165f82" class="nav-link intrnllnk">Put Cell Array in MATLAB Workspace</a></li><li class="nav-item"><a href="#mw_eb1e5a12-6485-4af4-a466-0096f411db59" class="nav-link intrnllnk">Access Elements of Cell Array</a></li><li class="nav-item"><a href="#mw_be3f060c-b1fc-4b73-be2d-38a317585dee" class="nav-link intrnllnk">Modify Elements of Cell Array</a><ul class="nav"><li class="nav-item"><a href="#mw_c104ac1f-b58f-4a15-8b3d-4e3139382423" class="nav-link intrnllnk">Get Cell Array from MATLAB</a></li></ul></li><li class="nav-item"><a href="#d126e61717" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=calling-matlab-engine-from-cpp-programs&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_adeb04d2-1e53-464e-8cbf-be971b40b717">Create Cell Arrays from C++</h2><p>A MATLAB<sup>&#x00AE;</sup> cell array is a container in which each cell can contain an array of any
+            type. The MATLAB C++ Engine enables you to create cell arrays using the <a href="../apiref/matlab.data.arrayfactory.html"><code class="cpp">matlab::data::ArrayFactory::createCellArray</code></a> member function. To create an
+            empty cell array, use <code class="literal">createArray&lt;matlab::data::Array&gt;</code>. </p><p>These examples show how to pass cell arrays to and from MATLAB. In MATLAB, these arrays are of class <a href="../ref/cell.html"><code class="function">cell</code></a>.</p><p>The <a href="../apiref/matlab.data.cellarray.html"><code class="cpp">matlab::data::CellArray</code></a> class is implemented as an array of arrays defined
+            as:</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">matlab::data::TypedArray&lt;matlab::data::Array&gt;</code></pre></div><p>For information on how to setup and build C++ engine programs, see <a href="requirements-to-build-cpp-engine-programs.html" class="a">Requirements to Build C++ Engine Applications</a>.</p><section><h3 class="title" id="mw_9b99b415-7bba-4bc0-9d5b-5f9c7d165f82">Put Cell Array in <span class="trademark entity">MATLAB</span> Workspace</h3><p>This example creates a cell array and puts it in the MATLAB base workspace. </p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "MatlabDataArray.hpp"
+#include "MatlabEngine.hpp"
+
+void cellArrayPut() {
+
+    using namespace matlab::engine;
+
+    // Connect to named shared MATLAB session started as:
+    // matlab -r "matlab.engine.shareEngine('myMatlabEngine')"
+    String session(u"myMatlabEngine");
+    std::unique_ptr&lt;MATLABEngine&gt; matlabPtr = connectMATLAB(session);
+
+    // Create MATLAB data array factory
+    matlab::data::ArrayFactory factory;
+
+    // Create cell array
+    matlab::data::CellArray cellArray1 = factory.createCellArray({ 1,2 },
+        factory.createCharArray("MATLAB Cell Array"),
+        factory.createArray&lt;double&gt;({ 2,2 }, { 1.2, 2.2, 3.2, 4.2 }));
+
+    // Put cell array in MATLAB workspace
+    matlabPtr-&gt;setVariable(u"cellArray1", cellArray1);
+}</code></pre></div><p>Calling the MATLAB
+                <a href="../ref/whos.html"><code class="function">whos</code></a> function shows the variable in
+                the MATLAB workspace. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>&gt;&gt; whos
+  Name            <span style="color:#A020F0">Size</span>            <span style="color:#A020F0">Bytes</span>  <span style="color:#A020F0">Class</span>    <span style="color:#A020F0">Attributes</span>
+
+  cellArray1      <span style="color:#A020F0">1x2</span>               <span style="color:#A020F0">290</span>  <span style="color:#A020F0">cell</span>
+&gt;&gt; cellArray1{:}
+
+ans =
+
+    <span style="color:#A020F0">'MATLAB Cell Array'</span>
+
+
+ans =
+
+    1.2000    3.2000
+    2.2000    4.2000</pre></div></div></div></section><section><h3 class="title" id="mw_eb1e5a12-6485-4af4-a466-0096f411db59">Access Elements of Cell Array</h3><p>Use <code class="literal">[]</code> indexing to access the elements of a cell array. For
+                example, access the first element of the cell array created in the previous section
+                and convert the element to a <code class="literal">std::string</code>:</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">matlab::data::CharArray cArray = cellArray1[0][0];
+std::string str = cArray.toAscii();</code></pre></div><p>The variable <code class="literal">str</code> is a copy of the value in the cell
+                array.</p></section><section><h3 class="title" id="mw_be3f060c-b1fc-4b73-be2d-38a317585dee">Modify Elements of Cell Array</h3><p>There are different ways to modify elements in a cell array:</p><div class="itemizedlist"><ul><li><p>Create a reference to the element and modify the value in the cell
+                        array.</p></li><li><p>Copy the element, change the value, then reassign the value to the cell
+                        array. </p></li></ul></div><p>This example uses <a href="../apiref/matlab.data.structarrayext.html"><code class="cpp">matlab::data::TypedArrayRef</code></a> to create a
+                reference to the array contained in a specific cell. Then the array is modified by
+                changing specific elements in the array using indexed assignment.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "MatlabDataArray.hpp"
+#include "MatlabEngine.hpp"
+
+void cellArrayMod() {
+    //Modify elements of a cell array
+
+    using namespace matlab::engine;
+
+    // Connect to named shared MATLAB session started as:
+    // matlab -r "matlab.engine.shareEngine('myMatlabEngine')"
+    String session(u"myMatlabEngine");
+    std::unique_ptr&lt;MATLABEngine&gt; matlabPtr = connectMATLAB(session);
+
+    // Create MATLAB data array factory
+    matlab::data::ArrayFactory factory;
+
+    // Create a 2-by-2 array of arrays   
+    matlab::data::CellArray cellArray2 = factory.createArray&lt;matlab::data::Array&gt;({ 2,2 });
+
+    // Assign values to each cell
+    cellArray2[0][0] = factory.createCharArray("A cell array");
+    cellArray2[0][1] = factory.createArray&lt;double&gt;({ 1,3 }, { 2.2, 3.2, -4.2 });
+    cellArray2[1][0] = factory.createArray&lt;bool&gt;({ 1,3 }, { true, true, false });
+    cellArray2[1][1] = factory.createScalar&lt;int32_t&gt;(-3374);
+
+    // Get reference to elements of the cell array
+    // Modify the elements in the cell array
+    matlab::data::TypedArrayRef&lt;double&gt; elem1 = cellArray2[0][1];
+    elem1[1] = -3.2;
+    matlab::data::TypedArrayRef&lt;bool&gt; elem2 = cellArray2[1][0];
+    elem2[1] = false;
+
+    // Put cell array in MATLAB workspace
+    matlabPtr-&gt;setVariable(u"cellArray2", std::move(cellArray2));
+}</code></pre></div><p>The cell array in the MATLAB workspace includes the changes made to the array element references.
+                Here is the cell array in MATLAB.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+&gt;&gt; cellArray2{:}
+
+ans =
+
+    <span style="color:#A020F0">'A cell array'</span>
+
+
+ans =
+
+  1×3 logical <span style="color:#A020F0">array</span>
+
+   1   0   0
+
+
+ans =
+
+    2.2000   -3.2000   -4.2000
+
+
+ans =
+
+  int32
+
+   -3374
+</pre></div></div></div><section><h4 class="title" id="mw_c104ac1f-b58f-4a15-8b3d-4e3139382423">Get Cell Array from <span class="trademark entity">MATLAB</span></h4><p>This example gets a cell array from MATLAB. This code assumes that there is a cell array variable named
+                        <code class="literal">cellArray2</code> in the MATLAB workspace, like the one created in the previous example. To pass
+                    the cell array to MATLAB, see <a href="create-cell-arrays-1.html#mw_be3f060c-b1fc-4b73-be2d-38a317585dee" class="intrnllnk">Modify Elements of Cell Array</a>. </p><p>To get the cell array, follow these steps:</p><div class="itemizedlist"><ul><li><p>Use the <code class="literal">matlab::engine::MATLABEngine</code>
+                            <a href="../apiref/matlab.engine.matlabengine_cpp.html#bvkfuut-12" class="a">getVariable</a> member function to bring the
+                            cell array into C++. </p></li><li><p>Define the returned cell array as a <a href="../apiref/matlab.data.cellarray.html"><code class="cpp">matlab::data::CellArray</code></a>. </p></li><li><p>Return the contents of the cell indexed by <code class="literal">[1][0]</code>
+                            as a <code class="literal">matlab::data::TypedArray&lt;bool&gt;</code>.</p></li><li><p>Use the <code class="literal">TypedArray::getNumberOfElements</code> member
+                            function to loop through the elements of the array cell.</p></li></ul></div><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">void cellArrayGet() {
+    using namespace matlab::engine;
+    
+    // Connect to named shared MATLAB session started as:
+    // matlab -r "matlab.engine.shareEngine('myMatlabEngine')"
+    String session(u"myMatlabEngine");
+    std::unique_ptr&lt;MATLABEngine&gt; matlabPtr = connectMATLAB(session);
+
+    // Get a cell array from MATLAB
+    matlab::data::CellArray ca = matlabPtr-&gt;getVariable(u"cellArray2");
+
+    // Copy elements of a cell into vector
+    matlab::data::TypedArray&lt;bool&gt; const elem2 = ca[1][0];
+    std::vector&lt;bool&gt; logicalCell(elem2.getNumberOfElements());
+    int i = 0;
+    for (auto e : elem2) {
+        logicalCell[i] = e;
+        ++i;
+    }	   
+}</code></pre></div></section></section>
+            <h2 id="d126e61717">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.engine.connectmatlab.html"><span itemprop="name"><code class="cpp">matlab::engine::connectMATLAB</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.data.arrayfactory.html"><span itemprop="name"><code class="cpp">matlab::data::ArrayFactory</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.engine.matlabengine_cpp.html"><span itemprop="name"><code class="cpp">matlab::engine::MATLABEngine</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.data.typedarray.html"><span itemprop="name"><code class="cpp">matlab::data::TypedArray</code></span></a></span></p>
+            <h3 id="d126e61732">Topics</h3><ul class="list-unstyled"><li><a href="connect-to-running-matlab-session-1.html" class="a">Connect C++ to Running MATLAB Session</a></li><li><a href="visitor-class-to-operate-on-arrays.html" class="a">Operate on C++ Arrays Using Visitor Pattern</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

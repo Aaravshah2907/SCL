@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write Plugin to Save Diagnostic Details</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../extend-testing-frameworks.html",
+          "name": "Extend Testing Frameworks"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "extend-testing-frameworks"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to create a custom plugin to save diagnostic details."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../extend-testing-frameworks.html?s_tid=CRUX_lftnav" itemprop="url" id="butj3cg-8"><span itemprop="title">Extend Testing Frameworks</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write Plugin to Save Diagnostic Details</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#d126e95052" class="nav-link intrnllnk">Create Plugin</a></li><li class="nav-item"><a href="#d126e95097" class="nav-link intrnllnk">Create Test Class</a></li><li class="nav-item"><a href="#d126e95109" class="nav-link intrnllnk">Add Plugin to Test Runner and Run Tests</a></li><li class="nav-item"><a href="#d126e95133" class="nav-link intrnllnk">Inspect Diagnostic Information</a></li><li class="nav-item"><a href="#d126e95167" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=extend-testing-frameworks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bup54t9">Write Plugin to Save Diagnostic Details</h2>
+            <p class="shortdesc">This example shows how to create a custom plugin to save diagnostic details. The plugin listens for test failures and saves diagnostic information so you can access it after the framework completes the tests.</p>
+        <ul><li><p><a class="intrnllnk" href="#d126e95052">Create Plugin</a></p></li><li><p><a class="intrnllnk" href="#d126e95097">Create Test Class</a></p></li><li><p><a class="intrnllnk" href="#d126e95109">Add Plugin to Test Runner and Run Tests</a></p></li><li><p><a class="intrnllnk" href="#d126e95133">Inspect Diagnostic Information</a></p></li></ul><div class="procedure"><h3 class="title" id="d126e95052">Create Plugin</h3><p>In a file in your working folder, create a class, <code class="literal">myPlugin</code>, that inherits from the <code class="class">matlab.unittest.plugins.TestRunnerPlugin</code> class. In the plugin class:</p><div class="itemizedlist"><ul><li><p>Define a <code class="literal">FailedTestData</code> property on the plugin that stores information from failed tests.</p></li><li><p>Override the default <code class="method">createTestMethodInstance</code> method of <code class="class">TestRunnerPlugin</code> to listen for assertion, fatal assertion, and verification failures, and to record relevant information.</p></li><li><p>Override the default <code class="method">runTestSuite</code> method of <code class="class">TestRunnerPlugin</code> to initialize the <code class="literal">FailedTestData</code> property value. If you do not initialize value of the property, each time you run the tests using the same test runner, failed test information is appended to the <code class="literal">FailedTestData</code> property.</p></li><li><p>Define a helper function, <code class="literal">recordData</code>, to save information about the test failure as a table. </p></li></ul></div><p>The plugin saves information contained in the <code class="class">PluginData</code> and <code class="class">QualificationEventData</code> objects. It also saves the type of failure and timestamp.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> DiagnosticRecorderPlugin &lt; matlab.unittest.plugins.TestRunnerPlugin
+    
+    <span style="color:#0000FF">properties</span>
+        FailedTestData
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span> (Access = protected)
+        <span style="color:#0000FF">function</span> runTestSuite(plugin, pluginData)
+            plugin.FailedTestData = [];
+            runTestSuite@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> testCase = createTestMethodInstance(plugin, pluginData)
+            testCase = createTestMethodInstance@<span style="color:#0000FF">...</span>
+                matlab.unittest.plugins.TestRunnerPlugin(plugin, pluginData);
+            
+            testName = pluginData.Name;
+            testCase.addlistener(<span style="color:#A020F0">'AssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,event)plugin.recordData(event,testName, <span style="color:#A020F0">'Assertion'</span>));
+            testCase.addlistener(<span style="color:#A020F0">'FatalAssertionFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,event)plugin.recordData(event,testName, <span style="color:#A020F0">'Fatal Assertion'</span>));
+            testCase.addlistener(<span style="color:#A020F0">'VerificationFailed'</span>, <span style="color:#0000FF">...</span>
+                @(~,event)plugin.recordData(event,testName, <span style="color:#A020F0">'Verification'</span>));
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">methods</span> (Access = private)
+        <span style="color:#0000FF">function</span> recordData(plugin,eventData,name,failureType)
+            s.Name = {name};
+            s.Type = {failureType};
+            <span style="color:#0000FF">if</span> isempty(eventData.TestDiagnosticResult)
+                s.TestDiagnostics = <span style="color:#A020F0">'TestDiagnostics not provided'</span>;
+            <span style="color:#0000FF">else</span>
+                s.TestDiagnostics = eventData.TestDiagnosticResult;
+            <span style="color:#0000FF">end</span>
+            s.FrameworkDiagnostics = eventData.FrameworkDiagnosticResult;
+            s.Stack = eventData.Stack;
+            s.Timestamp = datetime;
+            
+            plugin.FailedTestData = [plugin.FailedTestData; struct2table(s)];
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="d126e95097">Create Test Class</h3><p>In your working folder, create the file <code class="literal">ExampleTest.m</code> containing the following test class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ExampleTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">methods</span>(Test)
+        <span style="color:#0000FF">function</span> testOne(testCase)
+            testCase.assertGreaterThan(5,10)
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> testTwo(testCase)
+            wrongAnswer = <span style="color:#A020F0">'wrong'</span>;
+            testCase.verifyEmpty(wrongAnswer,<span style="color:#A020F0">'Not Empty'</span>)
+            testCase.verifyClass(wrongAnswer,<span style="color:#A020F0">'double'</span>,<span style="color:#A020F0">'Not double'</span>)
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> testThree(testCase)
+            testCase.assertEqual(7*2,13,<span style="color:#A020F0">'Values not equal'</span>)
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> testFour(testCase)
+            testCase.fatalAssertEqual(3+2,6);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The fatal assertion failure in <code class="literal">testFour</code> causes the framework to halt and throw an error. In this example, there are no subsequent tests. If there was a subsequent test, the framework would not run it.</p><h3 class="title" id="d126e95109">Add Plugin to Test Runner and Run Tests</h3><p>At the command prompt, create a test suite from the <code class="literal">ExampleTest</code> class, and create a test runner.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.unittest.TestSuite</span>
+import <span style="color:#A020F0">matlab.unittest.TestRunner</span>
+
+suite = TestSuite.fromClass(?ExampleTest);
+runner = TestRunner.withNoPlugins;</pre></div></div></div><p>Create an instance of <code class="literal">myPlugin</code> and add it to the test runner. Run the tests.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = DiagnosticRecorderPlugin;
+runner.addPlugin(p)
+result = runner.run(suite);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><span class="red">Error using ExampleTest/testFour (line 16)
+Fatal assertion failed.</span></pre></div></div></div><p>With the failed fatal assertion, the framework throws an error, and the test runner does not return a <code class="class">TestResult</code> object. However, the <code class="literal">DiagnosticRecorderPlugin</code> stores information about the tests preceding and including the test with the failed assertion.</p><h3 class="title" id="d126e95133">Inspect Diagnostic Information</h3><p>At the command prompt, view information about the failed tests. The information is saved in the <code class="literal">FailedTestData</code> property of the plugin.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = p.FailedTestData</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>T =
+
+  5×6 table
+
+             Name                    Type                  TestDiagnostics                                                                                                                                                                FrameworkDiagnostics                                                                                                                                                           Stack             Timestamp      
+    _______________________    _________________    ______________________________    ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________    ____________    ____________________
+
+    'ExampleTest/testOne'      'Assertion'          'TestDiagnostics not provided'    'assertGreaterThan failed.↵--&gt; The value must be greater than the minimum value.↵↵Actual Value:↵     5↵Minimum Value (Exclusive):↵    10'                                                                                                                                                                                       [1x1 struct]    17-Jul-2017 12:41:18
+    'ExampleTest/testTwo'      'Verification'       'Not Empty'                       'verifyEmpty failed.↵--&gt; The value must be empty.↵--&gt; The value has a size of [1  5].↵↵Actual char:↵    wrong'                                                                                                                                                                                                                  [1x1 struct]    17-Jul-2017 12:41:18
+    'ExampleTest/testTwo'      'Verification'       'Not double'                      'verifyClass failed.↵--&gt; The value's class is incorrect.↵    ↵    Actual Class:↵        char↵    Expected Class:↵        double↵↵Actual char:↵    wrong'                                                                                                                                                                        [1x1 struct]    17-Jul-2017 12:41:18
+    'ExampleTest/testThree'    'Assertion'          'Values not equal'                'assertEqual failed.↵--&gt; The values are not equal using "isequaln".↵--&gt; Failure table:↵        Actual    Expected    Error      RelativeError   ↵        ______    ________    _____    __________________↵    ↵        14        13          1        0.0769230769230769↵↵Actual Value:↵    14↵Expected Value:↵    13'         [1x1 struct]    17-Jul-2017 12:41:18
+    'ExampleTest/testFour'     'Fatal Assertion'    'TestDiagnostics not provided'    'fatalAssertEqual failed.↵--&gt; The values are not equal using "isequaln".↵--&gt; Failure table:↵        Actual    Expected    Error      RelativeError   ↵        ______    ________    _____    __________________↵    ↵        5         6           -1       -0.166666666666667↵↵Actual Value:↵     5↵Expected Value:↵     6'    [1x1 struct]    17-Jul-2017 12:41:18
+</pre></div></div></div><p>There are many options to archive or post-process this information. For example, you can save the variable as a MAT-file or use <code class="function">writetable</code> to write the table to various file types, such as <code class="literal">.txt</code>, <code class="literal">.csv</code>, or <code class="literal">.xls</code>.</p><p>View the stack information for the third test failure</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T.Stack(3)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  struct with fields:
+
+    file: 'C:\Work\ExampleTest.m'
+    name: 'ExampleTest.testTwo'
+    line: 9</pre></div></div></div><p>Display the diagnostics that the framework displayed for the fifth test failure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>celldisp(T.FrameworkDiagnostics(5))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans{1} =
+ 
+fatalAssertEqual failed.
+--&gt; The values are not equal using "isequaln".
+--&gt; Failure table:
+        Actual    Expected    Error      RelativeError   
+        ______    ________    _____    __________________
+    
+        5         6           -1       -0.166666666666667
+
+Actual Value:
+     5
+Expected Value:
+     6</pre></div></div></div></div>
+            <h2 id="d126e95167">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.plugins.testrunnerplugin-class.html"><span itemprop="name"><code class="class">matlab.unittest.plugins.TestRunnerPlugin</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testcase-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestCase</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testrunner-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestRunner</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/handle.addlistener.html"><span itemprop="name"><code class="function">addlistener</code></span></a></span></p>
+            <h3 id="d126e95182">Topics</h3><ul class="list-unstyled"><li><a href="write-plugins-to-extend-testrunner.html" class="a">Write Plugins to Extend TestRunner</a></li><li><a href="create-custom-plugin.html" class="a">Create Custom Plugin</a></li><li><a href="generate-custom-output-format.html" class="a">Plugin to Generate Custom Test Output Format</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

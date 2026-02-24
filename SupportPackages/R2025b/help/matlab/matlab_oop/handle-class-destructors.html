@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Handle Class Destructor</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../object-oriented-programming-in-matlab.html",
+          "name": "Define Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../handle-classes.html",
+          "name": "Handle Classes"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "handle-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Define a delete method to customize what happens when MATLAB destroys handle objects."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Define Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../handle-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6io3j-1"><span itemprop="title">Handle Classes</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Handle Class Destructor</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bta54v5" class="nav-link intrnllnk">Basic Knowledge</a></li><li class="nav-item"><a href="#btavlj3" class="nav-link intrnllnk">Syntax of Handle Class Destructor Method</a><ul class="nav"><li class="nav-item"><a href="#btcb_up" class="nav-link intrnllnk">delete Called Element-Wise on Array</a></li></ul></li><li class="nav-item"><a href="#mw_01b9ea64-490a-46a8-a231-b357debb580f" class="nav-link intrnllnk">Handle Object During delete Method Execution</a></li><li class="nav-item"><a href="#bvflo_9" class="nav-link intrnllnk">Support Destruction of Partially Constructed Objects</a></li><li class="nav-item"><a href="#bta5vaw" class="nav-link intrnllnk">When to Define a Destructor Method</a></li><li class="nav-item"><a href="#bta5vlk" class="nav-link intrnllnk">Destructors in Class Hierarchies</a><ul class="nav"><li class="nav-item"><a href="#btbc65n-1" class="nav-link intrnllnk">Inheriting a Sealed Delete Method</a></li><li class="nav-item"><a href="#btbc8ze" class="nav-link intrnllnk">Destructors in Heterogeneous Hierarchies</a></li></ul></li><li class="nav-item"><a href="#btavjj2-1" class="nav-link intrnllnk">Object Lifecycle</a><ul class="nav"><li class="nav-item"><a href="#btavjj2-4" class="nav-link intrnllnk">Inside a Function</a></li><li class="nav-item"><a href="#btavjj2-6" class="nav-link intrnllnk">Sequence During Handle Object Destruction</a></li><li class="nav-item"><a href="#btbdmkn" class="nav-link intrnllnk">Destruction of Objects with Cyclic References</a></li></ul></li><li class="nav-item"><a href="#btbdljs" class="nav-link intrnllnk">Restrict Access to Object Delete Method</a><ul class="nav"><li class="nav-item"><a href="#btbdllj-1" class="nav-link intrnllnk">Inherited Private Delete Methods</a></li></ul></li><li class="nav-item"><a href="#bta2kf4" class="nav-link intrnllnk">Nondestructor Delete Methods</a></li><li class="nav-item"><a href="#bu1rhqt" class="nav-link intrnllnk">External References to MATLAB Objects</a><ul class="nav"><li class="nav-item"><a href="#bu1rhrg-1" class="nav-link intrnllnk">Java References Can Prevent Destructor Execution</a></li><li class="nav-item"><a href="#bu1rhsq" class="nav-link intrnllnk">Manage Object Lifecycle in Applications</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=handle-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=handle-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="btavbpr">Handle Class Destructor</h2><span id="handle_class_delete_methods" class="anchor_target"></span><section><h3 class="title" id="bta54v5">Basic Knowledge</h3><p><em class="firstterm">Class destructor</em> &#8211; a method named <code class="literal">delete</code> that MATLAB<sup>&#x00AE;</sup> calls implicitly before destroying an object of a handle class. Also, user-defined code can call <code class="literal">delete</code> explicitly to destroy an object.</p><p><em class="firstterm">Nondestructor</em> &#8211; a method named <code class="literal">delete</code> that does not meet the syntax requirements of a valid destructor. Therefore, MATLAB does not call this method implicitly when destroying handle objects. A method named <code class="literal">delete</code> in a value class is not a destructor. A method named <code class="literal">delete</code> in a value class that sets the <code class="literal">HandleCompatible</code> attribute to <code class="literal">true</code> is not a destructor.</p><p>
+                <a href="handle-class-destructors.html#btavjj2-1" class="intrnllnk">Object Lifecycle</a>
+            </p><p>
+                <a href="method-attributes.html" class="a">Method Attributes</a>
+            </p></section><section><h3 class="title" id="btavlj3">Syntax of Handle Class Destructor Method</h3><p>MATLAB calls the destructor of a handle class when destroying objects of the class. MATLAB recognizes a method named <code class="literal">delete</code> as the class destructor only if you define <code class="literal">delete</code> as an ordinary method with the appropriate syntax. </p><p>To be a valid class destructor, the <code class="literal">delete</code> method:</p><div class="itemizedlist"><ul><li><p>Must define one, scalar input argument, which is an object of the class. </p></li><li><p>Must not define output arguments</p></li><li><p>Cannot be <code class="literal">Sealed</code>, <code class="literal">Static</code>, or <code class="literal">Abstract</code></p></li><li><p>Cannot use <a href="../ref/arguments.html"><code class="function">arguments</code></a> blocks for input argument validation.</p></li></ul></div><p>In addition, the <code class="literal">delete</code> method should <span class="emphasis"><em>not</em></span>:</p><div class="itemizedlist"><ul><li><p>Throw errors, even if the object is invalid.</p></li><li><p>Create new handles to the object being destroyed</p></li><li><p>Call methods or access properties of subclasses</p></li></ul></div><p>MATLAB will not call a noncompliant <code class="literal">delete</code> method when
+                destroying objects of the class.</p><p>A <code class="literal">delete</code> method defined by a value class that is handle compatible is not a destructor, even if the <code class="literal">delete</code> method is inherited by a handle subclass. For information on handle compatible classes, see <a href="supporting-both-handle-and-value-subclasses-handlecompatible.html" class="a">Handle Compatible Classes</a>.</p><p>Declare <code class="literal">delete</code> as an ordinary method:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+   <span style="color:#0000FF">function</span> delete(obj)
+      <span style="color:#228B22">% obj is always scalar</span>
+   <span style="color:#0000FF">...</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><section><h4 class="title" id="btcb_up">delete Called Element-Wise on Array</h4><p>MATLAB calls the <code class="literal">delete</code> method separately for each element in an array. Therefore, a <code class="literal">delete</code> method is passed only one scalar argument with each invocation.</p><p>Calling <code class="literal">delete</code> on a deleted handle should not error and can take no action. This design enables <code class="literal">delete</code> to work on object arrays containing a mix of valid and invalid objects.</p></section></section><section><h3 class="title" id="mw_01b9ea64-490a-46a8-a231-b357debb580f">Handle Object During <code class="literal">delete</code> Method Execution</h3><p>Calling the <code class="literal">delete</code> method on an object always results in the destruction of the object. The object is destroyed when the call to <code class="literal">delete</code> is made explicitly in MATLAB code or when called by MATLAB because an object is no longer reachable from any workspace. Once called, a <code class="literal">delete</code> method cannot abort or prevent object destruction. </p><p>A <code class="literal">delete</code> method can access properties of the object being deleted. MATLAB does not destroy these properties until after the <code class="literal">delete</code> methods for the class of the object and all superclasses finish executing.</p><p>If a <code class="literal">delete</code> method creates new variables that contain a handle to the object being deleted, those handles are invalid. After the <code class="literal">delete</code> method finishes execution, handles to the deleted object in any variables in any workspace are invalid.</p><p>The <a href="../ref/handle.isvalid.html"><code class="method">isvalid</code></a> method returns <code class="literal">false</code> for the handle object within the <code class="literal">delete</code> method because object destruction begins when the method is called.</p><p>MATLAB calls <code class="literal">delete</code> methods in the inverse of the construction order. That is, MATLAB invokes subclass <code class="literal">delete</code> methods before superclass <code class="literal">delete</code> methods. </p><p>If a superclass expects a property to be managed by subclasses, then the superclass should not access that property in its <code class="literal">delete</code> method. For example, if a subclass uses an inherited abstract property to store an object handle, then the subclass should destroy this object in its <code class="literal">delete</code> method, but the superclass should not access that property in its <code class="literal">delete</code> method.</p></section><section><h3 class="title" id="bvflo_9">Support Destruction of Partially Constructed Objects</h3><p>Errors that occur while constructing an object can result in a call to <code class="literal">delete</code> before the object is fully created. Therefore, class <code class="literal">delete</code> methods must be able to work with partially constructed objects.</p><p>For example, the <code class="literal">PartialObject</code> class <code class="literal">delete</code> method determines if the <code class="literal">Data</code> property is empty before accessing the data this property contains. If an error occurs while assigning the constructor argument to the <code class="literal">Name</code> property, MATLAB passes the partially constructed object to delete.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> PartialObject &lt; handle
+   <span style="color:#0000FF">properties</span>
+      <span style="color:#228B22">% Restrict the Name property</span>
+      <span style="color:#228B22">% to a cell array</span>
+      Name <span style="color:#A0522D">cell</span>
+      Data
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> h = PartialObject(name)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            h.Name = name;
+            h.Data.a = rand(10,1);
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> delete(h)
+         <span style="color:#228B22">% Protect against accessing properties</span>
+         <span style="color:#228B22">% of partially constructed objects</span>
+         <span style="color:#0000FF">if</span> ~isempty(h.Data)
+            t = h.Data.a;
+            disp(t)
+         <span style="color:#0000FF">else</span>
+            disp(<span style="color:#A020F0">'Data is empty'</span>)
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>An error occurs if you call the constructor with a <code class="literal">char</code> vector, instead of the required cell array:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>obj = PartialObject(<span style="color:#A020F0">'Test'</span>)</pre></div></div></div><p>MATLAB passes the partially constructed object to the <code class="literal">delete</code> method. The constructor did not set the value of the <code class="literal">Data</code> property because the error occurred when setting the <code class="literal">Name</code> property.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Data is empty
+Error setting 'Name' property of 'PartialObject' class:
+...</pre></div></div></div></section><section><h3 class="title" id="bta5vaw">When to Define a Destructor Method</h3><p>Use a <code class="literal">delete</code> method to perform cleanup operations before MATLAB destroys the object. MATLAB calls the <code class="literal">delete</code> method reliably, even if execution is interrupted with Ctrl-c or an error.</p><p>If an error occurs during the construction of a handle class, MATLAB calls the class destructor on the object along with the destructors for any objects contained in properties and any initialized base classes. </p><p>For example, suppose that a method opens a file for writing and you want to close the file in your <code class="literal">delete</code> method. The <code class="literal">delete</code> method can call <a href="../ref/fclose.html"><code class="function">fclose</code></a> on a file identifier that the object stores in its <code class="literal">FileID</code> property:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> delete(obj)
+   fclose(obj.FileID);
+<span style="color:#0000FF">end</span> </pre></div></div></div></section><section><h3 class="title" id="bta5vlk">Destructors in Class Hierarchies</h3><p>If you create a hierarchy of classes, each class can define its own <code class="literal">delete</code> method. When destroying an object, MATLAB calls the <code class="literal">delete</code> method of each class in the hierarchy. Defining a <code class="literal">delete</code> method in a <code class="literal">handle</code> subclass does not override the <code class="literal">handle</code> class <code class="literal">delete</code> method. Subclass <code class="literal">delete</code> methods augment the superclass <code class="literal">delete</code> methods.</p><section><h4 class="title" id="btbc65n-1">Inheriting a Sealed Delete Method</h4><p>Classes cannot define a valid destructor that is <code class="literal">Sealed</code>. MATLAB returns an error when you attempt to instantiate a class that defines a <code class="literal">Sealed</code>
+                    <code class="literal">delete</code> method. </p><p>Normally, declaring a method as <code class="literal">Sealed</code> prevents subclasses from overriding that method. However, a <code class="literal">Sealed</code> method named <code class="literal">delete</code> that is not a valid destructor does not prevent a subclass from defining its own destructor.</p><p>For example, if a superclass defines a method named <code class="literal">delete</code> that is not a valid destructor, but is <code class="literal">Sealed</code>, then subclasses:</p><div class="itemizedlist"><ul><li><p>Can define valid destructors (which are always named <code class="literal">delete</code>).</p></li><li><p>Cannot define methods named <code class="literal">delete</code> that are not valid destructors.</p></li></ul></div></section><section><h4 class="title" id="btbc8ze">Destructors in Heterogeneous Hierarchies</h4><p>Heterogeneous class hierarchies require that all methods to which heterogeneous arrays are passed must be sealed. However, the rule does not apply to class destructor methods. Because destructor methods cannot be sealed, you can define a valid destructor in a heterogeneous hierarchy that is not sealed, but does function as a destructor.</p><p>For information on heterogeneous hierarchies, see <a href="heterogeneous-arrays.html" class="a">Designing Heterogeneous Class Hierarchies</a></p></section></section><section><h3 class="title" id="btavjj2-1">Object Lifecycle</h3><p>MATLAB invokes the <code class="literal">delete</code> method when the lifecycle of an object ends. The lifecycle of an object ends when the object is:</p><div class="itemizedlist"><ul><li><p>No longer referenced anywhere</p></li><li><p>Only referenced by weak handles</p></li><li><p>Explicitly deleted by calling <code class="literal">delete</code> on the handle</p></li></ul></div><section><h4 class="title" id="btavjj2-4">Inside a Function</h4><p>The lifecycle of an object referenced by a local variable or input argument exists from the time the variable is assigned until the time it is reassigned, cleared, or no longer referenced within that function or in any handle array.</p><p>A variable goes out of scope when you explicitly clear it or when its function ends. When a variable goes out of scope and its value belongs to a handle class that defines a <code class="literal">delete</code> method, MATLAB calls that method. MATLAB defines no ordering among variables in a function. Do not assume that MATLAB destroys one value before another value when the same function contains multiple values.</p></section><section><h4 class="title" id="btavjj2-6">Sequence During Handle Object Destruction</h4><p>MATLAB invokes the <code class="literal">delete</code> methods in the following sequence when destroying an object:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>The <code class="literal">delete</code> method for the class of the object</p></li><li><p>The <code class="literal">delete</code> method of each superclass class, starting with the immediate superclasses and working up the hierarchy to the most general superclasses</p></li></ol></div><p>MATLAB invokes the <code class="literal">delete</code> methods of superclasses at the same level in the hierarchy in the order specified in the class definition. For example, the following class definition specifies <code class="literal">supclass1</code> before <code class="literal">supclass2</code>. MATLAB calls the <code class="literal">delete</code> method of <code class="literal">supclass1</code> before the <code class="literal">delete</code> method of <code class="literal">supclass2</code>.</p><div class="code_responsive"><pre class="programlisting">classdef myClass &lt; supclass1 &amp; supclass2</pre></div><p>MATLAB deletes the property values in the class hierarchy after the
+                        <code class="method">delete</code> methods for the class of the object and all
+                    superclasses finish executing. However, if the property values contain handle
+                    objects that are still referenced outside the scope of the class, calling
+                        <code class="literal">delete</code> on the containing object does not delete the
+                    property handle objects themselves. They can still be accessed by other existing
+                    references.</p></section><section><h4 class="title" id="btbdmkn">Destruction of Objects with Cyclic References</h4><p>Consider a set of objects that reference other objects of the set such that the references form a cyclic graph. In this case, MATLAB:</p><div class="itemizedlist"><ul><li><p>Destroys the objects if they are referenced only within the cycle</p></li><li><p>Does not destroy the objects as long as there is an external reference to any of the objects from a MATLAB variable outside the cycle</p></li></ul></div><p>
+                    MATLAB destroys the objects in the reverse of the order of construction. for more information, see <a href="handle-class-destructors.html#mw_01b9ea64-490a-46a8-a231-b357debb580f" class="intrnllnk">Handle Object During delete Method Execution</a>.</p></section></section><section><h3 class="title" id="btbdljs">Restrict Access to Object Delete Method</h3><p>Destroy handle objects by explicitly calling <code class="literal">delete</code> on the object:</p><div class="code_responsive"><pre class="programlisting">delete(obj)</pre></div><p>A class can prevent explicit destruction of an object by setting its <code class="literal">delete</code> method <code class="literal">Access</code> attribute to <code class="literal">private</code>. However, a method of the class can call the <code class="literal">private</code>
+                <code class="literal">delete</code> method.</p><p>If the class <code class="literal">delete</code> method <code class="literal">Access</code> attribute is <code class="literal">protected</code>, only methods of the class and of subclasses can explicitly delete objects of that class.</p><p>However, when an object lifecycle ends, MATLAB calls the object’s <code class="literal">delete</code> method when destroying the object regardless of the method’s <code class="literal">Access</code> attribute. </p><section><h4 class="title" id="btbdllj-1">Inherited Private Delete Methods</h4><p>Class destructor behavior differs from the normal behavior of an overridden method. MATLAB executes each <code class="literal">delete</code> method of each superclass upon destruction, even if that <code class="literal">delete</code> method is not <code class="literal">public</code>.</p><p>When you explicitly call an object’s <code class="literal">delete</code> method, MATLAB checks the <code class="literal">delete</code> method <code class="literal">Access</code> attribute in the class defining the object, but not in the superclasses of the object. A superclass with a <code class="literal">private</code>
+                    <code class="literal">delete</code> method cannot prevent the destruction of subclass objects.</p><p>Declaring a private delete method makes most sense for sealed classes. In the case where classes are not sealed, subclasses can define their own delete methods with public access. MATLAB calls a private superclass <code class="literal">delete</code> method as a result of an explicit call to a public subclass <code class="literal">delete</code> method.</p></section></section><section><h3 class="title" id="bta2kf4">Nondestructor Delete Methods</h3><p>A class can implement a method named <code class="literal">delete</code> that is not a valid class destructor. MATLAB does not call this method implicitly when destroying an object. In this case, <code class="literal">delete</code> behaves like an ordinary method.</p><p>For example, if the superclass implements a <code class="literal">Sealed</code> method named <code class="literal">delete</code> that is not a valid destructor, then MATLAB does not allow subclasses to override this method.</p><p>A <code class="literal">delete</code> method defined by a value class cannot be a class destructor.</p></section><section><h3 class="title" id="bu1rhqt">External References to <span class="trademark entity">MATLAB</span> Objects</h3><p>MATLAB does not manage object lifecycles that involve external languages that perform their own object lifecycle management (aka, garbage collection). MATLAB cannot detect when it is safe to destroy objects used in cyclic references because the external environment does not notify MATLAB when external reference have been destroyed.</p><p>If you cannot avoid external references to MATLAB objects, explicitly break the cyclic reference by destroying the objects in MATLAB.  </p><p>The following section describes how to manage this situation when using Java<sup>&#x00AE;</sup> objects that reference MATLAB objects.</p><section><h4 class="title" id="bu1rhrg-1"><span class="trademark entity">Java</span> References Can Prevent Destructor Execution</h4><p>Java does not support the object destructors that MATLAB objects use. Therefore, it is important to manage the lifecycle of all objects used in applications that include both Java and MATLAB objects.</p><p>Java objects that hold references to MATLAB objects can prevent deletion of the MATLAB objects. In these cases, MATLAB does not call the handle object <code class="function">delete</code> method even when there is no handle variable referring to that object. To ensure your <code class="literal">delete</code> method executes, call <code class="literal">delete</code> on the object explicitly before the handle variable goes out of scope.</p><p>Problems can occur when you define callbacks for Java objects that reference MATLAB objects.</p><p>For example, the <code class="literal">CallbackWithJava</code> class creates a Java <code class="literal">com.mathworks.jmi.Callback</code> object and assigns a class method as the callback function. The result is a Java object that has a reference to a handle object via the function-handle callback.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> CallbackWithJava &lt; handle
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = CallbackWithJava
+         jo = com.mathworks.jmi.Callback;
+         set(jo,<span style="color:#A020F0">'DelayedCallback'</span>,@obj.cbFunc); <span style="color:#228B22">% Assign method as callback</span>
+         jo.postCallback
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> cbFunc(obj,varargin)
+         c = class(obj);
+         disp([<span style="color:#A020F0">'Java object callback on class '</span>,c])
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> delete(obj)
+         c = class(obj);
+         disp([<span style="color:#A020F0">'ML object destructor called for class '</span>,c])
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Suppose that you create a <code class="literal">CallbackWithJava</code> object from within a function:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> testDestructor
+   cwj = CallbackWithJava
+   <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Creating an instance of the <code class="literal">CallbackWithJava</code> class creates the <code class="literal">com.mathworks.jmi.Callback</code> object and executes the callback function:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testDestructor
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>cwj = 
+
+  CallbackWithJava with no properties.
+
+Java object callback on class CallbackWithJava</pre></div></div></div><p>The handle variable, <code class="literal">cwj</code>, exists only in the function workspace. However, MATLAB does not call the class <code class="literal">delete</code> method when the function ends. The <code class="literal">com.mathworks.jmi.Callback</code> object still exists and holds a reference to the object of the <code class="literal">CallbackWithJava</code> class, which prevents destruction of the MATLAB object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear <span style="color:#A020F0">classes</span></pre></div></div></div><div class="code_responsive"><pre class="programlisting">Warning: Objects of 'CallbackWithJava' class exist.  Cannot clear this class or
+any of its superclasses. </pre></div><p>To avoid causing inaccessible objects, call <code class="literal">delete</code> explicitly before losing the handle to the MATLAB object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> testDestructor
+   cwj = CallbackWithJava
+   <span style="color:#0000FF">...</span>
+   delete(cwj)
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="bu1rhsq">Manage Object Lifecycle in Applications</h4><p>MATLAB applications that use Java or other external-language objects should manage the lifecycle of the objects involved. A typical user interface application references Java objects from MATLAB objects and creates callbacks on Java objects that reference MATLAB objects. </p><p>You can break these cyclic references in various ways:</p><div class="itemizedlist"><ul><li><p>Explicitly call <code class="function">delete</code> on the MATLAB objects when they are no longer needed</p></li><li><p>Unregister the Java object callbacks that reference MATLAB objects</p></li><li><p>Use intermediate handle objects that reference both the Java callbacks and the MATLAB objects. </p></li></ul></div></section></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e9231">Topics</h3><ul class="list-unstyled"><li><a href="handle-objects.html" class="a">Handle Object Behavior</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

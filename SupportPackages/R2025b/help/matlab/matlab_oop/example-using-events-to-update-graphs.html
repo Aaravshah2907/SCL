@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Techniques for Using Events and Listeners</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../object-oriented-programming-in-matlab.html",
+          "name": "Define Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../events-sending-and-responding-to-messages.html",
+          "name": "Events"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "events-sending-and-responding-to-messages"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to enable and disable listener execution using context menus."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Define Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../events-sending-and-responding-to-messages.html?s_tid=CRUX_lftnav" itemprop="url" id="events-sending-and-responding-to-messages"><span itemprop="title">Events</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Techniques for Using Events and Listeners</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brcfrty" class="nav-link intrnllnk">Example Overview</a></li><li class="nav-item"><a href="#brcuzxb" class="nav-link intrnllnk">Techniques Demonstrated in This Example</a></li><li class="nav-item"><a href="#brcvbpi" class="nav-link intrnllnk">Summary of fcneval Class</a></li><li class="nav-item"><a href="#brcvd9p" class="nav-link intrnllnk">Summary of fcnview Class</a></li><li class="nav-item"><a href="#brc5lql" class="nav-link intrnllnk">Methods Inherited from Handle Class</a></li><li class="nav-item"><a href="#brcwyrx" class="nav-link intrnllnk">Using the fcneval and fcnview Classes</a></li><li class="nav-item"><a href="#brcw2b7" class="nav-link intrnllnk">Implement UpdateGraph Event and Listener</a><ul class="nav"><li class="nav-item"><a href="#brc1s7o" class="nav-link intrnllnk">Define and Trigger UpdateGraph Event</a></li><li class="nav-item"><a href="#bsdkadx" class="nav-link intrnllnk">Determine When to Trigger Event</a></li><li class="nav-item"><a href="#bsdkb1x" class="nav-link intrnllnk">Determine Suitability of Expression</a></li><li class="nav-item"><a href="#bsdkbwz" class="nav-link intrnllnk">Other Approaches</a></li><li class="nav-item"><a href="#brcw8jd" class="nav-link intrnllnk">Listener and Callback for UpdateGraph Event</a></li></ul></li><li class="nav-item"><a href="#brc1wp2" class="nav-link intrnllnk">The PostSet Event Listener</a><ul class="nav"><li class="nav-item"><a href="#brc188t" class="nav-link intrnllnk">Sequence During the Lm Property Assignment</a></li><li class="nav-item"><a href="#brc1xpv" class="nav-link intrnllnk">Enable PostSet Property Event</a></li><li class="nav-item"><a href="#brc15nk" class="nav-link intrnllnk">Listener and Callback for PostSet Event</a></li></ul></li><li class="nav-item"><a href="#brc3n0x" class="nav-link intrnllnk">Enable and Disable Listeners</a><ul class="nav"><li class="nav-item"><a href="#brc3s5y" class="nav-link intrnllnk">Context Menu Callback</a></li></ul></li><li class="nav-item"><a href="#burmsl0-1" class="nav-link intrnllnk">@fcneval/fcneval.m Class Code</a></li><li class="nav-item"><a href="#burmsmc-1" class="nav-link intrnllnk">@fcnview/fcnview.m Class Code</a><ul class="nav"><li class="nav-item"><a href="#burmsmc-2" class="nav-link intrnllnk">@fcnview/createViews</a></li></ul></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=events-sending-and-responding-to-messages&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bq8bnrm">Techniques for Using Events and Listeners</h2><section><h3 class="title" id="brcfrty">Example Overview</h3><p>This example defines two classes:</p><div class="itemizedlist"><ul><li><p><code class="literal">fcneval</code> &#8212; The function evaluator class contains a MATLAB<sup>&#x00AE;</sup> expression and evaluates this expression over a specified range</p></li><li><p><code class="literal">fcnview</code> &#8212; The function viewer class contains a <code class="literal">fcneval</code> object and displays surface graphs of the evaluated expression using the data contained in <code class="literal">fcneval</code>.</p></li></ul></div><p>This class defines two events:</p><div class="itemizedlist"><ul><li><p>A class-defined event that occurs when a new value is specified for the MATLAB function</p></li><li><p>A property event that occurs when the property containing the limits is changed</p></li></ul></div><p>The following diagram shows the relationship between the two objects. The <code class="literal">fcnview</code> object contains a <code class="literal">fcneval</code> object and creates graphs from the data it contains. <code class="literal">fcnview</code> creates listeners to change the graphs if any of the data in the <code class="literal">fcneval</code> object change.</p><p>
+            </p>
+<div class="informalfigure"><div id="d126e20918" class="mediaobject"><p><img src="event_example1a.png" alt="Events and listeners defined for fcneval and fcenview" height="306" width="480"></p></div></div><p>
+         </p></section><section><h3 class="title" id="brcuzxb">Techniques Demonstrated in This Example</h3><div class="itemizedlist"><ul><li><p>Naming an event in the class definition</p></li><li><p>Triggering an event by calling <code class="literal">notify</code></p></li><li><p>Enabling a property event via the <code class="literal">SetObservable</code> attribute</p></li><li><p>Creating listeners for class-defined events and property <code class="literal">PostSet</code> events</p></li><li><p>Defining listener callback functions that accept additional arguments</p></li><li><p>Enabling and disabling listeners</p></li></ul></div></section><section><h3 class="title" id="brcvbpi">Summary of fcneval Class</h3><p>The <code class="literal">fcneval</code> class evaluates a MATLAB expression over a specified range of two variables. The <code class="literal">fcneval</code> is the source of the data that objects of the <code class="literal">fcnview</code> class graph as a surface. <code class="literal">fcneval</code> is the source of the events used in this example. For a listing of the class definition, see <a href="example-using-events-to-update-graphs.html#burmsl0-1" class="intrnllnk">@fcneval/fcneval.m Class Code</a></p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"><col class="tcol2" width="18%"><col class="tcol3" width="60%"></colgroup><thead><tr><th>Property</th><th>Value</th><th>Purpose</th></tr></thead><tbody><tr><td><code class="literal">FofXY</code></td><td>function handle</td><td>MATLAB expression (function of two variables).</td></tr><tr><td><code class="literal">Lm</code></td><td>two-element vector</td><td>Limits over which function is evaluated in both variables. <code class="literal">SetObservable</code> attribute set to <code class="literal">true</code> to enable property event listeners.</td></tr><tr><td><code class="literal">Data</code></td><td>structure with x, y, and z matrices</td><td>Data resulting from evaluating the function. Used for surface graph. <code class="literal">Dependent</code> attribute set to <code class="literal">true</code>, which means the <code class="literal">get.Data</code> method is called to determine property value when queried and no data is stored.</td></tr></tbody></table></div><p>
+</p><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"><col class="tcol2" width="78%"></colgroup><thead><tr><th>Event</th><th>When Triggered</th></tr></thead><tbody><tr><td><code class="literal">UpdateGraph</code></td><td><code class="literal">FofXY</code> property set function (<code class="literal">set.FofXY</code>) calls the <code class="literal">notify</code> method when a new value is specified for the MATLAB expression on an object of this class.</td></tr></tbody></table></div><p>
+
+         </p><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"><col class="tcol2" width="78%"></colgroup><thead><tr><th>Method</th><th>Purpose</th></tr></thead><tbody><tr><td><code class="literal">fcneval</code></td><td>Class constructor. Inputs are function handle and two-element vector specifying the limits over which to evaluate the function.</td></tr><tr><td><code class="literal">set.FofXY</code></td><td><code class="literal">FofXY</code> property set function. Called whenever property value is set, including during object construction.</td></tr><tr><td><code class="literal">set.Lm</code></td><td><code class="literal">Lm</code> property set function. Used to test for valid limits.</td></tr><tr><td><code class="literal">get.Data</code></td><td><code class="literal">Data</code> property get function. This method calculates the values for the <code class="literal">Data</code> property whenever that data is queried (by class members or externally).</td></tr><tr><td><code class="literal">grid</code></td><td>A static method (<code class="literal">Static</code> attribute set to <code class="literal">true</code>) used in the calculation of the data.</td></tr></tbody></table></div><p>
+
+         </p></section><section><h3 class="title" id="brcvd9p">Summary of fcnview Class</h3><p>Objects of the <code class="literal">fcnview</code> class contain <code class="literal">fcneval</code> objects as the source of data for the four surface graphs created in a function view. <code class="literal">fcnview</code> creates the listeners and callback functions that respond to changes in the data contained in <code class="literal">fcneval</code> objects. For a listing of the class definition, see <a href="example-using-events-to-update-graphs.html#burmsmc-1" class="intrnllnk">@fcnview/fcnview.m Class Code</a></p><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="22%"><col class="tcol2" width="26%"><col class="tcol3" width="52%"></colgroup><thead><tr><th>Property</th><th>Value</th><th>Purpose</th></tr></thead><tbody><tr><td><code class="literal">FcnObject</code></td><td><code class="literal">fcneval</code> object</td><td>This object contains the data that is used to create the function graphs.</td></tr><tr><td><code class="literal">HAxes</code></td><td>axes handle</td><td>Each instance of a <code class="literal">fcnview</code> object stores the handle of the axes containing its subplot.</td></tr><tr><td><code class="literal">HLUpdateGraph</code></td><td><code class="literal">event.listener</code> object for <code class="literal">UpdateGraph</code> event</td><td>Setting the <code class="literal">event.listener </code>object's <code class="literal">Enabled</code> property to <code class="literal">true</code> enables the listener; <code class="literal">false</code> disables listener.</td></tr><tr><td><code class="literal">HLLm</code></td><td><code class="literal">event.listener</code> object for <code class="literal">Lm</code> property event</td><td>Setting the <code class="literal">event.listener </code>object's <code class="literal">Enabled</code> property to <code class="literal">true</code> enables the listener, <code class="literal">false</code> disables listener.</td></tr><tr><td><code class="literal">HEnableCm</code></td><td>uimenu handle</td><td>Item on context menu used to enable listeners (used to handle checked behavior)</td></tr><tr><td><code class="literal">HDisableCm</code></td><td>uimenu handle</td><td>Item on context menu used to disable listeners (used to manage checked behavior)</td></tr><tr><td><code class="literal">HSurface</code></td><td>surface handle</td><td>Used by event callbacks to update surface data.</td></tr></tbody></table></div><p>
+
+         </p><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="30%"><col class="tcol2" width="70%"></colgroup><thead><tr><th>Method</th><th>Purpose</th></tr></thead><tbody><tr><td><code class="literal">fcnview</code></td><td>Class constructor. Input is <code class="literal">fcneval</code> object.</td></tr><tr><td><code class="literal">createLisn</code></td><td>Calls <code class="literal">addlistener</code> to create listeners for <code class="literal">UpdateGraph</code> and <code class="literal">Lm</code> property <code class="literal">PostSet</code> listeners.</td></tr><tr><td><code class="literal">lims</code></td><td>Sets axes limits to current value of <code class="literal">fcneval</code> object's <code class="literal">Lm</code> property. Used by event handlers.</td></tr><tr><td><code class="literal">updateSurfaceData</code></td><td>Updates the surface data without creating a new object. Used by event handlers.</td></tr><tr><td><code class="literal">listenUpdateGraph</code></td><td>Callback for <code class="literal">UpdateGraph</code> event.</td></tr><tr><td><code class="literal">listenLm</code></td><td>Callback for <code class="literal">Lm</code> property <code class="literal">PostSet</code> event</td></tr><tr><td><code class="literal">delete</code></td><td>Delete method for <code class="literal">fcnview</code> class. </td></tr><tr><td><code class="literal">createViews</code></td><td>Static method that creates an instance of the <code class="literal">fcnview</code> class for each subplot, defines the context menus that enable/disable listeners, and creates the subplots</td></tr></tbody></table></div><p>
+
+         </p></section><section><h3 class="title" id="brc5lql">Methods Inherited from Handle Class</h3><p>Both the <code class="literal">fcneval</code> and <code class="literal">fcnview</code> classes inherit methods from the <code class="literal">handle</code> class. The following table lists only those inherited methods used in this example. </p><p><a href="the-handle-superclass.html#brfylzt-2" class="a">Handle Class Methods</a> provides a complete list of methods that are inherited when you subclass the <code class="literal">handle</code> class.</p><p>
+            </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="23%"><col class="tcol2" width="78%"></colgroup><thead><tr><th>Methods Inherited from Handle Class</th><th>Purpose</th></tr></thead><tbody><tr><td><code class="literal">addlistener</code></td><td>Register a listener for a specific event and attach listener to event-defining object.</td></tr><tr><td><code class="literal">notify</code></td><td>Trigger an event and notify all registered listeners.</td></tr></tbody></table></div><p>
+
+         </p></section><section><h3 class="title" id="brcwyrx">Using the fcneval and fcnview Classes</h3><p>This section explains how to use the classes.</p><div class="itemizedlist"><ul><li><p>Create an instance of the <code class="literal">fcneval</code> class to contain the MATLAB expression of a function of two variables and the range over which you want to evaluate this function</p></li><li><p>Use the <code class="literal">fcnview</code> class static function <code class="literal">createViews</code> to visualize the function</p></li><li><p>Change the MATLAB expression or the limits contained by the <code class="literal">fcneval</code> object and all the <code class="literal">fcnview</code> objects respond to the events generated.</p></li></ul></div><p>You create a <code class="literal">fcneval</code> object by calling its constructor with two arguments&#8212;an anonymous function and a two-element, monotonically increasing vector. For example:</p><div class="code_responsive"><pre class="programlisting">feobject = fcneval(@(x,y) x.*exp(-x.^2-y.^2),[-2 2]);</pre></div><p>Use the <code class="literal">createViews</code> static method to create the graphs of the function. Use the class name to call a static function:</p><div class="code_responsive"><pre class="programlisting">fcnview.createViews(feobject);</pre></div><p>The <code class="literal">createView</code> method generates four views of the function contained in the <code class="literal">fcneval</code> object.</p><p>
+            </p>
+<div class="informalfigure"><div id="d126e21354" class="mediaobject"><p><img src="event_example_pict1.jpg" alt="Four graphs of the function defined by fcneval" height="328" width="398"></p></div></div><p>
+         </p><p>Each subplot defines a context menu that can enable and disable the listeners associated with that graph. For example, if you disable the listeners on subplot 221 (upper left) and change the MATLAB expression contained by the <code class="literal">fcneval</code> object, only the remaining three subplots update when the <code class="literal">UpdateGraph</code> event is triggered:</p><div class="code_responsive"><pre class="programlisting">feobject.FofXY = @(x,y) x.*exp(-x.^.5-y.^.5);</pre></div><p>
+            </p>
+<div class="informalfigure"><div id="d126e21373" class="mediaobject"><p><img src="event_example_pict2.jpg" alt="Updates to three graphs of the function defined by fcneval" height="328" width="398"></p></div></div><p>
+         </p><p>Similarly, if you change the limits by assigning a value to the
+               <code class="literal">feobject.Lm</code> property, the <code class="literal">feobject</code> triggers a
+               <code class="literal">PostSet</code> property event and the listener callbacks update the
+            graph.</p><div class="code_responsive"><pre class="programlisting">feobject.Lm = [-8 3];</pre></div><p>
+            </p>
+<div class="informalfigure"><div id="d126e21390" class="mediaobject"><p><img src="event_example_pict3.jpg" alt="Graphs with updated limits" height="328" width="398"></p></div></div><p>
+         </p><p>In this figure, the listeners are reenabled via the context menu for subplot 221. Because the listener callback for the property <code class="literal">PostSet</code> event also updates the surface data, all views are now synchronized </p></section><section><h3 class="title" id="brcw2b7">Implement UpdateGraph Event and Listener</h3><p>The <code class="literal">UpdateGraph</code> event occurs when the MATLAB representation of the mathematical function contained in the <code class="literal">fcneval</code> object is changed. The <code class="literal">fcnview</code> objects that contain the surface graphs are listening for this event, so they can update the graphs to represent the new function. </p><section><h4 class="title" id="brc1s7o">Define and Trigger UpdateGraph Event</h4><p>The <code class="literal">UpdateGraph</code> event is a class-defined event. The <code class="literal">fcneval</code> class names the event and calls <a href="../ref/handle.notify.html"><code class="function">notify</code></a> when the event occurs. </p>
+<div class="informalfigure"><div id="d126e21424" class="mediaobject"><p><img src="event_ex1_updategraph.png" alt="Diagram of UpdateGraph event and listener" height="475" width="608"></p></div></div><p></p><p>The <code class="literal">fcnview</code> class defines a listener for this event. When <code class="literal">fcneval</code> triggers the event, the <code class="literal">fcnview</code> listener executes a callback function that performs the follow actions:</p><div class="itemizedlist"><ul><li><p>Determines if the handle of the surface object stored by the <code class="literal">fcnview</code> object is still valid (that is, does the object still exist)</p></li><li><p>Updates the surface <code class="literal">XData</code>, <code class="literal">YData</code>, and <code class="literal">ZData</code> by querying the <code class="literal">fcneval</code> object's <code class="literal">Data</code> property.</p></li></ul></div><p>The <code class="literal">fcneval</code> class defines an event name in an <code class="literal">event</code> block:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#0000FF">events</span>
+   UpdateGraph 
+end</pre></div></div></div></section><section><h4 class="title" id="bsdkadx">Determine When to Trigger Event</h4><p>The <code class="literal">fcneval</code> class defines a property set method for the <code class="literal">FofXY</code> property. <code class="literal">FofXY</code> is the property that stores the MATLAB expression for the mathematical function. This expression must be a valid MATLAB expression for a function of two variables. </p><p>The <code class="literal">set.FofXY</code> method:</p><div class="itemizedlist"><ul><li><p>Determines the suitability of the expression</p></li><li><p>If the expression is suitable:</p><div class="itemizedlist"><ul><li><p>Assigns the expression to the <code class="literal">FofXY</code> property</p></li><li><p>Triggers the <code class="literal">UpdateGraph</code> event</p></li></ul></div></li></ul></div><p>If <code class="literal">fcneval.isSuitable</code> does not return an <code class="literal">MException</code> object, the <code class="literal">set.FofXY</code> method assigns the value to the property and triggers the <code class="literal">UpdateGraph</code> event. </p><div class="code_responsive"><pre class="programlisting">function set.FofXY(obj,func)
+% Determine if function is suitable to create a surface
+   me = fcneval.isSuitable(func);
+   if ~isempty(me)
+      throw(me)
+   end
+% Assign property value
+   obj.FofXY = func; 
+% Trigger UpdateGraph event
+   notify(obj,'UpdateGraph');
+end</pre></div></section><section><h4 class="title" id="bsdkb1x">Determine Suitability of Expression</h4><p>The <code class="literal">set.FofXY</code> method calls a static method (<code class="literal">fcneval.isSuitable</code>) to determine the suitability of the specified expression. <code class="literal">fcneval.isSuitable</code> returns an <a href="../ref/mexception.html"><code class="class">MException</code></a> object if it determines that the expression is unsuitable. <code class="literal">fcneval.isSuitable</code> calls the <code class="literal">MException</code> constructor directly to create more useful error messages for the user.</p><p><code class="literal">set.FofXY</code> issues the exception using the <a href="../ref/mexception.throw.html"><code class="method">throw</code></a> method. Issuing the exception terminates execution of <code class="literal">set.FofXY</code> and prevents the method from making an assignment to the property or triggering the <code class="literal">UpdateGraph</code> event.</p><p>Here is the <code class="literal">fcneval.isSuitable</code> method:</p><div class="code_responsive"><pre class="programlisting">function isOk = isSuitable(funcH)
+   v = [1 1;1 1];
+   % Can the expression except 2 numeric inputs
+   try
+      funcH(v,v);
+   catch
+      me = MException('DocExample:fcneval',...
+         ['The function ',func2str(funcH),' Is not a suitable F(x,y)']);
+      isOk = me;
+      return
+   end
+   % Does the expression return non-scalar data
+   if isscalar(funcH(v,v));
+      me = MException('DocExample:fcneval',...
+         ['The function ',func2str(funcH),'' Returns a scalar when evaluated']);
+      isOk = me;
+      return
+   end
+   isOk = [];
+end</pre></div><p>The <code class="literal">fcneval.isSuitable</code> method could provide additional test to ensure that the expression assigned to the <code class="literal">FofXY</code> property meets the criteria required by the class design.</p></section><section><h4 class="title" id="bsdkbwz">Other Approaches</h4><p>The class could have implemented a property set event for the <code class="literal">FofXY</code> property and would, therefore, not need to call <code class="literal">notify</code> (see <a href="listening-for-changes-to-property-values.html" class="a">Listen for Changes to Property Values</a>). Defining a class event provides more flexibility in this case because you can better control event triggering. </p><p>For example, suppose that you wanted to update the graph only if the new data is different. If the new expression produced the same data within some tolerance, the <code class="literal">set.FofXY</code> method could not trigger the event and avoid updating the graph. However, the method could still set the property to the new value.</p></section><section><h4 class="title" id="brcw8jd">Listener and Callback for UpdateGraph Event</h4><p>The <code class="literal">fcnview</code> class creates a listener for the <code class="literal">UpdateGraph</code> event using the <a href="../ref/handle.addlistener.html"><code class="function">addlistener</code></a> method:</p><div class="code_responsive"><pre class="programlisting">obj.HLUpdateGraph = addlistener(obj.FcnObject,'UpdateGraph',...
+            @(src,evnt)listenUpdateGraph(obj,src,evnt)); % Add obj to argument list</pre></div><p>The <code class="literal">fcnview</code> object stores a handle to the <code class="literal">event.listener</code> object in its <code class="literal">HLUpdateGraph</code> property, which is used to enable/disable the listener by a context menu (see <a href="example-using-events-to-update-graphs.html#brc3n0x" class="intrnllnk">Enable and Disable Listeners</a>).</p><p>The <code class="literal">fcnview</code> object (<code class="literal">obj</code>) is added to the two default arguments (<code class="literal">src</code>, <code class="literal">evnt</code>) passed to the listener callback. Keep in mind, the source of the event (<code class="literal">src</code>) is the <code class="literal">fcneval</code> object, but the <code class="literal">fcnview</code> object contains the handle of the surface object that the callback updates. </p><p>The <code class="literal">listenUpdateGraph</code> function is defined as follows:</p><div class="code_responsive"><pre class="programlisting">function listenUpdateGraph(obj,src,evnt)
+   if ishandle(obj.HSurface) % If surface exists
+      obj.updateSurfaceData % Update surface data
+   end
+end</pre></div><p>The <code class="literal">updateSurfaceData</code> function is a class method that updates the surface data when a different mathematical function is assigned to the <code class="literal">fcneval</code> object. Updating a graphics object data is more efficient than creating a new object using the new data:</p><div class="code_responsive"><pre class="programlisting">function updateSurfaceData(obj)
+% Get data from fcneval object and set surface data
+   set(obj.HSurface,...
+      'XData',obj.FcnObject.Data.X,...
+      'YData',obj.FcnObject.Data.Y,...
+      'ZData',obj.FcnObject.Data.Matrix); 
+end</pre></div></section></section><section><h3 class="title" id="brc1wp2">The PostSet Event Listener</h3><p>All properties support the predefined <code class="literal">PostSet</code> event (See <a href="events-and-listeners-concepts.html#bq8nr3l" class="a">Property-Set and Query Events</a> for more information on property events). This example uses the <code class="literal">PostSet</code> event for the <code class="literal">fcneval</code>
+            <code class="literal">Lm</code> property. This property contains a two-element vector specifying the range over which the mathematical function is evaluated. Just after this property is changed (by a statement like <code class="literal">obj.Lm = [-3 5];</code>), the <code class="literal">fcnview</code> objects listening for this event update the graph to reflect the new data.</p><p>
+            </p>
+<div class="informalfigure"><div id="d126e21640" class="mediaobject"><p><img src="event_ex1_lm.png" alt="Diagram of PostSet event for Lm property" height="399" width="480"></p></div></div><p>
+         </p><section><h4 class="title" id="brc188t">Sequence During the <code class="literal">Lm</code> Property Assignment</h4><p>The <code class="literal">fcneval</code> class defines a set function for the <code class="literal">Lm</code> property. When a value is assigned to this property during object construction or property reassignment, the following sequence occurs:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>An attempt is made to assign argument value to <code class="literal">Lm</code> property.</p></li><li><p>The <code class="literal">set.Lm</code> method executes to check whether the value is in appropriate range &#8212; if yes, it makes assignment, if no, it generates an error.</p></li><li><p>If the value of <code class="literal">Lm</code> is set successfully, MATLAB triggers a <code class="literal">PostSet</code> event.</p></li><li><p>All listeners execute their callbacks, but the order is nondeterministic.</p></li></ol></div><p>The <code class="literal">PostSet</code> event does not occur until an actual assignment of the property occurs. The property set function provides an opportunity to deal with potential assignment errors before the <code class="literal">PostSet</code> event occurs.</p></section><section><h4 class="title" id="brc1xpv">Enable PostSet Property Event</h4><p>To create a listener for the <code class="literal">PostSet</code> event, you must set the property's <code class="literal">SetObservable</code> attribute to <code class="literal">true</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#0000FF">properties</span> (SetObservable = true)
+   Lm = [-2*pi 2*pi];  <span style="color:#228B22">% specifies default value</span>
+<span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span></pre></div></div></div><p>MATLAB automatically triggers the event so it is not necessary to call <a href="../ref/handle.notify.html"><code class="function">notify</code></a>.</p><p><a href="property-attributes.html" class="a">Property Attributes</a> provides a list of all property attributes. </p></section><section><h4 class="title" id="brc15nk">Listener and Callback for PostSet Event</h4><p>The <code class="literal">fcnview</code> class creates a listener for the <code class="literal">PostSet</code> event using the <a href="../ref/handle.addlistener.html"><code class="function">addlistener</code></a> method:</p><div class="code_responsive"><pre class="programlisting">obj.HLLm = addlistener(obj.FcnObject,'Lm','PostSet',...
+            @(src,evnt)listenLm(obj,src,evnt)); % Add obj to argument list</pre></div><p>The <code class="literal">fcnview</code> object stores a handle to the <code class="literal">event.listener</code> object in its <code class="literal">HLLm</code> property, which is used to enable/disable the listener by a context menu (see <a href="example-using-events-to-update-graphs.html#brc3n0x" class="intrnllnk">Enable and Disable Listeners</a>).</p><p>The <code class="literal">fcnview</code> object (<code class="literal">obj</code>) is added to the two default arguments (<code class="literal">src</code>, <code class="literal">evnt</code>) passed to the listener callback. Keep in mind, the source of the event (<code class="literal">src</code>) is the <code class="literal">fcneval</code> object, but the <code class="literal">fcnview</code> object contains the handle of the surface object that the callback updates. </p><p>The callback sets the axes limits and updates the surface data because changing the limits causes the mathematical function to be evaluated over a different range:</p><div class="code_responsive"><pre class="programlisting">function listenLm(obj,src,evnt)
+   if ishandle(obj.HAxes) % If there is an axes
+      lims(obj); % Update its limits
+      if ishandle(obj.HSurface) % If there is a surface
+         obj.updateSurfaceData % Update its data
+      end
+   end
+end </pre></div></section></section><section><h3 class="title" id="brc3n0x">Enable and Disable Listeners</h3><p>Each <code class="literal">fcnview</code> object stores the handle of the listener objects it creates so that the listeners can be enabled or disabled via a context menu after the graphs are created. All listeners are instances of the <code class="literal">event.listener</code> class, which defines a property called <code class="literal">Enabled</code>. By default, this property has a value of <code class="literal">true</code>, which enables the listener. If you set this property to <code class="literal">false</code>, the listener still exists, but is disabled. This example creates a context menu active on the axes of each graph that provides a way to change the value of the <code class="literal">Enabled</code> property.</p><section><h4 class="title" id="brc3s5y">Context Menu Callback</h4><p>There are two callbacks used by the context menu corresponding to the two items on the menu:</p><div class="itemizedlist"><ul><li><p><strong class="guimenuitem">Listen</strong> &#8212; Sets the <code class="literal">Enabled</code> property for both the <code class="literal">UpdateGraph</code> and <code class="literal">PostSet</code> listeners to <code class="literal">true</code> and adds a check mark next to the <strong class="guimenuitem">Listen</strong> menu item.</p></li><li><p><strong class="guimenuitem">Don't Listen</strong> &#8212; Sets the <code class="literal">Enabled</code> property for both the <code class="literal">UpdateGraph</code> and <code class="literal">PostSet</code> listeners to <code class="literal">false</code> and adds a check mark next to the <strong class="guimenuitem">Don't Listen</strong> menu item.</p></li></ul></div><p>Both callbacks include the <code class="literal">fcnview</code> object as an argument (in addition to the required source and event data arguments) to provide access to the handle of the listener objects.</p><p>The <code class="literal">enableLisn</code> function is called when the user selects <strong class="guimenuitem">Listen</strong> from the context menu.</p><div class="code_responsive"><pre class="programlisting">function enableLisn(obj,src,evnt)
+   obj.HLUpdateGraph.Enabled = true; % Enable listener
+   obj.HLLm.Enabled = true; % Enable listener
+   set(obj.HEnableCm,'Checked','on') % Check Listen
+   set(obj.HDisableCm,'Checked','off') % Uncheck Don't Listen
+end</pre></div><p>The <code class="literal">disableLisn</code> function is called when the user selects <strong class="guimenuitem">Don't Listen</strong> from the context menu.</p><div class="code_responsive"><pre class="programlisting">function disableLisn(obj,src,evnt)
+   obj.HLUpdateGraph.Enabled = false; % Disable listener
+   obj.HLLm.Enabled = false; % Disable listener
+   set(obj.HEnableCm,'Checked','off') % Uncheck Listen
+   set(obj.HDisableCm,'Checked','on') % Check Don't Listen
+end</pre></div></section></section><section><h3 class="title" id="burmsl0-1">@fcneval/fcneval.m Class Code</h3><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> fcneval &lt; handle
+   <span style="color:#0000FF">properties</span>
+      FofXY
+   <span style="color:#0000FF">end</span> 
+   
+   <span style="color:#0000FF">properties</span> (SetObservable = true)
+      Lm = [-2*pi 2*pi]
+   <span style="color:#0000FF">end</span> <span style="color:#228B22">% properties SetObservable = true</span>
+   
+   <span style="color:#0000FF">properties</span> (Dependent = true)
+      Data
+   <span style="color:#0000FF">end</span> 
+   
+   <span style="color:#0000FF">events</span>
+      UpdateGraph 
+   <span style="color:#0000FF">end</span>
+   
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = fcneval(fcn_handle,limits)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            obj.FofXY = fcn_handle;
+            obj.Lm = limits;
+            
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span> 
+      
+      <span style="color:#0000FF">function</span> set.FofXY(obj,func)
+         me = fcneval.isSuitable(func);
+         <span style="color:#0000FF">if</span> ~isempty(me)
+            throw(me)
+         <span style="color:#0000FF">end</span>
+         obj.FofXY = func;
+         notify(obj,<span style="color:#A020F0">'UpdateGraph'</span>);  
+      <span style="color:#0000FF">end</span> 
+      
+      <span style="color:#0000FF">function</span> set.Lm(obj,lim)  
+         <span style="color:#0000FF">if</span>  ~(lim(1) &lt; lim(2))
+            error(<span style="color:#A020F0">'Limits must be monotonically increasing'</span>)
+         <span style="color:#0000FF">else</span>
+            obj.Lm = lim;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span> 
+      
+      <span style="color:#0000FF">function</span> data = get.Data(obj)   
+         [x,y] = fcneval.grid(obj.Lm);  
+         matrix = obj.FofXY(x,y);
+         data.X = x;
+         data.Y = y;
+         data.Matrix = real(matrix);  
+         
+      <span style="color:#0000FF">end</span> 
+      
+   <span style="color:#0000FF">end</span> <span style="color:#228B22">% methods</span>
+   
+   <span style="color:#0000FF">methods</span> (Static = true)      
+      <span style="color:#0000FF">function</span> [x,y] = grid(lim)
+         inc = (lim(2)-lim(1))/20;
+         [x,y] = meshgrid(lim(1):inc:lim(2));
+      <span style="color:#0000FF">end</span> <span style="color:#228B22">% grid</span>
+      
+      <span style="color:#0000FF">function</span> isOk = isSuitable(funcH)
+         v = [1 1;1 1];
+         <span style="color:#0000FF">try</span>
+            funcH(v,v);
+         <span style="color:#0000FF">catch</span>  <span style="color:#228B22">%#ok&lt;CTCH&gt;</span>
+            me = MException(<span style="color:#A020F0">'DocExample:fcneval'</span>,<span style="color:#0000FF">...</span>
+               [<span style="color:#A020F0">'The function '</span>,func2str(funcH),<span style="color:#A020F0">' Is not a suitable F(x,y)'</span>]);
+            isOk = me;
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">if</span> isscalar(funcH(v,v));
+            me = MException(<span style="color:#A020F0">'DocExample:fcneval'</span>,<span style="color:#0000FF">...</span>
+               [<span style="color:#A020F0">'The function '</span>,func2str(funcH),<span style="color:#A020F0">' Returns a scalar when evaluated'</span>]);
+            isOk = me;
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">end</span>
+         isOk = [];
+      <span style="color:#0000FF">end</span>
+      
+   <span style="color:#0000FF">end</span> 
+   
+<span style="color:#0000FF">end</span> </pre></div></div></div></section><section><h3 class="title" id="burmsmc-1">@fcnview/fcnview.m Class Code</h3><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> fcnview &lt; handle
+   <span style="color:#0000FF">properties</span>
+      FcnObject     <span style="color:#228B22">% fcneval object</span>
+      HAxes         <span style="color:#228B22">% subplot axes handle</span>
+      HLUpdateGraph <span style="color:#228B22">% UpdateGraph listener handle</span>
+      HLLm          <span style="color:#228B22">% Lm property PostSet listener handle</span>
+      HEnableCm     <span style="color:#228B22">% "Listen" context menu handle</span>
+      HDisableCm    <span style="color:#228B22">% "Don't Listen" context menu handle</span>
+      HSurface      <span style="color:#228B22">% Surface object handle</span>
+   <span style="color:#0000FF">end</span>
+   
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = fcnview(fcnobj)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            obj.FcnObject = fcnobj;
+            obj.createLisn;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> createLisn(obj)
+         obj.HLUpdateGraph = addlistener(obj.FcnObject,<span style="color:#A020F0">'UpdateGraph'</span>,<span style="color:#0000FF">...</span>
+            @(src,evnt)listenUpdateGraph(obj,src,evnt));
+         obj.HLLm = addlistener(obj.FcnObject,<span style="color:#A020F0">'Lm'</span>,<span style="color:#A020F0">'PostSet'</span>,<span style="color:#0000FF">...</span>
+            @(src,evnt)listenLm(obj,src,evnt));
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> lims(obj)
+         lmts = obj.FcnObject.Lm;
+         set(obj.HAxes,<span style="color:#A020F0">'XLim'</span>,lmts);
+         set(obj.HAxes,<span style="color:#A020F0">'Ylim'</span>,lmts);
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> updateSurfaceData(obj)
+         data = obj.FcnObject.Data;
+         set(obj.HSurface,<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'XData'</span>,data.X,<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'YData'</span>,data.Y,<span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">'ZData'</span>,data.Matrix);
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> listenUpdateGraph(obj,~,~)
+         <span style="color:#0000FF">if</span> ishandle(obj.HSurface)
+            obj.updateSurfaceData
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> listenLm(obj,~,~)
+         <span style="color:#0000FF">if</span> ishandle(obj.HAxes)
+            lims(obj);
+            <span style="color:#0000FF">if</span> ishandle(obj.HSurface)
+               obj.updateSurfaceData
+            <span style="color:#0000FF">end</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+      <span style="color:#0000FF">function</span> delete(obj)
+         <span style="color:#0000FF">if</span> ishandle(obj.HAxes)
+            delete(obj.HAxes);
+         <span style="color:#0000FF">else</span>
+            <span style="color:#0000FF">return</span>
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span> (Static)
+      createViews(a)
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><section><h4 class="title" id="burmsmc-2">@fcnview/createViews</h4><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> createViews(fcnevalobj)
+   p = pi; deg = 180/p;
+   hfig = figure(<span style="color:#A020F0">'Visible'</span>,<span style="color:#A020F0">'off'</span>,<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Toolbar'</span>,<span style="color:#A020F0">'none'</span>);
+   
+   <span style="color:#0000FF">for</span> k=4:-1:1
+      fcnviewobj(k) = fcnview(fcnevalobj);
+      axh = subplot(2,2,k);
+      fcnviewobj(k).HAxes = axh;
+      hcm(k) = uicontextmenu;
+      set(axh,<span style="color:#A020F0">'Parent'</span>,hfig,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'FontSize'</span>,8,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'UIContextMenu'</span>,hcm(k))
+      fcnviewobj(k).HEnableCm = uimenu(hcm(k),<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Label'</span>,<span style="color:#A020F0">'Listen'</span>,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'on'</span>,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Callback'</span>,@(src,evnt)enableLisn(fcnviewobj(k),src,evnt));
+      fcnviewobj(k).HDisableCm = uimenu(hcm(k),<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Label'</span>,<span style="color:#A020F0">'Don''t Listen'</span>,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'off'</span>,<span style="color:#0000FF">...</span>
+         <span style="color:#A020F0">'Callback'</span>,@(src,evnt)disableLisn(fcnviewobj(k),src,evnt));
+      az = p/k*deg;
+      view(axh,az,30)
+      title(axh,[<span style="color:#A020F0">'View: '</span>,num2str(az),<span style="color:#A020F0">' 30'</span>])
+      fcnviewobj(k).lims;
+      surfLight(fcnviewobj(k),axh)
+   <span style="color:#0000FF">end</span>
+   set(hfig,<span style="color:#A020F0">'Visible'</span>,<span style="color:#A020F0">'on'</span>)
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">function</span> surfLight(obj,axh)
+   obj.HSurface = surface(obj.FcnObject.Data.X,<span style="color:#0000FF">...</span>
+      obj.FcnObject.Data.Y,<span style="color:#0000FF">...</span>
+      obj.FcnObject.Data.Matrix,<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'FaceColor'</span>,[.8 .8 0],<span style="color:#A020F0">'EdgeColor'</span>,[.3 .3 .2],<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'FaceLighting'</span>,<span style="color:#A020F0">'phong'</span>,<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'FaceAlpha'</span>,.3,<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'HitTest'</span>,<span style="color:#A020F0">'off'</span>,<span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">'Parent'</span>,axh);
+   lims(obj)
+   camlight <span style="color:#A020F0">left</span>; material <span style="color:#A020F0">shiny</span>; grid <span style="color:#A020F0">off</span>
+   colormap <span style="color:#A020F0">copper</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> enableLisn(obj,~,~)
+   obj.HLUpdateGraph.Enabled = true;
+   obj.HLLm.Enabled = true;
+   set(obj.HEnableCm,<span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'on'</span>)
+   set(obj.HDisableCm,<span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'off'</span>)
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> disableLisn(obj,~,~)
+   obj.HLUpdateGraph.Enabled = false;
+   obj.HLLm.Enabled = false;
+   set(obj.HEnableCm,<span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'off'</span>)
+   set(obj.HDisableCm,<span style="color:#A020F0">'Checked'</span>,<span style="color:#A020F0">'on'</span>)
+<span style="color:#0000FF">end</span></pre></div></div></div></section></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

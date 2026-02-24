@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Call C from MATLAB</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleTopics",
+
+        "itemListElement":
+        [
+        "matlab_external/using-the-libstruct-object.html"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "function:loadlibrary",
+          "name": "loadlibrary"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "function:unloadlibrary",
+          "name": "unloadlibrary"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "function:calllib",
+          "name": "calllib"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "function:libfunctions",
+          "name": "libfunctions"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "function:libfunctionsview",
+          "name": "libfunctionsview"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 6,
+            "item": {
+          "identifier": "function:libisloaded",
+          "name": "libisloaded"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 7,
+            "item": {
+          "identifier": "function:libpointer",
+          "name": "libpointer"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 8,
+            "item": {
+          "identifier": "function:libstruct",
+          "name": "libstruct"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 9,
+            "item": {
+          "identifier": "class:lib.pointer",
+          "name": "lib.pointer"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "UnlistedReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "method:lib.pointer.disp",
+          "name": "disp"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+            "item": {
+          "identifier": "method:lib.pointer.isNull",
+          "name": "isNull"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+            "item": {
+          "identifier": "method:lib.pointer.plus",
+          "name": "plus"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+            "item": {
+          "identifier": "method:lib.pointer.reshape",
+          "name": "reshape"
+
+          }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+            "item": {
+          "identifier": "method:lib.pointer.setdatatype",
+          "name": "setdatatype"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Directly call C library functions from MATLAB R2021b or earlier, using calllib function"><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4df314fd-8da6-47c6-982f-ed349e6ba2be"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="c-language.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_f811a117-4002-48ab-9e86-f20151006948"><span itemprop="title">C with MATLAB</span></a></li></ul><div id="left_nav_categories"><div class="search_refine"><h3>Category</h3><div id="nav_categories"><ul class="nav_toc"><li class="active"><a href="call-c-library-functions.html?s_tid=CRUX_lftnav" class="corrected_url">Call C from MATLAB</a></li><li><a href="call-mex-files-1.html?s_tid=CRUX_lftnav" class="corrected_url">Write C Functions Callable from MATLAB (MEX Files)</a></li><li><a href="calling-matlab-engine-from-c-programs-1.html?s_tid=CRUX_lftnav" class="corrected_url">Call MATLAB from C</a></li><li><a href="matlab-c-api-to-read-mat-file-data.html?s_tid=CRUX_lftnav" class="corrected_url">Write C Programs to Read MAT File Data</a></li><li><a href="cc-mx-matrix-library.html?s_tid=CRUX_lftnav" class="corrected_url">C Matrix API</a></li></ul></div></div></div></nav></div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=call-c-library-functions&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=call-c-library-functions&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=call-c-library-functions&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=call-c-library-functions&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=call-c-library-functions&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=call-c-library-functions&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-category">
+<h1 class="r2025b" itemprop="content title">Call C from <span class="trademark entity">MATLAB</span></h1><div class="doc_topic_desc" itemprop="content purpose">Directly call C library functions from MATLAB<sup>&#x00AE;</sup> R2021b or earlier, using <code class="literal">calllib</code> function</div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+
+            <p>A shared library is a collection of functions dynamically loaded by an application
+                at run time. The MATLAB interface supports libraries containing functions defined in C header
+                files. To call functions in C++ libraries, use the interface described in <a href="call-cpp-library-functions.html" class="a">Call C++ from MATLAB</a>.</p>
+        </div></div>
+</div>
+<div class="doc_functionsgroup_container"><h2>Functions</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/loadlibrary.html"><code class="function">loadlibrary</code></a></td><td class="description">Load C shared library into <span class="trademark entity">MATLAB</span></td></tr><tr><td class="term notranslate"><a href="ref/unloadlibrary.html"><code class="function">unloadlibrary</code></a></td><td class="description">Unload shared C library from memory</td></tr><tr><td class="term notranslate"><a href="ref/calllib.html"><code class="function">calllib</code></a></td><td class="description">Call function in C shared library</td></tr><tr><td class="term notranslate"><a href="ref/libfunctions.html"><code class="function">libfunctions</code></a></td><td class="description">Return information on functions in shared C
+                                                  library</td></tr><tr><td class="term notranslate"><a href="ref/libfunctionsview.html"><code class="function">libfunctionsview</code></a></td><td class="description">Display shared C library function signatures in window</td></tr><tr><td class="term notranslate"><a href="ref/libisloaded.html"><code class="function">libisloaded</code></a></td><td class="description">Determine if shared C library is loaded</td></tr><tr><td class="term notranslate"><a href="ref/libpointer.html"><code class="function">libpointer</code></a></td><td class="description">Pointer object for use with shared C library</td></tr><tr><td class="term notranslate"><a href="ref/libstruct.html"><code class="function">libstruct</code></a></td><td class="description">Convert <span class="trademark entity">MATLAB</span> structure to C-style structure for use with shared C library</td></tr></tbody></table></div></div>
+<div class="doc_classesgroup_container"><h2>Classes</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="ref/lib.pointer-class.html"><code class="class">lib.pointer</code></a></td><td class="description">Pointer object compatible with C pointer</td></tr></tbody></table></div></div>
+<div class="moreabout_container"><h2>Topics</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="matlab_external/calling-functions-in-shared-libraries.html" class="a">Call Functions in C Library Loaded with loadlibrary</a></strong><br>
+<p>How to call functions in external, shared C libraries from MATLAB using <code class="literal">calllib</code>.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/load-and-unload-c-library-loadlibrary.html" class="a">Load and Unload C Shared Library</a></strong></li>
+<li><strong><a href="matlab_external/view-c-library-functions-loadlibrary.html" class="a">View Library Functions</a></strong></li>
+<li><strong><a href="matlab_external/invoke-c-library-functions-loadlibrary.html" class="a">Invoke Library Functions</a></strong></li>
+<li><strong><a href="matlab_external/sample-shared-library-shrlibsample.html" class="a">Shared Library shrlibsample</a></strong></li>
+<li><strong><a href="matlab_external/iterate-through-an-array.html" class="a">Iterate Through lib.pointer Object</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/passing-arguments-to-shared-library-functions.html" class="a">Pass Arguments to Shared C Library Functions</a></strong><br>
+<p>How to construct MATLAB arguments compatible with the argument types found in the library
+                    functions.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/pass-char-arguments.html" class="a">Pass String Arguments Examples</a></strong></li>
+<li><strong><a href="matlab_external/pass-arrays.html" class="a">Pass Arrays Examples</a></strong></li>
+<li><strong><a href="matlab_external/pass-enumerated-types.html" class="a">Pass Enumerated Types Examples</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/working-with-pointers.html" class="a">Represent Pointer Arguments in C Shared Library Functions</a></strong><br>
+<p>How to use <code class="literal">libpointer</code> to pass arguments by
+                    reference.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/pass-pointers.html" class="a">Pass Pointers Examples</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/working-with-structures.html" class="a">Represent Structure Arguments in C Shared Library Functions</a></strong><br>
+<p>Requirements for passing a MATLAB structure to an external library function.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/pass-structures.html" class="a">Pass Structures Examples</a></strong></li>
+<li><strong><a href="matlab_external/using-the-libstruct-object.html" class="a">Explore libstruct Objects</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/prototype-files.html" class="a">MATLAB Prototype Files</a></strong><br><p>How to modify C header file information.</p></li>
+</ul></div>
+</div>
+<div class="doc_troubleshootgroup_container"><h2 class="remove_border">Troubleshooting</h2>
+<div itemprop="content">
+<p class="add_margin_0"><strong><a href="matlab_external/limitations-to-shared-library-support.html" class="a">Limitations to Shared Library Support</a></strong></p>
+<p>C language features not supported.</p><p class="add_margin_0"><strong><a href="matlab_external/limitations-using-structures.html" class="a">Limitations Using Structures</a></strong></p>
+<p>Rules for using C language structures in a shared library.</p><p class="add_margin_0"><strong><a href="matlab_external/module-not-found.html" class="a">Loading Library Errors</a></strong></p>
+<p>Errors occur when the shared library is not a valid library. </p><p class="add_margin_0"><strong><a href="matlab_external/no-matching-signature.html" class="a">No Matching Signature Error</a></strong></p>
+<p>This error occurs when you call a function without the correct input or output
+            arguments, or if there is an error in the function signature in the header file.</p><p class="add_margin_0"><strong><a href="matlab_external/matlab-crashes-making-a-function-call-to-a-shared-library.html" class="a">MATLAB Terminates Unexpectedly When Calling Function in Shared Library</a></strong></p>
+<p>Some shared libraries, compiled as Microsoft<sup>&#x00AE;</sup>
+            Windows<sup>&#x00AE;</sup> 32-bit libraries, use a calling convention that is incompatible with the
+            default MATLAB calling convention. </p></div>
+</div>
+</div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

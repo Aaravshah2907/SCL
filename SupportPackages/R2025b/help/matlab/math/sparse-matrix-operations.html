@@ -1,0 +1,551 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Sparse Matrix Operations</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../sparse-matrices.html",
+          "name": "Sparse Matrices"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "sparse-matrices"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Reordering, factoring, and computing with sparse matrices."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../sparse-matrices.html?s_tid=CRUX_lftnav" itemprop="url" id="sparse-matrices"><span itemprop="title">Sparse Matrices</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Sparse Matrix Operations</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#f6-13058" class="nav-link intrnllnk">Efficiency of Operations</a><ul class="nav"><li class="nav-item"><a href="#brc1y0o" class="nav-link intrnllnk">Computational Complexity</a></li><li class="nav-item"><a href="#f6-13064" class="nav-link intrnllnk">Algorithmic Details</a></li></ul></li><li class="nav-item"><a href="#f6-13070" class="nav-link intrnllnk">Permutations and Reordering</a><ul class="nav"><li class="nav-item"><a href="#f6-9617" class="nav-link intrnllnk">Reordering for Sparsity</a></li><li class="nav-item"><a href="#f6-9622" class="nav-link intrnllnk">Reordering to Reduce Bandwidth</a></li><li class="nav-item"><a href="#f6-10923" class="nav-link intrnllnk">Approximate Minimum Degree Ordering</a></li><li class="nav-item"><a href="#mw_e45eb4aa-84ff-429d-9436-e0121fb423d1" class="nav-link intrnllnk">Nested Dissection Ordering</a></li></ul></li><li class="nav-item"><a href="#f6-9165" class="nav-link intrnllnk">Factoring Sparse Matrices</a><ul class="nav"><li class="nav-item"><a href="#f6-9633" class="nav-link intrnllnk">LU Factorization</a></li><li class="nav-item"><a href="#f6-22466" class="nav-link intrnllnk">Cholesky Factorization</a></li><li class="nav-item"><a href="#f6-14516" class="nav-link intrnllnk">QR Factorization</a></li><li class="nav-item"><a href="#f6-14457" class="nav-link intrnllnk">Incomplete Factorizations</a></li></ul></li><li class="nav-item"><a href="#f6-9757" class="nav-link intrnllnk">Eigenvalues and Singular Values</a><ul class="nav"><li class="nav-item"><a href="#mw_d7f04abc-6f6d-40d9-9af5-5e6515348e31" class="nav-link intrnllnk">Smallest Eigenvalue of Sparse Matrix</a></li></ul></li><li class="nav-item"><a href="#bumr5_m-1" class="nav-link intrnllnk">References</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=sparse-matrices&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=sparse-matrices&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f6-8856">Sparse Matrix Operations</h2><section><h3 class="title" id="f6-13058">Efficiency of Operations</h3><section><h4 class="title" id="brc1y0o">Computational Complexity</h4><p>The computational complexity of sparse operations is proportional to
+            <code class="literal">nnz</code>, the number of nonzero elements in the matrix. Computational
+          complexity also depends linearly on the row size <code class="literal">m</code> and column size
+            <code class="literal">n</code> of the matrix, but is independent of the product
+            <code class="literal">m*n</code>, the total number of zero and nonzero elements.</p><p>The complexity of fairly complicated operations, such as the solution of sparse linear
+          equations, involves factors like ordering and fill-in, which are discussed in the previous
+          section. In general, however, the computer time required for a sparse matrix operation is
+          proportional to the number of arithmetic operations on nonzero quantities. </p></section><section><h4 class="title" id="f6-13064">Algorithmic Details</h4><p>Sparse matrices propagate through computations according to these rules:</p><div class="itemizedlist"><ul><li><p>Functions that accept a matrix and return a scalar or constant-size vector always
+              produce output in full storage format. For example, the <a href="../ref/double.size.html"><code class="function">size</code></a> function always returns a full vector, whether its input is full or
+              sparse.</p></li><li><p>Functions that accept scalars or vectors and return matrices, such as <a href="../ref/zeros.html"><code class="function">zeros</code></a>, <a href="../ref/ones.html"><code class="function">ones</code></a>, <a href="../ref/double.rand.html"><code class="function">rand</code></a>, and <a href="../ref/eye.html"><code class="function">eye</code></a>, always return full results. This
+              is necessary to avoid introducing sparsity unexpectedly. The sparse analog of
+                <code class="literal">zeros(m,n)</code> is simply <code class="literal">sparse(m,n)</code>. The sparse
+              analogs of <code class="literal">rand</code> and <code class="literal">eye</code> are
+                <code class="literal">sprand</code> and <code class="literal">speye</code>, respectively. There is no
+              sparse analog for the function <code class="function">ones</code>.</p></li><li><p>Unary functions that accept a matrix and return a matrix or vector preserve the
+              storage class of the operand. If <code class="literal">S</code> is a sparse matrix, then
+                <code class="literal">chol(S)</code> is also a sparse matrix, and <code class="literal">diag(S)</code>
+              is a sparse vector. Columnwise functions such as <a href="../ref/double.max.html"><code class="function">max</code></a> and <a href="../ref/double.sum.html"><code class="function">sum</code></a> also return sparse vectors, even
+              though these vectors can be entirely nonzero. Important exceptions to this rule are
+              the <code class="function">sparse</code> and <code class="function">full</code> functions.</p></li><li><p>Binary operators yield sparse results if both operands are sparse, and full
+              results if both are full. For mixed operands, the result is full unless the operation
+              preserves sparsity. If <code class="literal">S</code> is sparse and <code class="literal">F</code> is
+              full, then <code class="literal">S+F</code>, <code class="literal">S*F</code>, and <code class="literal">F\S</code>
+              are full, while <code class="literal">S.*F</code> and <code class="literal">S&amp;F</code> are sparse. In
+              some cases, the result might be sparse even though the matrix has few zero
+              elements.</p></li><li><a class="indexterm" name="d126e13436"></a><p>Matrix concatenation using either the <a href="../ref/double.cat.html"><code class="function">cat</code></a> function or square brackets produces sparse results for mixed
+              operands.</p></li></ul></div></section></section><section><h3 class="title" id="f6-13070">Permutations and Reordering</h3><p>A permutation of the rows and columns of a sparse matrix <code class="literal">S</code> can be
+        represented in two ways:</p><div class="itemizedlist"><ul><li><p>A permutation matrix <code class="literal">P</code> acts on the rows of <code class="literal">S</code>
+            as <code class="literal">P*S</code> or on the columns as <code class="literal">S*P'</code>.</p></li><li><p>A permutation vector <code class="literal">p</code>, which is a full vector containing a
+            permutation of <code class="literal">1:n</code>, acts on the rows of <code class="literal">S</code> as
+              <code class="literal">S(p,:)</code>, or on the columns as <code class="literal">S(:,p)</code>.</p></li></ul></div><p>For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = [1 3 4 2 5]
+I = eye(5,5);
+P = I(p,:)
+e = ones(4,1);
+S = diag(11:11:55) + diag(e,1) + diag(e,-1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>p =
+
+     1     3     4     2     5
+
+
+P =
+
+     1     0     0     0     0
+     0     0     1     0     0
+     0     0     0     1     0
+     0     1     0     0     0
+     0     0     0     0     1
+
+
+S =
+
+    11     1     0     0     0
+     1    22     1     0     0
+     0     1    33     1     0
+     0     0     1    44     1
+     0     0     0     1    55</pre></div></div></div><p>You can now try some permutations using the permutation vector <code class="literal">p</code> and
+        the permutation matrix <code class="literal">P</code>. For example, the statements
+          <code class="literal">S(p,:)</code> and <code class="literal">P*S</code> return the same matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S(p,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    11     1     0     0     0
+     0     1    33     1     0
+     0     0     1    44     1
+     1    22     1     0     0
+     0     0     0     1    55</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>P*S</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    11     1     0     0     0
+     0     1    33     1     0
+     0     0     1    44     1
+     1    22     1     0     0
+     0     0     0     1    55</pre></div></div></div><p>Similarly, <code class="literal">S(:,p)</code> and <code class="literal">S*P'</code> both produce</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S*P'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    11     0     0     1     0
+     1     1     0    22     0
+     0    33     1     1     0
+     0     1    44     0     1
+     0     0     1     0    55</pre></div></div></div><p>If <code class="literal">P</code> is a sparse matrix, then both representations use storage
+        proportional to <code class="literal">n</code> and you can apply either to <code class="literal">S</code> in
+        time proportional to <code class="literal">nnz(S)</code>. The vector representation is slightly more
+        compact and efficient, so the various sparse matrix permutation routines all return full row
+        vectors with the exception of the pivoting permutation in LU (triangular) factorization,
+        which returns a matrix compatible with the full LU factorization.</p><p>To convert between the two permutation representations:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n = 5;
+I = speye(n);
+Pr = I(p,:);
+Pc = I(:,p);
+pc = (1:n)*Pc</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pc =
+
+     1     3     4     2     5</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pr = (Pr*(1:n)')'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pr =
+
+     1     3     4     2     5</pre></div></div></div><p>The inverse of <code class="literal">P</code> is simply <code class="literal">R = P'</code>. You can compute
+        the inverse of <code class="literal">p</code> with <code class="literal">r(p)&nbsp;=&nbsp;1:n</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r(p) = 1:5</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>r =
+
+     1     4     2     3     5</pre></div></div></div><section><h4 class="title" id="f6-9617">Reordering for Sparsity</h4><p>Reordering the columns of a matrix can often make its LU or QR factors sparser.
+          Reordering the rows and columns can often make its Cholesky factors sparser. The simplest
+          such reordering is to sort the columns by nonzero count. This is sometimes a good
+          reordering for matrices with very irregular structures, especially if there is great
+          variation in the nonzero counts of rows or columns.</p><p>The <a href="../ref/colperm.html"><code class="function">colperm</code></a> computes a permutation that orders
+          the columns of a matrix by the number of nonzeros in each column from smallest to
+          largest.</p></section><section><h4 class="title" id="f6-9622">Reordering to Reduce Bandwidth</h4><p>The reverse Cuthill-McKee ordering is intended to reduce the profile or bandwidth of
+          the matrix. It is not guaranteed to find the smallest possible bandwidth, but it usually
+          does. The <a href="../ref/symrcm.html"><code class="function">symrcm</code></a> function actually operates on the
+          nonzero structure of the symmetric matrix <code class="literal">A + A'</code>, but the result is
+          also useful for nonsymmetric matrices. This ordering is useful for matrices that come from
+          one-dimensional problems or problems that are in some sense <span class="emphasis"><em>long and
+            thin</em></span>.</p></section><section><h4 class="title" id="f6-10923">Approximate Minimum Degree Ordering</h4><p>The degree of a node in a graph is the number of connections to that node. This is the
+          same as the number of off-diagonal nonzero elements in the corresponding row of the
+          adjacency matrix. The approximate minimum degree algorithm generates an ordering based on
+          how these degrees are altered during Gaussian elimination or Cholesky factorization. It is
+          a complicated and powerful algorithm that usually leads to sparser factors than most other
+          orderings, including column count and reverse Cuthill-McKee. Because keeping track of the
+          degree of each node is very time-consuming, the approximate minimum degree algorithm uses
+          an approximation to the degree, rather than the exact degree.</p><p>These MATLAB<sup>&#x00AE;</sup> functions implement the approximate minimum degree algorithm:</p><div class="itemizedlist"><ul><li><p><a href="../ref/symamd.html"><code class="function">symamd</code></a> &#8212; Use with symmetric
+              matrices.</p></li><li><p><a href="../ref/colamd.html"><code class="function">colamd</code></a> &#8212; Use with nonsymmetric
+              matrices and symmetric matrices of the form <code class="literal">A*A'</code> or
+                <code class="literal">A'*A</code>.</p></li></ul></div><p>See <a href="sparse-matrix-operations.html#f6-10934" class="intrnllnk">Reordering and Factorization of Sparse Matrices</a> for an example using
+            <code class="literal">symamd</code>.</p><p>You can change various parameters associated with details of the algorithms using the
+            <a href="../ref/spparms.html"><code class="function">spparms</code></a> function. </p><p>For details on the algorithms used by <code class="literal">colamd</code> and
+            <code class="literal">symamd</code>, see <a href="sparse-matrix-operations.html#bumr5_m-6" class="intrnllnk">[5]</a>. The approximate degree the algorithms use is based
+          on <a href="sparse-matrix-operations.html#bumr5_m-2" class="intrnllnk">[1]</a>.</p></section><section><h4 class="title" id="mw_e45eb4aa-84ff-429d-9436-e0121fb423d1">Nested Dissection Ordering</h4><p>Like the approximate minimum degree ordering, the nested dissection ordering algorithm
+          implemented by the <a href="../ref/dissect.html"><code class="function">dissect</code></a>
+          function reorders the matrix rows and columns by considering the matrix to be the
+          adjacency matrix of a graph. The algorithm reduces the problem down to a much smaller
+          scale by collapsing together pairs of vertices in the graph. After reordering the small
+          graph, the algorithm then applies projection and refinement steps to expand the graph back
+          to the original size.</p><p>The nested dissection algorithm produces high quality reorderings and performs
+          particularly well with finite element matrices compared to other reordering techniques.
+          For more information about the nested dissection ordering algorithm, see <a href="sparse-matrix-operations.html#mw_72310adc-ed56-4e71-8842-7c129063a9a8" class="intrnllnk">[7]</a>.</p></section></section><section><h3 class="title" id="f6-9165">Factoring Sparse Matrices</h3><section><h4 class="title" id="f6-9633">LU Factorization</h4><p>If <code class="literal">S</code> is a sparse matrix, the following command returns three sparse
+          matrices <code class="literal">L</code>, <code class="literal">U</code>, and <code class="literal">P</code> such that
+            <code class="literal">P*S = L*U</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[L,U,P] = lu(S);</pre></div></div></div><p><code class="literal">lu</code> obtains the factors by Gaussian elimination with partial
+          pivoting. The permutation matrix <code class="literal">P</code> has only <code class="literal">n</code>
+          nonzero elements. As with dense matrices, the statement <code class="literal">[L,U] = lu(S)</code>
+          returns a permuted unit lower triangular matrix and an upper triangular matrix whose
+          product is <code class="literal">S</code>. By itself, <code class="literal">lu(S)</code> returns
+            <code class="literal">L</code> and <code class="literal">U</code> in a single matrix without the pivot
+          information.</p><p>The three-output syntax <code class="literal">[L,U,P] = lu(S)</code> selects
+            <code class="literal">P</code> via numerical partial pivoting, but does not pivot to improve
+          sparsity in the <code class="literal">LU</code> factors. On the other hand, the four-output syntax
+            <code class="literal">[L,U,P,Q] = lu(S)</code> selects <code class="literal">P</code> via threshold partial
+          pivoting, and selects <code class="literal">P</code> and <code class="literal">Q</code> to improve sparsity in
+          the <code class="literal">LU</code> factors.</p><p>You can control pivoting in sparse matrices using</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lu(S,thresh)</pre></div></div></div><p>where <code class="literal">thresh</code> is a pivot threshold in [0,1]. Pivoting occurs when
+          the diagonal entry in a column has magnitude less than <code class="literal">thresh</code> times the
+          magnitude of any sub-diagonal entry in that column. <code class="literal">thresh = 0</code> forces
+          diagonal pivoting. <code class="literal">thresh&nbsp;=&nbsp;1</code> is the default. (The default
+          for <code class="literal">thresh</code> is <code class="literal">0.1</code> for the four-output
+          syntax).</p><p>When you call <a href="../ref/lu.html"><code class="function">lu</code></a> with three or less outputs, MATLAB automatically allocates the memory necessary to hold the sparse
+            <code class="literal">L</code> and <code class="literal">U</code> factors during the factorization. Except
+          for the four-output syntax, MATLAB does not use any symbolic LU prefactorization to determine the memory
+          requirements and set up the data structures in advance.</p><span id="ReorderingAndFactorizationOfSparseMatricesExample" class="anchor_target"></span><p><strong id="f6-10934">Reordering and Factorization of Sparse Matrices</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ReorderingAndFactorizationOfSparseMatricesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Reordering and Factorization of Sparse Matrices",
+          "description": "The effects of reordering and factorization on sparse matrices.",
+          "thumbnailURL": "../../examples/matlab/win64/ReorderingAndFactorizationOfSparseMatricesExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "sparse-matrix-operations.html"
+
+        },
+          "identifier": "matlab.ReorderingAndFactorizationOfSparseMatricesExample",
+          "name": "ReorderingAndFactorizationOfSparseMatricesExample",
+          "url": "sparse-matrix-operations.html#f6-10934"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ReorderingAndFactorizationOfSparseMatricesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReorderingAndFactorizationOfSparseMatricesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows the effects of reordering and factorization on sparse matrices.</p><p>If you obtain a good column permutation <code class="literal">p</code> that reduces fill-in, perhaps from <code class="literal">symrcm</code> or <code class="literal">colamd</code>, then computing <code class="literal">lu(S(:,p))</code> takes less time and storage than computing <code class="literal">lu(S)</code>.</p><p>Create a sparse matrix using the Bucky ball example.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B = bucky;</pre></div></div></div><p><code class="literal">B</code> has exactly three nonzero elements in each row and column.</p><p>Create two permutations, <code class="literal">r</code> and <code class="literal">m</code> using <code class="literal">symrcm</code> and <code class="literal">symamd</code> respectively.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r = symrcm(B);
+m = symamd(B);</pre></div></div></div><p>The two permutations are the symmetric reverse Cuthill-McKee ordering and the symmetric approximate minimum degree ordering.</p><p>Create spy plots to show the three adjacency matrices of the Bucky Ball graph with these three different numberings. The local, pentagon-based structure of the original numbering is not evident in the others.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+subplot(1,3,1)
+spy(B)
+title(<span style="color:#A020F0">'Original'</span>)
+
+subplot(1,3,2)
+spy(B(r,r))
+title(<span style="color:#A020F0">'Reverse Cuthill-McKee'</span>)
+
+subplot(1,3,3)
+spy(B(m,m))
+title(<span style="color:#A020F0">'Min Degree'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e13760" class="mediaobject"><p><img src="../../examples/matlab/win64/ReorderingAndFactorizationOfSparseMatricesExample_01.png" alt="Figure contains 3 axes objects. Axes object 1 with title Original, xlabel nz = 180 contains a line object which displays its values using only markers. Axes object 2 with title Reverse Cuthill-McKee, xlabel nz = 180 contains a line object which displays its values using only markers. Axes object 3 with title Min Degree, xlabel nz = 180 contains a line object which displays its values using only markers." width="560"></p></div></div><p>The reverse Cuthill-McKee ordering, <code class="literal">r</code>, reduces the bandwidth and concentrates all the nonzero elements near the diagonal. The approximate minimum degree ordering, <code class="literal">m</code>, produces a fractal-like structure with large blocks of zeros.</p><p>To see the fill-in generated in the LU factorization of the Bucky ball, use <code class="literal">speye</code>, the sparse identity matrix, to insert -3s on the diagonal of <code class="literal">B</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B = B - 3*speye(size(B));</pre></div></div></div><p>Since each row sum is now zero, this new <code class="literal">B</code> is actually singular, but it is still instructive to compute its LU factorization. When called with only one output argument, <code class="literal">lu</code> returns the two triangular factors, <code class="literal">L</code> and <code class="literal">U</code>, in a single sparse matrix. The number of nonzeros in that matrix is a measure of the time and storage required to solve linear systems involving <code class="literal">B</code>. </p><p>Here are the nonzero counts for the three permutations being considered.</p><div class="itemizedlist"><ul><li><p><code class="literal">lu(B)</code> (Original): 1022</p></li><li><p><code class="literal">lu(B(r,r))</code> (Reverse Cuthill-McKee): 968</p></li><li><p><code class="literal">lu(B(m,m))</code> (Approximate minimum degree): 636</p></li></ul></div><p>Even though this is a small example, the results are typical. The original numbering scheme leads to the most fill-in. The fill-in for the reverse Cuthill-McKee ordering is concentrated within the band, but it is almost as extensive as the first two orderings. For the approximate minimum degree ordering, the relatively large blocks of zeros are preserved during the elimination and the amount of fill-in is significantly less than that generated by the other orderings.</p><p>The <code class="literal">spy</code> plots below reflect the characteristics of each reordering.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+subplot(1,3,1)
+spy(lu(B))
+title(<span style="color:#A020F0">'Original'</span>)
+
+subplot(1,3,2)
+spy(lu(B(r,r)))
+title(<span style="color:#A020F0">'Reverse Cuthill-McKee'</span>)
+
+subplot(1,3,3)
+spy(lu(B(m,m)))
+title(<span style="color:#A020F0">'Min Degree'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e13813" class="mediaobject"><p><img src="../../examples/matlab/win64/ReorderingAndFactorizationOfSparseMatricesExample_02.png" alt="Figure contains 3 axes objects. Axes object 1 with title Original, xlabel nz = 1022 contains a line object which displays its values using only markers. Axes object 2 with title Reverse Cuthill-McKee, xlabel nz = 968 contains a line object which displays its values using only markers. Axes object 3 with title Min Degree, xlabel nz = 636 contains a line object which displays its values using only markers." width="560"></p></div></div><div class="procedure"></div></section><section><h4 class="title" id="f6-22466">Cholesky Factorization</h4><p>If <code class="literal">S</code> is a symmetric (or Hermitian), positive definite, sparse
+          matrix, the statement below returns a sparse, upper triangular matrix <code class="literal">R</code>
+          so that <code class="literal">R'*R = S</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R = chol(S)</pre></div></div></div><p><code class="literal">chol</code> does not automatically pivot for sparsity, but you can compute
+          approximate minimum degree and profile limiting permutations for use with
+            <code class="literal">chol(S(p,p))</code>.</p><p>Since the Cholesky algorithm does not use pivoting for sparsity and does not require
+          pivoting for numerical stability, <code class="literal">chol</code> does a quick calculation of the
+          amount of memory required and allocates all the memory at the start of the factorization.
+          You can use <a href="../ref/symbfact.html"><code class="function">symbfact</code></a>, which uses the same algorithm
+          as <code class="literal">chol</code>, to calculate how much memory is allocated.</p></section><section><h4 class="title" id="f6-14516">QR Factorization</h4><p>MATLAB computes the complete QR factorization of a sparse matrix
+            <code class="literal">S</code>
+          with<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre> [Q,R] = qr(S)</pre></div></div></div>or<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[Q,R,E] = qr(S)</pre></div></div></div></p><p>but this is often impractical. The unitary matrix <code class="literal">Q</code> often fails to
+          have a high proportion of zero elements. A more practical alternative, sometimes known as
+          “the Q-less QR factorization,” is available.</p><p>With one sparse input argument and one output argument</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R = qr(S)</pre></div></div></div><p>returns just the upper triangular portion of the QR factorization. The matrix
+            <code class="literal">R</code> provides a Cholesky factorization for the matrix associated with
+          the normal equations:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R'*R = S'*S</pre></div></div></div><p>However, the loss of numerical information inherent in the computation of
+            <code class="literal">S'*S</code> is avoided.</p><p>With two input arguments having the same number of rows, and two output arguments, the
+          statement</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[C,R] = qr(S,B)</pre></div></div></div><p>applies the orthogonal transformations to <code class="literal">B</code>, producing <code class="literal">C =
+            Q'*B</code> without computing <code class="literal">Q</code>.</p><a class="indexterm" name="d126e13887"></a><p>The Q-less QR factorization allows the solution of sparse least squares
+          problems</p><div id="d126e13891" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-11px" display="block"><mrow><mtext>minimize</mtext><msub><mrow><mrow><mo>‖</mo><mrow><mrow><mrow><mi>A</mi><mi>x</mi><mo>-</mo><mi>b</mi></mrow><mo>‖</mo></mrow></mrow></mrow></mrow><mn>2</mn></msub></mrow></math></p></div></div><p>with two steps:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[c,R] = qr(A,b);
+x = R\c</pre></div></div></div><p>If <code class="literal">A</code> is sparse, but not square, MATLAB uses these steps for the linear equation solving backslash operator:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = A\b</pre></div></div></div><p>Or, you can do the factorization yourself and examine <code class="literal">R</code> for <a class="indexterm" name="d126e13910"></a>rank deficiency.</p><p>It is also possible to solve a sequence of least squares linear systems with different
+          right-hand sides, <code class="literal">b</code>, that are not necessarily known when <code class="literal">R =
+            qr(A)</code> is computed. The approach solves the “semi-normal equations
+            <code class="literal">R'*R*x = A'*b</code> with</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = R\(R'\(A'*b))</pre></div></div></div><p>and then employs one step of iterative refinement to reduce round off error:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r = b - A*x;
+e = R\(R'\(A'*r));
+x = x + e</pre></div></div></div></section><section><h4 class="title" id="f6-14457">Incomplete Factorizations</h4><p>The <code class="function">ilu</code> and <code class="function">ichol</code> functions provide
+            approximate,<span class="emphasis"><em> incomplete </em></span>factorizations, which are useful as
+          preconditioners for sparse iterative methods.</p><p>The <code class="function">ilu</code> function produces three <em class="firstterm">incomplete
+            lower-upper</em> (ILU) factorizations: the <em class="firstterm">zero-fill ILU</em>
+            (<code class="literal">ILU(0)</code>), a Crout version of ILU (<code class="literal">ILUC(tau)</code>), and
+          ILU with threshold dropping and pivoting (<code class="literal">ILUTP(tau)</code>). The
+            <code class="literal">ILU(0)</code> never pivots and the resulting factors only have nonzeros in
+          positions where the input matrix had nonzeros. Both <code class="literal">ILUC(tau)</code> and
+            <code class="literal">ILUTP(tau)</code>, however, do threshold-based dropping with the
+          user-defined drop tolerance <code class="literal">tau</code>.</p><p>For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = gallery(<span style="color:#A020F0">'neumann'</span>,1600) + speye(1600);
+nnz(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+        7840</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnz(lu(A))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+      126478</pre></div></div></div><p>shows that <code class="literal">A</code> has 7840 nonzeros, and its complete LU factorization
+          has 126478 nonzeros. On the other hand, the following code shows the different ILU
+          outputs:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[L,U] = ilu(A);
+nnz(L)+nnz(U)-size(A,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+        7840</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>norm(A-(L*U).*spones(A),<span style="color:#A020F0">'fro'</span>)./norm(A,<span style="color:#A020F0">'fro'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   4.8874e-17</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>opts.type = <span style="color:#A020F0">'ilutp'</span>;
+opts.droptol = 1e-4;
+[L,U,P] = ilu(A, opts);
+nnz(L)+nnz(U)-size(A,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+       31147</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>norm(P*A - L*U,<span style="color:#A020F0">'fro'</span>)./norm(A,<span style="color:#A020F0">'fro'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   9.9224e-05</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>opts.type = <span style="color:#A020F0">'crout'</span>;
+[L,U,P] = ilu(A, opts);
+nnz(L)+nnz(U)-size(A,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+       31083</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>norm(P*A-L*U,<span style="color:#A020F0">'fro'</span>)./norm(A,<span style="color:#A020F0">'fro'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   9.7344e-05</pre></div></div></div><p>These calculations show that the zero-fill factors have 7840 nonzeros, the
+            <code class="literal">ILUTP(1e-4)</code> factors have 31147 nonzeros, and the
+            <code class="literal">ILUC(1e-4)</code> factors have 31083 nonzeros. Also, the relative error of
+          the product of the zero-fill factors is essentially zero on the pattern of
+            <code class="literal">A</code>. Finally, the relative error in the factorizations produced with
+          threshold dropping is on the same order of the drop tolerance, although this is not
+          guaranteed to occur. See the <a href="../ref/ilu.html"><code class="function">ilu</code></a> reference page for more options and
+          details.</p><p>The <a href="../ref/ichol.html"><code class="function">ichol</code></a> function provides <em class="firstterm">zero-fill
+            incomplete Cholesky factorizations</em> (<code class="literal">IC(0)</code>) as well as
+          threshold-based dropping incomplete Cholesky factorizations (<code class="literal">ICT(tau)</code>)
+          of symmetric, positive definite sparse matrices. These factorizations are the analogs of
+          the incomplete LU factorizations above and have many of the same characteristics. For
+          example:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = delsq(numgrid(<span style="color:#A020F0">'S'</span>,200));
+nnz(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+      195228</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnz(chol(A,<span style="color:#A020F0">'lower'</span>))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     7762589</pre></div></div></div>shows
+          that <code class="literal">A</code> has 195228 nonzeros, and its complete Cholesky factorization
+          without reordering has 7762589 nonzeros. By
+          contrast:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>L = ichol(A);
+nnz(L)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+      117216</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>norm(A-(L*L').*spones(A),<span style="color:#A020F0">'fro'</span>)./norm(A,<span style="color:#A020F0">'fro'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   3.5805e-17</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>opts.type = <span style="color:#A020F0">'ict'</span>;
+opts.droptol = 1e-4;
+L = ichol(A,opts);
+nnz(L)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     1166754</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>norm(A-L*L',<span style="color:#A020F0">'fro'</span>)./norm(A,<span style="color:#A020F0">'fro'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+   2.3997e-04</pre></div></div></div></p><p><code class="literal">IC(0)</code> has nonzeros only in the pattern of the lower triangle of
+            <code class="literal">A</code>, and on the pattern of <code class="literal">A</code>, the product of the
+          factors matches. Also, the <code class="literal">ICT(1e-4)</code> factors are considerably sparser
+          than the complete Cholesky factor, and the relative error between <code class="literal">A</code>
+            and<code class="literal"> L*L'</code> is on the same order of the drop tolerance. It is important
+          to note that unlike the factors provided by <code class="function">chol</code>, the default factors
+          provided by <code class="function">ichol</code> are lower triangular. See the <a href="../ref/ichol.html"><code class="function">ichol</code></a> reference page for more information.</p></section></section><section><h3 class="title" id="f6-9757">Eigenvalues and Singular Values</h3><p>Two functions are available that compute a few specified eigenvalues or singular values.
+          <code class="literal">svds</code> is based on <code class="literal">eigs</code>.</p><div itemprop="content" id="d126e14080" class="table_class"><p class="title"><strong class="title">Functions to Compute a Few Eigenvalues or Singular Values</strong></p><div class="table-responsive"><table class="table table-condensed" summary="Functions to Compute a Few Eigenvalues or Singular Values"><colgroup><col class="tcol1" width="30%"><col class="tcol2" width="70%"></colgroup><thead><tr><th><p>Function</p></th><th><p>Description</p></th></tr></thead><tbody><tr><td><p id="f6-15080"><a href="../ref/eigs.html"><code class="function">eigs</code></a></p></td><td><p>Few eigenvalues</p></td></tr><tr><td><p id="f6-15100"><a href="../ref/svds.html"><code class="function">svds</code></a></p></td><td><p>Few singular values</p></td></tr></tbody></table></div></div><p>These functions are most frequently used with sparse matrices, but they can be used with
+        full matrices or even with linear operators defined in MATLAB code.</p><p>The statement</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[V,lambda] = eigs(A,k,sigma)
+</pre></div></div></div><p>finds the <code class="literal">k</code> eigenvalues and corresponding eigenvectors of the matrix
+          <code class="literal">A</code> that are nearest the “shift” <code class="literal">sigma</code>.
+        If <code class="literal">sigma</code> is omitted, the eigenvalues largest in magnitude are found. If
+          <code class="literal">sigma</code> is zero, the eigenvalues smallest in magnitude are found. A
+        second matrix, <code class="literal">B</code>, can be included for the generalized eigenvalue problem:
+        Aυ = λBυ.</p><p>The statement</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U,S,V] = svds(A,k)
+</pre></div></div></div><p>finds the <code class="literal">k</code> largest singular values of <code class="literal">A</code>
+        and</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U,S,V] = svds(A,k,<span style="color:#A020F0">'smallest'</span>)
+</pre></div></div></div><p>finds the <code class="literal">k</code> smallest singular values.</p><p>The numerical techniques used in <code class="literal">eigs</code> and <code class="literal">svds</code> are
+        described in <a href="sparse-matrix-operations.html#bumr5_m-7" class="intrnllnk">[6]</a>.</p><section><h4 class="title" id="mw_d7f04abc-6f6d-40d9-9af5-5e6515348e31">Smallest Eigenvalue of Sparse Matrix</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/EigenvaluesAndSingularValuesOfSparseMatrixExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Smallest Eigenvalue of Sparse Matrix",
+          "description": "Find the smallest eigenvalue and eigenvector of a sparse matrix.",
+          "thumbnailURL": "../../examples/matlab/win64/EigenvaluesAndSingularValuesOfSparseMatrixExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "sparse-matrix-operations.html"
+
+        },
+          "identifier": "matlab.EigenvaluesAndSingularValuesOfSparseMatrixExample",
+          "name": "EigenvaluesAndSingularValuesOfSparseMatrixExample",
+          "url": "sparse-matrix-operations.html#mw_d7f04abc-6f6d-40d9-9af5-5e6515348e31"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/EigenvaluesAndSingularValuesOfSparseMatrixExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "EigenvaluesAndSingularValuesOfSparseMatrixExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-EigenvaluesAndSingularValuesOfSparseMatrixExample"><meta itemprop="exampletitle" content="Smallest Eigenvalue of Sparse Matrix"></div><span id="EigenvaluesAndSingularValuesOfSparseMatrixExample" class="anchor_target"></span><p class="shortdesc">This example shows how to find the smallest eigenvalue and eigenvector of a sparse matrix.</p><p>Set up the five-point Laplacian difference operator on a 65-by-65 grid in an <span class="emphasis"><em>L</em></span>-shaped, two-dimensional domain.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>L = numgrid(<span style="color:#A020F0">'L'</span>,65);
+A = delsq(L);</pre></div></div></div><p>Determine the order and number of nonzero elements.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>size(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×2</em></span>
+
+        2945        2945
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nnz(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+14473
+</pre></div></div></div><p><code class="literal">A</code> is a matrix of order 2945 with 14,473 nonzero elements.</p><p>Compute the smallest eigenvalue and eigenvector.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[v,d] = eigs(A,1,<span style="color:#A020F0">'smallestabs'</span>);</pre></div></div></div><p>Distribute the components of the eigenvector over the appropriate grid points and produce a contour plot of the result.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>L(L&gt;0) = full(v(L(L&gt;0)));
+x = -1:1/32:1;
+contour(x,x,L,15)
+axis <span style="color:#A020F0">square</span></pre></div></div></div><div class="informalfigure"><div id="d126e14201" class="mediaobject"><p><img src="../../examples/matlab/win64/EigenvaluesAndSingularValuesOfSparseMatrixExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type contour." width="560"></p></div></div><div class="procedure"></div></section></section><section><h3 class="title" id="bumr5_m-1">References</h3><div class="bibliography"><div id="bumr5_m-2" class="bibliomixed"><p>[1] Amestoy, P. R., T. A. Davis, and I. S. Duff, “An
+          Approximate Minimum Degree Ordering Algorithm,” <em class="citetitle">SIAM Journal on Matrix
+            Analysis and Applications</em>, Vol.&nbsp;17, No. 4, Oct. 1996, pp. 886-905. </p></div><div id="bumr5_m-3" class="bibliomixed"><p>[2] Barrett, R., M. Berry, T. F. Chan, et al.,
+            <em class="citetitle">Templates for the Solution of Linear Systems: Building Blocks for Iterative
+            Methods</em>, SIAM, Philadelphia, 1994. </p></div><div id="bumr5_m-4" class="bibliomixed"><p>[3] Davis, T.A., Gilbert, J. R., Larimore, S.I., Ng, E., Peyton,
+          B., “A Column Approximate Minimum Degree Ordering Algorithm,”
+            <em class="citetitle">Proc.&nbsp;SIAM Conference on Applied Linear Algebra</em>, Oct. 1997,
+          p. 29. </p></div><div id="bumr5_m-5" class="bibliomixed"><p>[4] Gilbert, John R., Cleve Moler, and Robert Schreiber,
+          “Sparse Matrices in MATLAB: Design and Implementation,” <em class="citetitle">SIAM J.
+            Matrix Anal. Appl</em>., Vol. 13, No. 1, January 1992, pp. 333-356. </p></div><div id="bumr5_m-6" class="bibliomixed"><p>[5] Larimore, S. I., <em class="citetitle">An Approximate Minimum Degree
+            Column Ordering Algorithm</em>, MS Thesis, Dept. of Computer and Information
+          Science and Engineering, University of Florida, Gainesville, FL, 1998.</p></div><div id="bumr5_m-7" class="bibliomixed"><p>[6] Saad, Yousef, <em class="citetitle">Iterative Methods for Sparse Linear
+            Equations</em>. PWS Publishing Company, 1996. </p></div><div id="mw_72310adc-ed56-4e71-8842-7c129063a9a8" class="bibliomixed"><p>[7] Karypis, George and Vipin
+          Kumar. "A Fast and High Quality Multilevel Scheme for Partitioning Irregular Graphs."
+            <em class="citetitle">SIAM Journal on Scientific Computing</em>. Vol. 20, Number 1, 1999,
+          pp. 359&#8211;392.</p></div></div></section>
+      
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e14244">Topics</h3><ul class="list-unstyled"><li><a href="computational-advantages-of-sparse-matrices.html" class="a">Computational Advantages of Sparse Matrices</a></li><li><a href="constructing-sparse-matrices.html" class="a">Constructing Sparse Matrices</a></li><li><a href="accessing-sparse-matrices.html" class="a">Accessing Sparse Matrices</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

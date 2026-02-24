@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Debug C++ Library from MATLAB Interface</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../build-matlab-interface-to-c-library.html",
+          "name": "Build MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="trbl">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to build a debug version of a MATLAB interface to a C++ library."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7875953d-23b2-4f08-879f-c7ea4d3016d7"><span itemprop="title">Build MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Debug C++ Library from MATLAB Interface</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_6acb187c-f1ef-4be8-a7a2-2a9141937b33" class="nav-link intrnllnk">Rebuild Interface with Supporting Source Files</a><ul class="nav"><li class="nav-item"><a href="#mw_bebf8629-1319-414c-8b4e-a47bbc296669" class="nav-link intrnllnk">Debug Flags</a></li><li class="nav-item"><a href="#mw_80d570d3-2cc5-4c22-88dc-9df7f50981d3" class="nav-link intrnllnk">Using Workflow Script</a></li><li class="nav-item"><a href="#mw_329082fc-7773-4088-9811-4cd97d0d0c32" class="nav-link intrnllnk">Using clibgen.buildInterface</a></li></ul></li><li class="nav-item"><a href="#mw_0edda1f8-7c78-4a41-879f-f6debb595969" class="nav-link intrnllnk">Rebuild Interface with Compiled Library Files</a><ul class="nav"><li class="nav-item"><a href="#mw_7fcc26b0-48ae-4b59-8632-03b9249d05c8" class="nav-link intrnllnk">Debug Version of Compiled Library File</a></li><li class="nav-item"><a href="#mw_8e33d854-9ae0-4dce-bbf1-80463856ca60" class="nav-link intrnllnk">Using Workflow Script</a></li><li class="nav-item"><a href="#mw_7104d6d5-d325-4cc3-b1f2-88f5735c68b8" class="nav-link intrnllnk">Using clibgen.buildInterface</a></li></ul></li><li class="nav-item"><a href="#mw_74ba541b-713f-4005-9808-6f64d53ceb34" class="nav-link intrnllnk">Platform Debugging Tips</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a78edfef-ef18-493b-8822-efbfc242dabe">Debug C++ Library from <span class="trademark entity">MATLAB</span> Interface</h2><p>Suppose that you have a MATLAB<sup>&#x00AE;</sup> interface to a C++ library as described in <a href="../build-matlab-interface-to-c-library.html" class="a">Build MATLAB Interface to C++ Library</a>. You can debug the
+      code in the C++ library by building a debug version of the interface. Both your C++ compiled
+      library and the MATLAB interface library must be built with debug symbols in order to debug the library
+      in MATLAB.</p><p>Follow these steps, which include general guidance for debugging a program. This topic
+      provides details for step 2 in the debugging process. Refer to your build environment
+      documentation for additional details.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Identify the types of files in your interface &#8212; supporting source files or compiled
+          library files.</p></li><li><p>Rebuild the interface using the information in either <a href="debug-cpp-library-from-matlab-interface.html#mw_6acb187c-f1ef-4be8-a7a2-2a9141937b33" class="intrnllnk">Rebuild Interface with Supporting Source Files</a> or <a href="debug-cpp-library-from-matlab-interface.html#mw_0edda1f8-7c78-4a41-879f-f6debb595969" class="intrnllnk">Rebuild Interface with Compiled Library Files</a>. Modify the
+          workflow script you created with the <code class="function">clibPublishInterfaceWorkflow</code>
+          function or call the <code class="function">clibgen.buildInterface</code> function.</p></li><li><p>Call <code class="function">addPath</code> on your output folder.</p></li><li><p>Configure your build environment. For more information, see <a href="debug-cpp-library-from-matlab-interface.html#mw_74ba541b-713f-4005-9808-6f64d53ceb34" class="intrnllnk">Platform Debugging Tips</a>.</p></li><li><p>From your debugging program, set breakpoints in the C++ code. On Windows<sup>&#x00AE;</sup>, attach MATLAB to the debugger.</p></li><li><p>In MATLAB, to call a function in interface <code class="literal">libname</code>, use the
+            <code class="package">clib.libname</code> namespace. The program stops at the breakpoints.</p></li></ol></div><section><h3 class="title" id="mw_6acb187c-f1ef-4be8-a7a2-2a9141937b33">Rebuild Interface with Supporting Source Files</h3><section><h4 class="title" id="mw_bebf8629-1319-414c-8b4e-a47bbc296669">Debug Flags</h4><p>If you built your interface with header and C++ source files, then rebuild the
+          interface with these additional compiler and linker flags.</p><p>For MinGW<sup>&#x00AE;</sup>, Linux<sup>&#x00AE;</sup>, and <span class="entity">macOS</span> compilers:</p><div class="itemizedlist"><ul><li><p>Add compiler flag <code class="literal">"-g"</code>.</p></li><li><p>Add linker flag <code class="literal">"-g"</code>.</p></li></ul></div><p>For <span class="entity">Microsoft<sup>&#x00AE;</sup>
+            Visual Studio<sup>&#x00AE;</sup></span> compilers:</p><div class="itemizedlist"><ul><li><p>Add compiler flag <code class="literal">"/Z7"</code>.</p></li><li><p>Add linker flag <code class="literal">"/debug"</code>.</p></li></ul></div></section><section><h4 class="title" id="mw_80d570d3-2cc5-4c22-88dc-9df7f50981d3">Using Workflow Script</h4><p>To rebuild with the debug flags using your workflow script, in the <strong class="guilabel">Step 1:
+            GENERATE</strong> section, verify that <strong class="guilabel">Library type</strong> is set to
+            <strong class="guilabel">Headers and source files</strong>, and then in the <strong class="guilabel">Specify
+            optional C++ library settings section</strong>, set the <strong class="guilabel">Additional compiler
+            flags</strong> and <strong class="guilabel">Additional linker flags</strong> parameters based on
+          your compiler type.</p><p>In the <strong class="guilabel">Select configuration</strong> section, change the <strong class="guilabel">Name of
+            interface library</strong> value to indicate a debug version of the interface, for
+          example, to <code class="literal">debug_version</code>.</p><p>Then run the <strong class="guilabel">Step 3: BUILD</strong> section in your workflow
+          script.</p></section><section><h4 class="title" id="mw_329082fc-7773-4088-9811-4cd97d0d0c32">Using <code class="function">clibgen.buildInterface</code></h4><p>To rebuild with the debug flags programmatically, use
+            <code class="function">clibgen.buildInterface</code> with the
+            <code class="argument">AdditionalCompilerFlags</code> and
+            <code class="argument">AdditionalLinkerFlags</code> name-value arguments. For example,
+          programmatically build an interface named <code class="literal">debug_version</code> defined by
+          header file <code class="literal">h1.hpp</code> and source file <code class="literal">c1.cpp</code> on Visual
+          Studio.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.buildInterface(<span style="color:#A020F0">"h1.hpp"</span>,SupportingSourceFiles=<span style="color:#A020F0">"c1.cpp"</span>, <span style="color:#0000FF">...</span>
+    AdditionalCompilerFlags=<span style="color:#A020F0">"/Z7"</span>,AdditionalLinkerFlags=<span style="color:#A020F0">"/debug"</span>, <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"debug_version"</span>)</pre></div></div></div><p>Alternatively, build the same <code class="literal">debug_version</code> interface using any
+          other compiler</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.buildInterface(<span style="color:#A020F0">"h1.hpp"</span>,SupportingSourceFiles=<span style="color:#A020F0">"c1.cpp"</span>, <span style="color:#0000FF">...</span>
+    AdditionalCompilerFlags=<span style="color:#A020F0">"-g"</span>,AdditionalLinkerFlags=<span style="color:#A020F0">"-g"</span>, <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"debug_version"</span>)</pre></div></div></div></section></section><section><h3 class="title" id="mw_0edda1f8-7c78-4a41-879f-f6debb595969">Rebuild Interface with Compiled Library Files</h3><section><h4 class="title" id="mw_7fcc26b0-48ae-4b59-8632-03b9249d05c8">Debug Version of Compiled Library File</h4><p>If you built your interface with compiled library files, then rebuild the interface
+          with a debug version of the compiled library file. The library vendor might provide a
+          debug version. If you have source files for a third-party library, then you can build the
+          library from the source with debug flags. If you developed your own library, then build
+          the library file outside MATLAB with debug flags. For more information about debug builds, see <a href="create-debug-build-for-matlab-interface-to-c-library-on-windows.html" class="a">Resolve Incompatible Debug Build for C++ Library on Windows</a>.</p></section><section><h4 class="title" id="mw_8e33d854-9ae0-4dce-bbf1-80463856ca60">Using Workflow Script</h4><p>To rebuild with a debug version of the library file using your workflow script, in the
+            <strong class="guilabel">Step 1: GENERATE</strong> section, verify that <strong class="guilabel">Library
+            type</strong> is set to <strong class="guilabel">Headers and compiled library files</strong>, and
+          then in the <strong class="guilabel">Select files</strong> section, change the <strong class="guilabel">Compiled
+            library files</strong> value to the debug version of the library.</p><p>In the <strong class="guilabel">Select configuration</strong> section, change the <strong class="guilabel">Name of
+            interface library</strong> value  to indicate a debug version of the interface, for
+          example, to <code class="literal">debug_version</code>.</p><p>Then run the <strong class="guilabel">Step 3: BUILD</strong> section in your workflow
+          script.</p></section><section><h4 class="title" id="mw_7104d6d5-d325-4cc3-b1f2-88f5735c68b8">Using <code class="function">clibgen.buildInterface</code></h4><p>To rebuild with a debug version of the library file programmatically, in the
+            <code class="function">clibgen.buildInterface</code> call, change the
+            <code class="argument">Libraries</code> name-value argument to the debug version of the file. For
+          example, programmatically build an interface named <code class="literal">debug_version</code>
+          defined by header file <code class="literal">h1.hpp</code> and the debug version of the library file
+            <code class="literal">lib1d.lib</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.buildInterface(<span style="color:#A020F0">"h1.hpp"</span>,Libraries=<span style="color:#A020F0">"lib1d.lib"</span>, <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"debug_version"</span>)</pre></div></div></div></section></section><section><h3 class="title" id="mw_74ba541b-713f-4005-9808-6f64d53ceb34">Platform Debugging Tips</h3><p>After you build a debug version of the interface and determine where to set breakpoints
+        in source files, use these articles for platform-specific debug information.</p><div class="itemizedlist"><ul><li><p><a href="https://www.mathworks.com/matlabcentral/answers/423263-how-to-debug-mex-files-in-eclipse-mars-compiled-with-mingw64-and-the-g-flag-in-matlab-r2017b-and?s_tid=srchtitle">How to debug MEX-files in Eclipse (Mars) compiled with MinGW64 and the -g flag in
+              MATLAB R2017b and newer</a></p></li><li><p><a href="debugging-on-microsoft-windows-platforms.html" class="a">Debug on Microsoft Windows Platforms</a></p></li><li><p><a href="debugging-on-linux-platforms.html" class="a">Debug on Linux Platforms</a></p></li><li><p><a href="debugging-on-mac-platforms.html" class="a">Debug on macOS Platforms</a></p></li></ul></div></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e26549">Topics</h3><ul class="list-unstyled"><li><a href="build-c-library-interface-and-review-contents.html" class="a">Build C++ Library Interface and Review Contents</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

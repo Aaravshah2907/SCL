@@ -1,0 +1,729 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Live Editor Task Development Overview</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../develop-live-editor-tasks.html",
+          "name": "Develop Live Editor Tasks"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "develop-live-editor-tasks"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn the basic steps for developing a Live Editor task."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../develop-live-editor-tasks.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_6ab97a4d-3916-431e-9712-42b0e6aa0d42"><span itemprop="title">Develop Live Editor Tasks</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Live Editor Task Development Overview</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_2c292c30-7c5d-4693-9ca6-e869567b5425" class="nav-link intrnllnk">Define Live Editor Task Subclass</a><ul class="nav"><li class="nav-item"><a href="#mw_4ee849a9-b0a3-46d2-8939-c3ccbf7c4507" class="nav-link intrnllnk">Create Live Editor Task Subclass</a></li><li class="nav-item"><a href="#mw_77298987-2971-4387-bdaf-70e1aebacbf1" class="nav-link intrnllnk">Define Public and Private Properties</a></li><li class="nav-item"><a href="#mw_3c84529a-8d73-4ad1-a5a6-7bd84f1c903c" class="nav-link intrnllnk">Implement get.Summary Method</a></li><li class="nav-item"><a href="#mw_bd01ad6c-7401-48c7-8177-5af0112d9c04" class="nav-link intrnllnk">Implement get.State and set.State Methods</a></li><li class="nav-item"><a href="#mw_07abf76e-7783-4ea1-9c94-c6f858f9540a" class="nav-link intrnllnk">Implement setup Method</a></li><li class="nav-item"><a href="#mw_8f587b44-c3cb-44a2-8411-98f02088b002" class="nav-link intrnllnk">Implement generateCode Method</a></li><li class="nav-item"><a href="#mw_53d38d67-8e03-43c9-9074-ca6b726868f1" class="nav-link intrnllnk">Implement reset Method</a></li><li class="nav-item"><a href="#mw_d74e1966-ca0d-46f3-99ac-d2be7cb936d5" class="nav-link intrnllnk">Implement postExecutionUpdate Method (Optional)</a></li><li class="nav-item"><a href="#mw_a5e6617b-9364-4f99-8127-8a2f17e1e146" class="nav-link intrnllnk">Emit StateChanged Event (Optional)</a></li><li class="nav-item"><a href="#mw_d9891d60-5ae2-40f1-b9dc-332280c8610a" class="nav-link intrnllnk">Set AutoRun Property (Optional)</a></li></ul></li><li class="nav-item"><a href="#mw_1dff698b-a949-4291-8f89-170a7d82385a" class="nav-link intrnllnk">Configure Live Editor Task Metadata</a></li><li class="nav-item"><a href="#mw_b32c83ce-18dc-4286-ac7a-5659e1e4219e" class="nav-link intrnllnk">Use Custom Live Editor Task</a></li><li class="nav-item"><a href="#mw_608f5516-f52f-4d19-96f8-624a8fd45b6e" class="nav-link intrnllnk">NormalizeVectorData Class Definition</a></li><li class="nav-item"><a href="#d126e21683" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=develop-live-editor-tasks&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_7c98c41d-8ab2-4aa3-8af6-380a3d280f47">Live Editor Task Development Overview</h2><p>Live Editor tasks are simple point-and-click interfaces that can be embedded into a live
+      script to perform a specific set of operations. You can use tasks to explore parameters and
+      automatically generate code in a live script. Tasks are useful because they can help reduce
+      development time, errors, and time spent plotting. </p><p>MATLAB<sup>&#x00AE;</sup> provides a set of Live Editor tasks for use in live scripts. You also can create
+      your own Live Editor task by defining a subclass of the <a href="../ref/matlab.task.livetask-class.html"><code class="class">matlab.task.LiveTask</code></a>
+      base class. Then, to make the task available in the Live Editor, configure the task using the
+      Task Metadata dialog box.</p><section><h3 class="title" id="mw_2c292c30-7c5d-4693-9ca6-e869567b5425">Define Live Editor Task Subclass</h3><p>To create custom Live Editor task, first, define a subclass of the <a href="../ref/matlab.task.livetask-class.html"><code class="class">matlab.task.LiveTask</code></a> base class by following these steps:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create the Live Editor task subclass.</p></li><li><p>Define public and private properties.</p></li><li><p>Implement the <code class="method">get.Summary</code>, <code class="method">get.State</code>, and
+              <code class="method">set.State</code> methods.</p></li><li><p>Implement the <code class="method">setup</code>, <code class="method">generateCode</code>, and
+              <code class="method">reset</code> methods.</p></li><li><p>Implement the <code class="literal">postExecutionUpdate</code> method (optional).</p></li><li><p>Emit a <code class="literal">StateChanged</code> event (optional).</p></li><li><p>Set the <code class="property">AutoRun</code> property (optional).</p></li></ol></div><section><h4 class="title" id="mw_4ee849a9-b0a3-46d2-8939-c3ccbf7c4507">Create Live Editor Task Subclass</h4><p>To create a subclass of the <a href="../ref/matlab.task.livetask-class.html"><code class="class">matlab.task.LiveTask</code></a> base class, on the <strong class="guilabel">Live Editor</strong> or
+            <strong class="guilabel">Editor</strong> tab, select <strong class="guimenuitem">New</strong> &gt; <strong class="guimenuitem">Live Task Class</strong>. A new untitled file opens containing a template of a Live Editor Task
+          subclass. Replace the class name in the template code with the name of your Live Editor
+          task class. Then, save the file as a <code class="literal">.m</code> file with the same name as the
+          class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> untitled &lt; matlab.task.LiveTask
+    <span style="color:#228B22">% Add summary here</span>
+
+    <span style="color:#228B22">% NOTE: To register/update your task, run matlab.task.configureMetadata</span>
+    <span style="color:#228B22">% in command window. To de-register run matlab.task.removeMetadata</span>
+    <span style="color:#228B22">% This class extends the base class LiveTask and provides the</span>
+    <span style="color:#228B22">% implementation for all the abstract methods defined in the parent</span>
+    <span style="color:#228B22">% class.</span>
+
+    <span style="color:#0000FF">properties</span>(Access = private,Transient)
+        <span style="color:#228B22">% Declare UI elements here</span>
+
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">properties</span>(Dependent)
+        <span style="color:#228B22">% State property stores current state of UI objects in the task, specified as a struct.</span>
+        State
+
+        <span style="color:#228B22">% Task summary, specified as a string scalar or character vector.</span>
+        Summary
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">methods</span>(Access = protected)
+        <span style="color:#0000FF">function</span> setup(task)
+            <span style="color:#228B22">% Method to set up the initial state of the task.</span>
+            <span style="color:#228B22">% This method is called when the task is constructed.</span>
+            <span style="color:#228B22">% Add your implementation here</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> [code,outputs] = generateCode(task)
+            <span style="color:#228B22">% Method to generate code and outputs for the task.</span>
+            <span style="color:#228B22">% Construct code exclusively using information from this class.</span>
+            <span style="color:#228B22">% Add your implementation here</span>
+            code = <span style="color:#A020F0">""</span>;
+            outputs = {};
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> summary = get.Summary(task)
+            <span style="color:#228B22">% Define this method to get the Summary of the task.</span>
+            <span style="color:#228B22">% This is used to dynamically generate the description of what the task does.</span>
+            summary = <span style="color:#A020F0">""</span>;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> state = get.State(task)
+            <span style="color:#228B22">% Used along with jsonencode for serialization of task</span>
+            state = struct;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> set.State(task,state)
+            <span style="color:#228B22">% Used along with jsondecode for task restoration</span>
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> reset(task)
+            <span style="color:#228B22">% This method is called when a user restores the default values</span>
+            <span style="color:#228B22">% of the task by clicking the options button</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For example, to create a Live Editor task that normalizes vector data, replace class
+          name in the first line of the template code with <code class="literal">NormalizeVectorData</code>.
+          Then, save the file as
+          <code class="literal">NormalizeVectorData.m</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> NormalizeVectorData &lt; matlab.task.LiveTask</pre></div></div></div></p><p>To view the complete code for <code class="class">NormalizeVectorData</code>, see <a href="live-task-development-overview.html#mw_608f5516-f52f-4d19-96f8-624a8fd45b6e" class="intrnllnk">NormalizeVectorData Class Definition</a>.</p></section><section><h4 class="title" id="mw_77298987-2971-4387-bdaf-70e1aebacbf1">Define Public and Private Properties</h4><p>Define the properties for your class. In the private properties block, define
+          properties to store the implementation details of your class that you want to hide. These
+          properties store the underlying graphics and UI objects that make up your task, in
+          addition to any calculated values that you want to store. Eventually, your class will use
+          the data in the public properties to configure the underlying objects in the private
+          properties. Set the <code class="literal">Transient</code> attribute for the private block to avoid
+          storing redundant information if an instance of the task is saved.</p><p>In the public properties block, define the properties that the base class needs access
+          to, including the two required public properties <code class="literal">State</code> and
+            <code class="literal">Summary</code>. The <code class="literal">State</code> property stores the current
+          state of the task, and the <code class="literal">Summary</code> property stores a dynamic summary of
+          what the task does. Set the <code class="literal">Dependent</code> attribute for the public block to
+          avoid access issues with the get and set methods for the properties.</p><p>For example, define the public and private properties for the
+            <code class="literal">NormalizeVectorData</code>
+          class.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+<span style="color:#0000FF">properties</span>(Access = private,Transient)
+&nbsp;&nbsp;&nbsp; InputDataDropDown               <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+    MethodDropDown                  <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+    ZscoreGrid                      <span style="color:#A0522D">matlab.ui.container.GridLayout</span>
+    ZscoreDropDown                  <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+<span style="color:#0000FF">end</span>
+    
+<span style="color:#0000FF">properties</span>(Dependent)
+    State
+    Summary
+<span style="color:#0000FF">end</span>   </pre></div></div></div></p></section><section><h4 class="title" id="mw_3c84529a-8d73-4ad1-a5a6-7bd84f1c903c">Implement <code class="literal">get.Summary</code> Method</h4><p>Define the <code class="method">get.Summary</code> method for your class to dynamically generate
+          the description of what the task does. The <code class="method">get.Summary</code> method executes
+          when the value of the <code class="property">Summary</code> property is requested. The returned
+          summary displays at the top of the task and remains visible when the task is
+          collapsed.</p><p>Define the method in a method block with no arguments so that it is called when
+          getting the value of the <code class="property">Summary</code> property. The
+            <code class="method">get.Summary</code> method returns the generated description as a character
+          array. </p><p>For example, implement the <code class="method">get.Summary</code> method for the
+            <code class="literal">NormalizeVectorData</code> class. Use the selected normalizing method in the
+            <code class="literal">MethodDropDown</code> list and the selected input data in the
+            <code class="literal">InputDataDropDown</code> list to generate a dynamic summary based on the
+          current selection. If no input data is selected, set the summary to match the default
+          description defined in the <code class="literal">liveTasks.json</code> file. To display variable or
+          function names in monospaced font, surround them with backticks
+          (<code class="literal">``</code>).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> summary = get.Summary(task)
+    <span style="color:#0000FF">if</span> isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>)
+        summary = <span style="color:#A020F0">"Normalize vector data"</span>;
+    <span style="color:#0000FF">else</span>
+        <span style="color:#0000FF">switch</span> task.MethodDropDown.Value
+            <span style="color:#0000FF">case</span> <span style="color:#A020F0">"zscore"</span>
+                methodString = <span style="color:#A020F0">" using z-score"</span>;
+            <span style="color:#0000FF">case</span> <span style="color:#A020F0">"norm"</span>
+                methodString = <span style="color:#A020F0">" using 2-norm"</span>;
+            <span style="color:#0000FF">case</span> <span style="color:#A020F0">"scale"</span>
+                methodString = <span style="color:#A020F0">" using scaling by standard deviation"</span>;
+        <span style="color:#0000FF">end</span>
+        summary = <span style="color:#A020F0">"Normalized vector `"</span> + task.InputDataDropDown.Value + <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">"`"</span> + methodString;
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_bd01ad6c-7401-48c7-8177-5af0112d9c04">Implement <code class="literal">get.State</code> and <code class="literal">set.State</code>           Methods</h4><p>Define the <code class="method">get.State</code> and <code class="method">set.State</code> methods for your
+          class to get and set the current state of the UI objects in the task. The Live Editor uses
+          these methods to restore a task to a specified state during copy, paste, undo, and redo
+          operations, as well as when the live script containing the task is closed and reopened.
+          The current state of the task is stored in a struct. When the live script is closed, the
+          Live Editor uses the <code class="function">jsonencode</code> function to convert the struct
+          returned by <code class="literal">get.State</code> to JSON format and saves the encoded state with
+          the live script. When the live script is reopened, the Live Editor converts the encoded
+          state back to a struct, which is then used to set the current state of the task using
+            <code class="literal">set.State</code>. Refer to the <a href="../ref/jsonencode.html"><code class="function">jsonencode</code></a> function for more information about the data types it
+          supports.</p><p>Define the methods in the same method block as the <code class="method">get.Summary</code> method
+          so that they are called when setting or getting the value of the
+            <code class="property">State</code> property. The <code class="method">get.State</code> method returns a
+          struct containing the current value of each UI object in the task. The
+            <code class="method">set.State</code> method takes a struct previously returned by the
+            <code class="method">get.State</code> method and uses the struct to set the value of each UI object
+          in the task.</p><p> For example, implement the <code class="function">get.State</code> and
+            <code class="function">set.State</code> methods for the <code class="literal">NormalizeVectorData</code>
+          class. In the <code class="function">get.State</code> method, create and return a struct with the
+          value of each <code class="literal">DropDown</code> object in the task.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> state = get.State(task)
+    state = struct;
+    state.InputDataDropDownValue = task.InputDataDropDown.Value;
+    state.MethodDropDownValue = task.MethodDropDown.Value;
+    state.ZscoreDropDownValue = task.ZscoreDropDown.Value;
+<span style="color:#0000FF">end</span></pre></div></div></div><p> In the <code class="function">set.State</code> method, use the values stored in the struct
+          that is passed in to set the value of each <code class="literal">DropDown</code> object in the
+          task.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> set.State(task,state)
+    value = state.InputDataDropDownValue;
+    <span style="color:#0000FF">if</span> ~ismember(value, task.InputDataDropDown.ItemsData)
+        task.InputDataDropDown.Items = [task.InputDataDropDown.Items value];
+    <span style="color:#0000FF">end</span>
+    task.InputDataDropDown.Value = value;
+    task.MethodDropDown.Value = state.MethodDropDownValue;
+    task.ZscoreDropDown.Value = state.ZscoreDropDownValue;
+    updateComponents(task);
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_07abf76e-7783-4ea1-9c94-c6f858f9540a">Implement <code class="literal">setup</code> Method</h4><p>Define the <a href="../ref/matlab.task.livetask.setup.html"><code class="method">setup</code></a> method
+          for your class. The <code class="method">setup</code> method sets the initial state of the task and
+          executes once when MATLAB constructs the task. Define the <code class="method">setup</code> method in a protected
+          block so that only your class can execute it.</p><p> Use the <code class="method">setup</code> method to:</p>
+<div class="itemizedlist"><ul><li><p>Create, layout, and configure the graphics and UI objects that make up the task.
+              </p></li><li><p>Program the behavior of objects within the task.</p></li><li><p>Set the default values for the objects.</p></li></ul></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>All graphics and UI objects for the task must be added to the task's grid layout
+            manager, <code class="property">LayoutManager</code>. If an object is added to the task directly,
+              MATLAB throws an error.</p></div><p>For example, implement the <code class="method">setup</code> method for the
+            <code class="literal">NormalizeVectorData</code> class. In the <code class="method">setup</code> method, call
+          the <code class="function">createComponents</code>, <code class="function">setComponentsToDefault</code>,
+          and <code class="function">updateComponents</code> helper functions to create and arrange the
+          components in the task, set all the components to their default values, and update the
+          components.</p><p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> setup(task)
+    createComponents(task);
+    setComponentsToDefault(task);
+    updateComponents(task);
+<span style="color:#0000FF">end</span></pre></div></div></div>
+        </p><p>Create a private methods block and define the <code class="function">createComponents</code>,
+            <code class="function">setComponentsToDefault</code>, <code class="function">updateComponents</code>, and
+            <code class="function">populateWSDropdownItems</code> helper functions.</p><p>In the <code class="function">createComponents</code> function, call the
+            <code class="function">uilabel</code>, <code class="function">uigridlayout</code>, and
+            <code class="function">uidropdown</code> functions to create and arrange
+          <code class="literal">Label</code>, <code class="literal">GridLayout</code>, and <code class="literal">DropDown</code>
+          objects, specifying the task's <code class="property">LayoutManager</code> as the parent. Store
+          those objects in the corresponding private properties. Specify the
+            <code class="function">updateComponents</code> method as the <code class="function">ValueChangedFcn</code>
+          callback that is called when the value of a drop-down list is changed. Specify the
+            <code class="function">populateWSDropdownItems</code> method as the
+            <code class="function">DropDownOpeningFcn</code> callback that is called when a drop-down list is
+          opened.</p><p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">methods</span>(Access = private)
+    <span style="color:#0000FF">function</span> createComponents(task)
+        g = uigridlayout(task.LayoutManager,[1,1]);
+        g.RowHeight = [<span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span>];
+        g.ColumnWidth = <span style="color:#A020F0">"fit"</span>;
+
+        <span style="color:#228B22">% Row 1: Select data section label</span>
+        uilabel(g,Text=<span style="color:#A020F0">"Select data"</span>,FontWeight=<span style="color:#A020F0">"bold"</span>);
+
+        <span style="color:#228B22">% Row 2: Select data section components</span>
+        inputgrid = uigridlayout(g,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+            ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+        uilabel(inputgrid,Text=<span style="color:#A020F0">"Input data"</span>);
+        task.InputDataDropDown = uidropdown(inputgrid, <span style="color:#0000FF">...</span>
+            ValueChangedFcn=@task.updateComponents, <span style="color:#0000FF">...</span>
+            DropDownOpeningFcn=@task.populateWSDropdownItems);
+        task.populateWSDropdownItems(task.InputDataDropDown);
+
+        <span style="color:#228B22">% Row 3: Specify method section label</span>
+        uilabel(g,Text=<span style="color:#A020F0">"Specify method"</span>,FontWeight=<span style="color:#A020F0">"bold"</span>);
+
+        <span style="color:#228B22">% Row 4: Method section components</span>
+        methodgrid = uigridlayout(g,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+            ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+        uilabel(methodgrid,Text=<span style="color:#A020F0">"Normalization method"</span>);
+        task.MethodDropDown = uidropdown(methodgrid, <span style="color:#0000FF">...</span>
+            ValueChangedFcn=@task.updateComponents);
+        task.MethodDropDown.Items = [<span style="color:#A020F0">"Z-score"</span> <span style="color:#A020F0">"2-Norm"</span> <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">"Scale by standard deviation"</span>];
+        task.MethodDropDown.ItemsData = [<span style="color:#A020F0">"zscore"</span> <span style="color:#A020F0">"norm"</span> <span style="color:#A020F0">"scale"</span>];
+
+        <span style="color:#228B22">% Subgrid 1 in method section</span>
+        task.ZscoreGrid = uigridlayout(methodgrid,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+            ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+        uilabel(task.ZscoreGrid,Text=<span style="color:#A020F0">"Deviation type"</span>);
+        task.ZscoreDropDown = uidropdown(task.ZscoreGrid, <span style="color:#0000FF">...</span>
+            ValueChangedFcn=@task.updateComponents, <span style="color:#0000FF">...</span>
+            Items=[<span style="color:#A020F0">"Standard"</span> <span style="color:#A020F0">"Median absolute"</span>], <span style="color:#0000FF">...</span>
+            ItemsData=[<span style="color:#A020F0">"std"</span> <span style="color:#A020F0">"robust"</span>], <span style="color:#0000FF">...</span>
+            Tooltip=<span style="color:#A020F0">"Center data to 0 and scale to deviation 1"</span>);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">function</span> setComponentsToDefault(task)
+        task.MethodDropDown.Value = <span style="color:#A020F0">"zscore"</span>;
+        task.ZscoreDropDown.Value = <span style="color:#A020F0">"std"</span>;
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">function</span> updateComponents(task,source,~)
+        hasData = ~isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>);
+
+        task.MethodDropDown.Enable = hasData;
+        task.ZscoreDropDown.Enable = hasData;
+
+        <span style="color:#228B22">% Show only relevant subgrids</span>
+        task.ZscoreGrid.Visible = isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>);
+
+        <span style="color:#228B22">% Trigger the Live Editor to update the generated script</span>
+        notify(task,<span style="color:#A020F0">"StateChanged"</span>);
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">function</span> populateWSDropdownItems(~,src,~)
+        workspaceVariables = evalin(<span style="color:#A020F0">"base"</span>,<span style="color:#A020F0">"who"</span>);
+        src.Items = [<span style="color:#A020F0">"select variable"</span>; workspaceVariables];
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+        </p></section><section><h4 class="title" id="mw_8f587b44-c3cb-44a2-8411-98f02088b002">Implement <code class="literal">generateCode</code> Method</h4><p>Define the <a href="../ref/matlab.task.livetask.generatecode.html"><code class="method">generateCode</code></a>
+          method for your class to generate the MATLAB commands and output for the task. This method executes when the task state
+          changes, for example, when a user modifies a task parameter. The generated code displays
+          in the code section of the task. When the live script section containing the task runs,
+          the Live Editor uses the generated code to run the task. Define the
+            <code class="method">generateCode</code> method in the same method block as the
+            <code class="method">get.Summary</code>, <code class="method">get.State</code>, and <code class="method">set.State</code>
+          methods.</p><p>The <code class="method">generateCode</code> method returns two output arguments,
+            <code class="argument">code</code> and <code class="argument">outputs</code>. <code class="argument">code</code> is
+          a character array or string array containing the generated code for the task.
+            <code class="argument">outputs</code> is a cell array containing the output variables produced by
+          the code. If the task does not generate output, return <code class="argument">outputs</code> as an
+          empty cell array.</p><div class="itemizedlist"><ul><li><p>Start the generated code with a comment that describes what the code is doing. For
+              example, <code class="literal">% Normalize data</code>.</p></li><li><p>Surround variable names with backticks (<code class="literal">``</code>) to identify
+              variables to the Live Editor and prevent them from being renamed. If backticks are not
+              added and the task has the same input and output variable name, then the input
+              variable could get auto-incremented, which could result in errors.</p></li><li><p>Minimize the amount of generated code by only including commands that set
+              parameters to nondefault values. For example, this code checks whether the selected
+              normalization method is the default method. </p></li><li><p>Optionally, separate out the plotting code and add it to the end of the generated
+              code.</p></li></ul></div><p>For example, implement the <code class="method">generateCode</code> method for the
+            <code class="literal">NormalizeVectorData</code> class:
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> [code,outputs] = generateCode(task)
+    <span style="color:#0000FF">if</span> isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>)
+        <span style="color:#228B22">% Return empty values if there is not enough</span>
+        <span style="color:#228B22">% information to generate code</span>
+        code = <span style="color:#A020F0">""</span>;
+        outputs = {};
+        <span style="color:#0000FF">return</span>
+    <span style="color:#0000FF">end</span>
+                
+    outputs = {<span style="color:#A020F0">'normalizedData'</span>};
+                
+    inputdata = <span style="color:#A020F0">"`"</span> + task.InputDataDropDown.Value + <span style="color:#A020F0">"`"</span>;
+    <span style="color:#0000FF">if</span> isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>) &amp;&amp; <span style="color:#0000FF">...</span>
+            isequal(task.ZscoreDropDown.Value,<span style="color:#A020F0">"std"</span>)
+        code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#A020F0">");"</span>;
+    <span style="color:#0000FF">elseif</span> isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>)
+        code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">",""zscore"","""</span> + task.ZscoreDropDown.Value + <span style="color:#A020F0">""");"</span>;
+    <span style="color:#0000FF">else</span>
+        code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">","""</span> + task.MethodDropDown.Value + <span style="color:#A020F0">""");"</span>;
+    <span style="color:#0000FF">end</span>
+    code = [<span style="color:#A020F0">"% Normalize data"</span>; code];                           
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h4 class="title" id="mw_53d38d67-8e03-43c9-9074-ca6b726868f1">Implement <code class="literal">reset</code> Method</h4><p>Define the <a href="../ref/matlab.task.livetask.reset.html"><code class="method">reset</code></a> method
+          for your class to bring the task back to its default state. Define the method in the same
+          method block as the <code class="method">get.Summary</code>, <code class="method">get.State</code>,
+            <code class="method">set.State</code>, and <code class="method">generateCode</code> methods.</p><p>For example, implement the <code class="method">reset</code> method for the
+            <code class="literal">NormalizeVectorData</code> class. Call the
+            <code class="function">setComponentsToDefault</code> function to set all objects to their default
+          values. Then, call the <code class="function">updateComponents</code> function to update all the
+          components.</p><p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> reset(task)
+    setComponentsToDefault(task);
+    updateComponents(task);
+<span style="color:#0000FF">end</span></pre></div></div></div>
+        </p></section><section><h4 class="title" id="mw_d74e1966-ca0d-46f3-99ac-d2be7cb936d5">Implement <code class="literal">postExecutionUpdate</code> Method (Optional)</h4><p>Optionally, you can define a <code class="method">postExecutionUpdate</code> method for your
+          class to perform specific updates for your task. This method executes after the generated
+          code for your task runs. For example, you can implement the
+            <code class="literal">postExecutionUpdate</code> method to add newly created variables to a
+          drop-down list used to select input data after the generated code for your task
+          runs.</p><p>Define the <code class="method">postExecutionUpdate</code> method in the same method block as the
+            <code class="method">get.Summary</code>, <code class="method">get.State</code>, <code class="method">set.State</code>,
+            <code class="method">generateCode</code>, and <code class="method">reset</code> methods. The
+            <code class="method">postExecutionUpdate</code> method takes two inputs, an instance of the task,
+          and a struct containing the task outputs (returned by the <code class="method">generateCode</code>
+          method) and their current workspace values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> postExecutionUpdate(task,data)
+    <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h4 class="title" id="mw_a5e6617b-9364-4f99-8127-8a2f17e1e146">Emit <code class="literal">StateChanged</code> Event (Optional)</h4><p>The Live Editor listens for changes in a task and calls the
+            <code class="method">generateCode</code> method to update the task's generated code when it detects
+          a change. The Live Editor detects changes by monitoring the components in the task that
+          fire these events:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">ValueChanged</code></p></li><li><p><code class="literal">ButtonPushed</code></p></li><li><p><code class="literal">ImageClicked</code></p></li><li><p><code class="literal">SelectionChanged</code></p></li></ul></div><p>
+</p><p>To update the generated code for a task when changes occur outside of the events
+          listed (for example, in a component that does not fire these events), you can call the
+            <code class="method">notify</code> method to fire the <code class="literal">StateChanged</code> event and
+          trigger a call to the <code class="method">generateCode</code> method for the task.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>notify(task,<span style="color:#A020F0">"StateChanged"</span>);
+</pre></div></div></div></p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The Live Editor does not monitor events for components that are created
+              dynamically at run time.</p></div><p>
+</p></section><section><h4 class="title" id="mw_d9891d60-5ae2-40f1-b9dc-332280c8610a">Set <code class="literal">AutoRun</code> Property (Optional)</h4><p>Optionally, you can set the <code class="property">AutoRun</code> property for your class to
+          specify whether your task runs automatically when a user modifies the task parameters. </p><p>By default, the <code class="property">AutoRun</code> property is set to true and the task runs
+          automatically after a change. To disable running your task automatically, set the
+            <code class="property">AutoRun</code> property to <code class="literal">false</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>task.AutoRun = false;</pre></div></div></div><p>You only need to set the <code class="property">AutoRun</code> property once, preferably when
+          setting the initial state of the task. For example, set the <code class="property">AutoRun</code>
+          property for the <code class="literal">NormalizeVectorData</code> class in the
+            <code class="function">setup</code> method.</p><p>
+          <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> setup(task) 
+    task.AutoRun = false;
+    createComponents(task);
+    setComponentsToDefault(task);
+    updateComponents(task);
+<span style="color:#0000FF">end</span></pre></div></div></div>
+        </p></section></section><section><h3 class="title" id="mw_1dff698b-a949-4291-8f89-170a7d82385a">Configure Live Editor Task Metadata</h3><p>After creating the Live Editor task subclass, configure your task for use in the Live
+        Editor by using the <a href="../ref/matlab.task.configuremetadata.html"><code class="function">matlab.task.configureMetadata</code></a> function. The function opens the Task Metadata
+        dialog box. This dialog box allows you to specify metadata for the task. The Live Editor
+        then uses this metadata to display the task in the Live Editor task gallery as well as in
+        automatic code suggestions and completions.</p><p>Call the function by passing it the path to the class definition file for your task. If
+        you do not specify a path, a file selection dialog box opens and prompts you to select a
+        file.</p><p>For example, use the <code class="function">matlab.task.configureMetadata</code> function to
+        configure the Normalize Vector Data task.
+        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>matlab.task.configureMetadata(<span style="color:#A020F0">"NormalizeVectorData"</span>)</pre></div></div></div></p><p>The Task Metadata dialog box prepopulates all of the required task metadata details from
+        your task class definition file.</p><div class="informalfigure"><div id="d126e21479" class="mediaobject"><p><img src="normalizetaskconfiguremetadata.png" alt="Task Metadata dialog box with the required task metadata prepopulated" height="360" width="569"></p></div></div><p>You can edit the prepopulated metadata options using the Task Metadata dialog box. This
+        table describes each individual task metadata option.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Option</th><th>Summary</th></tr></thead><tbody><tr><td><strong class="guilabel">Name</strong></td><td><p>Specify the name of the task to display in the autocompletion list and in
+                  the Live Editor task gallery.</p><p>This detail is required.</p></td></tr><tr><td><strong class="guilabel">Description</strong></td><td><p>Specify the description of the task to display in the autocompletion list
+                  and in the Live Editor task gallery.</p><p>This detail is
+                optional.</p></td></tr><tr><td><strong class="guilabel">Icon</strong></td><td><p>Specify the path for the task icon to display in the Live Editor task
+                  gallery. If you specify a task icon, MATLAB copies it to the resources folder.</p><p>This detail is
+                  optional.</p></td></tr><tr><td><strong class="guilabel">Keywords</strong></td><td><p>Specify the keywords that can be used to show the task in the
+                  autocompletion list.</p><p>This detail is optional.</p></td></tr><tr><td><strong class="guilabel">Documentation Link</strong></td><td><p>Specify the documentation link as a URL to the documentation that opens
+                  when the task help icon is clicked. </p><p>To specify a function that
+                  returns a documentation link dynamically, include the text
+                    <code class="literal">taskmethod:</code> followed by the name of the function that returns
+                  the doc link. For example, <code class="literal">taskmethod:fetchHelpLink</code>. The
+                  function must be defined as a public method in the task class definition
+                  file.</p><p>If a documentation link is not specified, clicking the task help
+                  icon opens the generated help for the task in the system web
+                  browser.</p><p>This detail is optional.</p><div class="informalfigure"><div id="d126e21537" class="mediaobject"><p><img src="livetaskinscript_helpicon.png" alt="Normalize Vector Data task with the help icon at the top-right circled in red" height="149" width="453"></p></div></div></td></tr></tbody></table></div><p>When you are done editing, click <strong class="guibutton">OK</strong>. MATLAB creates a folder named <code class="literal">resources</code> inside the folder
+        containing your task class definition file. Inside the <code class="literal">resources</code> folder,
+          MATLAB generates a file named <code class="literal">liveTasks.json</code>. This file contains
+        the metadata you provided in the Task Metadata dialog box, in addition to other metadata
+          MATLAB needs to make your task available in the Live Editor. Share this folder when
+        you share your Live Editor task.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Do not modify the <code class="literal">liveTasks.json</code> file by hand. To change any Live
+          Editor task metadata, use the <code class="function">matlab.task.configureMetadata</code>
+          function.</p></div><p>To make your task available in the Live Editor, add the folder containing your task
+        class definition file to the MATLAB path. To add the folder, use the <a href="../ref/addpath.html"><code class="function">addpath</code></a> function or the <strong class="guibutton">Add Folder</strong> button in the Set
+        Path dialog box.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>You do not need to add the <code class="literal">resources</code> folder that is inside the
+          folder containing your task class definition file to the path. Folders named
+            <code class="literal">resources</code> are not allowed on the MATLAB path.</p></div></section><section><h3 class="title" id="mw_b32c83ce-18dc-4286-ac7a-5659e1e4219e">Use Custom Live Editor Task</h3><p>To test whether your task creates correctly, create an instance of your class. For
+        example, create an instance of the <code class="literal">NormalizeVectorData</code>
+        class.<div class="code_responsive"><pre class="programlisting">c = NormalizeVectorData;</pre></div></p><p>MATLAB creates the Normalize Vector Data task.</p><div class="informalfigure"><div id="d126e21601" class="mediaobject"><p><img src="livetaskinstance.png" alt="Instance of the Normalize Vector Data task with drop-down lists for selecting the input data, the normalization method, and the deviation type" height="454" width="564"></p></div></div><p>To get all of the UI objects in the task, use the <a href="../ref/findall.html"><code class="function">findall</code></a> function.
+        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h = findall(c.Parent)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>h = 
+  14×1 graphics array:
+
+  Figure        (NormalizeVectorData)
+  GridLayout
+  GridLayout
+  Label         (Select data)
+  GridLayout
+  Label         (Specify method)
+  GridLayout
+  Label         (Input data)
+  DropDown      (select variable)
+  Label         (Normalization method)
+  DropDown      (Z-score)
+  GridLayout
+  Label         (Deviation type)
+  DropDown      (Standard)</pre></div></div></div></p><p>To add your task to a live script, in the live script, type one of the keywords defined
+        in <code class="literal">liveTasks.json</code> and select your task from the list of suggested names. </p><p>For example, to add the Normalize Vector Data task to a live script, first, create a
+        live script. Then, on a code line, type <code class="literal">norm</code>. MATLAB shows a list of suggested matches. </p><div class="informalfigure"><div id="d126e21626" class="mediaobject"><p><img src="livetasksuggestion.png" alt="Live script with a code line containing the text &#34;norm&#34; and a list of suggestions including the Normalize Vector Data task" height="144" width="390"></p></div></div><p>Select <strong class="guimenuitem">Normalize Vector Data</strong> from the list. MATLAB adds the Normalize Vector Data task to the live script.</p><div class="informalfigure"><div id="d126e21638" class="mediaobject"><p><img src="livetaskinscript.png" alt="Normalize Vector Data task in a live script" height="208" width="605"></p></div></div><p>To add your task from the toolstrip, go to the <strong class="guilabel">Live Editor</strong> tab and
+        in the <strong class="guilabel">Code</strong> section, click <strong class="guibutton">Task</strong>
+        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_3_px"><img src="drop_down_arrow_5x3.png" alt="" height="3" width="5"></span></span>. Select <code class="guidropdown">Normalize Vector Data</code> to
+        add the Normalize Vector Data task to your live script. You must save the MATLAB path and restart MATLAB to include your task in the Live Editor task gallery.</p><div class="informalfigure"><div id="d126e21667" class="mediaobject"><p><img src="livetaskintoolstrip.png" alt="Live Editor task gallery with the Normalize Vector Data task in the &#34;My Tasks&#34; section" height="361" width="579"></p></div></div></section><section><h3 class="title" id="mw_608f5516-f52f-4d19-96f8-624a8fd45b6e"><code class="class">NormalizeVectorData</code> Class Definition</h3><p>This code provides the complete contents of the <code class="class">NormalizeVectorData</code>
+        class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> NormalizeVectorData &lt; matlab.task.LiveTask
+    <span style="color:#0000FF">properties</span>(Access = private,Transient)
+        InputDataDropDown               <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+        MethodDropDown                  <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+        ZscoreGrid                      <span style="color:#A0522D">matlab.ui.container.GridLayout</span>
+        ZscoreDropDown                  <span style="color:#A0522D">matlab.ui.control.DropDown</span>
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#0000FF">properties</span>(Dependent)
+        State
+        Summary
+    <span style="color:#0000FF">end</span> 
+    <span style="color:#0000FF">methods</span>(Access = protected)      
+        <span style="color:#0000FF">function</span> setup(task)
+            createComponents(task);
+            setComponentsToDefault(task);
+            updateComponents(task);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span>(Access = private)
+        <span style="color:#0000FF">function</span> createComponents(task)
+            g = uigridlayout(task.LayoutManager,[1,1]);
+            g.RowHeight = [<span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span> <span style="color:#A020F0">"fit"</span>];
+            g.ColumnWidth = <span style="color:#A020F0">"fit"</span>;
+
+            <span style="color:#228B22">% Row 1: Select data section label</span>
+            uilabel(g,Text=<span style="color:#A020F0">"Select data"</span>,FontWeight=<span style="color:#A020F0">"bold"</span>);
+
+            <span style="color:#228B22">% Row 2: Select data section components</span>
+            inputgrid = uigridlayout(g,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+                ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+            uilabel(inputgrid,Text=<span style="color:#A020F0">"Input data"</span>);
+            task.InputDataDropDown = uidropdown(inputgrid, <span style="color:#0000FF">...</span>
+                ValueChangedFcn=@task.updateComponents, <span style="color:#0000FF">...</span>
+                DropDownOpeningFcn=@task.populateWSDropdownItems);
+            task.populateWSDropdownItems(task.InputDataDropDown);
+
+            <span style="color:#228B22">% Row 3: Specify method section label</span>
+            uilabel(g,Text=<span style="color:#A020F0">"Specify method"</span>,FontWeight=<span style="color:#A020F0">"bold"</span>);
+
+            <span style="color:#228B22">% Row 4: Method section components</span>
+            methodgrid = uigridlayout(g,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+                ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+            uilabel(methodgrid,Text=<span style="color:#A020F0">"Normalization method"</span>);
+            task.MethodDropDown = uidropdown(methodgrid, <span style="color:#0000FF">...</span>
+                ValueChangedFcn=@task.updateComponents);
+            task.MethodDropDown.Items = [<span style="color:#A020F0">"Z-score"</span> <span style="color:#A020F0">"2-Norm"</span> <span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">"Scale by standard deviation"</span>];
+            task.MethodDropDown.ItemsData = [<span style="color:#A020F0">"zscore"</span> <span style="color:#A020F0">"norm"</span> <span style="color:#A020F0">"scale"</span>];
+
+            <span style="color:#228B22">% Subgrid 1 in method section</span>
+            task.ZscoreGrid = uigridlayout(methodgrid,RowHeight=<span style="color:#A020F0">"fit"</span>, <span style="color:#0000FF">...</span>
+                ColumnWidth=[<span style="color:#A020F0">"fit"</span>,<span style="color:#A020F0">"fit"</span>],Padding=0);
+            uilabel(task.ZscoreGrid,Text=<span style="color:#A020F0">"Deviation type"</span>);
+            task.ZscoreDropDown = uidropdown(task.ZscoreGrid, <span style="color:#0000FF">...</span>
+                ValueChangedFcn=@task.updateComponents, <span style="color:#0000FF">...</span>
+                Items=[<span style="color:#A020F0">"Standard"</span> <span style="color:#A020F0">"Median absolute"</span>], <span style="color:#0000FF">...</span>
+                ItemsData=[<span style="color:#A020F0">"std"</span> <span style="color:#A020F0">"robust"</span>], <span style="color:#0000FF">...</span>
+                Tooltip=<span style="color:#A020F0">"Center data to 0 and scale to deviation 1"</span>);
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> setComponentsToDefault(task)
+            task.MethodDropDown.Value = <span style="color:#A020F0">"zscore"</span>;
+            task.ZscoreDropDown.Value = <span style="color:#A020F0">"std"</span>;
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> updateComponents(task,~,~)
+            hasData = ~isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>);    
+            task.MethodDropDown.Enable = hasData;
+            task.ZscoreDropDown.Enable = hasData;
+
+            <span style="color:#228B22">% Show only relevant subgrids</span>
+            task.ZscoreGrid.Visible = isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>);
+
+            <span style="color:#228B22">% Trigger the Live Editor to update the generated script</span>
+            notify(task,<span style="color:#A020F0">"StateChanged"</span>);
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> populateWSDropdownItems(~,src,~)
+            workspaceVariables = evalin(<span style="color:#A020F0">"base"</span>,<span style="color:#A020F0">"who"</span>);
+            src.Items = [<span style="color:#A020F0">"select variable"</span>; workspaceVariables];
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>    
+
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> [code,outputs] = generateCode(task)
+            <span style="color:#0000FF">if</span> isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>)
+                <span style="color:#228B22">% Return empty values if there is not enough</span>
+                <span style="color:#228B22">% information to generate code</span>
+                code = <span style="color:#A020F0">""</span>;
+                outputs = {};
+                <span style="color:#0000FF">return</span>
+            <span style="color:#0000FF">end</span>
+                
+            outputs = {<span style="color:#A020F0">'normalizedData'</span>};
+                        
+            inputdata = <span style="color:#A020F0">"`"</span> + task.InputDataDropDown.Value + <span style="color:#A020F0">"`"</span>;        
+            <span style="color:#0000FF">if</span> isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>) &amp;&amp; <span style="color:#0000FF">...</span>
+                    isequal(task.ZscoreDropDown.Value,<span style="color:#A020F0">"std"</span>)
+                code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#A020F0">");"</span>;
+            <span style="color:#0000FF">elseif</span> isequal(task.MethodDropDown.Value,<span style="color:#A020F0">"zscore"</span>)
+                code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#0000FF">...</span>
+                    <span style="color:#A020F0">",""zscore"","""</span> + task.ZscoreDropDown.Value + <span style="color:#A020F0">""");"</span>;
+            <span style="color:#0000FF">else</span>
+                code = <span style="color:#A020F0">"normalizedData = normalize("</span> + inputdata + <span style="color:#0000FF">...</span>
+                    <span style="color:#A020F0">","""</span> + task.MethodDropDown.Value + <span style="color:#A020F0">""");"</span>;
+            <span style="color:#0000FF">end</span>
+            code = [<span style="color:#A020F0">"% Normalize data"</span>; code];                           
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> summary = get.Summary(task)
+            <span style="color:#0000FF">if</span> isequal(task.InputDataDropDown.Value,<span style="color:#A020F0">"select variable"</span>)
+                summary = <span style="color:#A020F0">"Normalize vector data"</span>;
+            <span style="color:#0000FF">else</span>
+                <span style="color:#0000FF">switch</span> task.MethodDropDown.Value
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">"zscore"</span>
+                        methodString = <span style="color:#A020F0">" using z-score"</span>;
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">"norm"</span>
+                        methodString = <span style="color:#A020F0">" using 2-norm"</span>;
+                    <span style="color:#0000FF">case</span> <span style="color:#A020F0">"scale"</span>
+                        methodString = <span style="color:#A020F0">" using scaling by standard deviation"</span>;
+                <span style="color:#0000FF">end</span>
+                summary = <span style="color:#A020F0">"Normalized vector `"</span> + task.InputDataDropDown.Value + <span style="color:#0000FF">...</span>
+                    <span style="color:#A020F0">"`"</span> + methodString;
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> state = get.State(task)
+            state = struct;
+            state.InputDataDropDownValue = task.InputDataDropDown.Value;
+            state.MethodDropDownValue = task.MethodDropDown.Value;
+            state.ZscoreDropDownValue = task.ZscoreDropDown.Value;
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">function</span> set.State(task,state)
+            value = state.InputDataDropDownValue;
+            <span style="color:#0000FF">if</span> ~ismember(value, task.InputDataDropDown.ItemsData)
+                task.InputDataDropDown.Items = [task.InputDataDropDown.Items value];
+            <span style="color:#0000FF">end</span>
+            task.InputDataDropDown.Value = value;
+            task.MethodDropDown.Value = state.MethodDropDownValue;
+            task.ZscoreDropDown.Value = state.ZscoreDropDownValue;
+            updateComponents(task);
+        <span style="color:#0000FF">end</span>
+	
+        <span style="color:#0000FF">function</span> reset(task)
+            setComponentsToDefault(task);
+            updateComponents(task);
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></section>
+      <h2 id="d126e21683">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.task.livetask-class.html"><span itemprop="name"><code class="class">matlab.task.LiveTask</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.task.livetask.setup.html"><span itemprop="name"><code class="method">setup</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.task.livetask.generatecode.html"><span itemprop="name"><code class="method">generateCode</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.task.livetask.reset.html"><span itemprop="name"><code class="method">reset</code></span></a></span></p>
+      <h3 id="d126e21698">Topics</h3><ul class="list-unstyled"><li><a href="create-simple-live-editor-task.html" class="a">Create Simple Live Editor Task</a></li><li><a href="share-live-editor-tasks.html" class="a">Share Live Editor Tasks</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

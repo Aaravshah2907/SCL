@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Data Access in Typed, Cell, and Structure Arrays</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-file-functions.html",
+          "name": "Call C/C++ MEX Functions from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../cpp-mex-file-applications.html",
+          "name": "Write C++ Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "cpp-mex-file-applications"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Cell and structure arrays let you write to array contents without copying entire array."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-file-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C/C++ MEX Functions from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-mex-file-applications.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_ed02b205-3d2c-48d0-ba64-c5b069ff713a"><span itemprop="title">Write C++ Functions Callable from MATLAB  (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Data Access in Typed, Cell, and Structure Arrays</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_15e62cee-b017-4800-a16c-0bc1e3b14d48" class="nav-link intrnllnk">Shared Copies</a></li><li class="nav-item"><a href="#mw_27f7c939-9740-445e-b699-74130db47a6c" class="nav-link intrnllnk">Modify Cell Array in MEX Function</a></li><li class="nav-item"><a href="#mw_41ab9cb6-6b28-4f3e-ac1c-14527ccce7a2" class="nav-link intrnllnk">Modify Structure in MEX Function</a><ul class="nav"><li class="nav-item"><a href="#mw_ff786a7d-3405-4cfc-a77c-6d5c48936636" class="nav-link intrnllnk">Assign to Structure Field</a></li><li class="nav-item"><a href="#mw_9f59196d-07f3-4f23-a91f-80b8fb8be28c" class="nav-link intrnllnk">Example of Cell and Structure Arrays</a></li></ul></li><li class="nav-item"><a href="#d126e42633" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a5f2db9e-46e3-4d3f-b4e6-668d3b4f7417">Data Access in Typed, Cell, and Structure Arrays</h2><p>The MATLAB<sup>&#x00AE;</sup> Data API used by C++ MEX functions provides the same copy-on-write
+            semantics used by functions written directly in MATLAB. A MEX function can duplicate a data array passed to it, but this
+            duplicate is a shared copy of the original variable. A separate copy of the data is made
+            when the MEX function modifies values in the array. </p><p>When you call a MEX function, the <a href="../apiref/matlab.data.array.html"><code class="cpp">matlab::data::Array</code></a> inputs are shared
+            copies of the MATLAB variables passed to the MEX function. Shared copies provide an advantage
+            when the MEX function:</p><div class="itemizedlist"><ul><li><p>Does not modify a large array passed to the MEX function.</p></li><li><p>Modifies certain fields of a structure that is passed as input without making
+                    a copy of the entire structure.</p></li><li><p>Modifies a cell in a cell array that is passed as input without causing a deep
+                    copy of the cell array</p></li><li><p>Modifies an object property that is passed as input without making a deep copy
+                    of the object.</p></li></ul></div><section><h3 class="title" id="mw_15e62cee-b017-4800-a16c-0bc1e3b14d48">Shared Copies</h3><p>This example code benefits from the use of shared copies when calculating the
+                average value of an image array. Copying the input array to a
+                    <code class="literal">const</code>
+                <a href="../apiref/matlab.data.typedarray.html"><code class="cpp">matlab::data::TypedArray&lt;T&gt;</code></a>,
+                which supports iterators, enables the use of a range-based <code class="literal">for</code>
+                loop to perform the calculation, but ensures that the array is not copied. </p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "mex.hpp"
+#include "mexAdapter.hpp"
+
+using matlab::mex::ArgumentList;
+using namespace matlab::data;
+
+class MexFunction : public matlab::mex::Function {
+    ArrayFactory factory;
+public:
+    void operator()(ArgumentList outputs, ArgumentList inputs) {
+        double sm = 0;
+        const TypedArray&lt;uint8_t&gt; inArray = inputs[0];
+        for (auto&amp; elem : inArray) {
+            sm += elem;
+        }
+        outputs[0] = factory.createScalar(sm / inArray.getNumberOfElements());
+    }
+};</code></pre></div><p>Save the MEX function source code in a file called
+                <code class="literal">aveImage.cpp</code>. You can use this function to find the mean value of
+                an array of topographic data. Load the <code class="literal">topo.mat</code> file into the
+                    MATLAB workspace and pass the data array to the MEX function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">aveImage.cpp</span>
+load <span style="color:#A020F0">topo</span>
+d = uint8(topo); <span style="color:#228B22">% convert data to use aveImage</span>
+m = aveImage(d)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>m = 73.5487</pre></div></div></div></section><section><h3 class="title" id="mw_27f7c939-9740-445e-b699-74130db47a6c">Modify Cell Array in MEX Function</h3><p>When you pass a cell array to a MEX function, its MATLAB Data API representation, <a href="../apiref/matlab.data.cellarray.html"><code class="cpp">matlab::data::CellArray</code></a>, is essentially a
+                    <code class="literal">matlab::data::Array</code> that contains a
+                    <code class="literal">matlab::data::Array</code> in each cell. This design enables each
+                contained array to be a shared copy until modified.</p><p>When you modify a cell of a cell array in a MEX function, only the array contained
+                in that cell is unshared, not the entire cell array. For example, suppose that you
+                copy cell array A to cell array B. The value of each cell is shared. </p><div class="informalfigure"><div id="d126e42426" class="mediaobject"><p><img src="shared_cellarray.png" alt="Each cell in array A maps to a cell in array B." height="145" width="245"></p></div></div><p>If you modify <code class="literal">Cell1</code> in cell array B, the array in that cell is
+                no longer shared with <code class="literal">Cell1</code> in cell array A. However the values
+                of all other cells remain shared so that the entire cell array does not need to be
+                copied.</p><div class="informalfigure"><div id="d126e42437" class="mediaobject"><p><img src="unshared_cellarraycell.png" alt="Each cell except Cell1 in array A maps to a cell in array B." height="145" width="245"></p></div></div><p>This example shows how to pass a cell array to a MEX function and modify one cell
+                in a cell array without causing copies of the data in the other cells. The example
+                loads image data into the MATLAB workspace and creates a cell array that contains the image data,
+                caption, and colormap. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">durer</span>
+whos</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name           Size               Bytes  Class 
+
+  X            648x509            2638656  double
+  caption        2x28                 112  char  
+  map          128x3                 3072  double </pre></div></div></div><p>Assign each variable to a different cell.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>durerCell{1} = X;
+durerCell{2} = caption;
+durerCell{3} = map;</pre></div></div></div><p>This MEX function uses <code class="literal">std::move</code> to move the input cell array
+                to a <a href="../apiref/matlab.data.cellarray.html"><code class="cpp">matlab::data::CellArray</code></a>, which provides access to individual cells. The
+                only data modified is the caption that is stored in one cell of the cell array. To
+                modify that cell:</p><div class="itemizedlist"><ul><li><p>Get a <a href="../apiref/matlab.data.typedarrayref.html"><code class="cpp">matlab::data::Reference&lt;TypedArray&lt;T&gt;&gt;</code></a> reference to
+                        the array in the cell containing the caption.</p></li><li><p>Assign the new value to the reference as a <a href="../apiref/matlab.data.chararray.html"><code class="cpp">matlab::data::CharArray</code></a>
+                        because the returned value is a MATLAB character vector.</p></li></ul></div><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "mex.hpp"
+#include "mexAdapter.hpp"
+
+using matlab::mex::ArgumentList;
+using namespace matlab::data;
+
+class MexFunction : public matlab::mex::Function {
+    ArrayFactory factory;
+public:
+    void operator()(ArgumentList outputs, ArgumentList inputs) {
+        checkArguments(inputs);
+        CellArray imageCell = std::move(inputs[0]);
+        TypedArrayRef&lt;char16_t&gt; cellRef = imageCell[1];
+        cellRef = factory.createCharArray("Albrecht Durer's Melancolia with a magic square" );
+        outputs[0] = imageCell;
+    }
+
+    void checkArguments(ArgumentList inputs) {
+        std::shared_ptr&lt;matlab::engine::MATLABEngine&gt; matlabPtr = getEngine();
+        if (inputs[0].getType() != ArrayType::CELL) {
+            matlabPtr-&gt;feval(u"error", 0, std::vector&lt;Array&gt;
+                ({ factory.createScalar("Input must be cell array") }));
+        }
+    }
+};</code></pre></div><p>Save this code in a file named <code class="literal">modifyCellArray.cpp</code>, build the
+                MEX file, and call the function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">modifyCellArray.cpp</span>
+durerCell = modifyCellArray(durerCell);</pre></div></div></div><p>The returned cell array contains the new character array assigned in the MEX
+                function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>durerCell{2}</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    'Albrecht Durer's Melancolia with a magic square'</pre></div></div></div><p>For more information on working with cell arrays, see <a href="cpp-api-cell-arrays.html" class="a">C++ Cell Arrays</a>.</p></section><section><h3 class="title" id="mw_41ab9cb6-6b28-4f3e-ac1c-14527ccce7a2">Modify Structure in MEX Function</h3><p>The MATLAB Data API defines <a href="../apiref/matlab.data.structarray.html"><code class="cpp">matlab::data::StructArray</code></a> to represent
+                    MATLAB
+                <a href="../ref/struct.html"><code class="object">struct</code></a> arrays. Each field in a
+                    <code class="literal">StructArray</code> itself contains an array. Therefore, you can
+                modify a field of a <code class="literal">StructArray</code> passed to a MEX function without
+                causing the whole array to be copied. Fields not modified remain shared with the
+                input array fields.</p><p>The <code class="literal">StructArray</code> class provides member functions to access the
+                fields of a structure:</p><div class="itemizedlist"><ul><li><p><code class="literal">getFieldNames</code> returns begin and end iterators providing
+                        access to field names.</p></li><li><p><code class="literal">getNumberOfFields</code> returns the number of fields in the
+                        structure.</p></li></ul></div><p>For example, you can generate a vector of field names and use these names to
+                access the data in the structure. This code assumes that the field contains an array
+                of type <code class="literal">double</code>.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">auto fields = myStruct.getFieldNames();
+std::vector&lt;matlab::data::MATLABFieldIdentifier&gt; fieldNames(fields.begin(), fields.end());
+// Get the data from one field
+matlab::data::TypedArray&lt;double&gt; field1 = myStruct[0][fieldNames[0]]</code></pre></div><p>Assign new values to a field by creating an array of the correct type.</p><div class="code_responsive"><pre class="programlisting">myStruct[0][fieldNames[0]] = factory.createArray&lt;double&gt;({ 1,5 }, { 1, 2, 3, 4, 5 });</pre></div><p>Create a reference to a field of a structure using <a href="../apiref/matlab.data.reference.html"><code class="cpp">matlab::data::Reference&lt;T&gt;</code></a>,
+                which you can pass to functions that access the values in the field. References
+                enable you to get the value of a field, to assign a new value to the field, and to
+                create another array that refers to the same value. For example, this code creates a
+                reference to a field containing an array of doubles.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">auto fields = myStruct.getFieldNames();
+std::vector&lt;matlab::data::MATLABFieldIdentifier&gt; fieldNames(fields.begin(), fields.end());
+matlab::data::TypedArrayRef&lt;double&gt; field1Reference = myStruct[0][fieldNames[0]]</code></pre></div><p>Assign new values to the field using this reference. </p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">field1Reference = factory.createArray&lt;double&gt;({ 1,5 }, { 1, 2, 3, 4, 5 });</code></pre></div><section><h4 class="title" id="mw_ff786a7d-3405-4cfc-a77c-6d5c48936636">Assign to Structure Field</h4><p>This example passes a MATLAB structure to a MEX function. The structure contains two large data
+                    fields, and two fields to contain scalar values assigned by the MEX function.
+                    The MEX function calculates the average value for the numbers in each array and
+                    assigns these values to the <code class="literal">Average</code> field of the respective
+                    structure.</p><p>This MATLAB code creates the structure array and passes it to the MEX function
+                    built from the <code class="literal">modifyStruct.cpp</code> file described here.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = struct(<span style="color:#A020F0">'Average'</span>,{[],[]},<span style="color:#0000FF">...</span>
+   <span style="color:#A020F0">'Data'</span>,{rand(1,1000),randi([1,9],1,1000)});
+s = modifyStruct(s);</pre></div></div></div><p>Here is the <code class="literal">MexFunction::operator()</code> function. It performs
+                    these operations:</p><div class="itemizedlist"><ul><li><p>Call the <code class="literal">checkArgument</code> function to check the inputs
+                            and outputs for size and type. </p></li><li><p>Assign the input to a <code class="literal">matlab::data::StructArray</code>
+                            variable.</p></li><li><p>Call the <code class="literal">calcMean</code> function to compute the
+                            averages.</p></li><li><p>Assign the updated structure array to the MEX function output.</p></li></ul></div><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">#include "mex.hpp"
+#include "mexAdapter.hpp"
+
+using matlab::mex::ArgumentList;
+using namespace matlab::data;
+
+class MexFunction : public matlab::mex::Function {
+public:
+    void operator()(ArgumentList outputs, ArgumentList inputs) {
+        checkArguments(outputs, inputs);
+        StructArray inStruct(inputs[0]);
+        calcMean(inStruct);
+        outputs[0] = inStruct;
+    }</code></pre></div><p>The <code class="literal">checkArguments</code> function performs these checks:</p><div class="itemizedlist"><ul><li><p>The number of inputs equals one.</p></li><li><p>The number of outputs is not greater than one.</p></li><li><p>The input is a MATLAB structure array.</p></li></ul></div><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">    void checkArguments(ArgumentList outputs, ArgumentList inputs) {
+        std::shared_ptr&lt;matlab::engine::MATLABEngine&gt; matlabPtr = getEngine();
+        ArrayFactory factory;
+        if (inputs.size() != 1) {
+            matlabPtr-&gt;feval(u"error", 0,
+                std::vector&lt;Array&gt;({ factory.createScalar("One input required") }));
+        }
+        if (outputs.size() &gt; 1) {
+            matlabPtr-&gt;feval(u"error", 0,
+                std::vector&lt;Array&gt;({ factory.createScalar("Too many outputs specified") }));
+        }
+        if (inputs[0].getType() != ArrayType::STRUCT) {
+            matlabPtr-&gt;feval(u"error", 0,
+                std::vector&lt;Array&gt;({ factory.createScalar("Input must be structure") }));
+        }
+    }</code></pre></div><p>The <code class="literal">calcMean</code> function calculates the average value for each
+                    set of numbers in the <code class="literal">Data</code> fields and assigns these values to
+                    the <code class="literal">Average</code> field of the respective structure.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">    void calcMean(StructArray&amp; inStruct) {  
+        ArrayFactory factory;
+        auto fields = inStruct.getFieldNames();
+        std::vector&lt;MATLABFieldIdentifier&gt; fieldNames(fields.begin(), fields.end());
+        double sm = 0;
+        for (auto i = 0; i &lt; 2; i++) {
+            const TypedArray&lt;double&gt; data = inStruct[i][fieldNames[1]];
+            for (auto&amp; elem : data) {
+                sm += elem;
+            }
+            inStruct[i][fieldNames[0]] = factory.createScalar(sm / data.getNumberOfElements());
+        }
+    }
+};</code></pre></div></section><section><h4 class="title" id="mw_9f59196d-07f3-4f23-a91f-80b8fb8be28c">Example of Cell and Structure Arrays</h4><p>For a related example that uses cell and structure arrays, open this source
+                    file in the MATLAB editor <a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/phonebook.cpp']);" target="_blank"><code class="literal">phonebook.cpp</code></a>.</p></section></section>
+            <h2 id="d126e42633">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../apiref/matlab.data.matlabfieldidentifier.html"><span itemprop="name"><code class="cpp">matlab::data::MATLABFieldIdentifier</code></span></a></span></p>
+            <h3 id="d126e42639">Topics</h3><ul class="list-unstyled"><li><a href="../matlab-data-array.html" class="a">MATLAB Data API for C++</a></li><li><a href="create-cell-arrays-1.html" class="a">Create Cell Arrays from C++</a></li><li><a href="create-struct-arrays-1.html" class="a">Create Structure Arrays from C++</a></li><li><a href="../cpp-mex-file-applications.html" class="a">Write C++ Functions Callable from MATLAB (MEX Files)</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

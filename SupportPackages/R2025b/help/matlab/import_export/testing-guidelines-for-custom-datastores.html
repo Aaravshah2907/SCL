@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Testing Guidelines for Custom Datastores</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../datastore.html",
+          "name": "Datastore"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "datastore"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="After implementing your custom datastore, follow this test procedure to qualify your custom datastore."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../datastore.html?s_tid=CRUX_lftnav" itemprop="url" id="buhq8av-1"><span itemprop="title">Datastore</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Testing Guidelines for Custom Datastores</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_28751472-2d9d-4231-8da7-daa842c04c81" class="nav-link intrnllnk">Unit Tests</a><ul class="nav"><li class="nav-item"><a href="#mw_8262b383-458d-40bb-bfd2-b0412056d688" class="nav-link intrnllnk">Construction</a></li><li class="nav-item"><a href="#mw_59ffc808-fa69-4356-a82d-1d5ce35eaf00" class="nav-link intrnllnk">read</a></li><li class="nav-item"><a href="#mw_a95c8e96-12a2-457a-8c34-ef5b0954d263" class="nav-link intrnllnk">readall</a></li><li class="nav-item"><a href="#mw_824ce88f-2e1a-4b34-bc7d-0f4107f9d939" class="nav-link intrnllnk">hasdata</a></li><li class="nav-item"><a href="#mw_cc0c62b4-2ad5-46a8-9761-67ff46357d13" class="nav-link intrnllnk">reset</a></li><li class="nav-item"><a href="#mw_cac646be-9fee-4c07-80f1-a45fa5c67157" class="nav-link intrnllnk">progress</a></li><li class="nav-item"><a href="#mw_400bc432-973f-4229-8a58-7eee0cca2522" class="nav-link intrnllnk">preview</a></li><li class="nav-item"><a href="#mw_617a7c89-e10d-4438-bc6a-a61d33e6f290" class="nav-link intrnllnk">partition</a></li><li class="nav-item"><a href="#mw_e2bee1e3-2189-41e7-b865-6aead24e86aa" class="nav-link intrnllnk">initializeDatastore</a></li><li class="nav-item"><a href="#mw_0fab8a8f-167a-40ea-94d1-04fb2a4c12b2" class="nav-link intrnllnk">getLocation</a></li><li class="nav-item"><a href="#mw_8e991d73-bb97-4d04-b533-21e55fa2dd65" class="nav-link intrnllnk">isfullfile</a></li></ul></li><li class="nav-item"><a href="#mw_8749f48d-36e0-4af9-ac10-24e6b52a93b1" class="nav-link intrnllnk">Workflow Tests</a><ul class="nav"><li class="nav-item"><a href="#mw_c69906e5-5d31-43ea-87b4-06f5a48734e0" class="nav-link intrnllnk">Tall Workflow</a></li><li class="nav-item"><a href="#mw_bb28e89f-d660-4043-814c-c9104c701ae7" class="nav-link intrnllnk">MapReduce Workflow</a></li></ul></li><li class="nav-item"><a href="#mw_73f1f5f3-f794-413c-abef-c572eb0cc04f" class="nav-link intrnllnk">Next Steps</a></li><li class="nav-item"><a href="#d126e31893" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=datastore&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=datastore&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=datastore&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=datastore&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=datastore&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=datastore&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_3fc849fb-93f3-465d-bac4-b5a03c445a05">Testing Guidelines for Custom Datastores</h2>
+      <p class="shortdesc">All datastores that are derived from the custom datastore classes share
+        some common behaviors. This test procedure provides guidelines to test the minimal set of
+        behaviors and functionalities that all custom datastores should have. You will need
+        additional tests to qualify any unique functionalities of your custom datastore.</p>
+      <p>If you have developed your custom datastore based on instructions in <a href="develop-custom-datastore.html" class="a">Develop Custom Datastore</a>, then follow these
+        test procedures to qualify your custom datastore. First perform the unit tests, followed by
+        the workflow tests: </p>
+<div class="itemizedlist"><ul><li><p>Unit tests qualify the datastore constructor and methods.</p></li><li><p>Workflow tests qualify the datastore usage.</p></li></ul></div><p>
+</p>
+      <p>For all these test cases:</p>
+<div class="itemizedlist"><ul><li><p>Unless specified in the test description, assume that you are testing a nonempty
+              datastore <code class="literal">ds</code>.</p></li><li><p>Verify the test cases on the file extensions, file encodings, and data locations
+              (like Hadoop<sup>&#x00AE;</sup>) that your custom datastore is designed to support.</p></li></ul></div><p>
+</p>
+    <section><h3 class="title" id="mw_28751472-2d9d-4231-8da7-daa842c04c81">Unit Tests</h3><section><h4 class="title" id="mw_8262b383-458d-40bb-bfd2-b0412056d688">Construction</h4><p>The unit test guidelines for the datastore constructor are as follows.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Check if your custom datastore constructor works with the minimal required
+                    inputs.</p>
+                </td><td>
+                  <p>Datastore object of your custom datastore type with the minimal expected
+                    properties and methods</p>
+                </td></tr><tr><td>
+                  <p>Check if your datastore object <code class="literal">ds</code> has <a href="../ref/matlab.io.datastore-class.html"><code class="class">matlab.io.Datastore</code></a> as one of its superclasses.</p>
+                  <p>Run this command:
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>isa(ds,<span style="color:#A020F0">'matlab.io.Datastore'</span>) </pre></div></div></div></p>
+                </td><td>
+                  <p><code class="literal">1</code> or <code class="literal">true</code></p>
+                </td></tr><tr><td>
+                  <p>Call your custom datastore constructor with the required inputs and any
+                    supported input arguments and name-value pair arguments.</p>
+                </td><td>
+                  <p>Datastore object of your custom datastore type with the minimal expected
+                    properties and methods</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_59ffc808-fa69-4356-a82d-1d5ce35eaf00"><code class="literal">read</code></h4><p>Unit test guidelines for the <code class="literal">read</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call the <code class="literal">read</code> method on a datastore object
+                      <code class="literal">ds</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = read(ds);</pre></div></div></div></p>
+                </td><td>
+                  <p>Data from the beginning of the datastore</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">read</code> method again on the datastore
+                    object.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = read(ds);</pre></div></div></div></p>
+                </td><td>
+                  <p>Data starting from the end point of the previous read operation</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>Continue calling the <code class="literal">read</code> method on the datastore object
+                    in a while
+                    loop.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">while</span>(hasdata(ds))
+  t = read(ds);
+<span style="color:#0000FF">end</span></pre></div></div></div></p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>Correct data in the correct format</p>
+                </td></tr><tr><td>
+                  <p>When data is available to read, check the <code class="literal">info</code> output (if
+                    any) of the <code class="literal">read</code> method.</p>
+                  <p>Call a datastore object
+                    <code class="literal">ds</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[t,info] = read(ds);</pre></div></div></div></p>
+                </td><td>
+                  <p>No error</p>
+                  <p><code class="literal">info</code> contains the expected information</p>
+                  <p><code class="literal">t</code> contains the expected data</p>
+                </td></tr><tr><td>
+                  <p>When no more data is available to read, call <code class="literal">read</code> on the
+                    datastore object.</p>
+                </td><td>
+                  <p>Either expected output or an error message based on your custom datastore
+                    implementation.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_a95c8e96-12a2-457a-8c34-ef5b0954d263"><code class="literal">readall</code></h4><p>Unit test guidelines for the <code class="literal">readall</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call the <code class="literal">readall</code> method on the datastore object.</p>
+                </td><td>
+                  <p>All data</p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">readall</code> method on the datastore object, when
+                      <code class="literal">hasdata(ds)</code> is <code class="literal">false</code>.</p>
+                  <p>Read from the datastore until <code class="literal">hasdata(ds)</code> is
+                      <code class="literal">false</code>, and then call the <code class="literal">readall</code>
+                    method.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">while</span>(hasdata(ds))
+  t = read(ds);
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>readall(ds)</pre></div></div></div></p>
+                </td><td>
+                  <p>All data</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_824ce88f-2e1a-4b34-bc7d-0f4107f9d939"><code class="literal">hasdata</code></h4><p>Unit test guidelines for the <code class="literal">hasdata</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call the <code class="literal">hasdata</code> method on the datastore object before
+                    making any calls to <code class="literal">read</code></p>
+                </td><td>
+                  <p>
+                    <code class="literal">true</code></p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">hasdata</code> method on the datastore object after
+                    making a few calls to <code class="literal">read</code>, but before all the data is read
+                  </p>
+                </td><td>
+                  <p><code class="literal">true</code></p>
+                </td></tr><tr><td>
+                  <p>When more data is available to read, call the <code class="literal">readall</code>
+                    method, and then call the <code class="literal">hasdata</code> method.</p>
+                </td><td>
+                  <p><code class="literal">true</code></p>
+                </td></tr><tr><td>
+                  <p>When no more data is available to read, call the <code class="literal">hasdata</code>
+                    method.</p>
+                </td><td>
+                  <p><code class="literal">false</code></p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_cc0c62b4-2ad5-46a8-9761-67ff46357d13"><code class="literal">reset</code></h4><p>Unit test guidelines for the <code class="literal">reset</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call the <code class="literal">reset</code> method on the datastore object before
+                    making any calls to the <code class="literal">read</code> method.</p>
+                  <p>Verify that the <code class="literal">read</code> method returns the appropriate data
+                    after a call to the <code class="literal">reset</code> method.</p>
+                  <p>
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reset(ds);
+t = read(ds);</pre></div></div></div>
+                  </p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>The <code class="literal">read</code> returns data from the beginning of the
+                    datastore.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>When more data is available to read, call the <code class="literal">reset</code>
+                    method after making a few calls to the <code class="literal">read</code> method.</p>
+                  <p>Verify that the <code class="literal">read</code> method returns the appropriate data
+                    after making a call to the <code class="literal">reset</code> method.</p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>The <code class="literal">read</code> method returns data from the beginning of the
+                    datastore.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>When more data is available to read, call the <code class="literal">reset</code>
+                    method after making a call to the <code class="literal">readall</code> method.</p>
+                  <p>Verify that the <code class="literal">read</code> method returns the appropriate data
+                    after making a call to the <code class="literal">reset</code> method.</p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>The <code class="literal">read</code> method returns data from the beginning of the
+                    datastore.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>When no more data is available to read, call the <code class="literal">reset</code>
+                    method on the datastore object and then call the <code class="literal">read</code>
+                    method</p>
+                  <p>Verify that <code class="literal">read</code> returns the appropriate data after a
+                    call to the <code class="literal">reset</code> method.</p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>The <code class="literal">read</code> method returns data from the beginning of the
+                    datastore.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_cac646be-9fee-4c07-80f1-a45fa5c67157"><code class="literal">progress</code></h4><p>Unit test guidelines for the <code class="literal">progress</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call the <code class="literal">progress</code> method on the datastore object before
+                    making any calls to the <code class="literal">read</code> method.</p>
+                </td><td>
+                  <p><code class="literal">0</code> or an expected output based on your custom datastore
+                    implementation.</p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">progress</code> method on the datastore object after
+                    making a call to <code class="literal">readall</code>, but before making any calls to
+                      <code class="literal">read</code></p>
+                  <p>
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>readall(ds);
+progress(ds)</pre></div></div></div>
+                  </p>
+                </td><td>
+                  <p><code class="literal">0</code> or an expected output based on your custom datastore
+                    implementation.</p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">progress</code> method on the datastore object after
+                    making a few calls to <code class="literal">read</code> and while more data is available
+                    to read.</p>
+                </td><td>
+                  <p>A fraction between <code class="literal">0</code> and <code class="literal">1</code> or an
+                    expected output based on your custom datastore implementation.</p>
+                </td></tr><tr><td>
+                  <p>Call the <code class="literal">progress</code> method on the datastore object when no
+                    more data is available to read.</p>
+                </td><td>
+                  <p><code class="literal">1</code> or an expected output based on your custom datastore
+                    implementation.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_400bc432-973f-4229-8a58-7eee0cca2522"><code class="literal">preview</code></h4><p>Unit test guidelines for the <code class="literal">preview</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">preview</code> on the datastore object before making any
+                    calls to <code class="literal">read</code>.</p>
+                </td><td>
+                  <p>The <code class="literal">preview</code> method returns the expected data from the
+                    beginning of the datastore, based on your custom datastore implementation.
+                  </p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code> on the datastore object after making a few
+                    calls to <code class="literal">read</code> and while more data is available to
+                    read.</p>
+                </td><td>
+                  <p>The <code class="literal">preview</code> method returns the expected data from the
+                    beginning of the datastore, based on your custom datastore implementation.
+                  </p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code> on the datastore object after making a call
+                    to <code class="literal">readall</code> and while more data is available to read.</p>
+                </td><td>
+                  <p>The <code class="literal">preview</code> method returns the expected data from the
+                    beginning of the datastore, based on your custom datastore implementation.
+                  </p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code> on the datastore object after making a few
+                    calls to <code class="literal">read</code> and a call to <code class="literal">reset</code>.</p>
+                </td><td>
+                  <p>The <code class="literal">preview</code> method returns the expected data from the
+                    beginning of the datastore, based on your custom datastore implementation.
+                  </p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code> on the datastore object when no more data is
+                    available to read.</p>
+                </td><td>
+                  <p>The <code class="literal">preview</code> method returns the expected data from the
+                    beginning of the datastore, based on your custom datastore implementation.
+                  </p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code> after making a few calls to
+                      <code class="literal">read</code> method and then call <code class="literal">read</code>
+                    again.</p>
+                </td><td>
+                  <p>The <code class="literal">read</code> method returns data starting from the end point
+                    of the previous read operation.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">preview</code>, and then call <code class="literal">readall</code> on
+                    the datastore.</p>
+                </td><td>
+                  <p>The <code class="literal">readall</code> method returns all the data from the
+                    datastore.</p>
+                </td></tr><tr><td>
+                  <p>While datastore has data available to read, call <code class="literal">preview</code>,
+                    and then call <code class="literal">hasdata</code>.</p>
+                </td><td>
+                  <p>The <code class="literal">hasdata</code> method returns
+                    <code class="literal">true</code>.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_617a7c89-e10d-4438-bc6a-a61d33e6f290"><code class="literal">partition</code></h4><p>Unit test guidelines for the <code class="literal">partition</code> method</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">partition</code> on the datastore object
+                      <code class="literal">ds</code> with a valid number of partitions and a valid partition
+                    index.</p>
+                  <p>Call <code class="literal">read</code> on a partition of the datastore and verify the
+                    data.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>subds = partition(ds,n,index)
+read(subds)</pre></div></div></div></p>
+                  <p>Verify that the partition is
+                    valid.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>isequal(properties(ds),properties(subds))
+isequal(methods(ds),methods(subds))</pre></div></div></div></p>
+                </td><td>
+                  <p>The <code class="literal">partition</code> method partitions the datastore into
+                      <code class="literal">n</code> partitions and returns the partition corresponding to the
+                    specified <code class="literal">index</code>.</p>
+                  <p>The returned partition <code class="literal">subds</code> must be a datastore object
+                    of your custom datastore.</p>
+                  <p> The partitioned datastore <code class="literal">subds</code> must have the same
+                    methods and properties as the original datastore.</p>
+                  <p>The <code class="literal">isequal</code> statement returns
+                    <code class="literal">true</code>.</p>
+                  <p>Calling <code class="literal">read</code> on the partition returns data starting from
+                    the beginning of the partition.</p>
+                  <p>If you specify read size, then the size of the returned data is equivalent
+                    to read size.</p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">partition</code> on the datastore object
+                      <code class="literal">ds</code> with number of partitions specified as
+                      <code class="literal">1</code> and <code class="literal">index</code> of returned partition
+                    specified as <code class="literal">1</code>.</p>
+                  <p>Verify the data returned by calling <code class="literal">read</code> and
+                      <code class="literal">preview</code> on a partition of the partitioned datastore.</p>
+                  <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>subds = partition(ds,1,1)
+isequal(properties(ds),properties(subds))
+isequal(methods(ds),methods(subds))
+isequaln(read(subds),read(ds))
+isequaln(preview(subds),preview(ds))
+</pre></div></div></div>
+                </td><td>
+                  <p>The partition <code class="literal">subds</code> must be a datastore object of your
+                    custom datastore.</p>
+                  <p> The partition <code class="literal">subds</code> must have the same methods and
+                    properties as the original datastore <code class="literal">ds</code>.</p>
+                  <p>The <code class="literal">isequal</code> and <code class="literal">isequaln</code> statements
+                    returns <code class="literal">true</code>.</p>
+                </td></tr><tr><td>
+                  <p>Call <code class="literal">partition</code> on the partition <code class="literal">subds</code>
+                    with a valid number of partitions and a valid partition index.</p>
+                </td><td><p>The repartitioning of a partition of the datastore should work without
+                    errors.</p></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_e2bee1e3-2189-41e7-b865-6aead24e86aa"><code class="literal">initializeDatastore</code></h4><p>If your datastore inherits from <a href="../ref/matlab.io.datastore.hadoopfilebased-class.html"><code class="class">matlab.io.datastore.HadoopFileBased</code></a>, then verify the behavior of
+            <code class="literal">initializeDatastore</code> using the guidelines in this table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">initializeDatastore</code> on the datastore object
+                      <code class="literal">ds</code> with a valid <code class="literal">info</code> struct.</p>
+                  <p>The <code class="literal">info</code> struct contains these fields:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">FileName</code></p></li><li><p><code class="literal">Offset</code></p></li><li><p><code class="literal">Size</code></p></li></ul></div><p>
+</p>
+                  <p><code class="literal">FileName</code> is of data type <code class="literal">char</code> and the
+                    fields <code class="literal">Offset</code> and <code class="literal">Size</code> are of the data
+                    type double.</p>
+                  <p>For example, initialize the <code class="literal">info</code> struct, and then call
+                      <code class="literal">initializeDatastore</code> on the datastore object
+                      <code class="literal">ds</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>info = struct(<span style="color:#A020F0">'FileName'</span>,<span style="color:#A020F0">'myFileName.ext'</span>,<span style="color:#0000FF">...</span>
+                       <span style="color:#A020F0">'Offset'</span>,0,<span style="color:#A020F0">'Size'</span>,500)
+initializeDatastore(ds,info)</pre></div></div></div></p>
+                  <p>Verify the initialization by examining the properties of your datastore
+                    object.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds</pre></div></div></div></p>
+                </td><td>
+                  <p>The <code class="literal">initializeDatastore</code> method initializes the custom
+                    datastore object <code class="literal">ds</code> with the necessary information from the
+                      <code class="literal">info</code> struct.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_0fab8a8f-167a-40ea-94d1-04fb2a4c12b2"><code class="literal">getLocation</code></h4><p>If your datastore inherits from <a href="../ref/matlab.io.datastore.hadoopfilebased-class.html"><code class="class">matlab.io.datastore.HadoopFileBased</code></a>, then verify the behavior of
+            <code class="literal">getLocation</code> using these guidelines.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">getLocation</code> on the datastore
+                    object.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>location = getLocation(ds)</pre></div></div></div></p>
+                  <p>Based on your custom datastore implementation, the
+                      <code class="literal">location</code> output is either of these:</p>
+<div class="itemizedlist"><ul><li><p>List of files or directories</p></li><li><p>a <code class="literal">matlab.io.datastore.DsFileSet</code> object</p></li></ul></div><p>
+</p>
+                  <p>If <code class="literal">location</code> is a
+                      <code class="literal">matlab.io.datastore.DsFileSet</code> object, then call
+                      <code class="literal">resolve</code> to verify the files in the
+                      <code class="literal">location</code>
+                    output.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>resolve(location)</pre></div></div></div></p>
+                </td><td>
+                  <p>The <code class="literal">getLocation</code> method returns the location of files in
+                      Hadoop.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_8e991d73-bb97-4d04-b533-21e55fa2dd65"><code class="literal">isfullfile</code></h4><p>If your datastore inherits from <a href="../ref/matlab.io.datastore.hadoopfilebased-class.html"><code class="class">matlab.io.datastore.HadoopFileBased</code></a>, then verify the behavior of
+            <code class="literal">isfullfile</code> using these guidelines.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">isfullfile</code> on the datastore object.</p>
+                </td><td>
+                  <p>Based on your custom datastore implementation, the
+                      <code class="literal">isfullfile</code> method returns <code class="literal">true</code> or
+                      <code class="literal">false</code>.</p>
+                </td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_8749f48d-36e0-4af9-ac10-24e6b52a93b1">Workflow Tests</h3><p>Verify your workflow tests in the appropriate environment.</p>
+<div class="itemizedlist"><ul><li><p>If your datastore inherits only from <a href="../ref/matlab.io.datastore-class.html"><code class="class">matlab.io.Datastore</code></a>, then verify all workflow tests in a local MATLAB<sup>&#x00AE;</sup> session.</p></li><li><p>If your datastore has parallel processing support (inherits from <a href="../ref/matlab.io.datastore.partitionable-class.html"><code class="class">matlab.io.datastore.Partitionable</code></a>), then verify your workflow tests in
+              parallel execution environments, such as Parallel Computing Toolbox&#x2122; and <span class="entity">MATLAB
+            Parallel Server&#x2122;</span>.</p></li><li><p>If your datastore has Hadoop support (inherits from <a href="../ref/matlab.io.datastore.hadoopfilebased-class.html"><code class="class">matlab.io.datastore.HadoopFileBased</code></a>), then verify your workflow tests in a
+                Hadoop cluster.</p></li></ul></div><p>
+</p><section><h4 class="title" id="mw_c69906e5-5d31-43ea-87b4-06f5a48734e0">Tall Workflow</h4><p>Testing guidelines for the <code class="literal">tall</code> workflow</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Create a tall array by calling <code class="literal">tall</code> on the datastore
+                    object
+                    <code class="literal">ds</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = tall(ds)</pre></div></div></div></p>
+                </td><td>
+                  <p>The <code class="literal">tall</code> function returns an output that is the same data
+                    type as the output of the <code class="literal">read</code> method of the
+                    datastore.</p>
+                </td></tr><tr><td>
+                  <p>For this test step, create a datastore object with data that fits in your
+                    system memory. Then, create a tall array using this datastore
+                    object.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = tall(ds)</pre></div></div></div>
+                  </p>
+                  <p>If your data is numeric, then apply an appropriate function like the
+                      <code class="literal">mean</code> function to both the <code class="literal">ds</code> and
+                      <code class="literal">t</code>, then compare the results.</p>
+                  <p>If your data is of the data type <code class="literal">string</code> or
+                      <code class="literal">categorical</code>, then apply the <code class="literal">unique</code>
+                    function on a column of <code class="literal">ds</code> and a column of
+                      <code class="literal">t</code>, then compare the results.</p>
+                  <p>Apply <code class="literal">gather</code> and verify the result.</p>
+                  <p>For examples, see <a href="../../parallel-computing/big-data-workflow-using-tall-arrays-and-datastores.html" class="a">Big Data Workflow Using Tall Arrays and Datastores</a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p>
+                </td><td>
+                  <p>No errors</p>
+                  <p>The function returns an output of the correct data type (not of a
+                      <code class="literal">tall</code> data type).</p>
+                  <p>The function returns the same result whether it is applied to
+                      <code class="literal">ds</code> or to <code class="literal">t</code>.</p>
+                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_bb28e89f-d660-4043-814c-c9104c701ae7">MapReduce Workflow</h4><p>Testing guidelines for the MapReduce workflow</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="59%" align="left"><col class="tcol2" width="41%" align="left"></colgroup><thead><tr><th>Test Case Description</th><th>Expected Output</th></tr></thead><tbody><tr><td>
+                  <p>Call <code class="literal">mapreduce</code> on the datastore object
+                      <code class="literal">ds</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outds = mapreduce(ds,@mapper,@reducer)</pre></div></div></div>For
+                    more information, see <a href="../ref/mapreduce.html"><code class="function">mapreduce</code></a>.</p>
+                  <p>To support the use of the <code class="literal">mapreduce</code> function, the
+                      <code class="literal">read</code> method of your custom datastore must return both the
+                      <code class="literal">info</code> and the <code class="literal">data</code> output
+                    arguments.</p>
+                </td><td>
+                  <p>No error</p>
+                  <p>The MapReduce operation returns the expected result</p>
+                </td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_73f1f5f3-f794-413c-abef-c572eb0cc04f">Next Steps</h3><p></p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This test procedure provides guidelines to test the minimal set of behaviors and
+            functionalities for custom datastores. Additional tests are necessary to qualify any
+            unique functionalities of your custom datastore.</p></div><p>
+After you complete the implementation and validation of your custom datastore, your
+        custom datastore is ready to use.</p>
+<div class="itemizedlist"><ul><li><p>To add help for your custom datastore implementation, see <a href="../matlab_prog/create-help-for-classes.html" class="a">Create Help for Classes</a>.</p></li><li><p>To share your custom datastore with other users, see <a href="../matlab_prog/create-and-share-custom-matlab-toolboxes.html" class="a">Create and Share Toolboxes</a>.</p></li></ul></div><p>
+</p></section>
+      <h2 id="d126e31893">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore-class.html"><span itemprop="name"><code class="class">matlab.io.Datastore</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.partitionable-class.html"><span itemprop="name"><code class="class">matlab.io.datastore.Partitionable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.hadooplocationbased-class.html"><span itemprop="name"><code class="class">matlab.io.datastore.HadoopLocationBased</code></span></a></span></p>
+      <h3 id="d126e31905">Topics</h3><ul class="list-unstyled"><li><a href="develop-custom-datastore.html" class="a">Develop Custom Datastore</a></li><li><a href="../matlab_prog/create-and-share-custom-matlab-toolboxes.html" class="a">Create and Share Toolboxes</a></li><li><a href="../matlab_prog/create-help-for-classes.html" class="a">Create Help for Classes</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

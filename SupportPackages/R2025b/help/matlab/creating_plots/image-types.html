@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Working with Image Types in MATLAB</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../graphics-images.html",
+          "name": "Images"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "graphics-images"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read and display various image types supported by MATLAB graphics."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics-images.html?s_tid=CRUX_lftnav" itemprop="url" id="btfntr_-1"><span itemprop="title">Images</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Working with Image Types in MATLAB</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_6c8c1e87-44e4-42d6-9953-b65f2b8f905a" class="nav-link intrnllnk">Image Types</a></li><li class="nav-item"><a href="#brb6ogc" class="nav-link intrnllnk">Read and Display Image File</a><ul class="nav"><li class="nav-item"><a href="#brb6ont" class="nav-link intrnllnk">Indexed Image</a></li><li class="nav-item"><a href="#mw_4bcc5057-ee22-441d-a3a2-8cfb1dd4737a" class="nav-link intrnllnk">Read and Display Indexed Image</a></li><li class="nav-item"><a href="#mw_d2410389-e42a-4987-b1bc-851d03fe8d70" class="nav-link intrnllnk">Grayscale (Intensity) Image</a></li><li class="nav-item"><a href="#mw_553b7ea3-a889-46f4-b3d7-5faa4bc9497e" class="nav-link intrnllnk">Read and Display Grayscale Image</a></li><li class="nav-item"><a href="#mw_0db260f7-ce77-40e4-b2ab-a970b87f3705" class="nav-link intrnllnk">RGB (Truecolor) Image</a></li><li class="nav-item"><a href="#mw_5669e093-beda-45ff-87a0-091ffbe981f5" class="nav-link intrnllnk">Read and Display RGB Image</a></li></ul></li><li class="nav-item"><a href="#brb6od5" class="nav-link intrnllnk">Display Array Data as Image</a></li><li class="nav-item"><a href="#d126e23501" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=graphics-images&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=graphics-images&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=graphics-images&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=graphics-images&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=graphics-images&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=graphics-images&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f2-10709">Working with Image Types in <span class="trademark entity">MATLAB</span></h2><span id="displaying_graphics_images" class="anchor_target"></span><p>MATLAB<sup>&#x00AE;</sup> represents images as arrays (often two-dimensional matrices) in which each
+            element corresponds to a single pixel in the displayed image. Working with images in
+                MATLAB is similar to working with any other type of matrix data, and you can
+            display any two-dimensional data as an image in MATLAB. There are two common ways to
+            display images:</p>
+<div class="itemizedlist"><ul><li><p><a href="image-types.html#brb6ogc" class="intrnllnk">Read and Display Image File</a> &#8212; Use <a href="../ref/imshow.html"><code class="function">imshow</code></a> to display image
+                        files, which typically represent a picture.</p></li><li><p><a href="image-types.html#brb6od5" class="intrnllnk">Display Array Data as Image</a> &#8212; Use <a href="../ref/image.html"><code class="function">image</code></a> or <a href="../ref/imagesc.html"><code class="function">imagesc</code></a> to display array
+                        data, which does not necessarily represent a picture but can contain complex
+                        patterns that can be visualized as an image.</p></li></ul></div><p>
+</p><section><h3 class="title" id="mw_6c8c1e87-44e4-42d6-9953-b65f2b8f905a">Image Types</h3><p>The three common types of images, which have various array dimensions, are
+                indexed, grayscale (intensity), and RGB (truecolor). This table provides a summary
+                of the image types.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th>Image Type</th><th>Data Matrix</th><th>Colormap Matrix</th><th>Example</th></tr></thead><tbody><tr><td><a href="image-types.html#brb6ont" class="intrnllnk">Indexed Image</a></td><td><span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span></td><td><span class="emphasis"><em>p</em></span>-by-3</td><td><p><a href="image-types.html#mw_4bcc5057-ee22-441d-a3a2-8cfb1dd4737a" class="intrnllnk">Read and Display Indexed Image</a></p><p>
+                                        </p>
+<div class="informalfigure"><div id="d126e23129" class="mediaobject"><p><img src="cornex.png" alt="Three cobs of corn displayed with color." height="60" width="45"></p></div></div><p>
+                                    </p></td></tr><tr><td><a href="image-types.html#mw_d2410389-e42a-4987-b1bc-851d03fe8d70" class="intrnllnk">Grayscale (Intensity) Image</a></td><td><span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span></td><td>None by default, but you can apply a colormap.</td><td><p><a href="image-types.html#mw_553b7ea3-a889-46f4-b3d7-5faa4bc9497e" class="intrnllnk">Read and Display Grayscale Image</a></p><p><span class="guiicon"><span class="inlinemediaobject"><img src="corn_grayex.png" alt="Three cobs of corn displayed in gray." height="60" width="45"></span></span></p></td></tr><tr><td><a href="image-types.html#mw_0db260f7-ce77-40e4-b2ab-a970b87f3705" class="intrnllnk">RGB (Truecolor) Image</a></td><td><span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span>-by-3</td><td>None</td><td><p><a href="image-types.html#mw_5669e093-beda-45ff-87a0-091ffbe981f5" class="intrnllnk">Read and Display RGB Image</a></p><p><span class="guiicon"><span class="inlinemediaobject"><img src="earthex.jpg" alt="Image of the earth." height="46" width="45"></span></span></p></td></tr></tbody></table></div><p>
+</p><p>If you are working with an image file, you can check the image type by using the
+                    <a href="../ref/imfinfo.html"><code class="function">imfinfo</code></a> function. For example,
+                determine the image type of
+                <code class="literal">peppers.png</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>info = imfinfo(<span style="color:#A020F0">"peppers.png"</span>);
+info.ColorType</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 'truecolor'</pre></div></div></div></p></section><section><h3 class="title" id="brb6ogc">Read and Display Image File</h3><p>Working with images often involves loading image data into the MATLAB workspace, displaying the image, and manipulating the image data.
+                However, the process for working with an image depends on the image type.</p><section><h4 class="title" id="brb6ont">Indexed Image</h4><p>An indexed image is stored as an image data matrix, <code class="literal">X</code>, and
+                    a colormap matrix, <code class="literal">map</code>. Each row of <code class="literal">map</code>
+                    specifies the red, green, and blue components of a single color. Indexed images
+                    use a <em class="firstterm">direct mapping</em> of pixel values to colormap values.
+                    The color of each image pixel is determined by using the corresponding value of
+                        <code class="literal">X</code> as an index (pointer) to color values stored in the
+                    colormap. <code class="literal">X</code> is an
+                        <span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span> matrix containing integers
+                    such that the value 1 points to the first row in <code class="literal">map</code>, the
+                    value 2 points to the second row, and so on. </p><p>For example, for this indexed image of corn, the value of 2 in the data matrix
+                    is an index to row 2 of the colormap, and the value of 15 in the data matrix is
+                    an index to row 15 of the colormap.</p><div class="informalfigure"><div id="d126e23214" class="mediaobject"><p><img src="indexed_image_map.png" alt="Image of three ears of corn and its data matrix and colormap. The data matrix contains integer values that map into the colormap, which contains red, green, and blue values for pixel colors." height="236" width="683"></p></div></div></section><section><h4 class="title" id="mw_4bcc5057-ee22-441d-a3a2-8cfb1dd4737a">Read and Display Indexed Image</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('graphics/ReadAndDisplayIndexedImageExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read and Display Indexed Image",
+          "description": "Load the indexed image using imread, specifying both a data matrix, X, and a colormap, map, as the output arguments. Then display the data matrix with the colormap.",
+          "thumbnailURL": "../../examples/graphics/win64/corn.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "image-types.html"
+
+        },
+          "identifier": "graphics.ReadAndDisplayIndexedImageExample",
+          "name": "ReadAndDisplayIndexedImageExample",
+          "url": "image-types.html#mw_4bcc5057-ee22-441d-a3a2-8cfb1dd4737a"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('graphics/ReadAndDisplayIndexedImageExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadAndDisplayIndexedImageExample.mlx",
+        "corn.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="graphics-ReadAndDisplayIndexedImageExample"><meta itemprop="exampletitle" content="Read and Display Indexed Image"></div><span id="ReadAndDisplayIndexedImageExample" class="anchor_target"></span><p class="shortdesc">Load the indexed image using <code class="literal">imread</code>, specifying both a data matrix, <code class="literal">X</code>, and a colormap, <code class="literal">map</code>, as the output arguments. Then display the data matrix with the colormap.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[X,map] = imread(<span style="color:#A020F0">"corn.png"</span>);
+imshow(X,map)</pre></div></div></div><div class="informalfigure"><div id="d126e23247" class="mediaobject"><p><img src="../../examples/graphics/win64/ReadAndDisplayIndexedImageExample_01.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="490"></p></div></div><p><code class="literal">map</code> stores the colormap associated with the image file. However, you can specify any colormap using the <code class="literal">imshow</code> function. For example, convert <code class="literal">map</code> to a grayscale colormap and display the image data with the new colormap. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>newmap = cmap2gray(map);
+imshow(X,newmap)</pre></div></div></div><div class="informalfigure"><div id="d126e23261" class="mediaobject"><p><img src="../../examples/graphics/win64/ReadAndDisplayIndexedImageExample_02.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="490"></p></div></div><p>You can use matrix subscripting to select a single pixel from an image data matrix. The size of the image data matrix corresponds to the number of pixels in the image. For example, <code class="literal">X</code> represents an image that is composed of 415 rows and 312 columns of pixels. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sz = size(X)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>sz = <span class="emphasis"><em>1×2</em></span>
+
+   415   312
+
+</pre></div></div></div><p>Get the colormap index of the pixel at row 2, column 15 of <code class="literal">X</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>val = X(2,15)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>val = <span class="emphasis"><em>uint8</em></span>
+
+39
+</pre></div></div></div><p>Index into <code class="literal">map</code> and display the three values for the red, green, and blue intensities of this pixel. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>color = map(val,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>color = <span class="emphasis"><em>1×3</em></span>
+
+    0.4588    0.2902    0.2627
+
+</pre></div></div></div><div class="procedure"></div></section><section><h4 class="title" id="mw_d2410389-e42a-4987-b1bc-851d03fe8d70">Grayscale (Intensity) Image</h4><p>A grayscale image, sometimes referred to as an <span class="emphasis"><em>intensity</em></span> image, is stored as an
+                        <span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span> data matrix,
+                        <code class="literal">X</code>, whose values represent intensities within some range.
+                    A grayscale image is represented as a single matrix, with each element of the
+                    matrix corresponding to one image pixel. While grayscale images are rarely saved
+                    with a colormap, a grayscale colormap is still used to display them. In essence,
+                    grayscale images are treated as indexed images. </p><p>For example, for this grayscale image of corn, the data matrix contains
+                    integers in the range [0, 255] to represent the intensity of each pixel. </p><div class="informalfigure"><div id="d126e23313" class="mediaobject"><p><img src="grayscale_image_map.png" alt="Grayscale image of three ears of corn and its data matrix. The data matrix contains integer values that represent the color intensities for the corresponding image pixels." height="235" width="371"></p></div></div></section><section><h4 class="title" id="mw_553b7ea3-a889-46f4-b3d7-5faa4bc9497e">Read and Display Grayscale Image</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('graphics/ReadAndDisplayGrayscaleImageExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read and Display Grayscale Image",
+          "description": "Load the grayscale image into the workspace and display it.",
+          "thumbnailURL": "../../examples/graphics/win64/corn_gray.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "image-types.html"
+
+        },
+          "identifier": "graphics.ReadAndDisplayGrayscaleImageExample",
+          "name": "ReadAndDisplayGrayscaleImageExample",
+          "url": "image-types.html#mw_553b7ea3-a889-46f4-b3d7-5faa4bc9497e"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('graphics/ReadAndDisplayGrayscaleImageExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadAndDisplayGrayscaleImageExample.mlx",
+        "corn_gray.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="graphics-ReadAndDisplayGrayscaleImageExample"><meta itemprop="exampletitle" content="Read and Display Grayscale Image"></div><span id="ReadAndDisplayGrayscaleImageExample" class="anchor_target"></span><p class="shortdesc">Load the grayscale image into the workspace and display it.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = imread(<span style="color:#A020F0">"corn_gray.png"</span>);
+imshow(X)</pre></div></div></div><div class="informalfigure"><div id="d126e23340" class="mediaobject"><p><img src="../../examples/graphics/win64/ReadAndDisplayGrayscaleImageExample_01.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="490"></p></div></div><p>You can display the grayscale image using a different colormap. For example, display the grayscale image in shades of blue and green by using the <code class="literal">winter</code> colormap.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>imshow(X,winter)</pre></div></div></div><div class="informalfigure"><div id="d126e23351" class="mediaobject"><p><img src="../../examples/graphics/win64/ReadAndDisplayGrayscaleImageExample_02.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="490"></p></div></div><p>You can use matrix subscripting to access the pixel intensities of the image. For example, get the grayscale intensity value of the pixel at row 2, column 15 of <code class="literal">X</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>val = X(2,15)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>val = <span class="emphasis"><em>uint8</em></span>
+
+156
+</pre></div></div></div><div class="procedure"></div></section><section><h4 class="title" id="mw_0db260f7-ce77-40e4-b2ab-a970b87f3705">RGB (Truecolor) Image</h4><p>An RGB image, sometimes referred to as a <em class="firstterm">truecolor</em>
+                    image, is stored as an <span class="emphasis"><em>m</em></span>-by-<span class="emphasis"><em>n</em></span>-by-3
+                    data array that defines red, green, and blue color components for each
+                    individual pixel. Graphics file formats store RGB images as 24-bit images where
+                    the red, green, and blue components are 8 bits each. This arrangement yields a
+                    potential of 16 million colors. The precision with which a real-life image can
+                    be represented has led to the term “truecolor image.” </p><p>RGB images do not use a colormap. The color of each pixel is determined by the
+                    combination of the red, green, and blue intensities stored in each color plane
+                    at the pixel's location. For example, the red, green, and blue color components
+                    of the pixel (10, 5) in an RGB image <code class="literal">X</code> are stored in
+                        <code class="literal">X(10,5,1)</code>, <code class="literal">X(10,5,2)</code>, and
+                        <code class="literal">X(10,5,3)</code>, respectively. </p><div class="informalfigure"><div id="d126e23388" class="mediaobject"><p><img src="rgb_image_map.png" alt="Image of Earth and its 3-D data array. The data array contains red, green, and blue intensity values for the corresponding image pixels." height="311" width="565"></p></div></div></section><section><h4 class="title" id="mw_5669e093-beda-45ff-87a0-091ffbe981f5">Read and Display RGB Image</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('graphics/ReadAndDisplayRGBImageExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Read and Display RGB Image",
+          "description": "Load the RGB image. Because RGB image data is stored as an m-by-n-by-3 array where each pixel is represented by its red, green, and blue intensity values, the image data X contains the color data. Then display the image.",
+          "thumbnailURL": "../../examples/graphics/win64/earth.jpg",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "image-types.html"
+
+        },
+          "identifier": "graphics.ReadAndDisplayRGBImageExample",
+          "name": "ReadAndDisplayRGBImageExample",
+          "url": "image-types.html#mw_5669e093-beda-45ff-87a0-091ffbe981f5"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('graphics/ReadAndDisplayRGBImageExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ReadAndDisplayRGBImageExample.mlx",
+        "earth.jpg"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="graphics-ReadAndDisplayRGBImageExample"><meta itemprop="exampletitle" content="Read and Display RGB Image"></div><span id="ReadAndDisplayRGBImageExample" class="anchor_target"></span><p class="shortdesc">Load the RGB image. Because RGB image data is stored as an <span class="emphasis"><em><code class="literal">m</code></em></span>-by-<span class="emphasis"><em><code class="literal">n</code></em></span>-by-3 array where each pixel is represented by its red, green, and blue intensity values, the image data <code class="literal">X</code> contains the color data. Then display the image.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = imread(<span style="color:#A020F0">"earth.jpg"</span>);
+imshow(X)</pre></div></div></div><div class="informalfigure"><div id="d126e23423" class="mediaobject"><p><img src="../../examples/graphics/win64/ReadAndDisplayRGBImageExample_01.png" alt="Figure contains an axes object. The hidden axes object contains an object of type image." width="428"></p></div></div><p>The data arrays of RGB images allow you to easily access image size and color. The size of the image data array corresponds to the number of pixels in the image. For example, <code class="literal">X</code> represents an image that is composed of 257 rows and 250 columns of pixels. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>size(X)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   257   250     3
+
+</pre></div></div></div><p>To determine the color of a pixel, look at the RGB triplet stored in the third dimension of the data array. For example, get the color of the pixel at row 50, column 150 of <code class="literal">X</code>. The elements represent the red, green, and blue intensities of the pixel color, respectively, in the range of 0 to 255.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>color = X(50,150,1:3)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>color = <span class="emphasis"><em>1×1×3 uint8 array</em></span>
+color(:,:,1) =
+
+   119
+
+
+color(:,:,2) =
+
+   102
+
+
+color(:,:,3) =
+
+   110
+
+</pre></div></div></div><div class="procedure"></div></section></section><section><h3 class="title" id="brb6od5">Display Array Data as Image</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('graphics/DisplayingArrayDataAsAnImageExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Display Array Data as Image",
+          "description": "Working with array data can involve displaying it as an image to understand and analyze complex patterns, such as the relative intensity of data values. Using the image and imagesc functions, you can display the data from any two-dimensional matrix in your workspace as an image and apply a colormap to it.",
+          "thumbnailURL": "../../examples/graphics/win64/DisplayingArrayDataAsAnImageExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "image-types.html"
+
+        },
+          "identifier": "graphics.DisplayingArrayDataAsAnImageExample",
+          "name": "DisplayingArrayDataAsAnImageExample",
+          "url": "image-types.html#brb6od5"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('graphics/DisplayingArrayDataAsAnImageExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DisplayingArrayDataAsAnImageExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="graphics-DisplayingArrayDataAsAnImageExample"><meta itemprop="exampletitle" content="Display Array Data as Image"></div><span id="DisplayingArrayDataAsAnImageExample" class="anchor_target"></span><p class="shortdesc">Working with array data can involve displaying it as an image to understand and analyze complex patterns, such as the relative intensity of data values. Using the <code class="literal">image</code> and <code class="literal">imagesc</code> functions, you can display the data from any two-dimensional matrix in your workspace as an image and apply a colormap to it.</p><p>For example, create a two-dimensional matrix. Then, display it as an image.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>X = 4*peaks(100);
+image(X)</pre></div></div></div><div class="informalfigure"><div id="d126e23476" class="mediaobject"><p><img src="../../examples/graphics/win64/DisplayingArrayDataAsAnImageExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type image." width="560"></p></div></div><p>To better visualize differences in data values, you can customize how image data is displayed by using the <code class="literal">imagesc</code> function and specifying a colormap. Display the image with a colorbar to see how the image data maps to the applied colormap for varying intensities.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>imagesc(X);
+colormap(turbo)
+colorbar</pre></div></div></div><p>Set the axes limits style to be <code class="literal">"equal"</code> so that MATLAB preserves the aspect ratio of the image and displays the pixels as squares. Additionally, set the axes limits. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>axis <span style="color:#A020F0">equal</span>
+xlim([0 100])
+ylim([0 100])</pre></div></div></div><div class="informalfigure"><div id="d126e23493" class="mediaobject"><p><img src="../../examples/graphics/win64/DisplayingArrayDataAsAnImageExample_02.png" alt="Figure contains an axes object. The axes object contains an object of type image." width="560"></p></div></div><div class="procedure"></div></section>
+            <h2 id="d126e23501">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/imshow.html"><span itemprop="name"><code class="function">imshow</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/image.html"><span itemprop="name"><code class="function">image</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/imagesc.html"><span itemprop="name"><code class="function">imagesc</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/imread.html"><span itemprop="name"><code class="function">imread</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/colormap.html"><span itemprop="name"><code class="function">colormap</code></span></a></span></li></ul><h3>Properties</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.primitive.image-properties.html"><span itemprop="name"><span class="property">Image Properties</span></span></a></span></li></ul>
+            <h3 id="d126e23528">Topics</h3><ul class="list-unstyled"><li><a href="../import_export/importing-images.html" class="a">Importing Images</a></li><li><a href="converting-the-data-or-graphic-type-of-images.html" class="a">Convert Image Graphic or Data Type</a></li><li><a href="how-image-data-relates-to-a-colormap.html" class="a">How Image Data Relates to a Colormap</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

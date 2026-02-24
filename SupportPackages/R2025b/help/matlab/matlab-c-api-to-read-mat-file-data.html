@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write C Programs to Read MAT File Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ReferenceEntities",
+        
+        "itemListElement":
+        [ {
+          "@type": "ListItem",
+          "position": 1,
+            "item": {
+          "identifier": "c:mxIsFromGlobalWS (C)",
+          "name": "mxIsFromGlobalWS"
+
+          }
+          } ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="cat">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="cat">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Read and write MATLAB data from C programs, using mxArray"><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "module";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul><ul class="nav_breadcrumb" id="ul_left_nav_product_ancestors"><li><a href="index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4df314fd-8da6-47c6-982f-ed349e6ba2be"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="c-language.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_f811a117-4002-48ab-9e86-f20151006948"><span itemprop="title">C with MATLAB</span></a></li></ul><div id="left_nav_categories"><div class="search_refine"><h3>Category</h3><div id="nav_categories"><ul class="nav_toc"><li><a href="call-c-library-functions.html?s_tid=CRUX_lftnav" class="corrected_url">Call C from MATLAB</a></li><li><a href="call-mex-files-1.html?s_tid=CRUX_lftnav" class="corrected_url">Write C Functions Callable from MATLAB (MEX Files)</a></li><li><a href="calling-matlab-engine-from-c-programs-1.html?s_tid=CRUX_lftnav" class="corrected_url">Call MATLAB from C</a></li><li class="active"><a href="matlab-c-api-to-read-mat-file-data.html?s_tid=CRUX_lftnav" class="corrected_url">Write C Programs to Read MAT File Data</a></li><li><a href="cc-mx-matrix-library.html?s_tid=CRUX_lftnav" class="corrected_url">C Matrix API</a></li></ul></div></div></div></nav></div></nav>
+<script src="../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="examples.html?category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="examples.html?category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="referencelist.html?type=function&amp;category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="referencelist.html?type=app&amp;category=matlab-c-api-to-read-mat-file-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-category">
+<h1 class="r2025b" itemprop="content title">Write C Programs to Read MAT File Data</h1><div class="doc_topic_desc" itemprop="content purpose">Read and write MATLAB<sup>&#x00AE;</sup> data from C programs, using <code class="literal">mxArray</code></div>
+<div class="start_here_container" id="starthere">
+<div id="start_here_content"><div itemprop="content">
+
+                    <p>When you program your entire application in MATLAB or when you share data with other MATLAB users, use these MATLAB procedures.</p>
+                    <p>
+                        </p>
+<div class="itemizedlist"><ul><li><p>To bring data into a MATLAB application, use <a href="import_export/supported-file-formats-for-import-and-export.html" class="a">Supported File Formats for Import and Export</a>.</p></li><li><p>To save data to a MAT file, use <a href="matlab_env/save-load-and-delete-workspace-variables.html" class="a">Save and Load Workspace Variables</a>.</p></li></ul></div><p>
+
+                    </p>
+                    <p>There are situations, however, when you must write a custom program to
+                        interact with data. For example:</p>
+                    <p>
+                        </p>
+<div class="itemizedlist"><ul><li><p>Your data has a custom format.</p></li><li><p>You create applications for users who do not run MATLAB, and you want to provide them with MATLAB data.</p></li><li><p>You want to read data from an external application, but you do
+                                    not have access to the source code.</p></li></ul></div><p>
+
+                    </p>
+                </div></div>
+</div>
+<div class="doc_otherrefsgroup_container"><h2>C MAT File API</h2>
+<div class="table-responsive"><table class="table table-bordered table-condensed"><tbody><tr><td class="term notranslate"><a href="apiref/matopen.html"><code class="function">matOpen</code></a></td><td class="description">Open MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matclose.html"><code class="function">matClose</code></a></td><td class="description">Close MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matfileapi.html"><code class="function">MATFile</code></a></td><td class="description">Type for MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matgetvariable.html"><code class="function">matGetVariable</code></a></td><td class="description">Array from MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matgetvariableinfo.html"><code class="function">matGetVariableInfo</code></a></td><td class="description">Array header information only</td></tr><tr><td class="term notranslate"><a href="apiref/matgetnextvariable.html"><code class="function">matGetNextVariable</code></a></td><td class="description">Next array in MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matgetnextvariableinfo.html"><code class="function">matGetNextVariableInfo</code></a></td><td class="description">Array header information only</td></tr><tr><td class="term notranslate"><a href="apiref/matputvariable.html"><code class="function">matPutVariable</code></a></td><td class="description">Array to MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matputvariableasglobal.html"><code class="function">matPutVariableAsGlobal</code></a></td><td class="description">Array to MAT-file as originating from global workspace</td></tr><tr><td class="term notranslate"><a href="apiref/matdeletevariable.html"><code class="function">matDeleteVariable</code></a></td><td class="description">Delete array from MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matgetdir.html"><code class="function">matGetDir</code></a></td><td class="description">List of variables in MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/matgetfp.html"><code class="function">matGetFp</code></a></td><td class="description">File pointer to MAT-file</td></tr><tr><td class="term notranslate"><a href="apiref/mxisfromglobalws.html"><code class="function">mxIsFromGlobalWS</code></a></td><td class="description">Determine whether mxArray was copied from <span class="trademark entity">MATLAB</span> global workspace</td></tr><tr><td class="term notranslate"><a href="apiref/matgeterrno.html"><code class="function">matGetErrno</code></a></td><td class="description">Error codes for MAT-file API</td></tr></tbody></table></div></div>
+<div class="moreabout_container"><h2>Topics</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="matlab_external/list-of-examples.html" class="a">Table of MAT-File Source Code Files</a></strong><br>
+<p>The <em class="replaceable"><code>matlabroot</code></em><code class="literal">/extern/examples/eng_mat</code> folder       contains C/C++ and Fortran source code for examples demonstrating how to use the MAT-file       routines. </p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/creating-a-mat-file-in-c.html" class="a">Create MAT-File in C or C++</a></strong></li>
+<li><strong><a href="matlab_external/reading-a-mat-file-in-cc.html" class="a">Read MAT-File in C/C++</a></strong></li>
+<li><strong><a href="matlab_external/work-with-mxarrays.html" class="a">Work with mxArrays</a></strong></li>
+<li><strong><a href="matlab_external/copying-external-data-into-mat-file-format-with-standalone-programs.html" class="a">Copy External Data into MAT-File Format with Standalone Programs</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/custom-applications-to-read-and-write-mat-files.html" class="a">Create Custom Programs to Read MAT-Files</a></strong><br>
+<p>Methods for importing and exporting MATLAB data with MAT-file functions using <code class="literal">mxArray</code>.</p>
+<ul class="add_indent_20 add_list_spacing_3">
+<li><strong><a href="matlab_external/what-you-need-to-build-custom-applications.html" class="a">What You Need to Build Custom Applications</a></strong></li>
+<li><strong><a href="matlab_external/mat-file-library-and-include-files.html" class="a">MAT-File API Library and Include Files</a></strong></li>
+<li><strong><a href="matlab_external/building-on-unix-operating-systems.html" class="a">Build on macOS and Linux Operating Systems</a></strong></li>
+<li><strong><a href="matlab_external/building-on-windows-operating-systems.html" class="a">Build on Windows Operating Systems</a></strong></li>
+</ul>
+</li><li><strong><a href="matlab_external/sharing-mat-file-applications.html" class="a">Share MAT-File Applications</a></strong><br><p>MATLAB requires shared library files for building a MAT-file application. </p></li>
+</ul></div>
+</div>
+<div class="moreabout_container"><h2>Related Information</h2>
+<div itemprop="content">
+<ul class="list-unstyled"><li><strong><a href="cc-mx-matrix-library.html" class="a">C Matrix API</a></strong><br></li>
+</ul></div>
+</div>
+</div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

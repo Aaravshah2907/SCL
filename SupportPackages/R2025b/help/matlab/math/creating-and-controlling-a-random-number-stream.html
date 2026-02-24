@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Creating and Controlling a Random Number Stream</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../random-number-generation.html",
+          "name": "Random Number Generation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "random-number-generation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use RandStream to create random number streams and substreams."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../random-number-generation.html?s_tid=CRUX_lftnav" itemprop="url" id="btfmc36"><span itemprop="title">Random Number Generation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Creating and Controlling a Random Number Stream</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brvl7wl-1" class="nav-link intrnllnk">Substreams</a></li><li class="nav-item"><a href="#brvku_2" class="nav-link intrnllnk">Choosing a Random Number Generator</a><ul class="nav"><li class="nav-item"><a href="#brvfsq3-1" class="nav-link intrnllnk">Generator Algorithms</a></li><li class="nav-item"><a href="#brvfsq3-2" class="nav-link intrnllnk">Transformation Algorithms</a></li></ul></li><li class="nav-item"><a href="#mw_9afcf370-68d7-4e9c-8162-85a869159d62" class="nav-link intrnllnk">Configuring a Stream</a></li><li class="nav-item"><a href="#mw_fc1690d5-2488-478b-8d56-65f0fc4b6d8e" class="nav-link intrnllnk">Restore State of Random Number Generator to Reproduce Output</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e9581" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=random-number-generation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=random-number-generation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=random-number-generation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=random-number-generation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=random-number-generation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=random-number-generation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brn4ixh">Creating and Controlling a Random Number Stream</h2><p>The <a href="../ref/randstream.html"><code class="function">RandStream</code></a> class allows you to create a
+            random number stream. This is useful for several reasons:</p>
+<div class="itemizedlist"><ul><li><p>You can generate random values without affecting the state of the global
+                        stream.</p></li><li><p>You can separate sources of randomness in a simulation.</p></li><li><p>You can use a generator that is configured differently than the one
+                            MATLAB<sup>&#x00AE;</sup> software uses at startup.</p></li></ul></div><p>
+With a <a href="../ref/randstream.html"><code class="function">RandStream</code></a> object,
+            you can create your own stream, set the writable properties, and use the stream to
+            generate random numbers. You can control the stream you create the same way you control
+            the global stream. You can even replace the global stream with the stream you
+            create.</p><p>To create a stream, use the <a href="../ref/randstream.html"><code class="function">RandStream</code></a>
+            function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStream = RandStream(<span style="color:#A020F0">'mlfg6331_64'</span>);
+rand(myStream,1,5)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+    0.6986    0.7413    0.4239    0.6914    0.7255</pre></div></div></div><p>The random stream <code class="literal">myStream</code> acts separately from the global stream.
+            If you call the <a href="../ref/double.rand.html"><code class="function">rand</code></a>, <a href="../ref/double.randn.html"><code class="function">randn</code></a>, <a href="../ref/double.randi.html"><code class="function">randi</code></a>, and <a href="../ref/double.randperm.html"><code class="function">randperm</code></a> functions with <code class="literal">myStream</code> as the first
+            argument, they draw from the stream you created. If you call <a href="../ref/double.rand.html"><code class="function">rand</code></a>, <a href="../ref/double.randn.html"><code class="function">randn</code></a>, <a href="../ref/double.randi.html"><code class="function">randi</code></a>, and <a href="../ref/double.randperm.html"><code class="function">randperm</code></a> without
+                <code class="literal">myStream</code>, they draw from the global stream.</p><p>You can make <code class="literal">myStream</code> the global stream using the <a href="../ref/randstream.setglobalstream.html"><code class="function">RandStream.setGlobalStream</code></a> method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>RandStream.setGlobalStream(myStream)
+RandStream.getGlobalStream</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+mlfg6331_64 random stream (current global stream)
+             Seed: 0
+  NormalTransform: Ziggurat
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>RandStream.getGlobalStream == myStream</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+     1</pre></div></div></div><section><h3 class="title" id="brvl7wl-1">Substreams</h3><p>You can use substreams to get different results that are statistically independent
+                from a stream. Unlike seeds, where the locations along the sequence of random
+                numbers are not exactly known, the spacing between substreams is known, so any
+                chance of overlap can be eliminated. In short, substreams are a more-controlled way
+                to do many of the same things that seeds have traditionally been used for.
+                Substreams are also a more lightweight solution than parallel streams.</p><p>Substreams provide a quick and easy way to ensure that you get different results
+                from the same code at different times. To use the <code class="literal">Substream</code>
+                property of a <code class="literal">RandStream</code> object, create a stream using a
+                generator that supports substreams. For a list of generator algorithms that support
+                substreams and their properties, see the table in the next section. For example,
+                generate several random numbers in a loop.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStream = RandStream(<span style="color:#A020F0">'mlfg6331_64'</span>);
+RandStream.setGlobalStream(myStream)
+<span style="color:#0000FF">for</span> i = 1:5
+    myStream.Substream = i;
+    z = rand(1,i)
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><pre class="programlisting">z =
+    0.6986
+
+z =
+    0.9230    0.2489
+
+z =
+    0.0261    0.2530    0.0737
+
+z =
+    0.3220    0.7405    0.1983    0.1052
+
+z =
+    0.2067    0.2417    0.9777    0.5970    0.4187</pre></div><p>In another loop, you can generate random values that are independent from the
+                first set of 5 iterations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> i = 6:10
+    myStream.Substream = i;
+    z = rand(1,11-i)
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><pre class="programlisting">z =
+    0.2650    0.8229    0.2479    0.0247    0.4581
+
+z =
+    0.3963    0.7445    0.7734    0.9113
+
+z =
+    0.2758    0.3662    0.7979
+
+z =
+    0.6814    0.5150
+
+z =
+    0.5247</pre></div><p>Substreams are useful in serial computation. Substreams can recreate all or part
+                of a simulation by returning to a particular checkpoint in stream. For example, you
+                can return to the 6th substream in the loop. The result contains the same values as
+                the 6th output above.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>myStream.Substream = 6;
+z = rand(1,5)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>z =
+    0.2650    0.8229    0.2479    0.0247    0.4581</pre></div></div></div></section><section><h3 class="title" id="brvku_2"><span id="choose_random_number_generator" class="anchor_target"></span>Choosing a Random Number                 Generator</h3><p>MATLAB offers several generator algorithm options. The table summarizes the
+                key properties of the available generator algorithms and the keywords used to create
+                them. To return a list of all the available generator algorithms, use the <a href="../ref/randstream.list.html"><code class="function">RandStream.list</code></a> method.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th>Keyword</th><th>Generator</th><th>Multiple Stream and Substream Support</th><th>Approximate Period In Full Precision</th></tr></thead><tbody><tr><td><code class="literal">mt19937ar</code></td><td>Mersenne twister</td><td>No</td><td>2<sup>19937</sup>-1</td></tr><tr><td><code class="literal">dsfmt19937</code></td><td>SIMD-oriented fast Mersenne twister </td><td>No</td><td>2<sup>19937</sup>-1</td></tr><tr><td><code class="literal">mcg16807</code></td><td>Multiplicative congruential generator</td><td>No</td><td>2<sup>31</sup>-2</td></tr><tr><td><code class="literal">mlfg6331_64</code></td><td>Multiplicative lagged Fibonacci generator</td><td>Yes</td><td>2<sup>124</sup> (2<sup>51</sup>
+                                streams of length 2<sup>72</sup>)</td></tr><tr><td><code class="literal">mrg32k3a</code></td><td>Combined multiple recursive generator</td><td>Yes</td><td>2<sup>191</sup> (2<sup>63</sup>
+                                streams of length 2<sup>127</sup>)</td></tr><tr><td><code class="literal">philox4x32_10</code></td><td>Philox 4x32 generator with 10 rounds</td><td>Yes</td><td>2<sup>193</sup> (2<sup>64</sup>
+                                streams of length 2<sup>129</sup>)</td></tr><tr><td><code class="literal">threefry4x64_20</code></td><td>Threefry 4x64 generator with 20 rounds</td><td>Yes</td><td>2<sup>514</sup> (2<sup>256</sup>
+                                streams of length 2<sup>258</sup>)</td></tr><tr><td><code class="literal">shr3cong</code></td><td>Shift-register generator summed with linear congruential
+                                generator</td><td>No</td><td>2<sup>64</sup></td></tr><tr><td><code class="literal">swb2712</code></td><td>Modified subtract with borrow generator</td><td>No</td><td>2<sup>1492</sup></td></tr></tbody></table></div><p>The generators <code class="literal">mcg16807</code>, <code class="literal">shr3cong</code>, and
+                    <code class="literal">swb2712</code> provide for backward compatibility with earlier
+                versions of MATLAB. <code class="literal">mt19937ar</code> and <code class="literal">dsfmt19937</code> are
+                designed primarily for sequential applications. The remaining generators provide
+                explicit support for parallel random number generation.</p><p>Depending on the application, some generators might be faster or return values
+                with more precision. All pseudorandom number generators are based on deterministic
+                algorithms, and all generators pass a sufficiently specific statistical test for
+                randomness. One way to check the results of a Monte Carlo simulation is to rerun the
+                simulation with two or more different generator algorithms, and the choice of
+                generators in MATLAB provides you with the means to do that. Although it is unlikely that
+                your results will differ by more than the Monte Carlo sampling error when using
+                different generators, there are examples in the literature where this kind of
+                validation has turned up flaws in a particular generator algorithm. (See <a href="creating-and-controlling-a-random-number-stream.html#brrztp5-1" class="intrnllnk">[13]</a> for an example.) </p><section><h4 class="title" id="brvfsq3-1">Generator Algorithms</h4><div class="variablelist"><dl><dt><span id="d126e8991" class="anchor_target"></span><span class="term"><code class="literal">mt19937ar</code></span></dt><dd><p>The Mersenne Twister, as described in <a href="creating-and-controlling-a-random-number-stream.html#bru6ugt" class="intrnllnk">[11]</a>, has period <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>19937</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow></math></span></span> and each U(0,1) value is created using two 32-bit
+                                integers. The possible values are multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow></math></span></span> in the interval (0, 1). This generator does not
+                                support multiple streams or substreams. The
+                                    <code class="function">randn</code> algorithm used by default for
+                                    <code class="literal">mt19937ar</code> streams is the ziggurat algorithm
+                                    <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>, but with the <code class="literal">mt19937ar</code> generator
+                                underneath.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This generator is identical to the one used by the
+                                        <code class="function">rand</code> function beginning in MATLAB Version 7, activated by
+                                        <code class="literal">rand('twister',s)</code>. </p></div></dd><dt><span id="d126e9028" class="anchor_target"></span><span class="term"><code class="literal">dsfmt19937</code></span></dt><dd><p>The double precision SIMD-oriented Fast Mersenne Twister, as
+                                described in <a href="creating-and-controlling-a-random-number-stream.html#bunq756-1" class="intrnllnk">[12]</a>, is a faster implementation of the Mersenne Twister algorithm.
+                                The period is <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>19937</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow></math></span></span> and the possible values are multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>52</mn></mrow></msup></mrow></math></span></span> in the interval (0, 1). The generator produces
+                                double precision values in [1, 2) natively, which are transformed to
+                                create U(0,1) values. This generator does not support multiple
+                                streams or substreams.</p></dd><dt><span id="d126e9046" class="anchor_target"></span><span class="term">
+                            <code class="literal">mcg16807</code></span></dt><dd><p>A 32-bit multiplicative congruential generator, as described in
+                                    <a href="creating-and-controlling-a-random-number-stream.html#brrzyxu" class="intrnllnk">[14]</a>, with multiplier <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>a</mi><mo>=</mo><msup><mn>7</mn><mn>5</mn></msup></mrow></math></span></span>, modulo <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>m</mi><mo>=</mo><msup><mn>2</mn><mrow><mn>31</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow></math></span></span>. This generator has a period of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>31</mn></mrow></msup><mo>−</mo><mn>2</mn></mrow></math></span></span> and does not support multiple streams or
+                                substreams. Each U(0,1) value is created using a single 32-bit
+                                integer from the generator; the possible values are all multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-5px" display="block"><mrow><msup><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mrow><mn>31</mn></mrow></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow></math></span></span> strictly within the interval (0, 1). For
+                                    <code class="literal">mcg16807</code> streams, the default algorithm used
+                                by <code class="function">randn</code> is the polar algorithm (described in
+                                    <a href="creating-and-controlling-a-random-number-stream.html#brvfuw1" class="intrnllnk">[1]</a>).</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This generator is identical to the one used beginning in
+                                        MATLAB Version 4 by both the <code class="function">rand</code>
+                                    and <code class="function">randn</code> functions, activated using
+                                        <code class="literal">rand('seed',s)</code> or
+                                        <code class="literal">randn('seed',s)</code>.</p></div></dd><dt><span id="d126e9096" class="anchor_target"></span><span class="term"><code class="literal">mlfg6331_64</code></span></dt><dd><p>A 64-bit multiplicative lagged Fibonacci generator, as described
+                                in <a href="creating-and-controlling-a-random-number-stream.html#bru6ue9" class="intrnllnk">[10]</a>, with lags <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>l</mi><mo>=</mo><mn>63</mn></mrow></math></span></span>, <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>k</mi><mo>=</mo><mn>31</mn></mrow></math></span></span>. This generator is similar to the MLFG implemented
+                                in the SPRNG library. It has a period of approximately <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>124</mn></mrow></msup></mrow></math></span></span>. It supports up to <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>61</mn></mrow></msup></mrow></math></span></span> parallel streams, via parameterization, and <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>51</mn></mrow></msup></mrow></math></span></span> substreams each of length <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>72</mn></mrow></msup></mrow></math></span></span>. Each U(0,1) value is created using one 64-bit
+                                integer from the generator; the possible values are all multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>64</mn></mrow></msup></mrow></math></span></span> strictly within the interval (0, 1). The
+                                    <code class="function">randn</code> algorithm used by default for
+                                    <code class="literal">mlfg6331_64</code> streams is the ziggurat algorithm
+                                    <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>, but with the <code class="literal">mlfg6331_64</code> generator
+                                underneath.</p></dd><dt><span id="d126e9149" class="anchor_target"></span><span class="term"><code class="literal">mrg32k3a</code></span></dt><dd><p>A 32-bit combined multiple recursive generator, as described in
+                                    <a href="creating-and-controlling-a-random-number-stream.html#but77_t-1" class="intrnllnk">[2]</a>. This generator is similar to the CMRG implemented in the
+                                RngStreams package in C. It has a period of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>191</mn></mrow></msup></mrow></math></span></span> and supports up to <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>63</mn></mrow></msup></mrow></math></span></span> parallel streams through sequence splitting, each
+                                of length <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>127</mn></mrow></msup></mrow></math></span></span>. It also supports <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>51</mn></mrow></msup></mrow></math></span></span> substreams, each of length <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>76</mn></mrow></msup></mrow></math></span></span>. Each U(0,1) value is created using two 32-bit
+                                integers from the generator; the possible values are multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>53</mn></mrow></msup></mrow></math></span></span> strictly within the interval (0, 1). The
+                                    <code class="function">randn</code> algorithm used by default for
+                                    <code class="literal">mrg32k3a</code> streams is the ziggurat algorithm
+                                    <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>, but with the <code class="literal">mrg32k3a</code> generator underneath.
+                            </p></dd><dt><span id="d126e9196" class="anchor_target"></span><span class="term"><code class="literal">philox4x32_10</code></span></dt><dd><p>A 4x32 generator with 10 rounds as described in <a href="creating-and-controlling-a-random-number-stream.html#mw_9ec71a62-be2c-4a83-828e-963fd2af4f0d" class="intrnllnk">[15]</a>. This
+                                generator uses a Feistel network and integer multiplication. The
+                                generator is specifically designed for high performance in highly
+                                parallel systems such as GPUs. It has a period of
+                                    2<sup>193</sup> (2<sup>64</sup>
+                                streams of length 2<sup>129</sup>).</p></dd><dt><span id="d126e9210" class="anchor_target"></span><span class="term"><code class="literal">threefry4x64_20</code></span></dt><dd><p>A 4x64 generator with 20 rounds as described in <a href="creating-and-controlling-a-random-number-stream.html#mw_9ec71a62-be2c-4a83-828e-963fd2af4f0d" class="intrnllnk">[15]</a>. This
+                                generator is a non-cryptographic adaptation of the Threefish block
+                                cipher from the Skein Hash Function. It has a period of
+                                    2<sup>514</sup> (2<sup>256</sup>
+                                streams of length 2<sup>258</sup>).</p></dd><dt><span id="d126e9224" class="anchor_target"></span><span class="term"><code class="literal">shr3cong</code></span></dt><dd><p>Marsaglia's SHR3 shift-register generator summed with a linear
+                                congruential generator with multiplier <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>a</mi><mo>=</mo><mn>69069</mn></mrow></math></span></span>, addend <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>b</mi><mo>=</mo><mn>1234567</mn></mrow></math></span></span>, and modulus <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>32</mn></mrow></msup></mrow></math></span></span>. SHR3 is a 3-shift-register generator defined as <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-5px" display="block"><mrow><mi>u</mi><mo>=</mo><mi>u</mi><mo stretchy="false">(</mo><mstyle mathvariant="bold" mathsize="normal"><mi>I</mi></mstyle><mo>+</mo><msup><mstyle mathvariant="bold" mathsize="normal"><mi>L</mi></mstyle><mrow><mn>13</mn></mrow></msup><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mstyle mathvariant="bold" mathsize="normal"><mi>I</mi></mstyle><mo>+</mo><msup><mstyle mathvariant="bold" mathsize="normal"><mi>R</mi></mstyle><mrow><mn>17</mn></mrow></msup><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mstyle mathvariant="bold" mathsize="normal"><mi>I</mi></mstyle><mo>+</mo><msup><mstyle mathvariant="bold" mathsize="normal"><mi>L</mi></mstyle><mn>5</mn></msup><mo stretchy="false">)</mo></mrow></math></span></span>, where <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mstyle mathvariant="bold" mathsize="normal"><mi>I</mi></mstyle></math></span></span> is the identity operator, <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mstyle mathvariant="bold" mathsize="normal"><mi>L</mi></mstyle></math></span></span> is the left shift operator, and <strong class="keycap">R</strong>
+                                is the right shift operator. The combined generator (the SHR3 part
+                                is described in <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>) has a period of approximately <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>64</mn></mrow></msup></mrow></math></span></span>. This generator does not support multiple streams
+                                or substreams. Each U(0,1) value is created using one 32-bit integer
+                                from the generator; the possible values are all multiples of <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>32</mn></mrow></msup></mrow></math></span></span> strictly within the interval (0, 1). The
+                                    <code class="function">randn</code> algorithm used by default for
+                                    <code class="literal">shr3cong</code> streams is the earlier form of the
+                                ziggurat algorithm <a href="creating-and-controlling-a-random-number-stream.html#bru7491" class="intrnllnk">[9]</a>, but with the <code class="literal">shr3cong</code> generator underneath.
+                                This generator is identical to the one used by the
+                                    <code class="function">randn</code> function beginning in MATLAB Version 5, activated using
+                                    <code class="literal">randn('state',s)</code>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The SHR3 generator used in <a href="creating-and-controlling-a-random-number-stream.html#bru6m1j" class="intrnllnk">[6]</a> (1999) differs from the one used in <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a> (2000). MATLAB uses the most recent version of the generator,
+                                    presented in <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>.</p></div></dd><dt><span id="d126e9303" class="anchor_target"></span><span class="term"><code class="literal">swb2712</code></span></dt><dd><p>A modified Subtract-with-Borrow generator, as described in <a href="creating-and-controlling-a-random-number-stream.html#bru6nti" class="intrnllnk">[8]</a>. This generator is similar to an additive lagged Fibonacci
+                                generator with lags 27 and 12, but it is modified to have a much
+                                longer period of approximately <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mn>2</mn><mrow><mn>1492</mn></mrow></msup></mrow></math></span></span>. The generator works natively in double precision
+                                to create U(0,1) values, and all values in the open interval (0, 1)
+                                are possible. The <code class="function">randn</code> algorithm used by
+                                default for <code class="literal">swb2712</code> streams is the ziggurat
+                                algorithm <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>, but with the <code class="literal">swb2712</code> generator
+                                underneath.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This generator is identical to the one used by the
+                                        <code class="function">rand</code> function beginning in MATLAB Version 5, activated using
+                                        <code class="literal">rand('state',s)</code>.</p></div></dd></dl></div></section><section><h4 class="title" id="brvfsq3-2">Transformation Algorithms</h4><p>When creating a random number stream with <a href="../ref/randstream.html"><code class="function">RandStream</code></a>, you can specify the
+                        <code class="literal">NormalTransform</code> name-value argument using one of the
+                    following algorithms: <code class="literal">'Ziggurat'</code>, <code class="literal">'Polar'</code>,
+                    or <code class="literal">'Inversion'</code>. This algorithm transforms a uniform generator
+                    into a Gaussian one, enabling the generation of normally distributed numbers
+                    using <a href="../ref/double.randn.html"><code class="function">randn</code></a>. See <a href="creating-and-controlling-a-random-number-stream.html#mw_3a5903bd-3773-429a-af94-8f07870e5e98" class="intrnllnk">[16]</a> for
+                    details on the algorithms.</p><div class="variablelist"><dl><dt><span id="d126e9357" class="anchor_target"></span><span class="term"><code class="literal">Inversion</code></span></dt><dd><p>Computes a normal random variate by applying the standard normal
+                                inverse cumulative distribution function to a uniform random
+                                variate. Exactly one uniform value is consumed per normal value.
+                            </p></dd><dt><span id="d126e9362" class="anchor_target"></span><span class="term"><code class="literal">Polar</code></span></dt><dd><p>The polar rejection algorithm, as described in <a href="creating-and-controlling-a-random-number-stream.html#brvfuw1" class="intrnllnk">[1]</a>. Approximately 1.27 uniform values are consumed per normal value,
+                                on average. </p></dd><dt><span id="d126e9370" class="anchor_target"></span><span class="term"><code class="literal">Ziggurat</code></span></dt><dd><p>The ziggurat algorithm, as described in <a href="creating-and-controlling-a-random-number-stream.html#bru6ue0" class="intrnllnk">[7]</a>. Approximately 2.02 uniform values are consumed per normal value,
+                                on average.</p></dd></dl></div></section></section><section><h3 class="title" id="mw_9afcf370-68d7-4e9c-8162-85a869159d62">Configuring a Stream</h3><p>A random number stream <code class="literal">s</code> has properties that control its
+                behavior. To access or change a property, use the syntax <code class="literal">p =
+                    s.Property</code> and <code class="literal">s.Property = p</code>.</p><p>For example, you can configure the transformation algorithm to generate normally
+                distributed pseudorandom values when using <a href="../ref/double.randn.html"><code class="function">randn</code></a>. Generate normally distributed pseudorandom values using the
+                default <code class="literal">Ziggurat</code> transformation algorithm.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s1 = RandStream(<span style="color:#A020F0">'mt19937ar'</span>);
+s1.NormalTransform</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 'Ziggurat'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r1 = randn(s1,1,10);</pre></div></div></div><p>Configure the stream to use the <code class="literal">Polar</code> transformation algorithm
+                to generate normally distributed pseudorandom values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s1.NormalTransform = <span style="color:#A020F0">'Polar'</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>s1 =
+mt19937ar random stream
+             Seed: 0
+  NormalTransform: Polar</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>r2 = randn(s1,1,10);</pre></div></div></div><p>When generating random numbers with uniform distribution using <a href="../ref/double.rand.html"><code class="function">rand</code></a>, you can also configure the
+                stream to generate antithetic pseudorandom values, that is, the usual values
+                subtracted from 1 for uniform values.</p><p>Create 6 random numbers with uniform distribution from the stream s.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s2 = RandStream(<span style="color:#A020F0">'mt19937ar'</span>);
+r1 = rand(s2,1,6)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>r1 =
+    0.8147    0.9058    0.1270    0.9134    0.6324    0.0975</pre></div></div></div><p>Restore the initial state of the stream. Create another 6 random numbers with the
+                    <code class="literal">Antithetic</code> property set to true. Check that these 6 random
+                numbers are equal to the previously generated random numbers subtracted from
+                1.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reset(s2)
+s2.Antithetic = true;
+r2 = rand(s2,1,6)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>r2 =
+    0.1853    0.0942    0.8730    0.0866    0.3676    0.9025</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>isequal(r1,1 - r2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+   1</pre></div></div></div><p>Instead of setting the properties of a stream one-by-one, you can save and restore
+                all properties of a stream <code class="literal">s</code> by using <code class="literal">A =
+                    get(s)</code> and <code class="literal">set(s,A)</code>, respectively. For example,
+                configure all properties of the stream <code class="literal">s2</code> to be the same as the
+                stream <code class="literal">s1</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = get(s1)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A =
+               Type: 'mt19937ar'
+         NumStreams: 1
+        StreamIndex: 1
+          Substream: 1
+               Seed: 0
+              State: [625x1 uint32]
+    NormalTransform: 'Polar'
+         Antithetic: 0
+      FullPrecision: 1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(s2,A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>               Type: 'mt19937ar'
+         NumStreams: 1
+        StreamIndex: 1
+          Substream: 1
+               Seed: 0
+              State: [625x1 uint32]
+    NormalTransform: 'Polar'
+         Antithetic: 0
+      FullPrecision: 1</pre></div></div></div><p>The <code class="literal">get</code> and <code class="literal">set</code> functions enable you to save
+                and restore a stream's entire configuration so that results are exactly reproducible
+                later on.</p></section><section><h3 class="title" id="mw_fc1690d5-2488-478b-8d56-65f0fc4b6d8e">Restore State of Random Number Generator to Reproduce Output</h3><p>The <code class="literal">State</code> property is the internal state of the random number
+                generator. You can save the state of the global stream at a certain point in your
+                simulation when generating random numbers to reproduce the results later on.</p><p>Use <code class="literal">RandStream.getGlobalStream</code> to return a handle to the global
+                stream, that is, the current global stream that <code class="literal">rand</code> generates
+                random numbers from. Save the state of the global stream.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>globalStream = RandStream.getGlobalStream;
+myState = globalStream.State;</pre></div></div></div><p>Using <code class="literal">myState</code>, you can restore the state of
+                    <code class="literal">globalStream</code> and reproduce previous
+                results.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = rand(1,100);
+globalStream.State = myState;
+B = rand(1,100);
+isequal(A,B)</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = logical
+   1</pre></div></p><p><code class="literal">rand</code>, <code class="literal">randi</code>, <code class="literal">randn</code>, and
+                    <code class="literal">randperm</code> access the global stream. Since all of these
+                functions access the same underlying stream, a call to one affects the values
+                produced by the others at subsequent calls.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>globalStream.State = myState;
+A = rand(1,100);
+globalStream.State = myState;
+C = randi(100);
+B = rand(1,100);
+isequal(A,B)</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = logical
+   0</pre></div><p>You can also reset a stream to its initial settings using the <a href="../ref/randstream.reset.html"><code class="function">reset</code></a>
+                function.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reset(globalStream)
+A = rand(1,100);
+reset(globalStream)
+B = rand(1,100);
+isequal(A,B)</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans = logical
+   1</pre></div></p></section><div class="bibliography"><h2 id="References">References</h2><div id="brvfuw1" class="bibliomixed"><p>[1] Devroye, L. <em class="citetitle">Non-Uniform Random Variate
+                    Generation</em>, Springer-Verlag, 1986. </p></div><div id="but77_t-1" class="bibliomixed"><p>[2] L’Ecuyer, P. “Good Parameter Sets for Combined
+                Multiple Recursive Random Number Generators”, <em class="citetitle">Operations
+                    Research</em>, 47(1): 159&#8211;164. 1999.</p></div><div id="but7762-1" class="bibliomixed"><p>[3] L'Ecuyer, P. and S. Côté. “Implementing A
+                Random Number Package with Splitting Facilities”, <em class="citetitle">ACM Transactions
+                    on Mathematical Software</em>, 17: 98&#8211;111. 1991.</p></div><div id="bru6mp0" class="bibliomixed"><p>[4] L'Ecuyer, P. and R. Simard. “TestU01: A C Library
+                for Empirical Testing of Random Number Generators,” <em class="citetitle">ACM
+                    Transactions on Mathematical Software</em>, 33(4): Article 22.
+                2007.</p></div><div id="bru6mwg" class="bibliomixed"><p>[5] L'Ecuyer, P., R. Simard, E. J. Chen, and W. D. Kelton.
+                “An Objected-Oriented Random-Number Package with Many Long Streams and
+                Substreams.” <em class="citetitle">Operations Research</em>, 50(6):1073&#8211;1075.
+                2002.</p></div><div id="bru6m1j" class="bibliomixed"><p>[6] Marsaglia, G. “Random numbers for C: The
+                END?” Usenet posting to sci.stat.math. 1999. Available online at <a href="https://groups.google.com/group/sci.crypt/browse_thread/thread/ca8682a4658a124d/" target="_blank"><code class="literal">https://groups.google.com/group/sci.crypt/browse_thread/<br/>
+thread/ca8682a4658a124d/</code></a>.</p></div><div id="bru6ue0" class="bibliomixed"><p>[7] Marsaglia G., and W. W. Tsang. “The ziggurat method
+                for generating random variables.” <em class="citetitle">Journal of Statistical
+                    Software</em>, 5:1&#8211;7. 2000. Available online at <a href="https://www.jstatsoft.org/v05/i08" target="_blank"><code class="literal">https://www.jstatsoft.org/v05/i08</code></a>. </p></div><div id="bru6nti" class="bibliomixed"><p>[8] Marsaglia, G., and A. Zaman. “A new class of random
+                number generators.” <em class="citetitle">Annals of Applied Probability</em>
+                1(3):462&#8211;480. 1991.</p></div><div id="bru7491" class="bibliomixed"><p>[9] Marsaglia, G., and W. W. Tsang. “A fast, easily
+                implemented method for sampling from decreasing or symmetric unimodal density
+                functions.” <em class="citetitle">SIAM J. Sci. Stat. Comput</em>. 5(2):349&#8211;359.
+                1984.</p></div><div id="bru6ue9" class="bibliomixed"><p>[10] Mascagni, M., and A. Srinivasan. “Parameterizing
+                Parallel Multiplicative Lagged-Fibonacci Generators.” <em class="citetitle">Parallel
+                    Computing</em>, 30: 899&#8211;916. 2004.</p></div><div id="bru6ugt" class="bibliomixed"><p>[11] Matsumoto, M., and T. Nishimura.“Mersenne Twister:
+                A 623-Dimensionally Equidistributed Uniform Pseudorandom Number Generator.”
+                    <em class="citetitle">ACM Transactions on Modeling and Computer Simulation</em>,
+                8(1):3&#8211;30. 1998.</p></div><div id="bunq756-1" class="bibliomixed"><p>[12] Matsumoto, M., and M. Saito.“A PRNG Specialized
+                in Double Precision Floating Point Numbers Using an Affine Transition.”
+                    <em class="citetitle">Monte Carlo and Quasi-Monte Carlo Methods 2008</em>,
+                10.1007/978-3-642-04107-5_38. 2009.</p></div><div id="brrztp5-1" class="bibliomixed"><p>[13] Moler, C.B. <em class="citetitle">Numerical Computing with
+                    MATLAB</em>. SIAM, 2004. Available online at <a href="https://www.mathworks.com/moler.html"><code class="literal">https://www.mathworks.com/moler</code></a></p></div><div id="brrzyxu" class="bibliomixed"><p>[14] Park, S.K., and K.W. Miller. “Random Number
+                Generators: Good Ones Are Hard to Find.” <em class="citetitle">Communications of the
+                    ACM</em>, 31(10):1192&#8211;1201. 1998.</p></div><div id="mw_9ec71a62-be2c-4a83-828e-963fd2af4f0d" class="bibliomixed"><p>[15] Salmon, J. K., M. A.
+                Moraes, R. O. Dror, and D. E. Shaw. "Parallel Random Numbers: As Easy As 1, 2, 3."
+                In <em class="citetitle">Proceedings of the International Conference for High Performance
+                    Computing, Networking, Storage and Analysis (SC11)</em>. New York, NY:
+                ACM, 2011.</p></div><div id="mw_3a5903bd-3773-429a-af94-8f07870e5e98" class="bibliomixed"><p>[16] Thomas, D. B., P. H. W.
+                Leong, and J. D. Villasenor. “Gaussian Random Number
+                    Generators.”<em class="citetitle">ACM Computing Surveys</em>, 39(4): 11-es.
+                2007.</p></div></div>
+            <h2 id="d126e9581">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/rng.html"><span itemprop="name"><code class="function">rng</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/randstream.html"><span itemprop="name"><code class="function">RandStream</code></span></a></span></p>
+            <h3 id="d126e9590">Topics</h3><ul class="list-unstyled"><li><a href="managing-the-global-stream.html" class="a">Managing the Global Stream Using RandStream</a></li><li><a href="multiple-streams.html" class="a">Multiple Streams</a></li><li><a href="controlling-random-number-generation.html" class="a">Controlling Random Number Generation</a></li><li><a href="create-arrays-of-random-numbers.html" class="a">Create Arrays of Random Numbers</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

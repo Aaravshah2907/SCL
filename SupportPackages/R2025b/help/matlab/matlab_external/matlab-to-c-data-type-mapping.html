@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>C++ to MATLAB Data Type Mapping</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../build-matlab-interface-to-c-library.html",
+          "name": "Build MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Correspondence of MATLAB data types to C/C++ types."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7875953d-23b2-4f08-879f-c7ea4d3016d7"><span itemprop="title">Build MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">C++ to MATLAB Data Type Mapping</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_fe927fec-c389-4401-b535-b158f78a4189" class="nav-link intrnllnk">Numeric Types</a><ul class="nav"><li class="nav-item"><a href="#mw_ca443391-f1d8-4a7b-ada6-83b632ac3b56" class="nav-link intrnllnk">Scalar Integer Types</a></li><li class="nav-item"><a href="#mw_eaed786e-70e2-4271-9752-bdc663e2d998" class="nav-link intrnllnk">Vector Integer Types</a></li><li class="nav-item"><a href="#mw_a76cb4d3-51c3-4939-a680-26f6d71f6232" class="nav-link intrnllnk">Floating Point Types</a></li></ul></li><li class="nav-item"><a href="#mw_1658cae7-f0cd-4c29-8753-2587ab0231b3" class="nav-link intrnllnk">String and Character Types</a><ul class="nav"><li class="nav-item"><a href="#mw_47d540df-e40e-4ed8-ac3b-884704b6888b" class="nav-link intrnllnk">Plain C++ Character and String Types</a></li><li class="nav-item"><a href="#mw_8bb7162c-a076-4cf2-8db4-0a1da0653bb8" class="nav-link intrnllnk">C++ char* and char[] Types</a></li><li class="nav-item"><a href="#mw_e410c39a-37d4-433f-bc20-11a1ce0ae594" class="nav-link intrnllnk">C++ Array of Strings</a></li><li class="nav-item"><a href="#mw_312c3df7-25f8-489f-b44e-a9244cc055c1" class="nav-link intrnllnk">std::vector&lt;T&gt; String Types</a></li></ul></li><li class="nav-item"><a href="#mw_8b99ce7d-0926-4366-a274-b80a16bbc76f" class="nav-link intrnllnk">bool Types</a></li><li class="nav-item"><a href="#mw_4a5a0a13-5c06-408f-b0ab-bc75cc0163d3" class="nav-link intrnllnk">Static Data Members</a></li><li class="nav-item"><a href="#mw_37674fde-af37-46a3-82be-575b47ffa291" class="nav-link intrnllnk">const Types</a></li><li class="nav-item"><a href="#mw_166257b8-216d-4a7d-bbb2-73998c0e02db" class="nav-link intrnllnk">User-Defined Types</a><ul class="nav"><li class="nav-item"><a href="#mw_56453d70-c700-49c2-aa4a-420df6ffb777" class="nav-link intrnllnk">Class Types</a></li><li class="nav-item"><a href="#mw_070cb7ba-9536-4b22-9ae7-5dfd0b9ac1a5" class="nav-link intrnllnk">Struct Types</a></li><li class="nav-item"><a href="#mw_a313d28d-e009-41ef-974f-6c02ea6a21f2" class="nav-link intrnllnk">Supported struct Types</a></li><li class="nav-item"><a href="#mw_e35759fd-69bc-4e81-9cc8-3a0ecfe44035" class="nav-link intrnllnk">Enumerated Types</a></li></ul></li><li class="nav-item"><a href="#mw_cd97194c-5f7a-4de0-a902-5886d573ef55" class="nav-link intrnllnk">nullptr Argument Types</a><ul class="nav"><li class="nav-item"><a href="#mw_608fa4a9-6a84-4ae4-b7a5-476ed25e318a" class="nav-link intrnllnk">nullptr Input Argument Types</a></li><li class="nav-item"><a href="#mw_fb34077e-8cab-4221-a953-aefac275c4d2" class="nav-link intrnllnk">nullptr Return Types</a></li></ul></li><li class="nav-item"><a href="#mw_9a2972af-1543-407b-8271-3ae21165e1cf" class="nav-link intrnllnk">void* Argument Types</a></li><li class="nav-item"><a href="#mw_f4b2547b-48a9-4cfa-8c16-d0546c5ff769" class="nav-link intrnllnk">Unsupported Data Types</a><ul class="nav"><li class="nav-item"><a href="#mw_2947ba73-04e4-48e9-a103-196fef3b0764" class="nav-link intrnllnk">Messages About Unsupported Types</a></li></ul></li><li class="nav-item"><a href="#d126e21204" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_cc2c90bd-68e2-4283-8912-bfb59913227b">C++ to <span class="trademark entity">MATLAB</span> Data Type Mapping</h2><p>These tables show how MATLAB<sup>&#x00AE;</sup> converts C/C++ data into equivalent MATLAB data types. MATLAB uses these mappings when creating library definition files. Use this information
+      to help you <a href="define-matlab-interface-for-c-library.html" class="a">define missing
+        information</a> for MATLAB signatures.</p><section><h3 class="title" id="mw_fe927fec-c389-4401-b535-b158f78a4189">Numeric Types</h3><section><h4 class="title" id="mw_ca443391-f1d8-4a7b-ada6-83b632ac3b56">Scalar Integer Types</h4><p>Fixed-width integer data type mappings are independent of the platform and compiler.
+          The mappings for non-fixed-width integer types are based on the compiler.</p><p><strong id="mw_75b3d416-51dc-4ff4-9486-84acdacae9c6">Fixed-Width Integer Types.&nbsp;&nbsp;</strong>For these types, specify <code class="literal">DIRECTION</code> as <code class="literal">"input"</code>
+            and <code class="literal">SHAPE</code> as <code class="literal">1</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C Fixed-Width Scalar Integer Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">int8_t</code></p></td><td><p><code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;int8_t&gt;</code></p></td><td><p>complex <code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">uint8_t</code></p></td><td><p><code class="literal">uint8</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;uint8_t&gt;</code></p></td><td><p>complex <code class="literal">uint8</code></p></td></tr><tr><td><p><code class="literal">int16_t</code></p></td><td><p><code class="literal">int16</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;int16_t&gt;</code></p></td><td><p>complex <code class="literal">int16</code></p></td></tr><tr><td><p><code class="literal">uint16_t</code></p></td><td><p><code class="literal">uint16</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;uint16_t&gt;</code></p></td><td><p>complex <code class="literal">uint16</code></p></td></tr><tr><td><p><code class="literal">int32_t</code></p></td><td><p><code class="literal">int32</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;int32_t&gt;</code></p></td><td><p>complex <code class="literal">int32</code></p></td></tr><tr><td><p><code class="literal">uint32_t</code></p></td><td><p><code class="literal">uint32</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;uint32_t&gt;</code></p></td><td><p>complex <code class="literal">uint32</code></p></td></tr><tr><td><p><code class="literal">int64_t</code></p></td><td><p><code class="literal">int64</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;int64_t&gt;</code></p></td><td><p>complex <code class="literal">int64</code></p></td></tr><tr><td><p><code class="literal">uint64_t</code></p></td><td><p><code class="literal">uint64</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;uint64_t&gt;</code></p></td><td><p>complex <code class="literal">uint64</code></p></td></tr></tbody></table></div><p><strong id="mw_b2cb8579-edf2-4a5b-8c12-06dc7551112c">Non-Fixed-Width Integer Types.&nbsp;&nbsp;</strong>MATLAB supports these non-fixed-width C integer types. Based on the compiler
+            used, MATLAB maps these types to the corresponding fixed-width C types, as shown in the
+            Fixed-Width Integer Types table.</p><div class="itemizedlist"><ul><li><p><code class="literal">short</code></p></li><li><p><code class="literal">short int</code></p></li><li><p><code class="literal">signed short</code></p></li><li><p><code class="literal">signed short int</code></p></li><li><p><code class="literal">unsigned short</code></p></li><li><p><code class="literal">unsigned short int</code></p></li><li><p><code class="literal">int</code></p></li><li><p><code class="literal">signed int</code></p></li><li><p><code class="literal">unsigned</code></p></li><li><p><code class="literal">unsigned int</code></p></li><li><p><code class="literal">long</code></p></li><li><p><code class="literal">signed long</code></p></li><li><p><code class="literal">signed long int</code></p></li><li><p><code class="literal">unsigned long</code></p></li><li><p><code class="literal">unsigned long int</code></p></li><li><p><code class="literal">long long</code></p></li></ul></div></section><section><h4 class="title" id="mw_eaed786e-70e2-4271-9752-bdc663e2d998">Vector Integer Types</h4><p>This table shows how MATLAB data types correspond to <code class="literal">std::vector</code> types. By default,
+            MATLAB represents <code class="literal">std::vector</code> types with the MATLAB
+          <code class="literal">clib.array</code> type. For more information, see <a href="pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a>.</p><p>MATLAB converts the names of fundamental C++ types to upper camel case. For complex
+          types, MATLAB adds <code class="literal">std.complex</code> to the <code class="literal">clib.array</code>
+          type.</p><p>For these types, specify <code class="literal">DIRECTION</code> as <code class="literal">"input"</code>
+          and <code class="literal">SHAPE</code> as <code class="literal">1</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Parameter <code class="literal">T</code><br/>
+Integer
+                  Type<br/>
+for <code class="literal">std::vector&lt;T&gt;</code>
+                </th><th><p>Equivalent MATLAB
+                    <code class="literal">clib.array</code> Type<br/>
+for Interface
+                      <em class="replaceable"><code>lib</code></em></p></th><th>Element Type</th></tr></thead><tbody><tr><td><p><code class="literal">std::vector&lt;int8_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.SignedChar</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.SignedChar</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;int8_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.SignedChar</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.SignedChar</code></td></tr><tr><td><p><code class="literal">std::vector&lt;uint8_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.UnsignedChar</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.UnsignedChar</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;uint8_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedChar</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedChar</code></td></tr><tr><td><p><code class="literal">std::vector&lt;int16_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.Short</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.Short</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;int16_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.Short</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.Short</code></td></tr><tr><td><p><code class="literal">std::vector&lt;uint16_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.UnsignedShort</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.UnsignedShort</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;uint16_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedShort</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedShort</code></td></tr><tr><td><p><code class="literal">std::vector&lt;int32_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.Int</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.Int</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;int32_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.Int</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.Int</code></td></tr><tr><td><p><code class="literal">std::vector&lt;uint32_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.UnsignedInt</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.UnsignedInt</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;uint32_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedInt</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedInt</code></td></tr><tr><td><p><code class="literal">std::vector&lt;int64_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.LongLong</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.LongLong</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;int64_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.LongLong</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.LongLong</code></td></tr><tr><td><p><code class="literal">std::vector&lt;uint64_t&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.UnsignedLongLong</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.UnsignedLongLong</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;uint64_t&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedLongLong</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.UnsignedLongLong</code></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_a76cb4d3-51c3-4939-a680-26f6d71f6232">Floating Point Types</h4><p>For these types, specify <code class="literal">DIRECTION</code> as <code class="literal">"input"</code>
+          and <code class="literal">SHAPE</code> as <code class="literal">1</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C Floating Point Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">double</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;double&gt;</code></p></td><td><p>complex <code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">float</code></p></td><td><p><code class="literal">single</code></p></td></tr><tr><td><p><code class="literal">std::complex&lt;float&gt;</code></p></td><td><p>complex <code class="literal">single</code></p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Parameter <code class="literal">T</code><br/>
+Floating Point
+                  Type<br/>
+for <code class="literal">std::vector&lt;T&gt;</code>
+                </th><th><p>Equivalent MATLAB
+                    <code class="literal">clib.array</code> Type<br/>
+for Interface
+                      <em class="replaceable"><code>lib</code></em></p></th><th>Element Type<sup><a id="d126e18610" class="intrnllnk" href="#ftn.d126e18610">a</a></sup></th></tr></thead><tbody><tr><td><p><code class="literal">std::vector&lt;double&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.Double</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.Double</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;double&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.Double</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.Double</code></td></tr><tr><td><p><code class="literal">std::vector&lt;float&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.Float</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.Float</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::complex&lt;float&gt;&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.complex.Float</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.complex.Float</code></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e18610" id="ftn.d126e18610">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper"> For information about using element types, see <a href="pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a>.</span></p></div></div></td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_1658cae7-f0cd-4c29-8753-2587ab0231b3">String and Character Types</h3><p>These tables show how C++ <code class="literal">string</code> and <code class="literal">char</code> data
+        types correspond to MATLAB data types. The data mapping depends on how the type is used in the function,
+        as a parameter, return type, or data member (property). For example, these function
+        definitions show different uses of type <code class="literal">T</code>.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">void fcn(T);  // T is a parameter type (MATLAB input argument)
+T fcn();      // T is a return type (MATLAB output argument)</code></pre></div><section><h4 class="title" id="mw_47d540df-e40e-4ed8-ac3b-884704b6888b">Plain C++ Character and String Types</h4><p>For these types, specify <code class="literal">DIRECTION</code> as <code class="literal">"input"</code>
+          and <code class="literal">SHAPE</code> as <code class="literal">1</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Plain C++ Character Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">char</code></p></td><td><p><code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">signed char</code></p></td><td><p><code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">unsigned char</code></p></td><td><p><code class="literal">uint8</code></p></td></tr><tr><td><p><code class="literal">wchar_t</code></p></td><td><p><code class="literal">char</code></p></td></tr><tr><td><p><code class="literal">char16_t</code></p></td><td><p><code class="literal">char</code></p></td></tr><tr><td><p><code class="literal">char32_t</code></p></td><td><p><code class="literal">char</code></p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Plain C++ String Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">std::string</code></p></td><td><p><code class="literal">string</code><br/>
+ (MATLAB converts characters to the platform default encoding for
+                      <code class="literal">std::string</code>.)</p></td></tr><tr><td><p><code class="literal">std::wstring</code></p></td><td><p><code class="literal">string</code></p></td></tr><tr><td><code class="literal">std::u16string</code></td><td><p><code class="literal">string</code></p></td></tr><tr><td><code class="literal">std::u32string</code></td><td><p><code class="literal">string</code></p></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_8bb7162c-a076-4cf2-8db4-0a1da0653bb8">C++ <code class="literal">char*</code> and <code class="literal">char[]</code> Types</h4><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Parameter Type</th><th><code class="literal">MLTYPE</code></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td rowspan="2"><p><code class="literal">char*</code><sup><a id="d126e18831" class="intrnllnk" href="#ftn.d126e18831">a</a></sup><br/>
+<code class="literal">const char*</code></p></td><td><p><code class="literal">"int8"</code><br/>
+<code class="literal">"char"</code><br/>
+<code class="literal">"clib.array.lib.Char"</code></p></td><td><p>Scalar value<br/>
+Array of scalar values</p></td></tr><tr><td><p><code class="literal">"string"</code></p></td><td><p><code class="literal">"nullTerminated"</code></p></td></tr><tr><td rowspan="2"><p><code class="literal">char[]</code><br/>
+<code class="literal">const
+                      char[]</code></p></td><td><p><code class="literal">"int8"</code><br/>
+<code class="literal">"char"</code><br/>
+<code class="literal">"clib.array.lib.Char"</code></p></td><td><p>Scalar value</p></td></tr><tr><td><p><code class="literal">"string"</code></p></td><td><p><code class="literal">"nullTerminated"</code></p></td></tr><tr><td rowspan="2"><code class="literal">wchar_t*</code>
+                  <br/>
+
+                  <code class="literal">const wchar_t*</code><br/>
+<code class="literal">wchar_t[]</code>
+                  <br/>
+
+                  <code class="literal">const wchar_t[]</code><br/>
+<code class="literal">char16_t*</code>
+                  <br/>
+
+                  <code class="literal">const char16_t*</code><br/>
+<code class="literal">char16_t[]</code>
+                  <br/>
+
+                  <code class="literal">const char16_t[]</code><br/>
+<code class="literal">char32_t*</code>
+                  <br/>
+
+                  <code class="literal">const char32_t*</code><br/>
+<code class="literal">char32_t[]</code>
+                  <br/>
+
+                  <code class="literal">const char32_t[]</code></td><td><code class="literal">"char"</code></td><td><p>Scalar value<br/>
+Array of scalar values</p></td></tr><tr><td><p><code class="literal">"string"</code></p></td><td><p><code class="literal">"nullTerminated"</code></p></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e18831" id="ftn.d126e18831">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper">MATLAB sets the <code class="literal">DIRECTION</code> of
+                          <code class="literal">char*</code> parameter types to <code class="literal">"input"</code>. To
+                        define a <code class="literal">char*</code> argument as a string output, set
+                          <code class="literal">DIRECTION</code> to <code class="literal">"output"</code> and use the
+                          <code class="literal">NumElementsInBuffer</code> name-value argument. For an
+                        example, see the <code class="literal">getMessage</code> function in the <a href="define-missing-shape-parameter.html#mw_b637db68-aaa5-4c90-b801-e78f86775b8b" class="a">Define String Argument</a>
+                        table.</span></p></div></div></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Return Type</th><th><code class="literal">MLTYPE</code></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td rowspan="2"><p><code class="literal">char*</code><br/>
+<code class="literal">const
+                      char*</code></p></td><td><p><code class="literal">"string"</code> (default)<br/>
+To delete the
+                    character buffer, specify a deleter function using the
+                      <code class="literal">DeleteFcn</code> argument in the <code class="function">defineOutput</code>
+                    function.</p></td><td><code class="literal">"nullTerminated"</code></td></tr><tr><td><p><code class="literal">"int8"</code></p></td><td><p>Scalar value<br/>
+Array of scalar
+                  values</p></td></tr><tr><td rowspan="2"><code class="literal">wchar_t*</code>
+                  <br/>
+
+                  <code class="literal">const wchar_t*</code><br/>
+<code class="literal">wchar_t[]</code>
+                  <br/>
+
+                  <code class="literal">const wchar_t[]</code><br/>
+<code class="literal">char16_t*</code>
+                  <br/>
+
+                  <code class="literal">const char16_t*</code><br/>
+<code class="literal">char16_t[]</code>
+                  <br/>
+
+                  <code class="literal">const char16_t[]</code><br/>
+<code class="literal">char32_t*</code>
+                  <br/>
+
+                  <code class="literal">const char32_t*</code><br/>
+<code class="literal">char32_t[]</code>
+                  <br/>
+
+                  <code class="literal">const char32_t[]</code></td><td><p><code class="literal">"string"</code> (default)<br/>
+To delete the
+                    character buffer, specify a deleter function using the
+                      <code class="literal">DeleteFcn</code> argument in the <code class="function">defineOutput</code>
+                    function.</p></td><td><code class="literal">"nullTerminated"</code></td></tr><tr><td><p><code class="literal">"char"</code></p></td><td><p>Scalar value<br/>
+Array of scalar
+                  values</p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C++ Data Member Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">char*</code><br/>
+<code class="literal">char[]</code></p></td><td><p><code class="literal">string</code><br/>
+<code class="literal">clib.array.lib.Char</code><br/>
+<code class="literal">int8</code><br/>
+<code class="literal">char</code></p></td></tr><tr><td><p><code class="literal">wchar_t*</code><br/>
+<code class="literal">char16_t*</code><br/>
+<code class="literal">char32_t*</code></p></td><td><p><code class="literal">string</code><br/>
+<code class="literal">char</code></p></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_e410c39a-37d4-433f-bc20-11a1ce0ae594">C++ Array of Strings</h4><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Array of String Parameter Type</th><th><code class="literal">MLTYPE</code></th><th><code class="literal">SHAPE</code><sup><a id="d126e19114" class="intrnllnk" href="#ftn.d126e19114">a</a></sup></th></tr></thead><tbody><tr><td><p><code class="literal">char**</code><br/>
+<code class="literal">const
+                      char**</code><br/>
+<br/>
+<code class="literal">char*[]</code><br/>
+<code class="literal">const
+                      char*[]</code><br/>
+<br/>
+<code class="literal">wchar_t**</code><br/>
+<code class="literal">const
+                      wchar_t**</code><br/>
+<code class="literal">wchar_t*[]</code><br/>
+<code class="literal">const
+                      wchar_t*[]</code><br/>
+<br/>
+<code class="literal">char16_t**</code><br/>
+<code class="literal">const
+                      char16_t**</code><br/>
+<code class="literal">char16_t*[]</code><br/>
+<code class="literal">const
+                      char16_t*[]</code><br/>
+<br/>
+<code class="literal">char32_t**</code><br/>
+<code class="literal">const
+                      char32_t**</code><br/>
+<code class="literal">char32_t*[]</code><br/>
+<code class="literal">const
+                      char32_t*[]</code></p></td><td><code class="literal">"string"</code></td><td><p>{scalar
+                    value,<code class="literal">"nullTerminated"</code>}<br/>
+{parameter
+                      name,<code class="literal">"nullTerminated"</code>}</p></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e19114" id="ftn.d126e19114">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper">1D array of string. The first element is the size of array and the last
+                      element is the shape of each element.</span></p></div></div></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C++ Array of String Data Member Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">char*[]</code> and <code class="literal">const
+                      char*[]</code><br/>
+<code class="literal">wchar_t*[]</code> and
+                      <code class="literal">const
+                      wchar_t*[]</code><br/>
+<code class="literal">char16_t*[]</code> and
+                      <code class="literal">const
+                      char16_t*[]</code><br/>
+<code class="literal">char32_t*[]</code> and
+                      <code class="literal">const char32_t*[]</code></p></td><td><p><code class="literal">string</code></p></td></tr></tbody></table></div><p>MATLAB does not support these <code class="literal">const</code> and
+            non-<code class="literal">const</code> C++ return types.</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">char**</code> and <code class="literal">char*[]</code></p></li><li><p><code class="literal">wchar_t**</code> and <code class="literal">wchar_t*[]</code></p></li><li><p><code class="literal">char16_t**</code> and <code class="literal">char16_t*[]</code></p></li><li><p><code class="literal">char32_t**</code> and <code class="literal">char32_t*[]</code></p></li></ul></div><p>
+</p></section><section><h4 class="title" id="mw_312c3df7-25f8-489f-b44e-a9244cc055c1"><code class="literal">std::vector&lt;T&gt;</code> String Types</h4><p>For these types, specify <code class="literal">DIRECTION</code> as
+          <code class="literal">"input"</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ <code class="literal">std::vector&lt;T&gt;</code> String Type</th><th><p>Equivalent MATLAB
+                    <code class="literal">clib.array</code> Type<br/>
+for Interface
+                      <em class="replaceable"><code>lib</code></em></p></th><th>Element Type<sup><a id="d126e19270" class="intrnllnk" href="#ftn.d126e19270">a</a></sup></th></tr></thead><tbody><tr><td><p><code class="literal">std::vector&lt;std::char&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.Char</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.Char</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::string&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.String</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.String</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::wstring&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.wString</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.wString</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::u16string&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.u16String</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.u16String</code></td></tr><tr><td><p><code class="literal">std::vector&lt;std::u32string&gt;</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.std.u32String</code></p></td><td><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.std.u32String</code></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e19270" id="ftn.d126e19270">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper"> For information about using element types, see <a href="pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a>.</span></p></div></div></td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_8b99ce7d-0926-4366-a274-b80a16bbc76f"><code class="literal">bool</code> Types</h3><p>For these types, specify <code class="literal">DIRECTION</code> as <code class="literal">"input"</code> and
+          <code class="literal">SHAPE</code> as <code class="literal">1</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th><code class="literal">bool</code> Type</th><th>Equivalent MATLAB Type</th></tr></thead><tbody><tr><td><p><code class="literal">bool</code></p></td><td><p><code class="literal">logical</code></p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><p><code class="literal">std::vector&lt;T&gt;</code>
+                  <code class="literal">bool</code> Type</p></th><th><p>Equivalent MATLAB
+                  <code class="literal">clib.array</code> Type for
+                <em class="replaceable"><code>lib</code></em></p></th><th>Element Type<sup><a id="d126e19411" class="intrnllnk" href="#ftn.d126e19411">a</a></sup></th></tr></thead><tbody><tr><td><p><code class="literal">bool</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>lib</code></em>.Bool</code></p></td><td><p><code class="literal">clib.<em class="replaceable"><code>lib</code></em>.Bool</code></p></td></tr></tbody><tbody class="footnotes"><tr><td colspan="3"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e19411" id="ftn.d126e19411">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper"> For information about using element types, see <a href="pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a>.</span></p></div></div></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_4a5a0a13-5c06-408f-b0ab-bc75cc0163d3">Static Data Members</h3><p>MATLAB treats public static and public <code class="literal">const</code> static data members
+        as read-only properties. You cannot update the value of a static data member. For example, build an interface <code class="literal">lib</code> to this header
+        file.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">class Set
+{
+   public:
+   static int p1;
+   const static int p2;
+};
+int Set::p1 = 5;
+const int Set::p2 = 10;</code></pre></div><p>The help for <code class="literal">clib.lib.Set</code> shows <code class="literal">p1</code> and
+          <code class="literal">p2</code> as properties. To use the properties in MATLAB:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>res = clib.lib.Set.p1 + clib.lib.Set.p2</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>res = 15</pre></div></div></div><p>Do not update a static property by using the class name. If you do, then MATLAB creates a structure named <code class="literal">clib</code>. You must manually clear the
+          <code class="literal">clib</code> structure before calling any functions in the interface. For
+        example, if you try to update static property <code class="literal">p1</code>, then
+          <code class="literal">clib</code> is a variable:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clib.lib.Set.p1 = 20</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>clib = 
+    lib: [1×1 struct]
+</pre></div></div></div><p>Clear the variable before calling any commands in <code class="literal">clib.lib</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear <span style="color:#A020F0">clib</span>
+clib.lib.Set.p1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 5</pre></div></div></div><p>For information about using static properties as <code class="literal">SHAPE</code> arguments, see
+          <a href="define-missing-shape-parameter.html#mw_94af2e69-e913-4b26-8c10-c860e84b17a2" class="a">Use Property or Method as SHAPE</a>.</p></section><section><h3 class="title" id="mw_37674fde-af37-46a3-82be-575b47ffa291"><code class="literal">const</code> Types</h3><p>MATLAB treats an object of a C++ read-only class as a <code class="literal">const</code>
+        object. The name of the object is the C++ class name, and MATLAB adds "read-only" text to the object display. For example, create a MATLAB interface to this library <code class="literal">MyClass</code>:</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">const class MyClass 
+{ 
+    public: 
+        int val1; 
+        int val2; 
+}; 
+ 
+const MyClass&amp; func(); </code></pre></div><p>Call the function <code class="literal">func</code> in MATLAB to create a <code class="literal">const</code>
+        <code class="literal">MyClass</code> object:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>res = clib.MyClass.func()</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>res =  
+ read-only MyClass with properties: 
+  val1: 1 
+  val2: 2</pre></div></div></div><p>To check if the object is <code class="literal">const</code>, call <a href="../ref/clibisreadonly.html"><code class="function">clibIsReadOnly</code></a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibIsReadOnly(res)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+  logical   
+   1</pre></div></div></div><p>The function  returns logical 1 (<code class="literal">true</code>) if the object is read-only.
+        Otherwise, it returns logical 0 (<code class="literal">false</code>).</p></section><section><h3 class="title" id="mw_166257b8-216d-4a7d-bbb2-73998c0e02db">User-Defined Types</h3><section><h4 class="title" id="mw_56453d70-c700-49c2-aa4a-420df6ffb777">Class Types</h4><p>This table shows how to configure a C++ parameter type <code class="literal">T</code> in the
+          definition file for a MATLAB interface to library <em class="replaceable"><code>libname</code></em>, where
+            <code class="literal">T</code> is a class.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th><p>C++ Parameter Type</p></th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">DIRECTION</code></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">T</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td rowspan="2"><code class="literal">T*</code></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></td><td><code class="literal">"input"</code></td><td>
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><p><code class="literal">T[]</code>
+                  </p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1<br/>
+Fixed dimensions<br/>
+Variable
+                    dimensions</p></td></tr><tr><td><code class="literal">T&amp;</code></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">T**</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"output"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::vector&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;T&gt;&amp;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code></td><td><p>1</p></td></tr></tbody></table></div><p>This table shows how to configure a C++ return type <code class="literal">T</code>, where
+            <code class="literal">T</code> is a class.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Return Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">T</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td rowspan="2"><code class="literal">T*</code></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></td><td>
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><p><code class="literal">T[]</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1<br/>
+Fixed dimensions<br/>
+Variable
+                    dimensions</p></td></tr><tr><td><p><code class="literal">T&amp;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::vector&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;T&gt;&amp;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr></tbody></table></div><p>This table shows how to configure a C++ data member type <code class="literal">T</code>, where
+            <code class="literal">T</code> is a class.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Data Member Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">T</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td rowspan="2"><code class="literal">T*</code></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></td><td>
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><p><code class="literal">T[]</code>
+                  </p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1<br/>
+Fixed dimensions<br/>
+Variable
+                    dimensions</p></td></tr><tr><td><p><code class="literal">std::vector&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;T&gt;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr></tbody></table></div></section><section><h4 class="title" id="mw_070cb7ba-9536-4b22-9ae7-5dfd0b9ac1a5">Struct Types</h4><p>In some situations, you can pass MATLAB struct arrays as C++ struct array arguments. For more information, see <a href="matlab-to-c-data-type-mapping.html#mw_a313d28d-e009-41ef-974f-6c02ea6a21f2" class="intrnllnk">Supported struct Types</a>.</p><p>This table shows how to configure a C++ struct parameter type <code class="literal">S</code> in
+          the definition file for a MATLAB interface to library <em class="replaceable"><code>libname</code></em>. <span>You can pass MATLAB structures directly to and from C++ functions if you set
+              <code class="literal">MLTYPE</code> to <code class="literal">"struct"</code>. You do
+            not need to call the MATLAB
+            <code class="function">struct</code> function on C/C++ structure input
+          parameters.<em> (since R2025a)</em></span></p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th><p>C++ Parameter Type</p></th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">DIRECTION</code></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">S</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code><br/>
+<code class="literal">"struct"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td rowspan="3"><code class="literal">S*</code></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></td><td><code class="literal">"input"</code></td><td rowspan="2">
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><code class="literal">"struct"</code></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code><br/>
+<code class="literal">"output"</code></td></tr><tr><td rowspan="2"><p><code class="literal">S[]</code>
+                  </p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><code class="literal">"input"</code></td><td rowspan="2"><p>1<br/>
+Fixed
+                    dimensions<br/>
+Variable dimensions</p></td></tr><tr><td><code class="literal">"struct"</code></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code></td></tr><tr><td rowspan="2"><code class="literal">S&amp;</code></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><code class="literal">"input"</code></td><td rowspan="2"><p>1</p></td></tr><tr><td><code class="literal">"struct"</code></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code></td></tr><tr><td><p><code class="literal">S**</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code><br/>
+<code class="literal">"struct"</code></p></td><td><code class="literal">"output"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::vector&lt;S&gt;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code><br/>
+<code class="literal">"struct"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td rowspan="2"><p><code class="literal">std::vector&lt;S&gt;&amp;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><code class="literal">"input"</code></td><td rowspan="2"><p>1</p></td></tr><tr><td><code class="literal">"struct"</code></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;S&gt;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code><br/>
+<code class="literal">"struct"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;S&gt;&amp;</code></p></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code><br/>
+<code class="literal">"struct"</code></td><td><code class="literal">"input"</code><br/>
+<code class="literal">"inputoutput"</code></td><td><p>1</p></td></tr></tbody></table></div><p>This table shows how to configure a C++ struct return type
+          <code class="literal">S</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Return Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">S</code></p></td><td><p><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td rowspan="2"><code class="literal">S*</code></td><td><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></td><td>
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><p><code class="literal">S&amp;</code></p></td><td><p><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::vector&lt;S&gt;</code></p></td><td><p><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;S&gt;</code></p></td><td><p><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;S&gt;&amp;</code></p></td><td><p><code class="literal">"struct"</code><br/>
+<code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr></tbody></table></div><p>This table shows how to configure a C++ struct data member type <code class="literal">S</code>.
+          Setting <code class="literal">MLTYPE</code> to <code class="literal">"struct"</code> is not supported for C++
+          data member types.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Data Member Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><p><code class="literal">S</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td rowspan="2"><code class="literal">S*</code></td><td><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></td><td><p>1</p></td></tr><tr><td><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></td><td>
+                  <p>1<br/>
+Fixed dimensions: Enter a numerical array, such as <code class="literal">[5,2]</code>.<br/>
+Variable dimensions: Enter a string array of parameter names, such as <code class="literal">["row","col"]</code>.</p>
+                </td></tr><tr><td><p><code class="literal">S[]</code>
+                  </p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1<br/>
+Fixed dimensions<br/>
+Variable
+                    dimensions</p></td></tr><tr><td><p><code class="literal">std::vector&lt;S&gt;</code></p></td><td><p><code class="literal">"clib.array.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr><tr><td><p><code class="literal">std::shared_ptr&lt;S&gt;</code></p></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.S"</code></p></td><td><p>1</p></td></tr></tbody></table></div></section><section><h4 class="title add_margin_0" id="mw_a313d28d-e009-41ef-974f-6c02ea6a21f2">Supported <code class="literal">struct</code> Types</h4><p><em>Since R2024b</em></p><p>MATLAB supports C++ structures, including nested structures, that meet these
+          conditions:</p><div class="itemizedlist"><ul><li><p>Contain public fundamental and non-fundamental data members.</p></li><li><p>Array data members must be fully defined.</p></li><li><p>The data member field names must be valid MATLAB names.</p></li></ul></div><p>The structure does not contain:</p><div class="itemizedlist"><ul><li><p>Constructors</p></li><li><p>Destructors</p></li><li><p>Copy constructors</p></li><li><p>Assignment operators</p></li><li><p><code class="literal">const</code> members</p></li><li><p>Static member initializers</p></li><li><p>Base classes</p></li><li><p>Virtual methods</p></li><li><p>Inner classes</p></li><li><p>Anonymous inner structs</p></li><li><p>Unions</p></li><li><p>Data Members with default values</p></li><li><p>Structures with circular reference</p></li></ul></div><p>For information about passing a MATLAB structure as a C++ <code class="literal">struct</code> argument, see <a href="pass-struct-parameter.html" class="a">Pass struct Parameter</a>.</p></section><section><h4 class="title" id="mw_e35759fd-69bc-4e81-9cc8-3a0ecfe44035">Enumerated Types</h4><p>This table shows how to configure a C++ enum type <code class="literal">T</code> in the
+          definition file for a MATLAB interface to library <em class="replaceable"><code>libname</code></em>, where
+            <code class="literal">T</code> is an enumerated type.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th><p>C++ Parameter Type</p></th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">DIRECTION</code></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><code class="literal">T</code></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><code class="literal">"input"</code></td><td><p>1</p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Return Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><code class="literal">T</code></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr></tbody></table></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>C++ Data Member Type</th><th><code class="literal">MLTYPE</code> in <em class="replaceable"><code>libname</code></em></th><th><code class="literal">SHAPE</code></th></tr></thead><tbody><tr><td><code class="literal">T</code></td><td><p><code class="literal">"clib.<em class="replaceable"><code>libname</code></em>.T"</code></p></td><td><p>1</p></td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_cd97194c-5f7a-4de0-a902-5886d573ef55"><code class="literal">nullptr</code> Argument Types</h3><section><h4 class="title" id="mw_608fa4a9-6a84-4ae4-b7a5-476ed25e318a"><code class="literal">nullptr</code> Input Argument Types</h4><p>MATLAB provides a <code class="literal">clib.type.nullptr</code> type so that you can pass
+          NULL to a function with these C++ input argument types:</p><div class="itemizedlist"><ul><li><p>Pointers to objects. However, pointers to fundamental MATLAB array types are not supported.</p></li><li><p><code class="literal">shared_ptr</code></p></li><li><p>Arrays</p></li></ul></div><p>The <code class="literal">clib.type.nullptr</code> type is supported for these MATLAB argument
+          types:</p><div class="itemizedlist"><ul><li><p>scalar object pointers</p></li><li><p><code class="literal">clib</code> arrays</p></li></ul></div></section><section><h4 class="title" id="mw_fb34077e-8cab-4221-a953-aefac275c4d2"><code class="literal">nullptr</code> Return Types</h4><p>The C++ interface returns type-specific <code class="literal">empty</code> values for functions
+          that return <code class="literal">nullptr</code>.</p><div class="itemizedlist"><ul><li><p>For type <code class="literal">double</code>,​ MATLAB returns <code class="literal">[]</code> for the value
+                <code class="literal">double.empty</code>.</p></li><li><p>For all other fundamental types,​ MATLAB returns an <code class="literal"><em class="replaceable"><code>MLTYPE</code></em>.empty</code>
+              value. To determine <em class="replaceable"><code>MLTYPE</code></em>, look for the C or C++ type in
+              the tables in this topic. <em class="replaceable"><code>MLTYPE</code></em> is in the
+                <strong class="guilabel">Equivalent MATLAB Type</strong> column.</p><p>To test for <code class="literal">nullptr</code> types, call the <a href="../ref/double.isempty.html"><code class="function">isempty</code></a> function.</p></li><li><p>For non-fundamental types,​ MATLAB returns a <code class="literal">nullptr</code> object. To test for
+                <code class="literal">nullptr</code> objects, call the <a href="../ref/clibisnull.html"><code class="function">clibIsNull</code></a> function.</p></li></ul></div></section></section><section><h3 class="title" id="mw_9a2972af-1543-407b-8271-3ae21165e1cf"><code class="literal">void*</code> Argument Types</h3><p>To pass <code class="literal">void*</code> arguments to and from C++ functions, see <a href="use-void-arguments.html" class="a">Define void* and void** Arguments</a>. MATLAB does not support <code class="literal">void*</code> data members.</p><p>When passing a <code class="literal">void*</code> input argument, MATLAB converts the underlying
+        data to the corresponding C++ type. </p><div itemprop="content" id="mw_606daa49-561c-4c5d-b14a-6e2734c73ba9" class="table_class"><p class="title"><strong class="title">Fundamental Types Mapping</strong></p><div class="table-responsive"><table class="table table-condensed" summary="Fundamental Types Mapping"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C++ Type</th><th><p>Equivalent MATLAB
+                  <code class="literal">void*</code> Type</p></th></tr></thead><tbody><tr><td><p><code class="literal">int8_t*</code></p></td><td><p><code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">uint8_t*</code></p></td><td><p><code class="literal">uint8</code></p></td></tr><tr><td><p><code class="literal">int16_t*</code></p></td><td><p><code class="literal">int16</code></p></td></tr><tr><td><p><code class="literal">uint16_t*</code></p></td><td><p><code class="literal">uint16</code></p></td></tr><tr><td><p><code class="literal">int32_t*</code></p></td><td><p><code class="literal">int32</code></p></td></tr><tr><td><p><code class="literal">uint32_t*</code></p></td><td><p><code class="literal">uint32</code></p></td></tr><tr><td><p><code class="literal">int64_t*</code></p></td><td><p><code class="literal">int64</code></p></td></tr><tr><td><p><code class="literal">uint64_t*</code></p></td><td><p><code class="literal">uint64</code></p></td></tr><tr><td><p><code class="literal">float*</code></p></td><td><p><code class="literal">single</code></p></td></tr><tr><td><p><code class="literal">double*</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">bool*</code></p></td><td><p><code class="literal">logical</code></p></td></tr></tbody></table></div></div><div itemprop="content" id="mw_ff3a5a14-93ea-4241-bc83-901cbe2e9586" class="table_class"><p class="title"><strong class="title"><code class="literal">clib.array</code> Types Mapping</strong></p><div class="table-responsive"><table class="table table-condensed" summary="clib.array Types Mapping"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C++ Type</th><th><p>Equivalent MATLAB
+                  <code class="literal">clib.array</code> Type<sup><a id="d126e20863" class="intrnllnk" href="#ftn.d126e20863">a</a></sup> for <em class="replaceable"><code>libname</code></em></p></th></tr></thead><tbody><tr><td><p><code class="literal">char*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Char</code></p></td></tr><tr><td><p><code class="literal">signed char*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.SignedChar</code></p></td></tr><tr><td><p><code class="literal">unsigned char*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.UnsignedChar</code></p></td></tr><tr><td><p><code class="literal">short*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Short </code></p></td></tr><tr><td><p><code class="literal">unsigned short*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.UnsignedShort </code></p></td></tr><tr><td><p><code class="literal">int*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Int</code></p></td></tr><tr><td><p><code class="literal">unsigned int*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.UnsignedInt</code></p></td></tr><tr><td><p><code class="literal">long*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Long</code></p></td></tr><tr><td><p><code class="literal">unsigned long*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.UnsignedLong</code></p></td></tr><tr><td><p><code class="literal">long long*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.LongLong </code></p></td></tr><tr><td><p><code class="literal">unsigned long long*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.UnsignedLongLong </code></p></td></tr><tr><td><p><code class="literal">float*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Float</code></p></td></tr><tr><td><p><code class="literal">double*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Double</code></p></td></tr><tr><td><p><code class="literal">bool*</code></p></td><td><p><code class="literal">clib.array.<em class="replaceable"><code>libname</code></em>.Bool</code></p></td></tr></tbody><tbody class="footnotes"><tr><td colspan="2"><div class="footnote"><div class="footnote-wrapper"><p><span class="footnote-symbol-wrapper"><sup><a class="intrnllnk" href="#d126e20863" id="ftn.d126e20863">a</a></sup></span>&nbsp;<span class="footnote-body-wrapper">MATLAB converts the names of fundamental C++ types to upper camel
+                      case.</span></p></div></div></td></tr></tbody></table></div></div><div itemprop="content" id="mw_aaa41cdc-69f8-477a-8331-7ec49c8f1920" class="table_class"><p class="title"><strong class="title"><code class="literal">typedef void*</code> Mapping</strong></p><div class="table-responsive"><table class="table table-condensed" summary="typedef void* Mapping"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>C++ Type</th><th><p>Equivalent MATLAB Type for <em class="replaceable"><code>libname</code></em></p></th></tr></thead><tbody><tr><td><code class="literal">typedef void* <em class="replaceable"><code>Handle</code></em></code></td><td><code class="literal">clib.<em class="replaceable"><code>libname</code></em>.<em class="replaceable"><code>Handle</code></em></code></td></tr></tbody></table></div></div></section><section><h3 class="title" id="mw_f4b2547b-48a9-4cfa-8c16-d0546c5ff769">Unsupported Data Types</h3><p>If the data type of an argument/return type in a class constructor, method, or function
+        is one of these types, or if the library contains any <a href="limitations-to-cpp-support-in-matlab-cpp-library-interface.html" class="a">unsupported language
+          features</a>, then the functionality is not included in the MATLAB interface to the library.</p><div class="itemizedlist"><ul><li><p>Any type with a size greater than 64 bits, for example <code class="literal">long double</code></p></li><li><p>References to a pointer, for example <code class="literal">int*&amp;</code></p></li><li><p>Pointers or arrays of <code class="literal">std::string</code></p></li><li><p>Pointers or references to enumerations</p></li><li><p>Vectors of pointers to class objects, for example
+                    <code class="literal">std::vector&lt;Myclass*&gt;</code></p></li><li><p>Reference data members</p></li><li><p><code class="literal">void*</code> data members</p></li><li><p>Multidimensional data member arrays</p></li><li><p>Modifying static data members</p></li><li><p><code class="literal">**</code> pointers, except:</p><div class="itemizedlist"><ul><li><p>MATLAB supports <code class="literal">char**</code> types.</p></li><li><p>MATLAB supports <code class="literal">**</code> pointers to custom classes used
+                        as function or ​method parameter types.</p></li><li><p>MATLAB supports <code class="literal">void**</code> used as function or method
+                        parameter types.</p></li></ul></div></li><li><p>Multilevel pointers, such as <code class="literal"><em class="replaceable"><code>type</code></em>***</code></p></li><li><p>C function pointers and <code class="literal">std::function</code> as function return types
+                or data members. You also cannot pass a MATLAB function as input to C function pointers or
+                    <code class="literal">std::function</code> parameter.</p></li><li><p>Class templates with incomplete or no instantiations</p></li><li><p><code class="literal">union</code></p></li><li><p>Types defined in the <code class="literal">std</code> namespace, except these supported
+                types:</p><div class="itemizedlist"><ul><li><p><code class="literal">std::string</code></p></li><li><p><code class="literal">std::wstring</code></p></li><li><p><code class="literal">std::u16string</code></p></li><li><p><code class="literal">std::u32string</code></p></li><li><p><code class="literal">std::vector</code></p></li><li><p><code class="literal">std::shared_ptr</code></p></li><li><p><code class="literal">std::function</code></p></li><li><p><code class="literal">std::complex</code></p></li></ul></div></li></ul></div><section><h4 class="title" id="mw_2947ba73-04e4-48e9-a103-196fef3b0764">Messages About Unsupported Types</h4><p>MATLAB reports on constructs that use unsupported types. To view these messages,
+          use the <code class="literal">Verbose</code> option in the <a href="../ref/clibgen.generatelibrarydefinition.html"><code class="function">clibgen.generateLibraryDefinition</code></a> or <a href="../ref/clibgen.buildinterface.html"><code class="function">clibgen.buildInterface</code></a> functions.</p><p>For example, suppose that <code class="literal">functionName</code> in
+            <code class="literal">ClassName</code> is defined in <code class="literal">HeaderFile.h</code>. If an
+          argument to <code class="literal">functionName</code> is of unsupported type
+            <em class="replaceable"><code>type</code></em>, then MATLAB does not add <code class="literal">functionName</code> to the definition file. In
+          addition, if <code class="literal">Verbose</code> is <code class="literal">true</code>, then
+            <code class="method">clibgen.generateLibraryDefinition</code> displays this message.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Did not add member 'functionName' to class 'ClassName' at HeaderFile.h:290.
+&nbsp;&nbsp;'type' is not a supported type.</pre></div></div></div></section></section>
+      <h2 id="d126e21204">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibgen.generatelibrarydefinition.html"><span itemprop="name"><code class="function">clibgen.generateLibraryDefinition</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibgen.buildinterface.html"><span itemprop="name"><code class="function">clibgen.buildInterface</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/clibisreadonly.html"><span itemprop="name"><code class="function">clibIsReadOnly</code></span></a></span></p>
+      <h3 id="d126e21216">Topics</h3><ul class="list-unstyled"><li><a href="define-matlab-interface-for-c-library.html" class="a">Define MATLAB Interface for C++ Library</a></li><li><a href="pass-clib-array-to-c-functions.html" class="a">Pass clib.array to C++ Functions</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>How MATLAB Handles Datetime and Duration Types in Python</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../python-language.html",
+          "name": "Python with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../matlab-engine-for-python.html",
+          "name": "Call MATLAB from Python"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "matlab-engine-for-python"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="fe">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Convert between MATLAB datetime and duration values and Python datetime and numpy types."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../python-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Python with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-engine-for-python.html?s_tid=CRUX_lftnav" itemprop="url" id="bugnozf"><span itemprop="title">Call MATLAB from Python</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">How MATLAB Handles Datetime and Duration Types in Python</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_cf127e80-1f47-4656-a90f-25989b567f5d" class="nav-link intrnllnk">Convert from MATLAB Data Type to Python Data Type</a></li><li class="nav-item"><a href="#mw_95060375-44e9-4bdc-9806-c52aad293462" class="nav-link intrnllnk">Convert from Python Data Type to MATLAB Data Type</a></li><li class="nav-item"><a href="#mw_06041a07-9adc-4f64-a8b2-395d4f5b1f11" class="nav-link intrnllnk">Use MATLAB Datetime Scalar in Python</a></li><li class="nav-item"><a href="#mw_c62c4f5f-5766-49ca-9a48-966faa37d191" class="nav-link intrnllnk">Use MATLAB Duration Scalar in Python</a></li><li class="nav-item"><a href="#mw_31085228-6f9d-4046-adec-1352274f62cd" class="nav-link intrnllnk">Use MATLAB Datetime Array in Python</a><ul class="nav"><li class="nav-item"><a href="#mw_9ad9683c-32ef-476f-9ef7-e7c5d8079e05" class="nav-link intrnllnk">With NumPy</a></li><li class="nav-item"><a href="#mw_eca644c7-7722-4f18-a769-322c660eadb6" class="nav-link intrnllnk">Without NumPy</a></li></ul></li><li class="nav-item"><a href="#mw_e12c1622-5b3c-4904-a999-ecabe561acc1" class="nav-link intrnllnk">Use MATLAB Duration Array in Python</a><ul class="nav"><li class="nav-item"><a href="#mw_f7df9956-414d-4d7f-939d-70035e163a5b" class="nav-link intrnllnk">With NumPy</a></li><li class="nav-item"><a href="#mw_31b97478-5376-4e54-a7f2-dd49c9d68ee8" class="nav-link intrnllnk">Without NumPy</a></li></ul></li><li class="nav-item"><a href="#mw_80e83440-d083-463b-9459-8a16372e3e6a" class="nav-link intrnllnk">Pass Python Datetime Scalar to MATLAB</a></li><li class="nav-item"><a href="#mw_cf9b2df8-ea64-4799-9c23-c4300ba76a51" class="nav-link intrnllnk">Pass Python Duration Scalar to MATLAB</a></li><li class="nav-item"><a href="#d126e59694" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-engine-for-python&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_c782ad44-59e3-4bc2-b156-0817690dcf9c">How <span class="trademark entity">MATLAB</span> Handles Datetime and Duration Types in <span class="trademark entity">Python</span></h2><p>When you use MATLAB<sup>&#x00AE;</sup> functionality in Python<sup>&#x00AE;</sup> and work with
+            <code class="literal">datetime</code> or <code class="literal">duration</code> values, MATLAB Engine API for Python automatically converts your data between the equivalent MATLAB and Python data types.</p><section><h3 class="title" id="mw_cf127e80-1f47-4656-a90f-25989b567f5d">Convert from <span class="trademark entity">MATLAB</span> Data Type to <span class="trademark entity">Python</span> Data Type</h3><p>When you pass MATLAB
+                <code class="literal">datetime</code> or <code class="literal">duration</code> values to Python, the MATLAB engine automatically converts the values to the equivalent Python data type, as shown in this table. An array contains either zero
+                elements or more than one. </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>MATLAB Data Type</th><th>Resulting Python Data Type</th></tr></thead><tbody><tr><td><code class="literal">datetime</code> scalar</td><td><code class="literal">datetime.datetime</code> object</td></tr><tr><td><code class="literal">duration</code> scalar</td><td><code class="literal">datetime.timedelta</code> object</td></tr><tr><td><code class="literal">datetime</code> array</td><td><code class="literal">numpy.datetime64</code> array<br/>
+If
+                                    the NumPy package is not available in the Python environment, MATLAB converts the <code class="literal">datetime</code> array to
+                                        <code class="literal">matlab.object</code>.</td></tr><tr><td><code class="literal">duration</code> array</td><td><code class="literal">numpy.timedelta64</code>
+                                    array<br/>
+If the NumPy package is not available in
+                                    the Python environment, MATLAB converts the <code class="literal">duration</code> array to
+                                        <code class="literal">matlab.object</code>.</td></tr></tbody></table></div><p>
+</p></section><section><h3 class="title" id="mw_95060375-44e9-4bdc-9806-c52aad293462">Convert from <span class="trademark entity">Python</span> Data Type to <span class="trademark entity">MATLAB</span> Data Type</h3><p>When you pass Python data to MATLAB in Python, the MATLAB engine automatically converts the data into the equivalent MATLAB data type, as shown in this table.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Python Data Type</th><th>Resulting MATLAB Data Type</th></tr></thead><tbody><tr><td><code class="literal">datetime.datetime</code> scalar</td><td><code class="literal">datetime</code> scalar</td></tr><tr><td><code class="literal">datetime.timedelta</code> scalar</td><td><code class="literal">duration</code> scalar</td></tr><tr><td><code class="literal">numpy.datetime64</code> scalar</td><td><code class="literal">datetime</code> scalar</td></tr><tr><td><code class="literal">numpy.timedelta64</code> scalar</td><td><code class="literal">duration</code> scalar</td></tr><tr><td><code class="literal">numpy.datetime64</code> array</td><td><code class="literal">datetime</code> array</td></tr><tr><td><code class="literal">numpy.timedelta64</code> array</td><td><code class="literal">duration</code> array</td></tr></tbody></table></div><p>
+</p></section><section><h3 class="title" id="mw_06041a07-9adc-4f64-a8b2-395d4f5b1f11">Use <span class="trademark entity">MATLAB</span> Datetime Scalar in <span class="trademark entity">Python</span></h3><p>First, import the <code class="literal">datetime</code> module and start the MATLAB engine in Python.<div class="code_responsive"><pre id="d126e59024" class="programlisting">import <span style="color:#A020F0">datetime</span>
+import <span style="color:#A020F0">matlab.engine</span>
+eng = matlab.engine.start_matlab(<span style="color:#A020F0">'-desktop'</span>)
+</pre></div></p><p>Create a <code class="literal">datetime</code> value in MATLAB.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdt = datetime(<span style="color:#A020F0">"2022-11-04 03:15:35.12345"</span>, <span style="color:#0000FF">...</span>
+                Format=<span style="color:#A020F0">"uuuu-MM-dd HH:mm:ss.SSSSS"</span>);
+</pre></div></div></div>Then, in Python, pass the MATLAB
+                <code class="literal">datetime</code> value as an argument to a Python function, such as the <code class="literal">list</code> constructor. The
+                    MATLAB engine converts the value to a Python
+                <code class="literal">datetime.datetime</code>
+                object.<div class="code_responsive"><pre id="d126e59059" class="programlisting">pyldt = list(eng.workspace[<span style="color:#A020F0">"mwdt"</span>])
+pyldt
+</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>[datetime.datetime(2022, 11, 4, 3, 15, 35, 123450)]</pre></div></div></div>When
+                a MATLAB function called from Python returns a <code class="literal">datetime</code> scalar, the MATLAB engine automatically converts the MATLAB function output to a <code class="literal">datetime.datetime</code> object in
+                    Python. For example, in Python, view the data type returned by the MATLAB
+                <code class="literal">dateshift</code>
+                function.<div class="code_responsive"><pre id="d126e59093" class="programlisting">type(eng.dateshift(eng.datetime(<span style="color:#A020F0">'today'</span>),<span style="color:#A020F0">'start'</span>,<span style="color:#A020F0">'year'</span>))</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>&lt;class 'datetime.datetime'&gt;</pre></div></div></div>The
+                    MATLAB engine can convert MATLAB
+                <code class="literal">datetime</code> scalar values with a time zone to Python
+                <code class="literal">datetime.datetime</code> objects with the same time zone. On machines
+                that do not have a system Internet Assigned Numbers Authority time zone database,
+                such as Windows<sup>&#x00AE;</sup> computers, you can install the Python tzdata module from the Python Package Index.</p><p>Using MATLAB
+                <code class="literal">datetime</code> scalar values in Python has these limitations:</p>
+<div class="itemizedlist"><ul><li><p>When you pass a MATLAB
+                            <code class="literal">datetime</code> value with nanosecond precision to
+                                Python, the MATLAB engine truncates the value because Python
+                            <code class="literal">datetime</code> objects support only microsecond
+                            precision.</p></li><li><p>You cannot pass MATLAB
+                            <code class="literal">datetime</code> scalars with the special time zone
+                                <code class="literal">UTCLeapSeconds</code> to Python.</p></li><li><p>You cannot pass MATLAB
+                            <code class="literal">datetime</code> scalars with a value of
+                                <code class="literal">NaT</code> to Python.</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="mw_c62c4f5f-5766-49ca-9a48-966faa37d191">Use <span class="trademark entity">MATLAB</span> Duration Scalar in <span class="trademark entity">Python</span></h3><p>Similarly, you can create a <code class="literal">duration</code> value in MATLAB and then pass the value to a function in Python. The MATLAB engine converts the value to a Python
+                <code class="literal">datetime.timedelta</code> object. While MATLAB
+                <code class="literal">duration</code> values support millisecond precision, Python
+                <code class="literal">timedelta</code> objects support microsecond precision.</p><p>For example, create a <code class="literal">duration</code> value in MATLAB.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwd = duration(<span style="color:#A020F0">"01:02:34.56789"</span>, <span style="color:#0000FF">...</span>
+      <span style="color:#A020F0">"Format"</span>,<span style="color:#A020F0">"hh:mm:ss.SSSSS"</span>);
+</pre></div></div></div>Then, in Python, pass the MATLAB
+                <code class="literal">duration</code> value as an argument to a Python function, such as the <code class="literal">list</code> constructor. Then
+                display the Python
+                list.<div class="code_responsive"><pre id="d126e59242" class="programlisting">pyld = list(eng.workspace[<span style="color:#A020F0">"mwd"</span>])
+pyld</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>[datetime.timedelta(seconds=3754, microseconds=567890)]</pre></div></div></div></p></section><section><h3 class="title" id="mw_31085228-6f9d-4046-adec-1352274f62cd">Use <span class="trademark entity">MATLAB</span> Datetime Array in <span class="trademark entity">Python</span></h3><p>You can access data in MATLAB
+                <code class="literal">datetime</code> arrays in Python with or without the NumPy package.</p><section><h4 class="title" id="mw_9ad9683c-32ef-476f-9ef7-e7c5d8079e05">With NumPy</h4><p>If you have NumPy installed, you can convert between MATLAB
+                    <code class="literal">datetime</code> arrays and NumPy <code class="literal">datetime64</code>
+                    arrays. </p><p>For example, create a MATLAB
+                    <code class="literal">datetime</code> array in MATLAB.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdtarr = datetime(2024,10:12,4,3,15,35);</pre></div></div></div>In
+                        Python, import the NumPy package and pass the MATLAB
+                    <code class="literal">datetime</code> array to the Python
+                    <code class="literal">type</code> function. The MATLAB engine converts the data to a <code class="literal">numpy.datetime64</code>
+                    array.<div class="code_responsive"><pre id="d126e59308" class="programlisting">import <span style="color:#A020F0">numpy</span>
+type(eng.workspace[<span style="color:#A020F0">"mwdtarr"</span>])
+</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>&lt;class 'numpy.ndarray'&gt;</pre></div></div></div>When
+                    the MATLAB engine converts a zoned MATLAB
+                    <code class="literal">datetime</code> array to a NumPy <code class="literal">datetime64</code>
+                    array, it first converts the time zone to UTC and then removes the time zone
+                    before constructing the NumPy <code class="literal">datetime64</code> array. For example,
+                    in MATLAB, create a zoned MATLAB
+                    <code class="literal">datetime</code> array.
+                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdtarrtz = datetime(1984,12,07,2,59,0, <span style="color:#0000FF">...</span>
+    TimeZone=<span style="color:#A020F0">"America/Los_Angeles"</span>) <span style="color:#0000FF">...</span>
+    + calyears(0:5);</pre></div></div></div>Pass the MATLAB
+                    <code class="literal">datetime</code> array to Python and display it. The dates have been adjusted to
+                    UTC.<div class="code_responsive"><pre id="d126e59346" class="programlisting">npdtarrtz = eng.workspace[<span style="color:#A020F0">"mwdtarrtz"</span>]
+npdtarrtz</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>array(['1984-12-07T10:59:00.000000000', '1985-12-07T10:59:00.000000000',
+       '1986-12-07T10:59:00.000000000', '1987-12-07T10:59:00.000000000',
+       '1988-12-07T10:59:00.000000000', '1989-12-07T10:59:00.000000000'],
+      dtype='datetime64[ns]')</pre></div></div></div>The MATLAB engine ignores the Python
+                    <code class="literal">datetime.fold</code> attribute.</p></section><section><h4 class="title" id="mw_eca644c7-7722-4f18-a769-322c660eadb6">Without NumPy</h4><p>You can also pass MATLAB
+                    <code class="literal">datetime</code> arrays to Python without the NumPy package. In this case, the data converts to data
+                    of type <code class="literal">matlab.object</code>. However, if you want to store a
+                        MATLAB
+                    <code class="literal">datetime</code> array as a list of Python
+                    <code class="literal">datetime</code> values, you can first convert it to a cell array. </p><p>For example, in MATLAB, convert a MATLAB
+                    <code class="literal">datetime</code> array to a cell
+                    array.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdtcell = num2cell(mwdtarr);</pre></div></div></div>Then,
+                    in Python, pass the cell array as an argument to a Python function. The MATLAB engine converts the cell array to a list of Python
+                    <code class="literal">datetime</code>
+                    values.<div class="code_responsive"><pre id="d126e59413" class="programlisting">len(eng.workspace[<span style="color:#A020F0">"mwdtcell"</span>])</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>3</pre></div></div></div></p></section></section><section><h3 class="title" id="mw_e12c1622-5b3c-4904-a999-ecabe561acc1">Use <span class="trademark entity">MATLAB</span> Duration Array in <span class="trademark entity">Python</span></h3><p>You can access data in MATLAB
+                <code class="literal">duration</code> arrays in Python with or without the NumPy package.</p><section><h4 class="title" id="mw_f7df9956-414d-4d7f-939d-70035e163a5b">With NumPy</h4><p>If you have NumPy installed, you can convert between MATLAB
+                    <code class="literal">duration</code> arrays and NumPy <code class="literal">timedelta64</code>
+                    arrays. </p><p>For example, create a MATLAB
+                    <code class="literal">duration</code> array in MATLAB.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdarr = duration(1:2,2,34);</pre></div></div></div></p><p>In Python, import the NumPy package and pass the MATLAB
+                    <code class="literal">duration</code> array to the Python
+                    <code class="literal">type</code> function. The MATLAB engine converts the data to a <code class="literal">numpy.timedelta64</code>
+                    array.<div class="code_responsive"><pre id="d126e59479" class="programlisting">import <span style="color:#A020F0">numpy</span>
+type(eng.workspace[<span style="color:#A020F0">"mwdarr"</span>]) 
+</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>&lt;class 'numpy.ndarray'&gt;</pre></div></div></div></p><p>You can convert a NumPy <code class="literal">timedelta64</code> array to a MATLAB
+                    <code class="literal">duration</code> array using the same method. In Python, pass the NumPy array back to MATLAB.
+                    <div class="code_responsive"><pre id="d126e59499" class="programlisting">eng.workspace[<span style="color:#A020F0">'mwdarr2'</span>] = npdarr</pre></div>In
+                        MATLAB, display the MATLAB
+                    array.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdarr2</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mwdarr2 = 
+
+  1×2 duration array
+
+   01:02:34   02:02:34</pre></div></div></div></p></section><section><h4 class="title" id="mw_31b97478-5376-4e54-a7f2-dd49c9d68ee8">Without NumPy</h4><p>You can also pass MATLAB
+                    <code class="literal">duration</code> arrays to Python without the NumPy package. To store a MATLAB
+                    <code class="literal">duration</code> array as a list of Python
+                    <code class="literal">timedelta</code> values, first convert it to a cell array.</p><p> For example, in MATLAB, convert a MATLAB
+                    <code class="literal">duration</code> array to a cell
+                    array.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdcell = num2cell(mwdarr);</pre></div></div></div>Then,
+                    in Python, pass the cell array as an argument to a Python function. The MATLAB engine converts the cell array to a list of Python
+                    <code class="literal">timedelta</code>
+                    values.<div class="code_responsive"><pre id="d126e59563" class="programlisting">len(eng.workspace[<span style="color:#A020F0">"mwdcell"</span>])</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>2</pre></div></div></div></p></section></section><section><h3 class="title" id="mw_80e83440-d083-463b-9459-8a16372e3e6a">Pass <span class="trademark entity">Python</span> Datetime Scalar to <span class="trademark entity">MATLAB</span></h3><p>When you pass a Python
+                <code class="literal">datetime</code> or NumPy <code class="literal">datetime64</code> object to
+                    MATLAB, the MATLAB engine converts it to a MATLAB
+                <code class="literal">datetime</code> value. For example, create a Python
+                <code class="literal">datetime</code> object and pass it to MATLAB.<div class="code_responsive"><pre id="d126e59604" class="programlisting">pydt = datetime.datetime(2019, 5, 18, 15, 17, 8, 132263)
+eng.workspace[<span style="color:#A020F0">'mwdt2'</span>] = pydt
+</pre></div>In MATLAB, display the MATLAB
+                <code class="literal">datetime</code>
+                value.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwdt2</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mwdt2 = 
+
+  datetime
+
+   2019-05-18T15:17:08.132Z</pre></div></div></div></p></section><section><h3 class="title" id="mw_cf9b2df8-ea64-4799-9c23-c4300ba76a51">Pass <span class="trademark entity">Python</span> Duration Scalar to <span class="trademark entity">MATLAB</span></h3><p>When you pass a Python
+                <code class="literal">timedelta</code> or NumPy <code class="literal">timedelta64</code> object to
+                    MATLAB, the MATLAB engine converts it to a MATLAB
+                <code class="literal">duration</code> value. For example, create a Python
+                <code class="literal">timedelta</code> object and pass it to MATLAB.<div class="code_responsive"><pre id="d126e59657" class="programlisting">pyd = datetime.timedelta(15, 12, 31, 23, 59, 59, 1)
+eng.workspace[<span style="color:#A020F0">'mwd2'</span>] = pyd
+</pre></div>In MATLAB, display the MATLAB
+                <code class="literal">duration</code>
+                value.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mwd2</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mwd2 = 
+
+  duration
+
+   587:59:12</pre></div></div></div>When you pass a Python
+                <code class="literal">timedelta</code> value with microsecond precision to MATLAB, the MATLAB engine truncates the value because MATLAB
+                <code class="literal">duration</code> values support only millisecond precision.</p></section>
+            <h2 id="d126e59694">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/datetime.html"><span itemprop="name"><code class="olink">datetime</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/duration.html"><span itemprop="name"><code class="olink">duration</code></span></a></span></p>
+            <h3 id="d126e59701">Topics</h3><ul class="list-unstyled"><li><a href="pass-data-between-matlab-and-python.html" class="a">Pass Data Between MATLAB and Python</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

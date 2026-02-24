@@ -1,0 +1,579 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Check Code for Errors and Warnings Using the Code Analyzer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../debugging-code.html",
+          "name": "Debugging and Analysis"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "debugging-code"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use the MATLAB Code Analyzer to check your code for coding problems automatically."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../debugging-code.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6v6i4"><span itemprop="title">Debugging and Analysis</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Check Code for Errors and Warnings Using the Code Analyzer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_2a66e6b8-1e2c-4b20-9617-d7139b0e07aa" class="nav-link intrnllnk">Enable Continuous Code Checking</a></li><li class="nav-item"><a href="#mw_1b30d117-4250-4e61-be63-524dd8ba5555" class="nav-link intrnllnk">View Code Analyzer Status for File</a></li><li class="nav-item"><a href="#mw_080ea881-d17e-4137-ad60-add03c91f928" class="nav-link intrnllnk">View Code Analyzer Messages</a></li><li class="nav-item"><a href="#mw_0e8a99c7-a9f9-42b7-b00d-4b9985ed2349" class="nav-link intrnllnk">Fix Problems in Code</a></li><li class="nav-item"><a href="#mw_98896516-0bde-41cb-a091-932dd2ea7580" class="nav-link intrnllnk">Analyze Files Using the Code Issues Panel</a></li><li class="nav-item"><a href="#bs3g0g_" class="nav-link intrnllnk">Analyze Files Using the Code Analyzer App</a></li><li class="nav-item"><a href="#mw_6ef2acca-0bd7-4ac3-93e1-ec984b575199" class="nav-link intrnllnk">Identify and Store Issues in Files With codeIssues Object</a></li><li class="nav-item"><a href="#brqxeeu-167" class="nav-link intrnllnk">Adjust Code Analyzer Message Indicators and Messages</a><ul class="nav"><li class="nav-item"><a href="#brqxeeu-169" class="nav-link intrnllnk">Suppress an Instance of a Message in the Current File</a></li><li class="nav-item"><a href="#brqxeeu-170" class="nav-link intrnllnk">Suppress All Instances of a Message in the Current File</a></li><li class="nav-item"><a href="#brqxeeu-171" class="nav-link intrnllnk">Suppress All Instances of a Message in All Files</a></li><li class="nav-item"><a href="#brqxeeu-173" class="nav-link intrnllnk">Save and Reuse Code Analyzer Message Settings</a></li></ul></li><li class="nav-item"><a href="#mw_cd3b229e-1852-44bb-9acc-54329c79471c" class="nav-link intrnllnk">Enable custom checks and configure existing checks</a></li><li class="nav-item"><a href="#brx2q1o" class="nav-link intrnllnk">Understand Code Containing Suppressed Messages</a></li><li class="nav-item"><a href="#bs3g3db-1" class="nav-link intrnllnk">Understand the Limitations of Code Analysis</a><ul class="nav"><li class="nav-item"><a href="#bs3g3db-2" class="nav-link intrnllnk">Distinguish Function Names from Variable Names</a></li><li class="nav-item"><a href="#bs3g3db-3" class="nav-link intrnllnk">Distinguish Structures from Handle Objects</a></li><li class="nav-item"><a href="#bs3g3db-4" class="nav-link intrnllnk">Distinguish Built-In Functions from Overloaded Functions</a></li><li class="nav-item"><a href="#bs3g3db-5" class="nav-link intrnllnk">Determine the Size or Shape of Variables</a></li><li class="nav-item"><a href="#bs3g3db-6" class="nav-link intrnllnk">Analyze Class Definitions with Superclasses</a></li><li class="nav-item"><a href="#bs3g3db-7" class="nav-link intrnllnk">Analyze Class Methods</a></li></ul></li><li class="nav-item"><a href="#bs24ao4-1" class="nav-link intrnllnk">Enable MATLAB Compiler Deployment Messages</a></li><li class="nav-item"><a href="#d126e58389" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brqxeeu-155">Check Code for Errors and Warnings Using the Code Analyzer</h2><span id="CA_NOSPC" class="anchor_target"></span><span id="CA_MBIG" class="anchor_target"></span><span id="CA_EOFER" class="anchor_target"></span><p> The MATLAB<sup>&#x00AE;</sup> Code Analyzer can automatically check your code for coding problems. You
+            can view warning and error messages about your code, and modify your file based on the
+            messages. The messages are updated automatically and continuously so you can see if your
+            changes address the issues noted in the messages. Some messages offer additional
+            information, automatic code correction, or both.</p><p>A list of all checks performed by the MATLAB Code Analyzer can be found here, <a href="../matlab_env/index-of-code-analyzer-checks.html" class="a">Index of Code Analyzer Checks</a>.</p><section><h3 class="title" id="mw_2a66e6b8-1e2c-4b20-9617-d7139b0e07aa">Enable Continuous Code Checking</h3><p>To enable continuous code checking, on the <strong class="guilabel">Home</strong> tab, in the
+                    <strong class="guilabel">Environment</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>, and then select the <strong class="emphasis bold">Enable continuous code
+                    checking</strong> check box. Set the <strong class="guilabel">Underlining</strong> option
+                to <code class="guidropdown">Underline warnings, errors, and info messages</code>.</p><p>When continuous code checking is enabled, MATLAB displays warning and error messages about your code in the Editor and
+                Live Editor. For example, the sample file <code class="literal">lengthofline.m</code> contains
+                several errors and warnings. Copy the code into the Editor and save the file as
+                    <code class="literal">lengthofline.m</code>.</p><p><a href="#" onclick="return toggleexpander('d126e57587_block','d126e57587_expandable_text');"><img style="border:0;" id="d126e57587_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e57587_block','d126e57587_expandable_text');"><code class="literal">lengthofline.m</code> Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e57587_block"><div class="code_responsive"><pre class="programlisting">function [len,dims] = lengthofline(hline)
+%LENGTHOFLINE Calculates the length of a line object
+%   LEN = LENGTHOFLINE(HLINE) takes the handle to a line object as the
+%   input, and returns its length.  The accuracy of the result is directly
+%   dependent on the number of distinct points used to describe the line.
+%
+%   [LEN,DIM] = LENGTHOFLINE(HLINE) additionally tells whether the line is
+%   2D or 3D by returning either a numeric 2 or 3 in DIM.  A line in a
+%   plane parallel to a coordinate plane is considered 2D.
+%
+%   If HLINE is a matrix of line handles, LEN and DIM will be matrices of results.
+%
+%   Example:
+%       figure; h2 = plot3(1:10,rand(1,10),rand(10,5));
+%       hold on; h1 = plot(1:10,rand(10,5));
+%       [len,dim] = lengthofline([h1 h2])
+
+%   Copyright 1984-2004 The MathWorks, Inc. 
+
+% Find input indices that are not line objects
+nothandle = ~ishandle(hline);
+for nh = 1:prod(size(hline))
+    notline(nh) = ~ishandle(hline(nh)) || ~strcmp('line',lower(get(hline(nh),'type')));
+end
+
+len = zeros(size(hline));
+for nl = 1:prod(size(hline))
+    % If it's a line, get the data and compute the length
+    if ~notline(nl)
+        flds = get(hline(nl));
+        fdata = {'XData','YData','ZData'};
+        for nd = 1:length(fdata)
+            data{nd} = getfield(flds,fdata{nd});
+        end
+        % If there's no 3rd dimension, or all the data in one dimension is
+        % unique, then consider it to be a 2D line.
+        if isempty(data{3}) | ...
+               (length(unique(data{1}(:)))==1 | ...
+                length(unique(data{2}(:)))==1 | ...
+                length(unique(data{3}(:)))==1)
+            data{3} = zeros(size(data{1}));
+            dim(nl) = 2;
+        else
+            dim(nl) = 3;
+        end
+        % Do the actual computation
+        temp = diff([data{1}(:) data{2}(:) data{3}(;)]);
+        len(nl) = sum([sqrt(dot(temp',temp'))])
+    end
+end
+
+% If some indices are not lines, fill the results with NaNs.
+if any(notline(:))
+    warning('lengthofline:FillWithNaNs', ...
+        '\n%s of non-line objects are being filled with %s.', ...
+        'Lengths','NaNs','Dimensions','NaNs')
+    len(notline) = NaN;
+    dim(notline) = NaN;
+end
+    
+if nargout &gt; 1
+    dims = dim;
+end</pre></div></div></section><section><h3 class="title" id="mw_1b30d117-4250-4e61-be63-524dd8ba5555">View Code Analyzer Status for File</h3><p>When you open a file in the Editor or Live Editor, the message indicator at the
+                top of the indicator bar shows the overall Code Analyzer status for the file.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Message Indicator</th><th>Description</th></tr></thead><tbody><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="errorround_16f8a9d27100fd2164aa234b4ded9af3fd.png" alt="Red error symbol" height="16" width="16"></span></span></td><td><p>File contains syntax errors or other significant
+                                    issues.</p></td></tr><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="warning_16ac941a815b139920dc1197d393a45c02.png" alt="Yellow warning symbol" height="16" width="16"></span></span></td><td><p>File contains warnings or opportunities for improvement,
+                                    but no errors.</p></td></tr><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="success_16.png" alt="Green check mark symbol" height="16" width="16"></span></span></td><td><p>File contains no errors, warnings, or opportunities for
+                                    improvement.</p></td></tr><tr><td><span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continuouscheckingdisabled_16.png" alt="Grey disabled symbol" height="16" width="16"></span></span></td><td>Continuous code checking disabled.</td></tr></tbody></table></div><p>For example, in <code class="literal">lengthofline.m</code>, the message indicator is <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_14_px"><img src="errorround_161934ff65a1d44e6bde88b648e693e6df.png" alt="Red error symbol" height="14" width="14"></span></span>, meaning that the file contains at least one
+                error.</p><div class="informalfigure"><div id="d126e57657" class="mediaobject"><p><img src="message_indicator.png" alt="lengthofline file in the Editor with the red error symbol displayed in the indicator bar" height="371" width="602"></p></div></div></section><section><h3 class="title" id="mw_080ea881-d17e-4137-ad60-add03c91f928">View Code Analyzer Messages</h3><p>To go to the first code fragment containing a message, click the message
+                indicator. The identified code fragment is underlined in either red for errors or
+                orange for warnings and improvement opportunities. If the file contains an error,
+                clicking the message indicator brings you to the first error. </p><p>For example, in <code class="literal">lengthofline.m</code>, when you click the message
+                indicator, the cursor moves to line 47, where the first error occurs. MATLAB displays the errors for that line next to the error marker in the
+                indicator bar. Multiple messages can represent a single problem or multiple
+                problems. Addressing one message might address all of them. Or, after you address
+                one, the other messages might change or what you need to do can become
+                clearer.</p><div class="informalfigure"><div id="d126e57672" class="mediaobject"><p><img src="messagebar_tips.png" alt="lengthofline file in the Editor after clicking the message indicator. Three errors display next to the error marker in the indicator bar." height="196" width="604"></p></div></div><p>To go to the next code fragment containing a message, click the message indicator.
+                You also can click a marker in the indicator bar to go to the line that the marker
+                represents. For example, click the first marker in the indicator bar in
+                    <code class="literal">lengthofline.m</code>. The cursor moves to the beginning of line
+                21.</p><p>To view the message for a code fragment, move the mouse pointer within the
+                underlined code fragment. Alternatively, you can position your cursor within the
+                underlined code fragment and press <strong class="keycap">Ctrl+M</strong>. If additional
+                information is available for the message, the message includes a
+                    <strong class="guibutton">Details</strong> button. Click the button to display the
+                additional information and any suggested user actions.</p><div class="informalfigure"><div id="d126e57687" class="mediaobject"><p><img src="shortmsg.png" alt="lengthofline file in the Editor showing a warning message with a details button" height="98" width="604"></p></div></div></section><section><h3 class="title" id="mw_0e8a99c7-a9f9-42b7-b00d-4b9985ed2349">Fix Problems in Code</h3><p>For each message in your code file, modify the code to address the problem noted
+                in the message. As you modify the code, the message indicator and underlining are
+                updated to reflect changes you make, even if you do not save the file.</p><p>For example, on line 47 in <code class="literal">lengthofline.m</code>, the message suggests
+                a delimiter imbalance. When you move the arrow keys over each delimiter, MATLAB does not appear to indicate a mismatch. However, code analysis detects
+                the semicolon in <code class="literal">data{3}(;)</code> and interprets it as the end of a
+                statement. </p><div class="informalfigure"><div id="d126e57704" class="mediaobject"><p><img src="messagebar_tips.png" alt="lengthofline file in the Editor after clicking the message indicator. Three errors display next to the error marker in the indicator bar." height="196" width="604"></p></div></div><p>To fix the problem in line 47, change <code class="literal">data{3}(;)</code> to
+                    <code class="literal">data{3}(:)</code>. The single change addresses all of the messages
+                on line 47, and the underline no longer appears for the line. Because the change
+                removes the only error in the file, the message indicator at the top of the bar
+                changes from <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="errorround_16f8a9d27100fd2164aa234b4ded9af3fd.png" alt="Red error symbol" height="16" width="16"></span></span> to <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="warning_16ac941a815b139920dc1197d393a45c02.png" alt="Yellow warning symbol" height="16" width="16"></span></span>, indicating that only warnings and potential
+                improvements remain.</p><p>For some messages, MATLAB suggests an automatic fix that you can apply to fix the problem. If an
+                automatic fix is available for a problem, the code fragment is highlighted and the
+                message includes a <strong class="guibutton">Fix</strong> button.</p><div class="informalfigure"><div id="d126e57734" class="mediaobject"><p><img src="messagetip_autocorrect.png" alt="lengthofline file in the Editor showing a warning message with a fix button" height="127" width="604"></p></div></div><p>For example, on line 27 in <code class="literal">lengthofline.m</code>, place the mouse over
+                the underlined and highlighted code fragment <code class="literal">prod</code>. The displayed
+                message includes a <strong class="guibutton">Fix</strong> button. </p><p>If you know how to fix the problem, perhaps from prior experience, click the
+                    <strong class="guibutton">Fix</strong> button or press <strong class="keycap">Alt+Enter</strong>. If you
+                are unfamiliar with the problem, right-click the highlighted code. The first item in
+                the context menu shows the suggested fix. Select the item to apply the fix.</p><div class="informalfigure"><div id="d126e57753" class="mediaobject"><p><img src="message_fix.png" alt="lengthofline file in the Editor showing the context menu. The first item in the menu is the suggested fix." height="99" width="604"></p></div></div><p>If multiple instances of a problem exist, MATLAB might offer to apply the suggested fix for all instances of the
+                problem. To apply the fix for all instances of a problem, right-click the
+                highlighted code and select <strong class="guilabel">Fix All (<em class="replaceable"><code>n</code></em>)
+                    Instances of This Issue</strong>. This option is not available for all
+                suggested fixes.</p><p>After you modify the code to address all the messages or disable designated
+                messages, the message indicator becomes green. See the example file,
+                    <code class="literal">lengthofline2.m</code>, with all messages addressed.</p><p><a href="#" onclick="return toggleexpander('d126e57772_block','d126e57772_expandable_text');"><img style="border:0;" id="d126e57772_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e57772_block','d126e57772_expandable_text');"><code class="literal">lengthofline2.m</code> Code</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e57772_block"><div class="code_responsive"><pre class="programlisting">function [len,dims] = lengthofline2(hline)
+%LENGTHOFLINE Calculates the length of a line object
+%   LEN = LENGTHOFLINE(HLINE) takes the handle to a line object as the
+%   input, and returns its length.  The accuracy of the result is directly
+%   dependent on the number of distinct points used to describe the line.
+%
+%   [LEN,DIM] = LENGTHOFLINE(HLINE) additionally tells whether the line is
+%   2D or 3D by returning either a numeric 2 or 3 in DIM.  A line in a
+%   plane parallel to a coordinate plane is considered 2D.
+%
+%   If HLINE is a matrix of line handles, LEN and DIM will be matrices of results.
+%
+%   Example:
+%       figure; h2 = plot3(1:10,rand(1,10),rand(10,5));
+%       hold on; h1 = plot(1:10,rand(10,5));
+%       [len,dim] = lengthofline([h1 h2])
+
+%   Copyright 1984-2005 The MathWorks, Inc. 
+
+% Find input indices that are not line objects
+nothandle = ~ishandle(hline);
+notline = false(size(hline));
+for nh = 1:numel(hline)
+    notline(nh) = nothandle(nh) || ~strcmpi('line',get(hline(nh),'type'));
+end
+
+len = zeros(size(hline));
+dim = len;
+for nl = 1:numel(hline)
+    % If it's a line, get the data and compute the length
+    if ~notline(nl)
+        flds = get(hline(nl));
+        fdata = {'XData','YData','ZData'};
+        data = cell(size(fdata));
+        for nd = 1:length(fdata)
+            data{nd} = flds.(fdata{nd});
+        end
+        % If there's no 3rd dimension, or all the data in one dimension is
+        % unique, then consider it to be a 2D line.
+        if isempty(data{3}) || ...
+               (length(unique(data{1}(:)))==1 || ...
+                length(unique(data{2}(:)))==1 || ...
+                length(unique(data{3}(:)))==1)
+            data{3} = zeros(size(data{1}));
+            dim(nl) = 2;
+        else
+            dim(nl) = 3;
+        end
+        % Do the actual computation
+        temp = diff([data{1}(:) data{2}(:) data{3}(:)]);
+        len(nl) = sum(sqrt(dot(temp',temp'))) %#ok&lt;NOPRT&gt;
+    end
+end
+
+% If some indices are not lines, fill the results with NaNs.
+if any(notline(:))
+    warning('lengthofline2:FillWithNaNs', ...
+        '\n%s of non-line objects are being filled with %s.', ...
+        'Lengths','NaNs','Dimensions','NaNs')
+    len(notline) = NaN;
+    dim(notline) = NaN;
+end
+    
+if nargout &gt; 1
+    dims = dim;
+end</pre></div></div></section><section><h3 class="title add_margin_0" id="mw_98896516-0bde-41cb-a091-932dd2ea7580">Analyze Files Using the Code Issues Panel</h3><p><em>Since R2025a</em></p><p>You can use the Code Issues panel to view error and warning messages about your
+                code. The Code Issues panel displays the coding problems found by the MATLAB Code Analyzer as it automatically checks your code. </p><p>To open the Code Issues panel, go to the <strong class="guilabel">Editor</strong> or
+                    <strong class="guilabel">Live Editor</strong> tab, and in the <strong class="guilabel">Analyze</strong>
+                section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="codeissues.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Code Issues</strong>. Alternatively, click the message indicator at
+                the top of the indicator bar. By default, the Code Issues panel opens on the right
+                side of the desktop. To hide the Code Issues panel, click the Code Issues
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_19_px"><img src="codeissuesicon.png" alt="" height="19" width="19"></span></span> icon in the sidebar.</p><div class="informalfigure"><div id="d126e57810" class="mediaobject"><p><img src="codeissuestool.png" alt="Code Issues panel showing 3 errors, 2 warnings, and 11 info messages found in the lengthofline.m file" height="430" width="364"></p></div></div><p>You can change what messages display in the Code Issues panel using the options at
+                the top of the panel:</p>
+<div class="itemizedlist"><ul><li><p>Change which files to look for issues in &#8212; In the drop-down list at
+                            the top-left of the Code Issues panel, select <code class="guidropdown">Current
+                                File</code> to show the errors, warnings, and info messages
+                            for the current file or <code class="guidropdown">Open Files</code> to show
+                            the errors, warnings, and info messages for all open files.</p></li><li><p>Filter messages by type &#8212; At the top-right of the Code Issues panel,
+                            click the Errors <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_14_px"><img src="errorround_166c43329786e5abc4cb8a13309fd43f22.png" alt="" height="14" width="14"></span></span>, Warnings <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_14_px"><img src="warning_1689a7e9c7cc9c789f1bb5288674e7f405.png" alt="" height="14" width="14"></span></span>, or Infos <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="infos_16.png" alt="" height="15" width="14"></span></span> button to toggle whether to show
+                            messages of that type. For example, to show only errors, click the
+                            Errors button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_14_px"><img src="errorround_166c43329786e5abc4cb8a13309fd43f22.png" alt="" height="14" width="14"></span></span> on and the Warnings
+                                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_14_px"><img src="warning_1689a7e9c7cc9c789f1bb5288674e7f405.png" alt="" height="14" width="14"></span></span> and Infos <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="infos_16.png" alt="" height="15" width="14"></span></span> buttons off.</p></li><li><p>Filter messages by text &#8212; Use the search field below the drop-down
+                            list to filter the list of messages by text. For example, to display
+                            only messages that contain the word <code class="literal">Variable</code>, enter
+                            the word <code class="literal">Variable</code> in the search field.</p></li></ul></div><p>
+</p></section><section><h3 class="title add_margin_0" id="bs3g0g_">Analyze Files Using the Code Analyzer App</h3><p><em>Since R2022b</em></p><p>You can create a report of Code Analyzer messages for all files in a folder using
+                the <a href="../ref/codeanalyzer-app.html"><span class="app">Code
+                    Analyzer</span></a> app.</p><p>To open the app:</p><div class="itemizedlist"><ul><li><p>MATLAB Toolstrip: On the <strong class="guilabel">Apps</strong> tab, under
+                            <strong class="guilabel">MATLAB</strong>, click the app icon: <span class="guiicon"><span class="inlinemediaobject"><img src="codeanalyzer_app_icon.png" alt="Code Analyzer App Icon" height="23" width="23"></span></span>.</p></li><li><p>MATLAB command prompt: Enter <code class="literal">codeAnalyzer</code>.</p></li></ul></div><div class="informalfigure"><div id="d126e57897" class="mediaobject"><p><img src="codeanalyzer_app.png" alt="Code Analyzer app showing an overall summary of code issues and code health details" height="819" width="1278"></p></div></div></section><section><h3 class="title add_margin_0" id="mw_6ef2acca-0bd7-4ac3-93e1-ec984b575199">Identify and Store Issues in Files With <code class="literal">codeIssues</code>                 Object</h3><p><em>Since R2022b</em></p><p>You can use <a href="../ref/codeissues.html"><code class="function">codeIssues</code></a> to programmatically find and store issues in code. The
+                    <code class="literal">codeIssues</code> object stores issues found by the MATLAB Code Analyzer. The issues found in one or more specified files or
+                folders can be sorted and filtered, either programmatically on the command line or
+                interactively in the Code Analyzer app. </p><p>For example, you can generate a <code class="literal">codeIssues</code> object containing
+                the issues in a specified file:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>issues = codeIssues(<span style="color:#A020F0">"test.m"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>issues = 
+
+  codeIssues with properties:
+
+                         Date: 18-Oct-2022 14:18:54
+                      Release: "R2023a"
+                        Files: "C:\MyCode\test.m"
+    CodeAnalyzerConfiguration: "active"
+                       Issues: [3×10 table]
+             SuppressedIssues: [0×11 table]
+
+
+    Issues table preview
+
+    Location    Severity    Fixability                                            Description                                             CheckID    LineStart    LineEnd    ColumnStart    ColumnEnd       FullFilename   
+    ________    ________    __________    ____________________________________________________________________________________________    _______    _________    _______    ___________    _________    __________________
+
+    "test.m"      info        manual      "Variable appears to change size on every loop iteration. Consider preallocating for speed."    AGROW          3           3            1             3        "C:\MyCode\test.m"
+    "test.m"      info        auto        "Add a semicolon after the statement to hide the output (in a script)."                         NOPTS          6           6            3             3        "C:\MyCode\test.m"
+    "test.m"      info        auto        "string('...') is not recommended. Use "..." instead."                                          STRQUOT        8           8            1            13        "C:\MyCode\test.m"
+</pre></div></div></div><p><em>In R2023b: The information contained in the a
+                    <code class="literal">codeIssues</code> object can be exported using <a href="../ref/codeissues.export.html" class="a"><code class="olink">export</code></a>.</em></p></section><section><h3 class="title" id="brqxeeu-167">Adjust Code Analyzer Message Indicators and Messages<span id="matlab_suppressing_mlint" class="anchor_target"></span></h3><p>You can specify which type of coding issues are underlined to best suit your
+                current development stage. For example, when first coding, you might prefer to
+                underline only errors, because warnings can be distracting. To change the
+                underlining settings, on the <strong class="guilabel">Home</strong> tab, in the
+                    <strong class="guilabel">Environment</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Settings</strong>. Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>, and then select an <strong class="guilabel">Underlining</strong> option.</p><p>You also can adjust what messages you see when analyzing your code. Code analysis
+                does not provide perfect information about every situation. Sometimes, you might not
+                want to change the code based on a message. If you do not want to change the code,
+                and you do not want to see the indicator and message for a specific line, you can
+                suppress them. For example, the first message on line 48 of the sample file
+                    <code class="literal">lengthofline.m</code> is <code class="literal">Terminate
+                    statement with semicolon to suppress output (in functions)</code>. Adding a
+                semicolon to the end of a statement suppresses output and is a common practice. Code
+                analysis alerts you to lines that produce output, but lack the terminating
+                semicolon. If you want to view output from line 48, do not add the semicolon as the
+                message suggests.</p><p>You can suppress (turn off) the indicators for warning and error messages in these
+                ways:</p><div class="itemizedlist"><ul><li><p>Suppress an instance of a message in the current file.</p></li><li><p>Suppress all instances of a message in the current file.</p></li><li><p>Suppress all instances of a message in all files.</p></li></ul></div><p>You cannot suppress error messages such as syntax errors.</p><section><h4 class="title" id="brqxeeu-169">Suppress an Instance of a Message in the Current File</h4><p>You can suppress a specific instance of a Code Analyzer message in the current
+                    file. For example, to suppress the message on line 48 in the sample file
+                        <code class="literal">lengthofline.m</code>, right-click the first underline on line
+                    48 and select <strong class="guimenuitem">Suppress 'Terminate statement with semicolon...'</strong> &gt; <strong class="guimenuitem">On This Line</strong>.</p><p>The comment <code class="literal">%#ok&lt;NOPRT&gt;</code> appears at the end of the
+                    line, which instructs MATLAB to suppress the <code class="literal">Terminate statement
+                        with semicolon to suppress output (in functions)</code> Code Analyzer
+                    message for that line. The underline and mark in the indicator bar for the
+                    message disappear.</p><p>If a line contains two messages that you do not want to display, right-click
+                    each underline separately and select the appropriate entry from the context
+                    menu. The <code class="literal">%#ok</code> syntax expands. For example, suppressing both
+                    messages for line 48 in the sample file <code class="literal">lengthofline.m</code> adds
+                    the comment <code class="literal">%#ok&lt;NBRAK,NOPRT&gt;</code> at the end of the
+                    line.</p><p>Even if Code Analyzer settings are set to enable this message, the specific
+                    instance of the suppressed message does not appear because the
+                        <code class="literal">%#ok</code> takes precedence over the setting. If you later
+                    decide you want to show the <code class="literal">Terminate statement with
+                        semicolon to suppress output (in functions)</code> Code Analyzer message
+                    for that line, delete <code class="literal">%#ok&lt;NOPRT&gt;</code> from the line.</p></section><section><h4 class="title" id="brqxeeu-170">Suppress All Instances of a Message in the Current File</h4><p>You can suppress all instances of a specific Code Analyzer message in the
+                    current file. For example, to suppress all instances of the message on line 48
+                    in the sample file <code class="literal">lengthofline.m</code>, right-click the first
+                    underline on line 48 and select <strong class="guimenuitem">Suppress 'Terminate statement with semicolon...'</strong> &gt; <strong class="guimenuitem">In This File</strong>. </p><p>The comment <code class="literal">%#ok&lt;*NOPRT&gt;</code> appears at the end of the
+                    line, which instructs MATLAB to suppress all instances of the <code class="literal">Terminate statement with semicolon to suppress output (in
+                        functions)</code> Code Analyzer message in the current file. All
+                    underlines and marks in the message indicator bar that correspond to this
+                    message disappear.</p><p>If a line contains two messages that you do not want to display anywhere in
+                    the current file, right-click each underline separately and select the
+                    appropriate entry from the context menu. The <code class="literal">%#ok</code> syntax
+                    expands. For the example, suppressing both messages for line 48 in the sample
+                    file <code class="literal">lengthofline.m</code> adds the comment
+                        <code class="literal">%#ok&lt;*NBRAK,*NOPRT&gt;</code>.</p><p>Even if Code Analyzer settings are set to enable this message, the message
+                    does not appear because the <code class="literal">%#ok</code> takes precedence over the
+                    setting. If you later decide you want to show all instances of the <code class="literal">Terminate statement with semicolon to suppress output (in
+                        functions)</code> Code Analyzer message in the current file, delete
+                        <code class="literal">%#ok&lt;*NOPRT&gt;</code> from the line.</p></section><section><h4 class="title" id="brqxeeu-171">Suppress All Instances of a Message in All Files</h4><p>You can disable all instances of a Code Analyzer message in all files. For
+                    example, to suppress all instances in all files of the message on line 48 in the
+                    sample file <code class="literal">lengthofline.m</code>, right-click the first underline
+                    on line 48 and select <strong class="guimenuitem">Suppress 'Terminate statement with semicolon...'</strong> &gt; <strong class="guimenuitem">In All Files</strong>. This option modifies the Code Analyzer settings.</p><p>If you know which messages you want to suppress, you can disable them directly
+                    using Code Analyzer settings:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                                    <strong class="guilabel">Environment</strong> section, click
+                                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                                <strong class="guibutton">Settings</strong>.</p></li><li><p>Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>.</p></li><li><p><a href="../matlab_env/code-analyzer-settings.html#bs24a39-1" class="a">Search the messages</a> to find the ones you want to
+                                suppress.</p></li><li><p>Clear the check box associated with each message you want to
+                                suppress in all files.</p></li><li><p>Click <strong class="guibutton">OK</strong>.</p></li></ol></div><p>
+</p></section><section><h4 class="title" id="brqxeeu-173">Save and Reuse Code Analyzer Message Settings</h4><p>You can set options to enable or disable certain Code Analyzer messages, and
+                    then save those settings to a file. When you want to use a settings file with a
+                    particular file, you select it from the Code Analyzer settings. The settings
+                    file remains in effect until you select another settings file. Typically, you
+                    change the settings file when you have a subset of files for which you want to
+                    use a particular settings file.</p><p>To save settings to a file:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                                <strong class="guilabel">Environment</strong> section, click
+                                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                            <strong class="guibutton">Settings</strong>.</p></li><li><p>Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>.</p></li><li><p>Enable or disable specific messages or categories of messages.</p></li><li><p>Click the Actions button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="keyboard_shortcut_prefs_button.png" alt="" height="15" width="24"></span></span>, select <strong class="guilabel">Save As</strong>,
+                            and then save the settings to a <code class="literal">txt</code> file.</p></li><li><p>Click <strong class="guilabel">OK</strong>.</p></li></ol></div><p>You can reuse these settings for any MATLAB file, or provide the settings file to another user. To use the
+                    saved settings:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                                <strong class="guilabel">Environment</strong> section, click
+                                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                            <strong class="guibutton">Settings</strong>.</p></li><li><p>Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>.</p></li><li><p>Open the <strong class="guilabel">Active settings</strong> list and select
+                                <strong class="guimenuitem">Browse</strong>.</p></li><li><p>Choose from any of your settings files.</p><p>The settings you choose remain in effect for all MATLAB files until you select another set of Code Analyzer
+                            settings.</p></li></ol></div></section></section><section><h3 class="title add_margin_0" id="mw_cd3b229e-1852-44bb-9acc-54329c79471c">Enable custom checks and configure existing checks</h3><p><em>Since R2023a</em></p><p>You can configure existing checks displayed in the MATLAB editor by the Code
+                Analyzer and add custom checks by placing a file named
+                    <code class="literal">codeAnalyzerConfiguration.json</code> in a resources folder. The
+                configuration file is effective in the folder containing the resources folder and
+                any subfolders.</p><p>You can modify existing Code Analyzer checks, including whether the check is
+                enabled and its severity, message text, and parameters if the check has any, such as
+                to limit the number of input and output arguments for a function. You can also
+                create custom checks that trigger when specific functions are used. For more
+                information on configuring Code Analyzer checks, see <a href="../matlab_env/configure-code-analyzer.html" class="a">Configure Code Analyzer</a>.</p><p>Validate your <code class="literal">codeAnalyzerConfiguration.json</code> configuration file
+                for proper formatting by using the  function <a href="../ref/matlab.codeanalysis.validateconfiguration.html"><code class="function">matlab.codeanalysis.validateConfiguration</code></a>.</p></section><section><h3 class="title" id="brx2q1o">Understand Code Containing Suppressed Messages</h3><p>If you receive code that contains suppressed messages, you might want to review
+                the messages without having to unsuppress them first. A message might be in a
+                suppressed state for any of the following reasons:</p>
+<div class="itemizedlist"><ul><li><p>One or more <code class="literal">%#ok&lt;message-ID&gt;</code> directives are
+                            on a line of code that elicits a message specified by
+                                <code class="literal">&lt;message-ID&gt;</code>.</p></li><li><p>One or more <code class="literal">%#ok&lt;*message-ID&gt;</code> directives are
+                            in a file that elicits a message specified by
+                                <code class="literal">&lt;message-ID&gt;</code>.</p></li><li><p>The messages are cleared in the Code Analyzer settings pane.</p></li><li><p>The messages are disabled by default.</p></li></ul></div><p>
+</p><p>To determine why messages are suppressed call <a href="../ref/codeissues.html"><code class="object">codeIssues</code></a> with the file as the input.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>issues = codeIssues(<span style="color:#A020F0">"myFile.m"</span>)</pre></div></div></div><p>The output, <code class="literal">issues</code>, will have a property,
+                    <code class="literal">SuppressedIssues</code>, contains a table listing all the suppressed
+                issues within the file. Review the message associated with each issue to understand
+                why it is suppressed.</p></section><section><h3 class="title" id="bs3g3db-1">Understand the Limitations of Code Analysis</h3><p>Code analysis is a valuable tool, but it has some limitations:</p>
+<div class="itemizedlist"><ul><li><p>Code analysis sometimes fails to produce Code Analyzer messages where
+                            you expect them.</p><p>By design, code analysis attempts to minimize the number of incorrect
+                            messages it returns, even if this behavior allows some issues to go
+                            undetected.</p></li><li><p>Code analysis sometimes produces messages that do not apply to your
+                            situation.</p><p>Clicking the <strong class="guibutton">Details</strong> button to display
+                            additional information for a message can help you determine if the
+                            message applies to your situation. Error messages are almost always
+                            problems. However, many warnings are suggestions to look at something in
+                            the code that is unusual, but might be correct in your case. </p><p>Suppress a warning message if you are certain that the message does
+                            not apply to your situation. If your reason for suppressing a message is
+                            subtle or obscure, include a comment giving the rationale. That way,
+                            those who read your code are aware of the situation.</p><p>For more information, see <a href="check-code-for-errors-and-warnings.html#brqxeeu-167" class="intrnllnk">Adjust Code Analyzer Message Indicators and Messages</a>. </p></li></ul></div><p>
+</p><section><h4 class="title" id="bs3g3db-2">Distinguish Function Names from Variable Names</h4><p>Code analysis cannot always distinguish function names from variable names.
+                    For the following code, if the Code Analyzer message is enabled, code analysis
+                    returns the message, <code class="literal">Code Analyzer cannot determine whether xyz is a
+                        variable or a function, and assumes it is a function</code>. Code
+                    analysis cannot make a determination because <code class="literal">xyz</code> has no
+                    obvious value assigned to it. However, the code might have placed the value in
+                    the workspace in a way that code analysis cannot detect. </p><div class="code_responsive"><pre class="programlisting">function y=foo(x)
+   .
+   .
+   .
+   y = xyz(x);
+end
+</pre></div><p>For example, in the following code, <code class="literal">xyz</code> can be a function
+                    or a variable loaded from the MAT-file. Code analysis has no way of making a
+                    determination.<div class="code_responsive"><pre class="programlisting">function y=foo(x)
+    load abc.mat
+    y = xyz(x);
+end</pre></div>Variables
+                    might also be undetected by code analysis when you use the <a href="../ref/eval.html"><code class="function">eval</code></a>, <a href="../ref/evalc.html"><code class="function">evalc</code></a>, <a href="../ref/evalin.html"><code class="function">evalin</code></a>, or <a href="../ref/assignin.html"><code class="function">assignin</code></a> functions.</p><p>If code analysis mistakes a variable for a function, do one of the following:</p>
+<div class="itemizedlist"><ul><li><p>Initialize the variable so that code analysis does not treat it as
+                                a function.</p></li><li><p>For the <code class="function">load</code> function, specify the variable
+                                name explicitly in the <code class="function">load</code> command line. For
+                                example:</p><div class="code_responsive"><pre class="programlisting"> function y=foo(x)
+     load abc.mat xyz
+     y = xyz(x);
+ end</pre></div></li></ul></div><p>
+</p></section><section><h4 class="title" id="bs3g3db-3">Distinguish Structures from Handle Objects</h4><p>Code analysis cannot always distinguish structures from handle objects. In the
+                    following code, if <code class="literal">x</code> is a structure, you might expect a Code
+                    Analyzer message indicating that the code never uses the updated value of the
+                    structure. If <code class="literal">x</code> is a handle object, however, then this code
+                    can be
+                    correct.<div class="code_responsive"><pre class="programlisting">function foo(x)
+		x.a = 3;
+end</pre></div></p><p>Code analysis cannot determine whether <code class="literal">x</code> is a structure or
+                    a handle object. To minimize the number of incorrect messages, code analysis
+                    returns no message for the previous code, even though it might contain a subtle
+                    and serious bug.</p></section><section><h4 class="title" id="bs3g3db-4">Distinguish Built-In Functions from Overloaded Functions</h4><p>If some built-in functions are overloaded in a class or on the path, Code
+                    Analyzer messages might apply to the built-in function, but not to the
+                    overloaded function you are calling. In this case, suppress the message on the
+                    line where it appears or suppress it for the entire file.</p><p>For information on suppressing messages, see <a href="check-code-for-errors-and-warnings.html#brqxeeu-167" class="intrnllnk">Adjust Code Analyzer Message Indicators and Messages</a>.</p></section><section><h4 class="title" id="bs3g3db-5">Determine the Size or Shape of Variables</h4><p>Code analysis has a limited ability to determine the type of variables and the
+                    shape of matrices. Code analysis might produce messages that are appropriate for
+                    the most common case, such as for vectors. However, these messages might be
+                    inappropriate for less common cases, such as for matrices.</p></section><section><h4 class="title" id="bs3g3db-6">Analyze Class Definitions with Superclasses</h4><p>Code Analyzer has limited capabilities to check class definitions with
+                    superclasses. For example, Code Analyzer cannot always determine if the class is
+                    a handle class, but it can sometimes validate custom attributes used in a class
+                    if the attributes are inherited from a superclass. When analyzing class
+                    definitions, Code Analyzer tries to use information from the superclasses, but
+                    often cannot get enough information to make a certain determination.</p></section><section><h4 class="title" id="bs3g3db-7">Analyze Class Methods</h4><p>Most class methods must contain at least one argument that is an object of the
+                    same class as the method. But this argument does not always have to be the first
+                    argument. When it is, code analysis can determine that an argument is an object
+                    of the class you are defining, and can do various checks. For example, code
+                    analysis can check that the property and method names exist and are spelled
+                    correctly. However, when code analysis cannot determine that an object is an
+                    argument of the class you are defining, then it cannot provide these
+                    checks.</p></section></section><section><h3 class="title" id="bs24ao4-1">Enable <span class="trademark entity">MATLAB</span> Compiler Deployment Messages</h3><p>You can switch between showing or hiding MATLAB Compiler deployment messages when you work on a file by changing the
+                Code Analyzer setting for this message category. Your choice likely depends on
+                whether you are working on a file to be deployed. Changing this setting also changes
+                the setting in the Editor. Similarly, changing the setting in the Editor changes
+                this setting. However, if the Code Analyzer settings are open when you modify the
+                setting in the Editor, the changes are not reflected in the Settings window. Whether
+                you change the setting in the Editor or the Settings window, the change applies to
+                the Editor and the Code Analyzer Report.</p><p>To enable <span class="entity">MATLAB
+            Compiler&#x2122;</span> deployment messages:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>On the <strong class="guilabel">Home</strong> tab, in the
+                            <strong class="guilabel">Environment</strong> section, click
+                                <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="settings.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                        <strong class="guibutton">Settings</strong>.</p></li><li><p>Select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Code Analyzer</strong>.</p></li><li><p>Click the down arrow next to the search field, and then select <strong class="guimenuitem">Show Messages in Category</strong> &gt; <strong class="guimenuitem">MATLAB Compiler (Deployment) Messages</strong>.</p></li><li><p>Click the <strong class="guibutton">Enable Category</strong> button to the right of
+                        the <strong class="guilabel">MATLAB Compiler (Deployment) Messages</strong> category
+                        title.</p></li><li><p>Clear individual messages that you do not want to display for your
+                        code.</p></li><li><p>Decide if you want to save these settings, so you can reuse them the next
+                        time you work on a file to be deployed.</p></li></ol></div><p>The settings <code class="literal">txt</code> file, which you can create as described in
+                    <a href="check-code-for-errors-and-warnings.html#brqxeeu-173" class="intrnllnk">Save and Reuse Code Analyzer Message Settings</a>, includes the status
+                of this setting.</p></section>
+            <h2 id="d126e58389">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/codeanalyzer-app.html"><span itemprop="name"><span class="app">Code
+                    Analyzer</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/codeissues.html"><span itemprop="name"><code class="function">codeIssues</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/checkcode.html"><span itemprop="name"><code class="function">checkcode</code></span></a></span></p>
+            <h3 id="d126e58401">Topics</h3><ul class="list-unstyled"><li><a href="matlab-code-analyzer-report.html" class="a">MATLAB Code Analyzer Report</a></li><li><a href="../matlab_env/code-analyzer-settings.html" class="a">Code Analyzer Settings</a></li><li><a href="../matlab_env/configure-code-analyzer.html" class="a">Configure Code Analyzer</a></li><li><a href="../matlab_env/index-of-code-analyzer-checks.html" class="a">Index of Code Analyzer Checks</a></li></ul>
+            <h3 id="d126e58412">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/115905-programming-structuring-code">Programming: Structuring Code (MathWorks Teaching Resources)</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Update UIControl Objects and Callbacks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../migrate-guide-apps.html",
+          "name": "Update figure -Based Apps"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "migrate-guide-apps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Update apps that use UI controls to take advantage of modern UI components."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../migrate-guide-apps.html?s_tid=CRUX_lftnav" itemprop="url" id="bu6rafu"><span itemprop="title">Update figure-Based Apps</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Update UIControl Objects and Callbacks</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_16223787-bcf5-4138-94a1-3ee98acdd4ae" class="nav-link intrnllnk">Replace uicontrol Function Calls</a><ul class="nav"><li class="nav-item"><a href="#mw_d76cd28c-5f4b-460f-b4ee-0110303aaccb" class="nav-link intrnllnk">Slider Differences</a></li><li class="nav-item"><a href="#mw_3e5911a1-9517-4eb8-82b1-23c3913d51fb" class="nav-link intrnllnk">Text Input Differences</a></li><li class="nav-item"><a href="#mw_d91d3dc0-82ea-4f65-8090-b2686b008da3" class="nav-link intrnllnk">Parent Container Differences</a></li></ul></li><li class="nav-item"><a href="#mw_42ed9c90-0703-4570-b4c4-cdcc7bb194c4" class="nav-link intrnllnk">Update Component Properties</a></li><li class="nav-item"><a href="#mw_b3171d5b-d317-49ae-8fe8-45e959d2a854" class="nav-link intrnllnk">Update Callbacks</a><ul class="nav"><li class="nav-item"><a href="#mw_6e3cead3-ba83-4696-977d-b66263ce6714" class="nav-link intrnllnk">Key Press and Button Down Callbacks</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=migrate-guide-apps&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a825fd9a-4733-4ec1-8213-21e19dff990b">Update <code class="literal">UIControl</code> Objects and Callbacks</h2><div class="progress_indicator_container"><nav class="progress_indicator" aria-label="Topic Progress Control"><div class="progress_control_left"><a role="button" class="disabled" aria-disabled="true" aria-label="Previous Step"><span class="icon-arrow-open-left" aria-hidden="true"></span></a></div><div class="progress_meta"><p>Step 1 of 3 in <a href="modern-programmatic-app-building.html">Update figure-Based Apps to Use uifigure</a></p><ul class="list-unstyled" aria-hidden="true"><li class="active"><a href="update-ui-controls-and-callbacks.html" role="button" aria-current="page" data-bs-toggle="tooltip" title="Go to Step 1 of 3">1</a></li><li><a href="update-app-figure-and-containers.html" role="button" data-bs-toggle="tooltip" title="Go to Step 2 of 3" aria-label="Go to Step 2 of 3">2</a></li><li><a href="update-dialog-boxes.html" role="button" data-bs-toggle="tooltip" title="Go to Step 3 of 3" aria-label="Go to Step 3 of 3">3</a></li></ul></div><div class="progress_control_right"><a role="button" href="update-app-figure-and-containers.html" data-bs-toggle="tooltip" title="Next Step"><span class="icon-arrow-open-right" aria-hidden="true"></span></a></div></nav></div><div class="clearfix"></div><p>When building a programmatic app in MATLAB<sup>&#x00AE;</sup>, add UI components to your app using component functions such as
+        <code class="function">uibutton</code> and <code class="function">uidropdown</code>. The
+        <code class="function">uicontrol</code> function will continue to be supported. However, there are
+      benefits to using UI components over <code class="literal">UIControl</code> objects. For example, these
+      are some functionalities that exist only with UI components:</p>
+<div class="itemizedlist"><ul><li><p>New component types, such as trees, hyperlinks, and instrumentation
+            components</p></li><li><p>Layout tools to configure your app layout, such as grid layout managers</p></li><li><p>Additional component customization options, such as component properties that
+            control text alignment and component placeholder text</p></li></ul></div><p>
+</p><p>To take advantage of these benefits, follow these steps to replace
+        <code class="literal">UIControl</code> objects in your app with UI components:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Replace calls to the <code class="function">uicontrol</code> function with calls to the
+            corresponding UI component function.</p></li><li><p>Update properties of the UI component.</p></li><li><p>Update callbacks of the UI component.</p></li></ol></div><p>
+</p><section><h3 class="title" id="mw_16223787-bcf5-4138-94a1-3ee98acdd4ae">Replace <code class="function">uicontrol</code> Function Calls</h3><p>The <code class="function">uicontrol</code> function has an argument for specifying the style of
+        the control. Every <code class="literal">UIControl</code> style corresponds to a UI component object
+        with similar functionality and appearance. In <code class="function">uifigure</code>-based apps,
+        replace calls to the <code class="function">uicontrol</code> function with the corresponding UI
+        component function. This table provides a list of the <code class="literal">UIControl</code> styles
+        and the corresponding UI component function.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><code class="literal">UIControl</code> Style</th><th>UI Component Function</th><th>Appearance</th></tr></thead><tbody><tr><td><code class="literal">'pushbutton'</code></td><td><a href="../ref/uibutton.html"><code class="function">uibutton</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19146" class="mediaobject"><p><img src="pr-transition-uicomponent-button.png" alt="Button UI component" height="30" width="111"></p></div></div>
+              </td></tr><tr><td><code class="literal">'togglebutton'</code></td><td>
+                <div class="itemizedlist"><ul><li><p><a href="../ref/uibutton.html"><code class="function">uibutton</code></a> with
+                        <code class="literal">'state'</code> style for a single, independent state
+                      button</p></li><li><p><a href="../ref/uitogglebutton.html"><code class="function">uitogglebutton</code></a> for a group of
+                      linked toggle buttons</p></li></ul></div>
+              </td><td>
+                <div class="informalfigure"><div id="d126e19173" class="mediaobject"><p><img src="pr-transition-uicomponent-togglebutton.png" alt="Two toggle button UI components in a button group" height="81" width="158"></p></div></div>
+              </td></tr><tr><td><code class="literal">'checkbox'</code></td><td><a href="../ref/uicheckbox.html"><code class="function">uicheckbox</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19187" class="mediaobject"><p><img src="pr-transition-uicomponent-checkbox.png" alt="Check box UI component" height="25" width="88"></p></div></div>
+              </td></tr><tr><td><code class="literal">'radiobutton'</code></td><td><a href="../ref/uiradiobutton.html"><code class="function">uiradiobutton</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19201" class="mediaobject"><p><img src="pr-transition-uicomponent-radiobutton.png" alt="Two radio button UI components in a button group" height="84" width="161"></p></div></div>
+              </td></tr><tr><td><code class="literal">'edit'</code> (single line)</td><td><a href="../ref/uieditfield.html"><code class="function">uieditfield</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19216" class="mediaobject"><p><img src="pr-transition-uicomponent-editfield.png" alt="Edit field UI component" height="31" width="109"></p></div></div>
+              </td></tr><tr><td><code class="literal">'edit'</code> (multiple lines)</td><td><a href="../ref/uitextarea.html"><code class="function">uitextarea</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19231" class="mediaobject"><p><img src="pr-transition-uicomponent-textarea.png" alt="Text area UI component" height="62" width="90"></p></div></div>
+              </td></tr><tr><td><code class="literal">'text'</code></td><td><a href="../ref/uilabel.html"><code class="function">uilabel</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19245" class="mediaobject"><p><img src="pr-transition-uicomponent-label.png" alt="Label UI component" height="21" width="42"></p></div></div>
+              </td></tr><tr><td><code class="literal">'slider'</code></td><td><a href="../ref/uislider.html"><code class="function">uislider</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19259" class="mediaobject"><p><img src="pr-transition-uicomponent-slider.png" alt="Slider UI component" height="50" width="175"></p></div></div>
+              </td></tr><tr><td><code class="literal">'listbox'</code></td><td><a href="../ref/uilistbox.html"><code class="function">uilistbox</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19273" class="mediaobject"><p><img src="pr-transition-uicomponent-listbox.png" alt="List box UI component" height="82" width="110"></p></div></div>
+              </td></tr><tr><td><code class="literal">'popupmenu'</code></td><td><a href="../ref/uidropdown.html"><code class="function">uidropdown</code></a></td><td>
+                <div class="informalfigure"><div id="d126e19287" class="mediaobject"><p><img src="pr-transition-uicomponent-dropdown.png" alt="Drop-down UI component" height="127" width="111"></p></div></div>
+              </td></tr><tr><td><code class="literal">'frame'</code></td><td>
+                <div class="itemizedlist"><ul><li><p><a href="../ref/uipanel.html"><code class="function">uipanel</code></a></p></li><li><p><a href="../ref/uibuttongroup.html"><code class="function">uibuttongroup</code></a></p></li></ul></div>
+              </td><td>
+                <div class="informalfigure"><div id="d126e19310" class="mediaobject"><p><img src="pr-transition-uicomponent-panel.png" alt="Panel UI component" height="84" width="158"></p></div></div>
+              </td></tr></tbody></table></div><p>Some UI components have slightly different configurations and behavior than their
+          <code class="literal">UIControl</code> equivalent. In many cases, you can update your code to adjust
+        for these differences using the following steps.</p><section><h4 class="title" id="mw_d76cd28c-5f4b-460f-b4ee-0110303aaccb">Slider Differences</h4><p>The slider UI component created using <code class="function">uislider</code> has a different
+          appearance than the slider <code class="literal">UIControl</code> object.</p><p>If your app uses a <code class="literal">UIControl</code> slider to allow users to scroll in a
+          container, consider removing your code that manages scrolling and using these alternatives instead:</p>
+<div class="itemizedlist"><ul><li><p>Set the <code class="property">Scrollable</code> property of the container to
+                  <code class="literal">'on'</code> to enable scrolling.</p></li><li><p>Use the <code class="function">scroll</code> function to scroll within the container
+                programmatically.</p></li></ul></div><p>
+</p></section><section><h4 class="title" id="mw_3e5911a1-9517-4eb8-82b1-23c3913d51fb">Text Input Differences</h4><p>The <code class="literal">'edit'</code> style <code class="literal">UIControl</code> objects align text in
+          the center by default, whereas <code class="function">uieditfield</code> and
+            <code class="function">uitextarea</code> UI components align text on the left. You can specify
+          the text alignment of these UI components by specifying the
+            <code class="literal">HorizontalAlignment</code> property.</p><p>If your app uses an <code class="literal">'edit'</code> style <code class="literal">UIControl</code>
+          object to allow users to input numeric values, you can instead create a numeric edit field
+          using the <code class="function">uieditfield</code> function by specifying the
+            <code class="literal">style</code> argument as
+          <code class="literal">"numeric"</code>:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+ef = uieditfield(fig,<span style="color:#A020F0">"numeric"</span>);</pre></div></div></div></p></section><section><h4 class="title" id="mw_d91d3dc0-82ea-4f65-8090-b2686b008da3">Parent Container Differences</h4><p>Both the <code class="function">uicontrol</code> function and UI component functions have an
+          optional first input argument to specify the parent container. If you omit this argument
+          in the <code class="function">uicontrol</code> function, the function adds the control to the
+          current figure. If you omit this argument in a UI component function such as
+            <code class="function">uibutton</code> or <code class="function">uicheckbox</code>, the function creates a
+          new UI figure and adds the component to that figure.</p><p>In <code class="function">uifigure</code>-based apps, create the main app UI figure using the
+            <code class="function">uifigure</code> function and return the <code class="literal">Figure</code> object
+          as a variable. Then, pass that variable as the first argument to the UI component
+          functions.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+btn = uibutton(fig,<span style="color:#A020F0">"BackgroundColor"</span>,<span style="color:#A020F0">"blue"</span>);
+cbx = uicheckbox(fig,<span style="color:#A020F0">"Position"</span>,[220 100 84 22]);</pre></div></div></div></p><p>For more information, see <a href="update-app-figure-and-containers.html" class="a">Update App Figure and Containers</a>.</p></section></section><section><h3 class="title" id="mw_42ed9c90-0703-4570-b4c4-cdcc7bb194c4">Update Component Properties</h3><p>UI component objects and <code class="literal">UIControl</code> objects have many of the same
+        properties. For example, both types of objects have <code class="property">Position</code>,
+          <code class="property">BackgroundColor</code>, and <code class="property">FontSize</code> properties. You
+        can use the same code to set these properties for both <code class="literal">UIControl</code> objects
+        and UI components.</p><p>However, if you set certain <code class="literal">UIControl</code> properties in your app, you
+        might need to update the names or values of these properties when you transition to using UI
+        components. This table lists some common properties of <code class="literal">UIControl</code> objects
+        that differ from UI component properties and suggested actions to take if you set these
+        properties in your code. If you encounter an error related to a property that is not listed
+        in the table, see the properties page of the specific UI component to resolve the error. For
+        a list of all UI components and links to their properties, see <a href="choose-components-for-your-app-designer-app.html" class="a">App Building Components</a>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><code class="literal">UIControl</code> Property</th><th>Description</th><th>Suggested Actions</th></tr></thead><tbody><tr><td><code class="property">String</code></td><td><p>The <code class="property">String</code> property of a
+                    <code class="literal">UIControl</code> object specifies the display text for the
+                  component. Depending on the UI component, this property is replaced by
+                    <code class="property">Text</code>, <code class="property">Value</code>, or
+                    <code class="property">Items</code>.</p></td><td>
+                <div class="itemizedlist"><ul><li><p>Labels, buttons, and check boxes &#8212; Replace references to
+                        <code class="literal">String</code> with <code class="literal">Text</code>.</p></li><li><p>Edit fields and text areas &#8212; Replace references to
+                        <code class="literal">String</code> with <code class="literal">Value</code>.</p></li><li><p>Drop-down components and list boxes &#8212; Replace references to
+                        <code class="literal">String</code> with <code class="literal">Items</code>.</p></li></ul></div>
+              </td></tr><tr><td><code class="property">Units</code></td><td>The <code class="property">Units</code> property of a <code class="literal">UIControl</code>
+                object specifies the units of measurement for the object. UI component objects do
+                not have a <code class="property">Units</code> property. All UI components use pixel units to
+                measure distances.</td><td><p>Update the <code class="literal">Position</code> property of your UI components to
+                  use pixel units.</p><p>Alternatively, if you use normalized units to manage
+                  app resize behavior, instead update your app layout to use a grid layout
+                  manager.</p><p>For more information, see <a href="manage-programmatic-app-resize-behavior.html" class="a">Manage App Resize Behavior Programmatically</a>.</p></td></tr><tr><td><code class="property">Value</code></td><td>The <code class="property">Value</code> property modifies the status of certain
+                  <code class="literal">UIControl</code> objects. For each of these
+                  <code class="literal">UIControl</code> styles, the equivalent UI component also has a
+                  <code class="property">Value</code> property. However, the types of property values you
+                specify might differ.</td><td>
+                <div class="itemizedlist"><ul><li><p>State buttons, toggle buttons, radio buttons, and check boxes &#8212; Specify
+                        <code class="property">Value</code> as 0 (unselected or raised) or 1 (selected or
+                      depressed).</p></li><li><p>Drop-down components and list boxes &#8212; Specify <code class="property">Value</code>
+                      as an element of <code class="property">Items</code>.</p></li><li><p>Sliders &#8212; No changes needed. The <code class="property">Value</code> property for
+                      sliders has the same effect in <code class="literal">UIControl</code> objects and
+                        <code class="literal">Slider</code> UI components.</p></li></ul></div>
+              </td></tr><tr><td><code class="property">ForegroundColor</code></td><td>The <code class="property">ForegroundColor</code> property of a
+                  <code class="literal">UIControl</code> object specifies the text color for the component. In
+                UI components, this property is named <code class="property">FontColor</code>.</td><td>Replace all references to <code class="property">ForegroundColor</code> with
+                  <code class="property">FontColor</code>.</td></tr><tr><td><code class="property">Max</code> and <code class="property">Min</code></td><td>The values of the <code class="property">Max</code> and <code class="property">Min</code>
+                properties have different effects depending on the <code class="literal">UIControl</code>
+                style. UI components have separate properties with more specific names and
+                behavior.</td><td>
+                <div class="itemizedlist"><ul><li><p>Sliders &#8212; Use the <code class="property">Limits</code> property to set the maximum
+                      and minimum slider values.</p></li><li><p>Edit fields and text areas &#8212; Create an edit field for single-line text and
+                      a text area for multi-line text.</p></li><li><p>List boxes &#8212; Set the <code class="property">MultiSelect</code> property to
+                        <code class="literal">'on'</code> to allow users to select multiple items.</p></li></ul></div>
+              </td></tr><tr><td><code class="property">CData</code></td><td>The <code class="property">CData</code> property specifies an icon or image associated
+                with a <code class="literal">UIControl</code> object. UI components that support icons have an
+                  <code class="property">Icon</code> property instead. In addition, there is an image UI
+                component for displaying images in an app.</td><td>
+                <div class="itemizedlist"><ul><li><p>Push buttons and toggle buttons &#8212; Specify <code class="property">Icon</code> as a
+                      3-D array of truecolor RGB values or a path to an image file.</p></li><li><p>Standalone images &#8212; Use the <a href="../ref/uiimage.html"><code class="function">uiimage</code></a> function.</p></li></ul></div>
+              </td></tr><tr><td><code class="property">Extent</code></td><td>The <code class="property">Extent</code> property of the <code class="literal">UIControl</code>
+                object stores the size of the object based on its text and font size. UI components
+                have no equivalent property.</td><td>If your app uses the <code class="property">Extent</code> property to specify a
+                component size based on the text it contains, update your app layout to use a grid
+                layout manager by using the <a href="../ref/uigridlayout.html"><code class="function">uigridlayout</code></a> function. Specify the column width of grid columns that
+                contain components with text as <code class="literal">'fit'</code>, which scales the component
+                size to fit the text it contains.</td></tr><tr><td><code class="property">SliderStep</code></td><td>The <code class="property">SliderStep</code> property controls the magnitude of the
+                slider value change when a user clicks the arrow buttons. There is no equivalent
+                functionality for a <code class="literal">Slider</code> object created using the
+                  <code class="function">uislider</code> function.</td><td>Determine if this functionality is critical to your app before updating. There
+                is no equivalent functionality in <code class="function">uifigure</code>-based apps.</td></tr></tbody></table></div></section><section><h3 class="title" id="mw_b3171d5b-d317-49ae-8fe8-45e959d2a854">Update Callbacks</h3><p><code class="literal">UIControl</code> objects have a <code class="property">Callback</code> property. The
+        callback function assigned to this property executes in response to a user interaction,
+        where the interaction depends on the style of the <code class="literal">UIControl</code>. For every
+          <code class="literal">UIControl</code> style, the corresponding UI component has an equivalent
+        callback property, but the property name is specific to the user interaction it corresponds
+        to. To transition your app code, wherever you assign a callback function to a
+          <code class="property">Callback</code> property, update the property name to the equivalent
+        callback property for the UI component. This table lists the callback property names for
+        each component type.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><code class="literal">UIControl</code> Style</th><th><code class="property">Callback</code> User Interaction</th><th>Equivalent UI Component Callback</th></tr></thead><tbody><tr><td><code class="literal">'pushbutton'</code></td><td>The user clicks the button.</td><td><code class="property">ButtonPushedFcn</code></td></tr><tr><td><code class="literal">'togglebutton'</code></td><td>The user clicks the button.</td><td><code class="property">ButtonPushedFcn</code></td></tr><tr><td><code class="literal">'checkbox'</code></td><td>The user sets or clears the check box.</td><td><code class="property">SelectionChangedFcn</code></td></tr><tr><td><code class="literal">'radiobutton'</code></td><td>The user clicks the button.</td><td><code class="property">SelectionChangedFcn</code> of the parent
+                  <code class="literal">ButtonGroup</code> container</td></tr><tr><td><code class="literal">'edit'</code></td><td>The user enters text in the edit field.</td><td><code class="property">ValueChangedFcn</code></td></tr><tr><td><code class="literal">'slider'</code></td><td>The user changes the slider value.</td><td><code class="property">ValueChangedFcn</code></td></tr><tr><td><code class="literal">'listbox'</code></td><td>The user selects an item.</td><td><code class="property">ValueChangedFcn</code></td></tr><tr><td><code class="literal">'popupmenu'</code></td><td>The user selects an item.</td><td><code class="property">ValueChangedFcn</code></td></tr></tbody></table></div><p>For example, this code creates a button <code class="literal">UIControl</code> object that prints
+        a statement to the MATLAB Command Window when the user pushes the
+        button.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = uicontrol;
+c.Style = <span style="color:#A020F0">"pushbutton"</span>;
+c.Callback = @(src,event)disp(<span style="color:#A020F0">"Button pushed"</span>);</pre></div></div></div>The behavior is equivalent
+        to creating a <code class="function">uibutton</code> component and setting the
+          <code class="literal">ButtonPushedFcn</code> callback
+        property:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+btn = uibutton(fig)
+btn.ButtonPushedFcn = @(src,event)disp(<span style="color:#A020F0">"Button pushed"</span>);</pre></div></div></div></p><p>If your app uses a <code class="property">KeyPressFcn</code> callback to respond while a user
+        types in an <code class="literal">'edit'</code> style <code class="literal">UIControl</code> object, instead
+        consider using the <code class="property">ValueChangingFcn</code> callback when you update your
+          <code class="function">uicontrol</code> function to <code class="function">uieditfield</code> or
+          <code class="function">uitextarea</code>. The <code class="property">ValueChangingFcn</code> callback of an
+        edit field or text area component executes repeatedly as the user types in the
+        component.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+ef = uieditfield(fig);
+ef.ValueChangingFcn = @(src,event)disp(<span style="color:#A020F0">"Typing..."</span>);</pre></div></div></div><section><h4 class="title" id="mw_6e3cead3-ba83-4696-977d-b66263ce6714">Key Press and Button Down Callbacks</h4><p>All <code class="literal">UIControl</code> objects have a <code class="property">ButtonDownFcn</code>
+          callback to respond when a user clicks on an object, and <code class="property">KeyPressFcn</code>
+          and <code class="property">KeyReleaseFcn</code> callbacks to respond when a user presses a key when
+          the object has focus. There is no equivalent callback associated with UI components.
+          However, you can update your code to have the same behavior by specifying a
+            <code class="property">WindowButtonDownFcn</code>, <code class="property">WindowKeyPressFcn</code>, or
+            <code class="property">WindowKeyReleaseFcn</code> callback on the UI figure that contains the
+          component. You can then query the object that was last clicked by using the
+            <code class="property">CurrentObject</code> property.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><code class="literal">UIControl</code> Callback</th><th><code class="literal">UIFigure</code> Callback</th><th>Example</th></tr></thead><tbody><tr><td><code class="property">ButtonDownFcn</code></td><td><code class="property">WindowButtonDownFcn</code></td><td>
+                  <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+lb = uilistbox(fig);
+fig.WindowButtonDownFcn = {@processClick,lb};
+
+<span style="color:#0000FF">function</span> processClick(src,event,lb)
+    <span style="color:#0000FF">if</span> src.CurrentObject == lb
+        disp(<span style="color:#A020F0">"List box clicked"</span>)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                </td></tr><tr><td><code class="property">KeyPressFcn</code></td><td><code class="property">WindowKeyPressFcn</code></td><td>
+                  <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+lb = uilistbox(fig);
+fig.WindowKeyPressFcn = {@processKeyPress,lb};
+
+<span style="color:#0000FF">function</span> processKeyPress(src,event,lb)
+    <span style="color:#0000FF">if</span> src.CurrentObject == lb
+        disp(<span style="color:#A020F0">"List box key pressed"</span>)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                </td></tr><tr><td><code class="property">KeyReleaseFcn</code></td><td><code class="property">WindowKeyReleaseFcn</code></td><td>
+                  <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fig = uifigure;
+lb = uilistbox(fig);
+fig.WindowKeyReleaseFcn = {@processKeyRelease,lb};
+
+<span style="color:#0000FF">function</span> processKeyRelease(src,event,lb)
+    <span style="color:#0000FF">if</span> src.CurrentObject == lb
+        disp(<span style="color:#A020F0">"List box key released"</span>)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                </td></tr></tbody></table></div></section></section>
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e19838">Topics</h3><ul class="list-unstyled"><li><a href="modern-programmatic-app-building.html" class="a">Update figure-Based Apps to Use uifigure</a></li><li><a href="update-app-figure-and-containers.html" class="a">Update App Figure and Containers</a></li><li><a href="update-dialog-boxes.html" class="a">Update Dialog Boxes</a></li><li><a href="create-and-run-a-simple-programmatic-app.html" class="a">Create and Run a Simple Programmatic App</a></li></ul>
+    </section>
+    </div><div class="d-flex justify-content-end"><div class="progress_indicator_container"><nav class="progress_indicator" aria-label="Topic Progress Control"><div class="progress_control_left"><a role="button" class="disabled" aria-disabled="true" aria-label="Previous Step"><span class="icon-arrow-open-left" aria-hidden="true"></span></a></div><div class="progress_meta"><p>Step 1 of 3 in <a href="modern-programmatic-app-building.html">Update figure-Based Apps to Use uifigure</a></p><ul class="list-unstyled" aria-hidden="true"><li class="active"><a href="update-ui-controls-and-callbacks.html" role="button" aria-current="page" data-bs-toggle="tooltip" title="Go to Step 1 of 3">1</a></li><li><a href="update-app-figure-and-containers.html" role="button" data-bs-toggle="tooltip" title="Go to Step 2 of 3" aria-label="Go to Step 2 of 3">2</a></li><li><a href="update-dialog-boxes.html" role="button" data-bs-toggle="tooltip" title="Go to Step 3 of 3" aria-label="Go to Step 3 of 3">3</a></li></ul></div><div class="progress_control_right"><a role="button" href="update-app-figure-and-containers.html" data-bs-toggle="tooltip" title="Next Step"><span class="icon-arrow-open-right" aria-hidden="true"></span></a></div></nav></div></div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

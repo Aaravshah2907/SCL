@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Run Parallel Language in MATLAB</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../code-execution.html",
+          "name": "Code Execution"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "code-execution"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="You can run parallel code in serial if you do not have Parallel Computing Toolbox."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../code-execution.html?s_tid=CRUX_lftnav" itemprop="url" id="function-execution"><span itemprop="title">Code Execution</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Run Parallel Language in MATLAB</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_bfb5e3bb-77b3-4122-a53e-e967a9483056" class="nav-link intrnllnk">Run Parallel Language in Serial</a><ul class="nav"><li class="nav-item"><a href="#mw_674b261f-bde1-46e7-871c-97c2e426a6a2" class="nav-link intrnllnk">Serial parfor</a></li><li class="nav-item"><a href="#mw_3ad06251-0844-4bc6-a8f2-a82e5f792692" class="nav-link intrnllnk">Serial parfeval and parfevalOnAll</a></li></ul></li><li class="nav-item"><a href="#mw_04ab7441-26ed-43cf-b91f-1a13166a892b" class="nav-link intrnllnk">Use Parallel Language Without a Pool</a><ul class="nav"><li class="nav-item"><a href="#mw_7c5ad098-d491-43ab-ae42-9044e428bf36" class="nav-link intrnllnk">DataQueue and PollableDataQueue</a></li><li class="nav-item"><a href="#mw_43d47a3f-ad06-4077-9882-e74840a9503e" class="nav-link intrnllnk">Constant</a></li></ul></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=code-execution&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=code-execution&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=code-execution&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=code-execution&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=code-execution&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=code-execution&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_ccd48472-867d-4701-98fe-5f5164389d1d">Run Parallel Language in MATLAB</h2><p>The following parallel language functionality is available in MATLAB<sup>&#x00AE;</sup>:</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/parfor.html"><code class="function">parfor</code></a></p></li><li><p><a href="../ref/parfeval.html"><code class="function">parfeval</code></a> and <a href="../ref/parfevalonall.html"><code class="function">parfevalOnAll</code></a></p></li><li><p><a href="../ref/parallel.pool.dataqueue.html"><code class="object">DataQueue</code></a> and <a href="../ref/parallel.pool.pollabledataqueue.html"><code class="object">PollableDataQueue</code></a></p></li><li><p><a href="../ref/parallel.future.aftereach.html"><code class="function">afterEach</code></a> and <a href="../ref/parallel.future.afterall.html"><code class="function">afterAll</code></a></p></li><li><p><a href="../ref/parallel.pool.constant.html"><code class="object">Constant</code></a></p></li></ul></div><p>
+You do not need Parallel Computing Toolbox&#x2122; to run code using this functionality.</p><section><h3 class="title" id="mw_bfb5e3bb-77b3-4122-a53e-e967a9483056">Run Parallel Language in Serial</h3><p>Some syntaxes for parallel language functionality have automatic parallel support.
+                Functionality with automatic parallel support automatically uses default parallel
+                resources if you have Parallel Computing Toolbox. If you do not have Parallel Computing Toolbox, this parallel language functionality runs in serial. For more
+                information about automatic parallel support, see <a href="../../parallel-computing/run-matlab-functions-with-automatic-parallel-support.html" class="a">Run MATLAB Functions with Automatic Parallel Support</a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p><p>The following parallel language functionality has automatic parallel support:</p>
+<div class="itemizedlist"><ul><li><p><a href="../ref/parfor.html"><code class="function">parfor</code></a></p></li><li><p><a href="../ref/parfeval.html"><code class="function">parfeval</code></a> and <a href="../ref/parfevalonall.html"><code class="function">parfevalOnAll</code></a></p></li></ul></div><p>
+</p><p>To run functions in the background, use parallel language syntaxes with <a href="../ref/parallel.backgroundpool.html"><code class="function">backgroundPool</code></a> instead. Code that you write using
+                    <code class="function">backgroundPool</code> can automatically scale to use more parallel
+                resources if you have Parallel Computing Toolbox. For more information, see <a href="../ref/parallel.backgroundpool.html"><code class="function">backgroundPool</code></a>.</p><section><h4 class="title" id="mw_674b261f-bde1-46e7-871c-97c2e426a6a2">Serial <code class="literal">parfor</code></h4><p>The following syntaxes run in parallel when you have Parallel Computing Toolbox, and otherwise run in serial:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">parfor loopvar = initval:endval;
+                                        <em class="replaceable"><code>statements</code></em>; end</code></p></li><li><p><code class="literal">parfor (loopvar = initval:endval, M); statements;
+                                    end</code></p></li></ul></div><p>
+ When a <code class="literal">parfor</code>-loop runs in serial, the
+                    iterations run in reverse order. For more information, see <a href="../ref/parfor.html"><code class="function">parfor</code></a> and <a href="../../parallel-computing/parfor.html"><code class="function">parfor</code></a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p></section><section><h4 class="title" id="mw_3ad06251-0844-4bc6-a8f2-a82e5f792692">Serial <code class="literal">parfeval</code> and                     <code class="literal">parfevalOnAll</code></h4><p>The following syntaxes run in parallel when you use Parallel Computing Toolbox, and otherwise run in serial:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">parfeval(fcn,n,X1,...Xm)</code></p></li><li><p><code class="literal">parfevalOnAll(fcn,n,X1,...Xm)</code></p></li></ul></div><p>
+</p><p>When a <code class="object">Future</code> object runs in serial, MATLAB runs the function <code class="literal">fcn</code> associated with it using
+                    deferred execution. The function runs when MATLAB becomes idle, blocking MATLAB until the function finishes running. Examples of functionality
+                    that causes MATLAB to be temporarily idle include:</p>
+<div class="itemizedlist"><ul><li><p>Using <a href="../ref/pause.html"><code class="function">pause</code></a></p></li><li><p>Using <a href="../ref/parallel.future.fetchoutputs.html"><code class="function">fetchOutputs</code></a> or <a href="../ref/parallel.fevalfuture.fetchnext.html"><code class="function">fetchNext</code></a> to get results from a
+                                    <code class="object">Future</code> object</p></li><li><p>Using <a href="../ref/parallel.future.wait.html"><code class="function">wait</code></a> to wait for a <code class="object">Future</code> object to
+                                finish</p></li><li><p>Using <a href="../ref/parallel.future.aftereach.html"><code class="function">afterEach</code></a> or <a href="../ref/parallel.future.afterall.html"><code class="function">afterAll</code></a> to run a function after a
+                                    <code class="object">Future</code> object finishes</p></li></ul></div><p>
+</p></section></section><section><h3 class="title" id="mw_04ab7441-26ed-43cf-b91f-1a13166a892b">Use Parallel Language Without a Pool</h3><section><h4 class="title" id="mw_7c5ad098-d491-43ab-ae42-9044e428bf36"><code class="literal">DataQueue</code> and <code class="literal">PollableDataQueue</code></h4><p>When you create a <a href="../ref/parallel.pool.dataqueue.html"><code class="object">DataQueue</code></a> or <a href="../ref/parallel.pool.pollabledataqueue.html"><code class="object">PollableDataQueue</code></a> object, the object is not directly associated
+                    with the background pool or a parallel pool. You can therefore use a
+                        <code class="object">DataQueue</code> or <code class="object">PollableDataQueue</code> object
+                    without any pool.</p><p>The following code updates a plot on each iteration of a
+                        <code class="literal">parfor</code>-loop. If you have Parallel Computing Toolbox, the <code class="literal">parfor</code>-loop runs using a parallel pool. If
+                    you do not have Parallel Computing Toolbox, the code runs in
+                    serial.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 1:1000
+
+line = plot(x,NaN(size(x)));
+
+q = parallel.pool.DataQueue;
+afterEach(q,@(data)updatePlot(line,data));
+
+<span style="color:#0000FF">parfor</span> i = 1:numel(x)
+    <span style="color:#228B22">% Simulate some work   </span>
+    pause(rand)
+
+    y(i) = x(i)^2;
+    send(q,[i y(i)])
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">function</span> updatePlot(line,data)
+    line.XData(data(1)) = data(1);
+    line.YData(data(1)) = data(2); 
+    drawnow
+<span style="color:#0000FF">end</span></pre></div></div></div></p></section><section><h4 class="title" id="mw_43d47a3f-ad06-4077-9882-e74840a9503e"><code class="literal">Constant</code></h4><p>When you create a <a href="../ref/parallel.pool.constant.html"><code class="object">Constant</code></a> object, the object is not directly associated with the
+                    background pool or a parallel pool. You can therefore use a
+                        <code class="object">Constant</code> object without any pool.</p><p>The following code creates a <code class="object">Constant</code> object in your current
+                        MATLAB session. You can write to a temporary file using
+                        <code class="literal">c.Value</code> and <code class="literal">fprintf</code>.</p><p>If you have Parallel Computing Toolbox, the <code class="literal">parfor</code>-loop runs using a parallel pool. If
+                    you use a parallel pool, the <code class="object">Constant</code> is available on each
+                    worker in the parallel pool. Otherwise, the <code class="object">Constant</code> object is
+                    created only in your current MATLAB
+                    session.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = parallel.pool.Constant(@() fopen(tempfile(pwd),<span style="color:#A020F0">'wt'</span>),@fclose);
+<span style="color:#0000FF">parfor</span> i = 1:10
+    y(i) = i^2;
+    fprintf(c.Value,<span style="color:#A020F0">"%03d %f\n"</span>,i,y(i));
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>You can use the following syntaxes without Parallel Computing Toolbox:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">parallel.pool.Constant(X)</code></p></li><li><p><code class="literal">parallel.pool.Constant(fcn)</code></p></li><li><p><code class="literal">parallel.pool.Constant(fcn,cleanupFcn)</code></p></li></ul></div><p>
+</p></section></section></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

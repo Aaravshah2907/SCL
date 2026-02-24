@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Implement Set/Get Interface for Properties</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../object-oriented-programming.html",
+          "name": "Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../object-oriented-programming-in-matlab.html",
+          "name": "Define Classes"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../handle-classes.html",
+          "name": "Handle Classes"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "handle-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create a set/get interface for your handle class."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../object-oriented-programming-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Define Classes</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../handle-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6io3j-1"><span itemprop="title">Handle Classes</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Implement Set/Get Interface for Properties</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brfyl44-2" class="nav-link intrnllnk">The Standard Set/Get Interface</a></li><li class="nav-item"><a href="#bs20384" class="nav-link intrnllnk">Subclass Syntax</a></li><li class="nav-item"><a href="#brfyl44-3" class="nav-link intrnllnk">Get Method Syntax</a></li><li class="nav-item"><a href="#brfyl44-4" class="nav-link intrnllnk">Set Method Syntax</a></li><li class="nav-item"><a href="#brfyl44-5" class="nav-link intrnllnk">Class Derived from matlab.mixin.SetGet</a><ul class="nav"><li class="nav-item"><a href="#bs2qy6d" class="nav-link intrnllnk">Property Access Methods Called with set and get</a></li><li class="nav-item"><a href="#brfyl44-6" class="nav-link intrnllnk">List All Properties</a></li><li class="nav-item"><a href="#bs2pa0j" class="nav-link intrnllnk">Using get with Arrays of Handles</a></li><li class="nav-item"><a href="#bs2pctb" class="nav-link intrnllnk">Arrays of Handles, Names, and Values</a></li><li class="nav-item"><a href="#brfyl44-7" class="nav-link intrnllnk">Customize the Property List</a></li></ul></li><li class="nav-item"><a href="#mw_ded6b4e5-0981-4156-9224-f0324d67f0a3" class="nav-link intrnllnk">Set Priority for Matching Partial Property Names</a><ul class="nav"><li class="nav-item"><a href="#mw_f06ce5ff-8ef8-424a-ac5a-fcb5309b0ffb" class="nav-link intrnllnk">Case and Name Matching</a></li><li class="nav-item"><a href="#mw_825db69d-5cd1-4719-80ea-88a85e341652" class="nav-link intrnllnk">Reduce Incompatibilities When Adding New Properties</a></li></ul></li><li class="nav-item"><a href="#d126e9847" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=handle-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=handle-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=handle-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brfyl44-1">Implement Set/Get Interface for Properties</h2><a class="indexterm" name="d126e9317"></a><a class="indexterm" name="d126e9320"></a><section><h3 class="title" id="brfyl44-2">The Standard Set/Get Interface</h3><p>Some MATLAB<sup>&#x00AE;</sup> objects, such as graphics objects, implement an interface based on <code class="literal">set</code> and <code class="literal">get</code> functions. These functions enable access to multiple properties on arrays of objects in a single function call.</p><p>You can add <code class="literal">set</code> and <code class="literal">get</code> functionality to your class by deriving from one of these classes:</p><div class="itemizedlist"><ul><li><p><a href="../ref/matlab.mixin.setget-class.html"><code class="class">matlab.mixin.SetGet</code></a> &#8212; use when you want support for case-insensitive, partial property name matching. Deriving from <code class="literal">matlab.mixin.SetGet</code> does not affect the exact property name required by the use of dot notation reference to properties.</p></li><li><p><a href="../ref/matlab.mixin.setgetexactnames-class.html"><code class="class">matlab.mixin.SetGetExactNames</code></a> &#8212; use when you want to support only case-sensitive full property name matching.</p></li></ul></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The <code class="literal">set</code> and <code class="literal">get</code> methods referred to in
+                    this section are different from property set access and property get access
+                    methods. See <a href="property-set-methods.html" class="a">Property Get and Set Methods</a> for
+                    information on property access methods.</p></div></section><section><h3 class="title" id="bs20384">Subclass Syntax</h3><p>Use the abstract class <code class="literal">matlab.mixin.SetGet</code> or <code class="literal">matlab.mixin.SetGetExactNames</code> as a superclass:</p><div class="code_responsive"><pre class="programlisting">classdef MyClass &lt; matlab.mixin.SetGet
+   ...
+end</pre></div><p>Because <code class="literal">matlab.mixin.SetGet</code> and <code class="literal">matlab.mixin.SetGetExactNames</code> derive from the <a href="../ref/handle-class.html"><code class="class">handle</code></a> class, your subclass is also a <code class="literal">handle</code> class.</p></section><section><h3 class="title" id="brfyl44-3">Get Method Syntax</h3><p>The <a href="../ref/matlab.mixin.setget.get.html"><code class="method">get</code></a> method returns the value of an object property using the object handle and the property name. For example, assume <code class="literal">H</code> is the handle to an object:</p><div class="code_responsive"><pre class="programlisting">v = get(H,'<em class="replaceable">PropertyName</em>');</pre></div><p>If you specify an array of handles with a single property name, <code class="literal">get</code> returns the property value for each object as a cell array of values:</p><div class="code_responsive"><pre class="programlisting">CV = get(H,'<em class="replaceable">PropertyName</em>');</pre></div><p>The <code class="literal">CV</code> array is always a column regardless of the shape of <code class="literal">H</code>. </p><p>If you specify a cell array of <code class="literal">char</code> vector property names and an array of handles, <code class="literal">get</code> returns a cell array of property values. Each row in the cell corresponds to an object in the handle array. Each column in the cell corresponds to a property name. </p><div class="code_responsive"><pre class="programlisting">props = {'<em class="replaceable">PropertyName1</em>','<em class="replaceable">PropertyName2</em>'};
+CV = get(H,props);
+</pre></div><p><code class="literal">get</code> returns an m-by-n cell array, where<code class="literal"> m = length(H)</code> and <code class="literal">n = length(props)</code>.</p><p>If you specify a handle array, but no property names, <code class="literal">get</code> returns an array of type <code class="literal">struct</code> in which each structure in the array corresponds to an object in <code class="literal">H</code>. Each field in each structure corresponds to a property defined by the class of <code class="literal">H</code>. The value of each field is the value of the corresponding property. </p><div class="code_responsive"><pre class="programlisting">SV = get(H);</pre></div><p>If you do not assign an output variable, then <code class="literal">H</code> must be scalar.</p><p>For an example, see <a href="implementing-a-set-get-interface-for-properties.html#bs2pa0j" class="intrnllnk">Using get with Arrays of Handles</a>.</p></section><section><h3 class="title" id="brfyl44-4">Set Method Syntax</h3><p>The <a href="../ref/matlab.mixin.setget.set.html"><code class="method">set</code></a> method assigns the specified value to the specified property for the object with handle <code class="literal">H</code>. If <code class="literal">H</code> is an array of handles, MATLAB assigns the value to the property for each object in the array <code class="literal">H</code>.</p><div class="code_responsive"><pre class="programlisting">set(H,'<em class="replaceable">PropertyName</em>',PropertyValue)</pre></div><p>You can pass a cell array of property names and a cell array of property values to <code class="literal">set</code>:</p><div class="code_responsive"><pre class="programlisting">props = {'<em class="replaceable">PropertyName1</em>','<em class="replaceable">PropertyName2</em>'};
+vals = {Property1Value,Property2Value};
+set(H,props,vals)</pre></div><p>If <code class="literal">length(H)</code> is greater than one, then the property value cell array (<code class="literal">vals</code>) can have values for each property in each object. For example, suppose <code class="literal">length(H)</code> is 2 (two object handles). You want to assign two property values on each object:</p><div class="code_responsive"><pre class="programlisting">props = {'<em class="replaceable">PropertyName1</em>','<em class="replaceable">PropertyName2</em>'};
+vals = {Property11Value,Property12Value;Property21Value,Property22Value};
+set(H,props,vals))
+</pre></div><p>The preceding statement is equivalent to the follow two statements:</p><div class="code_responsive"><pre class="programlisting">set(H(1),'<em class="replaceable">PropertyName1</em>',Property11Value,'<em class="replaceable">PropertyName2</em>',Property12Value)
+set(H(2),'<em class="replaceable">PropertyName1</em>',Property21Value,'<em class="replaceable">PropertyName2</em>',Property22Value)</pre></div><p>If you specify a scalar handle, but no property names, <code class="literal">set</code> returns a <code class="literal">struct</code> with one field for each property in the class of <code class="literal">H</code>. Each field contains an empty cell array.</p><div class="code_responsive"><pre class="programlisting">SV = set(h);</pre></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>You can use any combination of property name/property value cell arrays,
+                    structure arrays (with the field names as property names and field values as
+                    property values), and cell arrays in one call to <code class="literal">set</code>.</p></div></section><section><h3 class="title" id="brfyl44-5">Class Derived from matlab.mixin.SetGet</h3><p>This sample class defines a set/get interface and illustrates the behavior of the inherited methods:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> LineType &lt; matlab.mixin.SetGet
+   <span style="color:#0000FF">properties</span>
+      Style = <span style="color:#A020F0">'-'</span>
+      Marker = <span style="color:#A020F0">'o'</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">properties</span> (SetAccess = protected)
+      Units = <span style="color:#A020F0">'points'</span>
+   <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">methods</span>
+      <span style="color:#0000FF">function</span> obj = LineType(s,m)
+         <span style="color:#0000FF">if</span> nargin &gt; 0
+            obj.Style = s;
+            obj.Marker = m;
+         <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> set.Style(obj,val)
+         <span style="color:#0000FF">if</span> ~(strcmpi(val,<span style="color:#A020F0">'-'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(val,<span style="color:#A020F0">'--'</span>) ||<span style="color:#0000FF">...</span>
+               strcmpi(val,<span style="color:#A020F0">'..'</span>))
+            error(<span style="color:#A020F0">'Invalid line style '</span>)
+         <span style="color:#0000FF">end</span>
+         obj.Style = val;
+      <span style="color:#0000FF">end</span>
+      <span style="color:#0000FF">function</span> set.Marker(obj,val)
+         <span style="color:#0000FF">if</span> ~isstrprop(val,<span style="color:#A020F0">'graphic'</span>)
+            error(<span style="color:#A020F0">'Marker must be a visible character'</span>)
+         <span style="color:#0000FF">end</span>
+         obj.Marker = val;
+      <span style="color:#0000FF">end</span>
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create an instance of the class and save its handle:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h = LineType(<span style="color:#A020F0">'--'</span>,<span style="color:#A020F0">'*'</span>);</pre></div></div></div><p>Query the value of any object property using the inherited <code class="literal">get</code> method:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>get(h,<span style="color:#A020F0">'Marker'</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+'*'</pre></div></div></div><p>Set the value of any property using the inherited <code class="literal">set</code> method:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(h,<span style="color:#A020F0">'Marker'</span>,<span style="color:#A020F0">'Q'</span>)</pre></div></div></div><section><h4 class="title" id="bs2qy6d">Property Access Methods Called with set and get</h4><p>MATLAB calls property access methods (<code class="literal">set.Style</code> or <code class="literal">set.Marker</code> in the <code class="literal">LineType</code> class) when you use the <code class="literal">set</code> and <code class="literal">get</code> methods. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>set(h,<span style="color:#A020F0">'Style'</span>,<span style="color:#A020F0">'-.-'</span>)
+</pre></div></div></div><div class="code_responsive"><pre class="programlisting">Error using LineType/set.Style (line 20)
+Invalid line style</pre></div><p>For more information on property access methods, see <a href="property-set-methods.html" class="a">Property Get and Set Methods</a>
+                </p></section><section><h4 class="title" id="brfyl44-6">List All Properties</h4><p>Return a <code class="literal">struct</code> containing object properties and their current values using <code class="literal">get</code>: </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>h = LineType(<span style="color:#A020F0">'--'</span>,<span style="color:#A020F0">'*'</span>);
+SV = get(h)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>SV = 
+
+  struct with fields:
+
+     Style: '--'
+    Marker: '*'
+     Units: 'points'</pre></div></div></div><p>Return a <code class="literal">struct</code> containing the properties that have <code class="literal">public</code>
+                    <code class="literal">SetAccess</code> using <code class="literal">set</code>:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>S = set(h)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>S = 
+
+  struct with fields:
+
+     Style: {}
+    Marker: {}</pre></div></div></div><p>The <code class="literal">LineType</code> class defines the <code class="literal">Units</code> property with <code class="literal">SetAccess = protected</code>. Therefore, <code class="literal">S = set(h)</code> does not create a field for <code class="literal">Units</code> in <code class="literal">S</code>. </p><p><code class="literal">set</code> cannot return possible values for properties that have nonpublic set access.</p></section><section><h4 class="title" id="bs2pa0j">Using <code class="literal">get</code> with Arrays of Handles</h4><p>Suppose that you create an array of <code class="literal">LineType</code> objects:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>H = [LineType(<span style="color:#A020F0">'..'</span>,<span style="color:#A020F0">'z'</span>),LineType(<span style="color:#A020F0">'--'</span>,<span style="color:#A020F0">'q'</span>)]
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>H = 
+
+  1x2 LineType with properties:
+
+    Style
+    Marker
+    Units</pre></div></div></div><p>When <code class="literal">H</code> is an array of handles, <code class="literal">get</code> returns a (<code class="literal">length(H)</code>-by-1) cell array of property values:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>CV = get(H,<span style="color:#A020F0">'Style'</span>)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>CV =
+
+  2×1 cell array
+
+    {'..'}
+    {'--'}</pre></div></div></div><p>When <code class="literal">H</code> is an array of handles and you do not specify a property name, <code class="literal">get</code> returns a <code class="literal">struct</code> array containing fields with names corresponding to property-names. Assign the output of <code class="literal">get</code> to a variable when <code class="literal">H</code> is not scalar.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>SV = get(H)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>SV = 
+
+2x1 struct array with fields:
+    Style
+    Marker
+    Units</pre></div></div></div><p>Get the value of the <code class="literal">Marker</code> property from the second array element in the <code class="literal">SV</code> array of structures:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>SV(2).Marker
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+'q'</pre></div></div></div></section><section><h4 class="title" id="bs2pctb">Arrays of Handles, Names, and Values</h4><p>You can pass an array of handles, a cell array of property names, and a cell array of property values to <code class="literal">set</code>. The property value cell array must have one row of property values for each object in <code class="literal">H</code>. Each row must have a value for each property in the property name array:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>H = [LineType(<span style="color:#A020F0">'..'</span>,<span style="color:#A020F0">'z'</span>),LineType(<span style="color:#A020F0">'--'</span>,<span style="color:#A020F0">'q'</span>)];
+set(H,{<span style="color:#A020F0">'Style'</span>,<span style="color:#A020F0">'Marker'</span>},{<span style="color:#A020F0">'..'</span>,<span style="color:#A020F0">'o'</span>;<span style="color:#A020F0">'--'</span>,<span style="color:#A020F0">'x'</span>})
+</pre></div></div></div><p>The result of this call to <code class="literal">set</code> is:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>H(1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  LineType with properties:
+
+     Style: '..'
+    Marker: 'o'
+     Units: 'points</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>H(2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  LineType with properties:
+
+     Style: '--'
+    Marker: 'x'
+     Units: 'points'</pre></div></div></div></section><section><h4 class="title" id="brfyl44-7">Customize the Property List</h4><p>Customize the way property lists display by redefining the following methods in your subclass:</p><div class="itemizedlist"><ul><li><p><a href="../ref/matlab.mixin.setget.setdisp.html"><code class="method">setdisp</code></a> &#8212; When you call <code class="literal">set</code> with no output argument and a single scalar handle input, <code class="literal">set</code> calls <code class="literal">setdisp</code> to determine how to display the property list.</p></li><li><p><a href="../ref/matlab.mixin.setget.getdisp.html"><code class="method">getdisp</code></a> &#8212; When you call <code class="literal">get</code> with no output argument and a single scalar handle input, <code class="literal">get</code> calls <code class="literal">getdisp</code> to determine how to display the property list.</p></li></ul></div></section></section><section><h3 class="title" id="mw_ded6b4e5-0981-4156-9224-f0324d67f0a3">Set Priority for Matching Partial Property Names</h3><p>Classes that derive from <a href="../ref/matlab.mixin.setget-class.html"><code class="class">matlab.mixin.SetGet</code></a> can use the <code class="literal">PartialMatchPriority</code> property attribute to specify a relative priority for partial name matching. MATLAB applies this attribute when resolving incomplete and case-insensitive text strings that match more than one property name. </p><p>The inherited <code class="method">set</code> and <code class="method">get</code> methods can resolve inexact property names when there are no ambiguities resulting from inexact name strings. When a partial property name is ambiguous because the name matches more than one property, the <code class="literal">PartialMatchPriority</code> attribute value can determine which property MATLAB matches.</p><p>The default priority is equivalent to <code class="literal">PartialMatchPriority = 1</code>. To reduce the relative priority of a property, set <code class="literal">PartialMatchPriority</code> to a positive integer value of 2 or greater. The priority of a property decreases as the value of <code class="literal">PartialMatchPriority</code> increases.</p><p>For example, in this class the <code class="property">Verbosity</code> property has a higher priority for name matching than the <code class="property">Version</code> property.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> MyClass &lt; matlab.mixin.SetGet
+    <span style="color:#0000FF">properties</span>
+        Verbosity
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span> (PartialMatchPriority = 2)
+        Version
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Calling the <code class="method">set</code> method with the potentially ambiguous inexact name <code class="literal">Ver</code> sets the <code class="property">Verbosity</code> property because of its higher relative priority. Without setting the <code class="literal">PartialMatchPriority</code> attribute, the ambiguous name would cause an error.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>a = MyClass;
+set(a,<span style="color:#A020F0">"Ver"</span>,10)
+disp(a)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre> MyClass with properties:
+
+    Verbosity: 10
+      Version: []</pre></div></div></div><p>The same name selection applies to the <code class="method">get</code> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = get(a,<span style="color:#A020F0">"Ver"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>v =
+
+    10 
+</pre></div></div></div><section><h4 class="title" id="mw_f06ce5ff-8ef8-424a-ac5a-fcb5309b0ffb">Case and Name Matching</h4><p>A full name match with nonmatching case takes precedence over a partial match with a higher priority property. For example, this class defines the <code class="property">BaseLine</code> property with a priority of 1 (the default) and a <code class="property">Base</code> property with a priority of 2 (lower than 1).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> MyClass &lt; matlab.mixin.SetGet
+    <span style="color:#0000FF">properties</span>
+        BaseLine
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span> (PartialMatchPriority = 2)
+        Base
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Calling the <code class="method">set</code> method with the string <code class="literal">base</code> sets the <code class="property">Base</code> property. <code class="property">BaseLine</code> has a higher priority, but the full name match with incorrect case takes precedence.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>a = MyClass;
+set(a,<span style="color:#A020F0">"base"</span>,-2)
+disp(a)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre> MyClass with properties:
+
+    BaseLine: []
+        Base: -2</pre></div></div></div></section><section><h4 class="title" id="mw_825db69d-5cd1-4719-80ea-88a85e341652">Reduce Incompatibilities When Adding New Properties</h4><p>You can use the <code class="literal">PartialMatchPriority</code> attribute to avoid introducing code incompatibilities when adding a new property. For example, this class enables the <code class="method">set</code> and <code class="method">get</code> methods to refer to the <code class="property">Distance</code> property with the string <code class="literal">Dis</code> because the <code class="property">DiscreteSamples</code> property has a lower priority.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Planet &lt; matlab.mixin.SetGet
+<span style="color:#228B22">% Version 1.0</span>
+    <span style="color:#0000FF">properties</span>
+        Distance
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span>(PartialMatchPriority = 2)
+        DiscreteSamples
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Version 2.0 of the class introduces a property named <code class="property">Discontinuities</code>. To prevent the possibility of causing an ambiguous partial property name in existing code, use <code class="literal">PartialMatchPriority</code> to set the priority of <code class="property">Discontinuities</code> lower than that of previously existing properties.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> Planet &lt; matlab.mixin.SetGet
+<span style="color:#228B22">% Version 2.0</span>
+    <span style="color:#0000FF">properties</span>
+        Diameter;
+        NumMoons = 0
+        ApparentMagnitude;
+        DistanceFromSun;
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span>(PartialMatchPriority = 2)
+        DiscreteSamples;
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">properties</span>(PartialMatchPriority = 3)
+        Discontinuities = false;
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For version 1.0 of the <code class="class">Planet</code> class, this call to the <code class="method">set</code> method was not ambiguous.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>p = Planet;
+set(p,<span style="color:#A020F0">"Disc"</span>,true)</pre></div></div></div><p>However, with the introduction of the <code class="property">Discontinuities</code> property, the string <code class="literal">Disc</code> becomes ambiguous. By giving the <code class="property">Discontinuities</code> property a lower priority, the string <code class="literal">Disc</code> continues to match the <code class="property">DiscreteSamples</code> property.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>When writing reusable code, using complete, case-sensitive property names avoids ambiguities, prevents incompatibilities with subsequent software releases, and produces more readable code.</p></div></section></section>
+            <h2 id="d126e9847">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/set.html"><span itemprop="name"><code class="function">set</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/get.html"><span itemprop="name"><code class="function">get</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mixin.setget-class.html"><span itemprop="name"><code class="class">matlab.mixin.SetGet</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mixin.setgetexactnames-class.html"><span itemprop="name"><code class="class">matlab.mixin.SetGetExactNames</code></span></a></span></p>
+            <h3 id="d126e9862">Topics</h3><ul class="list-unstyled"><li><a href="how-to-use-properties.html" class="a">Ways to Use Properties</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

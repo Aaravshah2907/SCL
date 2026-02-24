@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Qualify Mock Object Interaction</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mock-dependencies-in-tests.html",
+          "name": "Mock Dependencies in Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mock-dependencies-in-tests"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Intercept messages sent from the component under test to the mock object."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mock-dependencies-in-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="bvisvh0"><span itemprop="title">Mock Dependencies in Tests</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Qualify Mock Object Interaction</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bvo7z1d" class="nav-link intrnllnk">Qualify Mock Method Interaction</a></li><li class="nav-item"><a href="#bvo7z7w" class="nav-link intrnllnk">Qualify Mock Property Interaction</a></li><li class="nav-item"><a href="#bvo70bd" class="nav-link intrnllnk">Use Mock Object Constraints</a></li><li class="nav-item"><a href="#bvo7y_w-1" class="nav-link intrnllnk">Summary of Qualifications</a></li><li class="nav-item"><a href="#d126e99153" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bvisvui-1">Qualify Mock Object Interaction</h2>
+            <p class="shortdesc">When you create a mock, you create an associated behavior object that controls mock behavior. Use this object to access intercepted messages sent from the component under test to the mock object (a process known as <span class="emphasis"><em>spying</em></span>). For more information on creating a mock, see <a href="create-mock-object.html" class="a">Create Mock Object</a>.</p>
+        <p>In the mocking framework, qualifications are functions used to test interactions with the object. There are four types of qualifications:</p>
+<div class="itemizedlist"><ul><li><p>Verifications &#8212; Produce and record failures without throwing an exception. Since verifications do not throw exceptions, all test content runs to completion even when verification failures occur. Typically verifications are the primary qualifications for a unit test since they typically do not require an early exit from the test. Use other qualification types to test for violation of preconditions or incorrect test setup.</p></li><li><p>Assumptions &#8212; Ensure that the test environment meets preconditions that otherwise do not result in a test failure. Assumption failures result in filtered tests, and the testing framework marks the tests as Incomplete.</p></li><li><p>Assertions &#8212; Ensure that a failure condition invalidates the remainder of the current test content, but does not prevent proper execution of subsequent test methods. A failure at the assertion point marks the current test method as failed and incomplete.</p></li><li><p>Fatal Assertions &#8212; Abort the test session upon failure. These qualifications are useful when the failure mode is so fundamental that there is no point in continuing testing. These qualifications are also useful when fixture teardown does not restore the MATLAB<sup>&#x00AE;</sup> state correctly and it is preferable to abort testing and start a fresh session.</p></li></ul></div><p>
+</p><p>The mock object is an implementation of the abstract methods and properties of the interface specified by a superclass. You can also construct a mock without a superclass, in which case the mock has an implicit interface. Create a mock with an implicit interface for a dice class. The interface includes <code class="literal">Color</code> and <code class="literal">NumSides</code> properties and a <code class="literal">roll</code> method that accepts a number of dice and returns a value. While the interface is not currently implemented, you can create a mock with it.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase = matlab.mock.TestCase.forInteractiveUse;
+[mock,behaviorObj] = testCase.createMock(<span style="color:#A020F0">'AddedProperties'</span>, <span style="color:#0000FF">...</span>
+    {<span style="color:#A020F0">'NumSides'</span>,<span style="color:#A020F0">'Color'</span>},<span style="color:#A020F0">'AddedMethods'</span>,{<span style="color:#A020F0">'roll'</span>});</pre></div></div></div></p><section><h3 class="title" id="bvo7z1d">Qualify Mock Method Interaction</h3>
+                <p class="shortdesc">Since the mock records interactions sent to it, you can qualify that a mock method was called. Roll one die.</p>
+            <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>val = mock.roll(1);</pre></div></div></div><p>Verify that the <code class="literal">roll</code> method was called with 1 die.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyCalled(behaviorObj.roll(1))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Verify that the <code class="literal">roll</code> method was called with 3 dice. This test fails.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyCalled(behaviorObj.roll(3), <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'roll method should have been called with input 3.'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification failed.
+
+----------------
+Test Diagnostic:
+----------------
+roll method should have been called with input 3.
+
+---------------------
+Framework Diagnostic:
+---------------------
+verifyCalled failed.
+--&gt; Method 'roll' was not called with the specified signature.
+--&gt; Observed method call(s) with any signature:
+        out = roll([1×1 matlab.mock.classes.Mock], 1)
+
+Specified method call:
+    MethodCallBehavior
+        [...] = roll(&lt;Mock&gt;, 3)</pre></div></div></div><p>Verify that the <code class="literal">roll</code> method was not called with 2 dice.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyNotCalled(behaviorObj.roll(2))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Since the <code class="method">withAnyInputs</code>, <code class="method">withExactInputs</code>, and <code class="method">withNargout</code> methods of the <code class="class">MethodCallBehavior</code> class return <code class="class">MethodCallBehavior</code> objects, you can use them in qualifications. Verify that the <code class="literal">roll</code> method was called at least once with any inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyCalled(withAnyInputs(behaviorObj.roll))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Verify that the <code class="literal">roll</code> method was not called with 2 outputs and any inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyNotCalled(withNargout(2,withAnyInputs(behaviorObj.roll)))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div></div></section><section><h3 class="title" id="bvo7z7w">Qualify Mock Property Interaction</h3>
+                <p class="shortdesc">Similar to method calls, the mock records property set and access operations. Set the color of the dice.</p>
+            <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mock.Color = <span style="color:#A020F0">"red"</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>mock = 
+
+  Mock with properties:
+
+    NumSides: []
+       Color: "red"</pre></div></div></div><p>Verify that the color was set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifySet(behaviorObj.Color)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Verify the color was accessed. This test passes because there is an implicit property access when MATLAB displays the object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.verifyAccessed(behaviorObj.Color)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Assert that the number of sides was not set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase.assertNotSet(behaviorObj.NumSides)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive assertion passed.</pre></div></div></div></div></section><section><h3 class="title" id="bvo70bd">Use Mock Object Constraints</h3>
+                <p class="shortdesc">The <code class="class">matlab.mock.TestCase</code> methods are
+                    convenient for spying on mock interactions. However, there is more functionality
+                    when you use a class in the <code class="package">matlab.mock.constraints</code> namespace
+                    instead. To use a constraint, pass the behavior object and constraint to the
+                        <code class="method">verifyThat</code>, <code class="method">assumeThat</code>,
+                        <code class="method">assertThat</code> or <code class="method">fatalAssertThat</code>
+                    method.</p>
+            <div class="procedure"><p>Create a new mock object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>testCase = matlab.mock.TestCase.forInteractiveUse;
+[mock,behaviorObj] = testCase.createMock(<span style="color:#A020F0">'AddedProperties'</span>, <span style="color:#0000FF">...</span>
+    {<span style="color:#A020F0">'NumSides'</span>,<span style="color:#A020F0">'Color'</span>},<span style="color:#A020F0">'AddedMethods'</span>,{<span style="color:#A020F0">'roll'</span>});</pre></div></div></div><p>Roll 2 dice. Then use a constraint to verify that the <code class="literal">roll</code> method was called at least once with two dice.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>val = mock.roll(2);
+
+import <span style="color:#A020F0">matlab.mock.constraints.WasCalled</span>
+testCase.verifyThat(behaviorObj.roll(2),WasCalled)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Roll one die. Then verify that the <code class="literal">roll</code> method was called at least twice with any inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>val = mock.roll(1);
+
+testCase.verifyThat(withAnyInputs(behaviorObj.roll), <span style="color:#0000FF">...</span>
+    WasCalled(<span style="color:#A020F0">'WithCount'</span>,2))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Verify that <code class="literal">NumSides</code> was not accessed.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.mock.constraints.WasAccessed</span>
+testCase.verifyThat(behaviorObj.NumSides,~WasAccessed)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Set the color of the dice. Then verify the property was set once.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mock.Color = <span style="color:#A020F0">"blue"</span>;
+
+import <span style="color:#A020F0">matlab.mock.constraints.WasSet</span>
+testCase.verifyThat(behaviorObj.Color,WasSet(<span style="color:#A020F0">'WithCount'</span>,1))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Access the <code class="literal">Color</code> property. Then verify that it was not accessed exactly once. This test fails.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = mock.Color
+
+testCase.verifyThat(behaviorObj.Color,~WasAccessed(<span style="color:#A020F0">'WithCount'</span>,1))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>c = 
+
+    "blue"
+
+Interactive verification failed.
+
+---------------------
+Framework Diagnostic:
+---------------------
+Negated WasAccessed failed.
+--&gt; Property 'Color' was accessed the prohibited number of times.
+    
+    Actual property access count:
+             1
+    Prohibited property access count:
+             1
+
+Specified property access:
+    PropertyGetBehavior
+        &lt;Mock&gt;.Color</pre></div></div></div><p>Set the number of sides. Then, verify that the number of sides was set to 22.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mock.NumSides = 22;
+testCase.verifyThat(behaviorObj.NumSides,WasSet(<span style="color:#A020F0">'ToValue'</span>,22))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification passed.</pre></div></div></div><p>Use a constraint from the <code class="package">matlab.unittest.constraints</code>
+                        namespace to assert that the number of dice sides isn't set to more than 20.
+                        This test fails.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">matlab.unittest.constraints.IsLessThanOrEqualTo</span>
+testCase.verifyThat(behaviorObj.NumSides, <span style="color:#0000FF">...</span>
+    WasSet(<span style="color:#A020F0">'ToValue'</span>,IsLessThanOrEqualTo(20)))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Interactive verification failed.
+
+---------------------
+Framework Diagnostic:
+---------------------
+WasSet failed.
+--&gt; Property 'NumSides' was not set to the specified value.
+--&gt; Observed property set(s) to any value:
+        &lt;Mock&gt;.NumSides = 22
+
+Specified property set:
+    PropertySetBehavior
+        &lt;Mock&gt;.NumSides = &lt;IsLessThanOrEqualTo constraint&gt;</pre></div></div></div></div></section><section><h3 class="title" id="bvo7y_w-1">Summary of Qualifications</h3><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="18%"><col class="tcol2" width="24%"><col class="tcol3" width="31%"><col class="tcol4" width="26%"></colgroup><thead><tr><th rowspan="2">Type of Qualification</th><th rowspan="2"><code class="literal">TestCase</code> Method</th><th colspan="2"><code class="literal">matlab.mock.constraints</code> Class</th></tr><tr><th>Use <code class="literal">matlab.unittest.TestCase</code> Method</th><th>With <code class="literal">matlab.mock.constraints</code> Class</th></tr></thead><tbody><tr><td rowspan="4">Method was called</td><td><code class="literal">verifyCalled</code> or <code class="literal">verifyNotCalled</code></td><td><code class="literal">verifyThat</code></td><td rowspan="4"><code class="literal">WasCalled</code> or <code class="literal">Occurred</code></td></tr><tr><td><code class="literal">assumeCalled</code> or <code class="literal">assumeNotCalled</code></td><td><code class="literal">assumeThat</code></td></tr><tr><td><code class="literal">assertCalled</code> or <code class="literal">assertNotCalled</code></td><td><code class="literal">assertThat</code></td></tr><tr><td><code class="literal">fatalAssertCalled</code> or <code class="literal">fatalAssertNotCalled</code></td><td><code class="literal">fatalAssertThat</code></td></tr><tr><td>Method was called a certain number of times</td><td>Not applicable</td><td><code class="literal">verifyThat</code>, <code class="literal">assumeThat</code>, <code class="literal">assertThat</code>, or <code class="literal">fatalAssertThat</code></td><td><code class="literal">WasCalled</code></td></tr><tr><td rowspan="4">Property was accessed</td><td><code class="literal">verifyAccessed</code> or <code class="literal">verifyNotAccessed</code></td><td><code class="literal">verifyThat</code></td><td rowspan="4"><code class="literal">WasAccessed</code> or <code class="literal">Occurred</code></td></tr><tr><td><code class="literal">assumeAccessed</code> or <code class="literal">assumeNotAccessed</code></td><td><code class="literal">assumeThat</code></td></tr><tr><td><code class="literal">assertAccessed</code> or <code class="literal">assertNotAccessed</code></td><td><code class="literal">assertThat</code></td></tr><tr><td><code class="literal">fatalAssertAccessed</code> or <code class="literal">fatalAssertNotAccessed</code></td><td><code class="literal">fatalAssertThat</code></td></tr><tr><td>Property was accessed a certain number of times</td><td>Not applicable</td><td><code class="literal">verifyThat</code>, <code class="literal">assumeThat</code>, <code class="literal">assertThat</code>, or <code class="literal">fatalAssertThat</code></td><td><code class="literal">WasAccessed</code></td></tr><tr><td rowspan="4">Property was set</td><td><code class="literal">verifySet</code> or <code class="literal">verifyNotSet</code></td><td><code class="literal">verifyThat</code></td><td rowspan="4"><code class="literal">WasSet</code> or <code class="literal">Occurred</code></td></tr><tr><td><code class="literal">assumeSet</code> or <code class="literal">assumeNotSet</code></td><td><code class="literal">assumeThat</code></td></tr><tr><td><code class="literal">assertSet</code> or <code class="literal">assertNotSet</code></td><td><code class="literal">assertThat</code></td></tr><tr><td><code class="literal">fatalAssertSet</code> or <code class="literal">fatalAssertNotSet</code></td><td><code class="literal">fatalAssertThat</code></td></tr><tr><td>Property was set a certain number of times</td><td>Not applicable</td><td><code class="literal">verifyThat</code>, <code class="literal">assumeThat</code>, <code class="literal">assertThat</code>, or <code class="literal">fatalAssertThat</code></td><td><code class="literal">WasSet</code></td></tr><tr><td>Property was set to a certain value</td><td>Not applicable</td><td><code class="literal">verifyThat</code>, <code class="literal">assumeThat</code>, <code class="literal">assertThat</code>, or <code class="literal">fatalAssertThat</code></td><td><code class="literal">WasSet</code> or <code class="literal">Occurred</code></td></tr><tr><td>Methods were called and properties were accessed or set in a particular order</td><td>Not applicable</td><td><code class="literal">verifyThat</code>, <code class="literal">assumeThat</code>, <code class="literal">assertThat</code>, or <code class="literal">fatalAssertThat</code></td><td><code class="literal">Occurred</code></td></tr></tbody></table></div></section>
+            <h2 id="d126e99153">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mock.testcase-class.html"><span itemprop="name"><code class="class">matlab.mock.TestCase</code></span></a></span></li></ul>
+            <h3 id="d126e99162">Topics</h3><ul class="list-unstyled"><li><a href="create-mock-object.html" class="a">Create Mock Object</a></li><li><a href="specify-mock-object-behavior.html" class="a">Specify Mock Object Behavior</a></li><li><a href="write-tests-that-use-app-testing-and-mocking-frameworks.html" class="a">Write Tests That Use App Testing and Mocking Frameworks</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

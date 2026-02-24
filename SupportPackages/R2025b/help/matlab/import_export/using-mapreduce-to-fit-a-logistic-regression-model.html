@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Using MapReduce to Fit a Logistic Regression Model</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mapreduce.html",
+          "name": "MapReduce"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mapreduce"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Using MapReduce to Fit a Logistic Regression Model",
+          "description": "Use mapreduce to carry out simple logistic regression using a single predictor. It demonstrates chaining multiple mapreduce calls to carry out an iterative algorithm. Since each iteration requires a separate pass through the data, an anonymous function passes information from one iteration to the next to supply information directly to the mapper.",
+          "thumbnailURL": "../../examples/matlab/win64/UsingMapReduceToFitALogisticRegressionModelExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.UsingMapReduceToFitALogisticRegressionModelExample",
+          "name": "UsingMapReduceToFitALogisticRegressionModelExample",
+          "url": "using-mapreduce-to-fit-a-logistic-regression-model.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/UsingMapReduceToFitALogisticRegressionModelExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "UsingMapReduceToFitALogisticRegressionModelExample.mlx",
+        "logitMapper.m",
+        "logitReducer.m",
+        "airlinesmall.csv"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use mapreduce to carry out simple logistic regression using a single predictor."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/matlab/win64/UsingMapReduceToFitALogisticRegressionModelExample_01.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mapreduce.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetb8-1"><span itemprop="title">MapReduce</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Using MapReduce to Fit a Logistic Regression Model</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#UsingMapReduceToFitALogisticRegressionModelExample-1" class="nav-link intrnllnk">Prepare Data</a></li><li class="nav-item"><a href="#UsingMapReduceToFitALogisticRegressionModelExample-2" class="nav-link intrnllnk">Perform Logistic Regression</a></li><li class="nav-item"><a href="#UsingMapReduceToFitALogisticRegressionModelExample-3" class="nav-link intrnllnk">Run MapReduce</a></li><li class="nav-item"><a href="#UsingMapReduceToFitALogisticRegressionModelExample-4" class="nav-link intrnllnk">View Results</a></li><li class="nav-item"><a href="#d126e27207" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mapreduce&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mapreduce&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="bujibta-1_1">Using MapReduce to Fit a Logistic Regression Model</h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/UsingMapReduceToFitALogisticRegressionModelExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-UsingMapReduceToFitALogisticRegressionModelExample"><meta itemprop="exampletitle" content="Using MapReduce to Fit a Logistic Regression Model"></div><span id="UsingMapReduceToFitALogisticRegressionModelExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use <code class="literal">mapreduce</code> to carry out simple logistic regression using a single predictor. It demonstrates chaining multiple <code class="literal">mapreduce</code> calls to carry out an iterative algorithm. Since each iteration requires a separate pass through the data, an anonymous function passes information from one iteration to the next to supply information directly to the mapper.</p><div class="procedure"><h3 class="title" id="UsingMapReduceToFitALogisticRegressionModelExample-1">Prepare Data</h3><p>Create a datastore using the <code class="literal">airlinesmall.csv</code> data set. This 12-megabyte data set contains 29 columns of flight information for several airline carriers, including arrival and departure times. In this example, the variables of interest are <code class="literal">ArrDelay</code> (flight arrival delay) and <code class="literal">Distance</code> (total flight distance).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>, <span style="color:#A020F0">'TreatAsMissing'</span>, <span style="color:#A020F0">'NA'</span>);
+ds.SelectedVariableNames = {<span style="color:#A020F0">'ArrDelay'</span>, <span style="color:#A020F0">'Distance'</span>};</pre></div></div></div><p>The datastore treats <code class="literal">'NA'</code> values as missing, and replaces the missing values with <code class="literal">NaN</code> values by default. Additionally, the <code class="literal">SelectedVariableNames</code> property allows you to work with only the specified variables of interest, which you can verify using <code class="literal">preview</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>preview(ds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>8×2 table</em></span>
+    ArrDelay    Distance
+    ________    ________
+
+        8         308   
+        8         296   
+       21         480   
+       13         296   
+        4         373   
+       59         308   
+        3         447   
+       11         954   
+
+</pre></div></div></div><h3 class="title" id="UsingMapReduceToFitALogisticRegressionModelExample-2">Perform Logistic Regression</h3><p>Logistic regression is a way to model the probability of an event as a function of another variable. In this example, logistic regression models the probability of a flight being more than 20 minutes late as a function of the flight distance, in thousands of miles.</p><p>To accomplish this logistic regression, the map and reduce functions must collectively perform a weighted least-squares regression based on the current coefficient values. The mapper computes a weighted sum of squares and cross product for each block of input data.</p><p>Display the map function file.</p><div class="code_responsive"><pre id="d126e27154" class="programlisting"><span style="color:#0000FF">function</span> logitMapper(b,t,~,intermKVStore)
+  <span style="color:#228B22">% Get data input table and remove any rows with missing values</span>
+  y = t.ArrDelay;
+  x = t.Distance;
+  t = ~isnan(x) &amp; ~isnan(y);
+  y = y(t)&gt;20;                 <span style="color:#228B22">% late by more than 20 min</span>
+  x = x(t)/1000;               <span style="color:#228B22">% distance in thousands of miles</span>
+
+  <span style="color:#228B22">% Compute the linear combination of the predictors, and the estimated mean</span>
+  <span style="color:#228B22">% probabilities, based on the coefficients from the previous iteration</span>
+  <span style="color:#0000FF">if</span> ~isempty(b)
+    <span style="color:#228B22">% Compute xb as the linear combination using the current coefficient</span>
+    <span style="color:#228B22">% values, and derive mean probabilities mu from them</span>
+    xb = b(1)+b(2)*x;
+    mu = 1./(1+exp(-xb));
+  <span style="color:#0000FF">else</span>
+    <span style="color:#228B22">% This is the first iteration. Compute starting values for mu that are</span>
+    <span style="color:#228B22">% 1/4 if y=0 and 3/4 if y=1. Derive xb values from them.</span>
+    mu = (y+.5)/2;
+    xb = log(mu./(1-mu)); 
+  <span style="color:#0000FF">end</span>
+
+  <span style="color:#228B22">% To perform weighted least squares, compute a sum of squares and cross</span>
+  <span style="color:#228B22">% products matrix:</span>
+  <span style="color:#228B22">%      (X'*W*X) = (X1'*W1*X1) + (X2'*W2*X2) + ... + (Xn'*Wn*Xn),</span>
+  <span style="color:#228B22">% where X = [X1;X2;...;Xn]  and  W = [W1;W2;...;Wn].</span>
+  <span style="color:#228B22">%</span>
+  <span style="color:#228B22">% The mapper receives one chunk at a time and computes one of the terms on</span>
+  <span style="color:#228B22">% the right hand side. The reducer adds all of the terms to get the</span>
+  <span style="color:#228B22">% quantity on the left hand side, and then performs the regression.</span>
+  w = (mu.*(1-mu));                  <span style="color:#228B22">% weights</span>
+  z = xb + (y - mu) .* 1./w;         <span style="color:#228B22">% adjusted response</span>
+
+  X = [ones(size(x)),x,z];           <span style="color:#228B22">% matrix of unweighted data</span>
+  wss = X' * bsxfun(@times,w,X);     <span style="color:#228B22">% weighted cross-products X1'*W1*X1</span>
+
+  <span style="color:#228B22">% Store the results for this part of the data.</span>
+  add(intermKVStore, <span style="color:#A020F0">'key'</span>, wss);
+<span style="color:#0000FF">end</span>
+</pre></div><p>The reducer computes the regression coefficient estimates from the sums of squares and cross products.</p><p>Display the reduce function file.</p><div class="code_responsive"><pre id="d126e27158" class="programlisting"><span style="color:#0000FF">function</span> logitReducer(~,intermValIter,outKVStore)
+  <span style="color:#228B22">% We will operate over chunks of the data, updating the count, mean, and</span>
+  <span style="color:#228B22">% covariance each time we add a new chunk</span>
+  old = 0;
+
+  <span style="color:#228B22">% We want to perform weighted least squares. We do this by computing a sum</span>
+  <span style="color:#228B22">% of squares and cross products matrix</span>
+  <span style="color:#228B22">%      M = (X'*W*X) = (X1'*W1*X1) + (X2'*W2*X2) + ... + (Xn'*Wn*Xn)</span>
+  <span style="color:#228B22">% where X = X1;X2;...;Xn]  and  W = [W1;W2;...;Wn].</span>
+  <span style="color:#228B22">%</span>
+  <span style="color:#228B22">% The mapper has computed the terms on the right hand side. Here in the</span>
+  <span style="color:#228B22">% reducer we just add them up.</span>
+
+  <span style="color:#0000FF">while</span> hasnext(intermValIter)
+    new = getnext(intermValIter);
+    old = old+new;
+  <span style="color:#0000FF">end</span>
+  M = old;  <span style="color:#228B22">% the value on the left hand side</span>
+
+  <span style="color:#228B22">% Compute coefficients estimates from M. M is a matrix of sums of squares</span>
+  <span style="color:#228B22">% and cross products for [X Y] where X is the design matrix including a</span>
+  <span style="color:#228B22">% constant term and Y is the adjusted response for this iteration. In other</span>
+  <span style="color:#228B22">% words, Y has been included as an additional column of X. First we</span>
+  <span style="color:#228B22">% separate them by extracting the X'*W*X part and the X'*W*Y part.</span>
+  XtWX = M(1:end-1,1:end-1);
+  XtWY = M(1:end-1,end);
+
+  <span style="color:#228B22">% Solve the normal equations.</span>
+  b = XtWX\XtWY;
+
+  <span style="color:#228B22">% Return the vector of coefficient estimates.</span>
+  add(outKVStore, <span style="color:#A020F0">'key'</span>, b);
+<span style="color:#0000FF">end</span>
+</pre></div><h3 class="title" id="UsingMapReduceToFitALogisticRegressionModelExample-3">Run MapReduce</h3><p>Run <code class="literal">mapreduce</code> iteratively by enclosing the calls to <code class="literal">mapreduce</code> in a loop. The loop runs until the convergence criteria are met, with a maximum of five iterations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Define the coefficient vector, starting as empty for the first iteration.</span>
+b = []; 
+
+<span style="color:#0000FF">for</span> iteration = 1:5
+    b_old = b;
+    iteration
+    
+    <span style="color:#228B22">% Here we will use an anonymous function as our mapper. This function</span>
+    <span style="color:#228B22">% definition includes the value of b computed in the previous</span>
+    <span style="color:#228B22">% iteration.</span>
+    mapper = @(t,ignore,intermKVStore) logitMapper(b,t,ignore,intermKVStore);
+    result = mapreduce(ds, mapper, @logitReducer, <span style="color:#A020F0">'Display'</span>, <span style="color:#A020F0">'off'</span>);
+    
+    tbl = readall(result);
+    b = tbl.Value{1}
+    
+    <span style="color:#228B22">% Stop iterating if we have converged.</span>
+    <span style="color:#0000FF">if</span> ~isempty(b_old) &amp;&amp; <span style="color:#0000FF">...</span>
+       ~any(abs(b-b_old) &gt; 1e-6 * abs(b_old))
+       <span style="color:#0000FF">break</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>iteration = 
+1
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b = <span class="emphasis"><em>2×1</em></span>
+
+   -1.7674
+    0.1209
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>iteration = 
+2
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b = <span class="emphasis"><em>2×1</em></span>
+
+   -1.8327
+    0.1807
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>iteration = 
+3
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b = <span class="emphasis"><em>2×1</em></span>
+
+   -1.8331
+    0.1806
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>iteration = 
+4
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>b = <span class="emphasis"><em>2×1</em></span>
+
+   -1.8331
+    0.1806
+
+</pre></div></div></div><h3 class="title" id="UsingMapReduceToFitALogisticRegressionModelExample-4">View Results</h3><p>Use the resulting regression coefficient estimates to plot a probability curve. This curve shows the probability of a flight being more than 20 minutes late as a function of the flight distance.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xx = linspace(0,4000);
+yy = 1./(1+exp(-b(1)-b(2)*(xx/1000)));
+plot(xx,yy); 
+xlabel(<span style="color:#A020F0">'Distance'</span>);
+ylabel(<span style="color:#A020F0">'Prob[Delay&gt;20]'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e27200" class="mediaobject"><p><img src="../../examples/matlab/win64/UsingMapReduceToFitALogisticRegressionModelExample_01.png" alt="Figure contains an axes object. The axes object with xlabel Distance, ylabel Prob[Delay&gt;20] contains an object of type line." width="560"></p></div></div></div>
+<h2 id="d126e27207">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreduce.html"><span itemprop="name"><code class="function">mapreduce</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.io.datastore.tabulartextdatastore.html"><span itemprop="name"><code class="function">tabularTextDatastore</code></span></a></span></p>
+<h3 id="d126e27216">Topics</h3><ul class="list-unstyled"><li><a href="getting-started-with-mapreduce.html" class="a">Getting Started with MapReduce</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

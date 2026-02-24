@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Develop Custom Tall Array Algorithms</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../tall-arrays.html",
+          "name": "Tall Arrays"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "tall-arrays"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Development guide for authoring custom algorithms to operate on tall arrays."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../tall-arrays.html?s_tid=CRUX_lftnav" itemprop="url" id="bvaolz6"><span itemprop="title">Tall Arrays</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Develop Custom Tall Array Algorithms</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_6db969ae-e02f-4cf1-aaa4-e30e696ce81c" class="nav-link intrnllnk">Reasons to Implement Custom Algorithms</a></li><li class="nav-item"><a href="#mw_cddc64ef-3820-4768-989f-050b8dae83d6" class="nav-link intrnllnk">Supported APIs</a></li><li class="nav-item"><a href="#mw_fc317b04-3a88-43c3-acb5-1364bc307846" class="nav-link intrnllnk">Background: Tall Array Blocks</a></li><li class="nav-item"><a href="#mw_8bc55af4-f293-4548-a130-61257145e0c0" class="nav-link intrnllnk">Single-Step Transformation Operation</a><ul class="nav"><li class="nav-item"><a href="#mw_6fe54861-3edd-4101-af28-aa8ef883fbc8" class="nav-link intrnllnk">Transform Syntax</a></li><li class="nav-item"><a href="#mw_2afc78c6-4555-4cac-b89b-6ab89907173c" class="nav-link intrnllnk">Functional Requirements for fcn</a></li></ul></li><li class="nav-item"><a href="#mw_4ab00630-ddbb-4730-ae9b-896e50617cdb" class="nav-link intrnllnk">Two-Step Reduction Operation</a><ul class="nav"><li class="nav-item"><a href="#mw_7f96c649-1eee-41b0-b72d-944aa6ec69a5" class="nav-link intrnllnk">Reduce Syntax</a></li><li class="nav-item"><a href="#mw_9795ce7d-470a-4588-b259-2822f959ba81" class="nav-link intrnllnk">Functional Requirements for reducefcn</a></li></ul></li><li class="nav-item"><a href="#mw_056719c0-fb8b-4b65-9a46-6c2acedc59f2" class="nav-link intrnllnk">Sliding-Window Operations</a><ul class="nav"><li class="nav-item"><a href="#mw_a1496f74-bf29-498c-8308-85e71ce57011" class="nav-link intrnllnk">Moving Window Syntaxes</a></li><li class="nav-item"><a href="#mw_4c79615f-32dd-4213-88e5-7c10ccfe5049" class="nav-link intrnllnk">Functional Requirements for windowfcn</a></li><li class="nav-item"><a href="#mw_e10278ac-4a64-42c7-82ba-b19910a2f7a1" class="nav-link intrnllnk">Functional Requirements for blockfcn</a></li></ul></li><li class="nav-item"><a href="#mw_59963b6b-3559-4639-ba58-309720fa08c7" class="nav-link intrnllnk">Control Output Data Type</a></li><li class="nav-item"><a href="#mw_67fa614e-4fe2-44c5-b50b-a85217ce2e33" class="nav-link intrnllnk">Coding and Performance Tips</a></li><li class="nav-item"><a href="#d126e37350" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=tall-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tall-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tall-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=tall-arrays&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=tall-arrays&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=tall-arrays&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_6025d48e-f914-461a-9423-5cd444d059fd">Develop Custom Tall Array Algorithms</h2>
+      <p class="shortdesc">Tall arrays are a powerful, intuitive way to work with large data sets
+        using traditional MATLAB<sup>&#x00AE;</sup> syntax. However, since tall arrays operate on blocks of the data, each of
+        which individually fits into memory, the traditional algorithms of most functions need to be
+        updated to use a parallelized approach to support tall arrays. This topic shows you how to
+        develop your own parallelized algorithms to operate on tall arrays.</p>
+      <p>Currently available approaches for applying custom functions to tall arrays are:</p>
+<div class="itemizedlist"><ul><li><p>
+              <a href="develop-custom-tall-array-algorithms.html#mw_8bc55af4-f293-4548-a130-61257145e0c0" class="intrnllnk">Single-Step Transformation Operation</a>: Apply a
+              function to the blocks of data in a tall array.</p></li><li><p>
+              <a href="develop-custom-tall-array-algorithms.html#mw_4ab00630-ddbb-4730-ae9b-896e50617cdb" class="intrnllnk">Two-Step Reduction Operation</a>: Apply a
+              function to a tall array to transform the contents, and then apply another function to
+              reduce the output to a single block.</p></li><li><p><a href="develop-custom-tall-array-algorithms.html#mw_056719c0-fb8b-4b65-9a46-6c2acedc59f2" class="intrnllnk">Sliding-Window Operations</a>: Apply a
+              moving-window function to a tall array to transform the contents.</p></li></ul></div><p>
+Regardless of which operation you choose, there are options, performance
+        considerations, and common issues that apply to all approaches.</p>
+    <section><h3 class="title" id="mw_6db969ae-e02f-4cf1-aaa4-e30e696ce81c">Reasons to Implement Custom Algorithms</h3><p>Most common mathematical functions and MATLAB operations already support tall arrays. If the functionality is already
+        supported, then writing your own algorithm might not be necessary.</p><p>Here are some reasons why you might want to implement a custom algorithm for tall arrays:</p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Implement Currently Unsupported Functions</strong> &#8212; If a
+              particular function does not currently support tall arrays, then you can use the APIs
+              outlined here to write a version of that function that supports tall arrays.</p></li><li><p><strong class="emphasis bold">Leverage Existing Code</strong> &#8212; If you have existing
+              code that performs some operations on in-memory data, then with only minor
+              modifications you can make it compatible to operate on tall arrays. This approach
+              avoids the need to convert the code to fit the subset of the MATLAB language that supports tall arrays.</p></li><li><p><strong class="emphasis bold">Gain Performance</strong> &#8212; For example, you can rewrite a
+                MATLAB function as a C++ MEX function, and then you can use the APIs outlined
+              here to call the MEX function to operate on the data.</p></li><li><p><strong class="emphasis bold">Use a Preferred External Library</strong> &#8212; For
+              compatibility within your organization it is sometimes required to use a specific
+              external library for certain calculations. You can use the APIs outlined here to
+              reimplement a function with those external libraries.</p></li></ul></div><p>
+
+      </p></section><section><h3 class="title" id="mw_cddc64ef-3820-4768-989f-050b8dae83d6">Supported APIs</h3><p>The supported APIs are intended for advanced use and do not include extensive input
+        checking. Expect to spend some time testing that the supplemental functions you implement
+        satisfy all of the requirements and perform the  calculations you expect. Currently
+        supported APIs for authoring tall array algorithms are listed here.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><a href="../ref/matlab.tall.transform.html"><code class="function">matlab.tall.transform</code></a></td><td>Apply a specified function to each block of one or more tall arrays.</td></tr><tr><td><a href="../ref/matlab.tall.reduce.html"><code class="function">matlab.tall.reduce</code></a></td><td>Apply a specified function to each block of one or more tall arrays. Then feed
+                the output of that function into a second reduction function.</td></tr><tr><td><a href="../ref/matlab.tall.movingwindow.html"><code class="function">matlab.tall.movingWindow</code></a></td><td>Apply moving window function to blocks of data.</td></tr><tr><td><a href="../ref/matlab.tall.blockmovingwindow.html"><code class="function">matlab.tall.blockMovingWindow</code></a></td><td><p>Apply moving window function and block reduction to padded blocks of
+                  data.</p></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_fc317b04-3a88-43c3-acb5-1364bc307846">Background: Tall Array Blocks</h3><p class="shortdesc">When you create a tall array from a datastore, the underlying datastore
+        facilitates the movement of data during a calculation. The data moves in discrete pieces
+        called <span class="emphasis"><em>blocks</em></span>, where each block is a set of consecutive rows that can
+        fit in memory. For example, one block of a 2-D array (such as a table) is
+          <code class="literal">X(n:m,:)</code>. The size of each block is based on the value of the
+          <code class="literal">ReadSize</code> property of the datastore, but the block is not always that
+        exact size. For the purposes of developing tall array algorithms, a tall array is considered
+        to be the vertical concatenation of many such blocks.</p><div class="informalfigure"><div id="d126e36447" class="mediaobject"><p><img src="tallarrayblocks-01.png" alt="Image of an array divided into vertical blocks." height="372" width="105"></p></div></div><p>The blocks of a given array are chosen at run-time based on available memory, so they
+        can be dynamic. Therefore, the blocks might not be <span class="emphasis"><em>exactly</em></span> the same
+        size between runs. If you have changes on your computer that affect the available memory,
+        then that can impact the size of the blocks.</p><p>Although this page refers only to <span class="emphasis"><em>blocks</em></span> and
+          <span class="emphasis"><em>rows</em></span> in a 2-D sense, these concepts extend to N-D tall arrays. The
+        block size is only constrained in the first dimension, so the block includes all elements in
+        other dimensions; for example, <code class="literal">X(n:m,:,:,...)</code>. Also, rather than rows,
+        N-D arrays have <span class="emphasis"><em>slices</em></span> such as <code class="literal">X(p,:,:,...)</code>.</p></section><section><h3 class="title" id="mw_8bc55af4-f293-4548-a130-61257145e0c0">Single-Step Transformation Operation</h3><p>The <code class="function">matlab.tall.transform</code> function applies a single function to
+        each block of a tall array, so you can use it to apply a block-wise transformation,
+        filtering, or reduction of the data. For example, you can remove rows with specific values,
+        center and scale the data, or detect certain conditions and transform specific pieces of
+        data. These figures show what happens to the blocks in an array when they are operated on by
+          <code class="function">matlab.tall.transform</code>. </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><p>Operation</p></th><th>Description</th><th><p>Examples</p></th></tr></thead><tbody><tr><td><p>
+                    </p>
+<div class="informalfigure"><div id="d126e36494" class="mediaobject"><p><img src="transformation-01.png" alt="Illustration of transformation operation, where the number of rows in each block remains constant." height="358" width="239"></p></div></div><p>
+                  </p></td><td><p><strong class="emphasis bold">Transformation</strong> &#8212; The number of rows in
+                    each block remains the same, but the values change.</p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.transform(@sin, tX)</code> calculates the
+                          sine of the elements in each block.</p></li><li><p><code class="literal">A = matlab.tall.transform(@(X) X.^2, tX)</code> squares
+                          the elements in each block.</p></li></ul></div><p>
+
+                  </p></td></tr><tr><td><p>
+                    </p>
+<div class="informalfigure"><div id="d126e36522" class="mediaobject"><p><img src="filtering-01.png" alt="Illustration of filtering operation, where the number of rows in each block are reduced." height="362" width="215"></p></div></div><p>
+                  </p></td><td><p><strong class="emphasis bold">Filtering</strong> &#8212; The number of rows in each
+                    block are reduced, so the blocks in the new array might include rows originally
+                    present in other blocks.</p></td><td><p>
+                    </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.transform(@(X) topkrows(X,5), tX)</code>
+                          extracts only the top 5 rows from each block, filtering out the other
+                          rows.</p></li><li><p><code class="literal">A = matlab.tall.transform(@sum, tX)</code> calculates the
+                          sum of the elements in each block, which reduces each block to a scalar.
+                          The number of elements in <code class="literal">A</code> is equal to the number of
+                          blocks.</p></li></ul></div><p>
+
+                  </p></td></tr></tbody></table></div><p>
+</p><section><h4 class="title" id="mw_6fe54861-3edd-4101-af28-aa8ef883fbc8">Transform Syntax</h4><p>The generic syntax to apply a single-step transform is</p><div class="code_responsive"><pre class="programlisting">[tA, tB, tC, ...] = matlab.tall.transform(fcn, tX, tY, tZ, ...)</pre></div></section><section><h4 class="title" id="mw_2afc78c6-4555-4cac-b89b-6ab89907173c">Functional Requirements for <code class="function">fcn</code></h4><p>The general functional signature of <code class="literal">fcn</code> is<div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = fcn(x, y, z, ...)</pre></div><code class="literal">fcn</code> must satisfy these requirements:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Input Arguments</strong> &#8212; The inputs <code class="literal">[x, y, z,
+                    ...]</code> are blocks of data that fit in memory. The blocks are produced by
+                extracting data from the respective tall array inputs <code class="literal">[tX, tY, tZ,
+                    ...]</code>. The inputs <code class="literal">[x, y, z, ...]</code> satisfy these
+                properties:</p><div class="itemizedlist"><ul><li><p>All of <code class="literal">[x, y, z, ...]</code> have the same size in the first
+                        dimension after any allowed expansion.</p></li><li><p>The blocks of data in <code class="literal">[x, y, z, ...]</code> come from the same
+                        index in the tall dimension, assuming the tall array is nonsingleton in the
+                        tall dimension. For example, if <code class="literal">tX</code> and
+                            <code class="literal">tY</code> are nonsingleton in the tall dimension, then the
+                        first set of blocks might be <code class="literal">x = tX(1:20000,:)</code> and
+                            <code class="literal">y = tY(1:20000,:)</code>.</p></li><li><p>If the first dimension of any of <code class="literal">[tX, tY, tZ, ...]</code> has
+                        a size of <code class="literal">1</code>, then the corresponding block <code class="literal">[x, y,
+                            z, ...]</code> consists of all the data in that tall array.</p></li></ul></div></li><li><p><strong class="emphasis bold">Output Arguments</strong> &#8212; The outputs <code class="literal">[a, b, c,
+                    ...]</code> are blocks that fit in memory, to be sent to the respective
+                outputs <code class="literal">[tA, tB, tC, ...]</code>. The outputs <code class="literal">[a, b, c,
+                    ...]</code> satisfy these properties:</p><div class="itemizedlist"><ul><li><p>All of <code class="literal">[a, b, c, ...]</code> must have the same size in the
+                        first dimension.</p></li><li><p>All of <code class="literal">[a, b, c, ...]</code> are vertically concatenated with
+                        the respective results of previous calls to <code class="literal">fcn</code>.</p></li><li><p>All of <code class="literal">[a, b, c, ...]</code> are sent to the same index in the
+                        first dimension in their respective destination output arrays.</p></li></ul></div></li><li><p><strong class="emphasis bold">Functional Rules</strong> &#8212; <code class="literal">fcn</code> must satisfy the functional rule:</p><div class="itemizedlist"><ul><li><p><code class="literal">F([inputs1; inputs2]) == [F(inputs1); F(inputs2)]</code>: Applying the function to the concatenation of the inputs should be the same as applying the function to the inputs separately and then concatenating the results.</p></li></ul></div></li><li><p><strong class="emphasis bold">Empty Inputs</strong> &#8212; Ensure that <code class="literal">fcn</code>
+                can handle an input that has a height of 0. Empty inputs can occur when a file is
+                empty or if you have done a lot of filtering on the data.</p></li></ol></div><p>
+</p></section></section><section><h3 class="title" id="mw_4ab00630-ddbb-4730-ae9b-896e50617cdb">Two-Step Reduction Operation</h3><p><code class="function">matlab.tall.reduce</code> applies two functions to a tall array, with the
+        result of the first step being fed in as input to a final reduction step. The reduction
+        function is applied repeatedly to the intermediate results until a single final block that
+        fits in memory is obtained. In the MapReduce paradigm, this process is similar to a "single
+        key" MapReduce operation, where the intermediate results all have the same key and are
+        combined in the reduction step.</p><p>The first step is similar to <code class="function">matlab.tall.transform</code> and has the same
+        requirements. However, the reduction step always reduces the intermediate results down to a
+        single block that fits in memory. These figures show what happens to the blocks in an array
+        when they are operated on by <code class="function">matlab.tall.reduce</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="31%"><col class="tcol2" width="28%"><col class="tcol3" width="41%"></colgroup><thead><tr><th><p>Operation</p></th><th>Description</th><th><p>Examples</p></th></tr></thead><tbody><tr><td><p>
+                  </p>
+<div class="informalfigure"><div id="d126e36680" class="mediaobject"><p><img src="transformation_reduction-01.png" alt="Illustration of compound transformation plus reduction operations, where rows are transformed before being reduced to one block." height="358" width="360"></p></div></div><p>
+                </p></td><td><p><strong class="emphasis bold">Transformation + Reduction</strong> &#8212; The number
+                  of rows in each block remains the same after the first step, and then the
+                  intermediate results are reduced to one block.</p></td><td><p>
+                  </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.reduce(@sin,@max,tX)</code> calculates the
+                        sine of each block of values, and then it finds the overall maximum value
+                        during the reduction step.</p></li><li><p><code class="literal">A = matlab.tall.reduce(@(X) X.^2, @mean, tX)</code> squares
+                        the elements in each block, and then it calculates the overall mean in the
+                        reduction step.</p></li></ul></div><p>
+
+                </p></td></tr><tr><td><p>
+                  </p>
+<div class="informalfigure"><div id="d126e36708" class="mediaobject"><p><img src="filtering_reduction-01.png" alt="Illustration of compound filtering plus reduction operations, where rows are filtered down before being reduced to one block." height="362" width="334"></p></div></div><p>
+                </p></td><td><p><strong class="emphasis bold">Filtering + Reduction</strong> &#8212; The number of
+                  rows in each block are reduced in the first step. Then the intermediate results
+                  are reduced to one block.</p></td><td><p>
+                  </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.reduce(@sum, @sum, tX)</code> calculates the
+                        sum of the elements in each block, and then it finds the overall sum of
+                        elements in the reduction step.</p></li><li><p><code class="literal">A = matlab.tall.reduce(@(X) X(X&gt;0), @mean, tX)</code>
+                        filters out all negative values, and then it  calculates the overall mean of
+                        the remaining values.</p></li></ul></div><p>
+
+                </p></td></tr></tbody></table></div><section><h4 class="title" id="mw_7f96c649-1eee-41b0-b72d-944aa6ec69a5">Reduce Syntax</h4><p>The generic syntax to apply a two-step reduction is</p><div class="code_responsive"><pre class="programlisting">[rA, rB, rC, ...] = matlab.tall.reduce(fcn, reducefcn, tX, tY, tZ, ...)</pre></div><p>The functional signature of <code class="literal">fcn</code> is</p><div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = fcn(x, y, z, ...)</pre></div><p>The functional signature of <code class="literal">reducefcn</code> is</p><div class="code_responsive"><pre class="programlisting">[rA, rB, rC, ...] = reducefcn(a, b, c, ...)</pre></div><p>That is, the input tall arrays <code class="literal">[tX, tY, tZ, ...]</code> are broken into
+          blocks <code class="literal">[x, y, z, ...]</code> that are inputs to <code class="literal">fcn</code>. Then,
+            <code class="literal">fcn</code> returns outputs <code class="literal">[a, b, c, ...]</code> that are inputs
+          to <code class="literal">reducefcn</code>. Finally, <code class="literal">reducefcn</code> returns the final
+          results <code class="literal">[rA, rB, rC]</code> that are returned by
+            <code class="literal">matlab.tall.reduce</code>.</p></section><section><h4 class="title" id="mw_9795ce7d-470a-4588-b259-2822f959ba81">Functional Requirements for <code class="function">reducefcn</code></h4><p>The requirements for <code class="literal">fcn</code> are the same as those that were outlined
+          in <a href="develop-custom-tall-array-algorithms.html#mw_2afc78c6-4555-4cac-b89b-6ab89907173c" class="intrnllnk">Functional Requirements for fcn</a>. However, the
+          requirements for <code class="literal">reducefcn</code> are different.</p><p>The general functional signature of <code class="literal">reducefcn</code> is<div class="code_responsive"><pre class="programlisting">[rA, rB, rC, ...] = reducefcn(a, b, c, ...)</pre></div><code class="literal">reducefcn</code> must satisfy these requirements:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Input Arguments</strong> &#8212; The inputs <code class="literal">[a, b, c,
+                    ...]</code> are blocks that fit in memory. The blocks of data are either
+                outputs returned by <code class="literal">fcn</code>, or a partially reduced output from
+                    <code class="literal">reducefcn</code> that is being operated on again for further
+                reduction. The inputs <code class="literal">[a, b, c, ...]</code> satisfy these
+                properties:</p><div class="itemizedlist"><ul><li><p>The inputs <code class="literal">[a, b, c, ...]</code> have the same size in the
+                        first dimension.</p></li><li><p>For a given index in the first dimension, every row of the blocks of data
+                            <code class="literal">[a, b, c, ...]</code> either originates from the input, or
+                        originates from the same previous call to
+                        <code class="literal">reducefcn</code>.</p></li><li><p>For a given index in the first dimension, every row of the inputs
+                            <code class="literal">[a, b, c, ...]</code> for that index originates from the
+                        same index in the first dimension.</p></li></ul></div></li><li><p><strong class="emphasis bold">Output Arguments</strong> &#8212; All outputs <code class="literal">[rA, rB, rC, ...]</code> must have the same size in the first dimension. Additionally, they must be vertically concatenable with the respective inputs <code class="literal">[a, b, c, ...]</code> to allow for repeated reductions when necessary.</p></li><li><p><strong class="emphasis bold">Functional Rules</strong> &#8212; <code class="literal">reducefcn</code> must satisfy these functional rules (up to roundoff error):</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">F(input) == F(F(input))</code>: Applying the function
+                            repeatedly to the same inputs should not change the result.</p></li><li><p><code class="literal">F([input1; input2]) == F([input2; input1])</code>: The result should not depend on the order of concatenation.</p></li><li><p><code class="literal">F([input1; input2]) == F([F(input1); F(input2)])</code>: Applying the function once to the concatenation of some intermediate results should be the same as applying it separately, concatenating, and applying it again.</p></li></ul></div><p>
+</p></li><li><p><strong class="emphasis bold">Empty Inputs</strong> &#8212; Ensure that
+                    <code class="literal">reducefcn</code> can handle an input that has a height of 0. Empty
+                inputs can occur when a file is empty or if you have done a lot of filtering on the
+                data. For this call, all input blocks are empty arrays of the correct type and size
+                in dimensions beyond the first.</p></li></ol></div><p>
+</p></section></section><section><h3 class="title" id="mw_056719c0-fb8b-4b65-9a46-6c2acedc59f2">Sliding-Window Operations</h3><p>The <code class="function">matlab.tall.movingWindow</code> and
+          <code class="function">matlab.tall.blockMovingWindow</code> functions apply a function to windows
+        of data within a tall array. While <code class="function">matlab.tall.transform</code> and
+          <code class="function">matlab.tall.reduce</code> operate on entire blocks of data at a time, the
+        moving-window functions operate on windows of data as a window moves from the beginning to
+        the end of the array. The windows can span between the blocks of data being read from
+        disk.</p><p>These figures show what happens to the blocks in an array when they are operated on by
+          <code class="function">matlab.tall.movingWindow</code> or
+          <code class="function">matlab.tall.blockMovingWindow</code>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Operation</th><th>Description</th><th>Examples</th></tr></thead><tbody><tr><td>
+                <div class="informalfigure"><div id="d126e36889" class="mediaobject"><p><img src="windowed-transform.png" alt="Illustration of windowed transformation, where the number of rows in each block remains constant." height="358" width="204"></p></div></div>
+              </td><td><p><strong class="emphasis bold">Windowed Transformation</strong> &#8212; The number of
+                  rows in each block remains the same, but the values change. The output contains
+                  the results of operations performed on both incomplete and complete windows of
+                  data.</p><p>Both <code class="function">matlab.tall.movingWindow</code> and
+                    <code class="function">matlab.tall.blockMovingWindow</code> transform data when
+                    <code class="literal">'EndPoints'</code> is the default value of
+                    <code class="literal">'shrink'</code>, or when a fill value is specified. Both values
+                  ensure the output is the same size in the first dimension as the
+                input.</p></td><td><p>
+                  </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.movingWindow(@mean, 100, tX)</code>
+                        calculates a moving mean using a window size of 100.</p></li></ul></div><p>
+
+                </p></td></tr><tr><td>
+                <div class="informalfigure"><div id="d126e36922" class="mediaobject"><p><img src="windowed-transform-discard.png" alt="Illustration of windowed filtering, where the number of rows in each block are reduced." height="358" width="204"></p></div></div>
+              </td><td><p><strong class="emphasis bold">Windowed Filtering</strong> &#8212; Incomplete windows
+                  of data are discarded, so the output has fewer elements than the input. The output
+                  only contains the results of operations performed on complete windows of
+                  data.</p><p>Both <code class="function">matlab.tall.movingWindow</code> and
+                    <code class="function">matlab.tall.blockMovingWindow</code> remove incomplete windows of
+                  data when <code class="literal">'EndPoints'</code> is
+                <code class="literal">'discard'</code>.</p></td><td><p>
+                  </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">A = matlab.tall.movingWindow(@mean, 100, tX, 'EndPoints',
+                          'discard')</code> calculates a moving mean on complete windows of data,
+                        using a window size of 100.</p></li></ul></div><p>
+
+                </p></td></tr></tbody></table></div><p>You can use <code class="function">matlab.tall.movingWindow</code> and
+          <code class="function">matlab.tall.blockMovingWindow</code> to apply windowed transformations or
+        filters to data. For example, you can calculate a trailing average or a moving median, or
+        you can apply several operations at once to the same window. The two functions differ in
+        these ways:</p>
+<div class="itemizedlist"><ul><li><p><code class="function">matlab.tall.movingWindow</code> applies <code class="function">fcn</code> to
+              all windows of data, regardless of whether the windows are complete.
+                <code class="function">matlab.tall.blockMovingWindow</code> applies
+                <code class="function">windowfcn</code> to incomplete windows of data, and applies
+                <code class="function">blockfcn</code> to complete windows of data.</p></li><li><p><code class="function">matlab.tall.movingWindow</code> operates on single windows of data
+              at a time. <code class="function">matlab.tall.blockMovingWindow</code> operates on entire
+              blocks of data containing multiple complete windows, which reduces the number of
+              function calls required in the calculation.</p></li></ul></div><p>
+</p><section><h4 class="title" id="mw_a1496f74-bf29-498c-8308-85e71ce57011">Moving Window Syntaxes</h4><p>The syntax to apply a moving window operation to single windows of data is</p><div class="code_responsive"><pre class="programlisting">[tA, tB, tC, ...] = matlab.tall.movingWindow(fcn, window, tX, tY, tZ, ...)</pre></div><p>The functional signature of <code class="literal">fcn</code> must be</p><div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = fcn(x, y, z, ...)</pre></div><p>Similarly, the syntax to apply a moving window operation to entire blocks of data
+          is</p><div class="code_responsive"><pre class="programlisting">[tA, tB, tC, ...] = matlab.tall.blockMovingWindow(windowfcn, blockfcn, window, tX, tY, tZ, ...)</pre></div><p>The functional signatures of <code class="literal">windowfcn</code> and
+            <code class="literal">blockfcn</code> must be</p><div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = windowfcn(info, x, y, z, ...)
+[a, b, c, ...] = blockfcn(info, bX, bY, bZ, ...)</pre></div><p>The <code class="literal">info</code> input is a structure that contains the fields
+            <code class="literal">Window</code> and <code class="literal">Stride</code>. When you write the function.
+          use these fields to pick out windows of data in each block.</p><p>For an outline of general rules that <code class="literal">fcn</code>,
+            <code class="literal">windowfcn</code>, and <code class="literal">blockfcn</code> must follow, see <a href="develop-custom-tall-array-algorithms.html#mw_2afc78c6-4555-4cac-b89b-6ab89907173c" class="intrnllnk">Functional Requirements for fcn</a>. Aside from the
+            <code class="literal">info</code> input, <code class="literal">fcn</code> and <code class="literal">windowfcn</code>
+          have the same requirements. However, the requirements for <code class="literal">blockfcn</code> are
+          different since that function operates on entire blocks of data.</p></section><section><h4 class="title" id="mw_4c79615f-32dd-4213-88e5-7c10ccfe5049">Functional Requirements for <code class="function">windowfcn</code></h4><p>The general functional signature of
+        <code class="literal">windowfcn</code>
+    is<div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = windowfcn(info, x, y, ...)</pre></div>The
+        <code class="literal">info</code> input is a structure provided by
+        <code class="literal">matlab.tall.blockMovingWindow</code> that includes these fields:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Stride</code> &#8212; Specified step size between windows (default: 1). Set
+                this value with the <code class="literal">'Stride'</code> name-value pair.</p></li><li><p><code class="literal">Window</code> &#8212; Specified window size. Set this value with the
+                    <code class="literal">window</code> input argument.</p></li></ul></div><p>
+<code class="literal">windowfcn</code> must satisfy these requirements:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Input Arguments</strong> &#8212; The inputs <code class="literal">[x, y, z,
+                    ...]</code> are blocks of data that fit in memory. The blocks are produced by
+                extracting data from the respective tall array inputs <code class="literal">[tX, tY, tZ,
+                    ...]</code>. The inputs <code class="literal">[x, y, z, ...]</code> satisfy these
+                properties:</p><div class="itemizedlist"><ul><li><p>All of the inputs <code class="literal">[x, y, z, ...]</code> have the same size in
+                        the first dimension.</p></li><li><p>The blocks of data in <code class="literal">[x, y, z, ...]</code> come from the same
+                        index in the tall dimension, assuming the tall array is nonsingleton in the
+                        tall dimension. For example, if <code class="literal">tX</code> and
+                            <code class="literal">tY</code> are nonsingleton in the tall dimension, then the
+                        first set of blocks might be <code class="literal">x = tX(1:20000,:)</code> and
+                            <code class="literal">y = tY(1:20000,:)</code>.</p></li><li><p>When the first dimension of any of <code class="literal">[tX, tY, tZ, ...]</code>
+                        has a size of <code class="literal">1</code>, the corresponding block <code class="literal">[x, y,
+                            z, ...]</code> consists of all the data in that tall array.</p></li><li><p>Applying <code class="literal">windowfcn</code> must result in a reduction of the
+                        input data to a scalar or a slice of an array of height 1.</p><p>When the input is a matrix, N-D array, table, or timetable, applying
+                            <code class="literal">windowfcn</code> must result in a reduction of the input
+                        data in each of its columns or variables.</p></li></ul></div></li><li><p><strong class="emphasis bold">Output Arguments</strong> &#8212; The outputs <code class="literal">[a, b, c,
+                    ...]</code> are blocks that fit in memory to be sent to the respective
+                outputs <code class="literal">[tA, tB, tC, ...]</code>. The outputs <code class="literal">[a, b, c,
+                    ...]</code> satisfy these properties:</p><div class="itemizedlist"><ul><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> must have the same
+                        size in the first dimension.</p></li><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> are vertically
+                        concatenated with the respective results of previous calls to
+                            <code class="literal">windowfcn</code>.</p></li><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> are sent to the same
+                        index in the first dimension in their respective destination output
+                        arrays.</p></li></ul></div></li><li><p><strong class="emphasis bold">Functional Rules</strong> &#8212; <code class="literal">windowfcn</code>
+                must satisfy this functional rule:</p><div class="itemizedlist"><ul><li><p><code class="literal">F([inputs1; inputs2]) == [F(inputs1); F(inputs2)]</code>:
+                        Applying the function to the concatenation of the inputs should be the same
+                        as applying the function to the inputs separately and then concatenating the
+                        results.</p></li></ul></div></li></ol></div><p>
+</p></section><section><h4 class="title" id="mw_e10278ac-4a64-42c7-82ba-b19910a2f7a1">Functional Requirements for <code class="function">blockfcn</code></h4><p>The general functional signature of <code class="literal">blockfcn</code>
+    is<div class="code_responsive"><pre class="programlisting">[a, b, c, ...] = blockfcn(info, bX, bY, bZ, ...)</pre></div>The
+        <code class="literal">info</code> input is a structure provided by
+        <code class="literal">matlab.tall.blockMovingWindow</code> that includes these fields:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">Stride</code> &#8212; Specified step size between windows (default: 1). Set
+                this value with the <code class="literal">'Stride'</code> name-value pair.</p></li><li><p><code class="literal">Window</code> &#8212; Specified window size. Set this value with the
+                    <code class="literal">window</code> input argument.</p></li></ul></div><p>
+The blocks of data <code class="literal">bX, bY, bZ, ...</code> that
+        <code class="function">matlab.tall.blockMovingWindow</code> provides to <code class="literal">blockfcn</code>
+    have these properties:</p>
+<div class="itemizedlist"><ul><li><p>The blocks contain only full-sized windows. <code class="literal">blockfcn</code> does not
+                have to define a behavior for incomplete windows of data.</p></li><li><p>The first window of data starts at the first element of the block. The last
+                element of the last window is the last element of the block.</p></li></ul></div><p>
+<code class="literal">blockfcn</code> must satisfy these requirements:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Input Arguments</strong> &#8212; The inputs <code class="literal">[bX, bY,
+                    bZ, ...]</code> are blocks of data that fit in memory. The blocks are
+                produced by extracting data from the respective tall array inputs <code class="literal">[tX, tY,
+                    tZ, ...]</code>. The inputs <code class="literal">[bX, bY, bZ, ...]</code> satisfy
+                these properties:</p><div class="itemizedlist"><ul><li><p>All of the inputs <code class="literal">[bX, bY, bZ, ...]</code> have the same size
+                        in the first dimension after any allowed expansion.</p></li><li><p>The blocks of data in <code class="literal">[bX, bY, bZ, ...]</code> come from the
+                        same index in the tall dimension, assuming the tall array is nonsingleton in
+                        the tall dimension. For example, if <code class="literal">tX</code> and
+                            <code class="literal">tY</code> are nonsingleton in the tall dimension, then the
+                        first set of blocks might be <code class="literal">bX = tX(1:20000,:)</code> and
+                            <code class="literal">bY = tY(1:20000,:)</code>.</p></li><li><p>If the first dimension of any of the data inputs <code class="literal">[tX, tY, tZ,
+                            ...]</code> has a size of <code class="literal">1</code>, then the
+                        corresponding block <code class="literal">[bX, bY, bZ, ...]</code> consists of all the
+                        data in that tall array.</p></li><li><p>Applying <code class="literal">blockfcn</code> must result in a reduction of the
+                        input data such that the result has height equal to the number of windows in
+                        the block. You can use <code class="literal">info.Window</code> and
+                            <code class="literal">info.Stride</code> to determine the number of windows in a
+                        block.</p><p>If the input is a matrix, N-D array, table, or timetable, then applying
+                            <code class="literal">blockfcn</code> must result in a reduction of the input data
+                        in each of its columns or variables.</p></li></ul></div></li><li><p><strong class="emphasis bold">Output Arguments</strong> &#8212; The outputs <code class="literal">[a, b, c,
+                    ...]</code> are blocks that fit in memory, to be sent to the respective
+                outputs <code class="literal">[tA, tB, tC, ...]</code>. The outputs <code class="literal">[a, b, c,
+                    ...]</code> satisfy these properties:</p><div class="itemizedlist"><ul><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> must have the same
+                        size in the first dimension.</p></li><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> are vertically
+                        concatenated with the respective results of previous calls to
+                            <code class="literal">blockfcn</code>.</p></li><li><p>All of the outputs <code class="literal">[a, b, c, ...]</code> are sent to the same
+                        index in the first dimension in their respective destination output
+                        arrays.</p></li></ul></div></li><li><p><strong class="emphasis bold">Functional Rules</strong> &#8212; <code class="literal">blockfcn</code>
+                must satisfy this functional rule:</p><div class="itemizedlist"><ul><li><p><code class="literal">F([inputs1; inputs2]) == [F(inputs1); F(inputs2)]</code>:
+                        Applying the function to the concatenation of the inputs should be the same
+                        as applying the function to the inputs separately and then concatenating the
+                        results.</p></li></ul></div></li></ol></div><p>
+</p></section></section><section><h3 class="title" id="mw_59963b6b-3559-4639-ba58-309720fa08c7">Control Output Data Type</h3><p>If the final output from any of the <a href="develop-custom-tall-array-algorithms.html#mw_cddc64ef-3820-4768-989f-050b8dae83d6" class="intrnllnk">Supported APIs</a> has a different data
+        type from the input, then you <span class="emphasis"><em>must</em></span> specify the
+          <code class="literal">'OutputsLike'</code> name-value pair to provide one or more prototype arrays
+        that have the same data type and attributes as the corresponding outputs. The value of
+          <code class="literal">'OutputsLike'</code> is always a cell array, with each cell containing a
+        prototype array for the corresponding output argument.</p><p>For example, this call to <code class="function">matlab.tall.transform</code> accepts one tall
+        array <code class="literal">tX</code> as an input and returns two outputs with different types
+        specified by the prototype arrays <code class="literal">protoA</code> and <code class="literal">protoB</code>.
+        Output <code class="literal">A</code> has the same data type and attributes as
+          <code class="literal">protoA</code>, and likewise for <code class="literal">B</code> and
+          <code class="literal">protoB</code>.</p><div class="code_responsive"><pre class="programlisting">C = {protoA protoB};
+[A, B] = matlab.tall.transform(fcn, tX, 'OutputsLike', C)</pre></div><p>A common way to supply the prototype arrays is to call <code class="literal">fcn</code> with
+        trivial inputs of the proper data type, since the outputs returned by <code class="literal">fcn</code>
+        have the correct data type. In this example, the transform function accepts a tall double,
+        but returns a tall table. A prototype array is generated by calling
+          <code class="literal">fcn(0)</code> and the prototype is specified as the value of
+          <code class="literal">'OutputsLike'</code>.</p><div class="code_responsive"><pre class="programlisting">ds = tabularTextDatastore('airlinesmall.csv','TreatAsMissing','NA');
+ds.SelectedVariableNames = {'ArrDelay', 'DepDelay'};
+tt = tall(ds);
+tX = tt.ArrDelay;
+
+fcn = @(x) table(x,'VariableNames',{'MyVar'});
+proto_A = fcn(0);
+A = matlab.tall.transform(fcn,tX,'OutputsLike',{proto_A});</pre></div></section><section><h3 class="title" id="mw_67fa614e-4fe2-44c5-b50b-a85217ce2e33">Coding and Performance Tips</h3><p>
+        </p>
+<div class="itemizedlist"><ul><li><p>Put all analytics in a single function that you call to operate directly on the
+              data, instead of using unnecessary nested functions.</p></li><li><p>Experiment using a small subset of the data. Profile your code to find and fix
+              bottlenecks before scaling up to the entire data set, where bottlenecks can be greatly
+              amplified.</p></li><li><p>Pay attention to the orientation of your data, since some functions return the
+              outputs in different shapes depending on the input data. For example,
+                <code class="function">unique</code> can return either a row vector or a column vector
+              depending on the orientation of the input data.</p></li><li><p>Blocks are dynamically generated at run-time based on available computer memory.
+              Make sure that any specified reduction function obeys the function rule
+                <code class="literal">F([input1; input2]) == F([F(input1); F(input2)])</code>. If this rule is
+              not obeyed, then the results can differ significantly between trials.</p></li><li><p>Blocks can have any size in the first dimension, including 0 or 1. Size 0 or 1 can
+              occur in intermediate calculations as a result of filtering or reduction operations.
+              Make sure your function does the correct thing for both of these cases. One sign that
+              the function does not handle these cases properly is when you receive an "Output is
+              different size" error message.</p></li></ul></div><p>
+
+      </p></section>
+      <h2 id="d126e37350">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.tall.reduce.html"><span itemprop="name"><code class="function">matlab.tall.reduce</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.tall.transform.html"><span itemprop="name"><code class="function">matlab.tall.transform</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.tall.movingwindow.html"><span itemprop="name"><code class="function">matlab.tall.movingWindow</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.tall.blockmovingwindow.html"><span itemprop="name"><code class="function">matlab.tall.blockMovingWindow</code></span></a></span></p>
+      <h3 id="d126e37365">Topics</h3><ul class="list-unstyled"><li><a href="index-and-view-tall-array-elements.html" class="a">Index and View Tall Array Elements</a></li><li><a href="tall-data-visualization.html" class="a">Visualization of Tall Arrays</a></li><li><a href="extend-tall-arrays-with-other-products.html" class="a">Extend Tall Arrays with Other Products</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

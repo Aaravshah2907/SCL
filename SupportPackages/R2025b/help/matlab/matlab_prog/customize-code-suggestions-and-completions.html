@@ -1,0 +1,501 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Customize Code Suggestions and Completions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../creating-help.html",
+          "name": "Toolbox Distribution"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "creating-help"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="To customize code suggestions and completions for your functions, provide MATLAB with information about your function signatures."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../creating-help.html?s_tid=CRUX_lftnav" itemprop="url" id="creating-help"><span itemprop="title">Toolbox Distribution</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Customize Code Suggestions and Completions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_d201e6b8-cade-4c9e-968c-dfaed19b6ea5" class="nav-link intrnllnk">Function Objects</a></li><li class="nav-item"><a href="#mw_fff2363f-1ca9-46db-bff3-f53317119685" class="nav-link intrnllnk">Signature Objects</a></li><li class="nav-item"><a href="#mw_1119e8da-78b9-4ddb-906d-33fdee71c699" class="nav-link intrnllnk">Argument Objects</a></li><li class="nav-item"><a href="#mw_386ccd79-c5ee-4923-be23-ce9be17d83fa" class="nav-link intrnllnk">Create Function Signature File</a></li><li class="nav-item"><a href="#mw_fe6f6fe5-bd10-4f61-9a60-8d570ab17f72" class="nav-link intrnllnk">How Function Signature Information is Used</a></li><li class="nav-item"><a href="#mw_0251b2cc-b271-42bb-a21e-09bd3dcb9229" class="nav-link intrnllnk">Multiple Signatures</a></li><li class="nav-item"><a href="#d126e72086" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=creating-help&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=creating-help&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=creating-help&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=creating-help&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=creating-help&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=creating-help&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_adc804fb-4d56-4cbf-ba81-891276a3c63d">Customize Code Suggestions and Completions</h2><p>To customize code suggestions and completions for your functions and classes, provide
+                MATLAB<sup>&#x00AE;</sup> with information about your function signatures. Function signatures
+            describe the acceptable syntaxes and allowable data types for a function. MATLAB uses this information to display code suggestions and completions in the
+            Editor, Live Editor, and Command Window. Define this function information in a
+            JSON-formatted file called <code class="literal">functionSignatures.json</code>. MATLAB is able to provide code completions and suggestions for functions with
+                <code class="literal">arguments</code> blocks based on the information contained in the
+            arguments block. This information is available without requiring a
+                <code class="literal">functionSignatures.json</code> file. Custom code suggestions and
+            completions are not supported in MATLAB Online.</p><p>For MATLAB to detect the function signature information, place
+                <code class="literal">functionSignatures.json</code> in a <code class="literal">resources</code> folder
+            in the folder that contains the function code. If you define information for a class
+            method or namespace function, place <code class="literal">functionSignatures.json</code> in a
+                <code class="literal">resources</code> folder in the parent folder of the outermost class or
+            namespace folder. For example, to define information for a method of
+                <code class="literal">myClass</code>, place <code class="literal">functionSignatures.json</code> in a
+                <code class="literal">resources</code> folder in <code class="literal">myFolder</code> for these class
+            and namespace structures:</p><div class="code_responsive"><pre class="programlisting">  myFolder/+myNamespace/@myClass
+  myFolder/+myNamespace/+mySubnamespace/@myClass
+</pre></div><p>For classes located outside of class or namespace folders, place
+                <code class="literal">functionSignatures.json</code> in a <code class="literal">resources</code> folder
+            in the folder that contains the class code. You can define signatures for multiple
+            functions in the same file.</p><p>The <code class="literal">functionSignatures.json</code> file contains a single JSON object.
+            JSON uses braces to define objects, and refers to objects as collections of name and
+            value pairs. Since these terms are overloaded in the context of function signatures,
+            "property" is used instead of "name." The JSON object in
+                <code class="literal">functionSignatures.json</code> contains an optional schema version and a
+            list of <em class="firstterm">function objects</em>. Each function object contains a list of
+                <em class="firstterm">signature objects</em>, and each signature object contains an
+            array of <em class="firstterm">argument objects</em>. JSON uses brackets to define
+            arrays.</p><div class="informalfigure"><div id="d126e71319" class="mediaobject"><p><img src="json_format.png" alt="Example functionSignatures.json file showing the function object property &#34;functionName1&#34; with one signature object property &#34;inputs&#34;. The &#34;inputs&#34; signature object property has three argument objects named &#34;A&#34;, &#34;dim&#34;, and &#34;nanflag&#34;." height="400" width="887"></p></div></div><p>To specify the optional schema version use <code class="literal">_schemaVersion</code> as the
+            first property and the version number as its value. Specify the version number as a JSON
+            string in the format
+                    <code class="literal"><em class="replaceable"><code>major#</code></em>.<em class="replaceable"><code>minor#</code></em>.<em class="replaceable"><code>patch#</code></em></code>,
+            with each number specified as a nonnegative integer. The current schema version is
+                <code class="literal">1.0.0</code>. If the file does not specify a schema version, MATLAB assumes version <code class="literal">1.0.0</code>.</p><p>If <code class="literal">functionSignatures.json</code> contains syntax errors, MATLAB displays an error message in the Command Window when it reads the file.
+            Use the <a href="../ref/validatefunctionsignaturesjson.html"><code class="function">validateFunctionSignaturesJSON</code></a> function to validate the
+                <code class="literal">functionSignatures.json</code> file against the JSON schema and the
+                MATLAB function signature schema.</p><section><h3 class="title" id="mw_d201e6b8-cade-4c9e-968c-dfaed19b6ea5">Function Objects</h3><p>To define information for a function, create a property that is the same as the
+                function name. Its value is a <a href="customize-code-suggestions-and-completions.html#mw_fff2363f-1ca9-46db-bff3-f53317119685" class="intrnllnk">signature
+                    object</a>.</p><div class="code_responsive"><pre class="programlisting">{
+  "functionName1": { signatureObj1 },
+  "functionName2": { signatureObj2 }
+}</pre></div><p>To define information for a class constructor, class method, or namespace
+                function, use the full name of the function or method. For example, define a class
+                constructor, class method <code class="literal">myMethod</code>, and a namespace function
+                    <code class="literal">myFunction</code>.</p><div class="code_responsive"><pre class="programlisting">{
+  "myClass.myClass": { signatureObj },
+  "myClass.myMethod": { signatureObj },
+  "myNamespace.myFunction": { signatureObj }
+}</pre></div><p>You can define multiple function signatures for the same function or method by
+                defining multiple function objects with the same property (function or method name).
+                For more information, see <a href="customize-code-suggestions-and-completions.html#mw_0251b2cc-b271-42bb-a21e-09bd3dcb9229" class="intrnllnk">Multiple Signatures</a>.</p></section><section><h3 class="title" id="mw_fff2363f-1ca9-46db-bff3-f53317119685">Signature Objects</h3><p>A signature object defines the input and output arguments and supported platforms
+                for the function. The value of each property, except for the
+                    <code class="literal">platforms</code> property, is an array of <a href="customize-code-suggestions-and-completions.html#mw_1119e8da-78b9-4ddb-906d-33fdee71c699" class="intrnllnk">argument
+                    objects</a>.</p><div class="code_responsive"><pre class="programlisting">{
+  "functionName1":
+  {
+     "inputs": [ argumentObj1, argumentObj2 ]
+  }
+}</pre></div><p>If you specify an instance method such as <code class="literal">myClass.myMethod</code> in
+                the JSON file, one of the elements in <code class="literal">inputs</code> must be an object of
+                    <code class="literal">myClass</code>. Typically, this object is the first element.
+                    MATLAB supports code suggestions and completions for a specified method when
+                you call it using either dot notation (<code class="literal">b = myObj.myMethod(a)</code>) or
+                function notation (<code class="literal">b = myMethod(myObj,a)</code>) syntax.</p><p>Each signature in the JSON file can include the following properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="22%"><col class="tcol2" width="56%"><col class="tcol3" width="22%"></colgroup><thead><tr><th>Property</th><th>Description</th><th>JSON Data Type of Value</th></tr></thead><tbody><tr><td><code class="literal">inputs</code></td><td><p>List of function input arguments. MATLAB uses this property for code suggestions and
+                                    completions.</p></td><td><p>Array of argument objects</p></td></tr><tr><td><code class="literal">outputs</code></td><td><p>List of function output arguments. MATLAB uses this property to refine code suggestions and
+                                    completions.</p></td><td><p>Array of argument objects</p></td></tr><tr><td><code class="literal">platforms</code></td><td><p>List of platforms that support the function. MATLAB does not present custom code suggestions and
+                                    completions if the platform does not support the
+                                    function.</p><p>The default is all platforms. Elements of
+                                    the list must match an <code class="literal">archstr</code> returned from
+                                    the <a href="../ref/computer.html"><code class="function">computer</code></a>
+                                    function. The list can be inclusive or exclusive, but not both.
+                                    Example values are <code class="literal">"win64,maci64"</code> or
+                                        <code class="literal">"-win64,-maci64"</code>.</p></td><td><p>String of comma-separated values</p></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_1119e8da-78b9-4ddb-906d-33fdee71c699">Argument Objects</h3><p>Argument objects define the information for each of the input and output
+                arguments.</p><div class="code_responsive"><pre class="programlisting">{
+  "functionName1":
+  {
+     "inputs":
+     [
+        {"name":"in1",  "kind":"required", "type":["numeric"]},
+        {"name":"in2",  "kind":"required", "type":["numeric","integer","scalar"]}
+     ]
+  }
+}</pre></div><p>The order that the inputs appear in the JSON file is significant. For example, in
+                a call to the <code class="literal">functionName1</code> function, <code class="literal">in1</code> must
+                appear before <code class="literal">in2</code>.</p><p>Each argument object can include the following properties.</p><p><a href="#" onclick="return toggleexpander('d126e71478_block','d126e71478_expandable_text');"><img style="border:0;" id="d126e71478_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71478_block','d126e71478_expandable_text');"><code class="literal">name</code> &#8211; Name of argument</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71478_block"><p>The name of the input or output argument, specified as a JSON string. This
+                    property and value is required. The <code class="literal">name</code> property does not
+                    need to match the argument name in the source code, but it is a best practice
+                    for it to match any help or documentation.</p><p>Example: <code class="literal">"name":"myArgumentName"</code></p></div><p><a href="#" onclick="return toggleexpander('d126e71493_block','d126e71493_expandable_text');"><img style="border:0;" id="d126e71493_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71493_block','d126e71493_expandable_text');"><code class="literal">kind</code> &#8211; Kind of argument</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71493_block"><p>The kind of argument, specified as a JSON string with one of the following
+                    values. MATLAB uses the value of the <code class="literal">kind</code> property to
+                    determine if and when to display the arguments within the function
+                    signature.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="20%"><col class="tcol2" width="80%"></colgroup><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">required</code></td><td><p>Argument is required, and its location is relative to
+                                        other required arguments in the signature
+                                    object.</p></td></tr><tr><td><code class="literal">ordered</code></td><td><p>Argument is optional, and its location is relative to
+                                        the required and preceding optional arguments in the
+                                        signature object.</p></td></tr><tr><td><code class="literal">namevalue</code></td><td><p>Argument is an optional name-value argument. Name-value
+                                        arguments occur at the end of a function signature, but can
+                                        be specified in any order.</p></td></tr></tbody></table></div><p>Arguments that are <code class="literal">required</code> and <code class="literal">ordered</code>
+                    appear first in the function signature, and are followed by any
+                        <code class="literal">namevalue</code> arguments.</p><p><code class="literal">required</code>, <code class="literal">ordered</code>, and
+                        <code class="literal">namevalue</code> arguments are most common. You can also specify
+                    the following values for <code class="literal">kind</code>.</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">positional</code> &#8211; Argument is optional if it occurs
+                                at the end of the argument list, but becomes required to specify a
+                                subsequent positional argument. Any <code class="literal">positional</code>
+                                arguments must appear with the <code class="literal">required</code> and
+                                    <code class="literal">ordered</code> arguments, before any
+                                    <code class="literal">namevalue</code> arguments.</p></li><li><p><code class="literal">flag</code> &#8211; Argument is an optional, constant
+                                string, typically used as a switch. For example,
+                                    <code class="literal">'ascend'</code> or <code class="literal">'descend'</code>.
+                                Flags occur at the end of a function signature. All
+                                    <code class="literal">flag</code> arguments must appear before any
+                                    <code class="literal">namevalue</code> arguments.</p></li><li><p><code class="literal">properties</code> &#8211; Argument is optional and is used
+                                to specify public, settable properties of a different MATLAB class. Indicate the class using the argument object
+                                    <code class="literal">type</code> property. In code suggestions, these
+                                properties appear as name-value arguments. Any
+                                    <code class="literal">properties</code> arguments must be the last
+                                argument in the signature.</p></li></ul></div><p>
+</p><p>Example: <code class="literal">"kind":"required"</code> or
+                        <code class="literal">"kind":"namevalue"</code></p></div><p><a href="#" onclick="return toggleexpander('d126e71596_block','d126e71596_expandable_text');"><img style="border:0;" id="d126e71596_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71596_block','d126e71596_expandable_text');"><code class="literal">type</code> &#8211; Class and/or attributes of argument</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71596_block"><p>Class or attributes of the argument, specified as a JSON string, list, or list
+                    of lists.</p><p>The <code class="literal">type</code> property can define what class the argument is and
+                    what attributes the argument must have.</p>
+<div class="itemizedlist"><ul><li><p>To match one class or attribute, use a single JSON string. For
+                                example, if an argument must be numeric, then specify
+                                    <code class="literal">"type":"numeric"</code>.</p></li><li><p>To match all classes or attributes, use a list of JSON strings.
+                                For example, if an argument must be both numeric and positive, then
+                                specify <code class="literal">"type":["numeric", "&gt;=0"]</code>.</p></li><li><p>To match any of multiple classes or attributes, use a list of
+                                lists of JSON strings. For the inner lists, MATLAB uses a logical AND of the values. For the outer list,
+                                    MATLAB uses a logical OR of the values. For example, if an
+                                argument must be either a positive number or a
+                                    <code class="class">containers.Map</code> object, then specify
+                                    <code class="literal">"type":[["numeric",
+                                    "&gt;=0"],["containers.Map"]]</code>.</p></li></ul></div><p>
+</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Value</th><th>Argument Description</th></tr></thead><tbody><tr><td><code class="literal">"<span class="emphasis"><em>classname</em></span>"</code></td><td><p>Must be an object of class
+                                            <span class="emphasis"><em>classname</em></span>, where
+                                            <span class="emphasis"><em>classname</em></span> is the name of the class
+                                        returned by the <a href="../ref/class.html"><code class="function">class</code></a>
+                                        function. For example, <code class="literal">"double"</code> or
+                                            <code class="literal">"function_handle"</code>.</p></td></tr><tr><td><code class="literal">"choices=<span class="emphasis"><em>expression</em></span>"</code></td><td><p>Must be a case-insensitive match to one of the
+                                        specified choices. <span class="emphasis"><em>expression</em></span> is any valid MATLAB expression
+                                        that returns a cell of character vectors, string array, or
+                                        cell of integer values. For example,
+                                            <code class="literal">"choices={'on','off'}"</code> or
+                                            <code class="literal">"choices={8, 16,
+                                        24}"</code>.</p><p><span class="emphasis"><em>expression</em></span> can refer by name to
+                                        other input arguments that appear in the argument list.
+                                        Since <span class="emphasis"><em>expression</em></span> is
+                                        evaluated at run time, allowable choices can vary
+                                        dynamically with the value of other input
+                                    arguments.</p></td></tr><tr><td><code class="literal">"file<span class="emphasis"><em>=*.ext,...</em></span>"</code></td><td><p>Must be a string or character vector that names an
+                                        existing file with the specified extension. File names are
+                                        relative to the current working folder. For example, to
+                                        allow all <code class="literal">.m</code> and <code class="literal">.mlx</code>
+                                        files in the current folder, use
+                                            <code class="literal">"file=*.m,*.mlx"</code>. To match all files
+                                        in the current folder, use
+                                    <code class="literal">"file"</code>.</p></td></tr><tr><td><code class="literal">"folder"</code></td><td><p>Must be a string or character vector that is the name
+                                        of an existing folder relative to the current working
+                                        folder.</p></td></tr><tr><td><code class="literal">"matlabpathfile=<span class="emphasis"><em>*.ext,...</em></span>"</code></td><td><p>Must be a string or character vector that names an
+                                        existing file on the MATLAB path. This value requires at least one file
+                                        extension. For example, to allow all <code class="literal">.mat</code>
+                                        files on the path, use
+                                            <code class="literal">"matlabpathfile=*.mat"</code>.</p></td></tr><tr><td><code class="literal">"size=<span class="emphasis"><em>size1,size2,…,sizeN</em></span>"</code></td><td><p>Must match size constraints. This value requires two or
+                                        more dimensions. Each size dimension must be either a
+                                        positive integer that indicates the allowable size of the
+                                        dimension, or a colon to allow any size. For example,
+                                            <code class="literal">"size=2,:,2"</code> constrains the argument
+                                        to have a size of 2 in the 1st and 3rd
+                                    dimensions.</p></td></tr><tr><td><code class="literal">"numel=<span class="emphasis"><em>integerValue</em></span>"</code></td><td><p>Must have a specified number of
+                                    elements.</p></td></tr><tr><td><code class="literal">"nrows=<span class="emphasis"><em>integerValue</em></span>"</code></td><td><p>Must have a specified number of rows.</p></td></tr><tr><td><code class="literal">"ncols=<span class="emphasis"><em>integerValue</em></span>"</code></td><td><p>Must have a specified number of columns.</p></td></tr><tr><td><code class="literal">"numeric"</code></td><td><p>Must be numeric. A numeric value is one for which the
+                                            <a href="../ref/isa.html"><code class="function">isa</code></a>
+                                        function with the <code class="literal">'numeric'</code> class
+                                        category returns <code class="literal">true</code>.</p></td></tr><tr><td><code class="literal">"logical"</code></td><td><p>Must be numeric or logical.</p></td></tr><tr><td><code class="literal">"real"</code></td><td><p>Must be a real-valued numeric or a character or logical
+                                        value.</p></td></tr><tr><td><code class="literal">"scalar"</code></td><td><p>Must be scalar.</p></td></tr><tr><td><code class="literal">"integer"</code></td><td><p>Must be an integer of type
+                                        <code class="literal">double</code>.</p></td></tr><tr><td><code class="literal">"square"</code></td><td>Must be a square matrix.</td></tr><tr><td><code class="literal">"vector"</code></td><td>Must be a column or row vector.</td></tr><tr><td><code class="literal">"column"</code></td><td>Must be a column vector.</td></tr><tr><td><code class="literal">"row"</code></td><td>Must be a row vector.</td></tr><tr><td><code class="literal">"2d"</code></td><td>Must be 2-dimensional.</td></tr><tr><td><code class="literal">"3d"</code></td><td>Must have no more than three dimensions.</td></tr><tr><td><code class="literal">"sparse"</code></td><td>Must be sparse.</td></tr><tr><td><code class="literal">"positive"</code></td><td>Must be greater than zero.</td></tr><tr><td><code class="literal">"&gt;<span class="emphasis"><em>expression</em></span>"</code></td><td rowspan="4">Must be numeric and satisfy the inequality.
+                                        <span class="emphasis"><em>expression</em></span> must return a
+                                    full scalar double.</td></tr><tr><td><code class="literal">"&gt;=<span class="emphasis"><em>expression</em></span>"</code></td></tr><tr><td><code class="literal">"&lt;<span class="emphasis"><em>expression</em></span>"</code></td></tr><tr><td><code class="literal">"&lt;=<span class="emphasis"><em>expression</em></span>"</code></td></tr><tr><td><code class="literal">"@<span class="emphasis"><em>(args) expression</em></span></code>
+                                    "</td><td>Must satisfy the function handle. For a value to satisfy the
+                                    function handle, the handle must evaluate to
+                                        <code class="literal">true</code>.</td></tr></tbody></table></div></div><p><a href="#" onclick="return toggleexpander('d126e71892_block','d126e71892_expandable_text');"><img style="border:0;" id="d126e71892_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71892_block','d126e71892_expandable_text');"><code class="literal">repeating</code> &#8211; Specify argument multiple times</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71892_block"><p>Indicator that an argument can be specified multiple times, specified as a
+                    JSON <code class="literal">true</code> or <code class="literal">false</code> (without quotes). The
+                    default is <code class="literal">false</code>. If specified as <code class="literal">true</code>,
+                    the argument or set of arguments (tuple) can be specified multiple times. A
+                    required repeating argument must appear one or more times, and an optional
+                    repeating argument can appear zero or more times. </p><p>Example: <code class="literal">"repeating":true</code></p></div><p><a href="#" onclick="return toggleexpander('d126e71913_block','d126e71913_expandable_text');"><img style="border:0;" id="d126e71913_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71913_block','d126e71913_expandable_text');"><code class="literal">purpose</code> &#8211; Description of argument</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71913_block"><p>Description of argument, specified as a JSON string. Use this property to
+                    communicate the purpose of the argument.</p><p>Example: <code class="literal">"purpose":"Product ID"</code></p></div><p>For more complicated function signatures, the following properties are available
+                for each argument object.</p><p><a href="#" onclick="return toggleexpander('d126e71927_block','d126e71927_expandable_text');"><img style="border:0;" id="d126e71927_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71927_block','d126e71927_expandable_text');"><code class="literal">platforms</code> &#8211; List of supported platforms</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71927_block"><p>List of platforms that support the argument, specified as a JSON string. The
+                    default is all platforms. Elements of the list must match an
+                        <code class="literal">archstr</code> returned from the <a href="../ref/computer.html"><code class="function">computer</code></a> function. The list can
+                    be inclusive or exclusive, but not both.</p><p>Example: <code class="literal">"platforms":"win64,maci64"</code> or
+                        <code class="literal">"platforms":"-maci64"</code></p></div><p><a href="#" onclick="return toggleexpander('mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_block','mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_expandable_text');"><img style="border:0;" id="mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_block','mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_expandable_text');"><code class="literal">tuple</code> &#8211; Definition of set of arguments</a></p><div class="expander" style="display:none; padding-left:4px;" id="mw_ec16c2a2-6bc5-4b09-9c69-cab44c7830bf_block"><p>Definition of a set of arguments that must always appear together, specified
+                    as a list of argument objects. This property is only used to define sets of
+                    multiple repeating arguments. For these function signatures, define tuples and
+                    set the <code class="literal">repeating</code> property to <code class="literal">true</code>.</p></div><p><a href="#" onclick="return toggleexpander('d126e71960_block','d126e71960_expandable_text');"><img style="border:0;" id="d126e71960_expandable_text" src="../../includes/product/images/doc_center/arrow_right.gif"></a>&nbsp;<a href="#" onclick="return toggleexpander('d126e71960_block','d126e71960_expandable_text');"><code class="literal">mutuallyExclusiveGroup</code> &#8211; Definition of set of exclusive
+                    arguments</a></p><div class="expander" style="display:none; padding-left:4px;" id="d126e71960_block"><p>Definition of a set of sets of arguments that cannot be used together,
+                    specified as a list of argument objects. This property is used to provide
+                    information about functions with multiple function signatures. However,
+                    typically it is easier to define multiple function signatures using multiple
+                    function objects. For more information, see <a href="customize-code-suggestions-and-completions.html#mw_0251b2cc-b271-42bb-a21e-09bd3dcb9229" class="intrnllnk">Multiple Signatures</a>.</p></div></section><section><h3 class="title" id="mw_386ccd79-c5ee-4923-be23-ce9be17d83fa">Create Function Signature File</h3>
+                <p class="shortdesc">This example describes how to create custom code suggestions
+                    and completions for a function.</p>
+            <div class="procedure"><p>Create a function whose signature you will describe in a JSON file in
+                        later steps. The following function accepts:</p>
+<div class="itemizedlist"><ul><li><p>Two required arguments</p></li><li><p>One optional positional argument via
+                                        <code class="function">varargin</code></p></li><li><p>Two optional name-value arguments via
+                                        <code class="function">varargin</code></p></li></ul></div><p>
+<code class="literal">myFunc</code> is presented to demonstrate code
+                        suggestions and does not include argument checking.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% myFunc  Example function</span>
+<span style="color:#228B22">% This function is called with any of these syntaxes:</span>
+<span style="color:#228B22">%</span>
+<span style="color:#228B22">%   myFunc(in1, in2) accepts 2 required arguments. </span>
+<span style="color:#228B22">%   myFunc(in1, in2, in3) also accepts an optional 3rd argument. </span>
+<span style="color:#228B22">%   myFunc(___, NAME, VALUE) accepts one or more of the following name-value </span>
+<span style="color:#228B22">%       arguments. This syntax can be used in any of the previous syntaxes.</span>
+<span style="color:#228B22">%           * 'NAME1' with logical value</span>
+<span style="color:#228B22">%           * 'NAME2' with 'Default', 'Choice1', or 'Choice2'</span>
+<span style="color:#0000FF">function</span> myFunc(reqA,reqB,varargin)
+    <span style="color:#228B22">% Initialize default values</span>
+    NV1 = true;
+    NV2 = <span style="color:#A020F0">'Default'</span>;
+    posA = [];
+    
+    <span style="color:#0000FF">if</span> nargin &gt; 3
+        <span style="color:#0000FF">if</span> rem(nargin,2)
+            posA = varargin{1};
+            V = varargin(2:end);
+        <span style="color:#0000FF">else</span>
+            V = varargin;
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">for</span> n = 1:2:size(V,2)
+            <span style="color:#0000FF">switch</span> V{n}
+                <span style="color:#0000FF">case</span> <span style="color:#A020F0">'Name1'</span>
+                    NV1 = V{n+1};
+                <span style="color:#0000FF">case</span> <span style="color:#A020F0">'Name2'</span>
+                    NV2 = V{n+1}
+                <span style="color:#0000FF">otherwise</span>
+                    error(<span style="color:#A020F0">'Error.'</span>)
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>In a <code class="literal">resources</code> folder in the same folder as
+                            <code class="literal">myFunc</code>, create the following function signature
+                        description in a file called <code class="literal">functionSignatures.json</code>. The
+                        input names do not match the names in the body of <code class="literal">myFunc</code>,
+                        but are consistent with the help text.</p><div class="code_responsive"><pre class="programlisting">{
+  "_schemaVersion": "1.0.0",
+  "myFunc":
+  {
+     "inputs":
+     [
+        {"name":"in1", "kind":"required", "type":["numeric"], "purpose":"ID of item"},
+        {"name":"in2", "kind":"required", "type":["numeric"], "purpose":"# Items"},
+        {"name":"in3", "kind":"ordered", "type":["numeric"], "purpose":"Input Value"},
+        {"name":"Name1", "kind":"namevalue", "type":["logical","scalar"],"purpose":"Option"},
+        {"name":"Name2", "kind":"namevalue", "type":["char", "choices={'Default','Choice1','Choice2'}"]}
+     ]
+  }
+}
+</pre></div><p>MATLAB uses this function signature description to inform code
+                        suggestions and completion.</p></div></section><section><h3 class="title" id="mw_fe6f6fe5-bd10-4f61-9a60-8d570ab17f72">How Function Signature Information is Used</h3>
+                <p class="shortdesc">MATLAB uses the function signature information in the JSON file to
+                    display matching syntaxes as you type. You also can complete partially typed
+                    text by pressing the <strong class="keycap">Tab</strong> key. In the Command Window,
+                        MATLAB does not use the JSON file to display matching syntaxes as you
+                    type.</p>
+            <div class="procedure"><p>To experiment with code suggestions, start to call
+                            <code class="literal">myFunc</code> from a script or live script. The names and
+                        purposes from the JSON file appear. MATLAB indicates when arguments are optional and if there are
+                        multiple suggestions available (such as the third positional argument or a
+                        name-value argument). Name-value argument options are listed.</p><div class="informalfigure"><div id="d126e72038" class="mediaobject"><p><img src="json_funcsig_args.png" alt="Three calls to the myFunc function showing examples of different code suggestions. The first suggestion shows the purpose of the in1 argument, the second suggestion shows the purpose of the in3 argument with the word Optional in parentheses, and the third suggestion shows a list of supported name-value arguments for the options argument." height="121" width="690"></p></div></div><p>When adding a name-value argument to the function call, MATLAB presents the choices from the JSON file. Since
+                            <code class="literal">'Name1'</code> is defined as a logical scalar, MATLAB populates the choices automatically (<code class="literal">true</code>
+                        or <code class="literal">false</code>). MATLAB takes the three values for the <code class="literal">'Name2'</code>
+                        argument from the JSON file.</p><div class="informalfigure"><div id="d126e72063" class="mediaobject"><p><img src="json_funcsig_nvp.png" alt="Two calls to the myFunc function showing examples of different name-value argument value suggestions. The first suggestion shows true and false as the supported values for the Name1 name-value argument. The second suggestion shows 'Choice1', 'Choice2', and 'Default' as the supported values for the Name2 name-value argument." height="137" width="534"></p></div></div></div></section><section><h3 class="title" id="mw_0251b2cc-b271-42bb-a21e-09bd3dcb9229">Multiple Signatures</h3><p>If a function has many syntaxes, it can be helpful for code suggestions to group
+                syntaxes as multiple function signatures (regardless of the implementation of the
+                function). To provide code suggestions and completions for multiple signatures,
+                create multiple function objects with the same property in the JSON file.</p><p>Consider the following function that follows different code paths depending on the
+                class of the second input. This function is presented as an example for code
+                suggestions, and, therefore, does not perform any computations or error
+                checking.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> anotherFunc(arg1,arg2,arg3)
+    <span style="color:#0000FF">switch</span> class(arg2)
+        <span style="color:#0000FF">case</span> <span style="color:#A020F0">'double'</span>
+            <span style="color:#228B22">% Follow code path 1</span>
+        <span style="color:#0000FF">case</span> {<span style="color:#A020F0">'char'</span>,<span style="color:#A020F0">'string'</span>}
+            <span style="color:#228B22">% Follow code path 2</span>
+        <span style="color:#0000FF">otherwise</span>
+            error(<span style="color:#A020F0">'Invalid syntax.'</span>)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>From a code suggestions perspective, consider the function as having two function
+                signatures. The first signature accepts two required numeric values. The second
+                signature accepts a required numeric, followed by a character or string, and finally
+                a required numeric. To define multiple function signatures, define multiple function
+                objects in the JSON file with the same property (function name).</p><div class="code_responsive"><pre class="programlisting">{
+  "_schemaVersion": "1.0.0",
+  "anotherFunc":
+  {
+     "inputs":
+     [
+        {"name":"input1",  "kind":"required", "type":["numeric"]},
+        {"name":"input2",  "kind":"required", "type":["numeric"]}
+     ]
+  },
+  "anotherFunc":
+  {
+     "inputs":
+     [
+        {"name":"input1",  "kind":"required", "type":["numeric"]},
+        {"name":"input2",  "kind":"required", "type":[["char"],["string"]]},
+        {"name":"input3",  "kind":"required", "type":["numeric"]}
+     ]
+  }
+}</pre></div><p>Alternatively, you can define multiple function signatures using the
+                    <code class="literal">mutuallyExclusiveGroup</code> property of the argument object.
+                Typically, it is easier and more readable to implement multiple function objects,
+                but using mutually exclusive groups enables reuse of common argument objects, such
+                as <code class="literal">input1</code>. </p><div class="code_responsive"><pre class="programlisting">{
+  "_schemaVersion": "1.0.0",
+  "anotherFunc":
+  {
+     "inputs":
+     [
+        {"name":"input1",  "kind":"required", "type":["numeric"]},
+        {"mutuallyExclusiveGroup":
+          [
+            [
+              {"name":"input2",  "kind":"required", "type":["numeric"]}
+            ],
+            [
+              {"name":"input2",  "kind":"required", "type":[["char"],["string"]]},
+              {"name":"input3",  "kind":"required", "type":["numeric"]}
+            ]
+           ]
+        }
+     ]
+  }
+}</pre></div></section>
+            <h2 id="d126e72086">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/validatefunctionsignaturesjson.html"><span itemprop="name"><code class="function">validateFunctionSignaturesJSON</code></span></a></span></p>
+            <h3 id="d126e72092">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_env/check-syntax-and-autocomplete-code.html" class="a">Check Syntax and Autocomplete Code as You Type</a></li></ul>
+            <h3 id="d126e72097">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.json.org/" target="_blank">https://www.json.org/</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

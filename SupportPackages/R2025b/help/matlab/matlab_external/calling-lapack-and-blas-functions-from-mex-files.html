@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Call LAPACK and BLAS Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to call a LAPACK or BLAS function using a MEX file."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Call LAPACK and BLAS Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#br268bc-1" class="nav-link intrnllnk">Build matrixMultiply MEX Function Using BLAS Functions</a></li><li class="nav-item"><a href="#f34970" class="nav-link intrnllnk">Preserve Input Values from Modification</a><ul class="nav"><li class="nav-item"><a href="#br28uwj-1" class="nav-link intrnllnk">matrixDivide Example</a></li></ul></li><li class="nav-item"><a href="#f44358" class="nav-link intrnllnk">Pass Arguments to Fortran Functions from C/C++ Programs</a><ul class="nav"><li class="nav-item"><a href="#f32831" class="nav-link intrnllnk">matrixMultiply Example</a></li></ul></li><li class="nav-item"><a href="#br28u96-1" class="nav-link intrnllnk">Pass Arguments to Fortran Functions from Fortran Programs</a></li><li class="nav-item"><a href="#br26788-1" class="nav-link intrnllnk">Modify Function Name on UNIX Systems</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="br_2m24-1">Call LAPACK and BLAS Functions</h2><p>You can call a LAPACK or BLAS function using a MEX file. To create a MEX file, you
+            need C/C++ or Fortran programming experience and the software resources (compilers and
+            linkers) to build an executable file. It also is helpful to understand how to use
+            Fortran subroutines. MATLAB<sup>&#x00AE;</sup> provides the <code class="literal">mwlapack</code> and <code class="literal">mwblas</code>
+            libraries in <em class="replaceable"><code>matlabroot</code></em><code class="literal">/extern/lib</code>.
+                To help you get started, there are source code examples in
+                <em class="replaceable"><code>matlabroot</code></em><code class="literal">/extern/examples/refbook</code>.</p><p>To call LAPACK or BLAS functions:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create a source MEX file containing the <a href="../apiref/mexfunction.html"><code class="function">mexFunction</code></a> gateway
+                    routine.</p></li><li><p>Make sure that you have a supported compiler for your platform. <span>For an up-to-date list of supported compilers, see <a href="https://www.mathworks.com/support/requirements/supported-compilers.html">Supported and Compatible Compilers</a>.</span></p></li><li><p>Build a binary MEX file using the <a href="../ref/mex.html"><code class="function">mex</code></a> command and the separate
+                    complex build flag <code class="literal remove_text_wrapping">-R2017b</code>.</p><div class="itemizedlist"><ul><li><p>Link your source file to one or both of the libraries,
+                                <code class="literal">mwlapack</code> and <code class="literal">mwblas</code>.</p></li><li><p>The <code class="literal">mwlapack</code> and <code class="literal">mwblas</code>
+                            libraries only support 64-bit integers for matrix dimensions. Do not use
+                            the <code class="literal remove_text_wrapping">-compatibleArrayDims</code> option.</p></li><li><p>To build a MEX file with functions that use complex numbers, see <a href="pass-separate-complex-numbers-to-fortran-functions.html" class="a">Pass Separate Complex Numbers to Fortran Functions</a>.</p></li></ul></div></li><li><p>For information about BLAS or LAPACK functions, see <a href="https://netlib.org/blas/" target="_blank">https://netlib.org/blas/</a> or <a href="https://netlib.org/lapack/" target="_blank">https://netlib.org/lapack/</a>.</p></li></ol></div><section><h3 class="title" id="br268bc-1">Build <code class="literal">matrixMultiply</code> MEX Function Using BLAS Functions</h3><p>This example shows how to build the example MEX file
+                    <code class="literal">matrixMultiply.c</code>, which uses functions from the BLAS library.
+                To work with this file, copy it to a local folder. For example:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>copyfile(fullfile(matlabroot,<span style="color:#A020F0">'extern'</span>,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'refbook'</span>,<span style="color:#A020F0">'matrixMultiply.c'</span>),<span style="color:#A020F0">'.'</span>)</pre></div></div></div><p>The example files are read-only files. To modify an example, ensure that the file
+                is writable by typing:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileattrib(<span style="color:#A020F0">'matrixMultiply.c'</span>,<span style="color:#A020F0">'+w'</span>)</pre></div></div></div><p>To build the MEX file, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-v</span> <span style="color:#A020F0">-R2017b</span> <span style="color:#A020F0">matrixMultiply.c</span> <span style="color:#A020F0">-lmwblas</span></pre></div></div></div><p>To run the MEX file, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = [1 3 5; 2 4 7];
+B = [-5 8 11; 3 9 21; 4 0 8];
+X = matrixMultiply(A,B)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>X =
+    24    35   114
+    30    52   162
+</pre></div></div></div></section><section><h3 class="title" id="f34970">Preserve Input Values from Modification</h3><p>Many LAPACK and BLAS functions modify the values of arguments passed to them. It
+                is good practice to make a copy of arguments you can modify before passing them to
+                these functions. For information about how MATLAB handles arguments to the <code class="function">mexFunction</code>, see <a href="gateway-routine.html#bt37g83-5" class="a">Managing Input and Output Parameters</a>.</p><section><h4 class="title" id="br28uwj-1"><code class="literal">matrixDivide</code> Example</h4><p>This example calls the LAPACK function <code class="literal">dgesv</code> that modifies
+                    its input arguments. The code in this example makes copies of
+                        <code class="literal">prhs[0]</code> and <code class="literal">prhs[1]</code>, and passes the
+                    copies to <code class="literal">dgesv</code> to preserve the contents of the input
+                    arguments.</p><p>To see the example, open <a href="matlab:edit([matlabroot '/extern/examples/refbook/matrixDivide.c']);" target="_blank"><code class="literal">matrixDivide.c</code></a> in the MATLAB Editor. To create the MEX file, copy the source file to a writable
+                    folder.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>copyfile(fullfile(matlabroot,<span style="color:#A020F0">'extern'</span>,<span style="color:#A020F0">'examples'</span>,<span style="color:#A020F0">'refbook'</span>,<span style="color:#A020F0">'matrixDivide.c'</span>),<span style="color:#A020F0">'.'</span>)
+</pre></div></div></div><p>To build the file, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-v</span> <span style="color:#A020F0">-R2017b</span> <span style="color:#A020F0">matrixDivide.c</span> <span style="color:#A020F0">-lmwlapack</span></pre></div></div></div><p>To test, type:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = [1 2; 3 4];
+B = [5; 6];
+X = matrixDivide(A,B)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>X =
+   -4.0000
+    4.5000
+</pre></div></div></div></section></section><section><h3 class="title" id="f44358">Pass Arguments to Fortran Functions from C/C++ Programs</h3><span id="mex_lapack2" class="anchor_target"></span><p>The LAPACK and BLAS functions are written in Fortran. C/C++ and Fortran use
+                different conventions for passing arguments to and from functions. Fortran functions
+                pass arguments by reference, while C/C++ functions pass arguments by value. When you
+                pass by value, you pass a copy of the value. When you pass by reference, you pass a
+                pointer to the value. A reference is also the address of the value.</p><p>When you call a Fortran subroutine, like a function from LAPACK or BLAS, from a
+                C/C++ program, be sure to pass the arguments by reference. To pass by reference,
+                precede the argument with an ampersand (<code class="literal">&amp;</code>), unless that
+                argument is already a reference. For example, when you create a matrix using the
+                    <code class="function">mxGetDoubles</code> function, you create a reference to the matrix
+                and do not need the ampersand before the argument.</p><p>In the following code snippet, variables <code class="literal">m</code>,
+                    <code class="literal">n</code>, <code class="literal">p</code>, <code class="literal">one</code>, and
+                    <code class="literal">zero</code> need the <code class="literal">&amp;</code> character to make them
+                a reference. Variables <code class="literal">A</code>, <code class="literal">B</code>,
+                    <code class="literal">C</code>, and <code class="literal">chn</code> are pointers, which are
+                references.</p><div class="code_responsive"><pre class="programlisting">/* pointers to input &amp; output matrices*/
+double *A, *B, *C;
+/* matrix dimensions */
+mwSignedIndex m,n,p;
+/* other inputs to dgemm */
+char *chn = "N";
+double one = 1.0, zero = 0.0;
+
+/* call BLAS function */
+dgemm(chn, chn, &amp;m, &amp;n, &amp;p, &amp;one, A, &amp;m, B, &amp;p, &amp;zero, C, &amp;m);
+</pre></div><section><h4 class="title" id="f32831"><code class="literal">matrixMultiply</code> Example</h4><p>The <code class="literal">matrixMultiply.c</code> example calls
+                    <code class="literal">dgemm</code>, passing all arguments by reference. To see the source
+                    code, open <a href="matlab:edit([matlabroot '/extern/examples/refbook/matrixMultiply.c']);" target="_blank"><code class="literal">matrixMultiply.c</code></a> in the MATLAB Editor. To build and run this example, see <a href="calling-lapack-and-blas-functions-from-mex-files.html#br268bc-1" class="intrnllnk">Build matrixMultiply MEX Function Using BLAS Functions</a>.</p></section></section><section><h3 class="title" id="br28u96-1">Pass Arguments to Fortran Functions from Fortran Programs</h3><p>You can call LAPACK and BLAS functions from Fortran MEX files. The following
+                example takes two matrices and multiplies them by calling the BLAS routine
+                    <code class="literal">dgemm</code>. To run the example, copy the code into the editor and
+                name the file <code class="literal">calldgemm.F</code>.</p><div class="code_responsive"><pre class="programlisting">#include "fintrf.h"
+
+      subroutine mexFunction(nlhs, plhs, nrhs, prhs)
+      mwPointer plhs(*), prhs(*)
+      integer nlhs, nrhs
+      mwPointer mxcreatedoublematrix
+      mwPointer mxgetpr
+      mwPointer A, B, C
+      mwSize mxgetm, mxgetn
+      mwSignedIndex m, n, p
+      mwSize numel
+      double precision one, zero, ar, br
+      character ch1, ch2
+      
+      ch1 = 'N'
+      ch2 = 'N'
+      one = 1.0
+      zero = 0.0
+      
+      A = mxgetpr(prhs(1))
+      B = mxgetpr(prhs(2))
+      m = mxgetm(prhs(1))
+      p = mxgetn(prhs(1))
+      n = mxgetn(prhs(2))
+      
+      plhs(1) = mxcreatedoublematrix(m, n, 0.0)
+      C = mxgetpr(plhs(1))
+      numel = 1
+      call mxcopyptrtoreal8(A, ar, numel)
+      call mxcopyptrtoreal8(B, br, numel)
+      
+      call dgemm(ch1, ch2, m, n, p, one, %val(A), m,
+     +           %val(B), p, zero, %val(C), m)
+      
+      return
+      end
+</pre></div><p>Link to the BLAS library, which contains the <code class="literal">dgemm</code>
+                function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-v</span> <span style="color:#A020F0">-R2017b</span> <span style="color:#A020F0">calldgemm.F</span> <span style="color:#A020F0">-lmwblas</span></pre></div></div></div></section><section><h3 class="title" id="br26788-1">Modify Function Name on <span class="trademark entity">UNIX</span> Systems</h3><span id="mex_lapack1" class="anchor_target"></span><p>Add an underscore character following the function name when calling LAPACK or
+                BLAS functions on a UNIX<sup>&#x00AE;</sup> system. For example, to call <code class="literal">dgemm</code>, use:</p><div class="code_responsive"><pre class="programlisting">dgemm_(arg1, arg2, ..., argn);</pre></div><p>Or add these lines to your source code:</p><div class="code_responsive"><pre class="programlisting">#if !defined(_WIN32)
+#define dgemm dgemm_
+#endif</pre></div></section>
+            
+            
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e31502">External Websites</h3><ul class="list-unstyled"><li><a href="https://netlib.org/lapack/" target="_blank">https://netlib.org/lapack/</a></li><li><a href="https://netlib.org/blas/" target="_blank">https://netlib.org/blas/</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

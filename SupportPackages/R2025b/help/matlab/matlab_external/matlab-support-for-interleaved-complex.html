@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>MATLAB Support for Interleaved Complex API in MEX Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../c-language.html",
+          "name": "C with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-files-1.html",
+          "name": "Write C Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "call-mex-files-1"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Interleaved complex storage representation for C and Fortran language MEX functions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../c-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-files-1.html?s_tid=CRUX_lftnav" itemprop="url" id="btv27nw"><span itemprop="title">Write C Functions Callable from MATLAB (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">MATLAB Support for Interleaved Complex API in MEX Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_16bf50b8-39fd-4a2d-8e27-6c2661ee5bdf" class="nav-link intrnllnk">Separate Complex API and Interleaved Complex API</a></li><li class="nav-item"><a href="#mw_63373049-3033-497b-9174-9d69c11f2ebd" class="nav-link intrnllnk">Matrix API Changes Supporting Interleaved Complex</a></li><li class="nav-item"><a href="#mw_332d5553-2ecc-43da-89a3-5f261c1339e7" class="nav-link intrnllnk">Writing MEX Functions with Interleaved Complex API</a></li><li class="nav-item"><a href="#mw_a9598541-42ff-481e-bef1-e94afbcb927e" class="nav-link intrnllnk">MEX Functions Created in MATLAB R2017b and Earlier</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=call-mex-files-1&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=call-mex-files-1&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_131cc169-cbd4-4ff2-a924-f984ff2d332f"><span class="trademark entity">MATLAB</span> Support for Interleaved Complex API in MEX Functions</h2><span id="support_for_IC_API" class="anchor_target"></span><p>When a matrix of complex numbers is represented in computer memory, there are several
+            choices for the location and order of storage. Before MATLAB<sup>&#x00AE;</sup> Version 9.4 (R2018a), MATLAB used a <em class="firstterm">separate</em> storage representation. The real
+            and the imaginary parts of the numbers were stored separately. MATLAB uses an <em class="firstterm">interleaved</em> storage representation for C
+            and Fortran language MEX files, where the real and imaginary parts are stored together.
+                <em class="firstterm">Interleaved complex</em> refers to this representation.</p><p>Since many mathematical libraries use an interleaved complex representation, using the
+            same representation in your MEX functions eliminates the need to translate data. This
+            simplifies your code and potentially speeds up the processing when large data sets are
+            involved.</p><p>This change does not affect the MATLAB language. You can continue to use the functionality described in <a href="../complex-numbers.html" class="a">Complex Numbers</a> without any modification of your
+            functions and scripts.</p><section><h3 class="title" id="mw_16bf50b8-39fd-4a2d-8e27-6c2661ee5bdf">Separate Complex API and Interleaved Complex API</h3><p>There are two versions of the <a href="../cc-mx-matrix-library.html" class="a">C Matrix API</a> and <a href="../fortran-mx-matrix-library.html" class="a">Fortran Matrix API</a>.</p><div class="itemizedlist"><ul><li><p>The <em class="firstterm">separate complex API</em> contains the C and Fortran
+                        Matrix API functionality in MATLAB R2017b and earlier.</p></li><li><p>The <em class="firstterm">interleaved complex API</em> contains the C Matrix
+                        API functionality as of MATLAB R2018a and the Fortran Matrix API functionality as of
+                            MATLAB R2018a Update 3.</p></li></ul></div><p>To build MEX files with the interleaved complex API, use the <a href="../ref/mex.html"><code class="function">mex</code></a>
+                <em class="firstterm">release-specific build option</em>
+                <code class="literal remove_text_wrapping">-R2018a</code>. To build MEX files with the separate complex API, use
+                the <code class="literal remove_text_wrapping">-R2017b</code> build option. The <code class="function">mex</code> command
+                uses the separate complex API by default. However, in a future version of
+                    MATLAB, <code class="function">mex</code> will use the interleaved complex API
+                    (<code class="literal remove_text_wrapping">-R2018a</code> option) by default and then you need to modify your
+                build command. Therefore, to ensure the desired behavior across versions of
+                    MATLAB, add the <code class="literal remove_text_wrapping">-R2017b</code> option to your existing build
+                scripts. To write code to support both APIs, see <a href="upgrade-mex-files-to-use-interleaved-complex.html#mw_a724117a-6d1e-426d-b61b-56808714bcd3" class="a">Add MX_HAS_INTERLEAVED_COMPLEX to Support Both Complex Number Representations</a>.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>To run a Fortran MEX file built with the interleaved complex
+    API in R2018a, you must use R2018a Update 3.</p></div></section><section><h3 class="title" id="mw_63373049-3033-497b-9174-9d69c11f2ebd">Matrix API Changes Supporting Interleaved Complex</h3><p>The following changes to the C and Fortran Matrix APIs support interleaved
+                complex.</p><div class="itemizedlist"><ul><li><p>New typed data access functions. For more information, see <a href="c-matrix-api-typed-data-access.html" class="a">Typed Data Access in C MEX Files</a>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th><p>MATLAB
+                            <code class="literal">mxArray</code> Types</p></th><th><p>C Typed Data Access Functions</p></th><th><p>Fortran Typed Data Access Functions</p></th></tr></thead><tbody><tr><td><code class="literal">mxDOUBLE_CLASS</code></td><td><p><a href="../apiref/mxgetdoubles.html"><code class="function">mxGetDoubles</code></a><br/>
+<a href="../apiref/mxsetdoubles.html"><code class="function">mxSetDoubles</code></a><br/>
+<a href="../apiref/mxgetcomplexdoubles.html"><code class="function">mxGetComplexDoubles</code></a><br/>
+<a href="../apiref/mxsetcomplexdoubles.html"><code class="function">mxSetComplexDoubles</code></a></p></td><td><p><a href="../apiref/mxgetdoubles_fortran.html"><code class="function">mxGetDoubles</code></a><br/>
+<a href="../apiref/mxsetdoubles_fortran.html"><code class="function">mxSetDoubles</code></a><br/>
+<a href="../apiref/mxgetcomplexdoubles_fortran.html"><code class="function">mxGetComplexDoubles</code></a><br/>
+<a href="../apiref/mxsetcomplexdoubles_fortran.html"><code class="function">mxSetComplexDoubles</code></a></p></td></tr><tr><td><code class="literal">mxSINGLE_CLASS</code></td><td><p><a href="../apiref/mxgetsingles.html"><code class="function">mxGetSingles</code></a><br/>
+<a href="../apiref/mxsetsingles.html"><code class="function">mxSetSingles</code></a><br/>
+<a href="../apiref/mxgetcomplexsingles.html"><code class="function">mxGetComplexSingles</code></a><br/>
+<a href="../apiref/mxsetcomplexsingles.html"><code class="function">mxSetComplexSingles</code></a></p></td><td><p><a href="../apiref/mxgetsingles_fortran.html"><code class="function">mxGetSingles</code></a><br/>
+<a href="../apiref/mxsetsingles_fortran.html"><code class="function">mxSetSingles</code></a><br/>
+<a href="../apiref/mxgetcomplexsingles_fortran.html"><code class="function">mxGetComplexSingles</code></a><br/>
+<a href="../apiref/mxsetcomplexsingles_fortran.html"><code class="function">mxSetComplexSingles</code></a></p></td></tr><tr><td><code class="literal">mxINT8_CLASS</code></td><td><p><a href="../apiref/mxgetint8s.html"><code class="function">mxGetInt8s</code></a><br/>
+<a href="../apiref/mxsetint8s.html"><code class="function">mxSetInt8s</code></a><br/>
+<a href="../apiref/mxgetcomplexint8s.html"><code class="function">mxGetComplexInt8s</code></a><br/>
+<a href="../apiref/mxsetcomplexint8s.html"><code class="function">mxSetComplexInt8s</code></a></p></td><td><p><a href="../apiref/mxgetint8s_fortran.html"><code class="function">mxGetInt8s</code></a><br/>
+<a href="../apiref/mxsetint8s_fortran.html"><code class="function">mxSetInt8s</code></a><br/>
+<a href="../apiref/mxgetcomplexint8s_fortran.html"><code class="function">mxGetComplexInt8s</code></a><br/>
+<a href="../apiref/mxsetcomplexint8s_fortran.html"><code class="function">mxSetComplexInt8s</code></a></p></td></tr><tr><td><code class="literal">mxUINT8_CLASS</code></td><td><a href="../apiref/mxgetuint8s.html"><code class="function">mxGetUint8s</code></a><br/>
+<a href="../apiref/mxsetuint8s.html"><code class="function">mxSetUint8s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint8s.html"><code class="function">mxGetComplexUint8s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint8s.html"><code class="function">mxSetComplexUint8s</code></a></td><td><a href="../apiref/mxgetuint8s_fortran.html"><code class="function">mxGetUint8s</code></a><br/>
+<a href="../apiref/mxsetuint8s_fortran.html"><code class="function">mxSetUint8s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint8s_fortran.html"><code class="function">mxGetComplexUint8s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint8s_fortran.html"><code class="function">mxSetComplexUint8s</code></a></td></tr><tr><td><code class="literal">mxINT16_CLASS</code></td><td><p><a href="../apiref/mxgetint16s.html"><code class="function">mxGetInt16s</code></a><br/>
+<a href="../apiref/mxsetint16s.html"><code class="function">mxSetInt16s</code></a><br/>
+<a href="../apiref/mxgetcomplexint16s.html"><code class="function">mxGetComplexInt16s</code></a><br/>
+<a href="../apiref/mxsetcomplexint16s.html"><code class="function">mxSetComplexInt16s</code></a></p></td><td><p><a href="../apiref/mxgetint16s_fortran.html"><code class="function">mxGetInt16s</code></a><br/>
+<a href="../apiref/mxsetint16s_fortran.html"><code class="function">mxSetInt16s</code></a><br/>
+<a href="../apiref/mxgetcomplexint16s_fortran.html"><code class="function">mxGetComplexInt16s</code></a><br/>
+<a href="../apiref/mxsetcomplexint16s_fortran.html"><code class="function">mxSetComplexInt16s</code></a></p></td></tr><tr><td><code class="literal">mxUINT16_CLASS</code></td><td><p><a href="../apiref/mxgetuint16s.html"><code class="function">mxGetUint16s</code></a><br/>
+<a href="../apiref/mxsetuint16s.html"><code class="function">mxSetUint16s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint16s.html"><code class="function">mxGetComplexUint16s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint16s.html"><code class="function">mxSetComplexUint16s</code></a></p></td><td><p><a href="../apiref/mxgetuint16s_fortran.html"><code class="function">mxGetUint16s</code></a><br/>
+<a href="../apiref/mxsetuint16s_fortran.html"><code class="function">mxSetUint16s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint16s_fortran.html"><code class="function">mxGetComplexUint16s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint16s_fortran.html"><code class="function">mxSetComplexUint16s</code></a></p></td></tr><tr><td><code class="literal">mxINT32_CLASS</code></td><td><p><a href="../apiref/mxgetint32s.html"><code class="function">mxGetInt32s</code></a><br/>
+<a href="../apiref/mxsetint32s.html"><code class="function">mxSetInt32s</code></a><br/>
+<a href="../apiref/mxgetcomplexint32s.html"><code class="function">mxGetComplexInt32s</code></a><br/>
+<a href="../apiref/mxsetcomplexint32s.html"><code class="function">mxSetComplexInt32s</code></a>
+                        </p></td><td><p><a href="../apiref/mxgetint32s_fortran.html"><code class="function">mxGetInt32s</code></a><br/>
+<a href="../apiref/mxsetint32s_fortran.html"><code class="function">mxSetInt32s</code></a><br/>
+<a href="../apiref/mxgetcomplexint32s_fortran.html"><code class="function">mxGetComplexInt32s</code></a><br/>
+<a href="../apiref/mxsetcomplexint32s_fortran.html"><code class="function">mxSetComplexInt32s</code></a>
+                        </p></td></tr><tr><td><code class="literal">mxUINT32_CLASS</code></td><td><p><a href="../apiref/mxgetuint32s.html"><code class="function">mxGetUint32s</code></a><br/>
+<a href="../apiref/mxsetuint32s.html"><code class="function">mxSetUint32s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint32s.html"><code class="function">mxGetComplexUint32s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint32s.html"><code class="function">mxSetComplexUint32s</code></a></p></td><td><p><a href="../apiref/mxgetuint32s_fortran.html"><code class="function">mxGetUint32s</code></a><br/>
+<a href="../apiref/mxsetuint32s_fortran.html"><code class="function">mxSetUint32s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint32s.html"><code class="function">mxGetComplexUint32s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint32s_fortran.html"><code class="function">mxSetComplexUint32s</code></a></p></td></tr><tr><td><code class="literal">mxINT64_CLASS</code></td><td><p><a href="../apiref/mxgetint64s.html"><code class="function">mxGetInt64s</code></a><br/>
+<a href="../apiref/mxsetint64s.html"><code class="function">mxSetInt64s</code></a><br/>
+<a href="../apiref/mxgetcomplexint64s.html"><code class="function">mxGetComplexInt64s</code></a><br/>
+<a href="../apiref/mxsetcomplexint64s.html"><code class="function">mxSetComplexInt64s</code></a></p></td><td><p><a href="../apiref/mxgetint64s_fortran.html"><code class="function">mxGetInt64s</code></a><br/>
+<a href="../apiref/mxsetint64s_fortran.html"><code class="function">mxSetInt64s</code></a><br/>
+<a href="../apiref/mxgetcomplexint64s_fortran.html"><code class="function">mxGetComplexInt64s</code></a><br/>
+<a href="../apiref/mxsetcomplexint64s_fortran.html"><code class="function">mxSetComplexInt64s</code></a></p></td></tr><tr><td><code class="literal">mxUINT64_CLASS</code></td><td><p><a href="../apiref/mxgetuint64s.html"><code class="function">mxGetUint64s</code></a><br/>
+<a href="../apiref/mxsetuint64s.html"><code class="function">mxSetUint64s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint64s.html"><code class="function">mxGetComplexUint64s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint64s.html"><code class="function">mxSetComplexUint64s</code></a></p></td><td><p><a href="../apiref/mxgetuint64s_fortran.html"><code class="function">mxGetUint64s</code></a><br/>
+<a href="../apiref/mxsetuint64s_fortran.html"><code class="function">mxSetUint64s</code></a><br/>
+<a href="../apiref/mxgetcomplexuint64s_fortran.html"><code class="function">mxGetComplexUint64s</code></a><br/>
+<a href="../apiref/mxsetcomplexuint64s_fortran.html"><code class="function">mxSetComplexUint64s</code></a></p></td></tr></tbody></table></div></li><li><p>Matrix API functions added to the <code class="literal remove_text_wrapping">-R2018a</code> API:</p><div class="itemizedlist"><ul><li><p><a href="../apiref/mxmakearraycomplex.html"><code class="function">mxMakeArrayComplex (C)</code></a> and <a href="../apiref/mxmakearraycomplex_fortran.html"><code class="function">mxMakeArrayComplex (Fortran)</code></a></p></li><li><p><a href="../apiref/mxmakearrayreal.html"><code class="function">mxMakeArrayReal (C)</code></a> and <a href="../apiref/mxmakearrayreal_fortran.html"><code class="function">mxMakeArrayReal (Fortran)</code></a></p></li></ul></div></li><li><p>Matrix API functions not supported in the <code class="literal remove_text_wrapping">-R2018a</code>
+                        API:</p><div class="itemizedlist"><ul><li><p><a href="../apiref/mxgetpi.html"><code class="function">mxGetPi (C)</code></a> and
+                                    <a href="../apiref/mxgetpi_fortran.html"><code class="function">mxGetPi (Fortran)</code></a></p></li><li><p><a href="../apiref/mxgetimagdata.html"><code class="function">mxGetImagData
+                                    (C)</code></a> and <a href="../apiref/mxgetimagdata_fortran.html"><code class="function">mxGetImagData (Fortran)</code></a></p></li><li><p><a href="../apiref/mxsetpi.html"><code class="function">mxSetPi (C)</code></a> and
+                                    <a href="../apiref/mxsetpi_fortran.html"><code class="function">mxSetPi (Fortran)</code></a></p></li><li><p><a href="../apiref/mxsetimagdata.html"><code class="function">mxSetImagData
+                                    (C)</code></a> and <a href="../apiref/mxsetimagdata_fortran.html"><code class="function">mxSetImagData (Fortran)</code></a></p></li></ul></div></li><li><p>The behavior of these Matrix API functions changes in the
+                            <code class="literal remove_text_wrapping">-R2018a</code> API. In addition, these functions are to be
+                        phased out.</p><div class="itemizedlist"><ul><li><p><a href="../apiref/mxgetpr.html"><code class="function">mxGetPr (C)</code></a> and
+                                    <a href="../apiref/mxgetpr_fortran.html"><code class="function">mxGetPr (Fortran)</code></a></p></li><li><p><a href="../apiref/mxsetpr.html"><code class="function">mxSetPr (C)</code></a> and
+                                    <a href="../apiref/mxsetpr_fortran.html"><code class="function">mxSetPr (Fortran)</code></a></p></li></ul></div></li><li><p>The behavior of these Matrix API functions changes in the
+                            <code class="literal remove_text_wrapping">-R2018a</code> API:</p><div class="itemizedlist"><ul><li><p><a href="../apiref/mxgetdata.html"><code class="function">mxGetData (C)</code></a>
+                                and <a href="../apiref/mxgetdata_fortran.html"><code class="function">mxGetData (Fortran)</code></a></p></li><li><p><a href="../apiref/mxsetdata.html"><code class="function">mxSetData (C)</code></a>
+                                and <a href="../apiref/mxsetdata_fortran.html"><code class="function">mxSetData (Fortran)</code></a></p></li><li><p><a href="../apiref/mxgetelementsize.html"><code class="function">mxGetElementSize
+                                    (C)</code></a> and <a href="../apiref/mxgetelementsize_fortran.html"><code class="function">mxGetElementSize (Fortran)</code></a></p></li></ul></div></li><li><p>The behavior of these Fortran Matrix API functions changes in the
+                            <code class="literal remove_text_wrapping">-R2018a</code> API:</p><div class="itemizedlist"><ul><li><p><a href="../apiref/mxcopycomplex16toptr.html"><code class="function">mxCopyComplex16ToPtr
+                                    (Fortran)</code></a></p></li><li><p><a href="../apiref/mxcopyptrtocomplex16.html"><code class="function">mxCopyPtrToComplex16
+                                    (Fortran)</code></a></p></li><li><p><a href="../apiref/mxcopycomplex8toptr.html"><code class="function">mxCopyComplex8ToPtr
+                                    (Fortran)</code></a></p></li><li><p><a href="../apiref/mxcopyptrtocomplex8.html"><code class="function">mxCopyPtrToComplex8
+                                    (Fortran)</code></a></p></li></ul></div></li></ul></div></section><section><h3 class="title" id="mw_332d5553-2ecc-43da-89a3-5f261c1339e7">Writing MEX Functions with Interleaved Complex API</h3><p>To learn how to write MEX functions using the interleaved complex API, see <a href="handling-complex-data-c.html" class="a">Handle Complex Data in C MEX File</a> in C applications or <a href="handle-complex-fortran-data.html" class="a">Handle Complex Fortran Data</a>.</p></section><section><h3 class="title" id="mw_a9598541-42ff-481e-bef1-e94afbcb927e">MEX Functions Created in <span class="trademark entity">MATLAB</span> R2017b and Earlier</h3><p>If you already build MEX functions, MEX S-functions, or standalone MATLAB engine and MAT-file applications, then you should review the <a href="do-i-need-to-upgrade-my-mex-files-to-use-interleaved-complex.html" class="a">Do I Need to Upgrade My MEX Files to Use Interleaved Complex API?</a> topic. To
+                help transition your MEX files and S-functions to the interleaved complex API,
+                    MATLAB maintains a compatibility interface. To build MEX files with the
+                compatibility interface, use the <code class="function">mex</code>
+                <code class="literal remove_text_wrapping">-R2017b</code> flag. If your code processes complex numbers, you
+                might notice a performance impact as MATLAB adapts your data to the interleaved complex format.</p><p>The <a href="../ref/mex.html"><code class="function">mex</code></a> command uses the
+                    <code class="literal remove_text_wrapping">-R2017b</code> API by default. However, in a future version of
+                    MATLAB, <code class="function">mex</code> will use the interleaved complex API
+                    <code class="literal remove_text_wrapping">-R2018a</code> by default and then you need to modify your build
+                command. Therefore, to ensure the desired behavior across versions of MATLAB, add the compatibility flag <code class="literal remove_text_wrapping">-R2017b</code> to your build
+                    scripts.</p></section>
+            
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e32374">Topics</h3><ul class="list-unstyled"><li><a href="upgrade-mex-files-to-use-interleaved-complex.html" class="a">Upgrade MEX Files to Use Interleaved Complex API</a></li><li><a href="../cc-mx-matrix-library.html" class="a">C Matrix API</a></li><li><a href="../fortran-mx-matrix-library.html" class="a">Fortran Matrix API</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

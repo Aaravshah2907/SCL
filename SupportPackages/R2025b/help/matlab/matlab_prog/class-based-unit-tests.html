@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Class-Based Unit Tests</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../write-unit-tests.html",
+          "name": "Write Unit Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "write-unit-tests"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Test your MATLAB source code by creating class-based unit tests."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../write-unit-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_da8ee3e3-f207-4fba-a957-34116645b7e8"><span itemprop="title">Write Unit Tests</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Class-Based Unit Tests</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bufaqr6-2" class="nav-link intrnllnk">Test Class Definition</a></li><li class="nav-item"><a href="#mw_90f9ede1-4d58-421e-a8c9-c098d04fc136" class="nav-link intrnllnk">How Test Classes Run</a></li><li class="nav-item"><a href="#mw_c7446675-bdbf-4178-9e33-ead315793a26" class="nav-link intrnllnk">Test Independence and Repeatability</a></li><li class="nav-item"><a href="#bufaqr6-4" class="nav-link intrnllnk">Features of Class-Based Tests</a></li><li class="nav-item"><a href="#d126e90356" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=write-unit-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=write-unit-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bufaqr6-1">Class-Based Unit Tests</h2>
+            <p class="shortdesc">You can test your MATLAB<sup>&#x00AE;</sup> source code by creating unit tests within a test class that inherits
+                from the <a href="../ref/matlab.unittest.testcase-class.html"><code class="class">matlab.unittest.TestCase</code></a> class.
+                The <code class="class">TestCase</code> class is the superclass of all test classes in
+                    MATLAB and provides an interface to write and identify test content,
+                including test fixture setup and teardown routines.</p>
+            <p class="shortdesc">Write your class-based unit tests as <code class="literal">Test</code>
+                methods within your test class definition file. A <code class="literal">Test</code> method is
+                a method defined in a <code class="literal">methods</code> block with the
+                    <code class="literal">Test</code> attribute. <code class="literal">Test</code> methods can use
+                qualifications for testing values and responding to failures. In addition to the
+                    <code class="literal">Test</code> attribute, <code class="class">TestCase</code> subclasses can
+                leverage a variety of framework-specific attributes to specify tests and test
+                fixtures. For example, you can use the <code class="literal">TestMethodSetup</code> and
+                    <code class="literal">TestMethodTeardown</code> method attributes to specify setup and
+                teardown code for each test in your test class.</p>
+        <section><h3 class="title" id="bufaqr6-2">Test Class Definition</h3><p>To write class-based tests, first create a class that derives from the
+                    <code class="class">matlab.unittest.TestCase</code> class. Then, specify your unit tests by
+                adding methods to a <code class="literal">methods</code> block with the
+                    <code class="literal">Test</code> attribute within your test class. For example, the
+                    <code class="class">MyTestClass</code> class includes two tests (<code class="method">test1</code> and
+                    <code class="method">test2</code>). The first input to a <code class="literal">Test</code> method
+                must be a <code class="class">TestCase</code> object, which the test can ignore if its logic
+                does not require it. The <code class="class">TestCase</code> object passed to a
+                    <code class="literal">Test</code> method provides test-environment-specific information to
+                the corresponding test.</p><p>In addition, the <code class="class">MyTestClass</code> class uses framework-specific method
+                attributes to define the <code class="method">setup</code> and <code class="method">teardown</code>
+                methods. The testing framework runs these methods before and after each test,
+                respectively. For more information about setup and teardown code in test classes,
+                see <a href="write-setup-and-teardown-code-using-classes.html" class="a">Write Setup and Teardown Code Using Classes</a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> MyTestClass &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">methods</span> (TestMethodSetup)
+        <span style="color:#0000FF">function</span> setup(testCase)
+            <span style="color:#228B22">% Setup code</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">methods</span> (TestMethodTeardown)
+        <span style="color:#0000FF">function</span> teardown(testCase)
+            <span style="color:#228B22">% Teardown code</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> test1(testCase)
+            <span style="color:#228B22">% Test code</span>
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> test2(testCase)
+            <span style="color:#228B22">% Test code</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Unit tests typically include qualifications for testing values and responding to
+                failures. For example, to test a function, a <code class="literal">Test</code> method can
+                specify the actual and expected returned values of the function and then use a
+                qualification method to test for their equality. For illustrative purposes, the
+                    <code class="class">PlusTest</code> test class has a <code class="literal">Test</code> method for
+                testing the <code class="method">plus</code> function. (In practice, a test class tests
+                user-defined code.) The <code class="method">myTest</code> method calls the
+                    <code class="method">verifyEqual</code> qualification method to verify that
+                    <code class="literal">plus(2,3)</code> produces the expected value <code class="literal">5</code>.
+                When creating your own test class, you have access to the full library of
+                qualifications in the <a href="../ref/matlab.unittest.qualifications-package.html"><code class="package">matlab.unittest.qualifications</code></a>
+                namespace. To determine which qualification to use, see <a href="types-of-qualifications.html" class="a">Table of Verifications, Assertions, and Other Qualifications</a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> PlusTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> myTest(testCase)
+            actual = plus(2,3);
+            expected = 5;
+            testCase.verifyEqual(actual,expected)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>For a simple example of how to write and run class-based unit tests, see <a href="write-simple-test-case-using-classes.html" class="a">Write Simple Test Case Using Classes</a>.</p></section><section><h3 class="title" id="mw_90f9ede1-4d58-421e-a8c9-c098d04fc136">How Test Classes Run</h3><p>When you run class-based tests (for instance, <code class="literal">results =
+                    runtests(["TestClassA" "TestClassB" "TestClassC"])</code>), the testing
+                framework first divides the test classes into groups based on their shared test
+                fixtures. (Shared test fixtures are fixtures specified using the
+                    <code class="literal">SharedTestFixtures</code> attribute of <code class="class">TestCase</code>
+                subclasses.) Each group includes test classes that have exactly the same shared test
+                fixtures. To minimize the required setup and teardown actions, the framework runs
+                the test classes in each group by setting up and tearing down their shared test
+                fixtures a single time. In other words, for each group, the framework:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Sets up the shared test fixtures before running any of the test
+                            classes in the group</p></li><li><p>Runs each test class in the group</p></li><li><p>Tears down the shared test fixtures after running all the test classes
+                            in the group</p></li></ol></div><p>
+</p><p>This diagram shows how the testing framework runs each test class in step
+                2.</p><div class="informalfigure"><div id="d126e90176" class="mediaobject centerimg"><p><object data="run-class-based-tests.svg" type="image/svg+xml" style="aspect-ratio: 750 / 185" alt="Workflow for running a test class" width="750"></object></p></div></div><p>The framework follows these steps when running a test class:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create class-level <code class="class">TestCase</code> object &#8212; The framework
+                            creates an object of the test class.</p></li><li><p>Run class-level setup code &#8212; The framework uses the class-level
+                                <code class="class">TestCase</code> object to run the class-level setup code
+                            specified in the <code class="literal">TestClassSetup</code>
+                            <code class="literal">methods</code> block. The class-level
+                                <code class="class">TestCase</code> object reflects the updated environment as a
+                            result of the class-level setup code.</p></li><li><p>Loop over tests:</p>
+<div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>Create method-level <code class="class">TestCase</code> object &#8212; The
+                                        framework creates a method-level <code class="class">TestCase</code>
+                                        object by copying the class-level <code class="class">TestCase</code>
+                                        object that reflects the environment after the execution of
+                                        the class-level setup code. The framework then passes this
+                                        object to the <code class="literal">TestMethodSetup</code>,
+                                            <code class="literal">Test</code>, and
+                                            <code class="literal">TestMethodTeardown</code> methods of the
+                                        test class.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>To prevent a test from affecting the environment of
+                                            other tests, <code class="class">TestCase</code> instances passed to
+                                            different <code class="literal">Test</code> methods are
+                                            independent copies. In other words, modifications to the
+                                            test case in a <code class="literal">Test</code> method remain
+                                            scoped to that method and do not propagate to other
+                                                <code class="literal">Test</code> methods in the test
+                                            class.</p></div></li><li><p>Run method-level setup code &#8212; The framework uses the
+                                        method-level <code class="class">TestCase</code> object to run the
+                                        method-level setup code specified in the
+                                            <code class="literal">TestMethodSetup</code>
+                                        <code class="literal">methods</code> block. The method-level
+                                            <code class="class">TestCase</code> object reflects the updated
+                                        environment as a result of the method-level setup
+                                        code.</p></li><li><p>Run test &#8212; The framework uses the method-level
+                                            <code class="class">TestCase</code> object to run the
+                                            <code class="literal">Test</code> method corresponding to the
+                                        test. If the test is parameterized, the framework uses the
+                                        parameterization information to run the method.</p></li><li><p>Run method-level teardown code &#8212; The framework uses the
+                                        method-level <code class="class">TestCase</code> object to run the
+                                        method-level teardown code specified using a call to the
+                                            <code class="method">addTeardown</code> method in the
+                                            <code class="literal">TestMethodSetup</code>
+                                        <code class="literal">methods</code> block or in the
+                                            <code class="literal">TestMethodTeardown</code>
+                                        <code class="literal">methods</code> block.</p></li><li><p>Delete method-level <code class="class">TestCase</code> object &#8212; The
+                                        framework discards the method-level <code class="class">TestCase</code>
+                                        object used to run the test and its corresponding
+                                        method-level setup and teardown code.</p></li></ol></div><p>
+</p></li><li><p>Run class-level teardown code &#8212; The framework uses the class-level
+                                <code class="class">TestCase</code> object to run the class-level teardown code
+                            specified using a call to the <code class="method">addTeardown</code> method in the
+                                <code class="literal">TestClassSetup</code>
+                            <code class="literal">methods</code> block or in the
+                                <code class="literal">TestClassTeardown</code>
+                            <code class="literal">methods</code> block.</p></li><li><p>Delete class-level <code class="class">TestCase</code> object &#8212; The framework
+                            discards the class-level <code class="class">TestCase</code> object used to run the
+                            tests in the test class.</p></li></ol></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Uncaught errors and qualification failures can affect the test run workflow.
+                    For instance, if an assumption failure occurs in the
+                        <code class="literal">TestClassSetup</code> or <code class="literal">TestClassTeardown</code>
+                    <code class="literal">methods</code> block, the testing framework marks the entire test
+                    class as filtered and skips looping over the <code class="literal">Test</code>
+                    methods.</p></div></section><section><h3 class="title" id="mw_c7446675-bdbf-4178-9e33-ead315793a26">Test Independence and Repeatability</h3><p>Unit tests in a <code class="class">matlab.unittest.TestCase</code> subclass must run
+                independently, without unintentionally affecting one another. In addition, they must
+                be repeatable, which means that a running test must not affect subsequent reruns of
+                the same test. For test independence and repeatability, follow these best practices
+                when creating a test class:</p>
+<div class="itemizedlist"><ul><li><p>If you add code to your test class for setting up the test
+                            environment, also include code to restore the environment to its
+                            original state by performing teardown actions symmetrically in the
+                            reverse order of their corresponding setup actions.</p></li><li><p>To access a global state, such as the MATLAB search path or output display format, use a method instead
+                            of a default property value.</p></li><li><p>To specify test parameter values, use value objects instead of handle
+                            objects.</p></li></ul></div><p>
+</p><p>For more information, see <a href="write-independent-and-repeatable-tests.html" class="a">Write Independent and Repeatable Tests</a>.</p></section><section><h3 class="title" id="bufaqr6-4">Features of Class-Based Tests</h3><p>Class-based tests provide you with several advanced test authoring features and
+                give you access to the full MATLAB unit testing framework functionality. For example, you can use
+                advanced qualification features, including constraints, actual value proxies,
+                tolerances, and test diagnostics, in your class-based tests. In addition, with
+                class-based tests, you can:</p>
+<div class="itemizedlist"><ul><li><p>Share fixtures among test classes. For more information, see <a href="write-test-using-shared-fixtures.html" class="a">Write Tests Using Shared Fixtures</a>.</p></li><li><p>Group tests into categories and then run the tests with specified
+                            tags. For more information, see <a href="tag-unit-tests.html" class="a">Tag Unit Tests</a>.</p></li><li><p>Write parameterized tests to combine and execute tests on specified
+                            lists of parameters. For more information, see <a href="use-parameters-in-class-based-tests.html" class="a">Use Parameters in Class-Based Tests</a>.</p></li><li><p>Use subclassing and inheritance to share and reuse test content. For
+                            example, you can reuse the parameters and methods defined in a test
+                            class by deriving subclasses. For more information, see <a href="../matlab_oop/hierarchies-of-classes-concepts.html" class="a">Hierarchies of Classes &#8212; Concepts</a>.</p></li></ul></div><p>
+</p></section>
+            <h2 id="d126e90356">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testcase-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestCase</code></span></a></span></li></ul>
+            <h3 id="d126e90365">Topics</h3><ul class="list-unstyled"><li><a href="write-simple-test-case-using-classes.html" class="a">Write Simple Test Case Using Classes</a></li><li><a href="write-setup-and-teardown-code-using-classes.html" class="a">Write Setup and Teardown Code Using Classes</a></li><li><a href="insert-test-code-using-editor.html" class="a">Insert Test Code Using Editor</a></li><li><a href="write-independent-and-repeatable-tests.html" class="a">Write Independent and Repeatable Tests</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

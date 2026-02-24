@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Use Parameters in Class-Based Tests</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../write-unit-tests.html",
+          "name": "Write Unit Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "write-unit-tests"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Use parameters to provide data for your tests to use iteratively."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../write-unit-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_da8ee3e3-f207-4fba-a957-34116645b7e8"><span itemprop="title">Write Unit Tests</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Use Parameters in Class-Based Tests</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_834788da-9a54-40f7-b650-5fb8fc58e9f1" class="nav-link intrnllnk">How to Write Parameterized Tests</a></li><li class="nav-item"><a href="#mw_5f310dc7-3f8f-4003-9102-2d1f7e17b64e" class="nav-link intrnllnk">How to Initialize Parameterization Properties</a></li><li class="nav-item"><a href="#mw_3cd404fd-b106-43b8-89e8-79fd8d65c95d" class="nav-link intrnllnk">Specify Parameterization Level</a></li><li class="nav-item"><a href="#mw_292dd6d4-5538-4bcc-9ab8-70cd798333bd" class="nav-link intrnllnk">Specify How Parameters Are Combined</a></li><li class="nav-item"><a href="#mw_3b87c453-77e5-4dfe-bbb2-6f0f1dfdb2a0" class="nav-link intrnllnk">Use External Parameters in Tests</a></li><li class="nav-item"><a href="#d126e92448" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=write-unit-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=write-unit-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=write-unit-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_a1f714b3-3d7e-41ee-8008-0be968d829f2">Use Parameters in Class-Based Tests</h2><p>Often, you need to run a series of tests that are different only in terms of test
+            data. For example, you might want to test that a function produces the expected outputs
+            for different inputs. In this case, the test logic is the same and the only difference
+            between tests is the actual and expected values for each function call. With
+            parameterized testing, you can implement code to iteratively run tests using different
+            data values. When a method is parameterized, the testing framework automatically invokes
+            the method for each parameter value. Therefore, you are not required to implement a
+            separate method for each value.</p><p>The testing framework enables you to parameterize your test class at different levels.
+            Additionally, when you call a test class method with multiple parameters, you can
+            specify how the method should be invoked for different combinations of the
+            parameters.</p><section><h3 class="title" id="mw_834788da-9a54-40f7-b650-5fb8fc58e9f1">How to Write Parameterized Tests</h3><p>Classes that derive from the <a href="../ref/matlab.unittest.testcase-class.html"><code class="class">matlab.unittest.TestCase</code></a> class can
+                implement test parameterization using framework-specific property and method
+                attributes. To provide data as parameters in your class-based test, specify the data
+                using a <code class="literal">properties</code> block with an appropriate parameterization
+                attribute. Then, pass the parameterization property as an input argument to one or
+                more methods.</p><p>For example, consider the <code class="literal">SampleTest</code> class. The class defines a
+                parameterized test because it specifies properties within a
+                    <code class="literal">properties</code> block with the <code class="literal">TestParameter</code>
+                attribute. The properties are passed to <code class="literal">Test</code> methods and are used
+                to perform qualifications.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> SampleTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">properties</span> (TestParameter)
+        numericArray = {int16(1),single(zeros(1,4)),magic(3)};
+        functionHandle = {@false,@() size([])};
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> test1(testCase,numericArray)
+            testCase.verifyNotEmpty(numericArray)
+        <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">function</span> test2(testCase,functionHandle)
+            testCase.verifyWarningFree(functionHandle)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>The test class results in a parameterized test suite with five
+                elements.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>suite = testsuite(<span style="color:#A020F0">"SampleTest"</span>);
+{suite.Name}'
+</pre></div></div></div><div class="code_responsive"><pre class="programlisting">ans =
+
+  5×1 cell array
+
+    {'SampleTest/test1(numericArray=int16_1)'          }
+    {'SampleTest/test1(numericArray=1x4_single)'       }
+    {'SampleTest/test1(numericArray=3x3_double)'       }
+    {'SampleTest/test2(functionHandle=@false)'         }
+    {'SampleTest/test2(functionHandle=function_handle)'}
+</pre></div></p><p>Specify the value of a parameterization property as a nonempty cell array or
+                scalar structure with at least one field. The testing framework uses the property
+                value to specify parameter names and values in the test suite:</p>
+<div class="itemizedlist"><ul><li><p>If the property value is a cell array, the framework generates
+                            descriptive parameter names from the elements of the cell array by
+                            taking into account their values, types, and dimensions.</p></li><li><p>If the property value is a structure, the structure fields represent
+                            the parameter names and the structure values represent the parameter
+                            values. To have full control over parameter names in the suite, define
+                            the parameters using a structure instead of a cell array.</p></li></ul></div><p>
+</p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If you have a <span class="entity">MATLAB<sup>&#x00AE;</sup>
+            Test&#x2122;</span> license, you can set a parameterization property to a
+                            <code class="class">matlabtest.parameters.BaselineParameter</code> object for
+                        baseline testing. For more information, see <a href="../../matlab-test/ug/create-baseline-tests-for-matlab-code.html" class="a">Create Baseline Tests for MATLAB Code</a><span role="cross_prod"> (MATLAB Test)</span>.<em> (since R2024b)</em></p></div><p>
+</p></section><section><h3 class="title" id="mw_5f310dc7-3f8f-4003-9102-2d1f7e17b64e">How to Initialize Parameterization Properties</h3><p>When you define a parameterization property, you must initialize the property so
+                that MATLAB can generate parameter names and values. You can initialize the
+                property at either test class load time or test suite creation time:</p>
+<div class="itemizedlist"><ul><li><p><strong class="emphasis bold">Class load time:</strong> If the property
+                            value can be determined at the time MATLAB loads the test class definition, initialize the property
+                            using a default value. You can specify the default value in the
+                                <code class="literal">properties</code> block or using a local function in the
+                                <code class="literal">classdef</code> file. For more information about
+                            assigning values in a class definition, see <a href="../matlab_oop/expressions-in-class-definitions.html" class="a">Evaluation of Expressions in Class Definitions</a>.</p><p>When you initialize a parameterization property at class load time,
+                            the parameters associated with the property remain fixed for different
+                            test runs. Each time you create a suite from the parameterized test
+                            class, the framework uses the same parameter names and values to run the
+                            tests. See <a href="create-basic-parameterized-test.html" class="a">Create Basic Parameterized Test</a> for an example that uses
+                            parameterization properties with default values.</p></li><li><p><strong class="emphasis bold">Suite creation time:</strong> If you cannot or
+                            do not want to determine the parameters at class load time, initialize
+                            the property at suite creation time using a static method with the
+                                <code class="literal">TestParameterDefinition</code> attribute. When you
+                            initialize a parameterization property with a
+                                <code class="literal">TestParameterDefinition</code> method, the parameters
+                            associated with the property can vary for different test runs. Each time
+                            you create a suite from the parameterized test class, the framework
+                            generates fresh parameter names and values to run the tests. For more
+                            information, see <a href="define-parameters-at-suite-creation-time.html" class="a">Define Parameters at Suite Creation Time</a>.</p></li></ul></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Once you assign a value to a parameterization property, do not modify it. For
+                    example, when you initialize a parameterization property using a default value,
+                    you cannot use a <code class="literal">TestParameterDefinition</code> method to overwrite
+                    the default value.</p></div><p>A parameter might be used by several unit tests. Tests using the same parameter
+                must run independently, without accidentally affecting one another. In addition, a
+                running test must not affect subsequent reruns of the same test. To ensure test run
+                independence, initialize your parameterization properties with value objects. Using
+                handle objects (such as MATLAB graphics objects) as parameter values is not recommended. For more
+                information about the behavior of value and handle objects, see <a href="../matlab_oop/comparing-handle-and-value-classes.html" class="a">Comparison of Handle and Value Classes</a>.</p><p>If you need to test handle objects in your parameterized test, consider
+                constructing them indirectly by using function handles as parameter values and
+                invoking those function handles in tests. For example, write a parameterized test to
+                test the default current point of figures created with the
+                    <code class="function">figure</code> and <code class="function">uifigure</code> functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> FigureTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">properties</span> (TestParameter)
+        figureType = {@figure,@uifigure};
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> defaultCurrentPoint(testCase,figureType)
+            fig = figureType();
+            testCase.addTeardown(@close,fig)
+            cp = fig.CurrentPoint;
+            testCase.verifyEqual(cp,[0 0])
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></section><section><h3 class="title" id="mw_3cd404fd-b106-43b8-89e8-79fd8d65c95d">Specify Parameterization Level</h3><p>You can parameterize a test class at three levels: class setup, method setup, and
+                test. Parameterizing at each level requires the parameterization properties to have
+                a specific property attribute. For example, at the highest level, a
+                    <code class="literal">TestClassSetup</code> method can be parameterized using a property
+                defined in a <code class="literal">properties</code> block with the
+                    <code class="literal">ClassSetupParameter</code> attribute. At the lowest level, a
+                    <code class="literal">Test</code> method can be parameterized using a property defined in
+                a <code class="literal">properties</code> block with the <code class="literal">TestParameter</code>
+                attribute.</p><p>This table shows different parameterization levels and the required method and
+                property attributes for each level.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th rowspan="2">Parameterization Level</th><th colspan="2">Parameterization
+                                Definition</th><th rowspan="2">Accessible Parameterization Properties</th></tr><tr><th>Method Attribute</th><th>Property Attribute</th></tr></thead><tbody><tr><td>Class-setup level</td><td><code class="literal">TestClassSetup</code></td><td><code class="literal">ClassSetupParameter</code></td><td><code class="literal">ClassSetupParameter</code></td></tr><tr><td>Method-setup level</td><td><code class="literal">TestMethodSetup</code></td><td><code class="literal">MethodSetupParameter</code></td><td><code class="literal">MethodSetupParameter</code> and
+                                    <code class="literal">ClassSetupParameter</code></td></tr><tr><td>Test level</td><td><code class="literal">Test</code></td><td><code class="literal">TestParameter</code></td><td><code class="literal">TestParameter</code>,
+                                    <code class="literal">MethodSetupParameter</code>, and
+                                    <code class="literal">ClassSetupParameter</code></td></tr></tbody></table></div><p>A parameterized method can access parameterization properties depending on the
+                level at which the method is defined:</p>
+<div class="itemizedlist"><ul><li><p>A parameterized <code class="literal">TestClassSetup</code> method can access
+                            parameterization properties only with the
+                                <code class="literal">ClassSetupParameter</code> attribute.</p></li><li><p>A parameterized <code class="literal">TestMethodSetup</code> method can access
+                            parameterization properties only with the
+                                <code class="literal">MethodSetupParameter</code> or
+                                <code class="literal">ClassSetupParameter</code> attributes.</p></li><li><p>A parameterized <code class="literal">Test</code> method can access any
+                            parameterization properties.</p></li></ul></div><p>
+</p><p>For an example of how to parameterize a test class at different levels, see <a href="create-advanced-parameterized-test.html" class="a">Create Advanced Parameterized Test</a>.</p></section><section><h3 class="title" id="mw_292dd6d4-5538-4bcc-9ab8-70cd798333bd">Specify How Parameters Are Combined</h3><p>When you pass more than one parameterization property to a method, you can use the
+                    <code class="literal">ParameterCombination</code> method attribute to specify how
+                parameters are combined. The testing framework invokes the method for the specified
+                combinations.</p><p>This table shows different parameter combination strategies.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="29%"><col class="tcol2" width="71%"></colgroup><thead><tr><th><code class="literal">ParameterCombination</code> Attribute
+                                Value</th><th>Method Invocation</th></tr></thead><tbody><tr><td><code class="literal">"exhaustive"</code> (default)</td><td><p>Methods are invoked for all combinations of parameter
+                                    values. The testing framework uses this default combination if
+                                    you do not specify the <code class="literal">ParameterCombination</code>
+                                    attribute.</p></td></tr><tr><td><code class="literal">"sequential"</code></td><td><p>Methods are invoked with corresponding parameter values.
+                                    The parameterization properties must specify the same number of
+                                    parameter values. For example, if a method is provided with two
+                                    parameterization properties and each property specifies three
+                                    parameter values, then the framework invokes the method three
+                                    times.</p></td></tr><tr><td><code class="literal">"pairwise"</code></td><td><p>Methods are invoked for every pair of parameter values at
+                                    least once. Compared with the exhaustive combination, the
+                                    pairwise combination typically results in fewer tests and
+                                    therefore faster test execution.</p><p>For example, this
+                                    test uses the pairwise combination to test the size of different
+                                    matrices.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ZerosTest &lt; matlab.unittest.TestCase
+    <span style="color:#0000FF">properties</span> (TestParameter)
+        rowCount = struct(<span style="color:#A020F0">"r1"</span>,1,<span style="color:#A020F0">"r2"</span>,2,<span style="color:#A020F0">"r3"</span>,3);
+        columnCount = struct(<span style="color:#A020F0">"c1"</span>,2,<span style="color:#A020F0">"c2"</span>,3,<span style="color:#A020F0">"c3"</span>,4);
+        type = {<span style="color:#A020F0">'single'</span>,<span style="color:#A020F0">'double'</span>,<span style="color:#A020F0">'uint16'</span>};
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span> (Test,ParameterCombination=<span style="color:#A020F0">"pairwise"</span>)
+        <span style="color:#0000FF">function</span> testSize(testCase,rowCount,columnCount,type)
+            testCase.verifySize(zeros(rowCount,columnCount,type), <span style="color:#0000FF">...</span>
+                [rowCount columnCount])
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create a test suite from the class.
+                                    One possible outcome contains the ten elements listed
+                                    below.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>suite = testsuite(<span style="color:#A020F0">"ZerosTest"</span>);
+{suite.Name}'</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  10×1 cell array
+
+    {'ZerosTest/testSize(rowCount=r1,columnCount=c1,type=single)'}
+    {'ZerosTest/testSize(rowCount=r1,columnCount=c2,type=double)'}
+    {'ZerosTest/testSize(rowCount=r1,columnCount=c3,type=uint16)'}
+    {'ZerosTest/testSize(rowCount=r2,columnCount=c1,type=double)'}
+    {'ZerosTest/testSize(rowCount=r2,columnCount=c2,type=single)'}
+    {'ZerosTest/testSize(rowCount=r2,columnCount=c3,type=single)'}
+    {'ZerosTest/testSize(rowCount=r3,columnCount=c1,type=uint16)'}
+    {'ZerosTest/testSize(rowCount=r3,columnCount=c2,type=single)'}
+    {'ZerosTest/testSize(rowCount=r3,columnCount=c3,type=double)'}
+    {'ZerosTest/testSize(rowCount=r2,columnCount=c2,type=uint16)'}</pre></div></div></div><p>The
+                                    testing framework guarantees that the
+                                        <code class="literal">testSize</code> method is invoked for every
+                                    combination of parameter values specified by any two properties.
+                                    For instance, for the <code class="literal">rowCount</code> and
+                                        <code class="literal">columnCount</code> properties, this table shows
+                                    the <code class="literal">TestSuite</code> array indices corresponding to
+                                    parameter value combinations. Every combination is represented
+                                    by at least one <code class="literal">Test</code>
+                                    element.</p><div><table class="table table-condensed"><colgroup><col class="tcol1" width="20%" align="left"><col class="tcol2" width="20%" align="left"><col class="tcol3" width="20%" align="left"><col class="tcol4" width="20%" align="left"><col class="tcol5" width="20%" align="left"></colgroup><tbody><tr><td rowspan="2" colspan="2">&#8212;</td><td colspan="3"><code class="literal">columnCount</code> Property</td></tr><tr><td><code class="literal">c1</code></td><td><code class="literal">c2</code></td><td><code class="literal">c3</code></td></tr><tr><td rowspan="3"><code class="literal">rowCount</code>
+                                                  Property</td><td><code class="literal">r1</code></td><td>1</td><td>2</td><td>3</td></tr><tr><td><code class="literal">r2</code></td><td>4</td><td>5, 10</td><td>6</td></tr><tr><td><code class="literal">r3</code></td><td>7</td><td>8</td><td>9</td></tr></tbody></table></div><p>While the framework guarantees that tests are
+                                    created for every pair of values at least once, you should not
+                                    rely on the suite size, ordering, or specific set of test suite
+                                    elements.</p></td></tr><tr><td><code class="literal">"<em class="replaceable"><code>n</code></em>-wise"</code></td><td><p>Methods are invoked for every
+                                            <code class="literal"><em class="replaceable"><code>n</code></em></code>-tuple of
+                                    parameter values at least once (requires <span class="entity">MATLAB
+            Test</span>). You can specify
+                                            <code class="literal"><em class="replaceable"><code>n</code></em></code> as an
+                                    integer between 2 and 10. For example, specify the attribute as
+                                        <code class="literal">"4-wise"</code> to invoke a method for every
+                                    quadruple of parameter values at least once.</p><p>You can
+                                    use the <code class="literal">"2-wise"</code> and
+                                        <code class="literal">"pairwise"</code> attribute values
+                                    interchangeably. The
+                                        <code class="literal">"<em class="replaceable"><code>n</code></em>-wise"</code>
+                                    parameter combination generalizes the pairwise combination, and
+                                    typically results in fewer tests and therefore faster test
+                                    execution compared with the exhaustive combination. While the
+                                    framework guarantees that tests are created for every
+                                            <code class="literal"><em class="replaceable"><code>n</code></em></code>-tuple of
+                                    values at least once, you should not rely on the suite size,
+                                    ordering, or specific set of test suite elements.</p></td></tr></tbody></table></div><p>You can combine parameters at the class-setup, method-setup, and test levels. For
+                example, use the two method attributes
+                    <code class="literal">TestMethodSetup,ParameterCombination="sequential"</code> to specify
+                sequential combination of the method-setup-level parameters defined in the
+                    <code class="literal">properties</code> block with the
+                    <code class="literal">MethodSetupParameter</code> attribute.</p><p>For examples of how to combine test parameters, see <a href="create-basic-parameterized-test.html" class="a">Create Basic Parameterized Test</a> and <a href="create-advanced-parameterized-test.html" class="a">Create Advanced Parameterized Test</a>.</p></section><section><h3 class="title" id="mw_3b87c453-77e5-4dfe-bbb2-6f0f1dfdb2a0">Use External Parameters in Tests</h3><p>When you create a parameterized test, you can redefine the parameters by injecting
+                inputs into your class-based test. To provide data that is defined outside of the
+                test file, create a <a href="../ref/matlab.unittest.parameters.parameter-class.html"><code class="class">Parameter</code></a> instance and use the <code class="argument">ExternalParameter</code>
+                name-value argument when creating your test suite. For more information, see <a href="use-external-parameters-in-parameterized-test.html" class="a">Use External Parameters in Parameterized Test</a>.</p></section>
+            <h2 id="d126e92448">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.parameters.parameter-class.html"><span itemprop="name"><code class="class">matlab.unittest.parameters.Parameter</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.testcase-class.html"><span itemprop="name"><code class="class">matlab.unittest.TestCase</code></span></a></span></li></ul><h3>Namespaces</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.parameters-package.html"><span itemprop="name"><code class="package">matlab.unittest.parameters</code></span></a></span></li></ul>
+            <h3 id="d126e92466">Topics</h3><ul class="list-unstyled"><li><a href="create-basic-parameterized-test.html" class="a">Create Basic Parameterized Test</a></li><li><a href="create-advanced-parameterized-test.html" class="a">Create Advanced Parameterized Test</a></li><li><a href="define-parameters-at-suite-creation-time.html" class="a">Define Parameters at Suite Creation Time</a></li><li><a href="use-external-parameters-in-parameterized-test.html" class="a">Use External Parameters in Parameterized Test</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write Property Set Methods for Custom UI Components in App Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../developing-custom-ui-component-classes.html",
+          "name": "Create Custom UI Components"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-custom-ui-component-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Perform custom validation of public properties by writing set methods for those properties."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-custom-ui-component-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4599001b-126d-40d9-b094-1d13710d02e2"><span itemprop="title">Create Custom UI Components</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write Property Set Methods for Custom UI Components in App Designer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_54701396-efc4-492a-bbd4-5bb2b3bd30ee" class="nav-link intrnllnk">IP Address Component Overview</a></li><li class="nav-item"><a href="#mw_f358b83c-30d0-4995-8d8a-130bab87de08" class="nav-link intrnllnk">Create a Property Set Method</a></li><li class="nav-item"><a href="#mw_33cd4421-d7ad-4e24-9ba2-b57ccb8d01b7" class="nav-link intrnllnk">Perform Custom Property Validation</a></li><li class="nav-item"><a href="#mw_945d849d-585d-41e5-8ea2-5a36070fd5f1" class="nav-link intrnllnk">Verify Property Validation Behavior</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_0391bcb5-0d16-4792-aad6-c827017ee499">Write Property Set Methods for Custom UI Components in App Designer</h2><span id="comp-example-validation" class="anchor_target"></span><p>When you create a public property for a custom UI component, one step involves writing
+      code to update the underlying components and graphics objects within your custom component
+      whenever the value of the public property changes. In general, perform this step by writing
+      code in the component <a href="../ref/matlab.ui.componentcontainer.componentcontainer.update.html"><code class="method">update</code></a> function.
+        MATLAB<sup>&#x00AE;</sup> calls the <code class="method">update</code> function only when necessary, which can result
+      in performance improvements over writing custom code to perform a similar purpose. For more
+      information about updating properties using the <code class="method">update</code> function, see <a href="manage-properties-of-custom-ui-components-in-app-designer.html" class="a">Create Public Properties for Custom UI Components in App Designer</a>.</p><p>However, you might want to perform certain tasks when one specific property is updated but
+      not when other properties are updated. Because the <code class="method">update</code> function executes
+      whenever the value of <span class="emphasis"><em>any</em></span> public property changes, you can instead write
+      code to perform these tasks when a <span class="emphasis"><em>specific</em></span> property changes by defining
+      a <em class="firstterm">set method</em> for that property.</p><p>Consider writing a property set method when you want to:</p>
+<div class="itemizedlist"><ul><li><p>Perform custom property validation.</p></li><li><p>Throw a custom error when the property is set incorrectly.</p></li><li><p>Process the property value before storing it.</p></li></ul></div><p>
+</p><p>This example shows how to validate a public property of a custom IP address UI component
+      by writing a set method. </p><section><h3 class="title" id="mw_54701396-efc4-492a-bbd4-5bb2b3bd30ee">IP Address Component Overview</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/IPAddressCustomComponentExample')" data-ex-genre="App">Open App</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "IP Address Component Overview",
+          "description": "IP address component accepts input formatted using either the IPv4 or IPv6 protocol. The protocol determines how the component is displayed:",
+          "thumbnailURL": "../../examples/matlab/win64/xxIP-address-screenshot.png",
+          "genre": "App",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "write-property-set-methods-for-custom-ui-components.html"
+
+        },
+          "identifier": "matlab.IPAddressCustomComponentExample",
+          "name": "IPAddressCustomComponentExample",
+          "url": "write-property-set-methods-for-custom-ui-components.html#mw_54701396-efc4-492a-bbd4-5bb2b3bd30ee"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/IPAddressCustomComponentExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "IPAddressCustomComponentExample.m",
+        "IPAddress.mlapp",
+        "IP-address-screenshot.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-IPAddressCustomComponentExample"><meta itemprop="exampletitle" content="IP Address Component Overview"></div><span id="IPAddressCustomComponentExample" class="anchor_target"></span>
+
+
+
+<p class="shortdesc">This example IP address component accepts input formatted using either the IPv4 or IPv6 protocol. The protocol determines how the component is displayed:</p>
+
+
+
+<p></p>
+<div class="itemizedlist"><ul><li><p>IPv4 &#8212; The component contains four numeric edit fields, each with a value between 0 and 255.</p></li><li><p>IPv6 &#8212; The component contains eight text edit fields, each with four characters representing hexadecimal digits.</p></li></ul></div><p>
+</p>
+
+
+
+<p></p>
+<div class="informalfigure"><div id="d126e16975" class="mediaobject"><p><img src="../../examples/matlab/win64/xxIP-address-screenshot.png"></p></div></div><p>
+ </p>
+
+
+<p>The IP address component interface consists of:</p>
+
+
+
+<p></p>
+<div class="itemizedlist"><ul><li><p>A public property named <code class="literal">Address</code> to store the value of the IP address</p></li><li><p>A public property named <code class="literal">Protocol</code> to specify the IP address protocol</p></li><li><p>A public callback named <code class="literal">AddressChangedFcn</code> that executes when an app user changes the IP address by typing in an edit field</p></li></ul></div><p>
+</p>
+
+
+
+<p>Because the <code class="literal">Address</code> property can store either a four-element numeric vector (when the protocol is IPv4) or an eight-element cell array (when the protocol is IPv6), use custom validation logic in a property set method to check whether the <code class="literal">Address</code> value is valid.</p>
+
+
+<div class="procedure"><p>To view the full <code class="literal">IPAddress</code> component code in App Designer, enter this command in the MATLAB&#174; Command Window:</p><div class="code_responsive"><pre class="programlisting">openExample('matlab/IPAddressCustomComponentExample');</pre></div></div></section><section><h3 class="title" id="mw_f358b83c-30d0-4995-8d8a-130bab87de08">Create a Property Set Method</h3><p>To create a new property set method for the <code class="literal">Address</code> property of the
+        IP address component, use these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create a new public function. In <strong class="guilabel">Code View</strong>, in the
+                <strong class="guilabel">Editor</strong> tab, select <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add-function.png" alt="" height="16" width="16"></span></span>
+              <strong class="guimenuitem">Function</strong> &gt; <strong class="guimenuitem">Public Function</strong>.</p></li><li><p>In the <code class="literal">methods</code> block that contains the new function, delete the
+              text <code class="literal">(Access = public)</code>. Property set methods must be added in a
+                <code class="literal">methods</code> block with no attributes. This deletion does not change
+              the functionality of the <code class="literal">methods</code> block because the default value of
+              the <code class="literal">Access</code> attribute is <code class="literal">public</code>. For more
+              information, see <a href="../matlab_oop/property-set-methods.html" class="a">Property Get and Set Methods</a>.</p></li><li><p>Replace the function definition that App Designer creates with this
+              code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> set.Address(comp,val)
+<span style="color:#228B22">% Write property validation code here</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>The <code class="literal">set.Address</code> function executes whenever an app creator sets
+              the value of the <code class="literal">Address</code> public property.</p></li></ol></div><p>
+</p><p>For more information about</p></section><section><h3 class="title" id="mw_33cd4421-d7ad-4e24-9ba2-b57ccb8d01b7">Perform Custom Property Validation</h3><p>Write code in the <code class="literal">set.Address</code> function to verify that the new
+        property value follows the expected format:</p>
+<div class="itemizedlist"><ul><li><p>If the protocol is IPv4, check that the app creator set the property to a vector
+              of four integers between 0 and 255.</p></li><li><p>If the protocol is IPv6, check that the app creator set the property to a cell
+              array of eight character vectors, where each character vector represents four
+              hexadecimal digits.</p></li></ul></div><p>
+In each case, if the new value is not in the expected format, throw a helpful
+        error to inform the app creator what value the property expects. Finally, set the
+          <code class="literal">Address</code> property of the component to the new property value.</p><p>Add this code to the body of the <code class="literal">set.Address</code> function:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">switch</span> comp.Protocol
+    <span style="color:#228B22">% Validate IPv4 address</span>
+    <span style="color:#0000FF">case</span> <span style="color:#A020F0">"IPv4"</span>
+        <span style="color:#0000FF">if</span> length(val) ~= 4
+            error(<span style="color:#A020F0">"IPv4 address must have four fields."</span>)
+        <span style="color:#0000FF">end</span>
+        mustBeInRange(val,0,255)
+
+    <span style="color:#228B22">% Validate IPv6 address</span>
+    <span style="color:#0000FF">case</span> <span style="color:#A020F0">"IPv6"</span>
+        <span style="color:#0000FF">if</span> length(val) ~= 8
+            error(<span style="color:#A020F0">"IPv6 address must have eight fields."</span>)
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">if</span> ~isequal(cellfun(<span style="color:#A020F0">'length'</span>,val),repmat(4,1,8))
+            error(<span style="color:#A020F0">"Specify IPv6 field as a four-digit hexadecimal number."</span>)
+        <span style="color:#0000FF">end</span>
+        
+        <span style="color:#0000FF">try</span> 
+            hex2dec(val);
+        <span style="color:#0000FF">catch</span>
+            error(<span style="color:#A020F0">"Specify IPv6 field as a four-digit hexadecimal number."</span>)
+        <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+comp.Address = val;</pre></div></div></div></section><section><h3 class="title" id="mw_945d849d-585d-41e5-8ea2-5a36070fd5f1">Verify Property Validation Behavior</h3><p>After you have finished developing the <code class="literal">IPAddress</code> component, verify
+        the property validation behavior by creating a component object and setting the
+          <code class="literal">Address</code> property from the MATLAB Command Window.</p><p>Navigate to the folder where the <code class="literal">IPAddress.mlapp</code> file is saved.
+        Create an IP address component, specify its position, and return the component object as
+          <code class="literal">comp</code>. By default, the component is created using the IPv4
+        protocol.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = IPAddress(Position=[50 100 420 31]);</pre></div></div></div></p><div class="informalfigure"><div id="d126e17110" class="mediaobject"><p><img src="appd-ipaddress-ipv4.png" alt="IP address component made up of four numeric edit fields" height="452" width="562"></p></div></div><p>Try to set the <code class="literal">Address</code> property to a scalar value. An error
+        displays.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Address = 10;</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><span class="red">Error using IPAddress/set.Address
+IPv4 address must have four fields.</span></pre></div></div></div></p><p>Change the component to an IPv6 address
+        component.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Protocol = <span style="color:#A020F0">"IPv6"</span>;</pre></div></div></div></p><div class="informalfigure"><div id="d126e17128" class="mediaobject"><p><img src="appd-ipaddress-ipv6.png" alt="IP address component made up of eight edit fields" height="452" width="562"></p></div></div><p>Try to set one field of the IP address to a value that does not represent a four-digit
+        hexadecimal
+        number.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.Address{1} = <span style="color:#A020F0">'123h'</span>;</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><span class="red">Error using IPAddress/set.Address
+Specify IPv6 field as a four-digit hexadecimal number.</span></pre></div></div></div></p></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e17143">Topics</h3><ul class="list-unstyled"><li><a href="manage-properties-of-custom-ui-components-in-app-designer.html" class="a">Create Public Properties for Custom UI Components in App Designer</a></li><li><a href="verify-behavior-of-custom-ui-components-in-app-designer.html" class="a">Verify Behavior of Custom UI Components in App Designer</a></li><li><a href="../matlab_oop/property-set-methods.html" class="a">Property Get and Set Methods</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

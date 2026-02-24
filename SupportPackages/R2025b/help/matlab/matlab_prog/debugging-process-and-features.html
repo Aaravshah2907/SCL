@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Debug MATLAB Code Files</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../debugging-code.html",
+          "name": "Debugging and Analysis"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "debugging-code"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Diagnose problems in MATLAB code files using different debugging methods."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../debugging-code.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6v6i4"><span itemprop="title">Debugging and Analysis</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Debug MATLAB Code Files</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_0ff30cd3-0587-4b32-99c9-7fb04625553f" class="nav-link intrnllnk">Display Output</a></li><li class="nav-item"><a href="#mw_ac72dfe1-d6fd-4e82-87ad-89b1257f7593" class="nav-link intrnllnk">Debug Using Run to Here</a></li><li class="nav-item"><a href="#mw_706ee310-0453-49d3-a675-30c4c242b844" class="nav-link intrnllnk">View Variable Value While Debugging</a></li><li class="nav-item"><a href="#mw_db9489ad-cc2e-42dd-a8aa-2179f268bcba" class="nav-link intrnllnk">Pause a Running File</a></li><li class="nav-item"><a href="#mw_b867a277-409b-40a3-b4c3-fbe7ecfcbdfb" class="nav-link intrnllnk">Step Into Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_7d79b48b-b0a1-49e0-8553-29bf6b265139" class="nav-link intrnllnk">Function Call Stack</a></li></ul></li><li class="nav-item"><a href="#mw_aac9fccc-eee5-48d5-9c1e-36a598251c93" class="nav-link intrnllnk">Add Breakpoints and Run Code</a></li><li class="nav-item"><a href="#mw_764055d2-a40c-42c3-8b3e-0197d4697713" class="nav-link intrnllnk">Manage Breakpoints in Debugger Panel</a></li><li class="nav-item"><a href="#mw_f45ffd5d-e3ac-402f-a675-f93c7e7a2845" class="nav-link intrnllnk">End Debugging Session</a></li><li class="nav-item"><a href="#mw_6e6f2c7c-00b0-4262-8cf4-93f0e0c6191d" class="nav-link intrnllnk">Debug Using Keyboard Shortcuts or Functions</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brqxeeu-175">Debug <span class="trademark entity">MATLAB</span> Code Files</h2><div class="doc_topic_desc"><div class="purpose_container"><em>Since R2021b. Replaces <a href="https://www.mathworks.com/help/releases/R2021a/matlab/matlab_prog/debugging-process-and-features.html">Debug a MATLAB Program</a><span role="archived_release_number"> (R2021a)</span>. </em></div></div><span id="matlabenvironment_editordebugger" class="anchor_target"></span><p>You can diagnose problems in your MATLAB<sup>&#x00AE;</sup> code files by debugging your code interactively in the Editor and Live
+            Editor or programmatically by using debugging functions in the Command Window.</p><p>There are several ways to debug your code: </p><div class="itemizedlist"><ul><li><p>Display output by removing semicolons.</p></li><li><p>Run the code to a specific line and pause by clicking the Run to Here button
+                            <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="live_editor_runtohere_icon.png" alt="" height="16" width="16"></span></span>.</p></li><li><p>Pause a long-running file by clicking the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="pause_ts_16.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Pause</strong> button.</p></li><li><p>Step into functions and scripts while paused by clicking the Step In button
+                            <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepin.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>.</p></li><li><p>Add breakpoints to your file to enable pausing at specific lines when you run
+                    your code.</p></li></ul></div><p>Before you begin debugging, to avoid unexpected results, save your code files and make
+            sure that the code files and any files they call exist on the search path or in the
+            current folder. MATLAB handles unsaved changes differently depending on where you are debugging from:</p>
+<div class="itemizedlist"><ul><li><p>Editor &#8212; If a file contains unsaved changes, MATLAB saves the file before running it.</p></li><li><p>Live Editor &#8212; MATLAB runs all changes in a file, whether they are saved or
+                        not.</p></li><li><p>Command Window &#8212; If a file contains unsaved changes, MATLAB runs the saved version of the file. You do not see the results
+                        of your changes.</p></li></ul></div><p>
+</p><section><h3 class="title" id="mw_0ff30cd3-0587-4b32-99c9-7fb04625553f">Display Output</h3><p>One way to determine where a problem occurs in your MATLAB code file is to display the output. To display the output for a line,
+                remove the semicolon from the end of that line. In the Editor, MATLAB displays the output in the Command Window. In the Live Editor,
+                    MATLAB displays the output with the line of code that creates it.</p><p>For example, suppose that you have a script named <code class="literal">plotRand.m</code>
+                that plots a vector of random data and draws a horizontal line on the plot at the
+                mean.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>n = 50;
+r = rand(n,1);
+plot(r)
+
+m = mean(r);
+hold <span style="color:#A020F0">on</span>
+plot([0,n],[m,m])
+hold <span style="color:#A020F0">off</span>
+title(<span style="color:#A020F0">"Mean of Random Uniform Data"</span>)</pre></div></div></div><p>To display the output of the <code class="function">rand</code> function at line 2, remove
+                the semicolon at the end of the line. MATLAB displays the value of <code class="literal">r</code> in the Command
+                Window.</p><div class="informalfigure"><div id="d126e53784" class="mediaobject"><p><img src="debugging_command_window_output.png" alt="Command Window showing a call to the plotRand function followed by the resulting output, the value of r" height="224" width="494"></p></div></div><p>In the Live Editor, MATLAB displays the value of <code class="literal">r</code> with line 2.</p><div class="informalfigure"><div id="d126e53796" class="mediaobject"><p><img src="live_editor_debugging_outputshown.png" alt="plotRand live script with the semicolon removed from the end of line 2 and the resulting output, the value of r and the plot, displayed on the right" height="336" width="580"></p></div></div></section><section><h3 class="title" id="mw_ac72dfe1-d6fd-4e82-87ad-89b1257f7593">Debug Using <strong class="guilabel">Run to Here</strong></h3><p>To explore the state of all variables in the workspace at a specific point in your
+                code, run your code file and then pause. To run code to a specified line and then
+                pause, click the Run to Here button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="live_editor_runtohere_icon.png" alt="" height="16" width="16"></span></span> to the left of the line. If the selected line
+                cannot be reached, MATLAB continues running until it reaches the end of the file or a
+                breakpoint. In functions and classes, you only can run to a specified line and then
+                pause when MATLAB is paused.</p><p><em>Before R2021b: To run to the cursor position and pause
+                while debugging, go to the <strong class="guilabel">Editor</strong> tab, and click the Run to
+                Cursor button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="go_until_cursor_ts_16.png" alt="" height="16" width="16"></span></span>.</em></p><p>For example, click the Run to Here button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="live_editor_runtohere_icon.png" alt="" height="16" width="16"></span></span> to the left of line 2 in
+                    <code class="literal">plotRand.m</code>. MATLAB runs <code class="literal">plotRand.m</code> starting at line 1 and pauses
+                before running line 2.</p><div class="informalfigure"><div id="d126e53841" class="mediaobject"><p><img src="debugging_run_to_here.png" alt="plotRand script with the Run to Here button visible in the left margin, next to the line number for line 2" height="148" width="377"></p></div></div><p>When MATLAB pauses, multiple changes occur:</p>
+<div class="itemizedlist"><ul><li><p>The Debugger panel opens.<em> (since R2025a)</em></p></li><li><p>The <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="run_ts_16.png" alt="" height="16" width="16"></span></span>
+                            <strong class="guibutton">Run</strong> button in the <strong class="guilabel">Editor</strong> or
+                                <strong class="guilabel">Live Editor</strong> tab changes to a
+                                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                            <strong class="guibutton">Continue</strong> button.</p></li><li><p>The prompt in the Command Window changes to <code class="literal">K&gt;&gt;</code>
+                            indicating that MATLAB is in debug mode and that the keyboard is in
+                            control.</p></li><li><p>MATLAB indicates the line at which it is paused by using a green
+                            arrow and green highlighting.</p>
+<div class="informalfigure"><div id="d126e53890" class="mediaobject"><p class="listimage"><img src="debugging_runtohere_paused.png" alt="plotRand script with a green arrow and green highlighting on line 2, indicating that MATLAB is paused at line 2" height="145" width="377"></p></div></div><p></p></li></ul></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>It is a good practice to avoid modifying a file while MATLAB is paused. Changes that are made while MATLAB is paused do not run until after MATLAB finishes running the code and the code is rerun.</p></div><p>The line at which MATLAB is paused does not run until after you continue running the code. To
+                continue running the code, click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Continue</strong> button. MATLAB continues running the file until it reaches the end of the file or a
+                breakpoint. You also can click the Continue to Here button
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_15_px"><img src="live_editor_continuetohere_icon.png" alt="" height="15" width="16"></span></span> to the left of the line of code that you want to
+                continue running to.</p><p>To continue running the code line-by-line, on the <strong class="guilabel">Editor</strong> or
+                    <strong class="guilabel">Live Editor</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepforward.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Step</strong>. MATLAB executes the current line at which it is paused and then pauses at the
+                next line.</p>
+<div class="informalfigure"><div id="d126e53944" class="mediaobject"><p><img src="debugging_runtohere_step.png" alt="plotRand script with a green arrow and green highlighting on line 3, indicating that MATLAB is paused at line 3" height="146" width="377"></p></div></div><p></p></section><section><h3 class="title" id="mw_706ee310-0453-49d3-a675-30c4c242b844">View Variable Value While Debugging</h3><p>To view the value of a variable while MATLAB is paused, place your cursor over the variable. The current value of
+                the variable appears in a data tip. The data tip stays in view until you move the
+                cursor.</p><div class="informalfigure"><div id="d126e53956" class="mediaobject"><p><img src="debugging_datatips.png" alt="plotRand script paused at line 2 with a data tip showing the size, data type, and value of the variable n" height="138" width="377"></p></div></div><p>You also can view the value of a variable by typing the variable name in the
+                Command Window. For example, to see the value of the variable <code class="literal">n</code>,
+                type <code class="literal">n</code> and press <strong class="keycap">Enter</strong>. The Command Window
+                displays the variable name and its value. To view all the variables in the current
+                workspace, use the Workspace panel.</p><p>For more information, see <a href="examine-values.html" class="a">Examine Values While Debugging</a>.</p></section><section><h3 class="title" id="mw_db9489ad-cc2e-42dd-a8aa-2179f268bcba">Pause a Running File</h3><p>You can pause long-running code while it is running to check on the progress and
+                ensure that it is running as expected. To pause running code, go to the
+                    <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab and click
+                the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="pause_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Pause</strong> button. MATLAB pauses at the next executable line, and the
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="pause_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Pause</strong> button changes to a <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Continue</strong> button. To continue running the code, press the
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Continue</strong> button.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>When you click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="pause_ts_16.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Pause</strong> button, MATLAB might pause in a file outside your own code. In addition, you
+                    might see a significant delay before MATLAB pauses and the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="pause_ts_16.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Pause</strong> button changes to a <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Continue</strong> button. In some cases, MATLAB might not pause at all. The reason is that MATLAB is unable to pause in some built-in code.</p></div></section><section><h3 class="title" id="mw_b867a277-409b-40a3-b4c3-fbe7ecfcbdfb">Step Into Functions</h3><p>While debugging, you can step into called files, pausing at points where you want
+                to examine values. To step into a file, click the Step In button
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepin.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span> directly to the left of the function or script
+                that you want to step into. MATLAB displays the button only if the line contains a call to another
+                function or script. After stepping in, click the Step Out button
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="live_editor_step_out_icon.png" alt="" height="16" width="16"></span></span> at the top of the file to run the rest of the
+                called function, leave the called function, and then pause.</p><p>By default, the Step In button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepin.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span> displays only for user-defined functions and
+                scripts. To show the button for all functions and scripts, on the
+                    <strong class="guilabel">Home</strong> tab, in the <strong class="guilabel">Environment</strong> section,
+                click <strong class="guilabel">Settings</strong>. Then, select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Editor/Debugger</strong>, and in the <strong class="guilabel">Debugging</strong> section, set the
+                    <strong class="guilabel">Show inline Step In buttons</strong> option to
+                    <strong class="guilabel">Always</strong>. To never show the button, set the <strong class="guilabel">Show
+                    inline Step In buttons</strong> option to <strong class="guilabel">Never</strong>.</p><p>Alternatively, you can step in and out of functions while debugging by using the
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepin.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Step In</strong> or <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="live_editor_step_out_icon.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Step Out</strong> buttons on the <strong class="guilabel">Editor</strong> or
+                    <strong class="guilabel">Live Editor</strong> tab. These buttons do not honor the
+                    <strong class="guilabel">Show inline Step In buttons</strong> setting and always step in and
+                out of user-defined and MathWorks<sup>&#x00AE;</sup> functions.</p><section><h4 class="title" id="mw_7d79b48b-b0a1-49e0-8553-29bf6b265139">Function Call Stack</h4><p>When you step into a called function or
+                    file, the Debugger panel displays the list of the functions it executed before
+                    pausing at the current line in the <strong class="guilabel">Function call stack</strong>
+                    section. The list, also called the <em class="firstterm">function call stack</em>,
+                    displays the functions in order, with the current script or function in which
+                        MATLAB is paused at the top of the list, and the first called script or
+                    function at the bottom of the list. <em> (since R2025a)</em></p><p>To open the Debugger panel if it is not open, go to the
+                        <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab, and in
+                    the <strong class="guilabel">Analyze</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="debugger_icon.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guibutton">Debugger</strong>. You also can open the panel using the Open more
+                    panels button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="meatballmenuui9a7875500214701883b733f8feb35ca6.png" alt="" height="16" width="16"></span></span> on a sidebar. </p><div class="informalfigure"><div id="d126e54154" class="mediaobject"><p><img src="debugger_panel_callstack.png" alt="Debugger panel with the Function call stack section showing that the debugger is paused at line 3 of plotRand.m" height="261" width="250"></p></div></div><p>For each function in the function call stack, there is a corresponding
+                    workspace. Workspaces contain variables that you create within MATLAB or import from data files or other programs. Variables that you
+                    assign through the Command Window or create by using scripts belong to the base
+                    workspace. Variables that you create in a function belong to their own function
+                    workspace. To examine the values of variables outside of the current workspace,
+                    select the corresponding function in the Debugger panel <strong class="guilabel">Function call
+                        stack</strong> section. For more information, see <a href="examine-values.html" class="a">Examine Values While Debugging</a>.</p><p><em>Before R2025a: The function call stack is shown at the
+                    top of the file and displays the functions in order, starting on the left with
+                    the first called script or function, and ending on the right with the current
+                    script or function in which MATLAB is paused.</em></p></section></section><section><h3 class="title" id="mw_aac9fccc-eee5-48d5-9c1e-36a598251c93">Add Breakpoints and Run Code</h3><p>If there are lines of code in your file that you want to pause at every time you
+                run your code, add breakpoints at those lines. You can add breakpoints interactively
+                by using the Editor and Live Editor, programmatically by using functions in the
+                Command Window, or both.</p><p>There are three types of breakpoints: standard, conditional, and error. To add a
+                standard breakpoint in the Editor or Live Editor, click the line number (or the gray
+                area if line numbers are not visible) to the left of the executable line where you
+                want to set the breakpoint. For example, click line number 3 in
+                    <code class="literal">plotRand.m</code> to add a breakpoint at that line.</p><div class="informalfigure"><div id="d126e54180" class="mediaobject"><p><img src="debugging_add_breakpoint.png" alt="plotRand script with a red breakpoint at line 3" height="139" width="377"></p></div></div><p>When you run the file, MATLAB pauses at the line of code indicated by the breakpoint. The line at
+                which MATLAB is paused does not run until after you continue running your
+                code.</p><p>For example, with the <code class="literal">plotRand.m</code> file open in the Editor, click
+                the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="run_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Run</strong> button in the <strong class="guilabel">Editor</strong> tab.
+                    MATLAB runs <code class="literal">plotRand.m</code> starting at line 1 and pauses
+                before running line 3.</p><p>When MATLAB pauses, multiple changes occur:</p>
+<div class="itemizedlist"><ul><li><p>The Debugger panel opens. You
+                            can use the Debugger panel to manage the breakpoints in all open
+                                MATLAB code files.<em> (since R2025a)</em></p></li><li><p>The <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="run_ts_16.png" alt="" height="16" width="16"></span></span>
+                            <strong class="guibutton">Run</strong> button in the <strong class="guilabel">Editor</strong> or
+                                <strong class="guilabel">Live Editor</strong> tab changes to a
+                                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                            <strong class="guibutton">Continue</strong> button.</p></li><li><p>The prompt in the Command Window changes to <code class="literal">K&gt;&gt;</code>
+                            indicating that MATLAB is in debug mode and that the keyboard is in
+                            control.</p></li><li><p>MATLAB indicates the line at which it is paused by using a green
+                            arrow and green highlighting.</p>
+<div class="informalfigure"><div id="d126e54259" class="mediaobject"><p class="listimage"><img src="debugging_add_breakpoint_paused.png" alt="plotRand script with a breakpoint at line 3 and a green arrow and green highlighting on line 3, indicating that MATLAB is paused at line 3" height="139" width="376"></p></div></div><p></p></li></ul></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>It is a good practice to avoid modifying a file while MATLAB is paused. Changes that are made while MATLAB is paused do not run until after MATLAB finished running the code and the code is rerun.</p></div><p>To continue running the code, click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Continue</strong> button. MATLAB continues running the file until it reaches the end of the file or a
+                breakpoint. To continue running the code line-by-line, on the
+                    <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab, click
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepforward.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span>
+                <strong class="guibutton">Step</strong>. MATLAB executes the current line at which it is paused and then pauses at the
+                next line.</p><p>For more information about the different types of breakpoints and how to set,
+                clear, and disable them, see <a href="set-breakpoints.html" class="a">Set Breakpoints</a>.</p></section><section><h3 class="title add_margin_0" id="mw_764055d2-a40c-42c3-8b3e-0197d4697713">Manage Breakpoints in Debugger Panel</h3><p><em>Since R2025a</em></p><p>You can use the Debugger panel to manage your breakpoints. By default, the
+                Debugger panel opens automatically when MATLAB enters debug mode. To open the Debugger panel manually, go to the
+                    <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab, and in the
+                    <strong class="guilabel">Analyze</strong> section, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="debugger_icon.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Debugger</strong>. You also can open the panel using the Open more
+                panels button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="meatballmenuui9a7875500214701883b733f8feb35ca6.png" alt="" height="16" width="16"></span></span> on a sidebar. To hide the Debugger panel, click
+                the Debugger <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_19_px"><img src="debugger_panel_sb_icon.png" alt="" height="19" width="19"></span></span> icon on the sidebar.</p><p>The <strong class="guilabel">Breakpoints</strong> section in the panel lists the breakpoints in
+                all your open MATLAB code files. The first four breakpoints in the section, <strong class="guilabel">Pause
+                    on Errors</strong>, <strong class="guilabel">Pause on Warnings</strong>, <strong class="guilabel">Pause on
+                    NaN or Inf</strong>, and <strong class="guilabel">Pause on Unsuppressed Output</strong> are
+                error breakpoints. When you enable one of these breakpoints, MATLAB pauses at any line in any file if the error condition specified
+                occurs. The remaining breakpoints are grouped by file.</p><p>For each breakpoint in the list, you can perform these actions:</p><div class="itemizedlist"><ul><li><p>Enable or disable breakpoints.</p></li><li><p>Clear breakpoints.</p></li><li><p>Go to breakpoints in file.</p></li><li><p>Set or modify breakpoint conditions.</p></li></ul></div><p>To disable opening the Debugger panel automatically, click the Debugger
+                Configuration <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="documents_actions.png" alt="" height="16" width="16"></span></span> button at the top left of the Debugger panel and
+                clear the <strong class="guimenuitem">Open Debugger panel automatically</strong> option.
+                Alternatively, you can disable this option in the <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Editor/Debugger</strong> page of the Settings window.</p><p>For more information about the different types of breakpoints and how to set,
+                clear, and disable them, see <a href="set-breakpoints.html" class="a">Set Breakpoints</a>.</p></section><section><h3 class="title" id="mw_f45ffd5d-e3ac-402f-a675-f93c7e7a2845">End Debugging Session</h3><p>After you identify a problem, to end the debugging session, go to the
+                    <strong class="guilabel">Editor</strong> or <strong class="guilabel">Live Editor</strong> tab and click
+                        <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="exit_debug_ts_16.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Stop</strong>. After you end debugging, the usual
+                    <code class="literal">&gt;&gt;</code> prompt in the Command Window reappears in place of the
+                    <code class="literal">K&gt;&gt;</code> prompt. You no longer can access the function call
+                stack.</p><p>To avoid confusion, make sure to end your debugging session every time you are
+                done debugging. If you make changes to a file and save it while debugging,
+                    MATLAB ends the debugging session. If MATLAB becomes unresponsive when it pauses, press <strong class="keycap">Ctrl+C</strong> to
+                end debugging.</p></section><section><h3 class="title" id="mw_6e6f2c7c-00b0-4262-8cf4-93f0e0c6191d">Debug Using Keyboard Shortcuts or Functions</h3><p>You can perform most debugging actions by using keyboard shortcuts or by using
+                functions in the Command Window. This table describes debugging actions and the
+                related keyboard shortcuts and functions that you can use to perform them.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th>Action</th><th>Description</th><th>Keyboard Shortcut</th><th>Function</th></tr></thead><tbody><tr><td><p>Continue <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="continue_ts_16.png" alt="" height="16" width="16"></span></span></p></td><td><p>Continue running file until the end of the file is reached
+                                    or until another breakpoint is encountered.</p></td><td><p><strong class="keycap">F5</strong></p></td><td><p><a href="../ref/dbcont.html"><code class="function">dbcont</code></a></p></td></tr><tr><td><p>Step <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepforward.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span></p></td><td><p>Run the current line of code.</p></td><td><p><strong class="keycap">F10</strong>
+                                </p><p>(<strong class="keycap">Shift+Command+O</strong> on <span class="entity">macOS</span> systems)</p></td><td><p><a href="../ref/dbstep.html"><code class="function">dbstep</code></a></p></td></tr><tr><td><p>Step In <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepin.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span></p></td><td><p>Run the current line of code, and, if the line contains a
+                                    call to another function, step into that
+                                function.</p></td><td><p><strong class="keycap">F11</strong></p><p>(<strong class="keycap">Shift+Command+I</strong>
+                                    on <span class="entity">macOS</span> systems)</p></td><td><p><code class="literal"><a href="../ref/dbstep.html"><code class="function">dbstep</code></a>
+                                        in</code></p></td></tr><tr><td><p>Step Out <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><object data="stepout.svg" type="image/svg+xml" style="aspect-ratio: 16 / 16" alt="" width="16"></object></span></span></p></td><td><p>After stepping in, run the rest of the called function,
+                                    leave the called function, and then pause.</p></td><td><p><strong class="keycap">Shift+F11</strong></p><p>(<strong class="keycap">Shift+Command+U</strong>
+                                    on <span class="entity">macOS</span> systems)</p></td><td><p><code class="literal"><a href="../ref/dbstep.html"><code class="function">dbstep</code></a>
+                                        out</code></p></td></tr><tr><td><p>Stop <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="exit_debug_ts_16.png" alt="" height="16" width="16"></span></span></p></td><td><p>End debugging session.</p></td><td><p><strong class="keycap">Shift+F5</strong></p></td><td><p><a href="../ref/dbquit.html"><code class="function">dbquit</code></a></p></td></tr><tr><td><p>Set breakpoint</p></td><td><p>Set a breakpoint at the current line, if no breakpoint
+                                    exists.</p></td><td><p><strong class="keycap">F12</strong></p></td><td><p><a href="../ref/dbstop.html"><code class="function">dbstop</code></a></p></td></tr><tr><td><p>Clear breakpoint</p></td><td><p>Clear the breakpoint at the current line.</p></td><td><p><strong class="keycap">F12</strong></p></td><td><p><a href="../ref/dbclear.html"><code class="function">dbclear</code></a></p></td></tr></tbody></table></div></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e54570">Topics</h3><ul class="list-unstyled"><li><a href="set-breakpoints.html" class="a">Set Breakpoints</a></li><li><a href="examine-values.html" class="a">Examine Values While Debugging</a></li><li><a href="edit-and-format-code.html" class="a">Edit and Format Code</a></li></ul>
+            <h3 id="d126e54579">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/115905-programming-structuring-code">Programming: Structuring Code (MathWorks Teaching Resources)</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

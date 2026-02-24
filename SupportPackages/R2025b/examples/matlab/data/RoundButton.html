@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html, body {
+  height: 100%;
+  text-align: center
+}
+
+button {
+  width: 100%;
+  height: 100%;
+  border-radius: 2em;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
+</style>
+
+   <script type="text/javascript">
+      function setup(htmlComponent) {         
+         htmlComponent.addEventListener("DataChanged", function(event) {
+            buttonElement = document.getElementById("roundButton");
+            buttonElement.style.backgroundColor = htmlComponent.Data.Color;
+            buttonElement.innerHTML = htmlComponent.Data.Text;
+            buttonElement.style.color = htmlComponent.Data.FontColor;
+         });
+         
+         document.getElementById("roundButton").addEventListener("click", function(event) {
+            htmlComponent.sendEventToMATLAB("ButtonClicked");
+         });
+      }
+   </script>
+</head>
+
+<body>
+  <button id="roundButton"></button><br/> 
+</body>
+	
+</html>

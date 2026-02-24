@@ -1,0 +1,635 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Configure Code Analyzer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../debugging-code.html",
+          "name": "Debugging and Analysis"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "debugging-code"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Configure Code Analyzer messages and add custom checks."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../debugging-code.html?s_tid=CRUX_lftnav" itemprop="url" id="bs6v6i4"><span itemprop="title">Debugging and Analysis</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Configure Code Analyzer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_360263d6-89f9-4f8b-9756-a0a03b45cb98" class="nav-link intrnllnk">Sample Configuration File</a></li><li class="nav-item"><a href="#mw_7e6e9281-ac33-4968-b1de-a08cf57231d7" class="nav-link intrnllnk">Configuration File Information</a></li><li class="nav-item"><a href="#mw_2ebd92d9-891f-4931-a5f0-143fe90827d4" class="nav-link intrnllnk">Base Configuration Settings</a></li><li class="nav-item"><a href="#mw_380e57db-22eb-45a7-81c5-91acb614fe35" class="nav-link intrnllnk">Add New Checks or Modify Existing Checks</a><ul class="nav"><li class="nav-item"><a href="#mw_38519ef1-c176-4933-b2e6-bd17e641681d" class="nav-link intrnllnk">Add Custom Checks for Existing Functions</a></li><li class="nav-item"><a href="#mw_4e13db08-c74c-4e9b-98fe-77ae206f265e" class="nav-link intrnllnk">Add Custom Checks for Specified Variable Names</a></li><li class="nav-item"><a href="#mw_22458c4d-5e43-4b14-9903-b2cebef989ce" class="nav-link intrnllnk">Configure Maximum Input and Output Arguments</a></li><li class="nav-item"><a href="#mw_9facd89f-c7fa-425c-8ab7-4f52f3b4c9bc" class="nav-link intrnllnk">Configure Maximum Characters per Line, Lines in a Function, and Nested Control Statements</a></li><li class="nav-item"><a href="#mw_4e23af61-0222-4b3b-b7a0-96fc77aa7271" class="nav-link intrnllnk">Modify Existing Code Analyzer Checks</a></li></ul></li><li class="nav-item"><a href="#mw_3c1e543d-e7f8-4c80-bdd6-8a4a39e4ca1b" class="nav-link intrnllnk">Configure Naming Conventions</a><ul class="nav"><li class="nav-item"><a href="#mw_4d5f2c43-c4aa-4785-8c0d-f76853298510" class="nav-link intrnllnk">Name Length</a></li><li class="nav-item"><a href="#mw_fd9a9bff-b800-420a-9d01-4a40217be202" class="nav-link intrnllnk">Prefixes, Suffixes, and Phrases</a></li><li class="nav-item"><a href="#mw_3a6ded62-a937-4924-8a6a-b7795c249b04" class="nav-link intrnllnk">Casing Checks</a></li><li class="nav-item"><a href="#mw_433bf475-0f51-4538-bcd2-5f80a998dbca" class="nav-link intrnllnk">Regular Expression Checks</a></li></ul></li><li class="nav-item"><a href="#d126e18459" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=debugging-code&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=debugging-code&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_005f02d6-e84a-4a0a-8f02-b39bfebe2798">Configure Code Analyzer</h2><p>The Code Analyzer checks code and provides information about errors and warnings. To
+            configure the Code Analyzer, place a file named
+                <code class="literal">codeAnalyzerConfiguration.json</code> in a <code class="literal">resources</code>
+            folder. In this configuration file, you can add custom checks and modify existing checks
+            of the Code Analyzer. Configure the Code Analyzer to enable or disable messages,
+            customize message text, or change the severity of the displayed message.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Changing the severity of a Code Analyzer message does not affect execution. Code
+                is still executed even if the severity of a check has been set to
+                    <code class="literal">error</code>. Syntax errors still prevent execution even if their
+                severity is changed or the message disabled.</p></div><div class="informalfigure"><div id="d126e17302" class="mediaobject"><p><img src="codeanalyzerconfigfile.png" alt="Configuration file in a resources folder" height="93" width="348"></p></div></div><p>This file configures the Code Analyzer checks performed for the
+                <code class="literal">resources</code> folder's parent folder and its subfolders. The
+            configuration is cached at the start of a MATLAB<sup>&#x00AE;</sup> session. The MATLAB Editor does not automatically get the latest configuration when you add a
+            new configuration file to a <code class="literal">resources</code> folder or update an existing
+            file during a MATLAB session. To refresh the cache, call <a href="../ref/matlab.codeanalysis.refreshconfiguration.html"><code class="function">matlab.codeanalysis.refreshConfiguration</code></a>.</p><p>You can verify that the file is a valid JSON file using the <a href="../ref/matlab.codeanalysis.validateconfiguration.html"><code class="function">matlab.codeanalysis.validateConfiguration</code></a> function.</p><section><h3 class="title" id="mw_360263d6-89f9-4f8b-9756-a0a03b45cb98">Sample Configuration File</h3><p>This code shows the contents of a sample configuration file. The
+                    <code class="literal">codeAnalyzerConfiguration.json</code> file uses JSON format, and
+                    <code class="literal">//</code> designates the text that follows as a comment.</p><div class="code_responsive"><pre class="programlisting">{
+    // Configuration File Information
+
+    "name": "Acme Corp Guideline",
+    "description": "Internal Acme Coding Guideline",
+    "author" : "Alex",
+    "schemaVersion" : "1.1.0",
+    "guidelineVersion" : "1.0.0",
+
+
+    // Base Configuration Settings
+    // For better consistency, use "factory" for the configuration at the root of your codebase,
+    // and use "closestParentFolder" for configurations nested deeper in your codebase
+
+    "baseConfiguration" : "closestParentFolder",
+
+
+    // New and Modified Checks
+
+    "checks":
+    {
+        // ======================================
+        // Enable additional Code Analyzer checks
+        // ======================================
+        "MyFunctionCheck" :
+        {
+            // Disallow use of evalin function
+            "rule":
+            {
+                "template": "functionCall",
+                "functionNames" : "evalin"
+            },
+            "severity" : "error",
+            "messageText" : "Do not use evalin.",
+            "enabled" : true
+        },
+        "MyVariableCheck" :
+        {
+            "rule":
+            {
+                "template": "variableName",
+                "variableNames" : ["size", "error", "length", "max", "isa", "nargin" , "numel" , "nargout" ,"isequal" , "zeros" , "true" ,"false" ,"fullfile" ,"find", "get"]
+            },
+            "severity" : "warning",
+            "messageText" : "Avoid using function names for variables.",
+            "enabled" : true
+        },
+        "LLMNC" :
+        {
+            // Disallow very long lines (too many characters)
+            "severity" : "error",
+            "limit" : 1000,
+            "enabled": true
+        },
+        "FCNOL" :
+        {
+            // Disallow too many outputs
+            "severity" : "error",
+            "messageText": "Too many outputs.",
+            "limit" : 15,
+            "enabled": true
+        },
+
+        // =================================================
+        // Increase severity of default Code Analyzer checks
+        // =================================================
+        "GVMIS" :
+        {
+            // Do not use global variables
+            "severity" : "error"
+        },
+        "EVLCS" :
+        {
+            // "eval" family of functions is slow and unclear
+            "severity" : "error"
+        },
+        "NOANS" :
+        {
+            // Do not use "ans" as a variable
+            "severity" : "error"
+        },
+        "CHAIN" :
+        {
+            // Chained logical operations like "a &gt; b &gt; c" are usually a bug
+            //     For scalars, it should be: "(a &gt; b) &amp;&amp; (b &gt; c)"
+            //     For arrays, it should be: "(a &gt; b) &amp; (b &gt; c)"
+            "severity" : "error"
+        }
+    },
+
+    // Naming Conventions
+
+    "naming": {
+        // ============================================================
+        // Enable naming conventions for different types of identifiers
+        // ============================================================
+        "property" : {
+            "casing" : "UPPERCASE_WITH_UNDERSCORES",
+            "maxLength" : 12
+        },
+        "function" : {
+            "casing" : "lowerCamelCase",
+            "requiredPrefix": ["init", "initialize", "is", "calc", "find"],
+            "minLength" : 4
+        },
+        "class" : {
+            "casing" : "UpperCamelCase",
+            "requiredPrefix": ["I", "Abstract", "UI"]
+        },
+        "method" : {
+            "casing" : ["lowercase","lowerCamelCase"],
+            "regularExpression" : "^([a-z]+|[a-z]+([A-Z][a-z0-9]*)*)$"
+        },
+        "localFunction" : {
+            "casing" : "lowerCamelCase",
+            "minLength" : 4
+        },
+        "nestedFunction" : {
+            "casing" : "lowerCamelCase",
+            "requiredPrefix": ["nested" , "nest" ],
+            "minLength" : 4
+        },
+        "event" : {
+            "casing" : "UpperCamelCase",
+            "requiredSuffix" : "Event"
+        },
+        "enumeration" : {
+            "casing" : "UPPERCASE",
+            "regularExpression" : "^([A-Z]+)$"
+        },
+        "variable" : {
+            "casing" : ["lowercase","lowerCamelCase"],
+            "maxLength" : 12
+        }
+    }
+}</pre></div></section><section><h3 class="title" id="mw_7e6e9281-ac33-4968-b1de-a08cf57231d7">Configuration File Information</h3><p>You can optionally include the following properties in the configuration file.
+                These properties do not affect the configuration. Each property accepts a string
+                containing the relevant information. </p><div class="itemizedlist"><ul><li><p><code class="literal">"name"</code> &#8212; Name of the configuration file</p></li><li><p><code class="literal">"description"</code> &#8212; Description of the configuration
+                        file</p></li><li><p><code class="literal">"author"</code> &#8212; Author name</p></li><li><p><code class="literal">"schemaVersion"</code> &#8212; Schema version in the format
+                            <code class="literal">"1.2.3"</code></p></li><li><p><code class="literal">"guidelineVersion"</code> &#8212; Guideline version in the format
+                            <code class="literal">"1.2.3"</code></p></li></ul></div></section><section><h3 class="title" id="mw_2ebd92d9-891f-4931-a5f0-143fe90827d4">Base Configuration Settings</h3><p>A configuration file can inherit the rules of a configuration file contained in
+                the <code class="literal">resources</code> folder of a parent folder. The property
+                    <code class="literal">"baseConfiguration"</code> specifies the base configuration to use
+                and accepts these values:</p><div class="itemizedlist"><ul><li><p><code class="literal">"closestParentFolder"</code> (default) &#8212; Use the configuration
+                        file found in the closest parent folder. If
+                            <code class="literal">"baseConfiguration"</code> is not defined, then the
+                            <code class="literal">"closestParentFolder"</code> setting is used by
+                        default.</p></li><li><p><code class="literal">"factory"</code> &#8212; Use the standard MATLAB Code Analyzer
+                        configuration.</p></li></ul></div><p>For more consistent Code Analyzer behavior, set
+                    <code class="literal">"baseConfiguration"</code> to <code class="literal">"factory"</code> for a
+                configuration file at the root of your code base, and set
+                    <code class="literal">"baseConfiguration"</code> to
+                    <code class="literal">"closestParentFolder"</code> for configuration files nested deeper
+                in your code base.</p></section><section><h3 class="title" id="mw_380e57db-22eb-45a7-81c5-91acb614fe35">Add New Checks or Modify Existing Checks</h3><p>You can configure the Code Analyzer add new checks or modify existing checks. To
+                configure checks, add a <code class="literal">"checks"</code> property containing a JSON array
+                where each element corresponds to a specific check being added or modified. Each
+                element must have a check ID and properties depending on what type of check it
+                is.</p><section><h4 class="title" id="mw_38519ef1-c176-4933-b2e6-bd17e641681d">Add Custom Checks for Existing Functions</h4><p>You can configure the Code Analyzer to display a check when specific functions
+                    are used. To create a new check, you must assign a check ID that is a valid
+                    MATLAB identifier. For example, define <code class="literal">"MyFunctionCheck"</code> to
+                    check for an <code class="literal">evalin</code> function call.</p><p>The <code class="literal">"MyFunctionCheck"</code> check has these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Property Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"rule"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"rule": 
+{
+    "template": "functionCall",
+    "functionNames" : "evalin" 
+}</pre></div>
+                                </td><td><p>Define the rules for the custom check. The
+                                            <code class="literal">"rule"</code> field contains a JSON array
+                                        containing these fields:</p><div class="itemizedlist"><ul><li><p><code class="literal">"template"</code> &#8212; Define the
+                                                template as <code class="literal">"functionCall"</code> so the
+                                                message is generated when the specified functions
+                                                are called.</p></li><li><p><code class="literal">"functionNames"</code> &#8212; Define the
+                                                names of the functions that trigger the custom
+                                                check. Specify a string or string array containing
+                                                the function names.</p></li></ul></div></td></tr><tr><td><code class="literal">"messageText"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"messageText" : "Do not use evalin."</pre></div>
+                                </td><td>Specify the text displayed in the Code Analyzer
+                                    message.</td></tr><tr><td><code class="literal">"severity"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"severity" : "error"</pre></div>
+                                </td><td>Specify the check severity as <code class="literal">"warning"</code>,
+                                        <code class="literal">"error"</code>, or <code class="literal">"info"</code>.
+                                    Messages that have been changed to <code class="literal">"error"</code> do
+                                    not prevent execution.</td></tr><tr><td><code class="literal">"enabled"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"enabled": true</pre></div>
+                                </td><td>Specify whether this check is enabled in the MATLAB Editor.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_4e13db08-c74c-4e9b-98fe-77ae206f265e">Add Custom Checks for Specified Variable Names</h4><p>You can configure the Code Analyzer to display a check when specific variable
+                    names are used. To create a new check, you must assign a check ID that is a
+                    valid MATLAB identifier. For example, define
+                        <code class="literal">"MyVariableCheck"</code> to check for variables with the name
+                        <code class="literal">size</code>, <code class="literal">error</code>, or
+                        <code class="literal">length</code>.</p><p>The <code class="literal">"MyVariableCheck"</code> check has these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Property Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"rule"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"rule": 
+{
+    "template": "variableName",
+    "variableNames" : ["size", "error", "length"] 
+}</pre></div>
+                                </td><td><p>Define the rules for the custom check. The
+                                            <code class="literal">"rule"</code> field contains a JSON array
+                                        containing these fields:</p><div class="itemizedlist"><ul><li><p><code class="literal">"template"</code> &#8212; Define the
+                                                template as <code class="literal">"variableName"</code> so the
+                                                message is generated when the specified variable
+                                                names are used.</p></li><li><p><code class="literal">"variableNames"</code> &#8212; Define the
+                                                variable names that trigger the custom check.
+                                                Specify a string or string array containing the
+                                                variable names.</p></li></ul></div></td></tr><tr><td><code class="literal">"messageText"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"messageText" : "Avoid using function names for variables."</pre></div>
+                                </td><td>Specify the text displayed in the Code Analyzer
+                                    message.</td></tr><tr><td><code class="literal">"severity"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"severity" : "warning"</pre></div>
+                                </td><td>Specify the check severity as <code class="literal">"warning"</code>,
+                                        <code class="literal">"error"</code>, or <code class="literal">"info"</code>.
+                                    Messages that have been changed to <code class="literal">"error"</code> do
+                                    not prevent execution.</td></tr><tr><td><code class="literal">"enabled"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"enabled": true</pre></div>
+                                </td><td>Specify whether this check is enabled in the MATLAB Editor.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_22458c4d-5e43-4b14-9903-b2cebef989ce">Configure Maximum Input and Output Arguments</h4><p>You can configure the Code Analyzer to limit the number of input and output
+                    arguments for a function. Use the check ID <code class="literal">"FCNIL"</code> to specify
+                    the maximum number of input arguments for a function. Use the check ID
+                        <code class="literal">"FCNOL"</code> to specify the maximum number of output
+                    arguments.</p><p>The <code class="literal">"FCNIL"</code> and <code class="literal">"FCNOL"</code> checks have
+                    these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Property Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"limit"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"limit" : 10</pre></div>
+                                </td><td>Specify the maximum number of arguments.</td></tr><tr><td><code class="literal">"messageText"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"messageText" : "Too many outputs."</pre></div>
+                                </td><td>Specify the text displayed in the Code Analyzer
+                                    message.</td></tr><tr><td><code class="literal">"severity"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"severity" : "error"</pre></div>
+                                </td><td>Specify the check severity as <code class="literal">"warning"</code>,
+                                        <code class="literal">"error"</code>, or <code class="literal">"info"</code>.
+                                    Messages that have been changed to <code class="literal">"error"</code> do
+                                    not prevent execution.</td></tr><tr><td><code class="literal">"enabled"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"enabled": true</pre></div>
+                                </td><td>Specify whether this check is enabled in the MATLAB Editor.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_9facd89f-c7fa-425c-8ab7-4f52f3b4c9bc">Configure Maximum Characters per Line, Lines in a Function, and Nested                     Control Statements</h4><p>You can configure the maximum characters per line, lines of code in a
+                    function, and nested control statements. Use the check ID
+                        <code class="literal">"LLMNC"</code> to specify the maximum number of characters
+                    (including white-space characters) in a line. Use the check ID
+                        <code class="literal">"FCNLL"</code> to specify the maximum number of lines of code
+                    for a function. Use the check ID <code class="literal">"MNCSN"</code> to specify the
+                    maximum number of control statements, such as <code class="literal">for</code> and
+                        <code class="literal">if</code>, that can be nested.</p><p>The <code class="literal">"LLMNC"</code>, <code class="literal">"FCNLL"</code>, and
+                        <code class="literal">"MNCSN"</code> checks have these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Property Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"limit"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"limit" : 100</pre></div>
+                                </td><td>Specify the maximum number of characters in a line, lines of
+                                    code in a function, or number of nested control
+                                    statements.</td></tr><tr><td><code class="literal">"messageText"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"messageText" : "Too many outputs."</pre></div>
+                                </td><td>Specify the text displayed in the Code Analyzer
+                                    message.</td></tr><tr><td><code class="literal">"severity"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"severity" : "error"</pre></div>
+                                </td><td>Specify the check severity as <code class="literal">"warning"</code>,
+                                        <code class="literal">"error"</code>, or <code class="literal">"info"</code>.
+                                    Messages that have been changed to <code class="literal">"error"</code> do
+                                    not prevent execution.</td></tr><tr><td><code class="literal">"enabled"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"enabled": true</pre></div>
+                                </td><td>Specify whether this check is enabled in the MATLAB Editor.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_4e23af61-0222-4b3b-b7a0-96fc77aa7271">Modify Existing Code Analyzer Checks</h4><p>You can use the configuration file to modify existing Code Analyzer checks.
+                    Use the check ID you want to modify as the check name. Then, specify the
+                    properties you want to modify and their new values. For example, to disable a
+                    check in the Editor, specify <code class="literal">"enabled" : false</code>.</p><p>To identify the check ID for checks in a given file, use <a href="../ref/codeissues.html" class="a"><code class="olink">codeIssues</code></a>. For a
+                    full list of configurable checks, see <a href="index-of-code-analyzer-checks.html" class="a">Index of Code Analyzer Checks</a>.</p><p> The built-in Code Analyzer checks have these properties.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Property Name</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"messageText"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"messageText" : "Avoid growing array in a loop"</pre></div>
+                                </td><td>Specify the text displayed in the Code Analyzer
+                                    message.</td></tr><tr><td><code class="literal">"severity"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"severity" : "info"</pre></div>
+                                </td><td>Specify the check severity as <code class="literal">"warning"</code>,
+                                        <code class="literal">"error"</code>, or <code class="literal">"info"</code>.
+                                    Messages that have been changed to <code class="literal">"error"</code> do
+                                    not prevent execution.</td></tr><tr><td><code class="literal">"enabled"</code> (optional)</td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"enabled" : true</pre></div>
+                                </td><td>Specify whether this check is enabled in the MATLAB Editor.</td></tr></tbody></table></div></section></section><section><h3 class="title" id="mw_3c1e543d-e7f8-4c80-bdd6-8a4a39e4ca1b">Configure Naming Conventions</h3><p>You can configure the Code Analyzer to set naming conventions for different types
+                of MATLAB identifiers, such as variables or functions. The Code Analyzer displays a
+                check when a name does not match the configured naming conventions. To configure
+                naming conditions, add a <code class="literal">"naming"</code> property containing a JSON
+                array where each element corresponds to a type of MATLAB identifier. Each element
+                must have a MATLAB identifier type and properties corresponding to its
+                conventions.</p><p>The types of MATLAB identifiers that you can configure are:</p><div class="itemizedlist"><ul><li><p><code class="literal">"variable"</code></p></li><li><p><code class="literal">"function"</code></p></li><li><p><code class="literal">"localFunction"</code></p></li><li><p><code class="literal">"nestedFunction"</code></p></li><li><p><code class="literal">"class"</code></p></li><li><p><code class="literal">"property"</code></p></li><li><p><code class="literal">"method"</code></p></li><li><p><code class="literal">"event"</code></p></li><li><p><code class="literal">"enumeration"</code></p></li></ul></div><p>Each configured identifier can have one or more properties corresponding to the
+                naming conventions being applied.</p><section><h4 class="title" id="mw_4d5f2c43-c4aa-4785-8c0d-f76853298510">Name Length</h4><p>You can configure a minimum or maximum name length for identifiers. The Code
+                    Analyzer displays a message if an identifier name has fewer characters than the
+                    minimum or more characters than the maximum.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Check</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"maxLength"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"maxLength" : 12</pre></div>
+                                </td><td>Specify the maximum number of characters for an identifier
+                                    name.</td></tr><tr><td><code class="literal">"minLength"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"minLength" : 4</pre></div>
+                                </td><td>Specify the minimum number of characters for an identifier
+                                    name.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_fd9a9bff-b800-420a-9d01-4a40217be202">Prefixes, Suffixes, and Phrases</h4><p>You can configure required or disallowed prefixes and suffixes for
+                    identifiers. The Code Analyzer displays a message if an identifier does not
+                    follow the naming convention. You can also configure disallowed phrases, and the
+                    Code Analyzer displays a message if it finds the phrases anywhere in an
+                    identifier name.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Check</th><th>Example</th><th>Description</th></tr></thead><tbody><tr><td><code class="literal">"requiredPrefix"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"requiredPrefix" : ["prop","property"]</pre></div>
+                                </td><td>Specify the prefix or prefixes that identifier names must
+                                    begin with, as a string scalar or array. </td></tr><tr><td><code class="literal">"disallowedPrefix"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"disallowedPrefix" : ["get","set"]</pre></div>
+                                </td><td>Specify the prefix or prefixes that identifier names must not
+                                    begin with, as a string scalar or array.</td></tr><tr><td><code class="literal">"requiredSuffix"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"requiredSuffix" : "orgABC"​</pre></div>
+                                </td><td>Specify the suffix or suffixes that identifier names must end
+                                    with, as a string scalar or array.</td></tr><tr><td><code class="literal">"disallowedSuffix"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"disallowedSuffix" : ["event", "EVENT"]​</pre></div>
+                                </td><td>Specify the suffix or suffixes that identifier names must not
+                                    end with, as a string scalar or array.</td></tr><tr><td><code class="literal">"disallowedPhrase"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"disallowedPhrase" : ["enum", "ENUM", "class", "_day"]</pre></div>
+                                </td><td>Specify the phrase or phrases that identifier names must not
+                                    contain, as a string scalar or array.</td></tr></tbody></table></div></section><section><h4 class="title" id="mw_3a6ded62-a937-4924-8a6a-b7795c249b04">Casing Checks</h4><p>You can configure casing so that identifiers conform to one or more casing
+                    standards. Specify a <code class="literal">"casing"</code> property containing a string
+                    scalar or array where each element is a casing standard. If you specify more
+                    than one casing standard, then identifiers must satisfy at least one of
+                    them.</p><div class="code_responsive"><pre class="programlisting">"function" : 
+{
+    "casing" : ["UPPERCASE_WITH_UNDERSCORES", "UpperCamelCase"]
+}</pre></div><p>Prefixes that match the <code class="literal">requiredPrefix</code> property and
+                    suffixes that match the <code class="literal">requiredSuffix</code> property are not
+                    included in casing checks. For example, the following check specifies a required
+                    prefix as well as upper camel case. In this check, the prefix is ignored when
+                    checking if the name adheres to the upper camel case rule, so a name like
+                        <code class="literal">isEnabled</code> is accepted.</p><div class="code_responsive"><pre class="programlisting">"variable":
+{
+  "casing": UpperCamelCase,
+  "requiredPrefix": ["is", "should", "has", "can", "did", "will"]
+}</pre></div><p>This table shows the values you can specify when setting casing
+                    standards.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Casing</th><th>Example</th><th>Requirements</th></tr></thead><tbody><tr><td><code class="literal">"lowercase"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "lowercase"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>Contain all lowercase characters.</p></li><li><p>Contain only characters and digits.</p></li></ul></div>
+                                </td></tr><tr><td><code class="literal">"UPPERCASE"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "UPPERCASE"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>Contain all uppercase characters.</p></li><li><p>Contain only characters and digits.</p></li></ul></div>
+                                </td></tr><tr><td><code class="literal">"lowerCamelCase"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "lowerCamelCase"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>First letter must be lowercase.</p></li><li><p>Subsequent words start with uppercase
+                                                letter.</p></li><li><p>Two consecutive letters can be uppercase.</p></li><li><p>Contain only characters and digits.</p></li></ul></div>
+                                </td></tr><tr><td><code class="literal">"UpperCamelCase"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "UpperCamelCase"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>First letter must be uppercase.</p></li><li><p>Subsequent words start with uppercase
+                                                letter.</p></li><li><p>Two consecutive letters can be uppercase.</p></li><li><p>Contain only characters and digits.</p></li></ul></div>
+                                </td></tr><tr><td><code class="literal">"lowercase_with_underscores"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "lowercase_with_underscores"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>All characters must be either lowercase letters,
+                                                digits, or underscores.</p></li><li><p>No consecutive underscores.</p></li></ul></div>
+                                </td></tr><tr><td><code class="literal">"UPPERCASE_WITH_UNDERSCORES"</code></td><td>
+                                    <div class="code_responsive"><pre class="programlisting">"casing" : "UPPERCASE_WITH_UNDERSCORES"</pre></div>
+                                </td><td>
+                                    <div class="itemizedlist"><ul><li><p>All characters must be either uppercase letters,
+                                                digits, or underscores.</p></li><li><p>No consecutive underscores.</p></li></ul></div>
+                                </td></tr></tbody></table></div></section><section><h4 class="title" id="mw_433bf475-0f51-4538-bcd2-5f80a998dbca">Regular Expression Checks</h4><p>You can create a custom naming convention check by specifying a regular
+                    expression. The Code Analyzer displays a message if the identifier name does not
+                    fully match the specified regular expression. Required prefixes and suffixes are
+                    not excluded from this check. Each identifier type can have only one regular
+                    expression check.</p><p>For more information on constructing regular expressions, see <a href="../matlab_prog/regular-expressions.html#bsei1vj-1" class="a">Steps for Building Expressions</a>.</p><p>This table shows regular expressions for the casing options listed in <a href="configure-code-analyzer.html#mw_3a6ded62-a937-4924-8a6a-b7795c249b04" class="intrnllnk">Casing Checks</a>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th>Example Expression</th><th>Description</th><th>Matching Examples</th><th>Non-Matching Examples</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[a-z0-9]+$"</pre></div>
+                                </td><td>Lowercase</td><td><code class="literal">example</code>, <code class="literal">examplename</code>,
+                                        <code class="literal">example123</code>,
+                                    <code class="literal">123example</code></td><td><code class="literal">EXAMPLE</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example_123</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[A-Z0-9]+$"</pre></div>
+                                </td><td>Uppercase</td><td><code class="literal">EXAMPLE</code>, <code class="literal">EXAMPLENAME</code>,
+                                        <code class="literal">EXAMPLE123</code>,
+                                    <code class="literal">123EXAMPLE</code></td><td><code class="literal">Example</code>, <code class="literal">ExampleName</code>,
+                                        <code class="literal">EXAMPLE_123</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[a-z0-9][a-zA-Z0-9]*$"</pre></div>
+                                </td><td>Lower camel case</td><td><code class="literal">example</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example123</code>,
+                                        <code class="literal">123ExampleName</code>,
+                                        <code class="literal">123exampleName</code>,
+                                        <code class="literal">exampleNAME</code></td><td><code class="literal">Example</code>, <code class="literal">EXAMPLE</code>,
+                                        <code class="literal">ExampleName</code>,
+                                        <code class="literal">exampleName_123</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[A-Z0-9][a-zA-Z0-9]*$"</pre></div>
+                                </td><td>Upper camel case</td><td><code class="literal">Example</code>, <code class="literal">ExampleName</code>,
+                                        <code class="literal">Example123</code>,
+                                        <code class="literal">123ExampleName</code>,
+                                        <code class="literal">123exampleName</code>,
+                                        <code class="literal">ExampleNAme</code></td><td><code class="literal">example</code>, <code class="literal">eXAMPLE</code>,
+                                        <code class="literal">exampleName</code>,
+                                        <code class="literal">ExampleName_123</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^(?!.*__)[a-z0-9_]+$"</pre></div>
+                                </td><td>Lowercase with underscores</td><td><code class="literal">example</code>, <code class="literal">examplename</code>,
+                                        <code class="literal">example_name</code>,
+                                        <code class="literal">example_123</code>,
+                                        <code class="literal">123_example</code>,
+                                        <code class="literal">_example_name</code>,
+                                        <code class="literal">example_name_</code></td><td><code class="literal">EXAMPLE</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example__123</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^(?!.*__)[A-Z0-9_]+$"</pre></div>
+                                </td><td>Uppercase with underscores</td><td><code class="literal">EXAMPLE</code>, <code class="literal">EXAMPLENAME</code>,
+                                        <code class="literal">EXAMPLE_NAME</code>,
+                                        <code class="literal">EXAMPLE_123</code>,
+                                        <code class="literal">123_EXAMPLE</code>,
+                                        <code class="literal">_EXAMPLE_NAME</code>,
+                                        <code class="literal">EXAMPLE_NAME_</code></td><td><code class="literal">Example</code>, <code class="literal">EXAMPLEnAME</code>,
+                                        <code class="literal">EXAMPLE__123</code></td></tr></tbody></table></div><p>This table shows additional regular expression examples for naming
+                    conventions.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="25%"><col class="tcol3" width="25%"><col class="tcol4" width="25%"></colgroup><thead><tr><th>Example Expression</th><th>Description</th><th>Matching Examples</th><th>Non-Matching Examples</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[a-z][a-z0-9]*$"</pre></div>
+                                </td><td>Match strings starting with a lowercase letter, followed by
+                                    lowercase letters or digits. First character cannot be a
+                                    digit.</td><td><code class="literal">example</code>, <code class="literal">examplename</code>,
+                                        <code class="literal">example123</code></td><td><code class="literal">EXAMPLE</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example_123</code>,
+                                        <code class="literal">123example</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[A-Z][A-Z0-9]*$"</pre></div>
+                                </td><td>Match strings starting with an uppercase letter, followed by
+                                    uppercase letters or digits. First character cannot be a
+                                    digit.</td><td><code class="literal">EXAMPLE</code>, <code class="literal">EXAMPLENAME</code>,
+                                        <code class="literal">EXAMPLE123</code></td><td><code class="literal">Example</code>, <code class="literal">ExampleName</code>,
+                                        <code class="literal">EXAMPLE_123</code>,
+                                        <code class="literal">123EXAMPLE</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[a-z][a-zA-Z0-9]*$"</pre></div>
+                                </td><td>Match strings starting with a lowercase letter, followed by
+                                    any combination of uppercase and lowercase letters and digits.
+                                    First character cannot be a digit.</td><td><code class="literal">example</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example123</code>,
+                                        <code class="literal">exampleNAME</code></td><td><code class="literal">Example</code>, <code class="literal">EXAMPLE</code>,
+                                        <code class="literal">ExampleName</code>,
+                                        <code class="literal">exampleName_123</code>,
+                                        <code class="literal">123ExampleName</code>,
+                                        <code class="literal">123exampleName</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[a-z](?:[a-z0-9]+[A-Z]?[a-z0-9]*)*$"</pre></div>
+                                </td><td>Match strings starting with a lowercase letter. No two
+                                    consecutive characters are uppercase.</td><td><code class="literal">example</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example123</code></td><td><code class="literal">Example</code>, <code class="literal">EXAMPLE</code>,
+                                        <code class="literal">ExampleName</code>,
+                                        <code class="literal">exampleName_123</code>,
+                                        <code class="literal">123ExampleName</code>,
+                                        <code class="literal">123exampleName</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^[A-Z](?:[a-z0-9]+[A-Z]?[a-z0-9]*)*$"</pre></div>
+                                </td><td>Match strings starting with an uppercase letter. No two
+                                    consecutive characters are uppercase.</td><td><code class="literal">Example</code>, <code class="literal">ExampleName</code>,
+                                        <code class="literal">Example123</code></td><td><code class="literal">example</code>, <code class="literal">eXAMPLE</code>,
+                                        <code class="literal">exampleName</code>,
+                                        <code class="literal">ExampleName_123</code>,
+                                        <code class="literal">123ExampleName</code>,
+                                        <code class="literal">123exampleName</code>,
+                                        <code class="literal">ExampleNAme</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^(?!_)(?!.*__)[a-z0-9_]+(?&lt;!_)$"</pre></div>
+                                </td><td>Match strings composed of lowercase letters, digits, and
+                                    underscores, ensuring that the string does not start or end with
+                                    an underscore and contains no consecutive underscores.</td><td><code class="literal">example</code>, <code class="literal">examplename</code>,
+                                        <code class="literal">example_name</code>,
+                                        <code class="literal">example_123</code>,
+                                        <code class="literal">123_example</code></td><td><code class="literal">EXAMPLE</code>, <code class="literal">exampleName</code>,
+                                        <code class="literal">example__123</code>,
+                                        <code class="literal">_example_name</code>,
+                                        <code class="literal">example_name_</code></td></tr><tr><td>
+                                    <div class="code_responsive"><pre class="programlisting">"^(?!_)(?!.*__)[A-Z0-9_]+(?&lt;!_)$"</pre></div>
+                                </td><td>Match strings composed of uppercase letters, digits, and
+                                    underscores, ensuring that the string does not start or end with
+                                    an underscore and contains no consecutive underscores.</td><td><code class="literal">EXAMPLE</code>, <code class="literal">EXAMPLENAME</code>,
+                                        <code class="literal">EXAMPLE_NAME</code>,
+                                        <code class="literal">EXAMPLE_123</code>,
+                                        <code class="literal">123_EXAMPLE</code></td><td><code class="literal">Example</code>, <code class="literal">EXAMPLEnAME</code>,
+                                        <code class="literal">EXAMPLE__123</code>,
+                                        <code class="literal">_EXAMPLE_NAME</code>,
+                                        <code class="literal">EXAMPLE_NAME_</code></td></tr></tbody></table></div></section></section>
+            <h2 id="d126e18459">See Also</h2><h3>Apps</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/codeanalyzer-app.html"><span itemprop="name"><span class="app">Code
+                        Analyzer</span></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/codeissues.html"><span itemprop="name"><code class="function">codeIssues</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.codeanalysis.validateconfiguration.html"><span itemprop="name"><code class="function">matlab.codeanalysis.validateConfiguration</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.codeanalysis.refreshconfiguration.html"><span itemprop="name"><code class="function">matlab.codeanalysis.refreshConfiguration</code></span></a></span></li></ul>
+            <h3 id="d126e18483">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/check-code-for-errors-and-warnings.html" class="a">Check Code for Errors and Warnings Using the Code Analyzer</a></li><li><a href="../matlab_prog/matlab-code-analyzer-report.html" class="a">MATLAB Code Analyzer Report</a></li><li><a href="index-of-code-analyzer-checks.html" class="a">Index of Code Analyzer Checks</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

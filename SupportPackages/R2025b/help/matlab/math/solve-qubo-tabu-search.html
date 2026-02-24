@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tabu Search Algorithm</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../qubo.html",
+          "name": "Quadratic Unconstrained Binary Optimization (QUBO)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "qubo"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn about the tabu search heuristic algorithm used to solve QUBO problems."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../qubo.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_179b79ec-0389-46ef-988e-3f9c7f9a5981"><span itemprop="title">Quadratic Unconstrained Binary Optimization (QUBO)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Tabu Search Algorithm</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_e12c97da-6de6-431f-be57-9da2b8a5a87e" class="nav-link intrnllnk">Change of Variables</a></li><li class="nav-item"><a href="#mw_0939619f-8c45-4370-83e6-8d9e1cc94e82" class="nav-link intrnllnk">Algorithm Steps</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e69806" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_4d462968-99ba-4059-ad62-3cc53824bd3b">Tabu Search Algorithm</h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><p>To solve a combinatorial optimization problem formulated as a QUBO problem, call the
+        <code class="function">solve</code> function on the QUBO problem. The <code class="function">solve</code>
+      function internally uses the tabu search algorithm, as described in Palubeckis <a href="solve-qubo-tabu-search.html#mw_86be547d-366c-4ed5-bc8b-93ae2195eb09" class="intrnllnk">[1]</a>. For background
+      information on QUBO problems, see <a href="what-is-a-qubo.html" class="a">What Is a QUBO Problem?</a></p><section><h3 class="title" id="mw_e12c97da-6de6-431f-be57-9da2b8a5a87e">Change of Variables</h3><p>For a binary vector <em class="varname">x</em>, a QUBO objective function has the form</p><div id="d126e69547" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-21px" display="block"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msub><mi>Q</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><msub><mi>x</mi><mi>i</mi></msub><msub><mi>x</mi><mi>j</mi></msub></mrow></mstyle><mo>+</mo><mstyle displaystyle="true"><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mrow><msub><mi>c</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub></mrow></mstyle><mo>+</mo><mi>d</mi><mo>.</mo></mrow></mstyle></mrow></math></p></div></div><p>The algorithm begins by choosing a random binary vector <em class="varname">x</em>, and then
+        changing the problem to a binary vector <em class="varname">y</em> that has all zero components.
+        The coefficients of the problem must change so that the objective function for
+          <em class="varname">y</em> is equal to the objective function for the corresponding
+          <em class="varname">x</em>. The quadratic coefficients
+          <em class="varname">Q<sub>i,j</sub></em> for <em class="varname">x</em> become
+            <em class="varname">K<sub>i,j</sub></em> for <em class="varname">y</em>, where</p><div id="d126e69574" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-16px" display="block"><mrow><msub><mi>K</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>Q</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mn>2</mn><msup><mrow><mrow><mo>(</mo><mrow><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi>x</mi><mi>j</mi></msub></mrow><mo>)</mo></mrow></mrow><mn>2</mn></msup></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>The linear coefficients <em class="varname">c<sub>i</sub></em> for
+          <em class="varname">x</em> become <em class="varname">d<sub>i</sub></em> for
+          <em class="varname">y</em>, where</p><div id="d126e69592" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-25px" display="block"><mrow><msub><mi>d</mi><mi>i</mi></msub><mo>=</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mn>2</mn><msub><mi>x</mi><mi>i</mi></msub></mrow><mo>)</mo></mrow><mrow><mo>(</mo><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>+</mo><mstyle displaystyle="true"><munder><mo>∑</mo><mrow><mi>j</mi><mo>:</mo><msub><mi>x</mi><mi>j</mi></msub><mo>=</mo><mn>1</mn></mrow></munder><mrow><mi>r</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>)</mo></mrow><mo>,</mo></mrow></math></p></div></div><p>and</p><div id="d126e69597" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-9px" display="block"><mrow><mi>r</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>Q</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mo>+</mo><msub><mi>Q</mi><mrow><mi>j</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>.</mo></mrow></math></p></div></div><p>With these definitions, the value of the constant term of the objective function in the
+          <em class="varname">y</em> formulation becomes <em class="varname">f</em>(<em class="varname">x</em>). In
+        other words,</p><div id="d126e69609" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-7px" display="block"><mrow><msup><mi>y</mi><mi>T</mi></msup><mi>K</mi><mi>y</mi><mo>+</mo><msup><mi>d</mi><mi>T</mi></msup><mi>y</mi><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></math></p></div></div><p>is the objective function in terms of <em class="varname">y</em>. Therefore, when <span class="inlineequation"><em class="varname">y</em> = 0</span>, the value of the objective function is
+          <em class="varname">f</em>(<em class="varname">x</em>).</p><p>This reformulation makes it easy to determine when a one-variable change in
+          <em class="varname">y</em> leads to a lower objective function value. If any component
+          <em class="varname">d</em>(<em class="varname">i</em>) is negative, then changing
+          <em class="varname">y</em>(<em class="varname">i</em>) to 1 results in a lower value of the objective
+        function, because all quadratic terms are zero. This change assumes, without loss of
+        generality, that the diagonal entries in <em class="varname">K</em> are zero, because nonzero
+        entries can be absorbed into <em class="varname">d</em>.</p><p>Palubeckis <a href="solve-qubo-tabu-search.html#mw_86be547d-366c-4ed5-bc8b-93ae2195eb09" class="intrnllnk">[1]</a> gives an efficient
+        algorithm for updating the coefficients of the objective function after a one-variable
+        change in <em class="varname">y</em>. This update makes a local search for a minimum an efficient
+        procedure.</p></section><section><h3 class="title" id="mw_0939619f-8c45-4370-83e6-8d9e1cc94e82">Algorithm Steps</h3><p>The tabu search algorithm has three phases: <strong class="emphasis bold">Initialize</strong>,
+          <strong class="emphasis bold">Simple Tabu Search</strong>, and <strong class="emphasis bold">Get New
+          Start Point</strong>. The algorithm starts with Initialize, then alternates between
+        Simple Tabu Search and Get New Start Point until it reaches a stopping condition. The Simple
+        Tabu Search phase has a tabu list, which is a list of variables that the algorithm cannot
+        change until it is past the tabu tenure value for each variable. The tabu tenure value is
+        the smaller of 20 and <em class="varname">N</em>/4, where <em class="varname">N</em> is the length of
+          <em class="varname">x</em>.</p><p>Given a QUBO problem, the algorithm completes each phase as follows:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p><strong class="emphasis bold">Initialize</strong> &#8212; Create a random binary vector
+              <code class="literal">x0</code>. Map the <code class="literal">x0</code> vector to an all-zero vector
+            using the procedure explained in <a href="solve-qubo-tabu-search.html#mw_e12c97da-6de6-431f-be57-9da2b8a5a87e" class="intrnllnk">Change of Variables</a>. Set
+              <code class="literal">x*</code>, the best point found, to <code class="literal">x0</code>, and set the
+            associated best function value to <code class="literal">f(x*)</code>.</p></li><li><p><strong class="emphasis bold">Simple Tabu Search</strong> &#8212; Starting from index 1, search
+            for the first index <code class="literal">K</code> in the vector so that setting <code class="literal">x(K) =
+              1</code> causes the objective function value <code class="literal">f(x) &lt; f(x*)</code>,
+            ignoring any <code class="literal">K</code> selected within the past tabu tenure searches.</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>If the search is successful, change <code class="literal">x(K)</code> from 0 to 1, and map
+                  <code class="literal">x(K)</code> to the zero vector again using the procedure explained in
+                  <a href="solve-qubo-tabu-search.html#mw_e12c97da-6de6-431f-be57-9da2b8a5a87e" class="intrnllnk">Change of Variables</a>. Each
+                successful step counts as one iteration in the iterative display and output
+                structure. Then repeatedly perform a strictly greedy search for a minimum, without
+                referring to tabu, by taking the first index with a negative coefficient
+                  <code class="literal">K</code>, changing <code class="literal">x(K)</code> from 0 to 1, and then
+                remapping <code class="literal">x(K)</code> to 0 using the procedure for changing variables.
+                Each step counts as one iteration. Restart the search from index <code class="literal">K +
+                  1</code>. Repeat until a full loop from <code class="literal">x(1)</code> to
+                  <code class="literal">x(N)</code> of the search is unsuccessful, meaning the current point
+                is a local minimum of the objective function. The best point <code class="literal">x*</code>
+                and the best function value <code class="literal">f(x*)</code> are different from before this
+                phase, and the current point <code class="literal">x = x*</code>.</p></li><li><p>If the search is unsuccessful, choose <code class="literal">K</code> as the index not in
+                the tabu list (list of variables with positive tabu values) that has the lowest
+                linear coefficient. Change <code class="literal">x(K)</code> from 0 to 1, and map
+                  <code class="literal">x(K)</code> to the zero vector again using the procedure for changing
+                variables. This procedure leads to a new <code class="literal">x</code>, but not a new
+                  <code class="literal">x*</code>. Each step of this type can count for up to <em class="varname italic">N</em> iterations, because the process of examining each
+                coefficient value counts as an iteration.</p><p>Update the tabu list by setting variable <code class="literal">K</code> to have a tabu
+                value of 20, and lowering the tabu value of all other variables with positive tabu
+                values by 1.</p></li></ol></div><p>Repeat the Simple Tabu Search until reaching a stopping condition for this phase.
+            Generally, the stopping condition occurs when the iteration count in this phase exceeds
+              <code class="literal">1e4*N</code>.</p></li><li><p><strong class="emphasis bold">Get New Start Point</strong> &#8212; Initialize the set
+              <code class="literal">I</code> to all <code class="literal">N</code> indices. Choose a random integer
+              <em class="varname">r</em> uniformly in the interval <code class="literal">[10,0.1*N]</code>. Perform
+            the following steps <em class="varname">r</em> times.</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>Find the five indices with the minimal linear coefficients among those in
+                  <code class="literal">I</code>. Randomly choose one of these indices,
+                <code class="literal">J</code>.</p></li><li><p>Remove <code class="literal">J</code> from <code class="literal">I</code>.</p></li><li><p>Change <code class="literal">x(J)</code> to <code class="literal">1</code>. Update the problem
+                coefficients using the procedure explained in <a href="solve-qubo-tabu-search.html#mw_e12c97da-6de6-431f-be57-9da2b8a5a87e" class="intrnllnk">Change of Variables</a>.</p></li></ol></div><p>Take this new start point, clear the tabu list, and return to phase 2.</p></li></ol></div></section><div class="bibliography"><h2 id="References">References</h2><div id="mw_86be547d-366c-4ed5-bc8b-93ae2195eb09" class="bibliomixed"><p>[1] Palubeckis, G. <em class="citetitle">Iterated Tabu Search for the Unconstrained Binary Quadratic Optimization Problem</em>. Informatica (2006), 17(2), pp. 279&#8211;296. Available at <a href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=3c323a1d41cd0e2ca1ddb27192e475ea73959e52" target="_blank">https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=3c323a1d41cd0e2ca1ddb27192e475ea73959e52</a>.</p></div></div>
+      <h2 id="d126e69806">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.solve.html"><span itemprop="name"><code class="function">solve</code></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearch.html"><span itemprop="name"><code class="object">tabuSearch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quboresult.html"><span itemprop="name"><code class="object">quboResult</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearchresult.html"><span itemprop="name"><code class="object">tabuSearchResult</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qaoa.html"><span itemprop="name"><code class="object">qaoa</code></span></a></span></li></ul>
+      <h3 id="d126e69830">Topics</h3><ul class="list-unstyled"><li><a href="quantum-annealing-workflow.html" class="a">Workflow for QUBO Problems</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

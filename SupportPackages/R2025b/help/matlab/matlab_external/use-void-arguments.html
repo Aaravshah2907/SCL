@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Define void* and void** Arguments</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../build-matlab-interface-to-c-library.html",
+          "name": "Build MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to pass void* and void** arguments to C++ functions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7875953d-23b2-4f08-879f-c7ea4d3016d7"><span itemprop="title">Build MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Define void* and void** Arguments</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_6747914c-0dea-4b3b-ada5-7efbcabf8a99" class="nav-link intrnllnk">void* Return Types</a><ul class="nav"><li class="nav-item"><a href="#mw_48d016ad-5367-4a6f-a721-edd8fe5ed6f1" class="nav-link intrnllnk">Define Output Argument by Using typedef from Library</a></li><li class="nav-item"><a href="#mw_c5889960-572b-42bf-8935-c6e615a03c97" class="nav-link intrnllnk">Define Output Argument from using Statement</a></li><li class="nav-item"><a href="#mw_3f247d81-1a6b-44e1-8bd2-cc16f626b70f" class="nav-link intrnllnk">Define Output Argument from New Type Name</a></li><li class="nav-item"><a href="#mw_da138310-8abf-45ec-8c12-58644fb89bdf" class="nav-link intrnllnk">Define Output Argument from Existing typedef</a></li></ul></li><li class="nav-item"><a href="#mw_925564f2-ae7a-4344-b014-91ef3e89425a" class="nav-link intrnllnk">void* Input Argument Types</a><ul class="nav"><li class="nav-item"><a href="#mw_a91da3eb-051a-47f4-bcaf-b3d723f0b15f" class="nav-link intrnllnk">Define Input Argument as Fundamental Type</a></li><li class="nav-item"><a href="#mw_78f83898-208f-48b5-a4a0-cb320705c528" class="nav-link intrnllnk">Define Input Argument as clib.array Type</a></li><li class="nav-item"><a href="#mw_45d00731-ee8f-4433-9177-b1e976626f86" class="nav-link intrnllnk">Define Input Argument as C++ Class in Library</a></li><li class="nav-item"><a href="#mw_8a3fd65a-e098-48c1-9ffb-f03b0386e45f" class="nav-link intrnllnk">Define Input Argument as Existing void* typedef</a></li></ul></li><li class="nav-item"><a href="#mw_86847e36-c2d1-4206-86d5-5c984c6682dd" class="nav-link intrnllnk">void** Input Argument Types</a><ul class="nav"><li class="nav-item"><a href="#mw_be2dd346-5b9f-4179-825c-9c17373ae613" class="nav-link intrnllnk">Define Argument With void* typedef or using Statement From Library</a></li><li class="nav-item"><a href="#mw_98fc04aa-b064-4a55-9130-60906b3fd422" class="nav-link intrnllnk">Define Argument From New Type Name for void*</a></li><li class="nav-item"><a href="#mw_b0a5e474-54a3-4f21-a4e4-bb314e180026" class="nav-link intrnllnk">Define Argument From Existing void* typedef</a></li></ul></li><li class="nav-item"><a href="#mw_a5c430d1-0316-4197-ad81-14d0f894ee33" class="nav-link intrnllnk">MATLABType as Object of Class</a></li><li class="nav-item"><a href="#mw_2c75e66a-be42-42b9-a4e4-ff705c873da8" class="nav-link intrnllnk">Memory Management for void* and void** Arguments</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_777d1d45-77bf-48d0-bfba-d0f62f9dffd0">Define <code class="literal">void*</code> and <code class="literal">void**</code> Arguments</h2><p>MATLAB<sup>&#x00AE;</sup> supports C++ signatures that have <code class="literal">void*</code> inputs or that return
+        <code class="literal">void*</code> outputs. A <code class="literal">void*</code> return type and a
+        <code class="literal">void**</code> parameter type are <a href="c-language-opaque-types.html" class="a">opaque
+      objects</a>.</p><p>You cannot create <code class="literal">void*</code> and <code class="literal">void**</code> types in
+        MATLAB. Instead, you can use C++ library functions with these types:</p><div class="itemizedlist"><ul><li><p>If <code class="literal">void*</code> is defined with a <code class="literal">typedef</code> (or
+            <code class="literal">using</code>) keyword, then MATLAB assigns the <code class="literal">typedef</code> name as the
+          <code class="literal">MLTYPE</code>.</p></li><li><p>Publishers can assign a MATLAB type to a <code class="literal">void*</code> type by specifying
+            <code class="literal">MLTYPE</code> in the library definition file.</p></li><li><p>MATLAB users can pass a <code class="literal">void*</code> return argument as input to a
+          function that takes the appropriate <code class="literal">void*</code> input.</p></li></ul></div><p>MATLAB returns a <code class="literal">void*</code> return type for <code class="literal">void**</code>
+      parameters. For more information, see <a href="use-void-arguments.html#mw_86847e36-c2d1-4206-86d5-5c984c6682dd" class="intrnllnk">void** Input Argument Types</a>.</p><p>MATLAB does not support type-casting <code class="literal">void*</code> to MATLAB data types.</p><section><h3 class="title" id="mw_6747914c-0dea-4b3b-ada5-7efbcabf8a99"><code class="literal">void*</code> Return Types</h3><p>MATLAB defines <code class="literal">void*</code> output in the library definition file by
+        specifying the argument <code class="literal">MLTYPE</code> as one of these:</p><div class="itemizedlist"><ul><li><p>A <code class="literal">typedef</code> from the library. Use for scalar output only.</p><p>If <code class="literal">void*</code> has a <code class="literal">typedef</code> defined in the library,
+              MATLAB specifies <code class="literal">MLTYPE</code> as the new type name in the
+              <code class="literal">typedef</code> statement. </p></li><li><p>If there is no <code class="literal">typedef</code>, chose a MATLAB type of the format
+              clib.<em class="replaceable"><code>InterfaceName</code></em>.<em class="replaceable"><code>TypeName</code></em>,
+            where <em class="replaceable"><code>TypeName</code></em> can include a namespace.</p><p>If the library does not have an appropriate <code class="literal">typedef</code> statement,
+            you can define <code class="literal">void*</code> with a MATLAB type.</p></li></ul></div><p>This sample header file contains functions with <code class="literal">void*</code> types. You can
+        define these types by using statements from the generated library definition file for the
+        example. Assumptions about the argument types are based on the library documentation.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">typedef void* handle; 
+handle getHandle();   
+
+using ghandle = void*;
+ghandle getGHandle(); 
+
+void* getImagData(const int* pa);
+
+typedef void* data; 
+void* getData(); 
+</code></pre></div><section><h4 class="title" id="mw_48d016ad-5367-4a6f-a721-edd8fe5ed6f1">Define Output Argument by Using <code class="literal">typedef</code> from Library</h4><p><code class="literal">handle</code> is defined by <code class="literal">typedef</code>. MATLAB creates the opaque type <code class="literal">typedef void* handle</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addOpaqueType(libnameDef, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"typedef void* handle"</span>, <span style="color:#A020F0">"MATLABName"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"clib.libname.handle"</span>, <span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+    <span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.libname.handle Representation of C++ type void*."</span>)</pre></div></div></div><p>MATLAB automatically uses this type to define <code class="literal">MLTYPE</code> as
+            <code class="literal">clib.libname.handle</code> in the return argument.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineOutput(getHandleDefinition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.lib.handle"</span>);</pre></div></div></div></section><section><h4 class="title" id="mw_c5889960-572b-42bf-8935-c6e615a03c97">Define Output Argument from <code class="literal">using</code> Statement</h4><p><code class="literal">ghandle</code> is defined with a <code class="literal">using</code> statement. As
+          with <code class="literal">handle</code> in the previous example, MATLAB automatically creates type <code class="literal">typedef void* ghandle</code> and uses
+          it to define <code class="literal">MLTYPE</code> as <code class="literal">clib.libname.ghandle</code> in the
+          return argument.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addOpaqueType(libnameDef, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"typedef void* ghandle"</span>, <span style="color:#A020F0">"MATLABName"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"clib.libname.ghandle"</span>, <span style="color:#0000FF">...</span><span style="color:#228B22"> </span>
+    <span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.libname.ghandle Representation of C++ type void*."</span>)
+defineOutput(getGHandleDefinition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.libname.ghandle"</span>);  </pre></div></div></div></section><section><h4 class="title" id="mw_3f247d81-1a6b-44e1-8bd2-cc16f626b70f">Define Output Argument from New Type Name</h4><p>The output of <code class="literal">getImagData</code> needs definition.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%defineOutput(getImagDataDefinition, "RetVal", &lt;MLTYPE&gt;, &lt;SHAPE&gt;); ...</span>
+<span style="color:#228B22">%'&lt;MLTYPE&gt;' can be an existing typedef name for void* or a new typedef name to void*.</span></pre></div></div></div><p>You can specify a new type, for example <code class="literal">clib.libname.ImagData</code> and
+          use it to define <code class="literal">RetVal</code> as a scalar value of this type.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineOutput(getImagDataDefinition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.libname.ImagData"</span>, 1);</pre></div></div></div></section><section><h4 class="title" id="mw_da138310-8abf-45ec-8c12-58644fb89bdf">Define Output Argument from Existing <code class="literal">typedef</code></h4><p>The output of <code class="literal">getData</code> needs definition.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%defineOutput(getDataDefinition, "RetVal", &lt;MLTYPE&gt;, &lt;SHAPE&gt;); </span>
+<span style="color:#228B22">%'&lt;MLTYPE&gt;' can be an existing typedef name for void* or a new typedef name to void*. </span></pre></div></div></div><p>Because there is a <code class="literal">typedef</code> for <code class="literal">void*</code> named
+            <code class="literal">data</code>, you can use this to define <code class="literal">RetVal</code> as a
+          scalar value of type <code class="literal">clib.libname.data</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineOutput(getDataDefinition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.libname.data"</span>, 1);</pre></div></div></div></section></section><section><h3 class="title" id="mw_925564f2-ae7a-4344-b014-91ef3e89425a"><code class="literal">void*</code> Input Argument Types</h3><p>MATLAB attempts to convert the underlying C++ data of a <code class="literal">void*</code>
+        argument to the corresponding C++ type. For information about the C++ to MATLAB data type mapping, see <a href="matlab-to-c-data-type-mapping.html#mw_9a2972af-1543-407b-8271-3ae21165e1cf" class="a">void* Argument Types</a>.</p><div class="itemizedlist"><ul><li><p>Fundamental types</p></li><li><p><code class="literal">clib.array</code> types</p></li><li><p>Types for C++ classes in the library</p></li><li><p><code class="literal">void*</code>
+            <code class="literal">typedef</code></p></li></ul></div><p>Following are sample header file statements containing functions that have
+          <code class="literal">void*</code> input arguments. Assumptions about the argument types are based
+        on the library documentation. The <code class="literal">defineArgument</code> statements in the
+        generated library definition file <code class="literal">definelibname.m</code> show you how to treat
+        each case.</p><section><h4 class="title" id="mw_a91da3eb-051a-47f4-bcaf-b3d723f0b15f">Define Input Argument as Fundamental Type</h4><p>The documentation for <code class="literal">getAttribute</code> indicates that <code class="literal">void
+            *value</code> points to C++ data of fundamental type <code class="literal">uint64_t</code> and
+          that this value is passed as a return argument.</p><div class="code_responsive"><pre class="programlisting">class TaskHandle; 
+int32 getAttribute(TaskHandle tHandle, int32 attribute, void *value);</pre></div><p>MATLAB generates this statement for defining input argument
+            <code class="literal">value</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%defineArgument(getAttributeDefinition, "value", &lt;MLTYPE&gt;, &lt;DIRECTION&gt;, &lt;SHAPE&gt;); </span>
+<span style="color:#228B22">%'&lt;MLTYPE&gt;' can be primitive type, user-defined type, clib.array type, or </span>
+<span style="color:#228B22">%a list of existing typedef names for void*. </span></pre></div></div></div><p>Define <code class="literal">value</code> as a scalar return value of type
+            <code class="literal">uint64</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(getAttributeDefinition, <span style="color:#A020F0">"value"</span>, <span style="color:#A020F0">"uint64"</span>, <span style="color:#A020F0">"output"</span>, 1); </pre></div></div></div></section><section><h4 class="title" id="mw_78f83898-208f-48b5-a4a0-cb320705c528">Define Input Argument as <code class="literal">clib.array</code> Type</h4><p>You can define the <code class="literal">readArray</code> argument in this
+            <code class="literal">readRaw</code> function as a <code class="literal">clib.array</code> type.</p><div class="code_responsive"><pre class="programlisting">class TaskHandle; 
+int32 readRaw (TaskHandle tHandle, void *readArray, uInt32 arraySizeInBytes); 
+</pre></div><p>Define argument <code class="literal">void *readArray</code> as an input of type
+            <code class="literal">clib.array.libname.Int</code> with a size of
+            <code class="literal">arraySizeInBytes</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(readRawDefinition, <span style="color:#A020F0">"readArray"</span>, <span style="color:#A020F0">"clib.array.libname.Int"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"input"</span>, <span style="color:#A020F0">"arraySizeInBytes"</span>);</pre></div></div></div></section><section><h4 class="title" id="mw_45d00731-ee8f-4433-9177-b1e976626f86">Define Input Argument as C++ Class in Library</h4><p>You can define the <code class="literal">userdata</code> argument in this
+            <code class="literal">setDrawCallback</code> function as a class in the library.</p><div class="code_responsive"><pre class="programlisting">void setDrawCallback(const String&amp; winname, 
+    OpenGlDrawCallback onOpenGlDraw, 
+    void* userdata = 0) 
+void on_opengl(void* param) { 
+cv::ogl::Texture2D* backgroundTex = (cv::ogl::Texture2D*)param; 
+.... 
+} 
+</pre></div><p>Define argument <code class="literal">void *userdata</code> as an input scalar of class
+            <code class="literal">clib.lib.cv.ogl.Texture2D</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(setDrawCallbackDefinition, <span style="color:#A020F0">"userdata"</span>, <span style="color:#A020F0">"clib.lib.cv.ogl.Texture2D"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"input"</span>, 1); </pre></div></div></div></section><section><h4 class="title" id="mw_8a3fd65a-e098-48c1-9ffb-f03b0386e45f">Define Input Argument as Existing <code class="literal">void*</code>           <code class="literal">typedef</code></h4><p>You can define the <code class="literal">in</code> argument in this
+            <code class="literal">setRemoteTimeout</code> function by using an existing
+            <code class="literal">typedef</code> for <code class="literal">void*</code>.</p><div class="code_responsive"><pre class="programlisting">typedef void* sessionHandle; 
+void setRemoteTimeout(sessionHandle in); 
+</pre></div><p>Define argument <code class="literal">in</code> as an input scalar of <code class="literal">typedef</code>
+          <code class="literal">sessionHandle</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(setRemoteTimeoutDefinition, <span style="color:#A020F0">"in"</span>, <span style="color:#A020F0">"clib.libname.sessionHandle"</span>, <span style="color:#A020F0">"input"</span>, 1); </pre></div></div></div></section></section><section><h3 class="title" id="mw_86847e36-c2d1-4206-86d5-5c984c6682dd"><code class="literal">void**</code> Input Argument Types</h3><p>MATLAB returns a <code class="literal">void*</code> argument for <code class="literal">void**</code>
+        parameters. If <code class="literal">void *</code> is defined by using a <code class="literal">typedef</code> or
+        a <code class="literal">using</code> statement, then MATLAB automatically assigns the <code class="literal">typedef</code> or
+          <code class="literal">using</code> name as the <code class="literal">MLTYPE</code>. Otherwise, you can assign
+        a MATLAB type to an existing <code class="literal">void*</code> type in the library by specifying
+          <code class="literal">MLTYPE</code> in the library definition file.</p><p>This sample header file contains functions with <code class="literal">void**</code> parameters.
+        The following topics show you how you can define these types by using statements from the
+        generated library definition file for the example. Assumptions about the argument types are
+        based on the library documentation.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">class HClass{};
+typedef void* handle; 
+void getHandle(handle* out){
+    *out = new HClass();
+}
+using ghandle = void*;
+void getGHandle(ghandle* out){
+    *out = new HClass();
+}
+
+void getNewHandle(void** out){
+    *out = new int(1);
+}
+typedef void* ptr; 
+void getPointer(void** out){
+    *out = new int(2);
+}</code></pre></div><section><h4 class="title" id="mw_be2dd346-5b9f-4179-825c-9c17373ae613">Define Argument With <code class="literal">void*</code>           <code class="literal">typedef</code> or <code class="literal">using</code> Statement From Library</h4><p>The <code class="literal">out</code> argument in the <code class="literal">getHandle</code> function is
+          defined as a pointer to the <code class="literal">void*</code> type <code class="literal">handle</code>. For
+          interface library <code class="literal">lib</code>, MATLAB uses the existing <code class="literal">typedef</code> statement to define
+            <code class="literal">out</code> as an output scalar of type
+          <code class="literal">clib.lib.handle</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(getHandleDefinition, <span style="color:#A020F0">"out"</span>, <span style="color:#A020F0">"clib.lib.handle"</span>, <span style="color:#A020F0">"output"</span>, 1);</pre></div></div></div><p>The <code class="literal">out</code> argument in the <code class="literal">getGHandle</code> function is
+          defined as a pointer to the <code class="literal">void*</code> variable <code class="literal">ghandle</code>
+          defined by a <code class="literal">using</code> statement. MATLAB uses the existing <code class="literal">using</code> statement to define
+            <code class="literal">out</code> as an output scalar of type
+          <code class="literal">clib.lib.ghandle</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(getGHandleDefinition, <span style="color:#A020F0">"out"</span>, <span style="color:#A020F0">"clib.lib.ghandle"</span>, <span style="color:#A020F0">"output"</span>, 1);</pre></div></div></div></section><section><h4 class="title" id="mw_98fc04aa-b064-4a55-9130-60906b3fd422">Define Argument From New Type Name for <code class="literal">void*</code>         </h4><p>The <code class="literal">void**</code> parameter of <code class="literal">getNewHandle</code> needs
+          definition.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%defineArgument(getNewHandleDefinition, "out", &lt;MLTYPE&gt;, "output", 1);</span></pre></div></div></div><p>You can specify a new type, for example <code class="literal">clib.lib.NewHandle</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(getNewHandleDefinition, <span style="color:#A020F0">"out"</span>, <span style="color:#A020F0">"clib.lib.NewHandle"</span>, <span style="color:#A020F0">"output"</span>, 1);</pre></div></div></div></section><section><h4 class="title" id="mw_b0a5e474-54a3-4f21-a4e4-bb314e180026">Define Argument From Existing <code class="literal">void*</code>           <code class="literal">typedef</code></h4><p>The <code class="literal">void**</code> parameter of <code class="literal">getNewHandle</code>
+          needs definition.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">%defineArgument(getPointerDefinition, "out", &lt;MLTYPE&gt;, "output", 1);</span></pre></div></div></div><p>Because there is a <code class="literal">typedef</code> for <code class="literal">void*</code> named
+            <code class="literal">ptr</code>, you can use this to define the <code class="literal">out</code> parameter
+            as a scalar value of type
+            <code class="literal">clib.lib.ptr</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>defineArgument(getPointerDefinition, <span style="color:#A020F0">"out"</span>, <span style="color:#A020F0">"clib.lib.ptr"</span>, <span style="color:#A020F0">"output"</span>, 1);
+</pre></div></div></div></section></section><section><h3 class="title" id="mw_a5c430d1-0316-4197-ad81-14d0f894ee33"><code class="literal">MATLABType</code> as Object of Class</h3><span id="void_arguments" class="anchor_target"></span><p>MATLAB displays a message about an object not available without constructing an
+        object of the class and suggests other values for <code class="literal">MATLABType</code>.
+        Alternatively, consider using a <code class="literal">MATLABType</code> that is outside the scope of
+        the class.</p><p>For example,
+        
+        suppose that you create a library definition file <code class="literal">definelib.m</code> from this
+        class <code class="literal">A</code>.</p><div class="code_responsive"><pre class="programlisting"><code class="language-cpp">class A {
+public:
+	typedef void* handle;
+	A(void* arg1, handle arg2) {}
+
+	void* task1() {
+		int* x = new int(10);
+		return x;
+	}
+
+	handle task2() {
+		int* x = new int(10);
+		return x;
+	}
+};</code></pre></div><p>MATLAB creates an opaque type for <code class="literal">typedef void* handle</code> and defines
+          <code class="literal">task2</code>. The publisher creates an opaque type
+          <code class="literal">clib.lib.A.NewHandle</code> for <code class="literal">void* task1</code> and the
+          <code class="literal">A</code> class constructor argument <code class="literal">void* arg1</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>addOpaqueType(libDef, <span style="color:#A020F0">"typedef void* A::handle"</span>, <span style="color:#A020F0">"MATLABName"</span>, <span style="color:#A020F0">"clib.lib.A.handle "</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.lib.A.handle Representation of C++ opaque type."</span>);
+
+AConstructor1Definition = addConstructor(ADefinition, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"A::A(void * in)"</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.lib.A.A Constructor of C++ class A."</span>);
+defineArgument(AConstructor1Definition, <span style="color:#A020F0">"arg1"</span>, <span style="color:#A020F0">"clib.lib.A.NewHandle"</span>, <span style="color:#A020F0">"input"</span>, 1); 
+<span style="color:#228B22">% '&lt;MLTYPE&gt;' can be primitive type, user-defined type, clib.array type, or a list of existing typedef names for void*.</span>
+defineArgument(AConstructor1Definition, <span style="color:#A020F0">"arg2"</span>, <span style="color:#A020F0">"clib.lib.A.handle"</span>, <span style="color:#A020F0">"input"</span>, 1); 
+<span style="color:#228B22">% '&lt;MLTYPE&gt;' can be clib.lib.A.handle, primitive type, user-defined type, or a clib.array type.</span>
+validate(AConstructor1Definition);
+
+task1Definition = addMethod(ADefinition, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"A::handle A::task1()"</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.lib.A.task1 Method of C++ class A."</span>);
+defineOutput(task1Definition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.lib.A.NewHandle"</span>, 1); 
+<span style="color:#228B22">% '&lt;MLTYPE&gt;' can be an existing typedef name for void* or a new typedef name to void*.</span>
+validate(task1Definition);
+
+task2Definition = addMethod(ADefinition, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"A::handle A::task2()"</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">"Description"</span>, <span style="color:#A020F0">"clib.lib.A.task2 Method of C++ class A."</span>);
+defineOutput(task2Definition, <span style="color:#A020F0">"RetVal"</span>, <span style="color:#A020F0">"clib.lib.A.handle"</span>, 1);
+validate(task2Definition);</pre></div></div></div><p>Because there is more than one <code class="literal">void*</code> input argument for constructor
+          <code class="literal">A</code>, MATLAB displays this message:</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>clib.lib.A(clib.lib.A.Newhandle,clib.lib.A.handle)
+      Note: This constructor cannot create object clib.lib.A, if object clib.lib.A.Newhandle/ 
+      clib.lib.A.handle is not available without constructing object of clib.lib.A. 
+      Consider using a MATLABType which is outside the scope of clib.lib.A.</pre></div></div></div><p>To create a <code class="literal">clib.lib.A</code> object for this constructor, specify
+          <code class="literal">MATLABType</code> as one of these:</p><div class="itemizedlist"><ul><li><p>Primitive type, user-defined type, or <code class="literal">clib.array</code> type for
+              <code class="literal">arg1</code>.</p></li><li><p>Primitive type, user-defined type, <code class="literal">clib.array</code> type for
+              <code class="literal">arg2</code>.</p></li><li><p><code class="literal">MATLABType</code>, which is outside the scope of
+              <code class="literal">clib.lib.A</code>.</p></li></ul></div></section><section><h3 class="title" id="mw_2c75e66a-be42-42b9-a4e4-ff705c873da8">Memory Management for <code class="literal">void*</code> and <code class="literal">void**</code>         Arguments</h3><p>You can pass the ownership of the memory of a <code class="literal">void*</code> argument to the
+        library by using the <code class="literal">ReleaseOnCall</code> name-value argument in <a href="../ref/clibgen.functiondefinition.defineargument.html"><code class="method">defineArgument
+          (FunctionDefinition)</code></a> or <a href="../ref/clibgen.methoddefinition.defineargument.html"><code class="method">defineArgument
+          (MethodDefinition)</code></a>.</p><p>You can transfer ownership of the memory of a <code class="literal">void*</code> output to
+          MATLAB by using the <code class="literal">DeleteFcn</code> name-value argument in <a href="../ref/clibgen.functiondefinition.defineoutput.html"><code class="method">defineOutput
+          (FunctionDefinition)</code></a> or <a href="../ref/clibgen.methoddefinition.defineoutput.html"><code class="method">defineOutput
+          (MethodDefinition)</code></a>. The deleter can be a user-defined function or the C++
+        standard <code class="literal">delete</code> operator for <code class="literal">void*</code> return
+        types.</p><p>For scalar <code class="literal">void**</code> output arguments, use the
+          <code class="literal">DeleteFcn</code> argument in <a href="../ref/clibgen.functiondefinition.defineargument.html"><code class="method">defineArgument
+          (FunctionDefinition)</code></a> or <a href="../ref/clibgen.methoddefinition.defineargument.html"><code class="method">defineArgument
+          (MethodDefinition)</code></a>. For an example, see <a href="memory-management-for-c-objects-in-matlab.html#mw_1d4845e6-0603-4383-9d65-8399e4312bc2" class="a">Manage Memory of Double Pointer Input Argument</a>.</p><p>If you have multiple <code class="literal">void*</code> typedef statements, it is possible to
+        define a deleter function that takes a list of these typedef arguments as the
+          <code class="literal">MLTYPE</code> for <code class="literal">void*</code> input. If you assign
+          <code class="literal">DeleteFcn</code> to only one <code class="literal">void*</code> typedef returned by a
+        function, then the MATLAB user cannot directly call this deleter function by using that argument.
+          MATLAB calls this function when the user calls the MATLAB
+        <code class="function">delete</code> function. The user can, however, directly call the deleter
+        function by using any of the other <code class="literal">void*</code> typedef arguments.</p><p>For more information, see <a href="memory-management-for-c-objects-in-matlab.html" class="a">Lifetime Management of C++ Objects in MATLAB</a>.</p></section>
+      
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e24920">Topics</h3><ul class="list-unstyled"><li><a href="matlab-to-c-data-type-mapping.html#mw_9a2972af-1543-407b-8271-3ae21165e1cf" class="a">void* Argument Types</a></li><li><a href="memory-management-for-c-objects-in-matlab.html" class="a">Lifetime Management of C++ Objects in MATLAB</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

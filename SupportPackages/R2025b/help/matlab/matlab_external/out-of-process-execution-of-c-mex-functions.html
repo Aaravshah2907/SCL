@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Out-of-Process Execution of C++ MEX Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-mex-file-functions.html",
+          "name": "Call C/C++ MEX Functions from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../cpp-mex-file-applications.html",
+          "name": "Write C++ Functions Callable from MATLAB (MEX Files)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "cpp-mex-file-applications"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Execute C++ MEX functions in processes that are separate from the MATLAB process."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-mex-file-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C/C++ MEX Functions from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-mex-file-applications.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_ed02b205-3d2c-48d0-ba64-c5b069ff713a"><span itemprop="title">Write C++ Functions Callable from MATLAB  (MEX Files)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Out-of-Process Execution of C++ MEX Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_b46436f6-ce9c-4b45-8de6-1da6d7a1c91f" class="nav-link intrnllnk">How to Run Out of Process</a></li><li class="nav-item"><a href="#mw_27f59643-dd93-4b78-917d-8649baeada74" class="nav-link intrnllnk">Running arrayProduct MEX Function Out of Process</a></li><li class="nav-item"><a href="#mw_bd8b7025-0c82-4530-9f06-1c9223adc02b" class="nav-link intrnllnk">Process Lifecycle</a><ul class="nav"><li class="nav-item"><a href="#mw_c2ecfa8b-cae1-4ede-a810-b9f56eb03f01" class="nav-link intrnllnk">Rebuilding a C++ MEX Function</a></li></ul></li><li class="nav-item"><a href="#mw_54bb7582-87d7-47e1-91ff-ed10be4e5e59" class="nav-link intrnllnk">Getting Information About the MEX Host Process</a></li><li class="nav-item"><a href="#mw_c0e36d91-2320-43b3-9944-03d95e4eaf38" class="nav-link intrnllnk">Always Run Out of Process</a></li><li class="nav-item"><a href="#mw_3f8867d9-c298-4cdc-94d3-39c47577f49d" class="nav-link intrnllnk">Debugging Out-of-Process MEX Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_19b4061b-769d-49aa-af2d-9ddedc94a7aa" class="nav-link intrnllnk">Debugging Using Microsoft Visual Studio</a></li><li class="nav-item"><a href="#mw_6279818b-bf34-4641-9030-a8d8fbadb30e" class="nav-link intrnllnk">Debugging on Linux Systems</a></li><li class="nav-item"><a href="#mw_b175e961-cdda-40d4-9923-f035172335fa" class="nav-link intrnllnk">Debugging on Macintosh Systems</a></li></ul></li><li class="nav-item"><a href="#d126e44877" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=cpp-mex-file-applications&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_c8e4e672-e6d3-4b16-9d53-d05f0443e884">Out-of-Process Execution of C++ MEX Functions</h2><p>MATLAB<sup>&#x00AE;</sup> can run C++ MEX functions in a separate process. Running a C++ MEX
+            function in a separate process enables you to:</p><div class="itemizedlist"><ul><li><p>Isolate the MATLAB process from crashes in the C++ MEX function.</p></li><li><p>Use some third-party libraries in the C++ MEX function that are not compatible
+                    with MATLAB.</p></li><li><p>Conserve memory by running multiple C++ MEX functions in a single
+                    process.</p></li><li><p>Attach C++ debuggers to the MEX host process.</p></li><li><p>Interrupt C++ MEX function execution using <strong class="keycap">Ctrl+C</strong>
+                </p></li></ul></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The size of variables passed between C++ and MATLAB is limited to 2 GB when you call a C++ function out-of-process. This
+                limit applies to the data plus supporting information passed between the
+                processes.</p></div><section><h3 class="title" id="mw_b46436f6-ce9c-4b45-8de6-1da6d7a1c91f">How to Run Out of Process</h3><p>Follow these steps to run your C++ MEX function out of process:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Write your C++ MEX function and build it using the instructions in <a href="build-c-mex-programs.html" class="a">Build C++ MEX Programs</a>.
+                        There are no required code differences between functions written for
+                        in-process and out-of-process execution.</p></li><li><p>Create a MEX host process using the <a href="../ref/mexhost.html"><code class="function">mexhost</code></a> function.</p></li><li><p>Use the <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a> method of the <a href="../ref/matlab.mex.mexhost-class.html"><code class="class">matlab.mex.MexHost</code></a> object returned by
+                            <code class="function">mexhost</code> to run your C++ MEX function in the host
+                        process.</p></li></ol></div><p>When running out of process, C++ MEX functions always execute in the same folder
+                as the MATLAB current folder. Changing the MATLAB current folder after creating the MEX host object results in the same
+                change in the C++ MEX function context.</p></section><section><h3 class="title" id="mw_27f59643-dd93-4b78-917d-8649baeada74">Running <code class="literal">arrayProduct</code> MEX Function Out of Process</h3><p>The following example runs the <code class="function">arrayProduct</code> C++ MEX function
+                out-of-process. The C++ MEX source code is available in the file <a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/arrayProduct.cpp']);" target="_blank"><code class="literal">arrayProduct.cpp</code></a>. To use this example C++ MEX
+                function, open the <code class="literal">arrayProduct.cpp</code> source file, save it on your
+                    MATLAB path, and build the C++ MEX function using the instructions in <a href="build-c-mex-programs.html" class="a">Build C++ MEX Programs</a>.</p><p>After building the C++ MEX function, start the MEX host process using the
+                    <code class="function">mexhost</code> function. This function returns an object of the
+                    <code class="class">matlab.mex.MexHost</code> class. </p><p>Use the <code class="method">feval</code> method to run the <code class="function">arrayProduct</code>
+                C++ MEX function in the host process. Pass the C++ MEX functions name and arguments
+                to <code class="method">feval</code>. Return the results to MATLAB by assigning the output of <code class="method">feval</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh = mexhost;
+result = feval(mh,<span style="color:#A020F0">'arrayProduct'</span>,2,[1 2 3 4])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>result =
+     2     4     6     8</pre></div></div></div><p> Run <code class="function">arrayProduct</code> in another MEX host process. First create
+                the MEX host process by calling <code class="function">mexhost</code> again and assigning the
+                output to a different variable. Then call <code class="method">feval</code> on the new
+                host.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh2 = mexhost;
+result2 = feval(mh2,<span style="color:#A020F0">'arrayProduct'</span>,2,rand(1,10));</pre></div></div></div><p>You can run other C++ MEX functions in the same process using the same
+                    <code class="class">matlab.mex.MexHost</code> object returned by
+                    <code class="function">mexhost</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result2 = feval(mh2,<span style="color:#A020F0">'anotherMexFunction'</span>,inputs);</pre></div></div></div></section><section><h3 class="title" id="mw_bd8b7025-0c82-4530-9f06-1c9223adc02b">Process Lifecycle</h3><p>The MEX host process lifecycle is coupled to the lifecycle of the
+                    <code class="class">matlab.mex.MexHost</code> object returned by
+                    <code class="function">mexhost</code>. Like any handle object, MATLAB invokes the <a href="../ref/handle.delete.html"><code class="method">delete</code></a> method when the object is no
+                longer referenced anywhere. If MATLAB invokes <code class="method">delete</code> or if you call <code class="method">delete</code>
+                on the object explicitly, MATLAB ends the process associated with the <code class="class">MexHost</code> object. </p><p>You can end the process explicitly by calling the <a href="../ref/clear.html"><code class="function">clear</code></a> function with any of these
+                options: </p><div class="itemizedlist"><ul><li><p><code class="literal">clear</code> the variable returned by the
+                            <code class="function">mexhost</code> function</p></li><li><p><code class="literal">clear</code>
+                        <code class="literal">classes</code>, <code class="literal">clear</code>
+                        <code class="literal">java</code>, or <code class="literal">clear</code>
+                        <code class="literal">all</code>
+                    </p></li></ul></div><section><h4 class="title" id="mw_c2ecfa8b-cae1-4ede-a810-b9f56eb03f01">Rebuilding a C++ MEX Function</h4><p>The <a href="../ref/mex.html"><code class="function">mex</code></a> command automatically
+                    unloads C++ MEX functions before rebuilding them. Therefore, you do not need to
+                    explicitly unload C++ MEX functions from the MEX host process. </p><p>You can explicitly unload all C++ MEX functions from a MEX host process by
+                    calling <code class="literal">clear</code>
+                    <code class="literal">mex</code> or <code class="literal">clear</code>
+                    <code class="literal">functions</code>. Unload a specific C++ MEX function by calling
+                        <code class="literal">clear</code> on the function name.</p><p>To prevent the unloading of a C++ MEX function, use the <a href="../apiref/mexlock.html"><code class="function">mexLock</code></a> function. To unlock
+                    the C++ MEX function, use <a href="../apiref/mexunlock.html"><code class="function">mexUnlock</code></a>. These functions
+                    set or unset a flag for the C++ MEX function on the host process to control the
+                    unloading of C++ MEX functions.</p></section></section><section><h3 class="title" id="mw_54bb7582-87d7-47e1-91ff-ed10be4e5e59">Getting Information About the MEX Host Process</h3><p>Use the <code class="class">matlab.mex.MexHost</code> object to get information about the MEX
+                host process. These properties provide information about the process and loaded
+                functions.</p><div class="itemizedlist"><ul><li><p><code class="property">EnvironmentVariables</code> contains names and values of
+                        environment variables set for the process.</p></li><li><p><code class="property">Functions</code> contains the names of all C++ MEX functions
+                        loaded into the MEX host process.</p></li><li><p><code class="property">ProcessName</code> contains the name of the MEX host
+                        process, which is <code class="literal">MATLABMexHost</code> by default.</p></li><li><p><code class="property">ProcessIdentifier</code> contains the process
+                        identifier.</p></li></ul></div><p>For more information on these properties, see <a href="../ref/matlab.mex.mexhost-class.html"><code class="class">matlab.mex.MexHost</code></a>.</p></section><section><h3 class="title" id="mw_c0e36d91-2320-43b3-9944-03d95e4eaf38">Always Run Out of Process</h3><p>In certain cases, you might always want to run your C++ MEX function
+                out-of-process. For example, running out of process can be necessary if there are
+                third-party library conflicts between MATLAB and the C++ MEX function.</p><p>To provide a convenient way to run the C++ MEX function out of process, create a
+                wrapper MATLAB function. The wrapper function creates the MEX host object and runs
+                the C++ MEX function in that process.</p><p>For example, suppose that you want to create a wrapper function for the <a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/arrayProduct.cpp']);" target="_blank"><code class="literal">arrayProduct.cpp</code></a> C++ MEX function that is
+                included in the documentation as an example. Create a MATLAB function with the name <code class="function">arrayProduct.m</code> and put
+                this file in a folder that is on the MATLAB path. Build the C++ MEX function and assign a different name for the
+                compiled MEX file.</p><p>The wrapper function creates a <code class="class">matlab.mex.MexHost</code> object that is
+                assigned to a persistent variable so that the process is not destroyed between
+                subsequent calls to the wrapper function. The function uses this object to call the
+                    <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a>
+                method for out-of-process execution of the C++ MEX function. If the MEX host object
+                is not valid, then the function creates a MEX host process.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> result = arrayProduct(scalefactor,inputarray)
+    <span style="color:#0000FF">persistent</span> mh
+    <span style="color:#0000FF">if</span> ~(isa(mh,<span style="color:#A020F0">'matlab.mex.MexHost'</span>) &amp;&amp; isvalid(mh))
+        mh = mexhost;
+    <span style="color:#0000FF">end</span>
+    result = feval(mh,<span style="color:#A020F0">"arrayProductMEX"</span>,scalefactor,inputarray);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>To build the C++ MEX function, open the <a href="matlab:edit([matlabroot '/extern/examples/cpp_mex/arrayProduct.cpp']);" target="_blank"><code class="literal">arrayProduct.cpp</code></a> source file and save it on your
+                    MATLAB path. Build the C++ MEX function using the instructions in this topic,
+                    <a href="build-c-mex-programs.html" class="a">Build C++ MEX Programs</a>. </p><p>The following command builds MEX file with the root name
+                    <code class="literal">arrayProductMEX</code> and puts it in the folder with the wrapper
+                function, which is assumed to be <code class="literal">MyPathFolder</code> in this example.
+                The <a href="../ref/mex.html"><code class="function">mex</code></a> command creates the folder if
+                it does not exist.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-output</span> <span style="color:#A020F0">arrayProductMEX</span> <span style="color:#A020F0">-outdir</span> <span style="color:#A020F0">MyPathFolder</span> <span style="color:#A020F0">arrayProduct.cpp</span></pre></div></div></div><p>To use the C++ MEX function, call it from the command line like any function via
+                the wrapper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = arrayProduct(2,[1 2 3 4]);
+result
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>result =
+
+     2     4     6     8</pre></div></div></div><p>The following code calls the C++ MEX function in a <code class="function">for</code> loop.
+                The first call to <code class="function">arrayProduct</code> creates the MEX host process.
+                Subsequent calls use the same process unless the process is destroyed by, for
+                example, a crash of the C++ MEX function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> k = 1:5
+   results(k,:) = arrayProduct(k,[1 2 3 4]);
+<span style="color:#0000FF">end</span>
+results</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>results =
+     1     2     3     4
+     2     4     6     8
+     3     6     9    12
+     4     8    12    16
+     5    10    15    20</pre></div></div></div><p>To destroy the MEX host process, clear all functions that define the MEX host
+                process variable (<code class="literal">mh</code> in this example) as persistent. In this
+                example, clear the <code class="function">arrayProduct.m</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear <span style="color:#A020F0">arrayProduct.m</span></pre></div></div></div><p>Calling <code class="literal">clear</code>
+                <code class="literal">functions</code> causes the destruction of the
+                    <code class="class">matlab.mex.MexHost</code> object that is stored in the persistent
+                variable and therefore terminates the MEX host process.</p></section><section><h3 class="title" id="mw_3f8867d9-c298-4cdc-94d3-39c47577f49d">Debugging Out-of-Process MEX Functions</h3><p>You can attach a C++ debugger to your C++ MEX function and set break points to
+                debug your program. Here are the steps to set up and debug a C++ MEX function out of
+                process.</p><div class="itemizedlist"><ul><li><p>Build C++ MEX source code using the <a href="../ref/mex.html"><code class="function">mex</code></a> command with the
+                            <code class="literal remove_text_wrapping">-g</code> option to include debugging symbols.</p></li><li><p>Create a host process using the <a href="../ref/mexhost.html"><code class="function">mexhost</code></a> function. This function returns an object of the
+                            <a href="../ref/matlab.mex.mexhost-class.html"><code class="class">matlab.mex.MexHost</code></a>.</p></li><li><p>Get the process identifier from the <code class="class">matlab.mex.MexHost</code>
+                        object <code class="property">ProcessIdentifier</code> property.</p></li><li><p>Use the process identifier to attach a C++ debugger to the process.
+                    </p></li><li><p>Insert breakpoints in the source code.</p></li><li><p>Run the C++ MEX function out-of-process using the <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a> method.</p></li></ul></div><p>For information on using specific debuggers, see the documentation for those
+                debuggers.</p><section><h4 class="title" id="mw_19b4061b-769d-49aa-af2d-9ddedc94a7aa">Debugging Using <span class="entity"><span class="trademark">Microsoft</span>             <span class="trademark">Visual Studio</span></span></h4><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Ensure Visual Studio<sup>&#x00AE;</sup> is your
+                            selected C++ compiler. This example uses <span class="entity">Microsoft<sup>&#x00AE;</sup>
+            Visual Studio</span> 2015.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cpp = mex.getCompilerConfigurations(<span style="color:#A020F0">'C++'</span>,<span style="color:#A020F0">'Selected'</span>);
+cpp.Name</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+    'Microsoft Visual C++ 2015'</pre></div></div></div></li><li><p>Build your C++ MEX source code using the <a href="../ref/mex.html"><code class="function">mex</code></a> command with the
+                                <code class="literal remove_text_wrapping">-g</code> option. This example assumes that you have a
+                            C++ MEX source file named <code class="literal">myMexFunction.cpp</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-g</span> <span style="color:#A020F0">myMexFunction.cpp</span></pre></div></div></div></li><li><p>Create a MEX host process and return the <code class="class">MexHost</code>
+                            object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh = mexhost;</pre></div></div></div></li><li><p>Start Visual Studio. Do not
+                            exit your MATLAB session.</p></li><li><p>From the Visual Studio
+                            <strong class="emphasis bold">Debug</strong> menu, select <strong class="emphasis bold">Attach to Process</strong>.</p><p>In the Attach to Process dialog box, select the
+                                <code class="literal">MATLABMexHost</code> process, and click <strong class="emphasis bold">Attach</strong>.</p></li><li><p>Visual Studio loads data, and then displays an empty code pane.</p></li><li><p>Open your C++ MEX source file by clicking <strong class="guimenuitem">File</strong> &gt; <strong class="guimenuitem">Open</strong> &gt; <strong class="guimenuitem">File</strong> and selecting the file. </p></li><li><p>Set a breakpoint by right-clicking the desired line of code and
+                            clicking <strong class="guimenuitem">Breakpoint</strong> &gt; <strong class="guimenuitem">Insert Breakpoint</strong> on the context menu. </p></li><li><p>In MATLAB, run the C++ MEX function out of process using the
+                                <code class="class">matlab.mex.MexHost</code>
+                            <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = feval(mh,<span style="color:#A020F0">'myMexFunction'</span>,input1,input2,<span style="color:#0000FF">...</span><span style="color:#228B22">)</span></pre></div></div></div></li><li><p>Use the features provided by the debugger to debug your source
+                            code.</p></li></ol></div></section><section><h4 class="title" id="mw_6279818b-bf34-4641-9030-a8d8fbadb30e">Debugging on <span class="trademark entity">Linux</span> Systems</h4><p>On Linux<sup>&#x00AE;</sup> systems, you can use a debugger such as the GNU<sup>&#x00AE;</sup>
+                    <code class="literal">gdb</code> debugger. Follow these steps to use the
+                        <code class="literal">gdb</code> debugger. </p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Build your C++ MEX source code using the <a href="../ref/mex.html"><code class="function">mex</code></a> command with the
+                                <code class="literal remove_text_wrapping">-g</code> option. This example assumes that you have a
+                            C++ MEX source file named <code class="literal">myMexFunction.cpp</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-g</span> <span style="color:#A020F0">myMexFunction.cpp</span></pre></div></div></div></li><li><p>Create a MEX host process and return the <code class="class">MexHost</code>
+                            object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh = mexhost;</pre></div></div></div></li><li><p>Get the process identifier from the
+                                <code class="property">ProcessIdentifier</code> property of the
+                                <code class="class">MexHost</code> object. The returned value is a string
+                            representing the identifier of the MEX host process. For example,</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh.ProcessIdentifier</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+    "13892"</pre></div></div></div><p>The process identifier is different for each process created.</p></li><li><p>Attach a debugger to the MEX host process from the Linux terminal. For example, using the GNU
+                            <code class="literal">gdb</code> debugger, call <code class="literal">gdb</code> with the
+                            C++ MEX file name and the process identifier that you obtained from the
+                            MEX host object in MATLAB:</p><div class="code_responsive"><pre class="programlisting">gdb myMexFunction -pid=13892</pre></div></li><li><p>Set break points in the C++ MEX function. For example, using
+                                <code class="literal">gdb</code>, set the break point in
+                                <code class="literal">myMexFunction.cpp</code> at line 21:</p><div class="code_responsive"><pre class="programlisting">break myMexFunction.cpp:21</pre></div></li><li><p>From MATLAB, run the C++ MEX function out-of-process using the
+                                <code class="class">matlab.mex.MexHost</code>
+                            <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = feval(mh,<span style="color:#A020F0">'myMexFunction'</span>,input1,input2,<span style="color:#0000FF">...</span><span style="color:#228B22">)</span></pre></div></div></div><p>MATLAB waits for a response from the debugger.</p></li><li><p>From the Linux terminal, use the features provided by the debugger to
+                            debug your source code.</p></li></ol></div></section><section><h4 class="title" id="mw_b175e961-cdda-40d4-9923-f035172335fa">Debugging on <span class="entity">Macintosh</span> Systems</h4><p>On <span class="entity">Macintosh</span> systems, use the LLDB debugger. </p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Build your C++ MEX source code using the <a href="../ref/mex.html"><code class="function">mex</code></a> command with the
+                                <code class="literal remove_text_wrapping">-g</code> option. This example assumes that you have a
+                            C++ MEX source file named <code class="literal">myMexFunction.cpp</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mex <span style="color:#A020F0">-g</span> <span style="color:#A020F0">myMexFunction.cpp</span></pre></div></div></div></li><li><p>Create a MEX host process and return the <code class="class">MexHost</code>
+                            object.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh = mexhost;</pre></div></div></div></li><li><p>Get the process identifier from the
+                                <code class="property">ProcessIdentifier</code> property of the
+                                <code class="class">MexHost</code> object. The returned value is a string
+                            representing the identifier of the MEX host process.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>mh.ProcessIdentifier</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+    "13892"</pre></div></div></div><p>The process identifier is different for each process created.</p></li><li><p>Attach a debugger to the MEX host process from the <span class="entity">macOS</span> Terminal. Call <code class="literal">lldb</code> with the MEX host
+                            process identifier that you obtained from the MEX host object in
+                                MATLAB. For example, assuming the process identifier is
+                                <code class="literal">13892</code>, attach the LLDB debugger to this
+                            process:</p><div class="code_responsive"><pre class="programlisting">lldb -p 13892</pre></div></li><li><p>Set a break points in your source code. For example, this command sets
+                            a break point in <code class="literal">myMexFunction.cpp</code> at line number 21. </p><div class="code_responsive"><pre class="programlisting">breakpoint set -f myMexFunction.cpp -l 21</pre></div></li><li><p>From MATLAB, run the C++ MEX function out-of-process using the
+                                <code class="class">matlab.mex.MexHost</code>
+                            <a href="../ref/matlab.mex.mexhost.feval.html"><code class="method">feval</code></a> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>result = feval(mh'myMexFunction',input1,input2,<span style="color:#0000FF">...</span><span style="color:#228B22">)</span></pre></div></div></div><p>MATLAB waits for a response from the debugger.</p></li><li><p><strong class="keycap">Enter</strong>
+                            <code class="literal">C</code> or <code class="literal">continue</code> from the <span class="entity">macOS</span> Terminal. Program execution stops at breakpoints.</p></li><li><p>From the <span class="entity">macOS</span> Terminal, use the features provided by the debugger to
+                            debug your source code.</p></li></ol></div></section></section>
+            <h2 id="d126e44877">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mexhost.html"><span itemprop="name"><code class="function">mexhost</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mex.mexhost-class.html"><span itemprop="name"><code class="class">matlab.mex.MexHost</code></span></a></span></p>
+            <h3 id="d126e44886">Topics</h3><ul class="list-unstyled"><li><a href="call-matlab-from-user-threads-in-mex-function.html" class="a">Call MATLAB from Separate Threads in MEX Function</a></li><li><a href="../cpp-mex-file-applications.html" class="a">Write C++ Functions Callable from MATLAB (MEX Files)</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

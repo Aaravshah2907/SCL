@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Compare Files and Folders and Merge Files</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../files-and-folders.html",
+          "name": "Files and Folders"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../file-operations.html",
+          "name": "File Operations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "file-operations"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="View and merge changes between two files or folders."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../files-and-folders.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Files and Folders</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../file-operations.html?s_tid=CRUX_lftnav" itemprop="url" id="buq92f3-2"><span itemprop="title">File Operations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Compare Files and Folders and Merge Files</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brqxeeu-111" class="nav-link intrnllnk">Compare Folders and Zip Files</a></li><li class="nav-item"><a href="#brqxeeu-107" class="nav-link intrnllnk">Compare Text Files</a><ul class="nav"><li class="nav-item"><a href="#mw_f70dfb21-a418-4af9-a389-623e556a67bf" class="nav-link intrnllnk">Compare Files</a></li><li class="nav-item"><a href="#mw_ee5c8c34-e960-41f2-a85b-4a33bbbffe72" class="nav-link intrnllnk">Understand Comparison Results</a></li></ul></li><li class="nav-item"><a href="#bt9l8o9-1" class="nav-link intrnllnk">Merge Text Files</a></li><li class="nav-item"><a href="#brqxeeu-110" class="nav-link intrnllnk">Compare Binary Files</a></li><li class="nav-item"><a href="#mw_1b166d57-d38d-472a-8589-f0e89c3c5b21" class="nav-link intrnllnk">Compare Other File Types</a></li><li class="nav-item"><a href="#bukh5y_" class="nav-link intrnllnk">Comparison Settings</a></li><li class="nav-item"><a href="#d126e11861" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=file-operations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=file-operations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=file-operations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=file-operations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=file-operations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=file-operations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brqxeeu-104">Compare Files and Folders and Merge Files</h2><span id="matlab_env_filecomparison" class="anchor_target"></span><p>Use the Comparison Tool to display the differences between selected pairs of files or
+        folders.</p><p>You can select files and folders on disk to compare using one of these methods:</p><p>
+    </p>
+<div class="itemizedlist"><ul><li><p>MATLAB<sup>&#x00AE;</sup> editors &#8212; Open a file in the MATLAB Editor or Live Editor. On the <strong class="guilabel">Editor</strong> or
+                    <strong class="guilabel">Live Editor</strong> tab, select <strong class="guimenuitem">Compare</strong> &gt; <strong class="guimenuitem">Compare To</strong>. Then, select the file you want to compare to.</p><p>You can also compare a file with the autosaved version or the saved version on
+                disk. On the <strong class="guilabel">Editor</strong>tab, select <strong class="guimenuitem">Compare</strong> &gt; <strong class="guimenuitem">Compare to Version on Disk</strong> or <strong class="guimenuitem">Compare to Backup</strong>. If you modified your
+                file, the Editor saves the file before comparing. The <strong class="guimenuitem">Compare to
+                    Version on Disk</strong> and <strong class="guimenuitem">Compare to Backup</strong>
+                options are available only if the option for automatically saving changes to a file
+                is disabled. To disable the option, go to the <strong class="guilabel">Home</strong> tab, and in
+                the <strong class="guilabel">Environment</strong> section, click <strong class="guibutton">Settings</strong>.
+                Then, select <strong class="guimenuitem">Editor/Debugger</strong> &gt; <strong class="guimenuitem">Saving</strong> and clear <strong class="guilabel">Save changes upon clicking away from a
+                    file</strong>. This option is not available in the Live Editor.</p></li><li><p>Files or Project panel &#8212; To compare two files on disk, select both files.
+                Then, right-click and select <strong class="guimenuitem">Compare Selected
+                    Files/Folders</strong>. The Comparison Tool opens both files, with the file
+                you selected first on the left.</p><p>Alternatively, right-click a file and select <strong class="guilabel">Compare To</strong>.
+                Then, select the file you want to compare to.</p></li><li><p>Command Window &#8212; Use the <a href="../ref/visdiff.html"><code class="function">visdiff</code></a> function.</p></li></ul></div><p>
+
+</p><p>For files under source control, you can open the Comparison
+    Tool to understand differences between revisions using one of the following methods.</p>
+<div class="itemizedlist"><ul><li><p>Files or Project panel &#8212; To compare a file to its ancestor,  right-click the file
+                and select <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">View Changes</strong>. To compare the file to a different revision, right-click the model
+                file and select <strong class="guilabel">Show Revisions</strong>. In the Log dialog box, select
+                the revision and click <strong class="guibutton">Compare to Local</strong>.</p></li><li><p>Source Control panel &#8212; To compare a file to its ancestor, in the
+                    <strong class="guilabel">Modified Files</strong> section, right-click the file and select
+                    <strong class="guimenuitem">View Changes</strong>. To compare the file to a different
+                revision, right-click the file and select <strong class="guilabel">Show Revisions</strong>. In
+                the Log dialog box, select the revision and click <strong class="guibutton">Compare to
+                    Local</strong>.</p></li><li><p><a href="../ref/branchmanager.html"><span class="tool">Branch
+                    Manager</span></a> &#8212; To inspect changes in a file between two Git&#x2122; revisions, open the <span class="tool">Branch Manager</span>. Right-click and
+                select <strong class="guimenuitem">Source Control</strong> &gt; <strong class="guimenuitem">Branch Manager</strong>. In the <strong class="guilabel">Commit Differences</strong> pane, right-click a
+                file and select <strong class="guilabel">Show Differences</strong>.</p>
+<div class="informalfigure"><div id="d126e11262" class="mediaobject"><p class="listimage"><img src="show_differences.png" alt="Branch Manager with two selected commits in the commit graph and Show Differences context menu option in the right pane" height="326" width="728"></p></div></div><p></p></li></ul></div><p>
+</p><p> The Comparison Tool compares selected items using the default comparison type. To specify
+        a different comparison type, use the <a href="../ref/visdiff.html"><code class="function">visdiff</code></a>. For example, you might want to change the comparison type from
+            <code class="literal">"text"</code> to <code class="literal">"binary"</code> to examine differences such as
+        end-of-line characters in text files.</p><p>When you select folders to compare, by default, the Comparison Tool includes the content
+        of all subfolders recursively in the comparison. To include only the folders you select and
+        the first-level subfolders in the comparison report, in MATLAB, enter the following
+        commands.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s=settings();
+s.comparisons.folder.IncludeSubfolders.TemporaryValue=false;</pre></div></div></div></p><section><h3 class="title" id="brqxeeu-111">Compare Folders and Zip Files</h3><span id="matlab_env_foldercomparison" class="anchor_target"></span><p>You can compare any combination of folders and ZIP files using the Comparison Tool.
+            For example, you can compare the contents of a folder to the contents of a ZIP file. The
+            Comparison Tool performs a file list comparison of the selected items.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>Starting in R2025a, when you compare folders, MATLAB detects whether they are project root folders. The Comparison Tool
+                opens a project definition files comparison report. For more information, see <a href="../matlab_prog/compare-matlab-projects.html" class="a">Compare MATLAB Projects</a>.</p></div><p>Create a folder comparison report to:</p><div class="itemizedlist"><ul><li><p>Identify common files.</p></li><li><p>Determine whether files or folders with identical names have identical
+                    content. If such files or folders exist, you can open a detailed comparison
+                    report for the items directly from the report.</p></li></ul></div><p>When you perform a file list comparison, a new window opens and displays the contents
+            of the specified lists side by side. For example, suppose that you have two folders,
+                <code class="literal">curvefitting</code> and <code class="literal">curvefitting2</code>, with several
+            differences. When you compare the two folders, the Comparison Tool displays the
+            resulting report.</p>
+<div class="informalfigure"><div id="d126e11307" class="mediaobject"><p><img src="foldercompare.png" alt="Folder comparison results for the curvefitting and curvefitting2 folders" height="407" width="590"></p></div></div><p></p><p>The Comparison Tool highlights files and subfolders that do not match using the colors
+            listed in this table.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Highlight Color</th><th>Description</th></tr></thead><tbody><tr><td>Purple</td><td>The contents of the files or folders differ. Click the
+                                <strong class="guilabel">compare</strong> link to investigate.</td></tr><tr><td>Blue </td><td>The file or folder only exists in the right list.</td></tr><tr><td>Yellow</td><td>The file or folder only exists in the left list.</td></tr><tr><td>None</td><td>The files or folders are identical.</td></tr></tbody></table></div><p>You further can explore the results using several methods:</p><div class="itemizedlist"><ul><li><p>To sort the results by name, type, size, or last modified timestamp, click the
+                    corresponding column header. For example, click the <strong class="guilabel">Type</strong>
+                    column header to sort by folder and file type.</p></li><li><p> To open a detailed comparison report for items with differing content, click
+                    the <strong class="guilabel">compare</strong> link next to the item.</p></li><li><p>To open a file in the Editor, click the <strong class="guilabel">open</strong> link next to
+                    a file name. If the file is present in both folders, you can click links to open
+                    the <strong class="guilabel">left</strong> or <strong class="guilabel">right</strong> version of the
+                    file.</p></li><li><p>If subfolders are very large and contain many files, analysis continues in the
+                    background. The tool displays the number of items still to be compared at the
+                    top of the report. You can click <strong class="guilabel">Skip Current</strong> to skip the
+                    current item or <strong class="guilabel">Cancel All</strong> to stop further analysis.</p><div class="informalfigure"><div id="d126e11374" class="mediaobject"><p class="listimage"><img src="skipfoldercompare.png" alt="Section of the comparison report showing the number of items that still need to be compared, a Skip Current hyperlink, and a Cancel All hyperlink" height="48" width="283"></p></div></div></li><li><p>To save time when reviewing differences, especially when comparing many
+                    subfolders, you can filter the report. To apply a filter, on the
+                        <strong class="guilabel">View</strong> tab, select <strong class="guimenuitem">Filter</strong> &gt; <strong class="guimenuitem">"<em class="replaceable"><code>filterName</code></em>"</strong>.</p><p>To create a new filter, on the <strong class="guilabel">View</strong> tab, select <strong class="guimenuitem">Filter</strong> &gt; <strong class="guimenuitem">Add/Remove Filter</strong>. You can specify filters to ignore certain files and folders, such
+                    as backup files or files created by a revision control system. For example, to
+                    ignore all files and folders in a folder named <code class="literal">CVS</code>, type
+                        <code class="literal">CVS/</code>. To ignore all files in a folder named
+                        <code class="literal">CVS</code>, but not ignore subfolders, type
+                        <code class="literal">CVS/*</code>.</p><p>To edit existing filters, double click the filter.</p></li></ul></div><p>You can further configure and explore the comparison report using the following methods:</p>
+<div class="itemizedlist"><ul><li><p> <strong class="guibutton">Swap Sides</strong> button &#8212; Switch the left side file or folder with the right side file or folder.</p></li><li><p> <strong class="guibutton">Refresh</strong> button &#8212; Update the results in the Comparison Tool after making changes to and saving the files in the Editor.</p></li><li><p> <strong class="guibutton">Find</strong> button &#8212; Find a phrase in the current display. For more information, see <a href="find-text-in-command-window-or-history.html" class="a">Find Text in Command Window or History</a>.</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="brqxeeu-107">Compare Text Files<span id="matlab_env_textcomparison" class="anchor_target"></span></h3><p>You can compare and merge lines in two text files using the Comparison Tool. When you
+            perform a text comparison, a new window opens and displays the two files side by
+            side.</p><section><h4 class="title" id="mw_f70dfb21-a418-4af9-a389-623e556a67bf">Compare Files</h4><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CompareTextFilesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Compare Files",
+          "description": "A user made some changes to lengthofline.m and saved the resulting file as lengthofline2.m.",
+          "thumbnailURL": "../../examples/matlab/win64/CompareTextFilesExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "comparing-files-and-folders.html"
+
+        },
+          "identifier": "matlab.CompareTextFilesExample",
+          "name": "CompareTextFilesExample",
+          "url": "comparing-files-and-folders.html#mw_f70dfb21-a418-4af9-a389-623e556a67bf"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CompareTextFilesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CompareTextFilesExample.mlx",
+        "lengthofline.m",
+        "lengthofline2.m"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-CompareTextFilesExample"><meta itemprop="exampletitle" content="Compare Files"></div><span id="CompareTextFilesExample" class="anchor_target"></span><p class="shortdesc">A user made some changes to <code class="literal">lengthofline.m</code> and saved the resulting file as <code class="literal">lengthofline2.m</code>.</p><p>Use <code class="literal">visdiff</code> to compare the <code class="literal">lengthofline.m</code> and <code class="literal">lengthofline2.m</code> files.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>visdiff(<span style="color:#A020F0">"lengthofline.m"</span>,<span style="color:#A020F0">"lengthofline2.m"</span>)</pre></div></div></div><p>The Comparison Tool displays the resulting report.</p><div class="informalfigure"><div id="d126e11471" class="mediaobject"><p><img src="../../examples/matlab/win64/CompareTextFilesExample_01.png" alt="Comparison results for the files lengthofline.m and lengthofline2.m" height="625" width="681"></p></div></div><div class="procedure"></div></section><section><h4 class="title" id="mw_ee5c8c34-e960-41f2-a85b-4a33bbbffe72">Understand Comparison Results</h4><p>The Comparison Tool displays the total number of differences in the bottom-right
+                corner of the comparison report and highlights the lines that have changed with the
+                colors listed in this table.</p><p>If the files are identical or differ only in line break, you see a message
+                reporting there are no differences.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="38%"><col class="tcol2" width="62%"></colgroup><thead><tr><th>Default Highlight Color</th><th>Description</th></tr></thead><tbody><tr><td>Purple</td><td>The line contains differences.</td></tr><tr><td>Dark purple</td><td>The boxed text is different. </td></tr><tr><td>Blue</td><td>The line exists only in the right file. This can happen when the
+                                line is inserted in the right file, or when it is deleted from the
+                                left file. The corresponding line in the left file is highlighted
+                                using a gray striped pattern.</td></tr><tr><td>Yellow</td><td>The line exists only in the left file. This can happen when the
+                                line is inserted in the left file, or when it is deleted from the
+                                right file. The corresponding line in the right file is highlighted
+                                using a gray striped pattern.</td></tr></tbody></table></div><p>The Comparison Tool attempts to match lines and detects text that is added,
+                deleted, or changed. For example, in the text comparison of
+                    <code class="literal">lengthofline.m</code> and <code class="literal">lengthofline2.m</code>, the
+                tool determines that <code class="literal">lengthofline2.m</code> has a line of code that does
+                not exist in <code class="literal">lengthofline.m</code> and highlights it (line 22) in blue.
+                Also, the tool takes the additional line into account and determines that the line
+                containing the <code class="literal">end</code> statement in each file matches, even though
+                the <code class="literal">end</code> statement does not occur on the same line number in both
+                files.</p><div class="itemizedlist"><ul><li><p> To show the file details, click the expand arrow
+                                <span class="guiicon"><span class="inlinemediaobject"><img src="text_compare_expand.png" alt="" height="26" width="23"></span></span> next to the file name.</p><p><em>In R2025a: For files under source control, the file details
+                        include source control information such as tags and branches.</em></p></li><li><p>To step through the results one difference at a time, use the
+                            <strong class="guibutton">Next</strong> and <strong class="guibutton">Previous</strong>
+                        buttons.</p></li><li><p>To help distinguish between functional changes and changes to indentation,
+                        you can hide white space differences. To hide differences that only involve
+                        white space characters, click <strong class="guibutton">Filter</strong>, and select
+                            <strong class="guilabel">Ignore White Space</strong>.</p></li><li><p>To save a copy of the comparison report, select <strong class="guimenuitem">Publish</strong> &gt; <strong class="guimenuitem">Publish to HTML</strong>, <strong class="guimenuitem">Publish to Word</strong>, or
+                            <strong class="guimenuitem">Publish to PDF</strong>.</p></li></ul></div><p>You can further configure and explore the comparison report using the following methods:</p>
+<div class="itemizedlist"><ul><li><p> <strong class="guibutton">Swap Sides</strong> button &#8212; Switch the left side file or folder with the right side file or folder.</p></li><li><p> <strong class="guibutton">Refresh</strong> button &#8212; Update the results in the Comparison Tool after making changes to and saving the files in the Editor.</p></li><li><p> <strong class="guibutton">Find</strong> button &#8212; Find a phrase in the current display. For more information, see <a href="find-text-in-command-window-or-history.html" class="a">Find Text in Command Window or History</a>.</p></li></ul></div><p>
+</p></section></section><section><h3 class="title" id="bt9l8o9-1">Merge Text Files</h3><p>When comparing text files, you can merge changes from one file to the other. Merging
+            changes can be useful when resolving conflicts between different versions of files. When
+            merging changes, you only can merge from left to right. If you want to merge into the
+            left file, click <strong class="guibutton">Swap Sides</strong> before you start merging. Swapping
+            sides reverts any merges already made and creates a new comparison report from the
+            original files.</p><p>To begin merging, in the Comparison Tool toolstrip, click <strong class="guibutton">Merge
+                Mode</strong>. Then, to replace content from the right pane with content from the
+            left pane, click the Replace Content button <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_18_px"><img src="compare_text_merge_button.png" alt="Replace Content" height="18" width="23"></span></span> button located next to the line you want to merge.
+            Alternatively, select a difference and, in the Comparison Tool toolstrip, click
+                <strong class="guibutton">Replace Content</strong>.</p><p>The right pane contains the merged result. An asterisk next to the merged file name in
+            the right pane (<code class="literal">lengthofline2.m *</code>) indicates that the file contains
+            unsaved changes.</p><p>To undo a replacement, click the <strong class="guibutton">Undo</strong> button
+                    <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_17_px"><img src="compare_livecode_undo_button.png" alt="" height="17" width="19"></span></span>  between the modified lines or in the toolstrip. To
+            revert all merges and start again, in the Comparison Tool toolstrip, click
+                <strong class="guibutton">Refresh</strong>. You can also use <strong class="guibutton">Refresh</strong> to
+            update the comparison report after making changes to and saving the files. Refreshing
+            discards all unsaved merged changes.</p><p>To save your changes and return to the comparison report, in the toolstrip, click
+                <strong class="guibutton">Save Result</strong> button. To return to the comparison report
+            without saving changes, click <strong class="guibutton">Return to Comparison</strong>.</p><div class="informalfigure"><div id="d126e11626" class="mediaobject"><p><img src="text_merge_mode.png" alt="Comparison Tool in merge mode for the files lengthofline.m and lengthofline2.m" height="800" width="1026"></p></div></div></section><section><h3 class="title" id="brqxeeu-110">Compare Binary Files</h3><span id="matlab_env_bincomparison" class="anchor_target"></span><p>You can compare two binary files, such as DLL files or MEX files, using the Comparison
+            Tool. You also can perform a binary comparison on any two selected files, instead of the
+            default comparison.</p><p>To compare any two files using a binary comparison, in the <strong class="guilabel">Comparison
+                type</strong> menu, select <code class="guidropdown">Binary comparison</code>. When you
+            perform a binary comparison, a new window opens and indicates whether the two files are
+            identical or different. If the files are different, click the <strong class="guilabel">Show
+                Details</strong> link to view the binary files and the byte offset of the first
+            difference.</p></section><section><h3 class="title" id="mw_1b166d57-d38d-472a-8589-f0e89c3c5b21">Compare Other File Types</h3><p>You can use the Comparison Tool to compare other file types:</p><div class="itemizedlist"><ul><li><p>Live Code &#8212; Compare and merge the code and text in two live code files. For
+                    more information, see <a href="compare-and-merge-live-scripts-and-functions.html" class="a">Compare and Merge Live Scripts and Functions</a>.</p></li><li><p>Apps &#8212; Compare and merge the code in two apps. For more information, see <a href="compare-and-merge-apps.html" class="a">Compare and Merge Apps</a>.</p></li><li><p>MAT-Files &#8212; Compare and merge variables in two MAT-files. For more
+                    information, see <a href="compare-and-merge-mat-files.html" class="a">Compare and Merge MAT-files</a>.</p></li><li><p>Simulink<sup>&#x00AE;</sup> Models &#8212; If you have Simulink, you can compare and merge Simulink models. For information, see <a href="../../simulink/model-comparison.html" class="a">Model Comparison</a><span role="cross_prod"> (Simulink)</span>.</p></li><li><p>MLDATX test files &#8212; Compare and merge <span class="entity">Simulink
+            Test&#x2122;</span> test cases in MLDATX test files. For information, see <a href="../../sltest/ug/compare-and-merge-test-files.html" class="a">Compare and Merge Test Files</a><span role="cross_prod"> (Simulink Test)</span></p></li></ul></div></section><section><h3 class="title" id="bukh5y_">Comparison Settings</h3><span id="matlab_env_comparison_color_prefs" class="anchor_target"></span><p>You can customize the colors that the Comparison Tool uses in the Comparison settings. To
+        change the Comparison settings, on the <strong class="guilabel">Home</strong> tab, in the
+            <strong class="guilabel">Environment</strong> section, click <strong class="guibutton">Settings</strong>. Then,
+        select <strong class="guimenuitem">MATLAB</strong> &gt; <strong class="guimenuitem">Comparison</strong>.</p><p>Color settings apply to all comparison and merge types. After changing the colors, any
+        open comparison and merge reports reflect the updated colors. MATLAB remembers your choices for future sessions. You can define a set of colors per
+        desktop theme. To restore default colors, click <strong class="guibutton">Restore Default
+            Colors</strong>.</p><p>This table provides a summary of the colors that the comparison and merge reports
+        use.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="42%"><col class="tcol2" width="58%"></colgroup><thead><tr><th>Color of report item</th><th>Description</th></tr></thead><tbody><tr><td rowspan="2">Modified/Theirs</td><td>In the comparison report, the color is associated to a modified line or
+                        item.</td></tr><tr><td>In the three-way merge report, the color is associated to a change made
+                        by the <strong class="guilabel">Theirs</strong> revision.</td></tr><tr><td rowspan="3">Deleted/Base</td><td>In the comparison report, the color is associated to a deleted line or
+                        item.</td></tr><tr><td>In the two-way merge report, the color is associated to a change made by
+                        the <strong class="guilabel">Left</strong> revision.</td></tr><tr><td>In the three-way merge report, the color is associated to a change that
+                        exists in the <strong class="guilabel">Base</strong> revision.</td></tr><tr><td rowspan="3">Inserted/Mine</td><td>In the comparison report, the color is associated to an added line or
+                        item.</td></tr><tr><td>In the two-way merge report, the color is associated to a change made by
+                        the <strong class="guilabel">Right</strong> revision.</td></tr><tr><td>In the three-way merge report, the color is associated to a change made
+                        by the <strong class="guilabel">Mine</strong> revision.</td></tr><tr><td>Target</td><td>In the two-way and three-way merge reports, the color is associated to a
+                        change made in the <strong class="guilabel">Target</strong> pane.</td></tr><tr><td>Conflict</td><td>In the three-way merge reports, the color is associated to a line that
+                        contains conflicts.</td></tr><tr><td rowspan="2">Modified/Theirs Margin</td><td>In the comparison report, the color is associated to the margin of a
+                        modified line or item.</td></tr><tr><td>In the three-way merge report, the color is associated to the margin of a
+                        change made by the <strong class="guilabel">Theirs</strong> revision.</td></tr><tr><td rowspan="3">Deleted/Base Margin</td><td>In the comparison report, the color is associated to the margin of a
+                        deleted line or item.</td></tr><tr><td>In the two-way merge report, the color is associated to the margin of a
+                        change made by the <strong class="guilabel">Left</strong> revision.</td></tr><tr><td>In the three-way merge report, the color is associated to the margin of a
+                        change that exists in the <strong class="guilabel">Base</strong> revision.</td></tr><tr><td rowspan="3">Inserted/Mine Margin</td><td>In the comparison report, the color is associated to the margin of an
+                        added line or item.</td></tr><tr><td>In the two-way merge report, the color is associated to the margin of a
+                        change made by the <strong class="guilabel">Right</strong> revision.</td></tr><tr><td>In the three-way merge report, the color is associated to the margin of a
+                        change made by the <strong class="guilabel">Mine</strong> revision.</td></tr><tr><td>Target Margin</td><td>In the two-way and three-way merge reports, the color is associated to
+                        the margin of a change made in the <strong class="guilabel">Target</strong> pane.</td></tr><tr><td>Conflict Margin</td><td>In the three-way merge reports, the color is associated to the margin of
+                        a line that contains conflicts.</td></tr><tr><td>Inline Modification</td><td>In the comparison report, the color is associated to a inline
+                        modification.</td></tr></tbody></table></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The margin of a node in the report may display more than one color. For example, when
+            a node has both the blue and purple colors, it indicates that the detailed comparison of
+            this node contains both added and modified items. To open the details pane, select the
+            node.</p></div><p>The following illustration shows a side by side comparison example. The margin of the
+        parent node <code class="literal">MATLAB Function</code>, on the right, is colored in both dark purple
+        and dark blue to indicate both modified and added items in the detailed
+            <strong class="guilabel">Script</strong> comparison below. In the detailed
+            <strong class="guilabel">Script</strong> comparison, the modified lines and items are colored in
+        light purple and the corresponding margins are colored in dark purple. The added line is
+        colored in light blue and the corresponding margin is colored in dark blue. The deleted line
+        is colored in light orange and the corresponding margin is colored in brown.</p><div class="informalfigure"><div id="d126e11850" class="mediaobject"><p><img src="color_pref.png" alt="" height="614" width="1186"></p></div></div><p>For more information about the terminology used in the Comparison and Merge tools, see
+            <a href="../../simulink/slref/comparisontool.html#mw_6c1f0584-142e-4d1c-a20f-8db31d623b1d" class="a">Terminology in Comparison Report</a><span role="cross_prod"> (Simulink)</span> and <a href="../../simulink/slref/simulinkthreewaymergetool.html#mw_4-f5cfc6c1f0584-142e-4d1c-a20f-8db31d623b1d" class="a">Terminology in Three-Way Merge Report</a><span role="cross_prod"> (Simulink)</span>.</p></section>
+        <h2 id="d126e11861">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/visdiff.html"><span itemprop="name"><code class="function">visdiff</code></span></a></span></p>
+        <h3 id="d126e11867">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/customize-external-source-control-to-use-matlab-for-comparison-and-merge.html" class="a">Customize External Source Control to Use MATLAB for Diff and Merge</a></li></ul>
+        <h3 id="d126e11872">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.mathworks.com/matlabcentral/fileexchange/115905-programming-structuring-code">Programming: Structuring Code (MathWorks Teaching Resources)</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

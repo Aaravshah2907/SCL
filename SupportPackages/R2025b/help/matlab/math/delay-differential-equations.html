@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Solving Delay Differential Equations</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../numerical-integration-and-differential-equations.html",
+          "name": "Numerical Integration and Differential Equations"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../delay-differential-equations.html",
+          "name": "Delay Differential Equations"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "delay-differential-equations"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Background information, solver capabilities and algorithms, and example summary."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../numerical-integration-and-differential-equations.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Numerical Integration and Differential Equations</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../delay-differential-equations.html?s_tid=CRUX_lftnav" itemprop="url" id="delay-differential-equations"><span itemprop="title">Delay Differential Equations</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Solving Delay Differential Equations</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#btkt1d3" class="nav-link intrnllnk">Constant Delay DDEs</a></li><li class="nav-item"><a href="#btkt1fk" class="nav-link intrnllnk">Time-Dependent and State-Dependent DDEs</a></li><li class="nav-item"><a href="#btkt1jx" class="nav-link intrnllnk">DDEs of Neutral Type</a></li><li class="nav-item"><a href="#btkt1ll" class="nav-link intrnllnk">Evaluating the Solution at Specific Points</a></li><li class="nav-item"><a href="#f1-714016" class="nav-link intrnllnk">History and Initial Values</a></li><li class="nav-item"><a href="#mw_cd6c7039-d36c-467d-8586-545a45116d58" class="nav-link intrnllnk">Discontinuities in DDEs</a></li><li class="nav-item"><a href="#f1-715572" class="nav-link intrnllnk">Propagation of Discontinuities</a></li><li class="nav-item"><a href="#mw_ae9f0eef-b8b0-4bc0-bdba-d38616d5c0c0" class="nav-link intrnllnk">DDE Examples and Files</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e56177" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=delay-differential-equations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=delay-differential-equations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=delay-differential-equations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=delay-differential-equations&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=delay-differential-equations&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=delay-differential-equations&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f1-663833">Solving Delay Differential Equations</h2><span id="diffeq_dde" class="anchor_target"></span><p>Delay differential equations (DDEs) are ordinary differential equations that relate the
+      solution at the current time to the solution at past times. This delay can be constant,
+      time-dependent, state-dependent, or derivative-dependent. In order for the integration to
+      begin, you generally must provide a solution history so that the solution is accessible to the
+      solver for times before the initial integration point.</p><section><h3 class="title" id="btkt1d3">Constant Delay DDEs</h3><p>A system of differential equations with constant delays has the form:</p><div id="d126e55641" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-9px" display="block"><mrow><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>−</mo><msub><mi>τ</mi><mn>1</mn></msub></mrow><mo>)</mo></mrow><mo>,</mo><mo>…</mo><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>−</mo><msub><mi>τ</mi><mi>k</mi></msub></mrow><mo>)</mo></mrow></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>Here, <em class="varname">t</em> is the independent variable, <em class="varname">y</em> is a column
+        vector of dependent variables, and <em class="varname">y</em> ′ represents the first derivative of
+          <em class="varname">y</em> with respect to <em class="varname">t</em>. The delays,
+          <em class="varname">τ</em><sub>1</sub>,…,<em class="varname">τ</em><sub>k</sub>,
+        are positive constants.</p><p>The <a href="../ref/dde23.html"><code class="function">dde23</code></a> function solves DDEs with constant
+        delays with history <em class="varname">y</em>(<em class="varname">t</em>) =
+          <em class="varname">S</em>(<em class="varname">t</em>) for <em class="varname">t</em>
+          &lt;<em class="varname">t</em><sub>0</sub>. </p><p>The solutions of DDEs are generally continuous, but they have discontinuities in their
+        derivatives. The <code class="literal">dde23</code> function tracks discontinuities in low-order
+        derivatives. It integrates the differential equations with the same explicit Runge-Kutta
+        (2,3) pair and interpolant used by <code class="literal">ode23</code>. The Runge-Kutta formulas are
+        implicit for step sizes bigger than the delays. When
+          <em class="varname">y</em>(<em class="varname">t</em>) is smooth enough to justify steps this big, the
+        implicit formulas are evaluated by a predictor-corrector iteration.</p></section><section><h3 class="title" id="btkt1fk">Time-Dependent and State-Dependent DDEs</h3><p>Constant time delays are a special case of the more general DDE form:</p><div id="d126e55696" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-12px" display="block"><mrow><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>)</mo></mrow><mo>,</mo><mn>...</mn><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mi>p</mi></msub></mrow><mo>)</mo></mrow></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>Time-dependent and state-dependent DDEs involve delays
+          <em class="varname">dy</em><sub>1</sub>,...,
+          <em class="varname">dy</em><sub>k</sub> that can depend on both time
+          <em class="varname">t</em> and state <em class="varname">y</em>. The delays
+          <em class="varname">dy</em><sub>j</sub>(<em class="varname">t</em>, <em class="varname">y</em>)
+        must satisfy <em class="varname">dy</em><sub>j</sub>(<em class="varname">t</em>,
+          <em class="varname">y</em>) ≤ <em class="varname">t</em> on the interval
+          [<em class="varname">t</em><sub>0</sub>,
+          <em class="varname">t</em><sub>f</sub>] with
+          <em class="varname">t</em><sub>0</sub> &lt;
+          <em class="varname">t</em><sub>f</sub>.</p><p>The <a href="../ref/ddesd.html"><code class="function">ddesd</code></a> function finds the solution,
+          <em class="varname">y</em>(<em class="varname">t</em>), for time-dependent and state-dependent DDEs
+        with history <em class="varname">y</em>(<em class="varname">t</em>) =
+          <em class="varname">S</em>(<em class="varname">t</em>) for <em class="varname">t</em> &lt;
+          <em class="varname">t</em><sub>0</sub>. The <code class="literal">ddesd</code> function
+        integrates with the classic four-stage, fourth-order explicit Runge-Kutta method, and it
+        controls the size of the residual of a natural interpolant. It uses iteration to take steps
+        that are longer than the delays.</p></section><section><h3 class="title" id="btkt1jx">DDEs of Neutral Type</h3><p>Delay differential equations of neutral type involve delays in <em class="varname">y</em> ′ as
+        well as <em class="varname">y</em>:</p><div id="d126e55776" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-12px" display="block"><mrow><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>)</mo></mrow><mo>,</mo><mn>...</mn><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mi>p</mi></msub></mrow><mo>)</mo></mrow><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mrow><mi>d</mi><mi>y</mi><msub><mi>p</mi><mn>1</mn></msub></mrow><mo>)</mo></mrow><mo>,</mo><mn>...</mn><mo>,</mo><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mrow><mi>d</mi><mi>y</mi><msub><mi>p</mi><mi>q</mi></msub></mrow><mo>)</mo></mrow></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>The delays in the solution must satisfy
+          <em class="varname">dy</em><sub>i</sub>(<em class="varname">t</em>,<em class="varname">y</em>) ≤
+          <em class="varname">t</em>. The delays in the first derivative must satisfy
+          <em class="varname">dyp</em><sub>j</sub>(<em class="varname">t</em>,<em class="varname">y</em>)
+        &lt; <em class="varname">t</em> so that <em class="varname">y</em> ′ does not appear on both sides of
+        the equation.</p><p>The <a href="../ref/ddensd.html"><code class="function">ddensd</code></a> function solves DDEs of neutral type
+        by approximating them with DDEs of the form given for time-dependent and state-dependent
+        delays:</p><div id="d126e55808" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-12px" display="block"><mrow><msup><mi>y</mi><mo>′</mo></msup><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><mi>f</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mn>1</mn></msub></mrow><mo>)</mo></mrow><mo>,</mo><mn>...</mn><mo>,</mo><mi>y</mi><mrow><mo>(</mo><mrow><mi>d</mi><msub><mi>y</mi><mi>p</mi></msub></mrow><mo>)</mo></mrow></mrow><mo>)</mo></mrow><mo>.</mo></mrow></math></p></div></div><p>For more information, see Shampine <a href="delay-differential-equations.html#btk2v_q" class="intrnllnk">[1]</a>.</p></section><section><h3 class="title" id="btkt1ll">Evaluating the Solution at Specific Points</h3><p>Use the <a href="../ref/deval.html"><code class="function">deval</code></a> function and the output from any of the
+        DDE solvers to evaluate the solution at specific points in the interval of integration. For
+        example, <code class="literal">y = deval(sol, 0.5*(sol.x(1) + sol.x(end)))</code> evaluates the
+        solution at the midpoint of the interval of integration.</p></section><section><h3 class="title" id="f1-714016">History and Initial Values</h3><p>When you solve a DDE, you approximate the solution on an interval
+          [<em class="varname">t</em><sub>0</sub>,<em class="varname">t<sub>f</sub></em>]
+        with <em class="varname">t</em><sub>0</sub> &lt;<em class="varname">
+          t<sub>f</sub></em>. The DDEs show how <em class="varname">y</em>
+          ′(<em class="varname">t</em>) depends on values of the solution (and possibly its derivative) at
+        times prior to <em class="varname">t</em>. For example, with constant delays  <em class="varname">y</em>
+          ′(<em class="varname">t</em><sub>0</sub>) depends on
+          <em class="varname">y</em>(<em class="varname">t</em><sub>0</sub> &#8211;
+          <em class="varname">τ</em><sub>1</sub>),…,<em class="varname">y</em>(<em class="varname">t</em><sub>0</sub>
+        &#8211; <em class="varname">τ</em><sub>k</sub>) for positive constants
+          <em class="varname">τ</em><sub>j</sub>. Because of this, a solution on
+          [<em class="varname">t</em><sub>0</sub>,
+          <em class="varname">t</em><sub>k</sub>] depends on values it has at
+          <em class="varname">t</em> ≤ <em class="varname">t</em><sub>0</sub>. You must define these
+        values with a history function, <em class="varname">y</em>(<em class="varname">t</em>) =
+          <em class="varname">S</em>(<em class="varname">t</em>) for <em class="varname">t</em>
+          &lt;<em class="varname">t</em><sub>0</sub>.</p></section><section><h3 class="title" id="mw_cd6c7039-d36c-467d-8586-545a45116d58">Discontinuities in DDEs</h3><span id="discontinuities" class="anchor_target"></span><p>If your problem has discontinuities, it is best to communicate them to the solver using
+        an options structure. To do this, use the <a href="../ref/ddeset.html"><code class="function">ddeset</code></a> function to create an <code class="literal">options</code> structure containing
+        the discontinuities in your problem.</p><p>There are three properties in the <code class="literal">options</code> structure that you can use
+        to specify discontinuities; <code class="literal">InitialY</code>, <code class="literal">Jumps</code>, and
+          <code class="literal">Events</code>. The property you choose depends on the location and nature of
+        the discontinuities.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="22%"><col class="tcol3" width="45%"></colgroup><thead><tr><th><p>Nature of Discontinuity</p></th><th><p>Property</p></th><th><p>Comments</p></th></tr></thead><tbody><tr><td><p>At the initial value <em class="varname">t</em> =
+                    <em class="varname">t</em><sub>0</sub></p></td><td><p id="f1-720693"><code class="property">InitialY</code></p></td><td><p>Generally the initial value
+                    <em class="varname">y</em>(<em class="varname">t</em><sub>0</sub>) is the value
+                    <em class="varname">S</em>(<em class="varname">t</em><sub>0</sub>) returned by
+                  the history function, meaning the solution is continuous at the initial point. If
+                  this is not the case, supply a different initial value using the
+                    <code class="property">InitialY</code> property.</p></td></tr><tr><td><p>In the history, i.e., the solution at <em class="varname">t</em>
+                    &lt;<em class="varname">t</em><sub>0</sub>, or in the equation
+                  coefficients for <em class="varname">t</em>
+                    &gt;<em class="varname">t</em><sub>0</sub></p></td><td><p id="f1-720697"><code class="property">Jumps</code></p></td><td><p>Provide the known locations <em class="varname">t</em> of the discontinuities
+                  in a vector as the value of the <code class="property">Jumps</code> property. Applies only
+                  to <code class="literal">dde23</code>.</p></td></tr><tr><td><p>State-dependent</p></td><td><p id="f1-720701"><code class="property">Events</code></p></td><td><p><code class="literal">dde23</code>, <code class="literal">ddesd</code>, and
+                    <code class="function">ddensd</code> use the events function you supply to locate these
+                  discontinuities. When the solver finds such a discontinuity, restart the
+                  integration to continue. Specify the solution structure for the current
+                  integration as the history for the new integration. The solver extends each
+                  element of the solution structure after each restart so that the final structure
+                  provides the solution for the whole interval of integration. If the new problem
+                  involves a change in the solution, use the <code class="property">InitialY</code> property
+                  to specify the initial value for the new integration.</p></td></tr></tbody></table></div></section><section><h3 class="title" id="f1-715572">Propagation of Discontinuities</h3><p>Generally, the first derivative of the solution has a jump at the initial point. This is
+        because the first derivative of the history function,
+          <em class="varname">S</em>(<em class="varname">t</em>), generally does not satisfy the DDE at this
+        point. A discontinuity in any derivative of <em class="varname">y</em>(<em class="varname">t</em>)
+        propagates into the future at spacings of <em class="varname">τ</em><sub>1</sub>,…,
+          <em class="varname">τ</em><sub>k</sub> when the delays are constant. If the delays
+        are not constant, the propagation of discontinuities is more complicated. For neutral DDEs
+        of the forms in <a href="delay-differential-equations.html#btkt1d3" class="intrnllnk">Constant Delay DDEs</a> and <a href="delay-differential-equations.html#btkt1fk" class="intrnllnk">Time-Dependent and State-Dependent DDEs</a>, the
+        discontinuity appears in the next higher order derivative each time it is propagated. In
+        this sense, the solution gets smoother as the integration proceeds. Solutions of neutral
+        DDEs of the form given in <a href="delay-differential-equations.html#btkt1jx" class="intrnllnk">DDEs of Neutral Type</a> are qualitatively different. The discontinuity in the
+        solution does not propagate to a derivative of higher order. In particular, the typical jump
+        in <em class="varname">y</em> ′(<em class="varname">t</em>) at
+          <em class="varname">t</em><sub>0</sub> propagates as jumps in <em class="varname">y</em>
+          ′(<em class="varname">t</em>) throughout [<em class="varname">t</em><sub>0</sub>,
+          <em class="varname">t</em><sub>f</sub>].</p></section><section><h3 class="title" id="mw_ae9f0eef-b8b0-4bc0-bdba-d38616d5c0c0">DDE Examples and Files</h3><p>Several available example files serve as excellent starting points for most common DDE
+        problems. To easily explore and run examples, simply use the <strong class="emphasis bold">Differential Equations Examples</strong> app. To run this app,
+        type<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>odeexamples</pre></div></div></div>To open an
+        individual example file for editing,
+        type<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>edit <span style="color:#A020F0">exampleFileName.m</span></pre></div></div></div>To run
+        an example,
+        type<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>exampleFileName</pre></div></div></div></p><p>This table contains a list of the available DDE example files, as well as the solvers
+        and the options they use.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="11%"><col class="tcol2" width="20%"><col class="tcol3" width="20%"><col class="tcol4" width="29%"><col class="tcol5" width="20%"></colgroup><thead><tr><th><p>Example File</p></th><th>Solver Used</th><th>Options Specified</th><th><p>Description</p></th><th>Example Link</th></tr></thead><tbody><tr><td><p><code class="literal">ddex1</code></p></td><td><p><code class="function">dde23</code></p></td><td><p>&#8212;</p></td><td><p>DDE with constant history</p></td><td><p>
+                  <a href="dde-with-constant-delays.html" class="a">DDE with Constant Delays</a>
+                </p></td></tr><tr><td><p><code class="literal">ddex2</code></p></td><td><p><code class="function">dde23</code></p></td><td><p>
+                  </p>
+<div class="itemizedlist"><ul><li><p><code class="literal">'Jumps'</code></p></li></ul></div><p>
+
+                </p></td><td><p>DDE with a discontinuity</p></td><td><p>
+                  <a href="cardiovascular-model-with-discontinuities.html" class="a">Cardiovascular Model DDE with Discontinuities</a>
+                </p></td></tr><tr><td><p><code class="literal">ddex3</code></p></td><td><p><code class="function">ddesd</code></p></td><td><p>&#8212;</p></td><td><p>DDE with state-dependent delays</p></td><td><p>
+                  <a href="state-dependent-delay-problem.html" class="a">DDE with State-Dependent Delays</a>
+                </p></td></tr><tr><td><p><code class="literal">ddex4</code></p></td><td><p><code class="function">ddensd</code></p></td><td><p>&#8212;</p></td><td><p>Neutral DDE with two delays</p></td><td><p>
+                  <a href="dde-of-neutral-type.html" class="a">DDE of Neutral Type</a>
+                </p></td></tr><tr><td><p><code class="literal">ddex5</code></p></td><td><p><code class="function">ddensd</code></p></td><td><p>&#8212;</p></td><td><p>Neutral DDE with initial value</p></td><td><p>
+                  <a href="initial-value-dde-of-neutral-type.html" class="a">Initial Value DDE of Neutral Type</a>
+                </p></td></tr></tbody></table></div></section><div class="bibliography"><h2 id="References">References</h2><div id="btk2v_q" class="bibliomixed"><p>[1] Shampine, L.F. “Dissipative Approximations to Neutral
+        DDEs.” <em class="citetitle">Applied Mathematics &amp; Computation</em>, Vol. 203, 2008,
+        pp. 641&#8211;648.</p></div></div>
+      <h2 id="d126e56177">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/dde23.html"><span itemprop="name"><code class="function">dde23</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ddesd.html"><span itemprop="name"><code class="function">ddesd</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ddensd.html"><span itemprop="name"><code class="function">ddensd</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/ddeset.html"><span itemprop="name"><code class="function">ddeset</code></span></a></span></p>
+      
+      <h3 id="d126e56194">Topics</h3><ul class="list-unstyled"><li><a href="dde-with-constant-delays.html" class="a">DDE with Constant Delays</a></li><li><a href="state-dependent-delay-problem.html" class="a">DDE with State-Dependent Delays</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

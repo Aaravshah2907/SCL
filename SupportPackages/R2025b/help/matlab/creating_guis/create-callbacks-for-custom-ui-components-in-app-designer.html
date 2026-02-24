@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Create Callbacks for Custom UI Components in App Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../developing-custom-ui-component-classes.html",
+          "name": "Create Custom UI Components"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-custom-ui-component-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create public callbacks for your custom UI component that can be used to program the component behavior in an app."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-custom-ui-component-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_4599001b-126d-40d9-b094-1d13710d02e2"><span itemprop="title">Create Custom UI Components</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Create Callbacks for Custom UI Components in App Designer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_5a4f898b-4055-4a25-b8fa-b4a137f9be9d" class="nav-link intrnllnk">Relationship Between Events and Public Callbacks</a></li><li class="nav-item"><a href="#mw_41d68f50-7fe2-42ae-bc18-dbce1b671a7d" class="nav-link intrnllnk">Create New Event</a></li><li class="nav-item"><a href="#mw_5202f367-527e-4605-9d38-13767240499e" class="nav-link intrnllnk">Notify Event to Execute Callback</a></li><li class="nav-item"><a href="#mw_ba88ea04-3e5f-44a1-ab9c-da4c7e6aa46f" class="nav-link intrnllnk">Verify Callback</a><ul class="nav"><li class="nav-item"><a href="#mw_f053feef-b2ae-452b-94a7-d90697613094" class="nav-link intrnllnk">Verify Callback Programmatically</a></li><li class="nav-item"><a href="#mw_18831adf-2b41-43d5-afc1-b4b85e0ac323" class="nav-link intrnllnk">Verify Callback in App</a></li></ul></li><li class="nav-item"><a href="#mw_97f1d63b-daa0-4471-a10f-888285a8f8b9" class="nav-link intrnllnk">Full Example: FileSelector Component</a></li><li class="nav-item"><a href="#d126e16872" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-custom-ui-component-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_f14de0d3-1290-4770-a058-1cb7a8ec08d2">Create Callbacks for Custom UI Components in App Designer</h2><span id="appd_custom_component_callbacks" class="anchor_target"></span><p>When you develop a custom UI component in App Designer, you can use callbacks to provide
+      options for customizing the component behavior in an app, or to program your own response to
+      user interactions in the component code.</p><p>To enable an app creator to program a response to an interaction with your custom
+      component in their app, create a <em class="firstterm">public callback</em>. A public callback is
+      a callback for your component that is accessible when the component is used in an app. For
+      example, if you create a <code class="literal">ValueChangedFcn</code> public callback for an IP address
+      component, app creators can use this callback to write code to update their app whenever an
+      app user enters a new IP address.</p><p>To program the behavior of your component that does not change, regardless of how the
+      component is used, create an <em class="firstterm">underlying component callback</em> in your
+      custom component code. These callbacks are not accessible by an app creator who uses your
+      component in their app. For example, if your custom component contains a button that always
+      opens a dialog box, create a <code class="literal">ButtonPushedFcn</code> callback for that underlying
+      button component and write code to open the dialog box. App creators cannot access or change
+      this callback functionality in their own apps.</p><p>The example on this page shows how to create and configure a public callback for a custom
+      UI component that allows users to select a file from their system. The
+        <code class="literal">FileSelector</code> component consists of these elements:</p>
+<div class="itemizedlist"><ul><li><p>A button that opens a file selection dialog box</p></li><li><p>An edit field that displays the path to the selected file</p></li><li><p>A public property named <code class="literal">Path</code> that stores the selected file
+            path</p></li></ul></div><p>
+</p><div class="informalfigure"><div id="d126e16513" class="mediaobject"><p><img src="file-selector-component-snapshot.png" alt="File selector custom UI component" height="95" width="284"></p></div></div><p>Create a public callback named <code class="literal">PathChangedFcn</code> for the
+        <code class="literal">FileSelector</code> component using these steps:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p><a href="create-callbacks-for-custom-ui-components-in-app-designer.html#mw_41d68f50-7fe2-42ae-bc18-dbce1b671a7d" class="intrnllnk">Create New Event</a> &#8212; Add an event to
+            create a public callback.</p></li><li><p><a href="create-callbacks-for-custom-ui-components-in-app-designer.html#mw_5202f367-527e-4605-9d38-13767240499e" class="intrnllnk">Notify Event to Execute Callback</a> &#8212; Write code to
+            execute the <code class="literal">PathChangedFcn</code> callback when an app user interactively
+            selects a new file.</p></li><li><p><a href="create-callbacks-for-custom-ui-components-in-app-designer.html#mw_ba88ea04-3e5f-44a1-ab9c-da4c7e6aa46f" class="intrnllnk">Verify Callback</a> &#8212; Verify that the
+            callback appears and behaves as expected by programmatically assigning a callback
+            function in the MATLAB<sup>&#x00AE;</sup> Command Window and by adding the component to an App Designer app.</p></li></ol></div><p>
+</p><p>To explore and use the finished <code class="literal">FileSelector</code> component, see <a href="create-callbacks-for-custom-ui-components-in-app-designer.html#mw_97f1d63b-daa0-4471-a10f-888285a8f8b9" class="intrnllnk">Full Example: FileSelector Component</a>.</p><section><h3 class="title" id="mw_5a4f898b-4055-4a25-b8fa-b4a137f9be9d">Relationship Between Events and Public Callbacks</h3><p>To add a new public callback for your component, you must create an
+          <em class="firstterm">event</em>. An event is a notice that is broadcast when an action
+        occurs. When you create an event for your custom component, App Designer automatically
+        creates a public callback associated with the event whose name is the event name followed by
+        the letters <code class="literal">Fcn</code>. You can trigger the event by calling the
+          <code class="function">notify</code> function in response to a user interaction, which then prompts
+          MATLAB to execute the callback function that the app creator assigned to the
+        associated public callback.</p><div class="informalfigure"><div id="d126e16561" class="mediaobject"><p><img src="appd-event-callback-infographic.png" alt="Relationship between an event and a public callback. An event named &#34;myEvent&#34; in a component corresponds to a callback named &#34;myEventFcn&#34; in an app." height="169" width="637"></p></div></div></section><section><h3 class="title" id="mw_41d68f50-7fe2-42ae-bc18-dbce1b671a7d">Create New Event</h3><p>To create a <code class="literal">PathChangedFcn</code> public callback for the
+          <code class="literal">FileSelector</code> component, first create a new event. There are multiple
+        ways to create a new event. Choose the option that best suits your workflow based on where
+        in App Designer you are currently working:</p>
+<div class="itemizedlist"><ul><li><p>In <strong class="guilabel">Design View</strong>, in the <strong class="guilabel">Component
+              Browser</strong>, select the top-level component node. Under the
+                <strong class="guilabel">Events&#8211;Callback Pairs</strong> tab, click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button.</p></li><li><p>In <strong class="guilabel">Code View</strong>, in the <strong class="guilabel">Editor</strong> tab of the
+              toolstrip, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add-event.png" alt="" height="16" width="16"></span></span>
+              <strong class="guibutton">Event</strong>.</p></li><li><p>In <strong class="guilabel">Code View</strong>, in the <strong class="guilabel">Events</strong> tab of the
+                <strong class="guilabel">Code Browser</strong>, click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button.</p></li></ul></div><p>
+Fill out the resulting dialog box with the name of the event and an optional
+        event description:</p>
+<div class="itemizedlist"><ul><li><p>Enter <code class="literal">PathChanged</code> as the event name. App Designer creates an
+              associated public callback named <code class="literal">PathChangedFcn</code>.</p></li><li><p>Specify in the event description that the event is triggered when a user selects a
+              new file. App Designer adds this text as a comment in the <code class="literal">event</code>
+              block in <strong class="guilabel">Code View</strong>.</p></li></ul></div><p>
+</p><p>You can view the event&#8211;public callback pairs for your component by navigating to the
+          <strong class="guibutton">Event&#8211;Callback Pairs</strong> tab in the <strong class="guilabel">Component
+          Browser</strong>.</p><div class="informalfigure"><div id="d126e16642" class="mediaobject"><p><img src="appd-custom-component-events.png" alt="App Designer Component Browser. The Event-Callback Pairs tab is selected and there is a PathChanged and PathChangedFcn event-callback pair." height="321" width="341"></p></div></div></section><section><h3 class="title" id="mw_5202f367-527e-4605-9d38-13767240499e">Notify Event to Execute Callback</h3><p>After you create an event, write code to ensure that the associated public callback is
+        executed at the appropriate moment. To execute a callback, trigger the associated event in
+        your custom component code by calling the <a href="../ref/handle.notify.html"><code class="function">notify</code></a> function. Use this
+        syntax:<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>notify(comp,"<em class="replaceable">EventName</em>")</pre></div></div></div></p><p>For any event, you can copy its associated <code class="function">notify</code> code from one of
+        multiple locations within App Designer:</p>
+<div class="itemizedlist"><ul><li><p>In the <strong class="guilabel">Code Browser</strong>, in the <strong class="guilabel">Events</strong> tab,
+              right-click the event name and select <strong class="guimenuitem">Copy Code to Trigger
+                Event</strong>.</p></li><li><p>In the <strong class="guimenuitem">Component Browser</strong>, in the
+                <strong class="guimenuitem">Event&#8211;Callback Pairs</strong> tab of the main component node,
+              click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="ellipses.png" alt="Elipsis" height="16" width="16"></span></span> button next to the event name and select
+                <strong class="guimenuitem">Copy Code to Trigger Event</strong>.</p></li></ul></div><p>
+</p><p>In general, a public callback should be executed when an app user performs a specific
+        interaction, such as pushing a button or typing in an edit field. Therefore, you will often
+        add the <code class="function">notify</code> code to an underlying component callback
+        function.</p><p>In the code for the <code class="literal">FileSelector</code> component, execute the
+          <code class="literal">PathChangedFcn</code> callback whenever an app user clicks the button or edits
+        the file path to select a new file. To do this, trigger the <code class="literal">PathChanged</code>
+        event in two locations: </p>
+<div class="itemizedlist"><ul><li><p>In the <code class="literal">ButtonPushedFcn</code> callback for the button</p></li><li><p>In the <code class="literal">ValueChangedFcn</code> callback for the edit field</p></li></ul></div><p>
+</p><p>Add this code to the end of each of the callback
+        functions:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>notify(comp,<span style="color:#A020F0">"PathChanged"</span>)</pre></div></div></div></p><p>If an app that uses your component needs access to additional information about a user
+        interaction when the interaction occurs, you can optionally define custom event data and
+        specify the data when you trigger the event. For more information, see <a href="../matlab_oop/class-with-custom-event-data.html" class="a">Define Custom Event Data</a>.</p></section><section><h3 class="title" id="mw_ba88ea04-3e5f-44a1-ab9c-da4c7e6aa46f">Verify Callback</h3><p>You can verify that a public callback behaves as expected in multiple ways:</p>
+<div class="itemizedlist"><ul><li><p>Create an instance of the custom component from the MATLAB Command Window and assign a callback function programmatically.</p></li><li><p>Add the custom component to an App Designer app and assign a callback function
+              interactively.</p></li></ul></div><p>
+</p><section><h4 class="title" id="mw_f053feef-b2ae-452b-94a7-d90697613094">Verify Callback Programmatically</h4><p>Save the <code class="literal">FileSelector</code> component as
+            <code class="literal">FileSelector.mlapp</code> in your current folder, and then create a
+            <code class="literal">FileSelector</code> object by entering this command into the Command
+          Window:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp = FileSelector;</pre></div></div></div></p><p>Assign a <code class="literal">PathChangedFcn</code> callback to the
+          component.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>comp.PathChangedFcn = @(src,event)disp(<span style="color:#A020F0">"File changed"</span>);</pre></div></div></div>Click
+          the button and select a file using the dialog box. The text "File Changed" displays in the
+          Command Window.</p></section><section><h4 class="title" id="mw_18831adf-2b41-43d5-afc1-b4b85e0ac323">Verify Callback in App</h4><p>With the <code class="literal">FileSelector.mlapp</code> file open in App Designer, follow these
+          steps to add the component to an App Designer app and access the public callback:</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>In the <strong class="guilabel">Designer</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="configure.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">Configure for Apps</strong>.</p></li><li><p>Fill out the App Designer Custom UI Component Metadata dialog box, and then
+                click <strong class="guibutton">OK</strong>.</p></li><li><p>In the confirmation dialog box, click <strong class="guibutton">Add to Path</strong> to add
+                the component and generated <code class="literal">resources</code> folder to the MATLAB path.</p></li><li><p>In the <strong class="guilabel">Designer</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="new.png" alt="" height="16" width="16"></span></span>
+                <strong class="guibutton">New</strong> and select <strong class="guibutton">Blank App</strong>.</p></li><li><p>Drag the file selector component from the <strong class="guilabel">Component Library</strong>
+                onto the app canvas. When the component is selected in the <strong class="guilabel">Component
+                  Browser</strong>, the <code class="literal">PathChangedFcn</code> callback appears in the
+                  <strong class="guilabel">Callbacks</strong> tab of the Property Inspector.</p><div class="informalfigure"><div id="d126e16810" class="mediaobject"><p class="listimage"><img src="file-selector-in-app-callback.png" alt="File selector component in an App Designer app. The component is selected and the Component Browser shows the PathChangedFcn callback." height="326" width="745"></p></div></div></li></ol></div><p>
+</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Avoid using your component in an App Designer app while you are actively developing
+            your component. If you make a change to your component code while the component is being
+            used in an open App Designer app, you must restart App Designer to see the changes
+            reflected within the app. For more information, see <a href="verify-behavior-of-custom-ui-components-in-app-designer.html" class="a">Verify Behavior of Custom UI Components in App Designer</a>.</p></div></section></section><section><h3 class="title" id="mw_97f1d63b-daa0-4471-a10f-888285a8f8b9">Full Example: <code class="literal">FileSelector</code> Component</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/FileSelectorCustomComponentExample')" data-ex-genre="App">Open App</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Full Example: FileSelector Component",
+          "description": "The full FileSelector custom UI component code created in App Designer. The component is made up of a button that app users can press to select a file on their system and an edit field that displays the path to the selected file. The component interface consists of a public property and a public callback:",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "App",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "create-callbacks-for-custom-ui-components-in-app-designer.html"
+
+        },
+          "identifier": "matlab.FileSelectorCustomComponentExample",
+          "name": "FileSelectorCustomComponentExample",
+          "url": "create-callbacks-for-custom-ui-components-in-app-designer.html#mw_97f1d63b-daa0-4471-a10f-888285a8f8b9"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/FileSelectorCustomComponentExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "FileSelectorCustomComponentExample.m",
+        "FileSelector.mlapp",
+        "folderIcon.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-FileSelectorCustomComponentExample"><meta itemprop="exampletitle" content="Full Example: FileSelector Component"></div><span id="FileSelectorCustomComponentExample" class="anchor_target"></span><div class="procedure"><p class="shortdesc">This example shows the full <code class="literal">FileSelector</code> custom UI component code created in App Designer. The component is made up of a button that app users can press to select a file on their system and an edit field that displays the path to the selected file. The component interface consists of a public property and a public callback:</p><div class="itemizedlist"><ul><li><p>
+<code class="literal">Path</code> &#8212; A public property that stores the path to the selected file</p></li><li><p>
+<code class="literal">PathChangedFcn</code> &#8212; A public callback that executes whenever a user selects or enters a new file</p></li></ul></div></div></section>
+      <h2 id="d126e16872">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.ui.componentcontainer.componentcontainer-class.html"><span itemprop="name"><code class="class">matlab.ui.componentcontainer.ComponentContainer</code></span></a></span></li></ul>
+      <h3 id="d126e16881">Topics</h3><ul class="list-unstyled"><li><a href="create-a-custom-ui-component-in-app-designer.html" class="a">Create a Simple Custom UI Component in App Designer</a></li><li><a href="../matlab_oop/class-with-custom-event-data.html" class="a">Define Custom Event Data</a></li><li><a href="custom-ui-component-classes-in-app-designer.html" class="a">Configure Custom UI Components for App Designer</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

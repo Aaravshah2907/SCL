@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Optimizing Nonlinear Functions</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../optimization.html",
+          "name": "Optimization"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "optimization"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Minimizing and maximizing in one or more dimensions."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../optimization.html?s_tid=CRUX_lftnav" itemprop="url" id="optimization"><span itemprop="title">Optimization</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Optimizing Nonlinear Functions</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsgpq6p-9" class="nav-link intrnllnk">Minimizing Functions of One Variable</a></li><li class="nav-item"><a href="#bsgpq6p-10" class="nav-link intrnllnk">Minimizing Functions of Several Variables</a></li><li class="nav-item"><a href="#bsotu37" class="nav-link intrnllnk">Maximizing Functions</a></li><li class="nav-item"><a href="#bsgpq6p-11" class="nav-link intrnllnk">fminsearch Algorithm</a></li><li class="nav-item"><a href="#bsgpq6q-49" class="nav-link intrnllnk">Reference</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=optimization&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=optimization&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=optimization&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=optimization&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=optimization&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=optimization&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bsotu2d">Optimizing Nonlinear Functions</h2><section><h3 class="title" id="bsgpq6p-9">Minimizing Functions of One Variable</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/HumpsPlotExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Minimizing Functions of One Variable",
+          "description": "Given a mathematical function of a single variable, you can use the fminbnd function to find a local minimizer of the function in a given interval. For example, consider the humps.m function, which is provided with MATLAB&#174;. The following figure shows the graph of humps.",
+          "thumbnailURL": "../../examples/matlab/win64/HumpsPlotExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "optimizing-nonlinear-functions.html"
+
+        },
+          "identifier": "matlab.HumpsPlotExample",
+          "name": "HumpsPlotExample",
+          "url": "optimizing-nonlinear-functions.html#bsgpq6p-9"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/HumpsPlotExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "HumpsPlotExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-HumpsPlotExample"><meta itemprop="exampletitle" content="Minimizing Functions of One Variable"></div><span id="HumpsPlotExample" class="anchor_target"></span><p class="shortdesc">Given a mathematical function of a single variable, you can use the <code class="literal">fminbnd</code> function to find a local minimizer of the function in a given interval. For example, consider the <code class="literal">humps.m</code> function, which is provided with MATLAB&#174;. The following figure shows the graph of <code class="literal">humps</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = -1:.01:2;
+y = humps(x);
+plot(x,y)
+xlabel(<span style="color:#A020F0">'x'</span>)
+ylabel(<span style="color:#A020F0">'humps(x)'</span>)
+grid <span style="color:#A020F0">on</span></pre></div></div></div><div class="informalfigure"><div id="d126e24491" class="mediaobject"><p><img src="../../examples/matlab/win64/HumpsPlotExample_01.png" alt="Figure contains an axes object. The axes object with xlabel x, ylabel humps(x) contains an object of type line." width="560"></p></div></div><p>To find the minimum of the <code class="literal">humps</code> function in the range <code class="literal">(0.3,1)</code>, use</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = fminbnd(@humps,0.3,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>x = 
+0.6370
+</pre></div></div></div><p>You can see details of the solution process by using <code class="literal">optimset</code> to create options with the <code class="literal">Display</code> option set to <code class="literal">'iter'</code>. Pass the resulting options to <code class="literal">fminbnd</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>options = optimset(<span style="color:#A020F0">'Display'</span>,<span style="color:#A020F0">'iter'</span>);
+x = fminbnd(@humps,0.3,1,options)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre> 
+ Func-count     x          f(x)         Procedure
+    1       0.567376      12.9098        initial
+    2       0.732624      13.7746        golden
+    3       0.465248      25.1714        golden
+    4       0.644416      11.2693        parabolic
+    5         0.6413      11.2583        parabolic
+    6       0.637618      11.2529        parabolic
+    7       0.636985      11.2528        parabolic
+    8       0.637019      11.2528        parabolic
+    9       0.637052      11.2528        parabolic
+ 
+Optimization terminated:
+ the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04 
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>x = 
+0.6370
+</pre></div></div></div><p>The iterative display shows the current value of <code class="literal">x</code> and the function value at <code class="literal">f(x)</code> each time a function evaluation occurs. For <code class="literal">fminbnd</code>, one function evaluation corresponds to one iteration of the algorithm. The last column shows the procedure <code class="literal">fminbnd</code> uses at each iteration, a golden section search or a parabolic interpolation. For details, see <a href="iterative-display.html" data-docid="matlab_math#bsj06d5" class="a">Optimization Solver Iterative Display</a>.</p><p><strong class="emphasis bold">Note: </strong>Optimization solvers apply to real-valued functions. Complex values cannot be optimized, except for a real-valued function of the complex values, such as the norm.</p><div class="procedure"></div></section><section><h3 class="title" id="bsgpq6p-10">Minimizing Functions of Several Variables</h3><a class="indexterm" name="d126e24542"></a><p>The <a href="../ref/fminsearch.html"><code class="function">fminsearch</code></a> function
+is similar to <code class="literal">fminbnd</code> except that it handles functions
+of many variables. Specify a starting vector <span class="emphasis"><em>x</em></span><sub>0</sub> rather
+than a starting interval. <code class="literal">fminsearch</code> attempts to
+return a vector <span class="emphasis"><em>x</em></span> that is a local minimizer of
+the mathematical function near this starting vector.</p><p>To try <code class="literal">fminsearch</code>, create a function <code class="literal">three_var</code> of
+three variables, <code class="literal">x</code>, <code class="literal">y</code>, and <code class="literal">z</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> b = three_var(v)
+x = v(1);
+y = v(2);
+z = v(3);
+b = x.^2 + 2.5*sin(y) - z^2*x^2*y^2;</pre></div></div></div><p>Now find a minimum for this function using <code class="literal">x = -0.6</code>, <code class="literal">y
+= -1.2</code>, and <code class="literal">z&nbsp;=&nbsp;0.135</code>&nbsp;as the starting values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = [-0.6,-1.2,0.135];
+a = fminsearch(@three_var,v)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>a =
+    0.0000   -1.5708    0.1803</pre></div></div></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Optimization solvers apply to real-valued functions. Complex values cannot be optimized,
+        except for a real-valued function of the complex values, such as the norm.</p></div></section><section><h3 class="title" id="bsotu37">Maximizing Functions</h3><a class="indexterm" name="d126e24589"></a><p>The <code class="function">fminbnd</code> and <code class="function">fminsearch</code> solvers
+attempt to minimize an objective function. If you have a maximization
+problem, that is, a problem of the form</p><div id="d126e24598" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-15px" display="block"><mrow><munder><mrow><mi>max</mi></mrow><mi>x</mi></munder><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>,</mo></mrow></math></p></div></div><p>then define <span class="inlineequation"><em class="varname">g</em>(<em class="varname">x</em>)&nbsp;=&nbsp;&#8211;<em class="varname">f</em>(<em class="varname">x</em>)</span>,
+and minimize <em class="varname">g</em>.</p><p>For example, to find the maximum of <span class="inlineequation">tan(cos(<em class="varname">x</em>))</span> near <span class="inlineequation"><em class="varname">x</em>&nbsp;=&nbsp;5</span>, evaluate:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[x fval] = fminbnd(@(x)-tan(cos(x)),3,8)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>x =
+    6.2832
+
+fval =
+   -1.5574</pre></div></div></div><p>The maximum is 1.5574 (the negative of the reported <code class="literal">fval</code>), and occurs at <span class="inlineequation"><em class="varname">x</em>&nbsp;=&nbsp;6.2832</span>. This answer is correct since, to five digits, the maximum is <span class="inlineequation">tan(1)&nbsp;=&nbsp;1.5574</span>, which occurs at <span class="inlineequation"><em class="varname">x</em>&nbsp;=&nbsp;2<em class="varname">π</em>&nbsp;=&nbsp;6.2832</span>.</p></section><section><h3 class="title" id="bsgpq6p-11"><code class="literal">fminsearch</code> Algorithm</h3><p><code class="function">fminsearch</code> uses the Nelder-Mead simplex
+algorithm as described in Lagarias et al. <a href="optimizing-nonlinear-functions.html#bsgpq6q-51" class="intrnllnk">[1]</a>. This algorithm uses a simplex of <em class="varname">n</em>&nbsp;+&nbsp;1 points for <em class="varname">n</em>-dimensional
+vectors <em class="varname">x</em>. The algorithm first makes a simplex
+around the initial guess <em class="varname">x</em><sub>0</sub> by
+adding 5% of each component <em class="varname">x</em><sub>0</sub>(<em class="varname">i</em>)
+to <em class="varname">x</em><sub>0</sub>. The algorithm uses
+these <em class="varname">n</em> vectors as elements of the simplex in addition
+to <em class="varname">x</em><sub>0</sub>. (The algorithm uses
+0.00025 as component <em class="varname">i</em> if <span class="inlineequation"><em class="varname">x</em><sub>0</sub>(<em class="varname">i</em>)&nbsp;=&nbsp;0</span>.) Then, the
+algorithm modifies the simplex repeatedly according to the following
+procedure.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The keywords for the <code class="function">fminsearch</code> iterative
+display appear in <strong class="emphasis bold">bold</strong> after the
+description of the step.</p></div><div class="orderedlist"><ol style="list-style: decimal;"><li><p> Let <em class="varname">x</em>(<em class="varname">i</em>) denote the list of points
+                        in the current simplex,
+                            <em class="varname">i</em>&nbsp;=&nbsp;1,...,<em class="varname">n</em> + 1.</p></li><li><p> Order the points in the simplex from lowest function value
+                            <em class="varname">f</em>(<em class="varname">x</em>(1)) to highest
+                            <em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em> + 1)). At
+                        each step in the iteration, the algorithm discards the current worst point
+                            <em class="varname">x</em>(<em class="varname">n</em> + 1), and accepts another
+                        point into the simplex. [Or, in the case of step 7 below, it changes all
+                            <em class="varname">n</em> points with values above
+                            <em class="varname">f</em>(<em class="varname">x</em>(1))].</p></li><li><p>Generate the <em class="firstterm">reflected</em> point</p><table width="95%" class="programlistingindent table table-condensed" id="mw_ce908558-4903-4384-9ab2-29b7d9433ef9"><tr valign="top"><td class="cell_80"><em class="varname">r</em> = 2<em class="varname">m</em> &#8211;
+                                <em class="varname">x</em>(<em class="varname">n</em> + 1),</td><td class="cell_20 text-end valign_center"><strong>(1)</strong></td></tr></table><p>where</p><table width="95%" class="programlistingindent table table-condensed" id="mw_01189aa5-b888-42b6-814d-3a77338ec58e"><tr valign="top"><td class="cell_80"><em class="varname">m</em> =
+                                Σ<em class="varname">x</em>(<em class="varname">i</em>)/<em class="varname">n</em>,
+                                <em class="varname">i</em>&nbsp;=&nbsp;1...<em class="varname">n</em>,</td><td class="cell_20 text-end valign_center"><strong>(2)</strong></td></tr></table><p>and calculate <em class="varname">f</em>(<em class="varname">r</em>).</p></li><li><p>If <em class="varname">f</em>(<em class="varname">x</em>(1)) ≤
+                            <em class="varname">f</em>(<em class="varname">r</em>) &lt;
+                            <em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em>)), accept
+                            <em class="varname">r</em> and terminate this iteration. <strong class="emphasis bold">Reflect</strong></p></li><li><p>If <em class="varname">f</em>(<em class="varname">r</em>) &lt;
+                            <em class="varname">f</em>(<em class="varname">x</em>(1)), calculate the expansion
+                        point <em class="varname">s</em></p><table width="95%" class="programlistingindent table table-condensed" id="mw_8c9e1dcf-0c3f-4818-9f10-941aa25fc529"><tr valign="top"><td class="cell_80"><em class="varname">s</em> = <em class="varname">m</em> +
+                                2(<em class="varname">m</em> &#8211; <em class="varname">x</em>(<em class="varname">n</em> +
+                            1)),</td><td class="cell_20 text-end valign_center"><strong>(3)</strong></td></tr></table><p>and calculate <em class="varname">f</em>(<em class="varname">s</em>).</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>If <em class="varname">f</em>(<em class="varname">s</em>) &lt;
+                                    <em class="varname">f</em>(<em class="varname">r</em>), accept
+                                    <em class="varname">s</em> and terminate the iteration. <strong class="emphasis bold">Expand</strong></p></li><li><p>Otherwise, accept <em class="varname">r</em> and terminate the
+                                iteration. <strong class="emphasis bold">Reflect</strong></p></li></ol></div></li><li><p>If <em class="varname">f</em>(<em class="varname">r</em>) ≥
+                            <em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em>)),
+                        perform a <em class="firstterm">contraction</em> between <em class="varname">m</em>
+                        and either<em class="varname">x</em>(<em class="varname">n</em> + 1) or
+                            <em class="varname">r</em>, depending on which has the lower objective
+                        function value.</p><div class="orderedlist"><ol style="list-style: lower-alpha;"><li><p>If <span class="inlineequation"><em class="varname">f</em>(<em class="varname">r</em>) &lt;
+                                            <em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em>
+                                        + 1))</span> (that is, <em class="varname">r</em> is better than
+                                    <em class="varname">x</em>(<em class="varname">n</em> + 1)),
+                                calculate</p><table width="95%" class="programlistingindent table table-condensed" id="mw_d242854a-335c-4f41-b031-f87c6fb9e0d1"><tr valign="top"><td class="cell_80"><em class="varname">c</em> = <em class="varname">m</em> +
+                                        (<em class="varname">r</em> &#8211; <em class="varname">m</em>)/2</td><td class="cell_20 text-end valign_center"><strong>(4)</strong></td></tr></table><p>and calculate <em class="varname">f</em>(<em class="varname">c</em>). If <span class="inlineequation"><em class="varname">f</em>(<em class="varname">c</em>)&nbsp;&lt;&nbsp;<em class="varname">f</em>(<em class="varname">r</em>)</span>, accept <em class="varname">c</em> and terminate the
+                                iteration. <strong class="emphasis bold">Contract outside</strong></p><p>Otherwise, continue with Step 7 (Shrink).</p></li><li><p>If <span class="inlineequation"><em class="varname">f</em>(<em class="varname">r</em>) ≥
+                                            <em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em>
+                                        + 1))</span>, calculate</p><table width="95%" class="programlistingindent table table-condensed" id="mw_dddf2eb9-a145-41a3-a052-299958d940cd"><tr valign="top"><td class="cell_80"><em class="varname">cc</em> = <em class="varname">m</em> +
+                                        (<em class="varname">x</em>(<em class="varname">n</em> + 1) &#8211;
+                                        <em class="varname">m</em>)/2</td><td class="cell_20 text-end valign_center"><strong>(5)</strong></td></tr></table><p>and calculate <em class="varname">f</em>(<em class="varname">cc</em>). If <span class="inlineequation"><em class="varname">f</em>(<em class="varname">cc</em>)&nbsp;&lt;&nbsp;<em class="varname">f</em>(<em class="varname">x</em>(<em class="varname">n</em>
+                                        + 1))</span>, accept <em class="varname">cc</em> and terminate the
+                                iteration. <strong class="emphasis bold">Contract inside</strong></p><p>Otherwise, continue with Step 7 (Shrink).</p></li></ol></div></li><li><p>Calculate the <em class="varname">n</em> points</p><table width="95%" class="programlistingindent table table-condensed" id="mw_0dad95ae-3582-4d76-abb8-b440ad32009d"><tr valign="top"><td class="cell_80"><em class="varname">v</em>(<em class="varname">i</em>) =
+                                <em class="varname">x</em>(1) +
+                            (<em class="varname">x</em>(<em class="varname">i</em>) &#8211;
+                            <em class="varname">x</em>(1))/2</td><td class="cell_20 text-end valign_center"><strong>(6)</strong></td></tr></table><p>and calculate
+                            <em class="varname">f</em>(<em class="varname">v</em>(<em class="varname">i</em>)),
+                            <em class="varname">i</em>&nbsp;=&nbsp;2,...,<em class="varname">n</em> + 1. The
+                        simplex at the next iteration is <em class="varname">x</em>(1),
+                            <em class="varname">v</em>(2),...,<em class="varname">v</em>(<em class="varname">n</em> +
+                        1). <strong class="emphasis bold">Shrink</strong></p></li></ol></div><p>The following figure shows the points that <code class="function">fminsearch</code> can
+calculate in the procedure, along with each possible new simplex.
+The original simplex has a bold outline. The iterations proceed until
+they meet a stopping criterion.</p><div class="informalfigure"><div id="d126e25029" class="mediaobject"><p><img src="nelder-mead.png" alt="Graphical representation of fminsearch algorithm showing reflection, expansion, contraction, and shrinking points." height="221" width="213"></p></div></div></section><section><h3 class="title" id="bsgpq6q-49">Reference</h3><div class="bibliography"><div id="bsgpq6q-51" class="bibliomixed"><p>[1] Lagarias, J. C., J. A. Reeds, M. H. Wright,
+and P. E. Wright. “Convergence  Properties of the Nelder-Mead
+Simplex Method in Low Dimensions.” <em class="citetitle">SIAM  Journal
+of Optimization</em>, Vol. 9, Number 1, 1998, pp. 112&#8211;147.</p></div></div></section>
+<h2 id="seealsoref">See Also</h2><h3 id="d126e25043">Topics</h3><ul class="list-unstyled"><li><a href="troubleshooting-and-tips.html" class="a">Optimization Troubleshooting and Tips</a></li><li><a href="../../optim/nonlinear-programming.html" class="a">Nonlinear Optimization</a><span role="cross_prod"> (Optimization Toolbox)</span></li><li><a href="example-curve-fitting-via-optimization.html" class="a">Curve Fitting via Optimization</a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

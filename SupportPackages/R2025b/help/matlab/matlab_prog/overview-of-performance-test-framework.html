@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Overview of Performance Testing Framework</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../create-and-run-performance-tests.html",
+          "name": "Create and Run Performance Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "create-and-run-performance-tests"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="The performance test interface leverages the unit testing interfaces."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../create-and-run-performance-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="bu4b3kl"><span itemprop="title">Create and Run Performance Tests</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Overview of Performance Testing Framework</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bu80d45" class="nav-link intrnllnk">Determine Bounds of Measured Code</a></li><li class="nav-item"><a href="#bu818ct" class="nav-link intrnllnk">Types of Time Experiments</a></li><li class="nav-item"><a href="#bu5ypoc" class="nav-link intrnllnk">Write Performance Tests with Measurement Boundaries</a></li><li class="nav-item"><a href="#bu8y0c0" class="nav-link intrnllnk">Run Performance Tests</a></li><li class="nav-item"><a href="#bu8r80q" class="nav-link intrnllnk">Understand Invalid Test Results</a></li><li class="nav-item"><a href="#d126e97506" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=create-and-run-performance-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bu4wfwl">Overview of Performance Testing Framework</h2><p>The performance test interface leverages the script, function, and class-based unit testing interfaces. You can perform qualifications within your performance tests to ensure correct functional behavior while measuring code performance. Also, you can run your performance tests as standard regression tests to ensure that code changes do not break performance tests.</p><section><h3 class="title" id="bu80d45">Determine Bounds of Measured Code</h3><p>This table indicates what code is measured for the different types of tests.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Type of Test</th><th>What Is Measured</th><th>What Is Excluded</th></tr></thead><tbody><tr><td>Script-based</td><td>Code in each section of the script</td><td>
+                                <div class="itemizedlist"><ul><li><p>Code in the shared variables section</p></li><li><p>Measured estimate of the framework overhead</p></li></ul></div>
+                            </td></tr><tr><td>Function-based</td><td>Code in each test function</td><td>
+                                <div class="itemizedlist"><ul><li><p>Code in the following functions: <code class="literal">setup</code>, <code class="literal">setupOnce</code>, <code class="literal">teardown</code>, and <code class="literal">teardownOnce</code></p></li><li><p>Measured estimate of the framework overhead</p></li></ul></div>
+                            </td></tr><tr><td>Class-based</td><td>Code in each method tagged with the <code class="literal">Test</code> attribute</td><td>
+                                <div class="itemizedlist"><ul><li><p>Code in the methods with the following attributes: <code class="literal">TestMethodSetup</code>, <code class="literal">TestMethodTeardown</code>, <code class="literal">TestClassSetup</code>, and <code class="literal">TestClassTeardown</code></p></li><li><p>Shared fixture setup and teardown</p></li><li><p>Measured estimate of the framework overhead</p></li></ul></div>
+                            </td></tr><tr><td>Class-based deriving from <code class="literal">matlab.perftest.TestCase</code> and using <code class="literal">startMeasuring</code> and <code class="literal">stopMeasuring</code> methods</td><td>Code between calls to <code class="literal">startMeasuring</code> and <code class="literal">stopMeasuring</code> in each method tagged with the <code class="literal">Test</code> attribute</td><td>
+                                <div class="itemizedlist"><ul><li><p>Code outside of the <code class="literal">startMeasuring</code>/<code class="literal">stopMeasuring</code> boundary</p></li><li><p>Measured estimate of the framework overhead</p></li></ul></div>
+                            </td></tr><tr><td>Class-based deriving from <code class="literal">matlab.perftest.TestCase</code> and using the <code class="literal">keepMeasuring</code> method</td><td>Code inside each <code class="literal">keepMeasuring-while</code> loop in each method tagged with the <code class="literal">Test</code> attribute</td><td>
+                                <div class="itemizedlist"><ul><li><p>Code outside of the <code class="literal">keepMeasuring-while</code> boundary</p></li><li><p>Measured estimate of the framework overhead</p></li></ul></div>
+                            </td></tr></tbody></table></div></section><section><h3 class="title" id="bu818ct">Types of Time Experiments</h3><p>You can create two types of time experiments.</p><div class="itemizedlist"><ul><li><p>A <em class="firstterm">frequentist time experiment</em> collects a variable number of measurements to achieve a specified margin of error and confidence level. Use a frequentist time experiment to define statistical objectives for your measurement samples. Generate this experiment using the <code class="function">runperf</code> function or the <code class="method">limitingSamplingError</code> static method of the <code class="class">TimeExperiment</code> class.</p></li><li><p>A <em class="firstterm">fixed time experiment</em> collects a fixed number of measurements. Use a fixed time experiment to measure first-time costs of your code or to take explicit control of your sample size. Generate this experiment using the <code class="method">withFixedSampleSize</code> static method of the <code class="class">TimeExperiment</code> class.</p></li></ul></div><p>This table summarizes the differences between the frequentist and fixed time experiments.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>&nbsp;</th><th>Frequentist time experiment</th><th>Fixed time experiment</th></tr></thead><tbody><tr><td>Warm-up measurements</td><td>5 by default, but configurable through
+                                    <code class="class">TimeExperiment.limitingSamplingError</code></td><td>0 by default, but configurable through <code class="class">TimeExperiment.withFixedSampleSize</code></td></tr><tr><td>Number of samples</td><td>Between 4 and 256 by default, but configurable through <code class="class">TimeExperiment.limitingSamplingError</code></td><td>Defined during experiment construction</td></tr><tr><td>Relative margin of error</td><td>5% by default, but configurable through <code class="class">TimeExperiment.limitingSamplingError</code></td><td>Not applicable</td></tr><tr><td>Confidence level</td><td>95% by default, but configurable through <code class="class">TimeExperiment.limitingSamplingError</code></td><td>Not applicable</td></tr><tr><td>Framework behavior for invalid test result</td><td>Stops measuring a test and moves to the next one</td><td>Collects specified number of samples</td></tr></tbody></table></div></section><section><h3 class="title" id="bu5ypoc">Write Performance Tests with Measurement Boundaries</h3><p>If your class-based tests derive from <code class="class">matlab.perftest.TestCase</code>
+                instead of <code class="class">matlab.unittest.TestCase</code>, then you can use the
+                    <code class="method">startMeasuring</code> and <code class="method">stopMeasuring</code> methods or
+                the <code class="method">keepMeasuring</code> method multiple times to define boundaries for
+                performance test measurements. If a test method has multiple calls to
+                    <code class="method">startMeasuring</code>, <code class="method">stopMeasuring</code> and
+                    <code class="method">keepMeasuring</code>, then the performance testing framework
+                accumulates and sums the measurements. The performance testing framework does not
+                support nested measurement boundaries. If you use these methods incorrectly in a
+                    <code class="literal">Test</code> method and run the test as a
+                    <code class="class">TimeExperiment</code>, then the framework marks the measurement as
+                invalid. Also, you still can run these performance tests as unit tests. For more
+                information, see <a href="test-performance-with-classes.html" class="a">Test Performance Using Classes</a>.</p></section><section><h3 class="title" id="bu8y0c0">Run Performance Tests</h3><p>There are two ways to run performance tests:</p>
+<div class="itemizedlist"><ul><li><p>Use the <code class="function">runperf</code> function to run the tests. This
+                            function uses a variable number of measurements to reach a sample mean
+                            with a 0.05 relative margin of error within a 0.95 confidence level. It
+                            runs the tests 5 times to warm up the code and between 4 and 256 times
+                            to collect measurements that meet the statistical objectives.</p></li><li><p>Generate an explicit test suite using the <code class="function">testsuite</code> function or the methods in the <code class="class">TestSuite</code> class, and then create and run a time experiment.</p><div class="itemizedlist"><ul><li><p>Use the <code class="method">withFixedSampleSize</code> method of the <code class="class">TimeExperiment</code> class to construct a time experiment with a fixed number of measurements. You can specify a fixed number of warm-up measurements and a fixed number of samples.</p></li><li><p>Use the <code class="method">limitingSamplingError</code> method of the <code class="class">TimeExperiment</code> class to construct a time experiment with specified statistical objectives, such as margin of error and confidence level. Also, you can specify the number of warm-up measurements and the minimum and maximum number of samples.</p></li></ul></div></li></ul></div><p>
+</p><p>You can run your performance tests as regression tests. For more information, see
+                    <a href="test-performance-with-classes.html" class="a">Test Performance Using Classes</a>.</p></section><section><h3 class="title" id="bu8r80q">Understand Invalid Test Results</h3><p>In some situations, the <code class="class">MeasurementResult</code> for a test result is marked invalid. A test result is marked invalid when the performance testing framework sets the <code class="literal">Valid</code> property of the <code class="class">MeasurementResult</code> to false. This invalidation occurs if your test fails or is filtered. Also, if your test incorrectly uses the <code class="method">startMeasuring</code> and <code class="method">stopMeasuring</code> methods of <code class="class">matlab.perftest.TestCase</code>, then the <code class="class">MeasurementResult</code> for that test is marked invalid.</p><p>When the performance testing framework encounters an invalid test result, it behaves differently depending on the type of time experiment:</p><div class="itemizedlist"><ul><li><p>If you create a frequentist time experiment, then the framework stops measuring for that test and moves to the next test.</p></li><li><p>If you create a fixed time experiment, then the framework continues collecting the specified number of samples.</p></li></ul></div></section>
+            <h2 id="d126e97506">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/runperf.html"><span itemprop="name"><code class="function">runperf</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/testsuite.html"><span itemprop="name"><code class="function">testsuite</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.perftest.timeexperiment-class.html"><span itemprop="name"><code class="class">matlab.perftest.TimeExperiment</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.perftest.timeresult-class.html"><span itemprop="name"><code class="class">matlab.perftest.TimeResult</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.unittest.measurement.measurementresult-class.html"><span itemprop="name"><code class="class">matlab.unittest.measurement.MeasurementResult</code></span></a></span></p>
+            <h3 id="d126e97524">Topics</h3><ul class="list-unstyled"><li><a href="test-performance-with-scripts.html" class="a">Test Performance Using Scripts or Functions</a></li><li><a href="test-performance-with-classes.html" class="a">Test Performance Using Classes</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

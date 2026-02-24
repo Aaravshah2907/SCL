@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Graph Coloring with Grover's Algorithm</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../gate-based-quantum-computing.html",
+          "name": "Gate-Based Quantum Computing"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "gate-based-quantum-computing"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Graph Coloring with Grover's Algorithm",
+          "description": "Use Grover's algorithm on a quantum computer to solve graph coloring problems. Grover's algorithm, also called the quantum search algorithm, is a fast method to perform unstructured searches. This example applies the algorithm to a problem where a bit string of a given length is classified as valid or invalid, and the goal is to retrieve one of the valid bit strings. The algorithm uses a state oracle to determine whether a bit string is valid. Although this application of Grover's algorithm is not the most efficient method to solve the graph coloring problem in practice, it illustrates how a quantum algorithm can be applied to a well-known problem.",
+          "thumbnailURL": "../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "quantum.GraphColoringWithGroversAlgorithmExample",
+          "name": "GraphColoringWithGroversAlgorithmExample",
+          "url": "graph-coloring-with-grovers-algorithm.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('quantum/GraphColoringWithGroversAlgorithmExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "GraphColoringWithGroversAlgorithmExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use Grover's algorithm on a quantum computer to solve graph coloring problems."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_03.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gate-based-quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_89c73565-106a-4694-9620-a4310ac5bfc3"><span itemprop="title">Gate-Based Quantum Computing</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Graph Coloring with Grover's Algorithm</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#GraphColoringWithGroversAlgorithmExample-1" class="nav-link intrnllnk">Create State Oracle for Graph Coloring Problem</a></li><li class="nav-item"><a href="#GraphColoringWithGroversAlgorithmExample-7" class="nav-link intrnllnk">Create Diffuser Circuit</a></li><li class="nav-item"><a href="#GraphColoringWithGroversAlgorithmExample-10" class="nav-link intrnllnk">Apply Grover's Algorithm to Graph Coloring Oracle</a></li><li class="nav-item"><a href="#GraphColoringWithGroversAlgorithmExample-11" class="nav-link intrnllnk">Run Circuit on AWS&#174;</a></li><li class="nav-item"><a href="#d126e67197" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=gate-based-quantum-computing&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_5b77ab1c-efad-4cbe-bdd6-ff4b129aaace"><strong class="emphasis bold">Graph Coloring with Grover's Algorithm</strong></h1><div class="examples_short_list hidden_ios_android" data-products="ML QUANTUM"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.addons.showAddon('QUANTUM')">MATLAB Support Package for Quantum Computing</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('quantum/GraphColoringWithGroversAlgorithmExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="quantum-GraphColoringWithGroversAlgorithmExample"><meta itemprop="exampletitle" content="Graph Coloring with Grover's Algorithm"></div><span id="GraphColoringWithGroversAlgorithmExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use Grover's algorithm on a quantum computer to solve graph coloring problems. Grover's algorithm, also called the <span class="emphasis"><em>quantum search algorithm</em></span>, is a fast method to perform unstructured searches. This example applies the algorithm to a problem where a bit string of a given length is classified as valid or invalid, and the goal is to retrieve one of the valid bit strings. The algorithm uses a state oracle to determine whether a bit string is valid. Although this application of Grover's algorithm is not the most efficient method to solve the graph coloring problem in practice, it illustrates how a quantum algorithm can be applied to a well-known problem.</p><div class="procedure"><h3 class="title" id="GraphColoringWithGroversAlgorithmExample-1"><strong class="emphasis bold">Create State Oracle for Graph Coloring Problem</strong></h3><p>Create a graph with four nodes and four edges connecting them.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>g = graph([2 2 3 3],[1 4 1 4]);
+plot(g)</pre></div></div></div><div class="informalfigure"><div id="d126e66628" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type graphplot." width="560"></p></div></div><p>Because the graph has only four nodes and four edges, there are a limited number of ways to color the nodes in the graph. If each node can be one of two different colors, then there are <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msup><mrow><mn>2</mn></mrow><mrow><mn>4</mn></mrow></msup><mo>=</mo><mn>16</mn></mrow></math></span> ways to color the graph nodes.</p><p>A solution of the graph coloring problem is a color assignment such that adjacent nodes are not the same color. Therefore, the quantum state oracle must check that for each edge in a given graph, the nodes it connects have different colors. The oracle accomplishes this check by accepting a bit string of length 4 (represented by 4 qubits), each of which represents the color of one node, and determining whether the colors produce a valid graph coloring.</p><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-2"><strong class="emphasis bold">Create Oracle</strong></h4><p>As a first step to creating the oracle, create a helper circuit called <code class="literal">xorGate</code>. This circuit reads qubits 1 and 2, and flips qubit 3 from <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow></math></span> to <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow></math></span> if qubits 1 and 2 have different values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xorInnerGates = [cxGate(1,3);
+                 cxGate(2,3)];
+xorGate = quantumCircuit(xorInnerGates,Name=<span style="color:#A020F0">"XOR"</span>);</pre></div></div></div><p>Next, loop through all edges in the graph and write the value of <code class="literal">xorGate</code> applied to the <code class="literal">startNode</code> and <code class="literal">endNode</code> qubits into a new helper qubit representing the edge. This increases the number of qubits from 4 to 8 because there are four edges. The first four qubits represent the bit string to evaluate, while the other qubits begin in state <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow></math></span> before <code class="literal">xorGate</code> is applied.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[startNodes,endNodes] = findedge(g);
+N = numnodes(g);
+E = numedges(g);
+gates = [];
+<span style="color:#0000FF">for</span> k = 1:E
+  gates = [gates; 
+           compositeGate(xorGate,[startNodes(k),endNodes(k),N+k])];
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Next, the oracle must verify that the helper qubits representing the edges are in state <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow></math></span>, since <code class="literal">xorGate</code> returns <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow></math></span> when the two nodes connected by the edge have different states. This verification requires the addition of a ninth qubit that has a state of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow></math></span> when the coloring is valid, and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow></math></span> otherwise. Use the <code class="literal">mcxGate</code> function to determine the value of this final qubit, and create a circuit for the oracle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>lastQubit = N+E+1;
+gates = [gates; 
+         mcxGate(N+(1:E),lastQubit,[])];
+oracle = quantumCircuit(gates,lastQubit);
+oracle.Name = <span style="color:#A020F0">"Oracle"</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>oracle = 
+  quantumCircuit with properties:
+
+    NumQubits: 9
+        Gates: [5×1 quantum.gate.CompositeGate]
+         Name: "Oracle"
+
+</pre></div></div></div><p>Plot the circuit representing the oracle to view all of the qubits and gates. Use the <code class="literal">QubitBlocks</code> option to draw red lines between the different groups of qubits: the first four qubits at the top of the circuit diagram represent the node colors being checked, the next four qubits are the helper qubits to check the nodes connected by each edge, and the final qubit at the bottom determines whether the graph coloring is valid.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(oracle,QubitBlocks=[4 4 1])</pre></div></div></div><div class="informalfigure"><div id="d126e66735" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_02.png" alt="Figure contains an object of type quantum.gate.quantumcircuitchart." width="560"></p></div></div><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-3"><strong class="emphasis bold">Check Initial Oracle Behavior</strong></h4><p>Construct two input configurations, one valid (<code class="literal">1001</code>) and one invalid (<code class="literal">1111</code>), and apply the oracle circuit to each of them to check its behavior. The input configuration is encoded in the left-most four characters of each bit string, and the value of interest is the last qubit (the right-most character) in the output bit string.</p><p>Start with the invalid coloring <code class="literal">1111</code>, where all nodes are the same color.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>invalidColors = <span style="color:#A020F0">"111100000"</span>;
+inputState1 = quantum.gate.QuantumState(invalidColors);
+formula(inputState1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |111100000&gt;"
+</pre></div></div></div><p>Apply the oracle to see the output state.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outputState1 = simulate(oracle,inputState1);
+formula(outputState1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |111100000&gt;"
+</pre></div></div></div><p>The last qubit of the simulated state is <code class="literal">0</code>, so the oracle correctly determines that not all of the nodes can be the same color. Next, check the coloring <code class="literal">1001</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>validColors = <span style="color:#A020F0">"100100000"</span>;
+inputState2 = quantum.gate.QuantumState(validColors);
+formula(inputState2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |100100000&gt;"
+</pre></div></div></div><p>Again, apply the oracle to see the output state.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outputState2 = simulate(oracle, inputState2); 
+formula(outputState2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |100111111&gt;"
+</pre></div></div></div><p>In this case, the last qubit is <code class="literal">1</code>, so <code class="literal">1001</code> is a valid graph coloring, where each edge connects nodes of different colors. This check confirms that the behavior of the oracle is correct for these two cases.</p><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-4"><strong class="emphasis bold">Refine Oracle into State Oracle</strong></h4><p>The oracle currently works correctly, but it alters the input bits during execution. A requirement of Grover's algorithm is that the oracle must be a <span class="emphasis"><em>state oracle</em></span>. That is, after the oracle is applied to a standard state, the bit values must be the same as the input state with only the phase changing. A valid bit string (indicating a valid coloring of the graph) should have a phase of <code class="literal remove_text_wrapping">-1</code> after the oracle operates, while an invalid bit string should have an unchanged phase of <code class="literal">1</code> after the oracle operates. Achieving this behavior requires additional modifications to the oracle.</p><p>Start by adding gates that revert all the helper qubits for the edges to <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow></math></span> by flipping any values that were previously flipped.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>oracle.Gates = [oracle.Gates; 
+                flip(oracle.Gates(1:end-1))];</pre></div></div></div><p>Next, note how state <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced><mtext> </mtext><mo>=</mo><mrow><mo>(</mo><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced><mo>-</mo><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow><mo>)</mo></mrow><mo>/</mo><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math></span> interacts with the X gate. Applying the X gate, which flips between the states <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow></math></span> and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow></math></span>, flips the phase of the <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced></mrow></math></span> state:</p><p></p>
+<div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi mathvariant="italic">X</mi><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced><mo>=</mo><mi mathvariant="italic">X</mi><mrow><mo>(</mo><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced><mo>-</mo><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced></mrow><mo>)</mo></mrow><mo>/</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>=</mo><mrow><mo>(</mo><mrow><mfenced open="|" close="anglebracketright"><mrow><mn>1</mn></mrow></mfenced><mo>-</mo><mfenced open="|" close="anglebracketright"><mrow><mn>0</mn></mrow></mfenced></mrow><mo>)</mo></mrow><mo>/</mo><msqrt><mrow><mn>2</mn></mrow></msqrt><mo>=</mo><mo>-</mo><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced></mrow></math></p></div><p> </p><p>This behavior is ideal for the last qubit in the oracle. So, passing that qubit into the oracle in state <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced></mrow></math></span> ensures that the output bit string is the same as the input, while indicating valid graph colorings with an altered phase of <code class="literal remove_text_wrapping">-1</code>.</p><p>Plot the final circuit for the state oracle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(oracle)</pre></div></div></div><div class="informalfigure"><div id="d126e66919" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_03.png" alt="Figure contains an object of type quantum.gate.quantumcircuitchart." width="560"></p></div></div><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-5"><strong class="emphasis bold">Check Final State Oracle Behavior</strong></h4><p>To check the behavior of the state oracle, use the same two input bit strings as before. Start with the invalid graph coloring <code class="literal">1111</code>, where all nodes are the same color.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>invalidColors = <span style="color:#A020F0">"11110000-"</span>;
+inputState1 = quantum.gate.QuantumState(invalidColors);
+formula(inputState1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |11110000-&gt;"
+</pre></div></div></div><p>Apply the oracle to see the output state.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outputState1 = simulate(oracle,inputState1); 
+formula(outputState1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |11110000-&gt;"
+</pre></div></div></div><p>The oracle correctly determines that the graph coloring is not valid. The phase of the output bits is unchanged. Next, check the coloring <code class="literal">1001</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>validColors = <span style="color:#A020F0">"10010000-"</span>;
+inputState2 = quantum.gate.QuantumState(validColors);
+formula(inputState2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |10010000-&gt;"
+</pre></div></div></div><p>Again, apply the oracle to see the output state.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>outputState2 = simulate(oracle,inputState2);
+formula(outputState2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"(-1-3.8858e-16i) * |10010000-&gt;"
+</pre></div></div></div><p>In this case, the state oracle correctly flips the phase to <code class="literal remove_text_wrapping">-1</code> because the graph coloring is valid. The small nonzero imaginary part is due to floating-point round-off error.</p><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-6"><strong class="emphasis bold">State Oracle Code</strong></h4><p>This function creates a state oracle circuit for a specified input graph.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> oracle = oracleGraphColoring(g)
+
+xorInnerGates = [cxGate(1,3);
+                 cxGate(2,3)];
+xorGate = quantumCircuit(xorInnerGates,Name=<span style="color:#A020F0">"XOR"</span>);
+
+[startNodes,endNodes] = findedge(g);
+N = numnodes(g);
+E = numedges(g);
+
+gates = [];
+<span style="color:#0000FF">for</span> k = 1:E
+  gates = [gates; 
+           compositeGate(xorGate,[startNodes(k),endNodes(k),N+k])];
+<span style="color:#0000FF">end</span>
+
+lastQubit = N+E+1;
+gates = [gates; mcxGate(N+(1:E),lastQubit,[])];
+oracle = quantumCircuit(gates,lastQubit);
+oracle.Name = <span style="color:#A020F0">"Oracle"</span>;
+
+oracle.Gates = [oracle.Gates; 
+                flip(oracle.Gates(1:end-1))];
+
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="GraphColoringWithGroversAlgorithmExample-7"><strong class="emphasis bold">Create Diffuser Circuit</strong></h3><p>Grover's algorithm combines a state oracle with a <span class="emphasis"><em>diffuser</em></span>. The combined action of these two composite gates is a reflection in the plane spanned by <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mi mathvariant="italic">e</mi></mrow></mfenced></mrow></math></span> (a vector of all equal values representing a superposition of all states) and <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mi mathvariant="italic">t</mi></mrow></mfenced></mrow></math></span> (the target state). The diffuser applies the reflection <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>-</mo><mn>2</mn><mfenced open="|" close="anglebracketright"><mrow><mi mathvariant="italic">e</mi></mrow></mfenced><mfenced open="anglebracketleft" close="|"><mrow><mi mathvariant="italic">e</mi></mrow></mfenced></mrow></math></span>.</p><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-8"><strong class="emphasis bold">Diffuser Code</strong></h4><p>This function creates a diffuser circuit with a specified number of nodes. Save this function in a file on the MATLAB path.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> cg = diffuser(n)
+gates = [hGate(1:n);
+         xGate(1:n);
+         hGate(n);
+         mcxGate(1:n-1, n, []);
+         hGate(n);
+         xGate(1:n);
+         hGate(1:n)];
+cg = quantumCircuit(gates,Name=<span style="color:#A020F0">"Diffuser"</span>);
+<span style="color:#0000FF">end</span></pre></div></div></div><h4 class="title" id="GraphColoringWithGroversAlgorithmExample-9"><strong class="emphasis bold">Check Diffuser Behavior</strong></h4><p>Create a diffuser circuit for the four-node graph coloring problem and plot the circuit.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>diffuserG = diffuser(N);
+plot(diffuserG)</pre></div></div></div><div class="informalfigure"><div id="d126e67025" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_04.png" alt="Figure contains an object of type quantum.gate.quantumcircuitchart." width="560"></p></div></div><p>Verify that the diffuser applies a reflection of <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><msub><mrow><mi mathvariant="italic">I</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></msub><mo>-</mo><mn>2</mn><mfenced open="|" close="anglebracketright"><mrow><mi mathvariant="italic">e</mi></mrow></mfenced><mfenced open="anglebracketleft" close="|"><mrow><mi mathvariant="italic">e</mi></mrow></mfenced></mrow></math></span> by comparing the circuit matrix of <code class="literal">diffuserG</code> with a manually constructed reflection matrix.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>e = ones(2^N,1);
+e = e/norm(e);
+M = eye(2^N) - 2*(e*e');
+norm(getMatrix(diffuserG) - M)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 1.0270e-15
+</pre></div></div></div><p>The result is zero (up to round-off error), which confirms that the diffuser circuit applies the expected reflection.</p><h3 class="title" id="GraphColoringWithGroversAlgorithmExample-10"><strong class="emphasis bold">Apply Grover's Algorithm to Graph Coloring Oracle</strong></h3><p>First, create a quantum circuit with the number of qubits required by the oracle. Bring the qubits representing node colors into superposition by applying <code class="literal">hGate</code>. Bringing these qubits into superposition represents all combinations of states equally, which is a common step at the beginning of quantum algorithms. Then, set the last qubit into state <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="inline"><mrow><mfenced open="|" close="anglebracketright"><mrow><mo>-</mo></mrow></mfenced></mrow></math></span> by applying <code class="literal">xGate</code> followed by <code class="literal">hGate</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gates = [hGate(1:N);
+         xGate(oracle.NumQubits);
+         hGate(oracle.NumQubits)];
+c = quantumCircuit(gates);</pre></div></div></div><p>Check the circuit setup to make sure it produces the expected state.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = simulate(c);
+formula(s)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+"1 * |++++0000-&gt;"
+</pre></div></div></div><p>Express the formula in the Z basis to confirm that all combinations of states are represented equally.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>formula(s, Basis=<span style="color:#A020F0">"Z"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+    "0.17678  * |000000000&gt; +
+     -0.17678 * |000000001&gt; +
+     0.17678  * |000100000&gt; +
+     -0.17678 * |000100001&gt; +
+     0.17678  * |001000000&gt; +
+     -0.17678 * |001000001&gt; +
+     0.17678  * |001100000&gt; +
+     -0.17678 * |001100001&gt; +
+     0.17678  * |010000000&gt; +
+     -0.17678 * |010000001&gt; +
+     0.17678  * |010100000&gt; +
+     -0.17678 * |010100001&gt; +
+     0.17678  * |011000000&gt; +
+     -0.17678 * |011000001&gt; +
+     0.17678  * |011100000&gt; +
+     -0.17678 * |011100001&gt; +
+     0.17678  * |100000000&gt; +
+     -0.17678 * |100000001&gt; +
+     0.17678  * |100100000&gt; +
+     -0.17678 * |100100001&gt; +
+     0.17678  * |101000000&gt; +
+     -0.17678 * |101000001&gt; +
+     0.17678  * |101100000&gt; +
+     -0.17678 * |101100001&gt; +
+     0.17678  * |110000000&gt; +
+     -0.17678 * |110000001&gt; +
+     0.17678  * |110100000&gt; +
+     -0.17678 * |110100001&gt; +
+     0.17678  * |111000000&gt; +
+     -0.17678 * |111000001&gt; +
+     0.17678  * |111100000&gt; +
+     -0.17678 * |111100001&gt;"
+
+</pre></div></div></div><p>Next, apply the oracle and diffuser composite gates two times in the circuit and then plot the resulting circuit. (The number of times that the oracle and diffuser need to be applied depends on the angle of rotation for a given problem, which can be determined based on what percentage of the possible inputs are valid. You can try applying the oracle and diffuser different numbers of times to view the effect on the outputs.)</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>gates = [gates;
+         compositeGate(oracle,1:9);
+         compositeGate(diffuserG,1:4);
+         compositeGate(oracle,1:9);
+         compositeGate(diffuserG,1:4)];
+c = quantumCircuit(gates);
+plot(c)</pre></div></div></div><div class="informalfigure"><div id="d126e67095" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_05.png" alt="Figure contains an object of type quantum.gate.quantumcircuitchart." width="560"></p></div></div><p>Simulate the circuit to see which node colorings are most likely to be measured. Plot a histogram of the results for the first four qubits.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = simulate(c);
+histogram(s,1:4)</pre></div></div></div><div class="informalfigure"><div id="d126e67103" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_06.png" alt="Figure contains an axes object. The axes object with ylabel Probability contains an object of type categoricalhistogram." width="560"></p></div></div><p>Use <code class="literal">querystates</code> to view the same information as a table.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[outputBits,probabilities] = querystates(s,1:4);
+T = table(outputBits,probabilities);
+T = sortrows(T,<span style="color:#A020F0">"probabilities"</span>,<span style="color:#A020F0">"descend"</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>T=<span class="emphasis"><em>16×2 table</em></span>
+    outputBits    probabilities
+    __________    _____________
+
+      "0110"          0.47266  
+      "1001"          0.47266  
+      "0100"        0.0039063  
+      "1011"        0.0039063  
+      "0011"        0.0039063  
+      "1100"        0.0039063  
+      "0001"        0.0039063  
+      "0010"        0.0039063  
+      "0101"        0.0039063  
+      "1010"        0.0039063  
+      "1101"        0.0039063  
+      "1110"        0.0039063  
+      "0111"        0.0039063  
+      "1000"        0.0039063  
+      "0000"        0.0039062  
+      "1111"        0.0039062  
+
+</pre></div></div></div><p>The simulation results show that the two states most likely to be measured are <code class="literal">0110</code> and <code class="literal">1001</code>, which are the two possible valid graph colorings.</p><h3 class="title" id="GraphColoringWithGroversAlgorithmExample-11">Run Circuit on AWS<strong class="emphasis bold">&#174;</strong></h3><p>Simulating a circuit locally can give an indication of the most probable results on a quantum machine, but running actual calculations on a quantum machine still has probabilistic results. Therefore, it is common to run the same circuit several times on a quantum machine to get a good estimate of the probability of each output. The number of trials is referred to as the number of <span class="emphasis"><em>shots</em></span>.</p><p>To run circuits on AWS&#174;, you need an AWS&#174; account with access to AWS&#174; Braket. See <a href="run-quantum-circuit-on-hardware-using-AWS.html" data-docid="matlab_math#mw_5bfa03ca-ac06-45c8-8dc0-41aaf77ffaac" class="a">Run Quantum Circuit on Hardware Using AWS</a> for more information on how to set up access and see available devices.</p><p>First, connect to a quantum device using <a href="../ref/quantum.backend.quantumdeviceaws-class.html" data-docid="matlab_ref#mw_7a6a11fa-a561-4497-a087-81dac766bd8b" class="a"><code class="olink">quantum.backend.QuantumDeviceAWS</code></a>. Specify the name of the device as well as its region and the path of the bucket to store results.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>reg = <span style="color:#A020F0">"us-east-1"</span>;
+bucketPath = <span style="color:#A020F0">"s3://amazon-braket-mathworks/doc-examples"</span>;
+device = quantum.backend.QuantumDeviceAWS(<span style="color:#A020F0">"SV1"</span>,Region=reg,S3Path=bucketPath)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>device = 
+  QuantumDeviceAWS with properties:
+
+         Name: "SV1"
+    DeviceARN: "arn:aws:braket:::device/quantum-simulator/amazon/sv1"
+       Region: "us-east-1"
+       S3Path: "s3://amazon-braket-mathworks/doc-examples"
+
+</pre></div></div></div><p>Create a task to run the circuit on the device. By default, <a href="../ref/quantumcircuit.run.html" data-docid="matlab_ref#mw_51e1304e-bf81-4ce4-80d2-21ad198e5b39" class="a"><code class="olink">run</code></a> uses 100 shots.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>task = run(c,device)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>task = 
+  QuantumTaskAWS with properties:
+
+    TaskARN: "arn:aws:braket:us-east-1:532578954166:quantum-task/342f9043-39ec-493e-a12b-4ba57b043a78"
+     Status: "finished"
+
+</pre></div></div></div><p>Quantum devices have limited availability, so tasks are often queued for execution. Once the task is finished, the <code class="literal">Status</code> property of the task object has a value of <code class="literal">"finished"</code>. Check the status of the task by querying the <code class="literal">Status</code> property periodically, or use the <a href="../ref/quantum.backend.quantumtaskaws.wait.html" data-docid="matlab_ref#mw_6fe7c7ef-b8bd-4bc0-8e62-d5d59e47a005" class="a"><code class="olink">wait</code></a> method to internally check the status until the task is finished.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">if</span> ~strcmp(task.Status,<span style="color:#A020F0">"finished"</span>)
+    wait(task)
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Once the task is finished, retrieve the result of running the circuit by using <a href="../ref/quantum.backend.quantumtaskaws.fetchoutput.html" data-docid="matlab_ref#mw_dff90571-8b59-4618-8638-16cfef88a030" class="a"><code class="olink">fetchOutput</code></a>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>R = fetchOutput(task)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>R = 
+  QuantumMeasurement with properties:
+
+    MeasuredStates: [8×1 string]
+            Counts: [8×1 double]
+     Probabilities: [8×1 double]
+         NumQubits: 9
+
+</pre></div></div></div><p>Display the measurement results for the circuit.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = table(R.Counts,R.Probabilities,R.MeasuredStates, <span style="color:#0000FF">...</span>
+    VariableNames=[<span style="color:#A020F0">"Counts"</span>,<span style="color:#A020F0">"Probabilities"</span>,<span style="color:#A020F0">"States"</span>])</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>T=<span class="emphasis"><em>8×3 table</em></span>
+    Counts    Probabilities      States   
+    ______    _____________    ___________
+
+       1          0.01         "010000000"
+       1          0.01         "010100001"
+      29          0.29         "011000000"
+      19          0.19         "011000001"
+       1          0.01         "011100000"
+      16          0.16         "100100000"
+      32          0.32         "100100001"
+       1          0.01         "110000001"
+
+</pre></div></div></div><p>Plot a histogram of the results for the first four qubits, which correspond to the node colors.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>histogram(R,1:4)</pre></div></div></div><div class="informalfigure"><div id="d126e67184" class="mediaobject"><p><img src="../../examples/quantum/win64/GraphColoringWithGroversAlgorithmExample_07.png" alt="Figure contains an axes object. The axes object with ylabel Probability contains an object of type categoricalhistogram." width="560"></p></div></div><p>The results agree with the local simulation, showing <code class="literal">0110</code> and <code class="literal">1001</code> as valid graph colorings. The results solve the graph coloring problem by indicating that nodes 2 and 3 in the graph can be the same color and that nodes 1 and 4 can be the same color.</p></div>
+      <h2 id="d126e67197">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantumcircuit.html"><span itemprop="name"><code class="class">quantumCircuit</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantum.gate.quantumstate-class.html"><span itemprop="name"><code class="class">quantum.gate.QuantumState</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/quantum.gate.quantummeasurement-class.html"><span itemprop="name"><code class="class">quantum.gate.QuantumMeasurement</code></span></a></span></p>
+      <h3 id="d126e67209">Topics</h3><ul class="list-unstyled"><li><a href="introduction-to-quantum-computing.html" class="a">Introduction to Quantum Computing</a></li><li><a href="types-of-quantum-gates.html" class="a">Types of Quantum Gates</a></li><li><a href="run-quantum-circuit-on-hardware-using-AWS.html" class="a">Run Quantum Circuit on Hardware Using AWS</a></li><li><a href="ground-state-protein-folding-using-variational-quantum-eigensolver-vqe.html" class="a">Ground-State Protein Folding Using Variational Quantum Eigensolver (VQE)</a></li><li><a href="solve-xor-problem-using-quantum-neural-network.html" class="a">Solve XOR Problem Using Quantum Neural Network (QNN)</a></li><li><a href="quantum-monte-carlo-simulation.html" class="a">Quantum Monte Carlo (QMC) Simulation</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Working with Delaunay Triangulations</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../computational-geometry.html",
+          "name": "Computational Geometry"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../delaunay-triangulation.html",
+          "name": "Delaunay Triangulation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "delaunay-triangulation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This topic explains Delaunay triangulation and how to create one."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../computational-geometry.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Computational Geometry</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../delaunay-triangulation.html?s_tid=CRUX_lftnav" itemprop="url" id="delaunay-triangulation-and-tessellation"><span itemprop="title">Delaunay Triangulation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Working with Delaunay Triangulations</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsp9cjn" class="nav-link intrnllnk">Definition of Delaunay Triangulation</a></li><li class="nav-item"><a href="#bspqjnf" class="nav-link intrnllnk">Creating Delaunay Triangulations</a><ul class="nav"><li class="nav-item"><a href="#bspqjoe-1" class="nav-link intrnllnk">Using the delaunay and delaunayn functions</a></li><li class="nav-item"><a href="#bspqjor-1" class="nav-link intrnllnk">Using the delaunayTriangulation Class</a></li><li class="nav-item"><a href="#bspqi8a-12" class="nav-link intrnllnk">Constrained Delaunay Triangulation</a></li></ul></li><li class="nav-item"><a href="#bspy4_2-1" class="nav-link intrnllnk">Triangulation of Point Sets Containing Duplicate Locations</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=delaunay-triangulation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bspqjle-1">Working with Delaunay Triangulations</h2><section><h3 class="title" id="bsp9cjn">Definition of Delaunay Triangulation</h3><p>Delaunay triangulations are widely used in scientific computing
+in many diverse applications. While there are numerous algorithms
+for computing triangulations, it is the favorable geometric properties
+of the Delaunay triangulation that make it so useful.</p><p>The fundamental property is the Delaunay criterion. In the case
+of 2-D triangulations, this is often called the empty circumcircle
+criterion. For a set of points in 2-D, a Delaunay triangulation of
+these points ensures the circumcircle associated with each triangle
+contains no other point in its interior. This property is important.
+In the illustration below, the circumcircle associated with <code class="literal">T1</code> is
+empty. It does not contain a point  in its interior. The circumcircle
+associated with <code class="literal">T2</code> is empty. It does not contain
+a point  in its interior. This triangulation is a Delaunay triangulation.</p>
+<div class="informalfigure"><div id="d126e20184" class="mediaobject"><p><img src="delaunay_and_nondelaunay_tri_example.png" alt="Delaunay triangulation with circumcircles plotted." height="181" width="404"></p></div></div><p></p><p>The triangles below are different. The circumcircle associated
+with <code class="literal">T1</code> is not empty. It contains <code class="literal">V3</code> in
+its interior. The circumcircle associated with <code class="literal">T2</code> is
+not empty. It contains <code class="literal">V1</code> in its interior. This
+triangulation is <span class="emphasis"><em>not</em></span> a Delaunay triangulation.</p>
+<div class="informalfigure"><div id="d126e20202" class="mediaobject"><p><img src="delaunay_and_nondelaunay_tri_example2.png" alt="Non-Delaunay triangulation with circumcircles plotted." height="183" width="365"></p></div></div><p></p><p>Delaunay triangles are said to be “well shaped”
+because in fulfilling the empty circumcircle property, triangles with
+large internal angles are selected over ones with small internal angles.
+The triangles in the non-Delaunay triangulation have sharp angles
+at vertices <code class="literal">V2</code> and <code class="literal">V4</code>. If the
+edge <code class="literal">{V2, V4}</code> were
+replaced by an edge joining <code class="literal">V1</code> and <code class="literal">V3</code>,
+the minimum angle would be maximized and the triangulation would become
+a Delaunay triangulation. Also, the Delaunay triangulation connects
+points in a nearest-neighbor manner. These two characteristics, well-shaped
+triangles and the nearest-neighbor relation, have important implications
+in practice and motivate the use of Delaunay triangulations in scattered
+data interpolation.</p><p>While the Delaunay property is well defined, the topology of
+the triangulation is not unique in the presence of degenerate point
+sets. In two dimensions, degeneracies arise when four or more unique
+points lie on the same circle. The vertices of a square, for example,
+have a nonunique Delaunay triangulation.</p>
+<div class="informalfigure"><div id="d126e20221" class="mediaobject"><p><img src="convex_hull_degeneracy.png" alt="Delaunay triangulation of the vertices of a square, for which two different valid Delaunay triangulations are possible." height="205" width="502"></p></div></div><p></p><p>The properties of Delaunay triangulations extend to higher dimensions.
+The triangulation of a 3-D set of points is composed of tetrahedra.
+The next illustration shows a simple 3-D Delaunay triangulation made
+up of two tetrahedra. The circumsphere of one tetrahedron is shown
+to highlight the empty circumsphere criterion.</p>
+<div class="informalfigure"><div id="d126e20228" class="mediaobject"><p><img src="circumcircle_3d_delaunay.png" alt="3-D Delaunay triangulation with circumsphere." height="239" width="236"></p></div></div><p>A 3-D Delaunay triangulation
+produces tetrahedra that satisfy the empty circumsphere criterion.</p></section><section><h3 class="title" id="bspqjnf">Creating Delaunay Triangulations</h3><p>MATLAB<sup>&#x00AE;</sup> provides two ways to create Delaunay triangulations: </p>
+<div class="itemizedlist"><ul><li><p>The functions <code class="function">delaunay</code> and <a href="../ref/delaunayn.html"><code class="function">delaunayn</code></a></p></li><li><p>The <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> class</p></li></ul></div><p>
+</p><p>The <code class="function">delaunay</code> function supports the creation
+of 2-D and 3-D Delaunay triangulations.  The <a href="../ref/delaunayn.html"><code class="function">delaunayn</code></a> function
+supports creating Delaunay triangulations in 4-D and higher. </p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Tip</strong></p><p>Creating Delaunay triangulations in dimensions higher than 6-D
+is generally not practical for moderate to large point sets due to
+the exponential growth in required memory.</p></div><p>The <code class="object">delaunayTriangulation</code> class
+supports creating Delaunay triangulations in 2-D and 3-D. It provides
+many methods that are useful for developing triangulation-based algorithms.
+These class methods are like functions, but they are restricted to
+work with triangulations created using <code class="object">delaunayTriangulation</code>. The <code class="object">delaunayTriangulation</code> class
+also supports the creation of related constructs such as the convex
+hull and Voronoi diagram. It also supports the creation of constrained
+Delaunay triangulations.</p><p>In summary:</p><p></p>
+<div class="itemizedlist"><ul><li><p>The <code class="function">delaunay</code> function is useful
+when you only require the basic triangulation data, and that data
+is sufficiently complete for your application.</p></li><li><p>The <code class="object">delaunayTriangulation</code> class
+offers more functionality for developing triangulation-based applications.
+It is useful when you require the triangulation and you want to perform
+any of these operations:</p>
+<div class="itemizedlist"><ul><li><p>Search the triangulation for triangles or tetrahedra
+enclosing a query point.</p></li><li><p>Use the triangulation to perform a nearest-neighbor
+point search.</p></li><li><p>Query the triangulation's topological adjacency or
+geometric properties.</p></li><li><p>Modify the triangulation to insert or remove points.</p></li><li><p>Constrain edges in the triangulation&#8212;this is
+called a constrained Delaunay triangulation.</p></li><li><p>Triangulate a polygon and optionally remove the triangles
+that are outside of the domain.</p></li><li><p>Use the Delaunay triangulation to compute the convex
+hull or Voronoi diagram.</p></li></ul></div><p>
+</p></li></ul></div><p>
+</p><section><h4 class="title" id="bspqjoe-1">Using the delaunay and delaunayn functions</h4><p>The <a href="../ref/delaunay.html"><code class="function">delaunay</code></a> and <a href="../ref/delaunayn.html"><code class="function">delaunayn</code></a> functions take a set of points
+and produce a triangulation in matrix format. Refer to <a href="triangulation-representations.html#bspqjgt" class="a">Triangulation Matrix Format</a> for more
+information on this data structure.  In 2-D, the <a href="../ref/delaunay.html"><code class="function">delaunay</code></a> function is often used to produce
+a triangulation that can be used to plot a surface defined in terms
+of a set of scattered data points. In this application, it’s
+important to note that this approach can only be used if the surface
+is single-valued. For example, it could not be used to plot a spherical
+surface because there are two <code class="literal">z</code> values corresponding
+to a single (<code class="literal">x</code>, <code class="literal">y</code>) coordinate.
+A simple example demonstrates how the <code class="function">delaunay</code> function
+can be used to plot a surface representing a sampled data set.</p><p>MATLAB provides the <a href="../ref/delaunayn.html"><code class="function">delaunayn</code></a> function to support the creation
+          of Delaunay triangulations in dimension 4-D and higher. Two complementary functions
+            <a href="../ref/tsearchn.html"><code class="function">tsearchn</code></a> and <a href="../ref/dsearchn.html"><code class="function">dsearchn</code></a> are also provided to support spatial searching for N-D
+          triangulations. See <a href="spatial-searching.html" class="a">Spatial Searching</a> for more information on
+          triangulation-based search.</p><span id="CreateA2DDelaunayTriangulationExample" class="anchor_target"></span><p><strong id="mw_4f992836-1a49-4ff0-a314-3347a06d27b0">Create 2-D Delaunay Triangulation</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreateA2DDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create 2-D Delaunay Triangulation",
+          "description": "Use the delaunay function to create a 2-D Delaunay triangulation from the seamount data set. A seamount is an underwater mountain. The data set consists of a set of longitude (x) and latitude (y) locations, and corresponding seamount elevations (z) measured at those coordinates.",
+          "thumbnailURL": "../../examples/matlab/win64/CreateA2DDelaunayTriangulationExample_03.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "delaunay-triangulation.html"
+
+        },
+          "identifier": "matlab.CreateA2DDelaunayTriangulationExample",
+          "name": "CreateA2DDelaunayTriangulationExample",
+          "url": "delaunay-triangulation.html#mw_4f992836-1a49-4ff0-a314-3347a06d27b0"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreateA2DDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateA2DDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to use the <code class="literal">delaunay</code> function to create a 2-D Delaunay triangulation from the seamount data set. A <span class="emphasis"><em>seamount</em></span> is an underwater mountain. The data set consists of a set of longitude (<code class="literal">x</code>) and latitude (<code class="literal">y</code>) locations, and corresponding seamount elevations (<code class="literal">z</code>) measured at those coordinates.</p><p>Load the seamount data set and view the (<code class="literal">x</code>, <code class="literal">y</code>) data as a scatter plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">seamount</span>
+plot(x,y,<span style="color:#A020F0">"."</span>,MarkerSize=12)
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span></pre></div></div></div><div class="informalfigure"><div id="d126e20375" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateA2DDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains a line object which displays its values using only markers." width="560"></p></div></div><p>Construct a Delaunay triangulation from this point set and use <code class="literal">triplot</code> to plot the triangulation in the existing figure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tri = delaunay(x,y);
+hold <span style="color:#A020F0">on</span>
+triplot(tri,x,y)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20386" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateA2DDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>Add the depth data (<code class="literal">z</code>) from seamount to lift the vertices and create the surface. Create a new figure and use <code class="literal">trimesh</code> to plot the surface in wireframe mode.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+hidden <span style="color:#A020F0">on</span>
+trimesh(tri,x,y,z)
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+zlabel(<span style="color:#A020F0">"Depth in Feet"</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e20399" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateA2DDelaunayTriangulationExample_03.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains an object of type patch." width="560"></p></div></div><p>If you want to plot the surface in shaded mode, use <code class="literal">trisurf</code> instead of <code class="literal">trimesh</code>.</p><p>A 3-D Delaunay triangulation also can be created using the <code class="literal">delaunay</code> function. This triangulation is composed of tetrahedra.</p><div class="procedure"></div><span id="Create3DDelaunayTriangulationExample" class="anchor_target"></span><p><strong id="mw_66c8eb10-4644-452b-9981-b6aa758390d6">Create 3-D Delaunay Triangulation</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/Create3DDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create 3-D Delaunay Triangulation",
+          "description": "Create a 3-D Delaunay triangulation of a random data set. The triangulation is plotted using tetramesh, and the FaceAlpha option adds transparency to the plot.",
+          "thumbnailURL": "../../examples/matlab/win64/Create3DDelaunayTriangulationExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "delaunay-triangulation.html"
+
+        },
+          "identifier": "matlab.Create3DDelaunayTriangulationExample",
+          "name": "Create3DDelaunayTriangulationExample",
+          "url": "delaunay-triangulation.html#mw_66c8eb10-4644-452b-9981-b6aa758390d6"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/Create3DDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "Create3DDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to create a 3-D Delaunay triangulation of a random data set. The triangulation is plotted using <code class="literal">tetramesh</code>, and the <code class="literal">FaceAlpha</code> option adds transparency to the plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>)
+X = rand([30 3]);
+tet = delaunay(X);
+faceColor  = [0.6875 0.8750 0.8984];
+tetramesh(tet,X,<span style="color:#A020F0">'FaceColor'</span>,faceColor,<span style="color:#A020F0">'FaceAlpha'</span>,0.3)</pre></div></div></div><div class="informalfigure"><div id="d126e20442" class="mediaobject"><p><img src="../../examples/matlab/win64/Create3DDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object contains 102 objects of type patch." width="560"></p></div></div><div class="procedure"></div></section><section><h4 class="title" id="bspqjor-1">Using the delaunayTriangulation Class</h4><p>The <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> class
+provides another way to create Delaunay triangulations in MATLAB.
+While <code class="function">delaunay</code> and <code class="object">delaunayTriangulation</code> use the
+same underlying algorithm and produce the same triangulation, <code class="object">delaunayTriangulation</code> provides
+complementary methods that are useful for developing Delaunay-based
+algorithms. These methods are like functions that are packaged together
+with the triangulation data into a container called a class. Keeping
+everything together in a class provides a more organized setup that
+improves ease of use. It also improves the performance of triangulation-based
+searches such as point-location and nearest-neighbor. <code class="object">delaunayTriangulation</code> supports
+incremental editing of the Delaunay triangulation. You also can impose
+edge constraints in 2-D. </p><p><a href="triangulation-representations.html" class="a">Triangulation Representations</a> introduces
+the <a href="../ref/triangulation.html"><code class="object">triangulation</code></a> class,
+which supports topological and geometric queries for 2-D and 3-D triangulations.
+A <code class="object">delaunayTriangulation</code> is
+a special kind of <code class="object">triangulation</code>.
+This means you can perform any <code class="object">triangulation</code> query
+on a <code class="object">delaunayTriangulation</code> in
+addition to the Delaunay-specific queries. In more formal MATLAB language
+terms, <code class="object">delaunayTriangulation</code> is
+a subclass of <code class="object">triangulation</code>.</p><span id="CreateQueryAndEditDelaunayTriangulationExample" class="anchor_target"></span><p><strong id="mw_baab2790-9978-4621-abe9-bd38ba631f5e">Create, Query, and Edit Delaunay Triangulation</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreateQueryAndEditDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create, Query, and Edit Delaunay Triangulation",
+          "description": "Create, query, and edit a Delaunay triangulation from the seamount data using delaunayTriangulation. The seamount data set contains (x, y) locations and corresponding elevations (z) that define the surface of the seamount.",
+          "thumbnailURL": "../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_07.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "delaunay-triangulation.html"
+
+        },
+          "identifier": "matlab.CreateQueryAndEditDelaunayTriangulationExample",
+          "name": "CreateQueryAndEditDelaunayTriangulationExample",
+          "url": "delaunay-triangulation.html#mw_baab2790-9978-4621-abe9-bd38ba631f5e"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreateQueryAndEditDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateQueryAndEditDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to create, query, and edit a Delaunay triangulation from the <code class="literal">seamount</code> data using <code class="literal">delaunayTriangulation</code>. The seamount data set contains (<code class="literal">x</code>, <code class="literal">y</code>) locations and corresponding elevations (<code class="literal">z</code>) that define the surface of the seamount.</p><p>Load and triangulate the (<code class="literal">x</code>, <code class="literal">y</code>) data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">seamount</span>
+DT = delaunayTriangulation(x,y)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [294×2 double]
+    ConnectivityList: [566×3 double]
+         Constraints: []
+
+</pre></div></div></div><p>The <code class="literal">Constraints</code> property is empty because there aren't any imposed edge constraints. The <code class="literal">Points</code> property represents the coordinates of the vertices, and the <code class="literal">ConnectivityList</code> property represents the triangles. Together, these two properties define the matrix data for the triangulation.</p><p>The <code class="literal">delaunayTriangulation</code> class is a wrapper around the matrix data, and it offers a set of complementary methods. You access the properties in a <code class="literal">delaunayTriangulation</code> in the same way you access the fields of a struct.</p><p>Access the vertex data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT.Points;</pre></div></div></div><p>Access the connectivity data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT.ConnectivityList;</pre></div></div></div><p>Access the first triangle in the <code class="literal">ConnectivityList</code> property.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT.ConnectivityList(1,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   230   205   152
+
+</pre></div></div></div><p><code class="literal">delaunayTriangulation</code> provides an easy way to index into the <code class="literal">ConnectivityList</code> property matrix.</p><p>Access the first triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT(1,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   230   205   152
+
+</pre></div></div></div><p>Examine the first vertex of the first triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT(1,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+230
+</pre></div></div></div><p>Examine all the triangles in the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT(:,:);</pre></div></div></div><p>Indexing into the <code class="literal">delaunayTriangulation</code> output, <code class="literal">DT</code>, works like indexing into the triangulation array output from <code class="literal">delaunay</code>. The difference between the two are the extra methods that you can call on <code class="literal">DT</code> (for example, <code class="literal">nearestNeighbor</code> and <code class="literal">pointLocation</code>).</p><p>Use <code class="literal">triplot</code> to plot the <code class="literal">delaunayTriangulation</code>. The <code class="literal">triplot</code> function is not a <code class="literal">delaunayTriangulation</code> method, but it accepts and can plot a <code class="literal">delaunayTriangulation</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>triplot(DT)
+axis <span style="color:#A020F0">equal</span>
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span></pre></div></div></div><div class="informalfigure"><div id="d126e20610" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains an object of type line." width="560"></p></div></div><p>Alternatively, you could use <code class="literal">triplot(DT(:,:), DT.Points(:,1), DT.Points(:,2));</code> to get the same plot.</p><p>Use the <code class="literal">delaunayTriangulation</code> method, <code class="literal">convexHull</code>, to compute the convex hull and add it to the plot. Since you already have a Delaunay triangulation, this method allows you to derive the convex hull more efficiently than a full computation using <code class="literal">convhull</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hold <span style="color:#A020F0">on</span>
+k = convexHull(DT);
+xHull = DT.Points(k,1);
+yHull = DT.Points(k,2);
+plot(xHull,yHull,<span style="color:#A020F0">"r"</span>,LineWidth=2)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20629" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line." width="560"></p></div></div><p>You can incrementally edit the <code class="literal">delaunayTriangulation</code> to add or remove points. If you need to add points to an existing triangulation, then an incremental addition is faster than a complete retriangulation of the augmented point set. Incremental removal of points is more efficient when the number of points to be removed is small relative to the existing number of points.</p><p>Edit the triangulation to remove the points on the convex hull from the previous computation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(xHull,yHull,<span style="color:#A020F0">"r"</span>,LineWidth=2)
+axis <span style="color:#A020F0">equal</span>
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span>
+
+<span style="color:#228B22">% The convex hull topology duplicates the start and end vertex.</span>
+<span style="color:#228B22">% Remove the duplicate entry.</span>
+k(end) = [];
+
+<span style="color:#228B22">% Now remove the points on the convex hull.</span>
+DT.Points(k,:) = []</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [274×2 double]
+    ConnectivityList: [528×3 double]
+         Constraints: []
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Plot the new triangulation.</span>
+hold <span style="color:#A020F0">on</span>
+triplot(DT)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20646" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_03.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line." width="560"></p></div></div><p>There is one vertex that is just inside the boundary of the convex hull that was not removed. The fact that it is interior to the hull can be seen using the Zoom-In tool in the figure. You could plot the vertex labels to determine the index of this vertex and remove it from the triangulation. Alternatively, you can use the <code class="literal">nearestNeighbor</code> method to identify the index more readily.</p><p>The point is close to location (211.6, -48.15). Use the nearestNeighbor method to find the nearest vertex.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vertexId = nearestNeighbor(DT,211.6,-48.15)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vertexId = 
+50
+</pre></div></div></div><p>Now remove that vertex from the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT.Points(vertexId,:) = []</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [273×2 double]
+    ConnectivityList: [525×3 double]
+         Constraints: []
+
+</pre></div></div></div><p>Plot the new triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(xHull,yHull,<span style="color:#A020F0">"r"</span>,LineWidth=2)
+axis <span style="color:#A020F0">equal</span>
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span>
+hold <span style="color:#A020F0">on</span>
+triplot(DT)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20669" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_04.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line." width="560"></p></div></div><p>Add points to the existing triangulation. Add 4 points to form a rectangle around the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Padditional = [210.9 -48.5; 211.6 -48.5; <span style="color:#0000FF">...</span>
+     211.6 -47.9; 210.9 -47.9];
+DT.Points(end+(1:4),:) = Padditional</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [277×2 double]
+    ConnectivityList: [548×3 double]
+         Constraints: []
+
+</pre></div></div></div><p>Close all existing figures.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span></pre></div></div></div><p>Plot the new triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(xHull,yHull,<span style="color:#A020F0">"r"</span>,LineWidth=2) 
+axis <span style="color:#A020F0">equal</span>
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span>
+hold <span style="color:#A020F0">on</span>
+triplot(DT)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20685" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_05.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line." width="560"></p></div></div><p>You can edit the points in the triangulation to move them to a new location. Edit the first of the additional point set (the vertex ID 274).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT.Points(274,:) = [211 -48.4];</pre></div></div></div><p>Close all existing figures.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>close <span style="color:#A020F0">all</span></pre></div></div></div><p>Plot the new triangulation</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(xHull,yHull,<span style="color:#A020F0">"r"</span>,LineWidth=2)
+axis <span style="color:#A020F0">equal</span>
+xlabel(<span style="color:#A020F0">"Longitude"</span>)
+ylabel(<span style="color:#A020F0">"Latitude"</span>)
+grid <span style="color:#A020F0">on</span>
+hold <span style="color:#A020F0">on</span>
+triplot(DT)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20700" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_06.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 2 objects of type line." width="560"></p></div></div><p>Use the a method of the <code class="literal">triangulation</code> class, <code class="literal">vertexAttachments</code>, to find the attached triangles. Since the number of triangles attached to a vertex is variable, the method returns the attached triangle IDs in a cell array. You need braces to extract the contents.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>attTris = vertexAttachments(DT,274);
+hold <span style="color:#A020F0">on</span>
+triplot(DT(attTris{:},:),DT.Points(:,1),DT.Points(:,2),<span style="color:#A020F0">'g'</span>)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20713" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateQueryAndEditDelaunayTriangulationExample_07.png" alt="Figure contains an axes object. The axes object with xlabel Longitude, ylabel Latitude contains 3 objects of type line." width="560"></p></div></div><p><code class="literal">delaunayTriangulation</code> also can be used to triangulate points in 3-D space. The resulting triangulation is composed of tetrahedra.</p><div class="procedure"></div><span id="CreateAndPlotDelaunayTriangulationOf3DPointsExample" class="anchor_target"></span><p><strong id="mw_ac269389-b916-4029-a29f-7a85cf71eafc">Create and Plot Delaunay Triangulation of 3-D Points</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreateAndPlotDelaunayTriangulationOf3DPointsExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Create and Plot Delaunay Triangulation of 3-D Points",
+          "description": "Use a delaunayTriangulation to create and plot the triangulation of 3-D points.",
+          "thumbnailURL": "../../examples/matlab/win64/CreateAndPlotDelaunayTriangulationOf3DPointsExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "delaunay-triangulation.html"
+
+        },
+          "identifier": "matlab.CreateAndPlotDelaunayTriangulationOf3DPointsExample",
+          "name": "CreateAndPlotDelaunayTriangulationOf3DPointsExample",
+          "url": "delaunay-triangulation.html#mw_ac269389-b916-4029-a29f-7a85cf71eafc"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreateAndPlotDelaunayTriangulationOf3DPointsExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreateAndPlotDelaunayTriangulationOf3DPointsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to use a <code class="literal">delaunayTriangulation</code> to create and plot the triangulation of 3-D points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">"default"</span>)
+P = rand(30,3);
+DT = delaunayTriangulation(P)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [30×3 double]
+    ConnectivityList: [102×4 double]
+         Constraints: []
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>faceColor  = [0.6875 0.8750 0.8984];
+tetramesh(DT,FaceColor=faceColor,FaceAlpha=0.3)</pre></div></div></div><div class="informalfigure"><div id="d126e20750" class="mediaobject"><p><img src="../../examples/matlab/win64/CreateAndPlotDelaunayTriangulationOf3DPointsExample_01.png" alt="Figure contains an axes object. The axes object contains 102 objects of type patch." width="560"></p></div></div><p>The <code class="literal">tetramesh</code> function plots both the internal and external faces of the triangulation. For large 3-D triangulations, plotting the internal faces might be an unnecessary use of resources. A plot of the boundary might be more appropriate. You can use the <code class="literal">freeBoundary</code> method to get the boundary triangulation in matrix format. Then pass the result to <code class="literal">trimesh</code> or <code class="literal">trisurf</code>.</p><div class="procedure"></div></section><section><h4 class="title" id="bspqi8a-12">Constrained Delaunay Triangulation</h4><p>The <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> class
+allows you to constrain edges in a 2-D triangulation. This means you
+can choose a pair of points in the triangulation and constrain an
+edge to join those points. You can picture this as “forcing”
+an edge between one or more pairs of points. The following example
+shows how edge constraints can affect the triangulation.</p><p>The triangulation below is a Delaunay triangulation because
+it respects the empty circumcircle criterion. </p>
+<div class="informalfigure"><div id="d126e20776" class="mediaobject"><p><img src="delaunay_and_nondelaunay_tri_example.png" alt="Delaunay triangulation with circumcircles plotted." height="181" width="404"></p></div></div><p></p><span id="ConstrainedDelaunayTriangulationExample" class="anchor_target"></span><p><strong id="mw_fbdd1cd0-6f86-48f9-9d18-110c33f817c2">Constrained Delaunay Triangulation</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ConstrainedDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Constrained Delaunay Triangulation",
+          "description": "Triangulate a set of points with an edge constraint specified between vertex V1 and V3.",
+          "thumbnailURL": "../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_05.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "delaunay-triangulation.html"
+
+        },
+          "identifier": "matlab.ConstrainedDelaunayTriangulationExample",
+          "name": "ConstrainedDelaunayTriangulationExample",
+          "url": "delaunay-triangulation.html#mw_fbdd1cd0-6f86-48f9-9d18-110c33f817c2"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ConstrainedDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ConstrainedDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">Triangulate a set of points with an edge constraint specified between vertex <code class="literal">V1</code> and <code class="literal">V3</code>.</p><p>Define the point set.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>P = [2 4; 6 1; 9 4; 6 7];</pre></div></div></div><p>Define a constraint, <code class="literal">C</code>, between <code class="literal">V1</code> and <code class="literal">V3</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C = [1 3];
+DT = delaunayTriangulation(P,C);</pre></div></div></div><p>Plot the triangulation and add annotations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>triplot(DT)
+
+<span style="color:#228B22">% Label the vertices.</span>
+hold <span style="color:#A020F0">on</span>
+numvx = size(P,1);
+vxlabels = arrayfun(@(n) {sprintf(<span style="color:#A020F0">"V%d"</span>, n)},(1:numvx)');
+Hpl = text(P(:,1)+0.2, P(:,2)+0.2, vxlabels, FontWeight=<span style="color:#A020F0">"bold"</span>, <span style="color:#0000FF">...</span>
+    HorizontalAlignment=<span style="color:#A020F0">"center"</span>, BackgroundColor=<span style="color:#A020F0">"none"</span>);
+hold <span style="color:#A020F0">off</span>
+
+
+<span style="color:#228B22">% Use the incenters to find the positions for placing triangle labels on the plot.</span>
+hold <span style="color:#A020F0">on</span>
+IC = incenter(DT);
+numtri = size(DT,1);
+trilabels = arrayfun(@(P) {sprintf(<span style="color:#A020F0">'T%d'</span>, P)},(1:numtri)');
+Htl = text(IC(:,1),IC(:,2),trilabels,FontWeight=<span style="color:#A020F0">"bold"</span>, <span style="color:#0000FF">...</span>
+    HorizontalAlignment=<span style="color:#A020F0">"center"</span>,Color=<span style="color:#A020F0">"blue"</span>);
+hold <span style="color:#A020F0">off</span>
+
+<span style="color:#228B22">% Plot the circumcircle associated with the triangle, T1.</span>
+hold <span style="color:#A020F0">on</span>
+[CC,r] = circumcenter(DT);
+theta = 0:pi/50:2*pi;
+xunit = r(1)*cos(theta) + CC(1,1);
+yunit = r(1)*sin(theta) + CC(1,2);
+plot(xunit,yunit,<span style="color:#A020F0">"g"</span>)
+axis <span style="color:#A020F0">equal</span>
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20820" class="mediaobject"><p><img src="../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object contains 8 objects of type line, text." width="560"></p></div></div><p>The constraint between vertices (<code class="literal">V1</code>, <code class="literal">V3</code>) was honored, however, the Delaunay criterion was invalidated. This also invalidates the nearest-neighbor relation that is inherent in a Delaunay triangulation. This means the <code class="literal">nearestNeighbor</code> search method provided by <code class="literal">delaunayTriangulation</code> cannot be supported if the triangulation has constraints.</p><p>In typical applications, the triangulation might be composed of many points, and a relatively small number of edges in the triangulation might be constrained. Such a triangulation is said to be locally non-Delaunay, because many triangles in the triangulation might respect the Delaunay criterion, but locally there might be some triangles that do not. In many applications, local relaxation of the empty circumcircle property is not a concern.</p><p>Constrained triangulations are generally used to triangulate a nonconvex polygon. The constraints give us a correspondence between the polygon edges and the triangulation edges. This relationship enables you to extract a triangulation that represents the region. The following example shows how to use a constrained <code class="literal">delaunayTriangulation</code> to triangulate a nonconvex polygon.</p><p>Define and plot a polygon.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure()
+axis([-1 17 -1 6]);
+axis <span style="color:#A020F0">equal</span>
+P = [0 0; 16 0; 16 2; 2 2; 2 3; 8 3; 8 5; 0 5];
+patch(P(:,1),P(:,2),<span style="color:#A020F0">'-r'</span>,LineWidth=2,FaceColor=<span style="color:#A020F0">"none"</span>,EdgeColor=<span style="color:#A020F0">"r"</span>);
+ 
+<span style="color:#228B22">% Label the points.</span>
+hold <span style="color:#A020F0">on</span>
+numvx = size(P,1);
+vxlabels = arrayfun(@(n) {sprintf(<span style="color:#A020F0">"P%d"</span>, n)},(1:numvx)');
+Hpl = text(P(:,1)+0.2, P(:,2)+0.2, vxlabels,FontWeight=<span style="color:#A020F0">"bold"</span>, <span style="color:#0000FF">...</span>
+    HorizontalAlignment=<span style="color:#A020F0">"center"</span>,BackgroundColor=<span style="color:#A020F0">"none"</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20844" class="mediaobject"><p><img src="../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object contains 9 objects of type patch, text." width="560"></p></div></div><p>Create and plot the triangulation together with the polygon boundary.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure()
+subplot(2,1,1);
+axis([-1 17 -1 6]);
+axis <span style="color:#A020F0">equal</span>
+
+P = [0 0; 16 0; 16 2; 2 2; 2 3; 8 3; 8 5; 0 5];
+DT = delaunayTriangulation(P);
+triplot(DT)
+hold <span style="color:#A020F0">on</span>
+patch(P(:,1),P(:,2),<span style="color:#A020F0">'-r'</span>,LineWidth=2,FaceColor=<span style="color:#A020F0">"none"</span>,EdgeColor=<span style="color:#A020F0">"r"</span>);
+hold <span style="color:#A020F0">off</span>
+
+<span style="color:#228B22">% Plot the standalone triangulation in a subplot.</span>
+subplot(2,1,2);
+axis([-1 17 -1 6]);
+axis <span style="color:#A020F0">equal</span>
+triplot(DT)</pre></div></div></div><div class="informalfigure"><div id="d126e20852" class="mediaobject"><p><img src="../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_03.png" alt="Figure contains 2 axes objects. Axes object 1 contains 2 objects of type line, patch. Axes object 2 contains an object of type line." width="560"></p></div></div><p>This triangulation cannot be used to represent the domain of the polygon because some triangles cut across the boundary. You need to impose a constraint on the edges that are cut by triangulation edges. Since all edges have to be respected, you need to constrain all edges. The steps below show how to constrain all the edges.</p><p>Enter the constrained edge definition. Observe from the annotated figure where you need constraints (between (<code class="literal">V1</code>, <code class="literal">V2</code>), (<code class="literal">V2</code>, <code class="literal">V3</code>), and so on).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>C = [1 2; 2 3; 3 4; 4 5; 5 6; 6 7; 7 8; 8 1];</pre></div></div></div><p>In general, if you have <code class="literal">N</code> points in a sequence that define a polygonal boundary, the constraints can be expressed as <code class="literal">C = [(1:(N-1))' (2:N)'; N 1];</code>.</p><p>Specify the constraints when you create the <code class="literal">delaunayTriangulation</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT = delaunayTriangulation(P,C);</pre></div></div></div><p>Alternatively, you can impose constraints on an existing triangulation by setting the <code class="literal">Constraints</code> property: <code class="literal">DT.Constraints = C;</code>.</p><p>Plot the triangulation and polygon.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure(Color=<span style="color:#A020F0">"white"</span>)
+subplot(2,1,1);
+axis([-1 17 -1 6]);
+axis <span style="color:#A020F0">equal</span>
+triplot(DT)
+hold <span style="color:#A020F0">on</span>
+patch(P(:,1),P(:,2),<span style="color:#A020F0">'-r'</span>,LineWidth=2,FaceColor=<span style="color:#A020F0">"none"</span>,EdgeColor=<span style="color:#A020F0">"r"</span>); 
+hold <span style="color:#A020F0">off</span>
+
+<span style="color:#228B22">% Plot the standalone triangulation in a subplot.</span>
+subplot(2,1,2);
+axis([-1 17 -1 6]);
+axis <span style="color:#A020F0">equal</span>
+triplot(DT)</pre></div></div></div><div class="informalfigure"><div id="d126e20892" class="mediaobject"><p><img src="../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_04.png" alt="Figure contains 2 axes objects. Axes object 1 contains 2 objects of type line, patch. Axes object 2 contains an object of type line." width="560"></p></div></div><p>The plot shows that the edges of the triangulation respect the boundary of the polygon. However, the triangulation fills the concavities. What is needed is a triangulation that represents the polygonal domain. You can extract the triangles within the polygon using the <code class="literal">delaunayTriangulation</code> method, <code class="literal">isInterior</code>. This method returns a logical array whose <code class="literal">true</code> and <code class="literal">false</code> values that indicate whether the triangles are inside a bounded geometric domain. The analysis is based on the Jordan Curve theorem, and the boundaries are defined by the edge constraints. The ith triangle in the triangulation is considered to be inside the domain if the ith logical flag is true, otherwise it is outside.</p><p>Now use the <code class="literal">isInterior</code> method to compute and plot the set of domain triangles.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Plot the constrained edges in red.</span>
+figure(Color=<span style="color:#A020F0">"white"</span>)
+subplot(2,1,1);
+plot(P(C'),P(C'+size(P,1)),<span style="color:#A020F0">"-r"</span>,LineWidth=2);
+axis([-1 17 -1 6]);
+
+<span style="color:#228B22">% Compute the in/out status.</span>
+IO = isInterior(DT);
+subplot(2,1,2);
+hold <span style="color:#A020F0">on</span>
+axis([-1 17 -1 6]);
+
+<span style="color:#228B22">% Use triplot to plot the triangles that are inside.</span>
+<span style="color:#228B22">% Uses logical indexing and dt(i,j) shorthand</span>
+<span style="color:#228B22">% format to access the triangulation.</span>
+triplot(DT(IO, :),DT.Points(:,1),DT.Points(:,2),LineWidth=2)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20913" class="mediaobject"><p><img src="../../examples/matlab/win64/ConstrainedDelaunayTriangulationExample_05.png" alt="Figure contains 2 axes objects. Axes object 1 contains 8 objects of type line. Axes object 2 contains an object of type line." width="560"></p></div></div><div class="procedure"></div></section></section><section><h3 class="title" id="bspy4_2-1">Triangulation of Point Sets Containing Duplicate Locations</h3><p>The Delaunay algorithms in MATLAB construct a triangulation
+from a unique set of points. If the points passed to the triangulation
+function, or class, are not unique, the duplicate locations are detected
+and the duplicate point is ignored. This produces a triangulation
+that does not reference some points in the original input, namely
+the duplicate points. When you work with the <a href="../ref/delaunay.html"><code class="function">delaunay</code></a> and <a href="../ref/delaunayn.html"><code class="function">delaunayn</code></a> functions, the presence of
+duplicates may be of little consequence. However, since many of the
+queries provided by the <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a> class are index based,
+it is important to understand that <code class="object">delaunayTriangulation</code> triangulates
+and works with the unique data set. Therefore, indexing based on the
+unique point set is the convention. This data is maintained by the <code class="property">Points</code> property
+of <code class="object">delaunayTriangulation</code>.</p><p>The following example illustrates the importance of referencing the unique data set stored
+        within the <code class="property">Points</code> property when working with
+          <code class="object">delaunayTriangulation</code>:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>)
+P = rand([25 2]);
+P(18,:) = P(8,:)
+P(16,:) = P(6,:)
+P(12,:) = P(2,:)
+
+DT = delaunayTriangulation(P)
+</pre></div></div></div>When
+        the triangulation is created, MATLAB issues a warning. The <code class="property">Points</code> property shows that the
+        duplicate points have been removed from the
+        data.<div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+
+  delaunayTriangulation with properties:
+
+              Points: [22x2 double]
+    ConnectivityList: [31x3 double]
+         Constraints: []</pre></div></div></div>If
+        for example, the Delaunay triangulation is used to compute the convex hull, the indices of
+        the points on the hull are indices with respect to the unique point set,
+          <code class="literal">DT.Points</code>. Therefore, use the following code to compute and plot the
+        convex
+        hull:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>K = DT.convexHull();
+plot(DT.Points(:,1),DT.Points(:,2),<span style="color:#A020F0">'.'</span>);
+hold <span style="color:#A020F0">on</span>
+plot(DT.Points(K,1),DT.Points(K,2),<span style="color:#A020F0">'-r'</span>);</pre></div></div></div>If
+        the original data set containing the duplicates were used in conjunction with the indices
+        provided by <code class="object">delaunayTriangulation</code>, then the result would be incorrect. The
+          <code class="object">delaunayTriangulation</code> works with indices that are based on the unique
+        data set <code class="literal">DT.Points</code>. For example, the following would produce an incorrect
+        plot, because <code class="literal">K</code> is indexed with respect to <code class="literal">DT.Points</code>
+        and not
+        <code class="literal">P</code>:<div class="code_responsive"><pre class="programlisting">K = DT.convexHull();
+plot(P(:,1),P(:,2),'.');
+hold on
+plot(P(K,1),P(K,2),'-r');</pre></div>It’s
+        often more convenient to create a unique data set by removing duplicates prior to creating
+        the <code class="object">delaunayTriangulation</code>. Doing this eliminates the potential for
+        confusion. This can be accomplished using the <a href="../ref/double.unique.html"><code class="function">unique</code></a> function as follows:
+        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(<span style="color:#A020F0">'default'</span>)
+P = rand([25 2]);
+P(18,:) = P(8,:)
+P(16,:) = P(6,:)
+P(12,:) = P(2,:)
+
+[~, I, ~] = unique(P,<span style="color:#A020F0">'first'</span>,<span style="color:#A020F0">'rows'</span>);
+I = sort(I);
+P = P(I,:);
+DT = delaunayTriangulation(P)  <span style="color:#228B22">% The point set is unique</span></pre></div></div></div></p></section>
+
+
+<h2 id="seealsoref">See Also</h2><h3 id="d126e20994">Topics</h3><ul class="list-unstyled"><li><a href="spatial-searching.html" class="a">Spatial Searching</a></li></ul>
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

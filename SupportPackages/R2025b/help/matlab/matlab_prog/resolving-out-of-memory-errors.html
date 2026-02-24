@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Resolve "Out of Memory" Errors</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../performance-and-memory.html",
+          "name": "Performance and Memory"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "large-files-and-big-data",
+        "performance-and-memory"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "UISupport",
+          "value": "Desktop"
+
+        }</script><meta xmlns="http://www.w3.org/1999/xhtml" name="keywords" content="clear memory"><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Troubleshoot errors when MATLAB cannot allocate the requested memory."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetan"><span itemprop="title">Large Files and Big Data</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../software-development.html?s_tid=CRUX_lftnav">Software Development Tools</a></li><li><a href="../performance-and-memory.html?s_tid=CRUX_lftnav" id="bs_1wq2">Performance and Memory</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Resolve “Out of Memory” Errors</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_a94f88ea-8ece-42c3-a70b-b8a6b4349a2e" class="nav-link intrnllnk">Issue</a></li><li class="nav-item"><a href="#mw_e96ab59c-0ea5-470d-9441-8ff0d597c6cd" class="nav-link intrnllnk">Possible Solutions</a><ul class="nav"><li class="nav-item"><a href="#mw_3dda7a12-9622-4216-b4bd-1281a314c982" class="nav-link intrnllnk">Clear Variables When No Longer Needed</a></li><li class="nav-item"><a href="#mw_8d2d5d00-a75c-4b87-af85-beec8735bd46" class="nav-link intrnllnk">Use Appropriate Data Storage</a></li><li class="nav-item"><a href="#mw_cdb14d80-c8b1-4764-a326-06e291e6d65c" class="nav-link intrnllnk">Avoid Unnecessary Copies of Data</a></li><li class="nav-item"><a href="#mw_1cc1a034-903a-4bd5-a8ea-e45c608323c4" class="nav-link intrnllnk">Load Only as Much Data as You Need</a></li><li class="nav-item"><a href="#mw_a52e9140-fab7-4734-994d-3995bb8bb231" class="nav-link intrnllnk">Use Tall Arrays</a></li><li class="nav-item"><a href="#mw_7e4fb20e-f557-45dd-9160-e94a38ec3120" class="nav-link intrnllnk">Use Memory of Multiple Machines</a></li><li class="nav-item"><a href="#mw_0154718d-b56e-4cb1-bc71-f9c9231e9466" class="nav-link intrnllnk">Adjust Settings and Preferences</a></li></ul></li><li class="nav-item"><a href="#d126e70272" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brh72ex-49">Resolve “Out of Memory” Errors</h2><span id="error_nomem" class="anchor_target"></span><span id="error_array_SizeLimitExceeded" class="anchor_target"></span><span id="error_pmaxsize" class="anchor_target"></span><section><h3 class="title h2" id="mw_a94f88ea-8ece-42c3-a70b-b8a6b4349a2e">Issue</h3><p>When your code operates on large amounts of data or does not use memory
+                efficiently, MATLAB<sup>&#x00AE;</sup> might produce an error in response to an unreasonable array size, or
+                it might run out of memory. MATLAB has built-in protection against creating arrays that are too large.
+                For example, this code results in an error, because MATLAB cannot create an array with the requested number of elements.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = rand(1e9);
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><code class="errortext">Requested array exceeds the maximum possible variable size.</code>
+</pre></div></div></div><p>By default, MATLAB can use up to 100% of the RAM (not including virtual memory) of your
+                computer to allocate memory for arrays, and if an array size would exceed that
+                threshold, then MATLAB produces an error. For example, this code attempts to create an array
+                whose size exceeds the maximum array size limit.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B = rand(1e6);
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><code class="errortext">Requested 1000000x1000000 (7450.6GB) array exceeds maximum array size preference (63.7GB). This might cause MATLAB to become
+unresponsive.</code>
+</pre></div></div></div><p> If you turn off the array size limit in <strong class="guilabel">MATLAB Workspace
+                    Settings</strong>, attempting to create an unreasonably large array might
+                cause MATLAB to run out of memory, or it might make MATLAB or even your computer unresponsive due to excessive memory paging
+                (that is, moving memory pages between RAM and disk).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>B = rand(1e6);
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre><code class="errortext">Out of memory.</code>
+</pre></div></div></div></section><section><h3 class="title h2" id="mw_e96ab59c-0ea5-470d-9441-8ff0d597c6cd">Possible Solutions</h3><p>No matter how you run into memory limits, MATLAB provides several solutions depending on your situation and goals. For
+                example, you can improve the way your code uses memory, leverage specialized data
+                structures such as datastores and tall arrays, take advantage of pooled resources
+                within a computing cluster, or make adjustments to your settings and
+                preferences.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>The solutions presented here are specific to MATLAB. To optimize system-wide memory performance, consider adding more
+                    physical memory (RAM) to your computer or making adjustments at the operating
+                    system level.</p></div><section><h4 class="title h3" id="mw_3dda7a12-9622-4216-b4bd-1281a314c982"><strong id="mw_67e0e1b8-83c3-4b63-8324-7e69829557b3" class="emphasis bold">Clear                         Variables When No Longer Needed</strong></h4><p>Make it a practice to clear variables when they are no longer needed. To clear
+                    items from memory, use the <a href="../ref/clear.html"><code class="function">clear</code></a> function.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = rand(1e4);
+disp(max(A,[],<span style="color:#A020F0">"all"</span>))
+B = rand(1e4);
+</pre></div></div></div>
+                                </td><td>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = rand(1e4);
+disp(max(A,[],<span style="color:#A020F0">"all"</span>))
+clear <span style="color:#A020F0">A</span>
+B = rand(1e4);
+</pre></div></div></div>
+                                </td></tr></tbody></table></div><p>For more information, see <a href="strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a>.</p></section><section><h4 class="title h3" id="mw_8d2d5d00-a75c-4b87-af85-beec8735bd46">Use Appropriate Data Storage</h4><p>Memory requirements differ for MATLAB data types. You might be able to reduce the amount of memory used
+                    by your code by using the appropriate data type and storage. For more
+                    information about the solutions in this section, see <a href="strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a>.</p><p><strong id="mw_d97d4fc4-78c7-439e-85ab-c4fcf227aa22">Use the Appropriate Numeric Class.&nbsp;&nbsp;</strong>The numeric class you should use depends on your intended actions. In
+                            MATLAB, <code class="literal">double</code> is the default numeric data type
+                        and provides sufficient precision for most computational tasks:</p><div class="itemizedlist"><ul><li><p>If you want to perform complicated math such as linear algebra,
+                                use floating-point numbers in either double-precision
+                                    (<code class="literal">double</code>) or single-precision
+                                    (<code class="literal">single</code>) format. Numbers of type
+                                    <code class="literal">single</code> require less memory than numbers of
+                                type <code class="literal">double</code>, but are also represented to less
+                                precision.</p></li><li><p>If you just need to carry out simple arithmetic and you represent
+                                the original data as integers, use the integer classes in
+                                    MATLAB.</p></li></ul></div><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="13%"><col class="tcol3" width="54%"></colgroup><thead><tr><th>Class (Data Type)</th><th>Bytes</th><th>Supported Operations</th></tr></thead><tbody><tr><td><code class="literal">single</code></td><td>4</td><td>Most math</td></tr><tr><td><code class="literal">double</code></td><td>8</td><td>All math</td></tr><tr><td><code class="literal">logical</code></td><td>1</td><td>Logical/conditional operations </td></tr><tr><td><code class="literal">int8, uint8</code></td><td>1</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int16, uint16</code></td><td>2</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int32, uint32</code></td><td>4</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int64, uint64</code></td><td>8</td><td>Arithmetic and some simple functions </td></tr></tbody></table></div><p><strong id="mw_9925c1c9-6d56-4ed1-8888-6cb59a84ac7c">Reduce the Amount of Overhead When Storing Data.&nbsp;&nbsp;</strong>When you create a numeric or character array, MATLAB allocates a block of memory to store the array data.
+                            MATLAB also stores information about the array data, such as its
+                        class and dimensions, in a small, separate block of memory called a
+                            <span class="emphasis"><em>header</em></span>. Because simple numeric and character arrays
+                        have the least overhead, use them whenever possible. Use other data
+                        structures only for data that is too complex to store in a simple
+                        array.</p><p>For structures and cell arrays, MATLAB creates a header not only for the array, but also for each
+                        field of the structure or each cell of the cell array. Therefore, the amount
+                        of memory required to store a structure or cell array depends not only on
+                        how much data it holds, but also on how it is constructed. As a result, cell
+                        arrays with many small elements or structures with many fields containing
+                        little content have large overhead and should be avoided.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% S has 15,000 fields (3 fields per array element)</span>
+<span style="color:#0000FF">for</span> i = 1:100
+    <span style="color:#0000FF">for</span> j = 1:50
+        S(i,j).R = 0;  <span style="color:#228B22">% Each field contains a numeric scalar</span>
+        S(i,j).G = 0;
+        S(i,j).B = 0;
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% S has 3 fields </span>
+S.R = zeros(100,50);  <span style="color:#228B22">% Each field contains a numeric array</span>
+S.G = zeros(100,50);
+S.B = zeros(100,50);</pre></div></div></div>
+                                    </td></tr></tbody></table></div><p><strong id="mw_9ce61624-ef67-49f9-8754-3cdc1c6f616e">Make Arrays Sparse When Possible.&nbsp;&nbsp;</strong>A good practice is to store matrices with few nonzero elements using
+                        sparse storage. When a full matrix has a small number of nonzero elements,
+                        converting the matrix to sparse storage typically improves memory usage and
+                        code execution time. MATLAB has several functions that support sparse storage. For
+                        example, you can use the <a href="../ref/speye.html"><code class="function">speye</code></a> function to create a
+                        sparse identity matrix.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>I = eye(1000);</pre></div></div></div>
+                                    </td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>I = speye(1000);</pre></div></div></div>
+                                    </td></tr></tbody></table></div><p><strong id="mw_579c902c-76b7-46ca-9645-4546e903d205">Import Data Using the Appropriate MATLAB Class.&nbsp;&nbsp;</strong>When reading data from a binary file with <a href="../ref/fread.html"><code class="function">fread</code></a>, a common mistake is
+                        to specify only the class of the data in the file and not the class of the
+                        data MATLAB uses once it is in the workspace. If you do not specify the
+                        class of the data in memory, MATLAB uses <code class="literal">double</code> even if you read 8-bit
+                        values.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">"large_file_of_uint8s.bin"</span>,<span style="color:#A020F0">"r"</span>); 
+A = fread(fileID,1e3,<span style="color:#A020F0">"uint8"</span>); </pre></div></div></div>
+                                    </td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">"large_file_of_uint8s.bin"</span>,<span style="color:#A020F0">"r"</span>); 
+A = fread(fileID,1e3,<span style="color:#A020F0">"uint8=&gt;uint8"</span>); </pre></div></div></div>
+                                    </td></tr></tbody></table></div></section><section><h4 class="title h3" id="mw_cdb14d80-c8b1-4764-a326-06e291e6d65c">Avoid Unnecessary Copies of Data</h4><p>To improve memory usage and execution speed, make sure your code does not
+                    result in unnecessary copies of data. For more information about the solutions
+                    in this section, see <a href="avoid-unnecessary-copies-of-data.html" class="a">Avoid Unnecessary Copies of Data</a> and <a href="strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a>.</p><p><strong id="mw_c4a02678-56a3-4634-9ba1-4471cbbb2d4d">Avoid Creating Temporary Arrays.&nbsp;&nbsp;</strong>Avoid creating temporary arrays when they are not necessary. For example,
+                        instead of creating an array of zeros as a temporary variable and then
+                        passing that variable to a function, use one command to do both
+                        operations.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = zeros(1e6,1);
+As = single(A);</pre></div></div></div>
+                                    </td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>As = zeros(1e6,1,<span style="color:#A020F0">"single"</span>);
+</pre></div></div></div>
+                                    </td></tr></tbody></table></div><p><strong id="mw_b9919bf6-03aa-4bba-9775-775cef8a1f63">Preallocate Memory.&nbsp;&nbsp;</strong>When you work with large data sets, repeatedly resizing arrays might cause
+                        your program to run out of memory. If you expand an array beyond the
+                        available contiguous memory of its original location, MATLAB must make a copy of the array and move the copy into a memory
+                        block with sufficient space. During this process, two copies of the original
+                        array exist in memory. You can improve the memory usage and code execution
+                        time by preallocating the maximum amount of space required for the array.
+                        For more information, see <a href="preallocating-arrays.html" class="a">Preallocation</a>.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%" align="left"><col class="tcol2" width="50%" align="left"></colgroup><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0;
+<span style="color:#0000FF">for</span> k = 2:1000000
+   x(k) = x(k-1) + 5;
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </td><td>
+                                        <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = zeros(1,1000000);
+<span style="color:#0000FF">for</span> k = 2:1000000
+   x(k) = x(k-1) + 5;
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                    </td></tr></tbody></table></div><p><strong id="mw_6d9796b8-9a08-428a-bc2e-44133c334727">Use Nested Functions to Pass Fewer Arguments.&nbsp;&nbsp;</strong>When calling a function, MATLAB typically makes a temporary copy of the variable in the
+                        caller's workspace if the function modifies its value. MATLAB applies various techniques to avoid making unnecessary copies,
+                        but avoiding a temporary copy of an input variable is not always
+                        possible.</p><p>One way to avoid temporary copies in function calls is to use nested
+                        functions. A nested function shares the workspace of all outer functions, so
+                        you do not need to pass a copy of variables in the function call. For more
+                        information, see <a href="share-data-between-workspaces.html#f0-50984" class="a">Nested Functions</a>.</p></section><section><h4 class="title h3" id="mw_1cc1a034-903a-4bd5-a8ea-e45c608323c4">Load Only as Much Data as You Need</h4><p>One way to fix memory issues is to import into MATLAB only as much of a large data set as you need for the problem you
+                    are trying to solve. Data set size is not usually a problem when importing from
+                    sources such as a database, where you can explicitly search for elements
+                    matching a query. But it is a common problem with loading large flat text or
+                    binary files.</p><p>The <a href="../ref/datastore.html"><code class="function">datastore</code></a> function lets you
+                    work with large data sets incrementally. Datastores are useful any time you want
+                    to load only some portions of a data set into memory at a time.</p><p>To create a datastore, provide the name of a file or a directory containing a
+                    collection of files with similar formatting. For example, with a single file,
+                    use the
+                    following.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = datastore(<span style="color:#A020F0">"path/to/file.csv"</span>);</pre></div></div></div>Or
+                    with a collection of files in a folder, use the
+                    following.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = datastore(<span style="color:#A020F0">"path/to/folder/"</span>);</pre></div></div></div>You
+                    also can use the wildcard character <code class="literal">*</code> to select all files of
+                    a specific
+                    type.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = datastore(<span style="color:#A020F0">"path/to/*.csv"</span>);</pre></div></div></div>Datastores
+                    support a wide variety of file formats (tabular data, images, spreadsheets, and
+                    so on). For more information, see <a href="../import_export/select-datastore-for-file-format-or-application.html" class="a">Select Datastore for File Format or Application</a>.</p><p>Aside from datastores, MATLAB also has several other functions to load parts of files. This
+                    table summarizes the functions by the type of files they operate on.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>File Type</th><th>Partial Loading</th></tr></thead><tbody><tr><td>MAT-file</td><td><p>Load part of a variable by indexing into an object that
+                                        you create with the <a href="../ref/matlab.io.matfile.html"><code class="function">matfile</code></a>
+                                        function. For more information, see <a href="../import_export/load-parts-of-variables-from-mat-files.html" class="a">Save and Load Parts of Variables in MAT-Files</a>.</p></td></tr><tr><td>Text</td><td><p>Use the <a href="../ref/textscan.html"><code class="function">textscan</code></a>
+                                        function to access parts of a large text file by reading
+                                        only the selected columns and rows. If you specify the
+                                        number of rows or a repeat format number with
+                                            <code class="function">textscan</code>, MATLAB calculates the exact amount of memory required
+                                        beforehand.</p></td></tr><tr><td>Binary</td><td><p>You can use low-level binary file I/O functions, such
+                                        as <a href="../ref/fread.html"><code class="function">fread</code></a>, to
+                                        access parts of any file that has a known format. For binary
+                                        files of an unknown format, try using memory mapping with
+                                        the <a href="../ref/memmapfile.html"><code class="function">memmapfile</code></a>
+                                        function.</p></td></tr><tr><td>Image, Audio, Video, and HDF</td><td><p>Many of the MATLAB functions that support loading from these
+                                        types of files allow you to select portions of the data to
+                                        read. For details, see the function reference pages listed
+                                        in <a href="../import_export/supported-file-formats-for-import-and-export.html" class="a">Supported File Formats for Import and Export</a>.</p></td></tr></tbody></table></div></section><section><h4 class="title h3" id="mw_a52e9140-fab7-4734-994d-3995bb8bb231">Use Tall Arrays</h4><p>Tall arrays help you work with data sets that are too large to fit in memory.
+                        MATLAB works with small blocks of the data at a time, automatically
+                    handling all of the data chunking and processing in the background. You can use
+                    tall arrays in two primary ways:</p>
+<div class="itemizedlist"><ul><li><p>If you have a large array that fits in memory, but you run out of
+                                memory when you try to perform calculations, you can cast the array
+                                to a tall
+                                array.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = tall(A);</pre></div></div></div>This
+                                approach lets you work with large arrays that can fit in memory, but
+                                that consume too much memory to allow for copies of the data during
+                                calculations. For example, if you have 8 GB of RAM and a 5 GB
+                                matrix, casting the matrix to a tall array enables you to perform
+                                calculations on the matrix without running out of memory. For an
+                                example of this usage, see <a href="../ref/tall.tall.html"><code class="function">tall</code></a>.</p></li><li><p>If you have file- or folder-based data, you can create a datastore
+                                and then create a tall array on top of the
+                                datastore.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = datastore(<span style="color:#A020F0">"path/to/file.csv"</span>);
+t = tall(ds);</pre></div></div></div>This approach gives you the full power
+                                of tall arrays in MATLAB. The data can have any number of rows and MATLAB does not run out of memory. And because
+                                    <code class="function">datastore</code> works with both local and remote
+                                data locations, the data you work with does not need to be on the
+                                computer you use to analyze it. See <a href="../import_export/work-with-remote-data.html" class="a">Work with Remote Data</a> for more
+                                information.</p></li></ul></div><p>
+</p><p>To learn more about tall arrays, see <a href="../import_export/tall-arrays.html" class="a">Tall Arrays for Out-of-Memory Data</a>.</p></section><section><h4 class="title h3" id="mw_7e4fb20e-f557-45dd-9160-e94a38ec3120">Use Memory of Multiple Machines</h4><p>If you have a cluster of computers, you can use distributed arrays (requires
+                        Parallel Computing Toolbox&#x2122;) to perform calculations using the combined memory of all the
+                    machines in the cluster. Depending on how your data fits in memory, different
+                    ways to partition data among workers of a parallel pool exist. For more
+                    information, see <a href="../../parallel-computing/distributing-arrays-to-parallel-workers.html" class="a">Distributing Arrays to Parallel Workers</a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p></section><section><h4 class="title h3" id="mw_0154718d-b56e-4cb1-bc71-f9c9231e9466">Adjust Settings and Preferences</h4><p>Generally, rewriting code is the most effective way to improve memory
+                    performance. However, if you cannot make changes to your code, these solutions
+                    might provide it with the required amount of memory.</p><p><strong id="mw_b6dad4c1-817b-48f0-9f21-492a28d0e8d0">Start <span class="trademark entity">MATLAB</span> Without <span class="trademark entity">Java</span> Virtual Machine or Decrease the <span class="trademark entity">Java</span> Heap Size.&nbsp;&nbsp;</strong>If you either start MATLAB without the Java<sup>&#x00AE;</sup> Virtual Machine (JVM<sup>&#x00AE;</sup>) software or decrease the Java heap size, you can increase the available workspace memory. To
+                        start MATLAB without JVM, use the command-line option <code class="literal remove_text_wrapping">-nojvm</code>. For
+                        information on how to decrease the Java heap size, see <a href="../matlab_external/java-heap-memory-preferences.html" class="a">Java Heap Memory Settings</a>.</p><p>Using <code class="literal remove_text_wrapping">-nojvm</code> comes with a penalty in that you lose
+                        several features that rely on JVM, such as the desktop tools and graphics. Starting MATLAB with the <code class="literal remove_text_wrapping">-nodesktop</code> option does not save
+                        any substantial amount of memory.</p><p><strong id="mw_276cf080-a441-45bc-88f9-9f94918cc2e0">Adjust the Array Size Limit.&nbsp;&nbsp;</strong>If you face an error stating that the array size exceeds the maximum array
+                        size preference, you can adjust this array size limit in MATLAB. For information on adjusting the array size limit, see <a href="../matlab_env/set-workspace-and-variable-preferences.html" class="a">Modify Workspace and Variables Settings</a>. This solution is helpful only if the
+                        array you want to create exceeds the current maximum array size limit but is
+                        not too large to fit in memory. Even if you turn off the array size limit,
+                        attempting to create an unreasonably large array might cause MATLAB to run out of memory, or it might make MATLAB or even your computer unresponsive due to excessive memory
+                        paging.</p></section></section>
+            <h2 id="d126e70272">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/memory.html"><span itemprop="name"><code class="function">memory</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/whos.html"><span itemprop="name"><code class="function">whos</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/datastore.html"><span itemprop="name"><code class="function">datastore</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tall.tall.html"><span itemprop="name"><code class="function">tall</code></span></a></span></p>
+            <h3 id="d126e70287">Topics</h3><ul class="list-unstyled"><li><a href="memory-allocation.html" class="a">How MATLAB Allocates Memory</a></li><li><a href="strategies-for-efficient-use-of-memory.html" class="a">Strategies for Efficient Use of Memory</a></li><li><a href="avoid-unnecessary-copies-of-data.html" class="a">Avoid Unnecessary Copies of Data</a></li><li><a href="../large-files-and-big-data.html" class="a">Large Files and Big Data</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

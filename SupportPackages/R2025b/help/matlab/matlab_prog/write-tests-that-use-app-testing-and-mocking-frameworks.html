@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write Tests That Use App Testing and Mocking Frameworks</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../mock-dependencies-in-tests.html",
+          "name": "Mock Dependencies in Tests"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../matlab-unit-test-framework.html",
+          "name": "Testing Frameworks"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../test-apps.html",
+          "name": "Test Apps"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "mock-dependencies-in-tests",
+        "test-apps"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Create fully automated tests for an app by using the app testing framework and the mocking framework."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Testing Frameworks</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mock-dependencies-in-tests.html?s_tid=CRUX_lftnav" itemprop="url" id="bvisvh0"><span itemprop="title">Mock Dependencies in Tests</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../software-development.html?s_tid=CRUX_lftnav">Software Development Tools</a></li><li><a href="../matlab-unit-test-framework.html?s_tid=CRUX_lftnav">Testing Frameworks</a></li><li><a href="../test-apps.html?s_tid=CRUX_lftnav" id="mw_8dd20543-3047-4a5a-9dcc-bc28faa30790">Test Apps</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write Tests That Use App Testing and Mocking Frameworks</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_fb97f7a7-c091-416c-8a62-f7f47ea56cb0" class="nav-link intrnllnk">Create App</a></li><li class="nav-item"><a href="#mw_ede7030a-1275-4d42-aed3-5c432cd82be2" class="nav-link intrnllnk">Test App with Manual Intervention</a></li><li class="nav-item"><a href="#mw_2fc34059-b070-4837-88fb-6c1c4c388a07" class="nav-link intrnllnk">Create Fully Automated Tests</a></li><li class="nav-item"><a href="#d126e97178" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=mock-dependencies-in-tests&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_c9ed73e5-5c46-4f37-be6e-48fdb93a7dfc">Write Tests That Use App Testing and Mocking Frameworks</h2><p>This example shows how to write tests that use the app testing framework and the
+            mocking framework. The app contains a file selection dialog box and a label indicating
+            the selected file. To test the app programmatically, use a mock object to define the
+            behavior of the file selector.</p><section><h3 class="title" id="mw_fb97f7a7-c091-416c-8a62-f7f47ea56cb0">Create App</h3>
+                <p class="shortdesc">Create the <code class="literal">launchApp</code> app in your current
+                    folder. The app allows a user to select an input file and displays the name of
+                    the file in the app. The file selection dialog box is a blocking modal dialog
+                    box that waits for user input.</p>
+            <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> app = launchApp
+f = uifigure;
+button = uibutton(f,<span style="color:#A020F0">"Text"</span>,<span style="color:#A020F0">"Input file"</span>);
+button.ButtonPushedFcn = @(src,event) pickFile;
+label = uilabel(f,<span style="color:#A020F0">"Text"</span>,<span style="color:#A020F0">"No file selected"</span>);
+label.Position(1) = button.Position(1) + button.Position(3) + 25;
+label.Position(3) = 200;
+
+<span style="color:#228B22">% Add components to app</span>
+app.UIFigure = f;
+app.Button = button;
+app.Label = label;
+
+    <span style="color:#0000FF">function</span> file = pickFile
+        [file,~,status] = uigetfile(<span style="color:#A020F0">"*.*"</span>);
+        <span style="color:#0000FF">if</span> status
+            label.Text = file;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>To explore the properties of the app prior to testing, call the
+                            <code class="literal">launchApp</code> function at the command prompt. This step
+                        is not necessary for the tests, but it is helpful to explore the properties
+                        used by the app tests. For example, use <code class="literal">app.Button</code> to
+                        access the <strong class="guilabel">Input file</strong> button within the app.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>app = launchApp;
+app.Button</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+
+  Button (Input file) with properties:
+
+               Text: 'Input file'
+               Icon: ''
+    ButtonPushedFcn: @(src,event)pickFile
+           Position: [100 100 100 22]
+
+  Show all properties</pre></div></div></div><div class="informalfigure"><div id="d126e97006" class="mediaobject"><p><img src="uitest_exampleapp.png" alt="App window displaying the Input file button and the text &#34;No file selected&#34;" height="452" width="562"></p></div></div></div></section><section><h3 class="title" id="mw_ede7030a-1275-4d42-aed3-5c432cd82be2">Test App with Manual Intervention</h3>
+                <p class="shortdesc">Create the <code class="literal">LaunchAppTest</code> test class
+                    without using mocks. The test requires that the file
+                        <code class="literal">input.txt</code> exists in your current folder. If it does not
+                    exist, create it. The test presses the <strong class="guilabel">Input file</strong> button
+                    programmatically and verifies that the label matches
+                        <code class="literal">'input.txt'</code>. You must manually select the file.</p>
+            <div class="procedure"><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> LaunchAppTest &lt; matlab.uitest.TestCase
+    <span style="color:#0000FF">properties</span>
+        Filename = <span style="color:#A020F0">'input.txt'</span>
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span>(TestClassSetup)
+        <span style="color:#0000FF">function</span> checkFile(testCase)
+            import <span style="color:#A020F0">matlab.unittest.constraints.IsFile</span>
+            testCase.assertThat(testCase.Filename,IsFile)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> testInput(testCase)
+            app = launchApp;
+            testCase.addTeardown(@close,app.UIFigure)
+
+            testCase.press(app.Button)
+
+            testCase.verifyEqual(app.Label.Text,testCase.Filename)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Run the test. When the file selection dialog box appears, select
+                            <code class="literal">input.txt</code> to allow MATLAB to proceed with the test.
+                        Selecting any other file results in a test failure.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>runtests(<span style="color:#A020F0">"LaunchAppTest"</span>);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Running LaunchAppTest
+.
+Done LaunchAppTest
+__________</pre></div></div></div></div></section><section><h3 class="title" id="mw_2fc34059-b070-4837-88fb-6c1c4c388a07">Create Fully Automated Tests</h3>
+                <p class="shortdesc">To test the app without manual intervention, use the mocking
+                    framework. Modify the app to accept a file-choosing service instead of
+                    implementing it in the app (<em class="firstterm">dependency injection</em>).</p>
+            <div class="procedure"><p>Create a <code class="literal">FileChooser</code> service with an
+                            <code class="literal">Abstract</code> method that implements the file selection
+                        functionality.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> FileChooser
+    <span style="color:#228B22">% Interface to choose a file</span>
+    <span style="color:#0000FF">methods</span> (Abstract)
+        [file,folder,status] = chooseFile(chooser,varargin)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Create a default <code class="literal">FileChooser</code> service that uses the
+                            <code class="function">uigetfile</code> function for file selection.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> DefaultFileChooser &lt; FileChooser
+    <span style="color:#0000FF">methods</span>
+        <span style="color:#0000FF">function</span> [file,folder,status] = chooseFile(~,varargin)
+            [file,folder,status] = uigetfile(varargin{:});
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Change the app to accept an optional <code class="literal">FileChooser</code>
+                        object. When called with no inputs, the app uses an instance of
+                            <code class="literal">DefaultFileChooser</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> app = launchApp(fileChooser)
+<span style="color:#0000FF">arguments</span>
+    fileChooser <span style="color:#A0522D">(1,1) FileChooser </span>= DefaultFileChooser
+<span style="color:#0000FF">end</span>
+
+f = uifigure;
+button = uibutton(f,<span style="color:#A020F0">"Text"</span>,<span style="color:#A020F0">"Input file"</span>);
+button.ButtonPushedFcn = @(src,event) pickFile(fileChooser);
+label = uilabel(f,<span style="color:#A020F0">"Text"</span>,<span style="color:#A020F0">"No file selected"</span>);
+label.Position(1) = button.Position(1) + button.Position(3) + 25;
+label.Position(3) = 200;
+
+<span style="color:#228B22">% Add components to app</span>
+app.UIFigure = f;
+app.Button = button;
+app.Label = label;
+
+    <span style="color:#0000FF">function</span> file = pickFile(fileChooser)
+        [file,~,status] = fileChooser.chooseFile(<span style="color:#A020F0">"*.*"</span>);
+        <span style="color:#0000FF">if</span> status
+            label.Text = file;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p> Make these modifications to <code class="literal">LaunchAppTest</code>:</p><div class="itemizedlist"><ul><li><p>Change the class to inherit from both
+                                    <code class="class">matlab.uitest.TestCase</code> and
+                                    <code class="class">matlab.mock.TestCase</code>.</p></li><li><p>Remove the <code class="literal">properties</code> block and the
+                                    <code class="literal">TestClassSetup</code>
+                                <code class="literal">methods</code> block. Because the mock defines the
+                                output of the <code class="literal">chooseFile</code> method call, the tests
+                                do not rely on the existence of an external file.</p></li><li><p>Change the <code class="literal">testInput</code> method to perform these
+                                actions:</p><div class="itemizedlist"><ul><li><p>Create a mock object from
+                                        <code class="literal">FileChooser</code>.</p></li><li><p>Define mock behavior such that when the
+                                            <code class="literal">chooseFile</code> method is called with the
+                                        input <code class="literal">"*.*"</code>, the outputs are the filename
+                                            (<code class="literal">'input.txt'</code>), the current folder,
+                                        and a selected filter index of <code class="literal">1</code>. These
+                                        outputs are analogous to the outputs from the
+                                            <code class="function">uigetfile</code> function.</p></li><li><p>Launch the app with the <code class="literal">mockChooser</code>
+                                        object.</p></li><li><p>Press the button and verify the name of the selected file.
+                                        These actions are the same as in the original test, but the
+                                        mock assigns the output values, so you do not need to
+                                        interact with the app to continue testing.</p></li></ul></div></li><li><p>To test the <strong class="guibutton">Cancel</strong> button, add a
+                                    <code class="literal">Test</code> method named
+                                    <code class="literal">testCancel</code> to perform these actions:</p><div class="itemizedlist"><ul><li><p>Create a mock object from
+                                        <code class="literal">FileChooser</code>.</p></li><li><p>Define mock behavior such that when the
+                                            <code class="literal">chooseFile</code> method is called with the
+                                        input <code class="literal">"*.*"</code>, the outputs are the filename
+                                            (<code class="literal">'input.txt'</code>), the current folder,
+                                        and a selected filter index of <code class="literal">0</code>. These
+                                        outputs are analogous to the outputs from the
+                                            <code class="function">uigetfile</code> function if a user
+                                        selects a file and then chooses to cancel.</p></li><li><p>Launch the app with the <code class="literal">mockChooser</code>
+                                        object.</p></li><li><p>Press the button and verify that the test calls the
+                                            <code class="literal">chooseFile</code> method and that the label
+                                        indicates that no file was selected.</p></li></ul></div></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> LaunchAppTest &lt; matlab.uitest.TestCase &amp; matlab.mock.TestCase
+    <span style="color:#0000FF">methods</span> (Test)
+        <span style="color:#0000FF">function</span> testInput(testCase)
+            import <span style="color:#A020F0">matlab.mock.actions.AssignOutputs</span>
+            filename = <span style="color:#A020F0">'input.txt'</span>;
+
+            [mockChooser,behavior] = testCase.createMock(?FileChooser);
+            when(behavior.chooseFile(<span style="color:#A020F0">"*.*"</span>),AssignOutputs(filename,pwd,1))
+
+            app = launchApp(mockChooser);
+            testCase.addTeardown(@close,app.UIFigure)
+
+            testCase.press(app.Button)
+
+            testCase.verifyEqual(app.Label.Text,filename)
+        <span style="color:#0000FF">end</span>
+
+        <span style="color:#0000FF">function</span> testCancel(testCase)
+            import <span style="color:#A020F0">matlab.mock.actions.AssignOutputs</span>
+
+            [mockChooser,behavior] = testCase.createMock(?FileChooser);
+            when(behavior.chooseFile(<span style="color:#A020F0">"*.*"</span>),AssignOutputs(<span style="color:#A020F0">'input.txt'</span>,pwd,0))
+
+            app = launchApp(mockChooser);
+            testCase.addTeardown(@close,app.UIFigure)
+
+            testCase.press(app.Button)
+
+            testCase.verifyCalled(behavior.chooseFile(<span style="color:#A020F0">"*.*"</span>))
+            testCase.verifyEqual(app.Label.Text,<span style="color:#A020F0">'No file selected'</span>)
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Run the tests. The tests run to completion without manual file
+                        selection.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>runtests(<span style="color:#A020F0">"LaunchAppTest"</span>);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Running LaunchAppTest
+..
+Done LaunchAppTest
+__________
+</pre></div></div></div></div></section>
+            <h2 id="d126e97178">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.mock.testcase-class.html"><span itemprop="name"><code class="class">matlab.mock.TestCase</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.uitest.testcase-class.html"><span itemprop="name"><code class="class">matlab.uitest.TestCase</code></span></a></span></li></ul>
+            <h3 id="d126e97190">Topics</h3><ul class="list-unstyled"><li><a href="overview-of-app-testing-framework.html" class="a">Overview of App Testing Framework</a></li><li><a href="write-tests-for-an-app.html" class="a">Write Tests for an App</a></li><li><a href="create-mock-object.html" class="a">Create Mock Object</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

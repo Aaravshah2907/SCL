@@ -1,0 +1,841 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>interp1</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../interpolation.html",
+          "name": "Interpolation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "interpolation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExtendedCapabilities",
+
+        "itemListElement":
+        [
+{
+          "@type": "ListItem",
+          "position": 1,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "codegen",
+          "value": "limited"
+
+        }
+          },
+{
+          "@type": "ListItem",
+          "position": 2,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "distributedarrays",
+          "value": "full"
+
+        }
+          },
+{
+          "@type": "ListItem",
+          "position": 3,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "gpuarrays",
+          "value": "limited"
+
+        }
+          },
+{
+          "@type": "ListItem",
+          "position": 4,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "gpucodegen",
+          "value": "limited"
+
+        }
+          },
+{
+          "@type": "ListItem",
+          "position": 5,
+"item": 
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "threadsupport",
+          "value": "full"
+
+        }
+          }
+        ]
+        }
+        </script>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="chunktype" content="refpage"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="function:interp1"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:double.interp1"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:datetime.interp1"><meta xmlns="http://www.w3.org/1999/xhtml" name="refentity" itemprop="refentity" content="method:duration.interp1"><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="fcn">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ref/function">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This MATLAB function returns interpolated values of a 1-D function at specific query points."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "refentry";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../interpolation.html?s_tid=CRUX_lftnav" itemprop="url" id="btfpj5e"><span itemprop="title">Interpolation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item notranslate"><a href="#responsive_offcanvas"><span class="refname">interp1</span></a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-refentry">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li><a href="#d126e902821" class="intrnllnk">Syntax</a></li><li class="nav-item"><a href="#description" class="nav-link intrnllnk">Description</a></li><li class="nav-item"><a href="#btwp6lt-5" class="nav-link intrnllnk">Examples</a><ul class="nav"><li class="nav-item"><a href="#btwp6lt-2_1" class="nav-link intrnllnk">Interpolation of Coarsely Sampled Sine Function</a></li></ul><ul class="nav"><li class="nav-item"><a href="#btxer7_-3" class="nav-link intrnllnk">Interpolation Without Specifying Points</a></li></ul><ul class="nav"><li class="nav-item"><a href="#btw0gu1-1" class="nav-link intrnllnk">Interpolation of Complex Values</a></li></ul><ul class="nav"><li class="nav-item"><a href="#bvkp4l9" class="nav-link intrnllnk">Interpolation of Dates and Times</a></li></ul><ul class="nav"><li class="nav-item"><a href="#btw2a2x" class="nav-link intrnllnk">Extrapolation Using Two Different Methods</a></li></ul><ul class="nav"><li class="nav-item"><a href="#btw2a22-1" class="nav-link intrnllnk">Designate Constant Value for All Queries Outside the Domain of x</a></li></ul><ul class="nav"><li class="nav-item"><a href="#btxe0dx-7" class="nav-link intrnllnk">Interpolate Multiple Sets of Data in One Pass</a></li></ul></li><li class="nav-item"><a href="#btwp6lt-3" class="nav-link intrnllnk">Input Arguments</a><ul class="nav"><li class="nav-item"><a href="#btwp6lt-1-x" class="nav-link intrnllnk">x</a></li><li class="nav-item"><a href="#btwp6lt-1-v" class="nav-link intrnllnk">v</a></li><li class="nav-item"><a href="#btwp6lt-1-xq" class="nav-link intrnllnk">xq</a></li><li class="nav-item"><a href="#btwp6lt-1-method" class="nav-link intrnllnk">method</a></li><li class="nav-item"><a href="#btwp6lt-1-extrapolation" class="nav-link intrnllnk">extrapolation</a></li></ul></li><li class="nav-item"><a href="#btwp6lt-4" class="nav-link intrnllnk">Output Arguments</a><ul class="nav"><li class="nav-item"><a href="#btwp6lt-1-vq" class="nav-link intrnllnk">vq</a></li><li class="nav-item"><a href="#btwp6lt-1-pp" class="nav-link intrnllnk">pp</a></li></ul></li><li class="nav-item"><a href="#mw_1d66b68f-fdee-412c-9a8f-ed79069c6a53" class="nav-link intrnllnk">More About</a><ul class="nav"><li class="nav-item"><a href="#mw_53d0324d-4ef0-46c9-b48f-5db7305f01dd" class="nav-link intrnllnk">Akima and Spline Interpolation</a></li></ul></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#refsect-extended-capabilities" class="nav-link intrnllnk">Extended Capabilities</a></li><li class="nav-item"><a href="#mw_f7a8cabf-4c61-4fd7-989b-13e037f87e5b" class="nav-link intrnllnk">Version History</a><ul class="nav"><li class="nav-item"><a href="#mw_d123b771-f1d5-46e4-bcee-04f15250edf6" class="nav-link intrnllnk"><code class="literal">'cubic'</code> method of <code class="function">interp1</code> performs cubic
+                convolution</a></li></ul></li><li class="nav-item"><a href="#btwp6lt-1_seealso" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=interpolation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=interpolation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=interpolation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-ref-function"><div class="function_ref"><span id="btwp6lt-1" class="anchor_target"></span><span id="CA_INTRPP" class="anchor_target"></span><h1 class="r2025b notranslate" itemprop="title"><span class="refname">interp1</span></h1><div class="doc_topic_desc"><div class="purpose_container"><p itemprop="purpose">1-D data interpolation (table lookup)</p><div class="switch"><a href="javascript:void(0);" id="expandAllPage" data-allexpanded="true1">collapse all in page</a></div></div></div>
+<div class="ref_sect"><h2 id="d126e902821">Syntax</h2><div class="syntax_signature"><div class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d126e902830" class="intrnllnk">vq = interp1(x,v,xq)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d126e902870" class="intrnllnk">vq = interp1(x,v,xq,method)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d126e902913" class="intrnllnk">vq = interp1(x,v,xq,method,extrapolation)</a></code></div></div><div class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d126e902954" class="intrnllnk">vq = interp1(v,xq)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d126e902992" class="intrnllnk">vq = interp1(v,xq,method)</a></code></div><div class="code_responsive"><code class="synopsis"><a href="#d126e903009" class="intrnllnk">vq = interp1(v,xq,method,extrapolation)</a></code></div></div><div class="syntax_signature_module"><div class="code_responsive"><code class="synopsis"><a href="#d126e903030" class="intrnllnk">pp = interp1(x,v,method,'pp')</a></code></div></div></div></div><div class="clear"></div><span id="btwp6lt-2" class="anchor_target"></span><h2 id="description">Description</h2><div class="descriptions"><div class="cshsummary" id="csh_btwp6lt-1"><div class="description_module"><span id="btwp66r" class="anchor_target"></span>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e902830" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>)</code></span>
+                    returns interpolated values of a 1-D function at specific query points. By
+                    default, <code class="function">interp1</code> uses linear interpolation. Vector
+                        <code class="literal">x</code> contains the sample points, and <code class="literal">v</code>
+                    contains the corresponding values, <em class="varname">v</em>(<em class="varname">x</em>).
+                    Vector <code class="literal">xq</code> contains the coordinates of the query
+                    points.</p><p>If you have multiple sets of data that are sampled at the same point
+                    coordinates, then you can pass <code class="literal">v</code> as an array. Each column of
+                    array <code class="literal">v</code> contains a different set of 1-D sample values.</p></div><p class="syntax_example"><a href="double.interp1.html#btwp6lt-2_1" class="intrnllnk">example</a></p></div>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e902870" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>,<a href="#btwp6lt-1-method" class="intrnllnk"><code class="argument">method</code></a>)</code></span>
+                    specifies an alternative interpolation method: <code class="literal">'linear'</code>,
+                        <code class="literal">'nearest'</code>, <code class="literal">'next'</code>,
+                        <code class="literal">'previous'</code>, <code class="literal">'pchip'</code>,
+                        <code class="literal">'cubic'</code>, <code class="literal">'v5cubic'</code>,
+                        <code class="literal">'makima'</code>, or <code class="literal">'spline'</code>. The default
+                    method is <code class="literal">'linear'</code>.</p></div><p class="syntax_example"><a href="double.interp1.html#btwp6lt-2_1" class="intrnllnk">example</a></p></div>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e902913" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>,<a href="#btwp6lt-1-method" class="intrnllnk"><code class="argument">method</code></a>,<a href="#btwp6lt-1-extrapolation" class="intrnllnk"><code class="argument">extrapolation</code></a>)</code></span>
+                    specifies a strategy for evaluating points that lie outside the domain of
+                        <code class="literal">x</code>. Set <code class="literal">extrapolation</code> to
+                        <code class="literal">'extrap'</code> when you want to use the
+                        <code class="argument">method</code> algorithm for extrapolation. Alternatively, you
+                    can specify a scalar value, in which case, <code class="function">interp1</code> returns
+                    that value for all points outside the domain of <code class="literal">x</code>.</p></div><p class="syntax_example"><a href="double.interp1.html#btw2a2x" class="intrnllnk">example</a></p></div>
+        </div><div class="description_module"><span id="btwp66z-1" class="anchor_target"></span>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e902954" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>)</code></span>
+                    returns interpolated values and assumes a default set of sample point
+                    coordinates. The default points are the sequence of numbers from
+                        <code class="literal">1</code> to <code class="literal">n</code>, where <code class="literal">n</code>
+                    depends on the shape of <code class="literal">v</code>:</p>
+<div class="itemizedlist"><ul><li><p>When v is a vector, the default points are
+                                    <code class="literal">1:length(v)</code>.</p></li><li><p>When v is an array, the default points are
+                                    <code class="literal">1:size(v,1)</code>.</p></li></ul></div><p>
+Use this syntax when you are not concerned about the absolute
+                    distances between points.</p></div><p class="syntax_example"><a href="double.interp1.html#btxer7_-3" class="intrnllnk">example</a></p></div>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e902992" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>,<a href="#btwp6lt-1-method" class="intrnllnk"><code class="argument">method</code></a>)</code></span>
+                    specifies any of the alternative interpolation methods and uses the default
+                    sample points.</p></div></div>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e903009" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-vq" class="intrnllnk"><code class="argument">vq</code></a> = interp1(<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-xq" class="intrnllnk"><code class="argument">xq</code></a>,<a href="#btwp6lt-1-method" class="intrnllnk"><code class="argument">method</code></a>,<a href="#btwp6lt-1-extrapolation" class="intrnllnk"><code class="argument">extrapolation</code></a>)</code></span>
+                    specifies an extrapolation strategy and uses the default sample points.</p></div></div>
+        </div><div class="description_module"><span id="btwp660-1" class="anchor_target"></span>
+            <div class="description_element"><div class="code_responsive"><p><span id="d126e903030" itemprop="syntax"><code class="synopsis"><a href="#btwp6lt-1-pp" class="intrnllnk"><code class="argument">pp</code></a> = interp1(<a href="#btwp6lt-1-x" class="intrnllnk"><code class="argument">x</code></a>,<a href="#btwp6lt-1-v" class="intrnllnk"><code class="argument">v</code></a>,<a href="#btwp6lt-1-method" class="intrnllnk"><code class="argument">method</code></a>,'pp')</code></span>
+                    returns the piecewise polynomial form of
+                        <em class="varname">v</em>(<em class="varname">x</em>) using the
+                        <code class="argument">method</code> algorithm.</p><p>
+                    </p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>This syntax is not recommended. Use <a href="griddedinterpolant.html"><code class="object">griddedInterpolant</code></a>
+                            instead.</p></div><p>
+
+                </p></div></div>
+        </div></div></div><div class="clear"></div><div class="examples"><h2 id="btwp6lt-5">Examples</h2><div class="expandableContent" id="expandableExamples"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true3">collapse all</a></p><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btwp6lt-2_1"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-2_1" data-bs-target="#expand_accordion_body_btwp6lt-2_1" aria-controls="expand_accordion_body_btwp6lt-2_1" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btwp6lt-2_1">Interpolation of Coarsely Sampled Sine Function</h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-2_1" aria-labelledby="expand_accordion_heading_btwp6lt-2_1" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolationofCoarselySampledSineFunctionExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation of Coarsely Sampled Sine Function",
+          "description": "Define the sample points, x, and corresponding sample values, v.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolationofCoarselySampledSineFunctionExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.InterpolationofCoarselySampledSineFunctionExample",
+          "name": "InterpolationofCoarselySampledSineFunctionExample",
+          "url": "double.interp1.html#btwp6lt-2_1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolationofCoarselySampledSineFunctionExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolationofCoarselySampledSineFunctionExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define the sample points, <code class="literal">x</code>, and corresponding sample values, <code class="literal">v</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0:pi/4:2*pi; 
+v = sin(x);</pre></div></div></div><p>Define the query points to be a finer sampling over the range of <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = 0:pi/16:2*pi;</pre></div></div></div><p>Interpolate the function at the query points and plot the result. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+vq1 = interp1(x,v,xq);
+plot(x,v,<span style="color:#A020F0">'o'</span>,xq,vq1,<span style="color:#A020F0">':.'</span>);
+xlim([0 2*pi]);
+title(<span style="color:#A020F0">'(Default) Linear Interpolation'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e903748" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationofCoarselySampledSineFunctionExample_01.png" alt="Figure contains an axes object. The axes object with title (Default) Linear Interpolation contains 2 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>Now evaluate <code class="literal">v</code> at the same points using the <code class="literal">'spline'</code> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+vq2 = interp1(x,v,xq,<span style="color:#A020F0">'spline'</span>);
+plot(x,v,<span style="color:#A020F0">'o'</span>,xq,vq2,<span style="color:#A020F0">':.'</span>);
+xlim([0 2*pi]);
+title(<span style="color:#A020F0">'Spline Interpolation'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e903761" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationofCoarselySampledSineFunctionExample_02.png" alt="Figure contains an axes object. The axes object with title Spline Interpolation contains 2 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolationofCoarselySampledSineFunctionExample"><meta itemprop="exampletitle" content="Interpolation of Coarsely Sampled Sine Function"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btxer7_-3"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btxer7_-3" data-bs-target="#expand_accordion_body_btxer7_-3" aria-controls="expand_accordion_body_btxer7_-3" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btxer7_-3">Interpolation Without Specifying Points</h3></button></div><div role="tabpanel" id="expand_accordion_body_btxer7_-3" aria-labelledby="expand_accordion_heading_btxer7_-3" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolationWithoutSpecifyingPointsExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation Without Specifying Points",
+          "description": "Define a set of function values.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolationWithoutSpecifyingPointsExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.InterpolationWithoutSpecifyingPointsExample",
+          "name": "InterpolationWithoutSpecifyingPointsExample",
+          "url": "double.interp1.html#btxer7_-3"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolationWithoutSpecifyingPointsExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolationWithoutSpecifyingPointsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define a set of function values. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = [0  1.41  2  1.41  0  -1.41  -2  -1.41 0];</pre></div></div></div><p>Define a set of query points that fall between the default points, <code class="literal">1:9</code>. In this case, the default points are <code class="literal">1:9</code> because <code class="literal">v</code> contains <code class="literal">9</code> values. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = 1.5:8.5;</pre></div></div></div><p>Evaluate <code class="literal">v</code> at <code class="literal">xq</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq = interp1(v,xq);</pre></div></div></div><p>Plot the result. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot((1:9),v,<span style="color:#A020F0">'o'</span>,xq,vq,<span style="color:#A020F0">'*'</span>);
+legend(<span style="color:#A020F0">'v'</span>,<span style="color:#A020F0">'vq'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e903812" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationWithoutSpecifyingPointsExample_01.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line. One or more of the lines displays its values using only markers These objects represent v, vq." width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolationWithoutSpecifyingPointsExample"><meta itemprop="exampletitle" content="Interpolation Without Specifying Points"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btw0gu1-1"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btw0gu1-1" data-bs-target="#expand_accordion_body_btw0gu1-1" aria-controls="expand_accordion_body_btw0gu1-1" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btw0gu1-1">Interpolation of Complex Values</h3></button></div><div role="tabpanel" id="expand_accordion_body_btw0gu1-1" aria-labelledby="expand_accordion_heading_btw0gu1-1" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolationofComplexValuesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation of Complex Values",
+          "description": "Define a set of sample points.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolationofComplexValuesExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.InterpolationofComplexValuesExample",
+          "name": "InterpolationofComplexValuesExample",
+          "url": "double.interp1.html#btw0gu1-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolationofComplexValuesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolationofComplexValuesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define a set of sample points. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 1:10;</pre></div></div></div><p>Define the values of the function, <span class="inlineequation"><math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:mwmmlx="https://www.mathworks.com/namespace/MathMLextensions" mwmmlx:extension="true" display="block"><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mi>x</mi><mo>+</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup><mi>i</mi></mrow></math></span>, at the sample points. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = (5*x)+(x.^2*1i);</pre></div></div></div><p>Define the query points to be a finer sampling over the range of <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = 1:0.25:10;</pre></div></div></div><p>Interpolate <code class="literal">v</code> at the query points. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq = interp1(x,v,xq);</pre></div></div></div><p>Plot the real part of the result in red and the imaginary part in blue. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+plot(x,real(v),<span style="color:#A020F0">'*r'</span>,xq,real(vq),<span style="color:#A020F0">'-r'</span>);
+hold <span style="color:#A020F0">on</span>
+plot(x,imag(v),<span style="color:#A020F0">'*b'</span>,xq,imag(vq),<span style="color:#A020F0">'-b'</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e903879" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolationofComplexValuesExample_01.png" alt="Figure contains an axes object. The axes object contains 4 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolationofComplexValuesExample"><meta itemprop="exampletitle" content="Interpolation of Complex Values"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_bvkp4l9"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_bvkp4l9" data-bs-target="#expand_accordion_body_bvkp4l9" aria-controls="expand_accordion_body_bvkp4l9" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="bvkp4l9">Interpolation of Dates and Times</h3></button></div><div role="tabpanel" id="expand_accordion_body_bvkp4l9" aria-labelledby="expand_accordion_heading_bvkp4l9" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolateDatesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolation of Dates and Times",
+          "description": "Interpolate time-stamped data points.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolateDatesExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.InterpolateDatesExample",
+          "name": "InterpolateDatesExample",
+          "url": "double.interp1.html#bvkp4l9"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolateDatesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolateDatesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Interpolate time-stamped data points.</p><p>Consider a data set containing temperature readings that are measured every four hours. Create a table with one day's worth of data and plot the data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = (datetime(2016,1,1):hours(4):datetime(2016,1,2))';
+x.Format = <span style="color:#A020F0">'MMM dd, HH:mm'</span>;
+T = [31 25 24 41 43 33 31]';
+WeatherData = table(x,T,<span style="color:#A020F0">'VariableNames'</span>,{<span style="color:#A020F0">'Time'</span>,<span style="color:#A020F0">'Temperature'</span>})</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>WeatherData=<span class="emphasis"><em>7×2 table</em></span>
+        Time         Temperature
+    _____________    ___________
+
+    Jan 01, 00:00        31     
+    Jan 01, 04:00        25     
+    Jan 01, 08:00        24     
+    Jan 01, 12:00        41     
+    Jan 01, 16:00        43     
+    Jan 01, 20:00        33     
+    Jan 02, 00:00        31     
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plot(WeatherData.Time, WeatherData.Temperature, <span style="color:#A020F0">'o'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e903914" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolateDatesExample_01.png" alt="Figure contains an axes object. The axes contains a line object which displays its values using only markers." width="560"></p></div></div><p>Interpolate the data set to predict the temperature reading during each minute of the day. Since the data is periodic, use the <code class="literal">'spline'</code> interpolation method.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = (datetime(2016,1,1):minutes(1):datetime(2016,1,2))';
+V = interp1(WeatherData.Time, WeatherData.Temperature, xq, <span style="color:#A020F0">'spline'</span>);</pre></div></div></div><p>Plot the interpolated points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hold <span style="color:#A020F0">on</span>
+plot(xq,V,<span style="color:#A020F0">'r'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e903928" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolateDatesExample_02.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolateDatesExample"><meta itemprop="exampletitle" content="Interpolation of Dates and Times"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btw2a2x"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btw2a2x" data-bs-target="#expand_accordion_body_btw2a2x" aria-controls="expand_accordion_body_btw2a2x" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btw2a2x">Extrapolation Using Two Different Methods</h3></button></div><div role="tabpanel" id="expand_accordion_body_btw2a2x" aria-labelledby="expand_accordion_heading_btw2a2x" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ExtrapolationUsingTwoDifferentMethodsExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Extrapolation Using Two Different Methods",
+          "description": "Define the sample points, x, and corresponding sample values, v.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.ExtrapolationUsingTwoDifferentMethodsExample",
+          "name": "ExtrapolationUsingTwoDifferentMethodsExample",
+          "url": "double.interp1.html#btw2a2x"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ExtrapolationUsingTwoDifferentMethodsExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ExtrapolationUsingTwoDifferentMethodsExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define the sample points, <code class="literal">x</code>, and corresponding sample values, <code class="literal">v</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [1 2 3 4 5];
+v = [12 16 31 10 6];</pre></div></div></div><p>Specify the query points, <code class="literal">xq</code>, that extend beyond the domain of <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = [0 0.5 1.5 5.5 6];</pre></div></div></div><p>Evaluate <code class="literal">v</code> at <code class="literal">xq</code> using the <code class="literal">'pchip'</code> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq1 = interp1(x,v,xq,<span style="color:#A020F0">'pchip'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vq1 = <span class="emphasis"><em>1×5</em></span>
+
+   19.3684   13.6316   13.2105    7.4800   12.5600
+
+</pre></div></div></div><p>Next, evaluate <code class="literal">v</code> at <code class="literal">xq</code> using the <code class="literal">'linear'</code> method. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq2 = interp1(x,v,xq,<span style="color:#A020F0">'linear'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vq2 = <span class="emphasis"><em>1×5</em></span>
+
+   NaN   NaN    14   NaN   NaN
+
+</pre></div></div></div><p>Now, use the <code class="literal">'linear'</code> method with the <code class="literal">'extrap'</code> option. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq3 = interp1(x,v,xq,<span style="color:#A020F0">'linear'</span>,<span style="color:#A020F0">'extrap'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vq3 = <span class="emphasis"><em>1×5</em></span>
+
+     8    10    14     4     2
+
+</pre></div></div></div><p><code class="literal">'pchip'</code> extrapolates by default, but <code class="literal">'linear'</code> does not. </p><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ExtrapolationUsingTwoDifferentMethodsExample"><meta itemprop="exampletitle" content="Extrapolation Using Two Different Methods"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btw2a22-1"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btw2a22-1" data-bs-target="#expand_accordion_body_btw2a22-1" aria-controls="expand_accordion_body_btw2a22-1" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btw2a22-1">Designate Constant Value for All Queries Outside the Domain of x</h3></button></div><div role="tabpanel" id="expand_accordion_body_btw2a22-1" aria-labelledby="expand_accordion_heading_btw2a22-1" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/DesignateConstantValueforAllQueriesOutsidetheDomainofxExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Designate Constant Value for All Queries Outside the Domain of x",
+          "description": "Define the sample points, x, and corresponding sample values, v.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.DesignateConstantValueforAllQueriesOutsidetheDomainofxExample",
+          "name": "DesignateConstantValueforAllQueriesOutsidetheDomainofxExample",
+          "url": "double.interp1.html#btw2a22-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/DesignateConstantValueforAllQueriesOutsidetheDomainofxExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "DesignateConstantValueforAllQueriesOutsidetheDomainofxExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define the sample points, <code class="literal">x</code>, and corresponding sample values, <code class="literal">v</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [-3 -2 -1 0 1 2 3];
+v = 3*x.^2;</pre></div></div></div><p>Specify the query points, <code class="literal">xq</code>, that extend beyond the domain of <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = [-4 -2.5 -0.5 0.5 2.5 4];</pre></div></div></div><p>Now evaluate <code class="literal">v</code> at <code class="literal">xq</code> using the <code class="literal">'pchip'</code> method and assign any values outside the domain of <code class="literal">x</code> to the value, <code class="literal">27</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq = interp1(x,v,xq,<span style="color:#A020F0">'pchip'</span>,27)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>vq = <span class="emphasis"><em>1×6</em></span>
+
+   27.0000   18.6562    0.9375    0.9375   18.6562   27.0000
+
+</pre></div></div></div><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-DesignateConstantValueforAllQueriesOutsidetheDomainofxExample"><meta itemprop="exampletitle" content="Designate Constant Value for All Queries Outside the Domain of x"></div><div class="accordion" role="tablist" aria-multiselectable="true" id="expand_accordion_heading_btxe0dx-7"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btxe0dx-7" data-bs-target="#expand_accordion_body_btxe0dx-7" aria-controls="expand_accordion_body_btxe0dx-7" class="accordion-button add_cursor_pointer" aria-expanded="true"><h3 id="btxe0dx-7">Interpolate Multiple Sets of Data in One Pass</h3></button></div><div role="tabpanel" id="expand_accordion_body_btxe0dx-7" aria-labelledby="expand_accordion_heading_btxe0dx-7" class="accordion-collapse collapse show"><div class="accordion-body"><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/InterpolateMultipleSetsofDatainOnePassExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Interpolate Multiple Sets of Data in One Pass",
+          "description": "Define the sample points.",
+          "thumbnailURL": "../../examples/matlab/win64/InterpolateMultipleSetsofDatainOnePassExample_01.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "double.interp1.html"
+
+        },
+          "identifier": "matlab.InterpolateMultipleSetsofDatainOnePassExample",
+          "name": "InterpolateMultipleSetsofDatainOnePassExample",
+          "url": "double.interp1.html#btxe0dx-7"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/InterpolateMultipleSetsofDatainOnePassExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "InterpolateMultipleSetsofDatainOnePassExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><p class="shortdesc">Define the sample points. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = (-5:5)';</pre></div></div></div><p>Sample three different parabolic functions at the points defined in <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v1 = x.^2;
+v2 = 2*x.^2 + 2;
+v3 = 3*x.^2 + 4;</pre></div></div></div><p>Create matrix <code class="literal">v</code>, whose columns are the vectors, <code class="literal">v1</code>, <code class="literal">v2</code>, and <code class="literal">v3</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = [v1 v2 v3];</pre></div></div></div><p>Define a set of query points, <code class="literal">xq</code>, to be a finer sampling over the range of <code class="literal">x</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xq = -5:0.1:5;</pre></div></div></div><p>Evaluate all three functions at <code class="literal">xq</code> and plot the results. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vq = interp1(x,v,xq,<span style="color:#A020F0">'pchip'</span>);
+figure
+plot(x,v,<span style="color:#A020F0">'o'</span>,xq,vq);
+
+h = gca;
+h.XTick = -5:5;</pre></div></div></div><div class="informalfigure"><div id="d126e904120" class="mediaobject"><p><img src="../../examples/matlab/win64/InterpolateMultipleSetsofDatainOnePassExample_01.png" alt="Figure contains an axes object. The axes object contains 6 objects of type line. One or more of the lines displays its values using only markers" width="560"></p></div></div><p>The circles in the plot represent <code class="literal">v</code>, and the solid lines represent <code class="literal">vq</code>. </p><div class="procedure"></div></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-InterpolateMultipleSetsofDatainOnePassExample"><meta itemprop="exampletitle" content="Interpolate Multiple Sets of Data in One Pass"></div></div></div></div><div class="ref_sect"><h2 id="btwp6lt-3">Input Arguments</h2><div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p><div class="mw_ws_accordion_container"><div class="accordion" id="btwp6lt-3_accordion-group" role="tablist" aria-multiselectable="true"><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="btwp6lt-1-x"><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-x" data-bs-target="#expand_accordion_body_btwp6lt-1-x" aria-controls="expand_accordion_body_btwp6lt-1-x" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="inputarg_x" class="anchor_target"></span><h3 id="btwp6lt-1-x"><code itemprop="name">x</code> &#8212; <span itemprop="purpose">Sample points</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">vector</span></span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-x" aria-labelledby="expand_accordion_heading_btwp6lt-1-x" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-x"><p>Sample points, specified as a row or column vector of real numbers. The
+                        values in <code class="literal">x</code> must be distinct. The length of
+                            <code class="literal">x</code> must conform to one of the following requirements:</p>
+<div class="itemizedlist"><ul><li><p>If <code class="literal">v</code> is a vector, then
+                                        <code class="literal">length(x)</code> must equal
+                                        <code class="literal">length(v)</code>.</p></li><li><p>If <code class="literal">v</code> is an array, then
+                                        <code class="literal">length(x)</code> must equal
+                                        <code class="literal">size(v,1)</code>.</p></li></ul></div><p>
+</p><p class="description_valueexample"><strong>Example: </strong><code class="literal">[1 2 3 4 5 6 7 8 9 10]</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">1:10</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">[3 7 11 15 19 23 27 31]'</code></p></div><p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code> | <code itemprop="datatype">duration</code> | <code itemprop="datatype">datetime</code></p></div></div></div></div></div></div><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="btwp6lt-1-v"><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-v" data-bs-target="#expand_accordion_body_btwp6lt-1-v" aria-controls="expand_accordion_body_btwp6lt-1-v" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="inputarg_v" class="anchor_target"></span><h3 id="btwp6lt-1-v"><code itemprop="name">v</code> &#8212; <span itemprop="purpose">Sample values</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">vector</span> | <span itemprop="inputvalue">matrix</span> | <span itemprop="inputvalue">array</span></span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-v" aria-labelledby="expand_accordion_heading_btwp6lt-1-v" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-v"><p>Sample values, specified as a vector, matrix, or array of real or complex
+                        numbers. If <code class="literal">v</code> is a matrix or an array, then each column
+                        contains a separate set of 1-D values. </p><p>If <code class="literal">v</code> contains complex numbers, then
+                            <code class="function">interp1</code> interpolates the real and imaginary parts
+                        separately.</p><p class="description_valueexample"><strong>Example: </strong><code class="literal">rand(1,10)</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">rand(10,1)</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">rand(10,3)</code></p></div><p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code> | <code itemprop="datatype">duration</code> | <code itemprop="datatype">datetime</code><br/>
+<strong>Complex Number Support: </strong>Yes</p></div></div></div></div></div></div><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="btwp6lt-1-xq"><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-xq" data-bs-target="#expand_accordion_body_btwp6lt-1-xq" aria-controls="expand_accordion_body_btwp6lt-1-xq" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="inputarg_xq" class="anchor_target"></span><h3 id="btwp6lt-1-xq"><code itemprop="name">xq</code> &#8212; <span itemprop="purpose">Query points</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue">scalar</span> | <span itemprop="inputvalue">vector</span> | <span itemprop="inputvalue">matrix</span> | <span itemprop="inputvalue">array</span></span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-xq" aria-labelledby="expand_accordion_heading_btwp6lt-1-xq" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-xq"><p>Query points, specified as a scalar, vector, matrix, or array of real
+                        numbers.</p><p class="description_valueexample"><strong>Example: </strong><code class="literal">5</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">1:0.05:10</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">(1:0.05:10)'</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">[0 1 2 7.5 10]</code></p></div><p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">single</code> | <code itemprop="datatype">double</code> | <code itemprop="datatype">duration</code> | <code itemprop="datatype">datetime</code></p></div></div></div></div></div></div><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="btwp6lt-1-method"><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-method" data-bs-target="#expand_accordion_body_btwp6lt-1-method" aria-controls="expand_accordion_body_btwp6lt-1-method" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="inputarg_method" class="anchor_target"></span><h3 id="btwp6lt-1-method"><code itemprop="name">method</code> &#8212; <span itemprop="purpose">Interpolation method</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue defaultvalue"><code class="literal">'linear'</code></span> (default) | <span itemprop="inputvalue"><code class="literal">'nearest'</code></span> | <span itemprop="inputvalue"><code class="literal">'next'</code></span> | <span itemprop="inputvalue"><code class="literal">'previous'</code></span> | <span itemprop="inputvalue"><code class="literal">'pchip'</code></span> | <span itemprop="inputvalue"><code class="literal">'cubic'</code></span> | <span itemprop="inputvalue"><code class="literal">'v5cubic'</code></span> | <span itemprop="inputvalue"><code class="literal">'makima'</code></span> | <span itemprop="inputvalue"><code class="literal">'spline'</code></span></span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-method" aria-labelledby="expand_accordion_heading_btwp6lt-1-method" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-method"><p>Interpolation method, specified as one of the options in this
+                            table.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="33%"><col class="tcol3" width="17%"><col class="tcol4" width="33%"></colgroup><thead><tr><th><p>Method</p></th><th><p>Description</p></th><th><p>Continuity</p></th><th><p>Comments</p></th></tr></thead><tbody><tr><td><p><code class="literal">'linear'</code></p></td><td><p>Linear interpolation. The interpolated value at
+                                                a query point is based on linear interpolation of
+                                                the values at neighboring grid points in each
+                                                respective dimension. This is the default
+                                                interpolation method.</p></td><td><p>C<sup>0</sup></p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 2 points</p></li><li><p>Requires more memory and computation time
+                                                  than nearest neighbor</p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'nearest'</code></p></td><td><p>Nearest neighbor interpolation. The
+                                                interpolated value at a query point is the value at
+                                                the nearest sample grid point.</p></td><td><p>Discontinuous</p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 2 points</p></li><li><p>Modest memory requirements</p></li><li><p>Fastest computation time</p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'next'</code></p></td><td><p>Next neighbor interpolation. The interpolated
+                                                value at a query point is the value at the next
+                                                sample grid point.</p></td><td><p>Discontinuous</p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 2 points</p></li><li><p>Same memory requirements and computation
+                                                  time as <code class="literal">'nearest'</code></p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'previous'</code></p></td><td><p>Previous neighbor interpolation. The
+                                                interpolated value at a query point is the value at
+                                                the previous sample grid point.</p></td><td><p>Discontinuous</p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 2 points</p></li><li><p>Same memory requirements and computation
+                                                  time as <code class="literal">'nearest'</code></p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'pchip'</code></p></td><td><p>Shape-preserving piecewise cubic interpolation.
+                                                The interpolated value at a query point is based on
+                                                a shape-preserving piecewise cubic interpolation of
+                                                the values at neighboring grid
+                                            points.</p></td><td><p>C<sup>1</sup></p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 4 points</p></li><li><p>Requires more memory and computation time
+                                                  than <code class="literal">'linear'</code></p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'cubic'</code></p></td><td><p>Cubic convolution used in MATLAB<sup>&#x00AE;</sup> 5.</p></td><td><p>C<sup>1</sup></p></td><td rowspan="2"><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 3 points</p></li><li><p>Points must be uniformly spaced</p></li><li><p>This method falls back to
+                                                  <code class="literal">'spline'</code> interpolation for
+                                                  irregularly-spaced data</p></li><li><p>Similar memory requirements and computation
+                                                  time as <code class="literal">'pchip'</code></p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'v5cubic'</code></p></td><td><p>Same as
+                                            <code class="literal">'cubic'</code>.</p></td><td><p>C<sup>1</sup></p></td></tr><tr><td><p><code class="literal">'makima'</code></p></td><td><p>Modified Akima cubic Hermite interpolation. The
+                                                interpolated value at a query point is based on a
+                                                piecewise function of polynomials with degree at
+                                                most three. The Akima formula is modified to avoid
+                                                overshoots.</p></td><td><p>C<sup>1</sup></p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 2 points</p></li><li><p>Produces fewer undulations than
+                                                  <code class="literal">'spline'</code>, but does not flatten
+                                                  as aggressively as
+                                                  <code class="literal">'pchip'</code></p></li><li><p>Computation is more expensive than
+                                                  <code class="literal">'pchip'</code>, but typically less
+                                                  than <code class="literal">'spline'</code></p></li><li><p> Memory requirements are similar to those of
+                                                  <code class="literal">'spline'</code></p></li></ul></div><p>
+
+                                            </p></td></tr><tr><td><p><code class="literal">'spline'</code></p></td><td><p>Spline interpolation using not-a-knot end
+                                                conditions. The interpolated value at a query point
+                                                is based on a cubic interpolation of the values at
+                                                neighboring grid points in each respective
+                                                dimension.</p></td><td><p>C<sup>2</sup></p></td><td><p>
+                                                </p>
+<div class="itemizedlist"><ul><li><p>Requires at least 4 points, falling back to
+                                                  linear or quadratic interpolation if 2 or 3 points
+                                                  are supplied, respectively</p></li><li><p>Requires more memory and computation time
+                                                  than <code class="literal">'pchip'</code></p></li></ul></div><p>
+
+                                            </p></td></tr></tbody></table></div><p>
+</p></div></div></div></div></div></div></div><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div itemscope="" itemprop="inputargument" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/NamedInputArgument" itemid="btwp6lt-1-extrapolation"><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-extrapolation" data-bs-target="#expand_accordion_body_btwp6lt-1-extrapolation" aria-controls="expand_accordion_body_btwp6lt-1-extrapolation" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="inputarg_extrapolation" class="anchor_target"></span><h3 id="btwp6lt-1-extrapolation"><code itemprop="name">extrapolation</code> &#8212; <span itemprop="purpose">Extrapolation strategy</span><br/> <span class="add_font_color_general remove_bold"><span class="example_desc"><span itemprop="inputvalue"><code class="literal">'extrap'</code></span> | <span itemprop="inputvalue"> scalar value</span></span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-extrapolation" aria-labelledby="expand_accordion_heading_btwp6lt-1-extrapolation" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-extrapolation"><p>Extrapolation strategy, specified as <code class="literal">'extrap'</code> or a real
+                        scalar value.</p>
+<div class="itemizedlist"><ul><li><p>Specify <code class="literal">'extrap'</code> when you want
+                                        <code class="function">interp1</code> to evaluate points outside the
+                                    domain using the same method it uses for interpolation. </p></li><li><p>Specify a scalar value when you want
+                                        <code class="function">interp1</code> to return a specific constant
+                                    value for points outside the domain.</p></li></ul></div><p>
+</p><p>The default behavior depends on the input arguments:</p><div class="itemizedlist"><ul><li><p>If you specify the <code class="literal">'pchip'</code>,
+                                    <code class="literal">'spline'</code>, or <code class="literal">'makima'</code>
+                                interpolation methods, then the default behavior is
+                                    <code class="literal">'extrap'</code>.</p></li><li><p>All other interpolation methods return <code class="literal">NaN</code> by
+                                default for query points outside the domain.</p></li></ul></div><p class="description_valueexample"><strong>Example: </strong><code class="literal">'extrap'</code></p><p class="description_valueexample"><strong>Example: </strong><code class="literal">5</code></p></div><p class="datatypelist"><strong>Data Types: </strong><code itemprop="datatype">char</code> | <code itemprop="datatype">string</code> | <code itemprop="datatype">single</code> | <code itemprop="datatype">double</code></p></div></div></div></div></div></div></div></div></div></div><div class="ref_sect"><h2 id="btwp6lt-4">Output Arguments</h2><div class="expandableContent"><p class="switch "><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true">collapse all</a></p><div class="mw_ws_accordion_container"><div class="accordion" id="btwp6lt-4_accordion-group" role="tablist" aria-multiselectable="true"><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-vq" data-bs-target="#expand_accordion_body_btwp6lt-1-vq" aria-controls="expand_accordion_body_btwp6lt-1-vq" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="outputarg_vq" class="anchor_target"></span><h3 id="btwp6lt-1-vq"><code class="name">vq</code> &#8212; Interpolated values<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">scalar | vector | matrix | array</span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-vq" aria-labelledby="expand_accordion_heading_btwp6lt-1-vq" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-vq"><p>Interpolated values, returned as a scalar, vector, matrix, or array. The
+                        size of <code class="literal">vq</code> depends on the shape of <code class="literal">v</code>
+                        and <code class="literal">xq</code>.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="17%"><col class="tcol2" width="17%"><col class="tcol3" width="33%"><col class="tcol4" width="33%"></colgroup><thead><tr><th>Shape of v</th><th>Shape of xq</th><th>Size of Vq</th><th>Example</th></tr></thead><tbody><tr><td>Vector</td><td>Vector</td><td><code class="literal">size(xq)</code></td><td>If <code class="literal">size(v) = [1
+                                            100]</code><br/>
+and <code class="literal">size(xq) =
+                                                [1 500]</code>, <br/>
+then
+                                                <code class="literal">size(vq) = [1 500]</code>.</td></tr><tr><td>Vector</td><td>Matrix <br/>
+or N-D Array</td><td><code class="literal">size(xq)</code></td><td>If <code class="literal">size(v) = [1
+                                            100]</code><br/>
+and <code class="literal">size(xq) =
+                                                [50 30]</code>, <br/>
+then
+                                                <code class="literal">size(vq) = [50 30]</code>.</td></tr><tr><td>Matrix <br/>
+or N-D Array</td><td>Vector</td><td><code class="literal">[length(xq)
+                                                size(v,2),...,size(v,n)]</code></td><td>If <code class="literal">size(v) = [100
+                                            3]</code><br/>
+and <code class="literal">size(xq) = [1
+                                                500]</code>, <br/>
+then
+                                                <code class="literal">size(vq) = [500 3]</code>.</td></tr><tr><td>Matrix <br/>
+or N-D Array</td><td>Matrix <br/>
+or N-D Array</td><td><code class="literal">[size(xq,1),...,size(xq,n),...
+                                                size(v,2),...,size(v,m)]</code></td><td>If <code class="literal">size(v) = [4 5
+                                            6]</code><br/>
+and <code class="literal">size(xq) = [2
+                                                3 7]</code>, <br/>
+then
+                                                <code class="literal">size(vq) = [2 3 7 5 6]</code>.</td></tr></tbody></table></div><p>
+</p></div></div></div></div></div></div><div class="mw_ws_accordion_container"><div class="accordion" role="tablist" aria-multiselectable="true"><div class="accordion-item "><div class="accordion-header"><button role="tab" data-bs-toggle="collapse" id="expand_accordion_heading_btwp6lt-1-pp" data-bs-target="#expand_accordion_body_btwp6lt-1-pp" aria-controls="expand_accordion_body_btwp6lt-1-pp" class="accordion-button add_cursor_pointer" aria-expanded="true"><span id="outputarg_pp" class="anchor_target"></span><h3 id="btwp6lt-1-pp"><code class="name">pp</code> &#8212; Piecewise polynomial<br/> <span class="add_font_color_general remove_bold"><span class="example_desc">structure</span></span></h3></button></div><div role="tabpanel" id="expand_accordion_body_btwp6lt-1-pp" aria-labelledby="expand_accordion_heading_btwp6lt-1-pp" class="accordion-collapse collapse show"><div class="accordion-body"><div class="cshsummary" id="csh_btwp6lt-1-pp"><p>Piecewise polynomial, returned as a structure that you can pass to the
+                            <a href="ppval.html"><code class="function">ppval</code></a> function for
+                        evaluation.</p></div></div></div></div></div></div></div></div></div></div><div class="moreabout ref_sect"><h2 id="mw_1d66b68f-fdee-412c-9a8f-ed79069c6a53">More About</h2><div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink" data-allexpanded="true2">collapse all</a></p><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_mw_53d0324d-4ef0-46c9-b48f-5db7305f01dd" aria-controls="expand_body_mw_53d0324d-4ef0-46c9-b48f-5db7305f01dd" class="accordion-button" aria-expanded="true"><h3 id="mw_53d0324d-4ef0-46c9-b48f-5db7305f01dd">Akima and Spline Interpolation</h3></button></div><div id="expand_body_mw_53d0324d-4ef0-46c9-b48f-5db7305f01dd" class="accordion-collapse collapsed collapse show"><div class="accordion-body"><p class="shortdesc">The <strong class="emphasis bold">Akima algorithm</strong> for
+                one-dimensional interpolation, described in <a href="double.interp1.html#mw_c2de5970-62f2-4f04-a2fa-cbce65aad681" class="intrnllnk">[1]</a> and
+                    <a href="double.interp1.html#mw_32d83dbe-deab-454d-917f-696ec33b8efe" class="intrnllnk">[2]</a>,
+                performs cubic interpolation to produce piecewise polynomials with continuous
+                first-order derivatives (C1). The algorithm preserves the slope and avoids
+                undulations in flat regions. A flat region occurs whenever there are three or more
+                consecutive collinear points, which the algorithm connects with a straight line. To
+                ensure that the region between two data points is flat, insert an additional data
+                point between those two points.</p><p>When two flat regions with different slopes meet, the modification made to the
+                original Akima algorithm gives more weight to the side where the slope is closer to
+                zero. This modification gives priority to the side that is closer to horizontal,
+                which is more intuitive and avoids the overshoot. (The original Akima algorithm
+                gives equal weights to the points on both sides, thus evenly dividing the
+                undulation.)</p><p>The <strong class="emphasis bold">spline algorithm</strong>, on the other hand, performs
+                cubic interpolation to produce piecewise polynomials with continuous second-order
+                derivatives (C2). The result is comparable to a regular polynomial interpolation,
+                but is less susceptible to heavy oscillation between data points for high degrees.
+                Still, this method can be susceptible to overshoots and oscillations between data
+                points.</p><p>Compared to the spline algorithm, the Akima algorithm produces fewer undulations
+                and is better suited to deal with quick changes between flat regions. This
+                difference is illustrated below using test data that connects multiple flat
+                regions.</p><div class="informalfigure"><div id="d126e904156" class="mediaobject"><p><img src="akima_spline_comparison.png" alt="Plot of 1-D test data with multiple flat regions. The spline algorithm produces undulations in the flat regions, while the Akima algorithm smoothly connects the points." height="419" width="560"></p></div></div></div></div></div></div></div></div></div><div class="bibliography"><h2 id="References">References</h2><div id="mw_c2de5970-62f2-4f04-a2fa-cbce65aad681" class="bibliomixed"><p>[1] Akima, Hiroshi. "A new method
+            of interpolation and smooth curve fitting based on local procedures." <em class="citetitle">Journal
+                of the ACM (JACM)</em> , 17.4, 1970, pp. 589-602.</p></div><div id="mw_32d83dbe-deab-454d-917f-696ec33b8efe" class="bibliomixed"><p>[2] Akima, Hiroshi. "A method of
+            bivariate interpolation and smooth surface fitting based on local procedures."
+                <em class="citetitle">Communications of the ACM</em> , 17.1, 1974, pp. 18-20.
+        </p></div></div><div class="ref_sect"><h2 id="refsect-extended-capabilities">Extended Capabilities</h2><div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p><div id="accordion_refsect-extended-capabilities" role="tablist" aria-multiselectable="true"><span id="bvlxnl6-2" class="anchor_target"></span><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><span id="btwp6lt-1" class="anchor_target"></span><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_btwp6lt-1_codegen" aria-controls="expand_body_btwp6lt-1_codegen" class="accordion-button collapsed" aria-expanded="false"><h3 id="btwp6lt-1_codegen">C/C++ Code Generation<br/> <span class=" remove_bold add_font_color_general">Generate C and C++ code using MATLAB&#174; Coder&#8482;.</span></h3></button></div><div id="expand_body_btwp6lt-1_codegen" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p><span>Usage notes and limitations:</span></p><p>
+                </p>
+<div class="itemizedlist"><ul><li><p>The sample points vector <code class="literal">x</code> must be
+                            monotonic.</p></li><li><p>If the first dimension of the sample values vector
+                                <code class="literal">v</code> is variable size at code generation time,
+                                <code class="literal">v</code> cannot be a row vector at run time. If
+                                <code class="literal">v</code> is a row vector at run time, make sure that the
+                            first dimension of <code class="literal">v</code> has a fixed size of 1 at code
+                            generation time.</p></li><li><p>If both of the first two dimensions of input argument
+                                <code class="literal">xq</code> are variable size at code generation time,
+                                <code class="literal">xq</code> cannot be a vector at run time. If
+                                <code class="literal">xq</code> is a vector at run time, make sure that either
+                            the first or the second dimension of <code class="literal">xq</code> has a fixed
+                            size of 1 at code generation time.</p></li><li><p>In most cases, the shape of the output array <code class="literal">vq</code> in
+                            the generated code matches the shape of this array in  MATLAB. However, if the second dimension of <code class="literal">v</code>
+                            has a variable size of 1 at code generation time and
+                                <code class="literal">v</code> is a column vector at run time, the output
+                            array <code class="literal">vq</code> is a column vector, not a row vector.</p></li><li><p>If the sample values or query points vectors contain
+                                <code class="literal">Inf</code> or <code class="literal remove_text_wrapping">-Inf</code> values, the output
+                            of the generated code might not match the output in MATLAB.</p></li></ul></div><p>
+
+            </p></div></div></div></div></div><span id="mw_02f9de4b-686e-43a7-80c0-fad7124b2a80" class="anchor_target"></span><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><span id="btwp6lt-1" class="anchor_target"></span><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_btwp6lt-1_gpucodegen" aria-controls="expand_body_btwp6lt-1_gpucodegen" class="accordion-button collapsed" aria-expanded="false"><h3 id="btwp6lt-1_gpucodegen">GPU Code Generation<br/> <span class=" remove_bold add_font_color_general">Generate CUDA&#174; code for NVIDIA&#174; GPUs using GPU Coder&#8482;.</span></h3></button></div><div id="expand_body_btwp6lt-1_gpucodegen" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p>Usage notes and limitations:</p><p>
+                </p>
+<div class="itemizedlist"><ul><li><p>The sample points vector <code class="literal">x</code> must be
+                            monotonic.</p></li><li><p>If the first dimension of the sample values vector
+                                <code class="literal">v</code> is variable size at code generation time,
+                                <code class="literal">v</code> cannot be a row vector at run time. If
+                                <code class="literal">v</code> is a row vector at run time, make sure that the
+                            first dimension of <code class="literal">v</code> has a fixed size of 1 at code
+                            generation time.</p></li><li><p>In most cases, the shape of the output array <code class="literal">vq</code> in
+                            the generated code matches the shape of this array in  MATLAB. However, if the second dimension of <code class="literal">v</code>
+                            has a variable size of 1 at code generation time and
+                                <code class="literal">v</code> is a column vector at run time, the output
+                            array <code class="literal">vq</code> is a column vector, not a row vector.</p></li><li><p>If the sample values or query points vectors contain
+                                <code class="literal">Inf</code> or <code class="literal remove_text_wrapping">-Inf</code> values, the output
+                            of the generated code might not match the output in MATLAB.</p></li><li><p>If both the sample values vector <code class="literal">v</code> and the query
+                            points vector <code class="literal">xq</code> are variable size in both dimensions
+                            at code generation time, and <code class="literal">xq</code> is a vector at run
+                            time, an run-time error can occur. To avoid this error, specify
+                                <code class="literal">xq</code> as a variable-length vector at code generation
+                            time.</p></li></ul></div><p>
+
+            </p></div></div></div></div></div><span id="mw_a89ff08a-ee45-4a0a-92be-4dbf844b73b1" class="anchor_target"></span><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><span id="btwp6lt-1" class="anchor_target"></span><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_btwp6lt-1_threadsupport" aria-controls="expand_body_btwp6lt-1_threadsupport" class="accordion-button collapsed" aria-expanded="false"><h3 id="btwp6lt-1_threadsupport">Thread-Based Environment<br/> <span class=" remove_bold add_font_color_general">Run code in the background using MATLAB&#174; <code class="function">backgroundPool</code> or accelerate code with Parallel Computing Toolbox&#8482; <code class="function">ThreadPool</code>.</span></h3></button></div><div id="expand_body_btwp6lt-1_threadsupport" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p>This function fully supports thread-based environments. For
+                more information, see <a href="../matlab_prog/run-functions-on-threads.html" class="a">Run MATLAB Functions in Thread-Based Environment</a>.</p></div></div></div></div></div><span id="mw_c2b6a1f3-9191-4ffc-909e-32cf2157925d" class="anchor_target"></span><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><span id="btwp6lt-1" class="anchor_target"></span><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_btwp6lt-1_gpuarrays" aria-controls="expand_body_btwp6lt-1_gpuarrays" class="accordion-button collapsed" aria-expanded="false"><h3 id="btwp6lt-1_gpuarrays">GPU Arrays<br/> <span class=" remove_bold add_font_color_general">Accelerate code by running on a graphics processing unit (GPU) using Parallel Computing Toolbox&#8482;.</span></h3></button></div><div id="expand_body_btwp6lt-1_gpuarrays" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p>The <code class="function">interp1</code> function
+    supports GPU array input with these usage notes and limitations:</p><div class="itemizedlist"><ul><li><p>The interpolation methods <code class="literal">'pchip'</code> and
+                            <code class="literal">'makima'</code> are not supported.</p></li><li><p>The <code class="literal">'spline'</code> interpolation method is not supported for
+                        sample values <code class="literal">v</code> containing <code class="literal">NaN</code>.</p></li></ul></div><p>For more information, see <a href="../../parallel-computing/run-matlab-functions-on-a-gpu.html" class="a">Run MATLAB Functions on a GPU</a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p></div></div></div></div></div><span id="mw_eed62620-9077-4d2c-9dee-b1b1b0746763" class="anchor_target"></span><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><span id="btwp6lt-1" class="anchor_target"></span><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_btwp6lt-1_distributedarrays" aria-controls="expand_body_btwp6lt-1_distributedarrays" class="accordion-button collapsed" aria-expanded="false"><h3 id="btwp6lt-1_distributedarrays">Distributed Arrays<br/> <span class=" remove_bold add_font_color_general">Partition large arrays across the combined memory of your cluster using Parallel Computing Toolbox&#8482;.</span></h3></button></div><div id="expand_body_btwp6lt-1_distributedarrays" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p>This function fully supports distributed arrays. For more
+    information, see <a href="../../parallel-computing/run-matlab-functions-with-distributed-arrays.html" class="a">Run MATLAB Functions with Distributed Arrays</a><span role="cross_prod"> (Parallel Computing Toolbox)</span>.</p></div></div></div></div></div></div></div></div><div class="ref_sect"><h2 id="mw_f7a8cabf-4c61-4fd7-989b-13e037f87e5b">Version History</h2><strong>Introduced before R2006a</strong><div class="expandableContent"><p class="switch"><a href="javascript:void(0);" class="expandAllLink">expand all</a></p><div class="mw_ws_accordion_container"><div class="accordion -presentation_expander -presentation_condensed"><div class="accordion-item"><div class="accordion-header"><button data-bs-toggle="collapse" data-bs-target="#expand_body_mw_d123b771-f1d5-46e4-bcee-04f15250edf6" aria-controls="expand_body_mw_d123b771-f1d5-46e4-bcee-04f15250edf6" class="accordion-button collapsed" aria-expanded="false"><h3 id="mw_d123b771-f1d5-46e4-bcee-04f15250edf6">R2020b: <span class="remove_bold"><code class="literal">'cubic'</code> method of <code class="function">interp1</code> performs cubic                 convolution</span><span class="icon-alert-warning icon_alert_color"></span></h3></button></div><div id="expand_body_mw_d123b771-f1d5-46e4-bcee-04f15250edf6" class="accordion-collapse collapsed collapse"><div class="accordion-body"><p>In R2020b, the <code class="literal">'cubic'</code> interpolation method of
+                    <code class="function">interp1</code> performs cubic convolution. The
+                    <code class="literal">'v5cubic'</code> and <code class="literal">'cubic'</code> interpolation
+                methods now perform the same type of interpolation, which is consistent with the
+                behavior of <code class="function">interp2</code>, <code class="function">interp3</code>, and
+                    <code class="function">interpn</code>. The cubic convolution interpolation method is
+                intended for uniformly-spaced data, and it falls back to <code class="literal">'spline'</code>
+                interpolation for irregularly-spaced data.</p><p>In previous releases, <code class="literal">'cubic'</code> was the same as
+                    <code class="literal">'pchip'</code>, and only <code class="literal">'v5cubic'</code> performed
+                cubic convolution.</p></div></div></div></div></div></div></div><div class="ref_sect"><h2 id="btwp6lt-1_seealso">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="interp2.html"><span itemprop="name"><code class="function">interp2</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="interp3.html"><span itemprop="name"><code class="function">interp3</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="interpn.html"><span itemprop="name"><code class="function">interpn</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="griddedinterpolant.html"><span itemprop="name"><code class="object">griddedInterpolant</code></span></a></span></p></div>
+    </div></div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

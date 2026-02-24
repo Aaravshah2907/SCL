@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Callbacks in App Designer</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../gui-development.html",
+          "name": "App Building"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../app-designer.html",
+          "name": "Develop Apps Using App Designer"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "app-designer"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Write callbacks to control the behavior of apps you create in App Designer."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../gui-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">App Building</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../app-designer.html?s_tid=CRUX_lftnav" itemprop="url" id="bu6q9n8"><span itemprop="title">Develop Apps Using App Designer</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Callbacks in App Designer</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_914f9551-bad6-48eb-aa70-a54ea5fec8fa" class="nav-link intrnllnk">Create Callback Functions</a></li><li class="nav-item"><a href="#mw_ef62ca29-1ddd-4555-b0d4-84eca825e275" class="nav-link intrnllnk">Program Callback Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_69d1462a-7d15-48c8-b265-067bd2ebb833" class="nav-link intrnllnk">Callback Input Arguments</a></li><li class="nav-item"><a href="#mw_1fabf190-ae36-483a-9198-f23636069665" class="nav-link intrnllnk">Share Data Between Callback Functions</a></li></ul></li><li class="nav-item"><a href="#mw_54ae4804-091b-4168-a240-3defb0bc2ceb" class="nav-link intrnllnk">Share Callbacks Between Multiple Components</a></li><li class="nav-item"><a href="#mw_ee22894d-54f5-4695-9dcd-c78abfe03bb1" class="nav-link intrnllnk">Create and Assign Callbacks Programmatically</a></li><li class="nav-item"><a href="#mw_a812660f-bfb2-4c09-8fa2-e4f4e7f71426" class="nav-link intrnllnk">Search for Callbacks in Your Code</a></li><li class="nav-item"><a href="#mw_774d4e78-f7ca-4b54-989f-bf384d7946d5" class="nav-link intrnllnk">Change or Disconnect Callbacks</a></li><li class="nav-item"><a href="#mw_7217c6ec-0ad0-4190-b2d9-f9104cbb8805" class="nav-link intrnllnk">Delete Callbacks</a></li><li class="nav-item"><a href="#mw_c7dad63c-9a3a-4c72-82f1-e324ea298742" class="nav-link intrnllnk">Example: App with a Slider Callback</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=app-designer&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=app-designer&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=app-designer&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=app-designer&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=app-designer&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=app-designer&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="busp3ol-4">Callbacks in App Designer</h2><span id="appdcbs" class="anchor_target"></span><p>A callback is a function that executes when a user interacts with a UI component in
+            your app. You can use callbacks to program the behavior of your app. For example, you
+            can write a callback that plots some data when an app user clicks a button, or a
+            callback that moves the needle of a gauge component when a user interacts with a
+            slider.</p><p>Most components have at least one callback, and each callback is tied to a specific
+            interaction with the component. However, some components, such as labels and lamps, do
+            not have callbacks because those components only display information. To see the list of
+            callbacks that a component supports, select the component and click the
+                <strong class="guilabel">Callbacks</strong> tab in the <strong class="guilabel">Component
+            Browser</strong>.</p><section><h3 class="title" id="mw_914f9551-bad6-48eb-aa70-a54ea5fec8fa">Create Callback Functions</h3><p>There are several ways to create a callback for a UI component. You can take
+                different approaches depending on where you are working in App Designer. Choose the
+                most convenient approach from this list:</p><p>
+                </p>
+<div class="itemizedlist"><ul><li><p>Right-click a component in the canvas, <strong class="guilabel">Component
+                                Browser</strong>, or <strong class="guilabel">App Layout</strong> pane, and
+                            select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Add (callback property) callback</strong>.</p>
+<div class="informalfigure"><div id="d126e6905" class="mediaobject"><p class="listimage"><img src="callback_creation.png" alt="Context menu associated with a slider component. Under the Callbacks menu item, there are options to add a ValueChangedFcn callback or a ValueChangingFcn callback." height="271" width="494"></p></div></div><p></p></li><li><p>Select the <strong class="guilabel">Callbacks</strong> tab in the
+                                <strong class="guilabel">Component Browser</strong>. The left side of the
+                                <strong class="guilabel">Callbacks</strong> tab shows the supported callback
+                            properties. The drop-down list next to each callback property allows you
+                            to specify a name for the callback function or to select a default name
+                            in angle brackets &lt;&gt;. If your app has existing callbacks, the
+                            drop-down list includes those callbacks. Select an existing callback
+                            when you want multiple UI components to execute the same code.</p>
+<div class="informalfigure"><div id="d126e6924" class="mediaobject"><p class="listimage"><img src="appd_callbacks_tab20b.png" alt="Callbacks tab of the Component Browser with a spinner component selected. There are options for a ValueChangedFcn callback and a ValueChangingFcn callback." height="285" width="276"></p></div></div><p></p></li><li><p>In code <strong class="guibutton">Code View</strong>, in the
+                                <strong class="guilabel">Editor</strong> tab, click <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add-callback.png" alt="" height="16" width="16"></span></span>
+                            <strong class="guibutton">Callback</strong>. Alternatively, in the <strong class="guilabel">Code
+                                Browser</strong> pane, on the <strong class="guilabel">Callbacks</strong> tab,
+                            click the <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add.png" alt="Plus" height="16" width="16"></span></span> button.</p>
+<div class="informalfigure"><div id="d126e6959" class="mediaobject"><p class="listimage"><img src="add_callback_dialog.png" alt="Add Callback Function dialog box. There are options to choose a component and a callback from drop-down lists, and to specify the callback function name." height="207" width="404"></p></div></div><p></p><p>Specify these options in the Add Callback Function dialog box:</p>
+<div class="itemizedlist"><ul><li><p><strong class="guilabel">Component</strong> &#8212; Specify the UI component
+                                        that executes the callback.</p></li><li><p><strong class="guilabel">Callback</strong> &#8212; Specify the callback
+                                        property. The callback property maps the callback function
+                                        to a specific interaction. Some components have more than
+                                        one callback property available. For example, sliders have
+                                        two callback properties:
+                                            <code class="argument">ValueChangedFcn</code> and
+                                            <code class="argument">ValueChangingFcn</code>. The
+                                            <code class="argument">ValueChangedFcn</code> callback executes
+                                        after the user moves the slider and releases the mouse. The
+                                            <code class="argument">ValueChangingFcn</code> callback for the
+                                        same component executes repeatedly while the user moves the
+                                        slider.</p></li><li><p><strong class="guilabel">Name</strong> &#8212; Specify a name for the
+                                        callback function. App Designer provides a default name, but
+                                        you can change it in the text field. If your app has
+                                        existing callbacks, the <strong class="guilabel">Name</strong> field has
+                                        a drop-down arrow next to it, indicating that you can select
+                                        an existing callback from a list.</p></li></ul></div><p>
+</p></li></ul></div><p>
+
+            </p></section><section><h3 class="title" id="mw_ef62ca29-1ddd-4555-b0d4-84eca825e275">Program Callback Functions</h3><p>When you create a callback for a component, App Designer generates a callback
+                function in <strong class="guilabel">Code View</strong> and places your cursor in the function.
+                Write code in this callback function to program the callback behavior.</p><section><h4 class="title" id="mw_69d1462a-7d15-48c8-b265-067bd2ebb833">Callback Input Arguments</h4><p>All callback functions that App Designer creates have these input arguments in
+                    the function signature:</p>
+<div class="itemizedlist"><ul><li><p><code class="literal">app</code> &#8212; The <code class="literal">app</code> object. Use
+                                this object to access UI components in the app as well as other
+                                variables stored as properties.</p></li><li><p><code class="literal">event</code> &#8212; An object that contains specific
+                                information about the app user's interaction with the UI
+                                component.</p></li></ul></div><p>
+</p><p>The <code class="literal">app</code> argument provides the <code class="literal">app</code> object
+                    to your callback. You can access any component (and all component-specific
+                    properties) within any callback by using this
+                    syntax:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>app.<em class="replaceable">Component</em>.<em class="replaceable">Property</em></pre></div></div></div></p><p>For example, this command sets the <code class="argument">Value</code> property of a
+                    gauge to <code class="literal">50</code>. In this case, the name of the gauge is
+                        <code class="literal">PressureGauge</code>:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>app.PressureGauge.Value = 50;</pre></div></div></div></p><p>The <code class="literal">event</code> argument provides an object that has different
+                    properties, depending on the specific callback that is executing. The object
+                    properties contain information that is relevant to the type of interaction that
+                    the callback is responding to. For example, the <code class="literal">event</code>
+                    argument in a <code class="argument">ValueChangingFcn</code> callback of a slider
+                    contains a property called <code class="literal">Value</code>. That property stores the
+                    slider value as the user moves the thumb (before the user releases the mouse).
+                    Here is a slider callback function that uses the <code class="literal">event</code>
+                    argument to make a gauge track the value of the
+                    slider:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> SliderValueChanging(app,event)
+      latestvalue = event.Value; <span style="color:#228B22">% Current slider value</span>
+      app.PressureGauge.Value = latestvalue;  <span style="color:#228B22">% Update gauge   </span>
+<span style="color:#0000FF">end</span></pre></div></div></div>To
+                    learn more about the <code class="literal">event</code> argument for a specific
+                    component's callback function, see the property page for that component.
+                    Right-click the component, and select <strong class="guimenuitem">Help on
+                        Selection</strong> to open the property page. For a list of property
+                    pages for all UI components, see <a href="choose-components-for-your-app-designer-app.html" class="a">App Building Components</a>.</p></section><section><h4 class="title" id="mw_1fabf190-ae36-483a-9198-f23636069665">Share Data Between Callback Functions</h4><p>To store data that needs to be accessed by multiple callbacks, create a
+                        <em class="firstterm">property</em>. Properties contain data that belongs to the
+                    app. You can create <em class="firstterm">private properties</em> to store data to
+                    be shared within the app only, or <em class="firstterm">public properties</em> to
+                    store data to be shared outside of the app (for example, with a script,
+                    function, or other app that needs access to the data). </p><p>Create a public or private property by clicking the
+                            <span class="guiicon"><span class="inlinemediaobject inlinemediaobject_16_px"><img src="add-property.png" alt="" height="16" width="16"></span></span>
+                    <strong class="guilabel">Property</strong> button in the <strong class="guilabel">Editor</strong> tab in
+                        <strong class="guilabel">Code View</strong>. Enter a name for your property. You can then
+                    assign and access the property value within all of your app callbacks using the
+                    syntax <code class="literal">app.</code><em class="replaceable"><code>PropertyName</code></em>.</p><p>For more information, see <a href="share-data-across-callbacks-in-app-designer.html" class="a">Share Data Within App Designer Apps</a>.</p></section></section><section><h3 class="title" id="mw_54ae4804-091b-4168-a240-3defb0bc2ceb">Share Callbacks Between Multiple Components</h3><p>Sharing callbacks between components is useful when you want to offer multiple
+                ways of doing something in your app. For example, your app can respond the same way
+                when a user clicks a button or presses the <strong class="keycap">Enter</strong> key in an edit
+                field.</p><p>You can create a single shared callback for multiple selected components with a
+                callback type in common. For example, in an app with an edit field and a slider, you
+                can select both components, right-click one of them, and select <strong class="emphasis bold">Callbacks &gt; Add ValueChangingFcn callback</strong>. App Designer
+                creates a single new callback and assigns it to both the edit field and the
+                slider.</p><p>Alternatively, after you create a callback for one component, you can share it by
+                assigning it to a second component. Right-click the second component in the
+                    <strong class="guilabel">Component Browser</strong> and select <strong class="guimenuitem">Callbacks</strong> &gt; <strong class="guimenuitem">Select existing callback</strong>. When the Select Callback Function dialog box displays, select the
+                existing callback from the <strong class="guilabel">Name</strong> drop-down list.</p><p>For an example of an app that shares a callback between two components, see <a href="share-callbacks-between-components-in-app-designer.html" class="a">Use One Callback for Multiple App Designer Components</a>.</p></section><section><h3 class="title" id="mw_ee22894d-54f5-4695-9dcd-c78abfe03bb1">Create and Assign Callbacks Programmatically</h3><p>You can also create and assign callback functions programmatically in your app
+                code. Use this method to create a callback for a component or graphics object that
+                does not appear in the <strong class="guilabel">Component Browser</strong>. For example, you can
+                programmatically assign a callback to a dialog box that you create in your app code,
+                or to a <code class="literal">Line</code> object that you plot in a <code class="literal">UIAxes</code>
+                component.</p><p>Create the callback function as a private function by selecting <strong class="guimenuitem">Function</strong> &gt; <strong class="guimenuitem">Private Function</strong> in the <strong class="guilabel">Editor</strong> tab of the toolstrip. The function
+                must have <code class="literal">app</code>, <code class="literal">src</code>, and
+                    <code class="literal">event</code> as the first three arguments. Here is an example of a
+                callback written as a private
+                function:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">methods</span> (Access = private)
+    
+        <span style="color:#0000FF">function</span> myclosefcn(app,src,event)
+            disp(<span style="color:#A020F0">'Have a nice day!'</span>);
+        <span style="color:#0000FF">end</span>
+        
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>Assign the callback function to a component by specifying the callback property
+                value as a handle to your callback function using the syntax
+                    <code class="literal">@app.</code><em class="replaceable"><code>FunctionName</code></em>. For example,
+                this code creates an alert dialog box that assigns the <code class="literal">myclosefcn</code>
+                function to the <code class="literal">CloseFcn</code> callback property. The function executes
+                when the dialog box
+                closes.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>uialert(app.UIFigure,<span style="color:#A020F0">"File not found"</span>,<span style="color:#A020F0">"Alert"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"CloseFcn"</span>,@app.myclosefcn);</pre></div></div></div></p><p>To write a callback function that accepts additional input arguments, specify the
+                additional arguments after the first three arguments. For example, this callback
+                accepts one additional input,
+                <code class="literal">name</code>:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">methods</span> (Access = private)
+    
+        <span style="color:#0000FF">function</span> displaymsg(app,src,event,name)
+            msg = name + <span style="color:#A020F0">" dialog box closed"</span>;
+            disp(msg);
+        <span style="color:#0000FF">end</span>
+        
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>To assign this callback to a component, specify the component callback property as
+                cell array. The first element in the cell array must be the function handle.
+                Subsequent elements must be the additional input values. For
+                example:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>uialert(app.UIFigure,<span style="color:#A020F0">"File not found"</span>,<span style="color:#A020F0">"Alert"</span>, <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">"CloseFcn"</span>,{@app.displaymsg,<span style="color:#A020F0">"Alert"</span>});</pre></div></div></div></p><p>For more information, see <a href="add-ui-components-to-app-designer-programmatically.html" class="a">Add UI Components to App Designer Programmatically</a>.</p></section><section><h3 class="title" id="mw_a812660f-bfb2-4c09-8fa2-e4f4e7f71426">Search for Callbacks in Your Code</h3><p>If your app has a lot of callbacks, you can quickly search and navigate to a
+                specific callback by typing part of the name in the search bar at the top of the
+                    <strong class="guilabel">Callbacks</strong> tab in the <strong class="guibutton">Code Browser</strong>.
+                After you begin typing, the <strong class="guibutton">Callbacks</strong> pane clears, except for
+                the callbacks that match your search. </p>
+<div class="informalfigure"><div id="d126e7176" class="mediaobject"><p><img src="callback_search.png" alt="Callbacks tab of the Code Browser. The search bar has the text &#34;Slider&#34; and the pane lists the SliderValueChanging function." height="136" width="300"></p></div></div><p></p><p>Click a search result to scroll the callback into view. Right-clicking a search
+                result and selecting <strong class="guimenuitem">Go To</strong> places your cursor in the
+                callback function.</p></section><section><h3 class="title" id="mw_774d4e78-f7ca-4b54-989f-bf384d7946d5">Change or Disconnect Callbacks</h3><p>To assign a different callback to a component, select the component in the
+                    <strong class="guilabel">Component Browser</strong>. Then click the
+                    <strong class="guilabel">Callbacks</strong> tab and select a different callback from the
+                drop-down list. The drop-down list displays only the existing callbacks.</p>
+<div class="informalfigure"><div id="d126e7196" class="mediaobject"><p><img src="appd_sharecallback_reassign20b.png" alt="Callbacks tab for an edit field component in the Component Browser. The ValueChangedFcn drop-down list is expanded, and two existing callback functions are listed." height="356" width="279"></p></div></div><p></p><p>To disconnect a callback that is shared with a component, select the component in
+                the <strong class="guilabel">Component Browser</strong>. Then click the
+                    <strong class="guilabel">Callbacks</strong> tab and select <strong class="guimenuitem">&lt;no
+                    callback&gt;</strong> from the drop-down menu. Selecting this option only
+                disconnects the callback from the component. It does not delete the function
+                definition from your code, nor does it disconnect the callback from any other
+                components. After you disconnect a callback, you can create a new callback for the
+                component or leave the component without a callback function.</p></section><section><h3 class="title" id="mw_7217c6ec-0ad0-4190-b2d9-f9104cbb8805">Delete Callbacks</h3><p>If your code contains a callback function that is not being used by any components
+                in your app, you can delete the function entirely. Delete a callback by
+                right-clicking the callback in the <strong class="guilabel">Callbacks</strong> tab of the
+                    <strong class="guilabel">Code Browser</strong> and selecting
+                    <strong class="guimenuitem">Delete</strong> from the context menu.</p><div class="informalfigure"><div id="d126e7220" class="mediaobject"><p><img src="deletecodebrowsercode19a.png" alt="Callbacks tab of the Code Browser. The context menu associated with the StopButtonPushed callback function has options to delete, rename, insert at cursor, and go to." height="204" width="265"></p></div></div></section><section><h3 class="title" id="mw_c7dad63c-9a3a-4c72-82f1-e324ea298742">Example: App with a Slider Callback</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/SimpleAppWithCallbackExample')" data-ex-genre="App">Open App</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Example: App with a Slider Callback",
+          "description": "This app contains a gauge that tracks the value of a slider as the user moves the thumb. The ValueChangingFcn callback for the slider gets the current value of the slider from the event argument. Then it moves the gauge needle to that value.",
+          "thumbnailURL": "../../examples/matlab/win64/xxtrack_slider_screenshot.png",
+          "genre": "App",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "write-callbacks-for-gui-in-app-designer.html"
+
+        },
+          "identifier": "matlab.SimpleAppWithCallbackExample",
+          "name": "SimpleAppWithCallbackExample",
+          "url": "write-callbacks-for-gui-in-app-designer.html#mw_c7dad63c-9a3a-4c72-82f1-e324ea298742"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/SimpleAppWithCallbackExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "SimpleAppWithCallbackExample.m",
+        "track_slider_screenshot.png",
+        "AppExampleTrackSlider.mlapp"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-SimpleAppWithCallbackExample"><meta itemprop="exampletitle" content="Example: App with a Slider Callback"></div><span id="SimpleAppWithCallbackExample" class="anchor_target"></span><div class="procedure"><p class="shortdesc">This app contains a gauge that tracks the value of a slider as the user moves the thumb. The <code class="literal">ValueChangingFcn</code> callback for the slider gets the current value of the slider from the <code class="literal">event</code> argument. Then it moves the gauge needle to that value.</p><p>
+</p>
+<div class="informalfigure"><div id="d126e7272" class="mediaobject"><p><img src="../../examples/matlab/win64/xxtrack_slider_screenshot.png"></p></div></div><p>
+ </p></div></section>
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e7279">Topics</h3><ul class="list-unstyled"><li><a href="share-data-across-callbacks-in-app-designer.html" class="a">Share Data Within App Designer Apps</a></li><li><a href="share-callbacks-between-components-in-app-designer.html" class="a">Use One Callback for Multiple App Designer Components</a></li><li><a href="add-ui-components-to-app-designer-programmatically.html" class="a">Add UI Components to App Designer Programmatically</a></li><li><a href="write-callbacks-for-apps-created-programmatically.html" class="a">Create Callbacks for Apps Created Programmatically</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

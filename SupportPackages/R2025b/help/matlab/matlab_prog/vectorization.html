@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Vectorization</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../performance-and-memory.html",
+          "name": "Performance and Memory"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "performance-and-memory"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Revise loop-based, scalar-oriented code to use MATLAB matrix and vector operations."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../performance-and-memory.html?s_tid=CRUX_lftnav" itemprop="url" id="bs_1wq2"><span itemprop="title">Performance and Memory</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Vectorization</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#btimcm2-1" class="nav-link intrnllnk">Using Vectorization</a><ul class="nav"><li class="nav-item"><a href="#btimcm2-3" class="nav-link intrnllnk">Vectorizing Code for General Computing</a></li><li class="nav-item"><a href="#btimcm2-4" class="nav-link intrnllnk">Vectorizing Code for Specific Tasks</a></li></ul></li><li class="nav-item"><a href="#btjk57v-1" class="nav-link intrnllnk">Array Operations</a></li><li class="nav-item"><a href="#btjk576-1" class="nav-link intrnllnk">Logical Array Operations</a></li><li class="nav-item"><a href="#btjk58d-1" class="nav-link intrnllnk">Matrix Operations</a></li><li class="nav-item"><a href="#btjk580-1" class="nav-link intrnllnk">Ordering, Setting, and Counting Operations</a><ul class="nav"><li class="nav-item"><a href="#btjk580-2" class="nav-link intrnllnk">Eliminating Redundant Elements</a></li><li class="nav-item"><a href="#btjk580-3" class="nav-link intrnllnk">Counting Elements in a Vector</a></li></ul></li><li class="nav-item"><a href="#btl4t3x" class="nav-link intrnllnk">Functions Commonly Used in Vectorization</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=performance-and-memory&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=performance-and-memory&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=performance-and-memory&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=performance-and-memory&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=performance-and-memory&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=performance-and-memory&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="btimcly">Vectorization</h2><section><h3 class="title" id="btimcm2-1">Using Vectorization</h3><a class="indexterm" name="d126e67770"></a><a class="indexterm" name="d126e67773"></a><span id="opt_loop_vectorization" class="anchor_target"></span><p>MATLAB<sup>&#x00AE;</sup> is optimized for operations involving matrices and
+vectors. The process of revising loop-based, scalar-oriented code
+to use MATLAB matrix and vector operations is called <span class="emphasis"><em>vectorization</em></span>.
+Vectorizing your code is worthwhile for several reasons:</p><p></p>
+<div class="itemizedlist"><ul><li><p><span class="emphasis"><em>Appearance</em></span>: Vectorized mathematical
+code appears more like the mathematical expressions found in textbooks,
+making the code easier to understand.</p></li><li><p><span class="emphasis"><em>Less Error Prone</em></span>: Without loops,
+vectorized code is often shorter. Fewer lines of code mean fewer opportunities
+to introduce programming errors.</p></li><li><p><span class="emphasis"><em>Performance</em></span>: Vectorized code
+often runs much faster than the corresponding code containing loops.</p></li></ul></div><p>
+</p><section><h4 class="title" id="btimcm2-3">Vectorizing Code for General Computing</h4><p>This code computes the sine of 1,001 values ranging from 0 to
+10:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>i = 0;
+<span style="color:#0000FF">for</span> t = 0:.01:10
+    i = i + 1;
+    y(i) = sin(t);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This is a vectorized version of the same code:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>t = 0:.01:10;
+y = sin(t);</pre></div></div></div><p>The second code sample usually executes faster than the first
+and is a more efficient use of MATLAB. Test execution speed on
+your system by creating scripts that contain the code shown, and then
+use the <code class="function">tic</code> and <code class="function">toc</code> functions
+to measure their execution time.</p></section><section><h4 class="title" id="btimcm2-4">Vectorizing Code for Specific Tasks</h4><p>This code computes the cumulative sum of a vector at every fifth
+                    element:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 1:10000;
+ylength = (length(x) - mod(length(x),5))/5;
+y(1:ylength) = 0;
+<span style="color:#0000FF">for</span> n= 5:5:length(x)
+    y(n/5) = sum(x(1:n));
+<span style="color:#0000FF">end</span> </pre></div></div></div></p><p>Using vectorization, you can write a much more concise MATLAB process. This code shows one way to accomplish the
+                    task:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 1:10000;
+xsums = cumsum(x);
+y = xsums(5:5:length(x)); </pre></div></div></div></p></section></section><section><h3 class="title" id="btjk57v-1">Array Operations</h3><p>Array operators perform the same operation for all elements in the data set. These
+                types of operations are useful for repetitive calculations. For example, suppose you
+                collect the volume (<code class="literal">V</code>) of various cones by recording their
+                diameter (<code class="literal">D</code>) and height (<code class="literal">H</code>). If you collect
+                the information for just one cone, you can calculate the volume for that single
+                cone:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>V = 1/12*pi*(D^2)*H;</pre></div></div></div></p><p>Now, collect information on 10,000 cones. The vectors <code class="literal">D</code> and
+                    <code class="literal">H</code> each contain 10,000 elements, and you want to calculate
+                10,000 volumes. In most programming languages, you need to set up a loop similar to
+                this MATLAB
+                code:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> n = 1:10000
+   V(n) = 1/12*pi*(D(n)^2)*H(n);
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>With MATLAB, you can perform the calculation for each element of a vector with
+                similar syntax as the scalar case:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Vectorized Calculation</span>
+V = 1/12*pi*(D.^2).*H;</pre></div></div></div></p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Placing a period (<code class="literal">.</code>) before the operators
+                            <code class="literal">*</code>, <code class="literal">/</code>, and <code class="literal">^</code>,
+                        transforms them into array operators.</p></div><p>
+</p><p>Array operators also enable you to combine matrices of different dimensions. This
+                automatic expansion of size-1 dimensions is useful for vectorizing grid creation,
+                matrix and vector operations, and more.</p><p>Suppose that matrix <code class="literal">A</code> represents test scores, the rows of which
+                denote different classes. You want to calculate the difference between the average
+                score and individual scores for each class. Using a loop, the operation looks
+                like:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = [97 89 84; 95 82 92; 64 80 99;76 77 67;<span style="color:#0000FF">...</span>
+ 88 59 74; 78 66 87; 55 93 85];
+
+mA = mean(A);
+B = zeros(size(A));
+<span style="color:#0000FF">for</span> n = 1:size(A,2)
+    B(:,n) = A(:,n) - mA(n);
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>A more direct way to do this is with <code class="literal">A - mean(A)</code>, which avoids
+                the need of a loop and is significantly faster.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>
+devA = A - mean(A)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>devA =
+
+    18    11     0
+    16     4     8
+   -15     2    15
+    -3    -1   -17
+     9   -19   -10
+    -1   -12     3
+   -24    15     1</pre></div></div></div><p>Even though <code class="literal">A</code> is a 7-by-3 matrix and <code class="literal">mean(A)</code>
+                is a 1-by-3 vector, MATLAB implicitly expands the vector as if it had the same size as the
+                matrix, and the operation executes as a normal element-wise minus operation.</p><p>The size requirement for the operands is that for each dimension, the arrays must
+                either have the same size or one of them is 1. If this requirement is met, then
+                dimensions where one of the arrays has size 1 are expanded to be the same size as
+                the corresponding dimension in the other array. For more information, see <a href="compatible-array-sizes-for-basic-operations.html" class="a">Compatible Array Sizes for Basic Operations</a>.</p><p>Another area where implicit expansion is useful for vectorization is if you are
+                working with multidimensional data. Suppose you want to evaluate a function,
+                    <code class="literal">F</code>, of two variables, <code class="literal">x</code> and
+                    <code class="literal">y</code>.</p><p><code class="literal">F(x,y) = x*exp(-x<sup>2</sup> -
+                        y<sup>2</sup>)</code></p><p>To evaluate this function at every combination of points in the
+                    <code class="literal">x</code> and <code class="literal">y</code> vectors, you need to define a grid
+                of values. For this task you should avoid using loops to iterate through the point
+                combinations. Instead, if one of the vectors is a column and the other is a row,
+                then MATLAB automatically constructs the grid when the vectors are used with an
+                array operator, such as <code class="literal">x+y</code> or <code class="literal">x-y</code>. In this
+                example, <code class="literal">x</code> is a 21-by-1 vector and <code class="literal">y</code> is a
+                1-by-16 vector, so the operation produces a 21-by-16 matrix by expanding the second
+                dimension of <code class="literal">x</code> and the first dimension of
+                <code class="literal">y</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = (-2:0.2:2)'; <span style="color:#228B22">% 21-by-1</span>
+y = -1.5:0.2:1.5; <span style="color:#228B22">% 1-by-16</span>
+F = x.*exp(-x.^2-y.^2); <span style="color:#228B22">% 21-by-16</span></pre></div></div></div></p><p>In cases where you want to explicitly create the grids, you can use the <a href="../ref/meshgrid.html"><code class="function">meshgrid</code></a> and <a href="../ref/ndgrid.html"><code class="function">ndgrid</code></a> functions.</p></section><section><h3 class="title" id="btjk576-1">Logical Array Operations</h3><p>A logical extension of the bulk processing of arrays is to vectorize
+comparisons and decision making. MATLAB comparison operators
+accept vector inputs and return vector outputs.</p><p>For example, suppose while collecting data from 10,000 cones,
+you record several negative values for the diameter. You can determine
+which values in a vector are valid with the <code class="literal">&gt;=</code> operator:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>D = [-0.2 1.0 1.5 3.0 -1.0 4.2 3.14];
+D &gt;= 0</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+     0     1     1     1     0     1     1</pre></div></div></div>You can
+directly exploit the logical indexing power of MATLAB to select
+the valid cone volumes, <code class="literal">Vgood</code>, for which the corresponding
+elements of <code class="literal">D</code> are nonnegative:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Vgood = V(D &gt;= 0);</pre></div></div></div></p><p>MATLAB allows you to perform a logical AND or OR on the
+elements of an entire vector with the functions <code class="function">all</code> and <code class="function">any</code>,
+respectively. You can throw a warning if all values of <code class="literal">D</code> are
+below zero:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">if</span> all(D &lt; 0)
+   warning(<span style="color:#A020F0">'All values of diameter are negative.'</span>)
+   <span style="color:#0000FF">return</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><p>MATLAB can also compare two vectors with compatible sizes, allowing you to
+                impose further restrictions. This code finds all the values where V is nonnegative
+                and <code class="literal">D</code> is greater than
+                <code class="literal">H</code>:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>V((V &gt;= 0) &amp; (D &gt; H))</pre></div></div></div>The
+                resulting vector is the same size as the inputs.</p><p>To aid comparison, MATLAB contains special values to denote overflow, underflow, and undefined
+                operators, such as <code class="function">Inf</code> and <code class="function">NaN</code>. Logical
+                operators <code class="function">isinf</code> and <code class="function">isnan</code> exist to help
+                perform logical tests for these special values. For example, it is often useful to
+                exclude <code class="literal">NaN</code> values from
+                computations:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [2 -1 0 3 NaN 2 NaN 11 4 Inf];
+xvalid = x(~isnan(x))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>xvalid =
+
+     2    -1     0     3     2    11     4   Inf</pre></div></div></div></p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><code class="literal">Inf == Inf</code> returns true; however, <code class="literal">NaN
+== NaN</code> always returns false.</p></div></section><section><h3 class="title" id="btjk58d-1">Matrix Operations</h3><p>When vectorizing code, you often need to construct a matrix with a particular size
+                or structure. Techniques exist for creating uniform matrices. For instance, you
+                might need a 5-by-5 matrix of equal
+                elements:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = ones(5,5)*10;</pre></div></div></div>Or,
+                you might need a matrix of repeating
+                values:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>v = 1:5;
+A = repmat(v,3,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A =
+
+     1     2     3     4     5
+     1     2     3     4     5
+     1     2     3     4     5</pre></div></div></div></p><p> The function <code class="function">repmat</code> possesses flexibility in building
+                matrices from smaller matrices or vectors. <code class="function">repmat</code> creates
+                matrices by repeating an input matrix:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = repmat(1:3,5,2)
+B = repmat([1 2; 3 4],2,2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>A =
+
+     1     2     3     1     2     3
+     1     2     3     1     2     3
+     1     2     3     1     2     3
+     1     2     3     1     2     3
+     1     2     3     1     2     3
+
+
+B =
+
+     1     2     1     2
+     3     4     3     4
+     1     2     1     2
+     3     4     3     4</pre></div></div></div></section><section><h3 class="title" id="btjk580-1">Ordering, Setting, and Counting Operations</h3><p>In many applications, calculations done on an element of a vector
+depend on other elements in the same vector. For example, a vector, <em class="varname">x</em>,
+might represent a set. How to iterate through a set without a <code class="function">for</code> or <code class="function">while</code> loop
+is not obvious. The process becomes much clearer and the syntax less
+cumbersome when you use vectorized code.</p><section><h4 class="title" id="btjk580-2">Eliminating Redundant Elements</h4><p>A number of different ways exist for finding the redundant elements of a vector. One way
+                    involves the function <code class="function">diff</code>. After sorting the vector
+                    elements, equal adjacent elements produce a zero entry when you use the
+                        <code class="function">diff</code> function on that vector. Because
+                        <code class="function">diff(x)</code> produces a vector that has one fewer element
+                    than <code class="literal">x</code>, you must add an element that is not equal to any
+                    other element in the set. <code class="literal">NaN</code> always satisfies this
+                    condition. Finally, you can use logical indexing to choose the unique elements
+                    in the
+                    set:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [2 1 2 2 3 1 3 2 1 3];
+x = sort(x);
+difference  = diff([x,NaN]);
+y = x(difference~=0)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>y =
+
+     1     2     3</pre></div></div></div>
+                    Alternatively, you could accomplish the same operation by using the
+                        <code class="function">unique</code>
+                    function:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>y=unique(x);</pre></div></div></div>However,
+                    the <code class="function">unique</code> function might provide more functionality than
+                    is needed and slow down the execution of your code. Use the
+                        <code class="function">tic</code> and <code class="function">toc</code> functions if you want
+                    to measure the performance of each code snippet.</p></section><section><h4 class="title" id="btjk580-3">Counting Elements in a Vector</h4><p>Rather than merely returning the set, or subset, of <code class="literal">x</code>,
+you can count the occurrences of an element in a vector. After the
+vector sorts, you can use the <code class="function">find</code> function to
+determine the indices of zero values in <code class="function">diff(x)</code> and
+to show where the elements change value. The difference between subsequent
+indices from the <code class="function">find</code> function indicates the
+number of occurrences for a particular element:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = [2 1 2 2 3 1 3 2 1 3];
+x = sort(x);
+difference  = diff([x,max(x)+1]);
+count = diff(find([1,difference]))
+y = x(find(difference))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>count =
+
+     3     4     3
+
+
+y =
+
+     1     2     3
+</pre></div></div></div>The <code class="function">find</code> function does not return
+indices for <code class="literal">NaN</code> elements. You can count the number
+of <code class="literal">NaN</code> and <code class="literal">Inf</code> values using
+the <code class="function">isnan</code> and <code class="function">isinf</code> functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>count_nans = sum(isnan(x(:)));
+count_infs = sum(isinf(x(:)));</pre></div></div></div></section></section><section><h3 class="title" id="btl4t3x">Functions Commonly Used in Vectorization</h3><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="27%"><col class="tcol2" width="74%"></colgroup><thead><tr><th>Function</th><th>Description</th></tr></thead><tbody><tr><td><a href="../ref/all.html"><code class="function">all</code></a></td><td><p>Determine if all array elements are nonzero or true</p></td></tr><tr><td><a href="../ref/any.html"><code class="function">any</code></a></td><td><p>Determine if any array elements are nonzero</p></td></tr><tr><td><a href="../ref/double.cumsum.html"><code class="function">cumsum</code></a></td><td><p>Cumulative sum</p></td></tr><tr><td><a href="../ref/double.diff.html"><code class="function">diff</code></a></td><td><p>Differences and Approximate Derivatives</p></td></tr><tr><td><a href="../ref/find.html"><code class="function">find</code></a></td><td><p>Find indices and values of nonzero elements</p></td></tr><tr><td><a href="../ref/ind2sub.html"><code class="function">ind2sub</code></a></td><td><p>Subscripts from linear index</p></td></tr><tr><td><a href="../ref/ipermute.html"><code class="function">ipermute</code></a></td><td><p>Inverse permute dimensions of N-D array</p></td></tr><tr><td><a href="../ref/logical.html"><code class="function">logical</code></a></td><td><p>Convert numeric values to logicals</p></td></tr><tr><td><a href="../ref/meshgrid.html"><code class="function">meshgrid</code></a></td><td><p>Rectangular grid in 2-D and 3-D space</p></td></tr><tr><td><a href="../ref/ndgrid.html"><code class="function">ndgrid</code></a></td><td><p>Rectangular grid in N-D space</p></td></tr><tr><td><a href="../ref/double.permute.html"><code class="function">permute</code></a></td><td><p>Rearrange dimensions of N-D array</p></td></tr><tr><td><a href="../ref/double.prod.html"><code class="function">prod</code></a></td><td><p>Product of array elements</p></td></tr><tr><td><a href="../ref/repmat.html"><code class="function">repmat</code></a></td><td><p>Repeat copies of array</p></td></tr><tr><td><a href="../ref/double.reshape.html"><code class="function">reshape</code></a></td><td><p>Reshape array</p></td></tr><tr><td><a href="../ref/shiftdim.html"><code class="function">shiftdim</code></a></td><td><p>Shift dimensions</p></td></tr><tr><td><a href="../ref/double.sort.html"><code class="function">sort</code></a></td><td><p>Sort array elements</p></td></tr><tr><td><a href="../ref/squeeze.html"><code class="function">squeeze</code></a></td><td><p>Remove singleton dimensions</p></td></tr><tr><td><a href="../ref/sub2ind.html"><code class="function">sub2ind</code></a></td><td><p>Convert subscripts to linear indices</p></td></tr><tr><td><a href="../ref/double.sum.html"><code class="function">sum</code></a></td><td><p>Sum of array elements</p></td></tr></tbody></table></div></section>
+<h2 id="seealsoref">See Also</h2><h3 id="d126e68246">Topics</h3><ul class="list-unstyled"><li><a href="../math/array-indexing.html" class="a">Array Indexing</a></li><li><a href="techniques-for-improving-performance.html" class="a">Techniques to Improve Performance</a></li><li><a href="array-vs-matrix-operations.html" class="a">Array vs. Matrix Operations</a></li></ul>
+<h3 id="d126e68254">External Websites</h3><ul class="list-unstyled"><li><a href="https://www.mathworks.com/company/technical-articles/matrix-indexing-in-matlab.html">MathWorks
+Newsletter: Matrix Indexing in <span class="trademark entity">MATLAB</span></a></li></ul>
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

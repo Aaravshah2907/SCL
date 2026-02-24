@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Strategies for Efficient Use of Memory</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../performance-and-memory.html",
+          "name": "Performance and Memory"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "large-files-and-big-data",
+        "performance-and-memory"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><meta xmlns="http://www.w3.org/1999/xhtml" name="keywords" content="clear memory"><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Reduce memory usage in your programs, use appropriate data storage, avoid fragmenting memory, and reclaim used memory."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetan"><span itemprop="title">Large Files and Big Data</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../software-development.html?s_tid=CRUX_lftnav">Software Development Tools</a></li><li><a href="../performance-and-memory.html?s_tid=CRUX_lftnav" id="bs_1wq2">Performance and Memory</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Strategies for Efficient Use of Memory</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#brh72ex-36" class="nav-link intrnllnk">Use Appropriate Data Storage</a><ul class="nav"><li class="nav-item"><a href="#brh72ex-37" class="nav-link intrnllnk">Use the Appropriate Numeric Class</a></li><li class="nav-item"><a href="#brh72ex-38" class="nav-link intrnllnk">Reduce the Amount of Overhead When Storing Data</a></li><li class="nav-item"><a href="#brh72ex-39" class="nav-link intrnllnk">Import Data to the Appropriate MATLAB Class</a></li><li class="nav-item"><a href="#brh72ex-40" class="nav-link intrnllnk">Make Arrays Sparse When Possible</a></li></ul></li><li class="nav-item"><a href="#mw_13edb7b8-5ed2-457b-bd1c-724e75c4d459" class="nav-link intrnllnk">Avoid Temporary Copies of Data</a><ul class="nav"><li class="nav-item"><a href="#brh72ex-34" class="nav-link intrnllnk">Avoid Creating Temporary Arrays</a></li><li class="nav-item"><a href="#brh72ex-35" class="nav-link intrnllnk">Use Nested Functions to Pass Fewer Arguments</a></li></ul></li><li class="nav-item"><a href="#brh72ex-45" class="nav-link intrnllnk">Reclaim Used Memory</a><ul class="nav"><li class="nav-item"><a href="#brh72ex-46" class="nav-link intrnllnk">Save Your Large Data Periodically to Disk</a></li><li class="nav-item"><a href="#brh72ex-47" class="nav-link intrnllnk">Clear Old Variables from Memory When No Longer Needed</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=large-files-and-big-data&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="brh72ex-25">Strategies for Efficient Use of Memory</h2><p>This topic explains several techniques to use memory efficiently in MATLAB<sup>&#x00AE;</sup>.</p><section><h3 class="title" id="brh72ex-36">Use Appropriate Data Storage</h3><p>MATLAB provides you with different sizes of data classes, such as
+                    <code class="literal">double</code> and <code class="literal">uint8</code>, so you do not need to
+                use large classes to store your smaller segments of data. For example, it takes 7 KB
+                less memory to store 1,000 small unsigned integer values using the
+                    <code class="literal">uint8</code> class than it does with
+                <code class="literal">double</code>.</p><section><h4 class="title" id="brh72ex-37">Use the Appropriate Numeric Class</h4><p>The numeric class you should use in MATLAB depends on your intended actions. The default class
+                        <code class="literal">double</code> gives the best precision, but requires 8 bytes per
+                    element of memory to store. If you intend to perform complicated math such as
+                    linear algebra, you must use a floating-point class such as a
+                        <code class="literal">double</code> or <code class="literal">single</code>. The
+                        <code class="literal">single</code> class requires only 4 bytes. There are some
+                    limitations on what you can do with the <code class="literal">single</code> class, but
+                    most MATLAB Math operations are supported. </p><p>If you just need to carry out simple arithmetic and you represent the original
+                    data as integers, you can use the integer classes in MATLAB. The following is a list of numeric classes, memory requirements
+                    (in bytes), and the supported operations.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="13%"><col class="tcol3" width="54%"></colgroup><thead><tr><th>Class (Data Type)</th><th>Bytes</th><th>Supported Operations</th></tr></thead><tbody><tr><td><code class="literal">single</code></td><td>4</td><td>Most math</td></tr><tr><td><code class="literal">double</code></td><td>8</td><td>All math</td></tr><tr><td><code class="literal">logical</code></td><td>1</td><td>Logical/conditional operations </td></tr><tr><td><code class="literal">int8, uint8</code></td><td>1</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int16, uint16</code></td><td>2</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int32, uint32</code></td><td>4</td><td>Arithmetic and some simple functions </td></tr><tr><td><code class="literal">int64, uint64</code></td><td>8</td><td>Arithmetic and some simple functions </td></tr></tbody></table></div></section><section><h4 class="title" id="brh72ex-38">Reduce the Amount of Overhead When Storing Data</h4><p>MATLAB arrays (implemented internally as <code class="literal">mxArrays</code>)
+                    require room to store meta information about the data in memory, such as type,
+                    dimensions, and attributes. This overhead only becomes an issue when you have a
+                    large number (e.g., hundreds or thousands) of small <code class="literal">mxArrays</code>
+                    (e.g., scalars). The <a href="../ref/whos.html"><code class="function">whos</code></a> command lists the memory
+                    used by variables, but does not include this overhead.</p><p>Because simple numeric arrays (comprising one <code class="literal">mxArray</code>) have
+                    the least overhead, you should use them wherever possible. When data is too
+                    complex to store in a simple array (or matrix), you can use other data
+                    structures.</p><p>Cell arrays are comprised of separate <code class="literal">mxArrays</code> for each
+                    element. As a result, cell arrays with many small elements have a large
+                    overhead.</p><p>Structures require a similar amount of overhead per field. Structures with
+                    many fields and small contents have a large overhead and should be avoided. A
+                    large array of structures with numeric scalar fields requires much more memory
+                    than a structure with fields containing large numeric arrays.</p><p>Also note that while MATLAB stores numeric arrays in contiguous memory, this is not the case
+                    for structures and cell arrays. For more information, see <a href="memory-allocation.html" class="a">How MATLAB Allocates Memory</a>.</p></section><section><h4 class="title" id="brh72ex-39">Import Data to the Appropriate <span class="trademark entity">MATLAB</span> Class</h4><p>When reading data from a binary file with <a href="../ref/fread.html"><code class="function">fread</code></a>, it is a common error to
+                    specify only the class of the data in the file, and not the class of the data
+                        MATLAB uses once it is in the workspace. As a result, the default
+                        <code class="literal">double</code> is used even if you are reading only 8-bit values.
+                    For example,</p><div class="code_responsive"><pre class="programlisting">fid = fopen('large_file_of_uint8s.bin', 'r'); 
+a = fread(fid, 1e3, 'uint8');              % Requires 8k 
+whos a
+  Name         Size            Bytes  Class    Attributes
+ 
+  a         1000x1              8000  double    
+  
+a = fread(fid, 1e3, 'uint8=&gt;uint8');       % Requires 1k 
+whos a
+  Name         Size            Bytes  Class    Attributes
+ 
+  a         1000x1              1000  uint8</pre></div></section><section><h4 class="title" id="brh72ex-40">Make Arrays Sparse When Possible</h4><p>If your data contains many zeros, consider using sparse arrays, which store
+                    only nonzero elements. The following example compares sparse and full storage
+                    requirements:</p><div class="code_responsive"><pre class="programlisting">A = eye(1000);        % Full matrix with ones on the diagonal
+As = sparse(A);       % Sparse matrix with only nonzero elements
+whos
+  Name         Size                Bytes  Class     Attributes
+
+  A         1000x1000            8000000  double              
+  As        1000x1000              24008  double    sparse  </pre></div><p>You can see that this array requires only about 24 KB to be stored as sparse,
+                    but approximately 8 MB as a full matrix. In general, for a sparse double array
+                    with <code class="literal">nnz</code> nonzero elements and <code class="literal">ncol</code>
+                    columns, the memory required is:</p><div class="itemizedlist"><ul><li><p>16 * <code class="literal">nnz</code> + 8 * <code class="literal">ncol</code> + 8 bytes
+                            (on a 64-bit machine) </p></li></ul></div><p>Note that MATLAB supports most, but not all, mathematical operations on sparse
+                    arrays.</p></section></section><section><h3 class="title" id="mw_13edb7b8-5ed2-457b-bd1c-724e75c4d459">Avoid Temporary Copies of Data</h3><p>You can significantly reduce the amount of memory required by avoiding the
+                creation of unnecessary temporary copies of data.</p><section><h4 class="title" id="brh72ex-34">Avoid Creating Temporary Arrays</h4><p>Avoid creating large temporary variables, and also make it a practice to clear
+                    temporary variables when they are no longer needed. For example, this code
+                    creates an array of zeros stored as a temporary variable <code class="literal">A</code>,
+                    and then converts <code class="literal">A</code> to single-precision:</p><div class="code_responsive"><pre class="programlisting">A = zeros(1e6,1);
+As = single(A);</pre></div><p>It is more memory efficient to use one command to do both operations:</p><div class="code_responsive"><pre class="programlisting">A = zeros(1e6,1,'single');
+</pre></div><p>Using the <a href="../ref/repmat.html"><code class="function">repmat</code></a> function, array
+                    preallocation, and <a href="../ref/for.html"><code class="function">for</code></a> loops are other ways to
+                    work on non-double data without requiring temporary storage in memory.</p></section><section><h4 class="title" id="brh72ex-35">Use Nested Functions to Pass Fewer Arguments</h4><p>When working with large data sets, be aware that MATLAB makes a temporary copy of an input variable if the called function
+                    modifies its value. This temporarily doubles the memory required to store the
+                    array, which causes MATLAB to generate an error if sufficient memory is not available.</p><p>One way to use less memory in this situation is to use nested functions. A
+                    nested function shares the workspace of all outer functions, giving the nested
+                    function access to data outside of its usual scope. In the example shown here,
+                    nested function <code class="literal">setrowval</code> has direct access to the workspace
+                    of the outer function <code class="literal">myfun</code>, making it unnecessary to pass a
+                    copy of the variable in the function call. When <code class="literal">setrowval</code>
+                    modifies the value of <code class="literal">A</code>, it modifies it in the workspace of
+                    the calling function. There is no need to use additional memory to hold a
+                    separate array for the function being called, and there also is no need to
+                    return the modified value of <code class="literal">A</code>:</p><div class="code_responsive"><pre class="programlisting">function myfun
+A = magic(500);
+setrowval(400,0)
+disp('The new value of A(399:401,1:10) is')
+A(399:401,1:10)
+
+    function setrowval(row,value)
+    A(row,:) = value;
+    end
+    
+end
+</pre></div></section></section><section><h3 class="title" id="brh72ex-45">Reclaim Used Memory</h3><p>One simple way to increase the amount of memory you have available is to clear
+                large arrays that you no longer use.</p><section><h4 class="title" id="brh72ex-46">Save Your Large Data Periodically to Disk</h4><p>If your program generates very large amounts of data, consider writing the
+                    data to disk periodically. After saving that portion of the data, use the
+                        <a href="../ref/clear.html"><code class="function">clear</code></a> function to remove the
+                    variable from memory and continue with the data generation.</p></section><section><h4 class="title" id="brh72ex-47">Clear Old Variables from Memory When No Longer Needed</h4><p>When you are working with a very large data set repeatedly or interactively,
+                    clear the old variable first to make space for the new variable. Otherwise,
+                        MATLAB requires temporary storage of equal size before overriding the
+                    variable. For example,</p><div class="code_responsive"><pre class="programlisting">a = rand(1e5);
+b = rand(1e5);
+Out of memory.
+
+More information
+ 
+ 
+clear a
+a = rand(1e5);              % New array 
+</pre></div></section></section>
+            
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e69662">Topics</h3><ul class="list-unstyled"><li><a href="resolving-out-of-memory-errors.html" class="a">Resolve “Out of Memory” Errors</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

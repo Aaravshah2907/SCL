@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Function Argument Validation</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../programming-and-data-types.html",
+          "name": "Programming"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../functions.html",
+          "name": "Functions"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../input-and-output-arguments.html",
+          "name": "Argument Definitions"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "input-and-output-arguments"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Declare argument class and size, and enforce restrictions on argument values."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../programming-and-data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Programming</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Functions</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../input-and-output-arguments.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_ef35644f-8613-47f1-afb1-3ee4645673ca"><span itemprop="title">Argument Definitions</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Function Argument Validation</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_aa9c9765-c759-4654-8132-4afdc127f29e" class="nav-link intrnllnk">Where to Use Argument Validation</a><ul class="nav"><li class="nav-item"><a href="#mw_7e4fb227-d0ac-463d-b389-b2d2bb36d689" class="nav-link intrnllnk">Where Validation Is Not Needed</a></li><li class="nav-item"><a href="#mw_86d2932a-0019-4a49-a449-7f5627086391" class="nav-link intrnllnk">Where Validation Is Not Allowed</a></li></ul></li><li class="nav-item"><a href="#mw_7d29b198-98bc-4268-93a2-d74504d2b023" class="nav-link intrnllnk">arguments Block Syntax</a></li><li class="nav-item"><a href="#mw_fdec6421-a7d6-4f68-b914-8b15fb48de6a" class="nav-link intrnllnk">Validate Size and Class</a><ul class="nav"><li class="nav-item"><a href="#mw_48fe4f61-8ee4-424b-ae2b-c82b8d051910" class="nav-link intrnllnk">Size</a></li><li class="nav-item"><a href="#mw_edfab96c-617f-4029-a226-263dc5f7344a" class="nav-link intrnllnk">Class</a></li><li class="nav-item"><a href="#mw_bb353bd7-65af-413e-95d2-d0f171e2cc9b" class="nav-link intrnllnk">Example: Basic Argument Validation</a></li></ul></li><li class="nav-item"><a href="#mw_203ba918-b438-4ac2-95b3-71aa6ec76270" class="nav-link intrnllnk">Validation Functions</a><ul class="nav"><li class="nav-item"><a href="#mw_d3c46813-2f36-4bfe-8cfa-ba9157619c06" class="nav-link intrnllnk">Example: Set Specific Restrictions Using Validation Functions</a></li></ul></li><li class="nav-item"><a href="#mw_d62c600c-665f-4c22-bcb9-8531e9813fe8" class="nav-link intrnllnk">Default Value</a></li><li class="nav-item"><a href="#mw_ff920cc5-4815-463f-ac4c-f378aef24650" class="nav-link intrnllnk">Conversion to Declared Class and Size</a><ul class="nav"><li class="nav-item"><a href="#mw_1fc1bd48-3e69-4b1d-92c0-00c41107bd4a" class="nav-link intrnllnk">Example: Value Conversion</a></li></ul></li><li class="nav-item"><a href="#mw_ea7464ac-27ad-45d6-a3fd-0be6c6ccbcae" class="nav-link intrnllnk">Output Argument Validation</a><ul class="nav"><li class="nav-item"><a href="#mw_bb5db799-ded8-42e9-977b-4a4148d56a80" class="nav-link intrnllnk">Example: Validate Output Arguments</a></li></ul></li><li class="nav-item"><a href="#mw_33c9a331-7b39-474c-bbe5-65e801f7a9ea" class="nav-link intrnllnk">Kinds of Arguments</a></li><li class="nav-item"><a href="#mw_6752ab70-552b-4fa6-bb8e-31c477014a95" class="nav-link intrnllnk">Order of Argument Validation</a></li><li class="nav-item"><a href="#mw_2f35b35d-3a24-426c-b695-ea862189ca4a" class="nav-link intrnllnk">Restrictions on Variable and Function Access</a><ul class="nav"><li class="nav-item"><a href="#mw_7589cc01-dc4e-4a79-b1b9-d000c2761229" class="nav-link intrnllnk">Limitations on Functions in arguments Block</a></li></ul></li><li class="nav-item"><a href="#mw_e09b0430-ca0c-4dbd-8580-3406b4c1fc5b" class="nav-link intrnllnk">Debugging Arguments Blocks</a></li><li class="nav-item"><a href="#d126e62774" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=input-and-output-arguments&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_baf26a38-895e-41fb-8e3a-45f47f6bbfb2">Function Argument Validation</h2><p>Function argument validation is a way to declare specific restrictions on function
+      arguments. Using argument validation you can constrain the class, size, and other aspects of
+      arguments without writing code in the body of the function to perform these tests. </p><p>Function argument validation is declarative, which enables MATLAB<sup>&#x00AE;</sup> desktop tools to extract information about a function by inspection of specific
+      code blocks. By declaring requirements for arguments, you can eliminate cumbersome
+      argument-checking code and improve the readability, robustness, and maintainability of your
+      code. </p><p>The function argument validation syntax simplifies the process of defining optional,
+      repeating, and name-value arguments. The syntax also enables you to define default values in a
+      consistent way. </p><section><h3 class="title" id="mw_aa9c9765-c759-4654-8132-4afdc127f29e">Where to Use Argument Validation</h3><span id="CA_FVNST" class="anchor_target"></span><p>The use of function argument validation is optional in function definitions. Argument
+        validation is most useful in functions that can be called by any code and where validity of
+        the arguments must be determined before executing the function code. Functions that are
+        designed for use by others can benefit from the appropriate level of restriction on
+        arguments and the opportunity to return specific error messages based on the argument
+        validation checks. </p><section><h4 class="title" id="mw_7e4fb227-d0ac-463d-b389-b2d2bb36d689">Where Validation Is Not Needed</h4><p>In local and private functions, and in private or protected methods, the caller is
+          aware of input requirements, so these types of functions can be called with valid
+          arguments. </p></section><section><h4 class="title" id="mw_86d2932a-0019-4a49-a449-7f5627086391">Where Validation Is Not Allowed</h4><p>You cannot use argument validation syntax in nested functions, abstract methods, or
+          handle class destructor methods. For more information on argument validation in methods,
+          see <a href="../matlab_oop/specifying-methods-and-functions.html" class="a">Method Syntax</a>.</p></section></section><section><h3 class="title" id="mw_7d29b198-98bc-4268-93a2-d74504d2b023"><code class="literal">arguments</code> Block Syntax</h3><span id="arguments_block_syntax" class="anchor_target"></span><p>Functions define argument validation in optional code blocks that are delimited by the
+        keywords <code class="literal">arguments</code> and <code class="literal">end</code>. If used, an
+          <code class="literal">arguments</code> block must start before the first executable line of the
+        function. </p><p>You can use multiple <code class="literal">arguments</code> blocks in a function, but all blocks
+        must occur before any code that is not part of an <code class="literal">arguments</code> block. </p><p>The highlighted area in the following code shows the syntax for input argument
+        validation. </p><p>
+        <span class="guiicon"><span class="inlinemediaobject"><img src="fav_syntax.png" height="212" width="609"></span></span></p><p>The function argument declaration can include any of these kinds of restrictions: </p><div class="itemizedlist"><ul><li><p>Size &#8212; The length of each dimension, enclosed in parentheses</p></li><li><p>Class &#8212; The name of a single MATLAB class</p></li><li><p>Functions &#8212; A comma-separated list of validation functions, enclosed in
+            braces</p></li></ul></div><p>You can also define a default value for the input argument in the function validation
+        declaration for that argument. The default value must satisfy the declared restrictions for
+        that argument. </p></section><section><h3 class="title" id="mw_fdec6421-a7d6-4f68-b914-8b15fb48de6a">Validate Size and Class</h3><section><h4 class="title" id="mw_48fe4f61-8ee4-424b-ae2b-c82b8d051910">Size</h4><p>Validation size is the dimensions of the argument, specified with nonnegative integer
+          numbers or colons (<code class="literal">:</code>). A colon indicates that any length is allowed in
+          that dimension. You cannot use expressions for dimensions. The value assigned to the
+          argument in the function call must be compatible with the specified size, or MATLAB throws an error. </p><p>MATLAB indexed assignment rules apply to size specifications. For example, a 1-by-1
+          value is compatible with the size specified as <code class="literal">(5,3)</code> because
+            MATLAB applies scalar expansion. Also, when possible MATLAB changes the shape of the input to satisfy the size validation given. For
+          example, for a size specified as <code class="literal">(1,:)</code> can accept a size of 1-by-n and
+          n-by-1.</p><p>Here are some examples:</p><div class="itemizedlist"><ul><li><p><code class="literal">(1,1)</code> &#8212; The input must be exactly 1-by-1. </p></li><li><p><code class="literal">(3,:)</code> &#8212; The first dimension must be 3, and second dimension can
+              be any value.</p></li></ul></div><p>If you do not specify a size, then any size is allowed unless restricted by validation
+          functions.</p></section><section><h4 class="title" id="mw_edfab96c-617f-4029-a226-263dc5f7344a">Class</h4><span id="invalidClass" class="anchor_target"></span><p>Validation class is the name of a single class. The value assigned to the function
+          input must be of the specified class or convertible to the specified class. Use any
+            MATLAB class or externally defined class that is supported by MATLAB, except Java, COM classes, and MATLAB class definitions that do not use the <a href="../ref/classdef.html"><code class="function">classdef</code></a> keyword (classes defined before MATLAB software Version 7.6).</p><p>Here are some examples:</p><div class="itemizedlist"><ul><li><p><code class="literal">char</code> &#8212; Input must be of class <code class="literal">char</code> or a
+              value that MATLAB can convert to a <code class="literal">char</code>, such as
+                <code class="literal">string</code>. </p></li><li><p><code class="literal">double</code> &#8212; Input can be a numeric value of any precision.</p></li><li><p><code class="literal">cell</code> &#8212; Input must be a cell array.</p></li><li><p>A user-defined class</p></li></ul></div><p>If you do not specify a class, then any class is allowed unless restricted by
+          validation functions.</p></section><section><h4 class="title" id="mw_bb353bd7-65af-413e-95d2-d0f171e2cc9b">Example: Basic Argument Validation</h4><p>This <code class="literal">arguments</code> block specifies the size and class of the three
+          inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> out = myFunction(A, B, C)   
+    <span style="color:#0000FF">arguments</span>
+        A <span style="color:#A0522D">(1,1) string </span>
+        B <span style="color:#A0522D">(1,:) double</span>
+        C <span style="color:#A0522D">(2,2) cell</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Function code</span>
+    <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>In this function, the variables must meet these validation requirements:</p><div class="itemizedlist"><ul><li><p><code class="literal">A</code> is a string scalar.</p></li><li><p><code class="literal">B</code> is a 1-by-any length vector of doubles.</p></li><li><p>
+              <code class="literal">C</code> is a 2-by-2 cell array.</p></li></ul></div></section></section><section><h3 class="title" id="mw_203ba918-b438-4ac2-95b3-71aa6ec76270">Validation Functions</h3><p>A validation function is a MATLAB function that throws an error if certain requirements are not satisfied by the
+        argument value. Validation functions do not return values and, unlike class and size, cannot
+        change the value of the arguments they are validating.</p><p>During the validation process, MATLAB passes the argument value to each validation function listed for that
+        argument. The value passed to the validation functions is the result of any conversion made
+        by the class and size specifications. MATLAB calls each function from left to right and throws the first error encountered. </p><p>For a table of predefined validation functions, see <a href="argument-validation-functions.html" class="a">Argument Validation Functions</a>.</p><section><h4 class="title" id="mw_d3c46813-2f36-4bfe-8cfa-ba9157619c06">Example: Set Specific Restrictions Using Validation Functions</h4><p>Validation functions can restrict arguments in more specific ways. You can use
+          predefined validation functions for many common kinds of validation, and you can define
+          your own validation function to satisfy specific requirements.</p><p>For example, this function specifies the following validations using <a href="../ref/mustbenumeric.html"><code class="function">mustBeNumeric</code></a>, <a href="../ref/mustbereal.html"><code class="function">mustBeReal</code></a>, <a href="../ref/mustbemember.html"><code class="function">mustBeMember</code></a>, and the local function <code class="literal">mustBeEqualSize</code>. </p><div class="itemizedlist"><ul><li><p>Input <code class="literal">x</code> must be a real, numeric row vector of any
+              length.</p></li><li><p>Input <code class="literal">v</code> must be a real, numeric row vector the same size as
+                <code class="literal">x</code>.</p></li><li><p>Input <code class="literal">method</code> must be a character vector that is one of the
+              three allowed choices. Because <code class="literal">method</code> specifies a default value,
+              this argument is optional.</p></li></ul></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> myInterp(x,v,method)
+    <span style="color:#0000FF">arguments</span>
+        x <span style="color:#A0522D">(1,:) {mustBeNumeric,mustBeReal}</span>
+        v <span style="color:#A0522D">(1,:) {mustBeNumeric,mustBeReal,mustBeEqualSize(v,x)}</span>
+        method <span style="color:#A0522D">(1,:) char {mustBeMember(method,{'linear','cubic','spline'})}</span> = <span style="color:#A020F0">'linear'</span>
+    <span style="color:#0000FF">end</span>
+    <span style="color:#228B22">% Function code</span>
+    <span style="color:#0000FF">...</span><span style="color:#228B22">.</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Custom validation function</span>
+<span style="color:#0000FF">function</span> mustBeEqualSize(a,b)
+    <span style="color:#228B22">% Test for equal size</span>
+    <span style="color:#0000FF">if</span> ~isequal(size(a),size(b))
+        eid = <span style="color:#A020F0">'Size:notEqual'</span>;
+        msg = <span style="color:#A020F0">'Size of first input must equal size of second input.'</span>;
+        error(eid,msg)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div><p>Avoid using function argument validation within custom validation functions. For more
+          information about defining validation functions and a list of predefined validation
+          functions, see <a href="argument-validation-functions.html" class="a">Argument Validation Functions</a>.</p></section></section><section><h3 class="title" id="mw_d62c600c-665f-4c22-bcb9-8531e9813fe8">Default Value</h3><p>An input argument default value can be any constant or expression that satisfies the
+        size, class, and validation function requirements. Specifying a default value in an argument
+        declaration makes the argument optional. MATLAB uses the default value when the argument is not included in the function call.
+        Default value expressions are evaluated each time the default is used.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Because MATLAB validates the default value only when the function is called without a value
+          for the argument, an invalid default value causes an error only when the function is
+          called without that argument. </p></div><p>Optional arguments must be positioned after required arguments in the function signature
+        and in the <code class="literal">arguments</code> block. For more information on optional arguments,
+        see <a href="validate-required-and-optional-positional-arguments.html" class="a">Validate Required and Optional Positional Arguments</a>. </p></section><section><h3 class="title" id="mw_ff920cc5-4815-463f-ac4c-f378aef24650">Conversion to Declared Class and Size</h3><p>Both class validation and size validation can change the value of an argument. Here are
+        some examples of conversions that MATLAB can perform.</p><p>To satisfy class restrictions:</p><div class="itemizedlist"><ul><li><p>A <code class="class">char</code> value can be converted to a <code class="class">string</code>
+            value.</p></li><li><p>A <code class="class">single</code> value can be converted to a <code class="class">double</code>.</p></li></ul></div><p>To satisfy size restrictions:</p><div class="itemizedlist"><ul><li><p>Scalar expansion can change input size from scalar to nonscalar.</p></li><li><p>A column vector can be converted to a row vector.</p></li></ul></div><p>As a result, the validated value in the function body can be different from the value
+        passed when calling the function. For more information on class conversion, see <a href="../matlab_oop/implicit-class-conversion.html" class="a">Implicit Class Conversion</a>. To
+        avoid class and size conversions during validation, use argument validation functions
+        instead. For more information, see <a href="avoid-unwanted-class-and-size-conversions.html" class="a">Use Validation Functions to Avoid Unwanted Class and Size Conversions</a>. </p><section><h4 class="title" id="mw_1fc1bd48-3e69-4b1d-92c0-00c41107bd4a">Example: Value Conversion</h4><p>The following function illustrates how inputs can be converted to match the classes
+          specified in the <code class="literal">arguments</code> block. The <code class="literal">SpeedEnum</code>
+          class is an enumeration class created to define the values allowed for the third argument. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> forwardSpeed(a,b,c)
+    <span style="color:#0000FF">arguments</span>
+        a <span style="color:#A0522D">double</span>
+        b <span style="color:#A0522D">char</span>
+        c <span style="color:#A0522D">SpeedEnum</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Function code</span>
+    disp(class(a))
+    disp(class(b))
+    disp(class(c))
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Here is the enumeration class.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> SpeedEnum &lt; int32
+    <span style="color:#0000FF">enumeration</span>
+        Full   (100)
+        Half   (50)
+        Stop   (0)
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This call to the function uses input values that MATLAB can convert to the declared types. The actual argument types within the
+          function are displayed as output.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>forwardSpeed(int8(4),<span style="color:#A020F0">"A string"</span>,<span style="color:#A020F0">'full'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>double
+char
+SpeedEnum</pre></div></div></div></section></section><section><h3 class="title" id="mw_ea7464ac-27ad-45d6-a3fd-0be6c6ccbcae">Output Argument Validation</h3><p>Starting in R2022b, argument validation can be used on output arguments. Similar to
+        input arguments, you can validate the class and size of output arguments and also apply
+        validation functions. However, you cannot specify default values for output arguments or
+        refer to previously declared arguments. Output argument validation is always optional.
+        Adding output argument validation helps improve code readability and also maintains
+        consistent output in code that might change over time.</p><p>Separate <code class="literal">arguments</code> blocks must be used for validating input and
+        output arguments. Define the type of arguments block <code class="literal">(Input)</code> or
+          <code class="literal">(Output)</code> after the <code class="literal">arguments</code> statement. If both
+          <code class="literal">(Input)</code> and <code class="literal">(Output)</code> argument blocks are used, the
+          <code class="literal">(Output)</code> block must follow the <code class="literal">(Input)</code> block. then
+        If no type is specified, then MATLAB assumes the block contains input arguments.</p><p>For more information, see <a href="../ref/arguments.html"><code class="function">arguments</code></a>.</p><section><h4 class="title" id="mw_bb5db799-ded8-42e9-977b-4a4148d56a80">Example: Validate Output Arguments</h4><p>Starting in R2022b, argument validation can be used on output arguments.</p><p>For example, this function validates the size and class of three input arguments and
+          one output argument using separate arguments blocks. Note that the
+            <code class="literal">(Input)</code> block must precede the <code class="literal">(Output)</code>
+          block.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> out = myFunction(A, B, C)   
+    <span style="color:#0000FF">arguments</span> (Input)
+        A <span style="color:#A0522D">(1,1) string </span>
+        B <span style="color:#A0522D">(1,:) double</span>
+        C <span style="color:#A0522D">(2,2) cell</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#0000FF">arguments</span> (Output)
+        out <span style="color:#A0522D">(1,:) double</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Function code</span>
+    <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span>
+</pre></div></div></div></section></section><section><h3 class="title" id="mw_33c9a331-7b39-474c-bbe5-65e801f7a9ea">Kinds of Arguments</h3><p>Function argument validation can declare four kinds of arguments. Functions can define
+        any of these kinds of arguments, but the arguments must be defined in the following
+        order:</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Argument Type</th><th>Additional Information</th></tr></thead><tbody><tr><td><p>1. Required positional arguments</p></td><td rowspan="2"><a href="validate-required-and-optional-positional-arguments.html" class="a">Validate Required and Optional Positional Arguments</a></td></tr><tr><td><p>2. Optional positional arguments</p></td></tr><tr><td><p>3. Repeating positional arguments</p></td><td><a href="validate-repeating-arguments.html" class="a">Validate Repeating Arguments</a></td></tr><tr><td><p>4. Optional name-value arguments</p></td><td><a href="validate-name-value-arguments.html" class="a">Validate Name-Value Arguments</a></td></tr></tbody></table></div></section><section><h3 class="title" id="mw_6752ab70-552b-4fa6-bb8e-31c477014a95">Order of Argument Validation</h3><p>When a function is called, MATLAB validates the arguments in the order they are declared in the
+          <code class="literal">arguments</code> block, from top to bottom. Each argument is fully validated
+        before the next argument is validated. Therefore, any reference to a previously declared
+        argument uses values that have been validated. Functions throw an error as a result of the
+        first validation failure. </p><p>Validated values can be different from the original values passed as inputs when the
+        function is called. For example, this function declares the inputs as class <a href="../ref/uint32.html"><code class="function">uint32</code></a> values. The third input declaration assigns a default value equal to
+        the product of the first two inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> c = f(a, b,c)
+    <span style="color:#0000FF">arguments</span>
+        a <span style="color:#A0522D">uint32</span>
+        b <span style="color:#A0522D">uint32</span>
+        c <span style="color:#A0522D">uint32 </span>= a.* b
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% Function code</span>
+    <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Calling the function with inputs that are a different numeric class (for example,
+          <code class="literal">double</code>) results in a conversion to <code class="literal">uint32</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = f(1.8,1.5)
+</pre></div></div></div><p>Because the optional argument <code class="literal">c</code> is not specified in the function
+        call, MATLAB evaluates the default value and assigns it to <code class="literal">c</code> after
+        converting <code class="literal">a</code> and <code class="literal">b</code> to <code class="literal">uint32</code>
+        values. In this case, the conversion results in a value of 2 for both inputs. Therefore, the
+        product of <code class="literal">a</code> times <code class="literal">b</code> is four.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>
+c =
+
+  uint32
+
+   4</pre></div></div></div><p>If you specify a value for the third input, then the function assigns a value to
+          <code class="literal">c</code> and does not evaluate the default value expression.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>c = f(1.8,1.5,25)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>c =
+
+  uint32
+
+   25</pre></div></div></div></section><section><h3 class="title" id="mw_2f35b35d-3a24-426c-b695-ea862189ca4a">Restrictions on Variable and Function Access</h3><span id="RestrictedExternal" class="anchor_target"></span><p><code class="literal">arguments</code> blocks exist in the function's workspace. Any packages,
+        classes, or functions added to the scope of the function using the <a href="../ref/import.html"><code class="function">import</code></a> command are added to the scope of the <code class="literal">arguments</code>
+        block.</p><p>The only variables visible to validator functions and default value expressions are the
+        input variables already declared. In this function, the default value of
+          <code class="literal">c</code> is derived from <code class="literal">a</code> and <code class="literal">b</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> c = f(a,b,c)
+    <span style="color:#0000FF">arguments</span>
+        a <span style="color:#A0522D">uint32</span>
+        b <span style="color:#A0522D">uint32</span>
+        c <span style="color:#A0522D">uint32 </span>= a * b
+    <span style="color:#0000FF">end</span>
+ 
+    <span style="color:#228B22">% Function code</span>
+    <span style="color:#0000FF">...</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>However, you cannot refer to input variables not yet declared in an
+          <code class="literal">arguments</code> block. For example, using this declaration for argument
+          <code class="literal">a</code> in the previous function is not valid because <code class="literal">b</code>
+        and <code class="literal">c</code> have not been declared yet.</p><div class="code_responsive"><pre class="programlisting"><span class="blue">arguments</span>
+    a uint32 = b * c
+    b uint32
+    c uint32
+<span class="blue">end</span></pre></div><p>Argument validation expressions can reference only previously declared, and therefore
+        validated, arguments. Validation functions and default values for name-value arguments
+        cannot access other name-value arguments.</p><section><h4 class="title" id="mw_7589cc01-dc4e-4a79-b1b9-d000c2761229">Limitations on Functions in <code class="literal">arguments</code> Block</h4><p>Any references to previously declared arguments must be visible in the text of
+          validation functions and default values. To ensure code transparency, do not use functions
+          that interact with the function workspace. Specifically, do not use nested functions or
+          any of the functions listed in the following table in the <code class="literal">arguments</code>
+          block. </p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><tbody><tr><td><code class="literal">assignin</code></td><td><code class="literal">builtin</code></td><td><code class="literal">clear</code></td></tr><tr><td><code class="literal">dbstack</code></td><td><code class="literal">eval</code></td><td><code class="literal">evalc</code></td></tr><tr><td><code class="literal">evalin</code></td><td><code class="literal">exist</code></td><td><code class="literal">feval</code></td></tr><tr><td><code class="literal">input</code></td><td><code class="literal">inputname</code></td><td><code class="literal">load</code></td></tr><tr><td><code class="literal">nargin</code></td><td><code class="literal">narginchk</code></td><td><code class="literal">nargoutchk</code></td></tr><tr><td><code class="literal">save</code></td><td><code class="literal">whos</code></td><td><code class="literal">who</code></td></tr></tbody></table></div><p>These restrictions apply only within the <code class="literal">arguments</code> block and do not
+          apply to variables or functions in the body of the function.</p></section></section><section><h3 class="title" id="mw_e09b0430-ca0c-4dbd-8580-3406b4c1fc5b">Debugging Arguments Blocks</h3><p>While debugging inside of an arguments block the workspace is <span class="emphasis"><em>read
+          only</em></span>. This means that it is possible to inspect the workspace and view the
+        values assigned to variables. However, it is not possible to create new variables or change
+        the values assigned to existing variables while the workspace is read only. Once the
+        debugger is outside of the arguments block it will once again be possible to create or edit
+        variables.</p></section>
+      <h2 id="d126e62774">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/namedargs2cell.html"><span itemprop="name"><code class="function">namedargs2cell</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/arguments.html"><span itemprop="name"><code class="function">arguments</code></span></a></span></p>
+      <h3 id="d126e62783">Topics</h3><ul class="list-unstyled"><li><a href="../input-and-output-arguments.html" class="a">Argument Definitions</a></li><li><a href="validate-required-and-optional-positional-arguments.html" class="a">Validate Required and Optional Positional Arguments</a></li><li><a href="validate-repeating-arguments.html" class="a">Validate Repeating Arguments</a></li><li><a href="validate-name-value-arguments.html" class="a">Validate Name-Value Arguments</a></li><li><a href="argument-validation-functions.html" class="a">Argument Validation Functions</a></li><li><a href="../matlab_oop/validate-property-values.html" class="a">Validate Property Values</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

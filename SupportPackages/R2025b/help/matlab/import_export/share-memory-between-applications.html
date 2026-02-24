@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Share Memory Between Applications</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../memory-mapping.html",
+          "name": "Memory Mapping"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "memory-mapping"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "UISupport",
+          "value": "Desktop"
+
+        }</script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to implement two separate MATLAB processes that communicate with each other by writing and reading from a shared file."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../memory-mapping.html?s_tid=CRUX_lftnav" itemprop="url" id="bugetc6-1"><span itemprop="title">Memory Mapping</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Share Memory Between Applications</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#d126e19662" class="nav-link intrnllnk">The send Function</a></li><li class="nav-item"><a href="#d126e19673" class="nav-link intrnllnk">The answer Function</a></li><li class="nav-item"><a href="#d126e19689" class="nav-link intrnllnk">Running the Example</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=memory-mapping&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=memory-mapping&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=memory-mapping&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="braidws-56">Share Memory Between Applications</h2>
+            <p class="shortdesc">This example shows how to implement two separate MATLAB<sup>&#x00AE;</sup> processes that communicate with each other by writing and reading from
+                a shared file. They share the file by mapping part of their memory space to a common
+                location in the file. A write operation to the memory map belonging to the first
+                process can be read from the map belonging to the second, and vice versa.</p>
+            <p>One MATLAB process (running <code class="literal">send.m</code>) writes a message to the
+                file via its memory map. It also writes the length of the message to byte 1 in the
+                file, which serves as a means of notifying the other process that a message is
+                available. The second process (running <code class="literal">answer.m</code>) monitors byte 1
+                and, upon seeing it set, displays the received message, puts it into uppercase, and
+                echoes the message back to the sender.</p>
+            <p>Prior to running the example, copy the <code class="literal">send</code> and
+                    <code class="literal">answer</code> functions to files <code class="literal">send.m</code> and
+                    <code class="literal">answer.m</code> in your current working directory. </p>
+        <ul><li><p><a class="intrnllnk" href="#d126e19662">The send Function</a></p></li><li><p><a class="intrnllnk" href="#d126e19673">The answer Function</a></p></li><li><p><a class="intrnllnk" href="#d126e19689">Running the Example</a></p></li></ul><div class="procedure"><h3 class="title" id="d126e19662">The send Function</h3><p>This function prompts you to enter text and then, using memory-mapping, passes
+                    the text to another instance of MATLAB that is running the <code class="literal">answer</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> send
+<span style="color:#228B22">% Interactively send a message to ANSWER using memmapfile class.</span>
+ 
+filename = fullfile(tempdir, <span style="color:#A020F0">'talk_answer.dat'</span>);
+ 
+<span style="color:#228B22">% Create the communications file if it is not already there.</span>
+<span style="color:#0000FF">if</span> ~exist(filename, <span style="color:#A020F0">'file'</span>)
+    [f, msg] = fopen(filename, <span style="color:#A020F0">'wb'</span>);
+    <span style="color:#0000FF">if</span> f ~= -1
+        fwrite(f, zeros(1,256), <span style="color:#A020F0">'uint8'</span>);
+        fclose(f);
+    <span style="color:#0000FF">else</span>
+        error(<span style="color:#A020F0">'MATLAB:demo:send:cannotOpenFile'</span>, <span style="color:#0000FF">...</span>
+              <span style="color:#A020F0">'Cannot open file "%s": %s.'</span>, filename, msg);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+ 
+<span style="color:#228B22">% Memory map the file.</span>
+m = memmapfile(filename, <span style="color:#A020F0">'Writable'</span>, true, <span style="color:#A020F0">'Format'</span>, <span style="color:#A020F0">'uint8'</span>);
+ 
+<span style="color:#0000FF">while</span> true
+    <span style="color:#228B22">% Set first byte to zero, indicating a message is not</span>
+    <span style="color:#228B22">% yet ready.</span>
+    m.Data(1) = 0;
+ 
+    str = input(<span style="color:#A020F0">'Enter text (or RETURN to end): '</span>, <span style="color:#A020F0">'s'</span>);
+ 
+    len = length(str);
+    <span style="color:#0000FF">if</span> (len == 0)
+        disp(<span style="color:#A020F0">'Terminating SEND function.'</span>)
+        <span style="color:#0000FF">break</span>;
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Warn if the message is longer than 255 characters.</span>
+    <span style="color:#0000FF">if</span> len &gt; 255
+        warning(<span style="color:#A020F0">'ml:ml'</span>,<span style="color:#A020F0">'SEND input will be truncated to 255 characters.'</span>);
+    <span style="color:#0000FF">end</span>
+    str = str(1:min(len,255));  <span style="color:#228B22">% Limit message to 255 characters.</span>
+    len = length(str); <span style="color:#228B22">% Update len if str has been truncated. </span>
+    
+    <span style="color:#228B22">% Update the file via the memory map.</span>
+    m.Data(2:len+1) = str;
+    m.Data(1)=len;
+   
+ 
+    <span style="color:#228B22">% Wait until the first byte is set back to zero, </span>
+    <span style="color:#228B22">% indicating that a response is available.</span>
+    <span style="color:#0000FF">while</span> (m.Data(1) ~= 0)
+        pause(.25);
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% Display the response.</span>
+    disp(<span style="color:#A020F0">'response from ANSWER is:'</span>)
+    disp(char(m.Data(2:len+1))')
+   
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="d126e19673">The answer Function</h3><p>The <code class="literal">answer</code> function starts a server that, using
+                    memory-mapping, watches for a message from <code class="literal">send</code>. When the
+                    message is received, <code class="literal">answer</code> replaces the message with an
+                    uppercase version of it, and sends this new message back to
+                        <code class="literal">send</code>. To use <code class="literal">answer</code>, call it with no
+                    inputs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> answer
+<span style="color:#228B22">% Respond to SEND using memmapfile class.</span>
+
+disp(<span style="color:#A020F0">'ANSWER server is awaiting message'</span>);
+
+filename = fullfile(tempdir, <span style="color:#A020F0">'talk_answer.dat'</span>);
+
+<span style="color:#228B22">% Create the communications file if it is not already there.</span>
+<span style="color:#0000FF">if</span> ~exist(filename, <span style="color:#A020F0">'file'</span>)
+    [f, msg] = fopen(filename, <span style="color:#A020F0">'wb'</span>);
+    <span style="color:#0000FF">if</span> f ~= -1
+        fwrite(f, zeros(1,256), <span style="color:#A020F0">'uint8'</span>);
+        fclose(f);
+    <span style="color:#0000FF">else</span>
+        error(<span style="color:#A020F0">'MATLAB:demo:answer:cannotOpenFile'</span>, <span style="color:#0000FF">...</span>
+              <span style="color:#A020F0">'Cannot open file "%s": %s.'</span>, filename, msg);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Memory map the file.</span>
+m = memmapfile(filename, <span style="color:#A020F0">'Writable'</span>, true, <span style="color:#A020F0">'Format'</span>, <span style="color:#A020F0">'uint8'</span>);
+
+<span style="color:#0000FF">while</span> true
+    <span style="color:#228B22">% Wait until the first byte is not zero.</span>
+    <span style="color:#0000FF">while</span> m.Data(1) == 0
+        pause(.25);
+    <span style="color:#0000FF">end</span>
+    
+    <span style="color:#228B22">% The first byte now contains the length of the message.</span>
+    <span style="color:#228B22">% Get it from m.</span>
+    msg = char(m.Data(2:1+double(m.Data(1))))';
+
+    <span style="color:#228B22">% Display the message.</span>
+    disp(<span style="color:#A020F0">'Received message from SEND:'</span>)
+    disp(msg)
+    
+    <span style="color:#228B22">% Transform the message to all uppercase.</span>
+    m.Data(2:1+double(m.Data(1))) = upper(msg);
+   
+    <span style="color:#228B22">% Signal to SEND that the response is ready.</span>
+    m.Data(1) = 0;
+<span style="color:#0000FF">end</span></pre></div></div></div><h3 class="title" id="d126e19689">Running the Example</h3><p>To see what the example looks like when it is run, first, start two separate
+                        MATLAB sessions on the same computer system. Call the
+                        <code class="literal">send</code> function with no inputs in one MATLAB session. Call the <code class="literal">answer</code> function in the other
+                    session, to create a map in each of the processes' memory to the common
+                    file.</p><p>Run <code class="literal">send</code> in the first MATLAB session.</p><div class="code_responsive"><pre class="programlisting">send</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Enter text (or RETURN to end):</pre></div></div></div><p>Run <code class="literal">answer</code> in the second MATLAB session.</p><div class="code_responsive"><pre class="programlisting">answer</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ANSWER server is awaiting message</pre></div></div></div><p>Next, enter a message at the prompt displayed by the <code class="literal">send</code>
+                    function. MATLAB writes the message to the shared file. The second MATLAB session, running the <code class="literal">answer</code> function, loops on
+                    byte 1 of the shared file and, when the byte is written by
+                        <code class="literal">send</code>, <code class="literal">answer</code> reads the message from
+                    the file via its memory map. The <code class="literal">answer</code> function then puts
+                    the message into uppercase and writes it back to the file, and
+                        <code class="literal">send</code> (waiting for a reply) reads the message and displays
+                    it.</p><p><code class="literal">send</code> writes a message and reads the uppercase reply.</p><div class="code_responsive"><pre class="programlisting">Hello. Is there anybody out there?</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>response from ANSWER is:
+HELLO. IS THERE ANYBODY OUT THERE?
+Enter text (or RETURN to end): </pre></div></div></div><p><code class="literal">answer</code> reads the message from
+                    <code class="literal">send</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Received message from SEND:
+Hello.  Is there anybody out there?</pre></div></div></div><p>Enter a second message at the prompt display by the <code class="literal">send</code>
+                    function. <code class="literal">send</code> writes the second message to the file. </p><div class="code_responsive"><pre class="programlisting">I received your reply.</pre></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>response from ANSWER is:
+I RECEIVED YOUR REPLY.
+Enter text (or RETURN to end):</pre></div></div></div><p><code class="literal">answer</code> reads the second message, put it into uppercase, and
+                    then writes the message to the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Received message from SEND:
+I received your reply.</pre></div></div></div><p>In the first instance of MATLAB, press <strong class="keycap">Enter</strong> to exit the example.</p><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Terminating SEND function.</pre></div></div></div></div></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

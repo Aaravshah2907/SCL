@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tall Arrays for Out-of-Memory Data</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../datastore.html",
+          "name": "Datastore"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../tall-arrays.html",
+          "name": "Tall Arrays"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../large-files-and-big-data.html",
+          "name": "Large Files and Big Data"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "datastore",
+        "tall-arrays",
+        "large-files-and-big-data"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Learn about tall arrays and perform an example calculation."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Large Files and Big Data</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../datastore.html?s_tid=CRUX_lftnav" itemprop="url" id="buhq8av-1"><span itemprop="title">Datastore</span></a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav">Data Import and Analysis</a></li><li><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav">Large Files and Big Data</a></li><li><a href="../tall-arrays.html?s_tid=CRUX_lftnav" id="bvaolz6">Tall Arrays</a></li></ul><ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav">Data Import and Analysis</a></li><li><a href="../large-files-and-big-data.html?s_tid=CRUX_lftnav" id="bugetan">Large Files and Big Data</a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Tall Arrays for Out-of-Memory Data</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bvnviik" class="nav-link intrnllnk">What is a Tall Array?</a></li><li class="nav-item"><a href="#bvnviiv" class="nav-link intrnllnk">Benefits of Tall Arrays</a></li><li class="nav-item"><a href="#bvayjn0" class="nav-link intrnllnk">Creating Tall Tables</a></li><li class="nav-item"><a href="#bvnvisx" class="nav-link intrnllnk">Creating Tall Timetables</a></li><li class="nav-item"><a href="#bvayjn4" class="nav-link intrnllnk">Creating Tall Arrays</a></li><li class="nav-item"><a href="#bvayjn7" class="nav-link intrnllnk">Lazy Evaluation</a></li><li class="nav-item"><a href="#bvayjn9" class="nav-link intrnllnk">Evaluation with gather</a></li><li class="nav-item"><a href="#bvexbo1" class="nav-link intrnllnk">Saving, Loading, and Checkpointing Tall Arrays</a></li><li class="nav-item"><a href="#bvexb2c" class="nav-link intrnllnk">Supporting Functions</a></li><li class="nav-item"><a href="#d126e34458" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=datastore&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=datastore&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=datastore&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=datastore&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=datastore&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=datastore&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bvaomir">Tall Arrays for Out-of-Memory Data</h2>
+<p class="shortdesc">Tall arrays are used to work with out-of-memory data that is backed by a
+          <code class="function">datastore</code>. Datastores enable you to work with large data sets in
+        small blocks that individually fit in memory, instead of loading the entire data set into
+        memory at once. Tall arrays extend this capability to enable you to work with out-of-memory
+        data using common functions.</p>
+<section><h3 class="title" id="bvnviik">What is a Tall Array?</h3><p>Since the data is not loaded into memory all at once, tall arrays can be arbitrarily large in
+        the first dimension (that is, they can have any number of rows). Instead of writing special
+        code that takes into account the huge size of the data, such as with techniques like
+        MapReduce, tall arrays let you work with large data sets in an intuitive manner that is
+        similar to the way you would work with in-memory MATLAB<sup>&#x00AE;</sup> arrays. Many core operators and functions work the same with tall arrays as
+        they do with in-memory arrays. MATLAB works with small blocks of the data at a time, handling all of the data
+        chunking and processing in the background, so that common expressions, such as
+          <code class="literal">A+B</code>, work with big data sets.</p></section><section><h3 class="title" id="bvnviiv">Benefits of Tall Arrays</h3><p>Unlike in-memory arrays, tall arrays typically remain unevaluated until you request that the
+        calculations be performed using the <code class="function">gather</code> function. This
+          <span class="emphasis"><em>lazy evaluation</em></span> allows you to work quickly with large data sets. When
+        you eventually request output using <code class="function">gather</code>, MATLAB combines the queued calculations where possible and takes the minimum number
+        of passes through the data. The number of passes through the data greatly affects execution
+        time, so it is recommended that you request output only when necessary.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>Since <code class="function">gather</code> returns results as in-memory MATLAB arrays,
+standard memory considerations apply. MATLAB might run out of
+memory if the result returned by <code class="function">gather</code> is too
+large.</p></div></section><section><h3 class="title" id="bvayjn0">Creating Tall Tables</h3><p>Tall tables are like in-memory MATLAB tables, except that they can have any number of rows. To create a tall table
+        from a large data set, you first need to create a datastore for the data. If the datastore
+          <code class="literal">ds</code> contains tabular data, then <code class="literal">tall(ds)</code> returns a
+        tall table or tall timetable containing the data. See <a href="../datastore.html" class="a">Datastore</a> for more information about creating datastores.</p><p>Create a spreadsheet datastore that points to a tabular file of airline flight data. For
+        folders that contain a collection of files, you can specify the entire folder location, or
+        use the wildcard character, <code class="literal">'*.csv'</code>, to include multiple files with the
+        same file extension in the datastore. Clean the data by treating <code class="literal">'NA'</code>
+        values as missing data so that <code class="function">tabularTextDatastore</code> replaces them with
+          <code class="literal">NaN</code> values. Also, set the format of a few text variables to
+          <code class="literal">%s</code> so that <code class="function">tabularTextDatastore</code> reads them as cell
+        arrays of character vectors. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = tabularTextDatastore(<span style="color:#A020F0">'airlinesmall.csv'</span>);
+ds.TreatAsMissing = <span style="color:#A020F0">'NA'</span>;
+ds.SelectedFormats{strcmp(ds.SelectedVariableNames,<span style="color:#A020F0">'TailNum'</span>)} = <span style="color:#A020F0">'%s'</span>;
+ds.SelectedFormats{strcmp(ds.SelectedVariableNames,<span style="color:#A020F0">'CancellationCode'</span>)} = <span style="color:#A020F0">'%s'</span>;</pre></div></div></div><p>Create a tall table from the datastore. When you perform calculations on this tall table, the
+        underlying datastore reads blocks of data and passes them to the tall table to process.
+        Neither the datastore nor the tall table retain any of the underlying data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tt = tall(ds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>tt =
+
+  M×29 tall table 
+
+    Year    Month    DayofMonth    DayOfWeek    DepTime    CRSDepTime    ArrTime    CRSArrTime    UniqueCarrier    FlightNum    TailNum    ActualElapsedTime    CRSElapsedTime    AirTime    ArrDelay    DepDelay    Origin    Dest     Distance    TaxiIn    TaxiOut    Canceled    CancellationCode    Diverted    CarrierDelay    WeatherDelay    NASDelay    SecurityDelay    LateAircraftDelay
+    ____    _____    __________    _________    _______    __________    _______    __________    _____________    _________    _______    _________________    ______________    _______    ________    ________    ______    _____    ________    ______    _______    _________    ________________    ________    ____________    ____________    ________    _____________    _________________
+
+    1987    10       21            3             642        630           735        727          'PS'             1503         'NA'        53                   57               NaN         8          12          'LAX'     'SJC'    308         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       26            1            1021       1020          1124       1116          'PS'             1550         'NA'        63                   56               NaN         8           1          'SJC'     'BUR'    296         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       23            5            2055       2035          2218       2157          'PS'             1589         'NA'        83                   82               NaN        21          20          'SAN'     'SMF'    480         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       23            5            1332       1320          1431       1418          'PS'             1655         'NA'        59                   58               NaN        13          12          'BUR'     'SJC'    296         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       22            4             629        630           746        742          'PS'             1702         'NA'        77                   72               NaN         4          -1          'SMF'     'LAX'    373         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       28            3            1446       1343          1547       1448          'PS'             1729         'NA'        61                   65               NaN        59          63          'LAX'     'SJC'    308         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10        8            4             928        930          1052       1049          'PS'             1763         'NA'        84                   79               NaN         3          -2          'SAN'     'SFO'    447         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    1987    10       10            6             859        900          1134       1123          'PS'             1800         'NA'       155                  143               NaN        11          -1          'SEA'     'LAX'    954         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    :       :        :             :            :          :             :          :             :                :            :          :                    :                 :          :           :           :         :        :           :         :          :            :                   :           :               :               :           :                :
+    :       :        :             :            :          :             :          :             :                :            :          :                    :                 :          :           :           :         :        :           :         :          :            :                   :           :               :               :           :                :
+</pre></div></div></div><p>The display indicates that the number of rows, <code class="literal">M</code>,
+is currently unknown. MATLAB displays some of the rows, and the
+vertical ellipses <code class="literal">:</code> indicate that more rows exist
+in the tall table that are not currently being displayed.</p></section><section><h3 class="title" id="bvnvisx">Creating Tall Timetables</h3><p>If the data you are working with has a time associated with each row of data, then you
+        can use a tall timetable to work on the data. For information on creating tall timetables,
+        see <a href="../ref/timetable.html#refsect-extended-capabilities" class="a">Extended Capabilities
+            (<code class="function">timetable</code>)</a>.</p><p>In this case, the tall table <code class="literal">tt</code> has times associated with each row, but
+        they are broken down into several table variables such as <code class="literal">Year</code>,
+          <code class="literal">Month</code>, <code class="literal">DayofMonth</code>, and so on. Combine all of these
+        pieces of datetime information into a single new tall datetime variable
+          <code class="literal">Dates</code>, which is based on the departure times
+        <code class="literal">DepTime</code>. Then, create a tall timetable using <code class="literal">Dates</code> as
+        the row times. Since <code class="literal">Dates</code> is the only datetime variable in the table,
+        the <code class="function">table2timetable</code> function automatically uses it for the row
+        times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hrs = (tt.DepTime - mod(tt.DepTime,100))/100;
+mins = mod(tt.DepTime,100);
+tt.Dates = datetime(tt.Year, tt.Month, tt.DayofMonth, hrs, mins, 0);
+tt(:,1:8) = [];
+TT = table2timetable(tt)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>TT =
+
+  M×21 tall timetable
+
+            Dates           UniqueCarrier    FlightNum    TailNum    ActualElapsedTime    CRSElapsedTime    AirTime    ArrDelay    DepDelay    Origin    Dest     Distance    TaxiIn    TaxiOut    Canceled    CancellationCode    Diverted    CarrierDelay    WeatherDelay    NASDelay    SecurityDelay    LateAircraftDelay
+    ____________________    _____________    _________    _______    _________________    ______________    _______    ________    ________    ______    _____    ________    ______    _______    _________    ________________    ________    ____________    ____________    ________    _____________    _________________
+
+    21-Oct-1987 06:42:00    'PS'             1503         'NA'        53                   57               NaN         8          12          'LAX'     'SJC'    308         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    26-Oct-1987 10:21:00    'PS'             1550         'NA'        63                   56               NaN         8           1          'SJC'     'BUR'    296         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    23-Oct-1987 20:55:00    'PS'             1589         'NA'        83                   82               NaN        21          20          'SAN'     'SMF'    480         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    23-Oct-1987 13:32:00    'PS'             1655         'NA'        59                   58               NaN        13          12          'BUR'     'SJC'    296         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    22-Oct-1987 06:29:00    'PS'             1702         'NA'        77                   72               NaN         4          -1          'SMF'     'LAX'    373         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    28-Oct-1987 14:46:00    'PS'             1729         'NA'        61                   65               NaN        59          63          'LAX'     'SJC'    308         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    08-Oct-1987 09:28:00    'PS'             1763         'NA'        84                   79               NaN         3          -2          'SAN'     'SFO'    447         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    10-Oct-1987 08:59:00    'PS'             1800         'NA'       155                  143               NaN        11          -1          'SEA'     'LAX'    954         NaN       NaN        0            'NA'                0           NaN             NaN             NaN         NaN              NaN              
+    :                       :                :            :          :                    :                 :          :           :           :         :        :           :         :          :            :                   :           :               :               :           :                :
+    :                       :      </pre></div></div></div></section><section><h3 class="title" id="bvayjn4">Creating Tall Arrays</h3><p>When you extract a variable from a tall table or tall timetable, the result is a tall array of
+        the appropriate underlying data type. A tall array can be a numeric, logical, datetime,
+        duration, calendar duration, categorical, string, or cell array. Also, you can convert an
+        in-memory array <code class="literal">A</code> into a tall array with <code class="literal">tA = tall(A)</code>.
+        The in-memory array <code class="literal">A</code> must have one of the supported data types.</p><p>Extract the arrival delay <code class="literal">ArrDelay</code> from the
+tall timetable <code class="literal">TT</code>. This creates a new tall array
+variable with underlying data type double.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>a = TT.ArrDelay</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>a =
+
+  M×1 tall double column vector
+
+     8
+     8
+    21
+    13
+     4
+    59
+     3
+    11
+    :
+    :</pre></div></div></div><p>The <a href="../ref/tall.classunderlying.html"><code class="function">classUnderlying</code></a> and <a href="../ref/tall.isaunderlying.html"><code class="function">isaUnderlying</code></a> functions are useful to
+determine the underlying data type of a tall array.</p></section><section><h3 class="title" id="bvayjn7">Lazy Evaluation</h3><p>One important aspect of tall arrays is that as you work with them, most operations are not
+        performed immediately. These operations appear to execute quickly, because the actual
+        computation is deferred until you specifically request that the calculations be performed.
+        You can trigger evaluation of a tall array with either the <a href="../ref/tall.gather.html"><code class="function">gather</code></a> function (to bring the result into memory) or the <a href="../ref/tall.write.html"><code class="function">write</code></a> function (to write the result to disk). This lazy evaluation is
+        important because even a simple command like <code class="literal">size(X)</code> executed on a tall
+        array with a billion rows is not a quick calculation.</p><p>As you work with tall arrays, MATLAB keeps track of all
+of the operations to be carried out. This information is then used
+to optimize the number of passes through the data that will be required
+when you request output with the <code class="function">gather</code> function.
+Thus, it is normal to work with unevaluated tall arrays and request
+output only when you require it. For more information, see <a href="lazy-evaluation-of-tall-arrays.html" class="a">Lazy Evaluation of Tall Arrays</a>.</p><p>Calculate the mean and standard deviation of the arrival delay.
+Use these values to construct the upper and lower thresholds for delays
+that are within one standard deviation of the mean. Notice that the
+result of each operation indicates that the array has not been calculated
+yet.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>m = mean(a,<span style="color:#A020F0">'omitnan'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>m =
+
+  tall double
+
+    ?
+
+Preview deferred. Learn more.</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>s = std(a,<span style="color:#A020F0">'omitnan'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>s =
+
+  tall
+
+    ?
+
+Preview deferred. Learn more.</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>one_sigma_bounds = [m-s m m+s]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>one_sigma_bounds =
+
+  M×N×... tall array
+
+    ?    ?    ?    ...
+    ?    ?    ?    ...
+    ?    ?    ?    ...
+    :    :    :
+    :    :    :
+
+Preview deferred. Learn more.</pre></div></div></div></section><section><h3 class="title" id="bvayjn9">Evaluation with <code class="function">gather</code></h3><p>The benefit of lazy evaluation is that when the time comes for MATLAB to perform the calculations, it is often possible to combine the operations in
+        such a way that the number of passes through the data is minimized. So even if you perform
+        many operations, MATLAB only makes extra passes through the data when absolutely necessary.</p><p>The <a href="../ref/tall.gather.html"><code class="function">gather</code></a> function forces evaluation of all queued operations and brings the
+        resulting output into memory. For this reason, you can think of <code class="function">gather</code>
+        as a bridge between tall arrays and in-memory arrays. For example, you cannot control
+          <code class="literal">if</code> or <code class="literal">while</code> loops using a tall logical array, but
+        once the array is evaluated with <code class="function">gather</code> it becomes an in-memory logical
+        array that you can use in these contexts.</p><p>Since <code class="function">gather</code> returns the entire result in MATLAB, you should make sure that the result will fit in memory.</p><p>Use <code class="function">gather</code> to calculate <code class="literal">one_sigma_bounds</code> and
+bring the result into memory. In this case, <code class="literal">one_sigma_bounds</code> requires
+several operations to calculate, but MATLAB combines the operations
+into one pass through the data. Since the data in this example is
+small, <code class="function">gather</code> executes quickly. However, the
+elimination of passes through the data becomes more valuable as the
+size of your data increases.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sig1 = gather(one_sigma_bounds)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Evaluating tall expression using the Local MATLAB Session:
+- Pass 1 of 1: Completed in 1.5 sec
+Evaluation completed in 1.8 sec
+
+sig1 =
+
+  -23.4572    7.1201   37.6975</pre></div></div></div><p>You can specify multiple inputs and outputs to <code class="function">gather</code> if
+you want to evaluate several tall arrays at once. This technique is
+faster than calling <code class="function">gather</code> multiple times. For
+example, calculate the minimum and maximum arrival delay. Computed
+separately, each value requires a pass through the data to calculate
+for a total of two passes. However, computing both values simultaneously
+requires only one pass through the data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[max_delay, min_delay] = gather(max(a),min(a))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Evaluating tall expression using the Local MATLAB Session:
+- Pass 1 of 1: Completed in 1.1 sec
+Evaluation completed in 1.1 sec
+
+max_delay =
+
+        1014
+
+
+min_delay =
+
+   -64</pre></div></div></div><p>These results indicate that on average, most flights arrive
+about 7 minutes late. But it is within one standard deviation for
+a flight to be up to 37 minutes late or 23 minutes early. The quickest
+flight in the data set arrived about an hour early, and the latest
+flight was delayed by many hours.</p></section><section><h3 class="title" id="bvexbo1">Saving, Loading, and Checkpointing Tall Arrays</h3><p>The <a href="../ref/save.html"><code class="function">save</code></a> function saves
+the <span class="emphasis"><em>state</em></span> of a tall array, but does not copy
+any of the data. The resulting <code class="literal">.mat</code> file is typically
+small. However, the original data files must be available in the same
+location in order to subsequently use <a href="../ref/load.html"><code class="function">load</code></a>.</p><p>The <a href="../ref/tall.write.html"><code class="function">write</code></a> function makes a copy of the data and saves the copy as a collection of
+        files, which can consume a large amount of disk space. <code class="function">write</code> executes
+        all pending operations on the tall array to calculate the values prior to writing. Once
+          <code class="function">write</code> copies the data, it is independent of the original raw data.
+        Therefore, you can recreate the tall array from the written files even if the original raw
+        data is no longer available.</p><p>You can recreate the tall array from the written files by creating a new datastore that points
+        to the location where the files were written. This functionality enables you to create
+          <span class="emphasis"><em>checkpoints</em></span> or <span class="emphasis"><em>snapshots</em></span> of tall array data.
+        Creating a checkpoint is a good way to save the results of preprocessing your data, so that
+        the data is in a form that is more efficient to load.</p><p>If you have a tall array <code class="literal">TA</code>, then you can
+write it to the folder <code class="literal">location</code> with the command:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>write(location,TA);</pre></div></div></div><p>Later, to reconstruct <code class="literal">TA</code> from the written
+files, use the commands:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ds = datastore(location);
+TA = tall(ds);</pre></div></div></div><p>Additionally, you can use the <code class="function">write</code> function
+to trigger evaluation of a tall array and write the results to disk.
+This use of <code class="function">write</code> is similar to <code class="function">gather</code>,
+however, <code class="function">write</code> does not bring any results into
+memory.</p></section><section><h3 class="title" id="bvexb2c">Supporting Functions</h3><p>Most core functions work the same way with tall arrays as they do with in-memory arrays.
+        However, in some cases the way that a function works with tall arrays is special or has
+        limitations. You can tell whether a function supports tall arrays, and if it has any
+        limitations, by looking at the bottom of the reference page for the function in the
+          <strong class="emphasis bold">Extended Capabilities</strong> section (for an example, see
+          <a href="../ref/filloutliers.html"><code class="function">filloutliers</code></a>).</p><p>For a filtered list of all MATLAB functions that support tall arrays, see <a href="../referencelist.html?type=function&amp;capability=tall"><span class="reflist">Function List (Tall Arrays)</span></a>. </p><p>Tall arrays also are supported by several toolboxes, enabling you to do things like
+        write machine learning algorithms, deploy standalone apps, and run calculations in parallel
+        or on a cluster. For more information, see <a href="extend-tall-arrays-with-other-products.html" class="a">Extend Tall Arrays with Other Products</a>.</p></section>
+<h2 id="d126e34458">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tall.gather.html"><span itemprop="name"><code class="function">gather</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tall.tall.html"><span itemprop="name"><code class="function">tall</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/datastore.html"><span itemprop="name"><code class="function">datastore</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/table.html"><span itemprop="name"><code class="function">table</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/mapreducer.html"><span itemprop="name"><code class="function">mapreducer</code></span></a></span></p>
+
+<h3 id="d126e34478">Topics</h3><ul class="list-unstyled"><li><a href="index-and-view-tall-array-elements.html" class="a">Index and View Tall Array Elements</a></li><li><a href="tall-data-visualization.html" class="a">Visualization of Tall Arrays</a></li></ul>
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Capacitated Vehicle Routing Problem</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../quantum-computing.html",
+          "name": "Quantum Computing"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../qubo.html",
+          "name": "Quadratic Unconstrained Binary Optimization (QUBO)"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "qubo"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Express and solve a capacitated vehicle routing problem using QUBO."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../quantum-computing.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Quantum Computing</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../qubo.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_179b79ec-0389-46ef-988e-3f9c7f9a5981"><span itemprop="title">Quadratic Unconstrained Binary Optimization (QUBO)</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Capacitated Vehicle Routing Problem</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_af4a53aa-b6b1-4e0b-be55-a21c1af118a8" class="nav-link intrnllnk">Problem Data and Variables</a></li><li class="nav-item"><a href="#mw_a12939fb-76e4-4ddf-b5a8-7a41ac6a6495" class="nav-link intrnllnk">Create Clusters</a></li><li class="nav-item"><a href="#mw_1774c3c2-3828-4b28-90ad-440dfcbd5f1d" class="nav-link intrnllnk">Create and Solve Traveling Salesperson Problems</a></li><li class="nav-item"><a href="#mw_6461071d-a889-4510-a775-8b4fed04b0a1" class="nav-link intrnllnk">Helper Functions</a></li><li><a href="#References" class="intrnllnk">References</a></li><li class="nav-item"><a href="#d126e70642" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=qubo&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=qubo&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=qubo&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_025a4283-447b-424f-97da-3fa254c8bbe2">Capacitated Vehicle Routing Problem</h2><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p><strong class="emphasis bold">Installation Required:</strong> This functionality requires <a href="https://www.mathworks.com/matlabcentral/fileexchange/125425-matlab-support-package-for-quantum-computing"><span class="entity"><span class="trademark">MATLAB</span> Support Package for Quantum Computing</span></a>.</p></div><p>Capacitated vehicle routing is a combination of a knapsack problem and a traveling
+      salesperson problem. The problem is for a vehicle (or set of vehicles) to visit a group of
+      customers that are geographically distributed. The vehicle has a capacity constraint, where
+      the capacity refers to a quantity that the vehicle delivers to each customer. The problem has
+      a central depot, and the vehicle must return to the depot after each visit to a set of
+      customers, or route. The problem is to visit the customers at minimal cost, where the cost is
+      the total length of the route for visiting a group of customers.</p><p>The following figure shows four routes originating from a single point, the depot. These
+      routes do not represent a minimal solution, because nodes 2 and 3 (at least) should be visited
+      in the opposite order. The route containing nodes 2 and 3 has a self-intersection, which does
+      not occur in an optimal tour.</p><div class="informalfigure"><div id="d126e70450" class="mediaobject"><p><img src="tour.png" alt="Four tours starting from a central point, the depot" height="403" width="518"></p></div></div><p>To solve a capacitated vehicle routing problem, follow the steps in Feld and coauthors
+        <a href="quantum-capacitated-vehicle-routing.html#mw_f3332df0-e462-4b3b-962c-cc0a6605bbde" class="intrnllnk">[1]</a>. While Feld gives several
+      solution approaches, this example uses just one:</p><div class="itemizedlist"><ul><li><p>Create clusters that represent groups of customers visited by a vehicle in a single
+          route. This step is a knapsack problem.</p></li><li><p>Solve the traveling salesperson problem for each cluster.</p></li></ul></div><p>Solve the cluster creation problem using a classical algorithm. Solve the traveling
+      salesperson problems by mapping them to QUBO problems. Solve the QUBO problems using the
+        <code class="function">solve</code> function, which internally uses the tabu search algorithm.</p><section><h3 class="title" id="mw_af4a53aa-b6b1-4e0b-be55-a21c1af118a8">Problem Data and Variables</h3><p>Create random integer locations for 24 customers, with random integer demands at the
+        locations from 100 to 2500 in increments of 100. The depot, which is one more location, is
+        at coordinates [0,0].</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>rng(1) <span style="color:#228B22">% For reproducibility</span>
+numCustomers = 24; <span style="color:#228B22">% Depot at [0 0] makes 25 locations</span>
+depot = [0 0]; <span style="color:#228B22">% Depot at the origin</span>
+loc = [depot; randi([-50,50],numCustomers,2)]; <span style="color:#228B22">% Integers from -50 to 50, 24-by-2</span>
+demand = 100*randi([1,25],numCustomers,1);
+capacity = 6000;</pre></div></div></div><p>Plot the locations and demands.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Plot the locations with demands overlaid</span>
+figure;
+scatter(loc(:,1),loc(:,2),<span style="color:#A020F0">'filled'</span>,<span style="color:#A020F0">'SizeData'</span>,25);
+hold <span style="color:#A020F0">on</span>
+text(loc(:,1),loc(:,2),[<span style="color:#A020F0">"Depot"</span>; num2str(demand)]);
+title(<span style="color:#A020F0">"Customer Locations and Demands"</span>);</pre></div></div></div><div class="informalfigure"><div id="d126e70476" class="mediaobject"><p><img src="locations.png" alt="24 random integer locations from -50 to 50 in each coordinate, with associated demands from 100 to 2500" height="593" width="745"></p></div></div><p>Create the matrix of distances between customers from the coordinate vector. Use the
+        Pythagorean rule and Euclidean distance.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>numLocations = numCustomers + 1;
+[X,Y] = meshgrid(1:numLocations);
+dist = hypot(loc(X(:),1)- loc(Y(:),1),loc(X(:),2) - loc(Y(:),2));
+dist = reshape(dist,numLocations,numLocations);</pre></div></div></div><p>Set up variables for the remainder of the example by removing the depot, site 1, from
+        the problem data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>customerCoords = loc(2:end,:);
+costMatrix = dist;
+vehicleCapacity = capacity;</pre></div></div></div></section><section><h3 class="title" id="mw_a12939fb-76e4-4ddf-b5a8-7a41ac6a6495">Create Clusters</h3><p>Feld <a href="quantum-capacitated-vehicle-routing.html#mw_f3332df0-e462-4b3b-962c-cc0a6605bbde" class="intrnllnk">[1]</a> gives the following
+        two-step approach for creating clusters:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Create initial clusters based on the problem coordinates and capacity limits.</p></li><li><p>Refine the initial clusters to obtain shorter traveling salesperson routes.</p></li></ol></div><p>For this example, create initial clusters using the following iterative approach:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Start with the customer that is farthest from the depot.</p></li><li><p>Iteratively add customers one at a time, choosing each customer to add as the one
+            closest to the current mean position of the customers in the cluster. That is, that the
+            second customer added to the cluster is the one closest to the first customer, the third
+            customer is the one closest to the average position of the first two, and so on.</p></li><li><p>Stop adding customers to the cluster when adding the next one would exceed the
+            capacity constraint. At this event, return to the first step and start a new
+            cluster.</p></li></ol></div><p>Create the clusters as structures with the fields <code class="literal">customers</code>,
+          <code class="literal">center</code>, and <code class="literal">demand</code>. Use the
+          <code class="literal">addToCluster</code> helper function to add a customer to the cluster. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clusters = [];
+
+<span style="color:#228B22">% CLUSTER GENERATION</span>
+
+<span style="color:#228B22">% Select the first node of the first cluster</span>
+[~,idx] = max(costMatrix(1,:));
+
+currentCluster.Customers = idx;
+currentCluster.Center = customerCoords(idx,:);
+currentCluster.Demand = demand(idx);
+
+unclustered.Coords = customerCoords;
+unclustered.Customers = 1:numCustomers;
+unclustered.Coords(idx,:) = [];
+unclustered.Customers(idx) = [];
+
+<span style="color:#228B22">% While not all the nodes have beed added</span>
+<span style="color:#0000FF">while</span> ~isempty(unclustered.Customers)
+    <span style="color:#228B22">% Find the next closest node to the cluster</span>
+    distance = sqrt(sum((currentCluster.Center - unclustered.Coords).^2,2));
+    [~,nextIdx] = min(distance);
+    next = unclustered.Customers(nextIdx);
+    <span style="color:#228B22">% Remove the node from the unclustered list</span>
+    unclustered.Coords(nextIdx,:) = [];
+    unclustered.Customers(nextIdx) = [];
+
+    <span style="color:#228B22">% If the customer can be added without violating capacity constraints,</span>
+    <span style="color:#228B22">% add the customer to the current cluster; otherwise, start a new cluster</span>
+    <span style="color:#0000FF">if</span> currentCluster.Demand + demand(next) &lt;= vehicleCapacity
+        currentCluster = addToCluster(currentCluster,next,customerCoords,demand);
+    <span style="color:#0000FF">else</span>
+        clusters = [clusters, currentCluster];
+        currentCluster.Customers = next;
+        currentCluster.Center = customerCoords(next,:);
+        currentCluster.Demand = demand(next);
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+clusters = [clusters, currentCluster];</pre></div></div></div><p>After creating the initial clusters, you can improve them. To do so, reassign a customer
+        to a different cluster if doing so places the customer closer to the mean position of the
+        new cluster compared to the current cluster, without exceeding the capacity constraint of
+        the new cluster. Continue to perform cluster improvement steps until no more steps are
+        possible, or until 10 improvement steps are made.</p><p>Improve the clusters using the <code class="literal">addToCluster</code> and
+          <code class="literal">removeFromCluster</code> helper functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% CLUSTER IMPROVEMENT</span>
+iterations = 0;
+<span style="color:#228B22">% For each cluster</span>
+<span style="color:#0000FF">while</span> iterations &lt; 10
+    <span style="color:#0000FF">for</span> i = 1:numel(clusters)
+        <span style="color:#228B22">% And each customer within the cluster</span>
+        <span style="color:#0000FF">for</span> customer = clusters(i).Customers
+            <span style="color:#228B22">% Calculate the customer's distance from the center</span>
+            d_i = sqrt(sum((clusters(i).Center - customerCoords(customer,:)).^2));
+            <span style="color:#228B22">% For each alternative cluster</span>
+            <span style="color:#0000FF">for</span> j = [1:i-1, i+1:numel(clusters)]
+                <span style="color:#228B22">% Calculate the customer's distance to the center of the</span>
+                <span style="color:#228B22">% alternative cluster</span>
+                d_j = sqrt(sum((clusters(j).Center - customerCoords(customer,:)).^2));
+                <span style="color:#228B22">% Move the customer to the alternative cluster if it is closer and</span>
+                <span style="color:#228B22">% capacity constraints are met</span>
+                <span style="color:#0000FF">if</span> d_j &lt; d_i &amp;&amp; clusters(j).Demand + demand(customer) &lt; vehicleCapacity
+                    <span style="color:#228B22">% Remove the customer from the original cluster</span>
+                    <span style="color:#228B22">% and add the customer to the new cluster</span>
+                    clusters(i) = removeFromCluster(clusters(i), <span style="color:#0000FF">...</span>
+                        customer, customerCoords, demand);
+                    clusters(j) = addToCluster(clusters(j), <span style="color:#0000FF">...</span>
+                        customer, customerCoords, demand);                    
+                    <span style="color:#0000FF">break</span>
+                <span style="color:#0000FF">end</span>
+            <span style="color:#0000FF">end</span>
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    iterations = iterations + 1;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Adjust the customer labels so that they correspond to the original problem, with the
+        depot being site 1 and the first customer being site 2.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>nRoutes = numel(clusters);
+<span style="color:#0000FF">for</span> i = 1:nRoutes
+    clusters(i).Customers = clusters(i).Customers + 1;
+<span style="color:#0000FF">end</span></pre></div></div></div></section><section><h3 class="title" id="mw_1774c3c2-3828-4b28-90ad-440dfcbd5f1d">Create and Solve Traveling Salesperson Problems</h3><p>Each cluster represents a group of customers visited in one vehicle route, which starts
+        at the depot and returns to the depot. For each route, the vehicle should travel the
+        smallest possible distance. This problem is the traveling salesperson problem (TSP) for each
+        cluster.</p><p>For each cluster, create a distance matrix for the customers in that cluster. Collect
+        the various TSPs and their solutions in structures. Each structure contains the customers
+        associated with that TSP, the distances between customers, and the solution to the TSP,
+        which is the route with the minimal distance.</p><p>Create the TSPs to be solved by conversion to QUBO problems.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TSPsolutions = cell(nRoutes,1);
+Routes = cell(nRoutes,1);
+customerCoords = loc; <span style="color:#228B22">% Return depot to list</span></pre></div></div></div><p>For each cluster of customers, compute the pairwise distances and formulate the
+        corresponding TSPs. Convert each TSP to a QUBO problem using the <code class="literal">tsp2qubo</code>
+        helper function. Solve the TSPs using the <code class="literal">solvemyTSP</code> helper function. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">for</span> rt = 1:nRoutes
+    <span style="color:#228B22">% Compute pairwise distance</span>
+    cluster = clusters(rt);
+    coords = [depot; customerCoords(cluster.Customers,:)];
+    M = height(coords);
+    [X,Y] = meshgrid(1:M);
+    dist = hypot(coords(X(:),1)- coords(Y(:),1),coords(X(:),2) - coords(Y(:),2));
+    
+    <span style="color:#228B22">% Collect TSP data</span>
+    tsp.CostMatrix = reshape(dist,M,M);
+    tsp.Customers = cluster.Customers;
+    <span style="color:#228B22">% Solve this TSP</span>
+    TSPsolutions{rt} = solvemyTSP(tsp);
+    Routes{rt} = TSPsolutions{rt}.Route;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Plot the resulting routes using the <code class="literal">plotClusters</code> helper
+        function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>plotClusters(clusters,loc,Routes)</pre></div></div></div><div class="informalfigure"><div id="d126e70553" class="mediaobject"><p><img src="solutionplot.png" alt="Five colored line plots showing routes starting from and ending at depot." height="577" width="732"></p></div></div><p>Display the capacity needed for each route.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d = arrayfun(@(x)x.Demand,clusters)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>d =
+
+        5000        5800        5400        4600        5700</pre></div></div></div><p>The demand in each route is less than the capacity limit of 6000.</p></section><section><h3 class="title" id="mw_6461071d-a889-4510-a775-8b4fed04b0a1">Helper Functions</h3><p>This code creates the <code class="literal">addToCluster</code> helper function. Note that this
+        helper function uses the <code class="literal">updateCluster</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> cluster = addToCluster(cluster,next,customerCoordinates,demandVector)
+    cluster.Customers = [cluster.Customers, next];
+    cluster = updateCluster(cluster,next,customerCoordinates,demandVector,1);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">removeFromCluster</code> helper function. Note that
+        this helper function uses the <code class="literal">updateCluster</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> cluster = removeFromCluster(cluster,next,customerCoordinates,demandVector)
+    cluster.Customers(cluster.Customers == next) = [];   
+    cluster = updateCluster(cluster,next,customerCoordinates,demandVector,-1);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">updateCluster</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> cluster = updateCluster(cluster,next,customerCoordinates,demandVector,s)
+<span style="color:#228B22">% Update the cluster as well as the lists of available coordinates and</span>
+<span style="color:#228B22">% customers</span>
+
+currentN = numel(cluster.Customers);
+previousN = currentN - s;
+
+<span style="color:#228B22">% Update center</span>
+newX = (cluster.Center(1)*previousN + s*customerCoordinates(next,1))/(currentN);
+newY = (cluster.Center(2)*previousN + s*customerCoordinates(next,2))/(currentN);
+cluster.Center = [newX,newY];
+
+<span style="color:#228B22">% Update demand</span>
+cluster.Demand = cluster.Demand + s*demandVector(next);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">plotClusters</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> plotClusters(clusters,customerCoords,Routes)
+    <span style="color:#228B22">% Plot the result of the clustering algorithm in 2D space. Plot the</span>
+    <span style="color:#228B22">% routes as well if they are provided. </span>
+
+    <span style="color:#228B22">% Plot the depot</span>
+    f = figure;
+
+    scatter(customerCoords(1,1), customerCoords(1,2),<span style="color:#A020F0">"filled"</span>);
+    ax = f.CurrentAxes;
+    text(customerCoords(1,1), customerCoords(1,2),<span style="color:#A020F0">"Depot"</span>);
+    hold <span style="color:#A020F0">on</span>
+
+    <span style="color:#228B22">% Plot each cluster and label customers</span>
+    <span style="color:#0000FF">for</span> i = 1:numel(clusters)
+        customer = clusters(i).Customers;
+        scatter(customerCoords(customer,1),<span style="color:#0000FF">...</span>
+                customerCoords(customer,2),<span style="color:#A020F0">"filled"</span>,SizeData=25); <span style="color:#228B22">% Locations</span>
+        text(customerCoords(customer,1),<span style="color:#0000FF">...</span>
+               customerCoords(customer,2),num2str(customer')); <span style="color:#228B22">% Labels</span>
+    <span style="color:#0000FF">end</span>
+
+    <span style="color:#228B22">% If the routes are provided, plot them</span>
+    <span style="color:#0000FF">if</span> nargin &gt; 2
+        <span style="color:#228B22">% Reset color index - 1 is for the depot, so start at 2</span>
+        colorIdx = 1;
+        <span style="color:#0000FF">for</span> k = 1:numel(Routes)
+            route = Routes{k};
+            <span style="color:#228B22">% Advance color index for the next route</span>
+            colorIdx = colorIdx + 1;
+            <span style="color:#228B22">% Append depot as the start of the route</span>
+            cu = [1 clusters(k).Customers]; 
+            tr = cu(route); <span style="color:#228B22">% Route in original indices</span>
+            <span style="color:#0000FF">for</span> customer = 1:numel(tr) - 1
+                ax.ColorOrderIndex = colorIdx; <span style="color:#228B22">% Keep current route color</span>
+                plot(customerCoords(tr(customer:customer+1),1),<span style="color:#0000FF">...</span>
+                    customerCoords(tr(customer:customer+1),2));
+            <span style="color:#0000FF">end</span>
+            ax.ColorOrderIndex = colorIdx;
+            plot(customerCoords([tr(end),tr(1)],1),<span style="color:#0000FF">...</span>
+                customerCoords([tr(end),tr(1)],2)); 
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+    drawnow
+    hold <span style="color:#A020F0">off</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">tsp2qubo</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> QP = tsp2qubo(dist)
+<span style="color:#228B22">%   QP = TSP2QUBO(DIST) returns a QUBO problem from the traveling salesperson</span>
+<span style="color:#228B22">%   problem specified by the distance matrix DIST. DIST is an N-by-N</span>
+<span style="color:#228B22">%   nonnegative matrix where DIST(i,j) is the distance between locations</span>
+<span style="color:#228B22">%   i and j.</span>
+
+<span style="color:#228B22">% Copyright 2023 The MathWorks, Inc.</span>
+
+N = size(dist,1);
+<span style="color:#228B22">% Create constraints on routes</span>
+A = eye(N);
+B = ones(N);
+Q0 = kron(A,B);
+Q1 = kron(B,A);
+<span style="color:#228B22">% Create upper diagonal matrices of distances</span>
+v = ones(N-1,1);
+A2 = diag(v,1);
+Q2 = kron(B,A2); <span style="color:#228B22">% Q2 has a diagonal just above the main diagonal in each block</span>
+C = kron(dist,B);
+Q2 = Q2.*C; <span style="color:#228B22">% Q2 has an upper diagonal dist(i,j)</span>
+<span style="color:#228B22">% Create dist(j,i) in the upper-right corner of each block</span>
+E = zeros(N);
+E(1,N) = 1;
+Q3 = kron(B,E); <span style="color:#228B22">% Q3 has a 1 in the upper-right corner of each block</span>
+CP = kron(dist',B); <span style="color:#228B22">% dist' for D(j,i)</span>
+Q3 = Q3.*CP; <span style="color:#228B22">% Q3 has dist(j,i) in the upper-right corner of each block</span>
+<span style="color:#228B22">% Add the multipliers</span>
+M = max(max(dist));
+QN = sparse(M*(Q0 + Q1)*N^2 + Q2 + Q3);
+<span style="color:#228B22">% Symmetrize</span>
+QN = (QN + QN.')/2;
+
+<span style="color:#228B22">% Include the constant and linear terms</span>
+c = -4*ones(N^2,1)*M*N^2;
+d = 2*N*M*N^2;
+
+QP = qubo(QN,c,d);
+
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">solvemyTSP</code> helper function. Note that this
+        helper function uses the <code class="literal">solveTSPwithTabu</code> and
+          <code class="literal">convertSolutionToRoute</code> helper functions. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> TSPsolution = solvemyTSP(tsp)
+<span style="color:#228B22">% solvemyTSP solves the TSP by first converting it to a QUBO problem </span>
+<span style="color:#228B22">% and then using tabu search to find a solution. </span>
+
+<span style="color:#228B22">% Inputs: </span>
+<span style="color:#228B22">%   tsp: Structure with fields</span>
+<span style="color:#228B22">%       customers: the customers for the tsp</span>
+<span style="color:#228B22">%       costMatrix: the cost matrix for the tsp</span>
+<span style="color:#228B22">% Outputs: </span>
+<span style="color:#228B22">%   TSP_solution: Structure with fields</span>
+<span style="color:#228B22">%       Route: The order of the customers in the best route found. For example,</span>
+<span style="color:#228B22">%       if there are 5 customers in this tsp, the Route might be [2 3 1 5 4]</span>
+<span style="color:#228B22">%       for customers [13 6 3 12 7]. </span>
+<span style="color:#228B22">%       customers: The customers in the current tsp, taken directly</span>
+<span style="color:#228B22">%       from the tsp input</span>
+<span style="color:#228B22">%       quboFval: The fval returned by the qubo algorithm</span>
+
+n = numel(tsp.Customers);
+
+<span style="color:#228B22">% If the number of customers is less than 3, the solution is trivial and</span>
+<span style="color:#228B22">% there is no need to solve the QUBO. </span>
+<span style="color:#0000FF">if</span> n &lt; 3
+    TSPsolution.Route = 1:n;
+    TSPsolution.Customers = tsp.Customers;
+    TSPsolution.QuboFval = tsp.CostMatrix(1,2) + tsp.CostMatrix(2,1);
+    <span style="color:#0000FF">return</span>
+<span style="color:#0000FF">end</span>
+    
+<span style="color:#228B22">% Solve with tabu search</span>
+TSPsol = solveTSPwithTabu(tsp.CostMatrix);
+
+<span style="color:#228B22">% Convert the QUBO solution to a route</span>
+TSPsolution.Route = convertSolutionToRoute(TSPsol);
+TSPsolution.QuboFval = TSPsol.BestFunctionValue;
+TSPsolution.Customers = tsp.Customers;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">solveTSPwithTabu</code> helper function. Note that
+        this helper function uses the <code class="literal">tsp2qubo</code> and
+          <code class="literal">checkTSPConstraints</code> helper functions. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> solution = solveTSPwithTabu(costMatrix)
+<span style="color:#228B22">% Solves the TSP with tabu search. Convert the TSP to a QUBO</span>
+<span style="color:#228B22">% according to the penalty term and return the best feasible solution. </span>
+<span style="color:#228B22">% Convert the TSP problem to QUBO</span>
+Q = tsp2qubo(costMatrix);
+x = solve(Q);
+
+validSolutions = checkTSPConstraints(x);
+<span style="color:#228B22">% If no valid solution is found yet, try again up to 10 times</span>
+<span style="color:#0000FF">if</span> validSolutions == false
+   it = 1;
+   <span style="color:#0000FF">while</span> (validSolutions == false) &amp;&amp; it &lt; 10
+       x = solve(Q);
+       validSolutions = checkTSPConstraints(x);
+       it = it + 1;
+   <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span>
+
+<span style="color:#0000FF">if</span> validSolutions == false
+   solution = [];
+<span style="color:#0000FF">else</span>
+   solution = x;
+<span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">checkTSPConstraints</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> validSolutions = checkTSPConstraints(x)
+<span style="color:#228B22">% The solutions are encoded as [x11, x12, x13, ... x21, x23, ...]'</span>
+<span style="color:#228B22">% where xij indicates that customer i is visited in the jth position of the</span>
+<span style="color:#228B22">% route. To establish that the constraints are satisfied, verify</span>
+<span style="color:#228B22">% that each customer is visited only once and each position in the route</span>
+<span style="color:#228B22">% has only one customer assigned to it.</span>
+N = size(x.BestX,1);
+n = sqrt(N);
+y = reshape(x.BestX,n,n);
+
+<span style="color:#228B22">% Ensure each customer has only one position assigned</span>
+r = all(sum(y,1) == 1);
+
+<span style="color:#228B22">% Ensure each route position (row) on has one customer assigned</span>
+s = all(sum(y,2) == 1);
+validSolutions = r &amp;&amp; s;
+<span style="color:#0000FF">end</span></pre></div></div></div><p>This code creates the <code class="literal">convertSolutionToRoute</code> helper function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">function</span> Route = convertSolutionToRoute(sol)
+<span style="color:#228B22">% The solutions are encoded as [x11, x12, x13, ... x21, x23, ...]'</span>
+<span style="color:#228B22">% where xij indicates that customer i is visited in the jth position of the</span>
+<span style="color:#228B22">% route. Decode the solution into a route.</span>
+solution = sol.BestX;
+n = sqrt(numel(solution));
+selected_indices = find(solution);
+order = mod(selected_indices - 1, n) + 1;
+[~, node_order] = sort(order);
+nodes = 1:n;
+
+Route = nodes(node_order);
+<span style="color:#0000FF">end</span></pre></div></div></div></section><div class="bibliography"><h2 id="References">References</h2><div id="mw_f3332df0-e462-4b3b-962c-cc0a6605bbde" class="bibliomixed"><p>[1] Feld, Sebastian, Christoph Roch,
+        Thomas Gabor, Christian Seidel, Florian Neukart, Isabella Galter, Wolfgang Mauerer, and
+        Claudia Linnhoff-Popien. <em class="citetitle">A Hybrid Solution Method for the Capacitated Vehicle
+          Routing Problem Using a Quantum Annealer.</em> Available at <a href="https://arxiv.org/abs/1811.07403" target="_blank">https://arxiv.org/abs/1811.07403</a>.</p></div></div>
+      <h2 id="d126e70642">See Also</h2><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.solve.html"><span itemprop="name"><code class="function">solve</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.evaluateobjective.html"><span itemprop="name"><code class="function">evaluateObjective</code></span></a></span></li></ul><h3>Objects</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qubo.html"><span itemprop="name"><code class="object">qubo</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/tabusearch.html"><span itemprop="name"><code class="object">tabuSearch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/qaoa.html"><span itemprop="name"><code class="object">qaoa</code></span></a></span></li></ul>
+      <h3 id="d126e70666">Topics</h3><ul class="list-unstyled"><li><a href="quantum-annealing-workflow.html" class="a">Workflow for QUBO Problems</a></li><li><a href="quantum-tsp.html" class="a">Traveling Salesperson Problem with QUBO</a></li><li><a href="max-cut-with-qaoa.html" class="a">Solve Max-Cut Problem Using QAOA</a></li></ul>
+      
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Singular Values</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../linear-algebra.html",
+          "name": "Linear Algebra"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "linear-algebra"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Singular value decomposition (SVD)."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../linear-algebra.html?s_tid=CRUX_lftnav" itemprop="url" id="linear-algebra"><span itemprop="title">Linear Algebra</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Singular Values</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_f3ddab14-b3a4-4671-a33e-7f5e977c4026" class="nav-link intrnllnk">Batched SVD Calculation</a></li><li class="nav-item"><a href="#mw_128a6015-9273-4552-ab13-099a3fde506a" class="nav-link intrnllnk">Low-Rank SVD Approximations</a></li><li class="nav-item"><a href="#d126e5899" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=linear-algebra&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=linear-algebra&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f4-960721">Singular Values</h2><a class="indexterm" name="d126e5573"></a><a class="indexterm" name="d126e5576"></a><a class="indexterm" name="d126e5579"></a><p>A <em class="firstterm">singular value</em> and corresponding <em class="firstterm">singular vectors</em> of a rectangular matrix <em class="varname">A</em> are, respectively, a scalar <em class="varname">σ</em> and a pair of vectors <em class="varname">u</em> and <em class="varname">v</em> that satisfy</p><div id="d126e5597" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-19px" display="block"><mtable columnalign="left"><mtr><mtd><mi>A</mi><mi>v</mi><mo>=</mo><mi>σ</mi><mi>u</mi></mtd></mtr><mtr><mtd><msup><mi>A</mi><mi>H</mi></msup><mi>u</mi><mo>=</mo><mi>σ</mi><mi>v</mi><mo>,</mo></mtd></mtr></mtable></math></p></div></div><p>where <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-3px" display="block"><mrow><msup><mi>A</mi><mi>H</mi></msup></mrow></math></span></span> is the Hermitian transpose of <em class="varname">A</em>. The singular vectors <em class="varname">u</em> and <em class="varname">v</em> are typically scaled to have a norm of 1. Also, if <em class="varname">u</em> and <em class="varname">v</em> are singular vectors of <em class="varname">A</em>, then <em class="varname">-u</em> and <em class="varname">-v</em> are singular vectors of <code class="literal">A</code> as well.</p><p>The singular values <em class="varname">σ</em> are always real and nonnegative, even if
+            <em class="varname">A</em> is complex. With the singular values in a diagonal matrix
+            <em class="varname">Σ</em> and the corresponding singular vectors forming the columns of two
+        orthogonal matrices <em class="varname">U</em> and <em class="varname">V</em>, you obtain the
+        equations</p><div id="d126e5639" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-17px" display="block"><mtable columnalign="left"><mtr><mtd><mi>A</mi><mi>V</mi><mo>=</mo><mi>U</mi><mi>Σ</mi></mtd></mtr><mtr><mtd><msup><mi>A</mi><mi>H</mi></msup><mi>U</mi><mo>=</mo><mi>V</mi><mi>Σ</mi><mo>.</mo></mtd></mtr></mtable></math></p></div></div><p>Since <em class="varname">U</em> and <em class="varname">V</em> are unitary matrices, multiplying the first equation by <span class="inlineequation"><span class="inlinemediaobject"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><msup><mi>V</mi><mi>H</mi></msup></mrow></math></span></span> on the right yields the singular value decomposition equation</p><div id="d126e5655" class="mediaobject"><div class="code_responsive"><p class="programlistingindent"><math xmlns="http://www.w3.org/1998/Math/MathML" altimg-valign="-4px" display="block"><mrow><mi>A</mi><mo>=</mo><mi>U</mi><mi>Σ</mi><msup><mi>V</mi><mi>H</mi></msup><mo>.</mo></mrow></math></p></div></div><p>The full singular value decomposition of an <em class="varname">m</em>-by-<em class="varname">n</em>
+        matrix involves:</p>
+<div class="itemizedlist"><ul><li><p><em class="varname">m</em>-by-<em class="varname">m</em> matrix
+                    <em class="varname">U</em></p></li><li><p><em class="varname">m</em>-by-<em class="varname">n</em> matrix
+                    <em class="varname">Σ</em></p></li><li><p><em class="varname">n</em>-by-<em class="varname">n</em> matrix
+                    <em class="varname">V</em></p></li></ul></div><p>
+In other words, <em class="varname">U</em> and <em class="varname">V</em> are both
+        square, and <em class="varname">Σ</em> is the same size as <em class="varname">A</em>. If
+            <em class="varname">A</em> has many more rows than columns (<code class="literal">m &gt; n</code>), then
+        the resulting <code class="literal">m</code>-by-<code class="literal">m</code> matrix <em class="varname">U</em> is
+        large. However, most of the columns in <em class="varname">U</em> are multiplied by zeros in
+            <em class="varname">Σ</em>. In this situation, the <span class="emphasis"><em>economy-sized</em></span>
+        decomposition saves both time and storage by producing an
+            <em class="varname">m</em>-by-<em class="varname">n</em>
+        <em class="varname">U</em>, an <em class="varname">n</em>-by-<em class="varname">n</em>
+        <em class="varname">Σ</em> and the same <em class="varname">V</em>:</p><div class="informalfigure"><div id="d126e5729" class="mediaobject"><p><img src="svd_econ.png" alt="In the economy-sized decomposition, columns in U can be ignored if they multiply zeros in the diagonal matrix of singular values." height="163" width="457"></p></div></div><p>The eigenvalue decomposition is the appropriate tool for analyzing a matrix when it represents a mapping from a vector space into itself, as it does for an ordinary differential equation. However, the singular value decomposition is the appropriate tool for analyzing a mapping from one vector space into another vector space, possibly with a different dimension. Most systems of simultaneous linear equations fall into this second category.</p><p>If <em class="varname">A</em> is square, symmetric, and positive definite, then its eigenvalue and singular value decompositions are the same. But, as <em class="varname">A</em> departs from symmetry and positive definiteness, the difference between the two decompositions increases. In particular, the singular value decomposition of a real matrix is always real, but the eigenvalue decomposition of a real, nonsymmetric matrix might be complex.</p><p>For the example matrix</p><div class="code_responsive"><pre class="programlisting">A = [9     4
+     6     8
+     2     7];</pre></div><p>the full singular value decomposition is</p><div class="code_responsive"><pre class="programlisting">[U,S,V] = svd(A)
+
+U =
+
+   -0.6105    0.7174    0.3355
+   -0.6646   -0.2336   -0.7098
+   -0.4308   -0.6563    0.6194
+
+
+S =
+
+   14.9359         0
+         0    5.1883
+         0         0
+
+
+V =
+
+   -0.6925    0.7214
+   -0.7214   -0.6925</pre></div><p>You can verify that <code class="literal">U*S*V'</code> is equal to <code class="literal">A</code> to within round-off error. For this small problem, the economy size decomposition is only slightly smaller.</p><div class="code_responsive"><pre class="programlisting">[U,S,V] = svd(A,"econ")
+
+U =
+
+   -0.6105    0.7174
+   -0.6646   -0.2336
+   -0.4308   -0.6563
+
+
+S =
+
+   14.9359         0
+         0    5.1883
+
+
+V =
+
+   -0.6925    0.7214
+   -0.7214   -0.6925</pre></div><p>Again, <code class="literal">U*S*V'</code> is equal to <code class="literal">A</code> to within round-off error.</p><section><h3 class="title" id="mw_f3ddab14-b3a4-4671-a33e-7f5e977c4026">Batched SVD Calculation</h3><p>If you need to decompose a large collection of matrices that have the same size, it is
+            inefficient to perform all of the decompositions in a loop with
+            <code class="function">svd</code>. Instead, you can concatenate all of the matrices into a
+            multidimensional array and use <a href="../ref/pagesvd.html"><code class="function">pagesvd</code></a>
+            to perform singular value decompositions on all of the array pages with a single
+            function call.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Function</th><th>Usage</th></tr></thead><tbody><tr><td><a href="../ref/pagesvd.html"><code class="function">pagesvd</code></a></td><td>Use <code class="function">pagesvd</code> to perform singular value
+                            decompositions on the pages of a multidimensional array. This is an
+                            efficient way to perform SVD on a large collection of matrices that all
+                            have the same size.</td></tr></tbody></table></div><p>For example, consider a collection of three 2-by-2 matrices. Concatenate the matrices
+            into a 2-by-2-by-3 array with the <a href="../ref/double.cat.html"><code class="function">cat</code></a> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = [0 -1; 1 0];
+B = [-1 0; 0 -1];
+C = [0 1; -1 0];
+X = cat(3,A,B,C);</pre></div></div></div><p>Now, use <code class="function">pagesvd</code> to simultaneously perform the three
+            decompositions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U,S,V] = pagesvd(X);</pre></div></div></div><p>For each page of <code class="literal">X</code>, there are corresponding pages in the outputs
+                <code class="literal">U</code>, <code class="literal">S</code>, and <code class="literal">V</code>. For example,
+            the matrix <code class="literal">A</code> is on the first page of <code class="literal">X</code>, and its
+            decomposition is given by <code class="literal">U(:,:,1)*S(:,:,1)*V(:,:,1)'</code>.</p></section><section><h3 class="title" id="mw_128a6015-9273-4552-ab13-099a3fde506a">Low-Rank SVD Approximations</h3><p>For large sparse matrices, using <code class="function">svd</code> to calculate
+                <span class="emphasis"><em>all</em></span> of the singular values and singular vectors is not always
+            practical. For example, if you need to know just a few of the largest singular values,
+            then calculating all of the singular values of a 5000-by-5000 sparse matrix is extra
+            work.</p><p>In cases where only a subset of the singular values and singular vectors are required,
+            the <code class="function">svds</code> and <code class="function">svdsketch</code> functions are preferred
+            over <code class="function">svd</code>. </p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Function</th><th>Usage</th></tr></thead><tbody><tr><td><a href="../ref/svds.html"><code class="function">svds</code></a></td><td>Use <code class="function">svds</code> to calculate a
+                                    rank-<em class="varname">k</em> approximation of the SVD. You can
+                                specify whether the subset of singular values should be the largest,
+                                the smallest, or the closest to a specific number.
+                                    <code class="function">svds</code> generally calculates the best possible
+                                    rank-<em class="varname">k</em> approximation.</td></tr><tr><td><a href="../ref/svdsketch.html"><code class="function">svdsketch</code></a></td><td>Use <code class="function">svdsketch</code> to calculate a partial SVD of
+                                the input matrix satisfying a specified tolerance. While
+                                    <code class="function">svds</code> requires that you specify the rank,
+                                    <code class="function">svdsketch</code> adaptively determines the rank of
+                                the matrix sketch based on the specified tolerance. The
+                                    rank-<em class="varname">k</em> approximation that
+                                    <code class="function">svdsketch</code> ultimately uses satisfies the
+                                tolerance, but unlike <code class="function">svds</code>, it is not
+                                guaranteed to be the best one possible.</td></tr></tbody></table></div><p>
+</p><p>For example, consider a 1000-by-1000 random sparse matrix with a density of about
+            30%.</p><div class="code_responsive"><pre class="programlisting">n = 1000;
+A = sprand(n,n,0.3);</pre></div><p>The six largest singular values are</p><div class="code_responsive"><pre class="programlisting">S = svds(A)
+
+S =
+
+  130.2184
+   16.4358
+   16.4119
+   16.3688
+   16.3242
+   16.2838</pre></div><p>Also, the six smallest singular values are</p><div class="code_responsive"><pre class="programlisting">S = svds(A,6,"smallest")
+
+S =
+
+    0.0740
+    0.0574
+    0.0388
+    0.0282
+    0.0131
+    0.0066</pre></div><p>For smaller matrices that can fit in memory as a full matrix,
+                <code class="literal">full(A)</code>, using <code class="function">svd(full(A))</code> might still be
+            quicker than <code class="function">svds</code> or <code class="function">svdsketch</code>. However, for
+            truly large and sparse matrices, using <code class="function">svds</code> or
+                <code class="function">svdsketch</code> becomes necessary.</p></section>
+        <h2 id="d126e5899">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.svd.html"><span itemprop="name"><code class="function">svd</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/svds.html"><span itemprop="name"><code class="function">svds</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/svdsketch.html"><span itemprop="name"><code class="function">svdsketch</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/gsvd.html"><span itemprop="name"><code class="function">gsvd</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/pagesvd.html"><span itemprop="name"><code class="function">pagesvd</code></span></a></span></p>
+        
+        <h3 id="d126e5919">Topics</h3><ul class="list-unstyled"><li><a href="matrices-in-the-matlab-environment.html" class="a">Matrices in the MATLAB Environment</a></li><li><a href="factorizations.html" class="a">Factorizations</a></li><li><a href="eigenvalues.html" class="a">Eigenvalues</a></li></ul>
+        
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

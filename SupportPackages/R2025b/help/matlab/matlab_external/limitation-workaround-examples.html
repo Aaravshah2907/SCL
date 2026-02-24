@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>C++ Limitation Workaround Examples</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../cpp-language.html",
+          "name": "C++ with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../call-cpp-library-functions.html",
+          "name": "Call C++ from MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../build-matlab-interface-to-c-library.html",
+          "name": "Build MATLAB Interface to C++ Library"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "build-matlab-interface-to-c-library"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="trbl">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Example code to work around C++ library limitations."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../cpp-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">C++ with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../call-cpp-library-functions.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Call C++ from MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../build-matlab-interface-to-c-library.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_7875953d-23b2-4f08-879f-c7ea4d3016d7"><span itemprop="title">Build MATLAB Interface to C++ Library</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">C++ Limitation Workaround Examples</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_8ee0d71b-2b7f-4f3e-85a8-560326227385" class="nav-link intrnllnk">Class Objects in std Namespace</a></li><li class="nav-item"><a href="#mw_5fd4d7df-7ad1-41ab-a7da-525dec4cee1e" class="nav-link intrnllnk">Class Templates With Incomplete or Missing Instantiations</a></li><li class="nav-item"><a href="#mw_57586c5b-014f-4a24-8b8c-debc339ec8da" class="nav-link intrnllnk">Preprocessor Directives</a></li><li class="nav-item"><a href="#mw_d5e8f629-b614-4fde-9353-4ab3fb738ad1" class="nav-link intrnllnk">String Arrays</a></li><li class="nav-item"><a href="#mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e" class="nav-link intrnllnk">Build Example Compiled Library Files on Windows</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=build-matlab-interface-to-c-library&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_54b60903-f8c5-44d9-86ae-41ade35dd29f">C++ Limitation Workaround Examples</h2><span id="cpp_limitation_workarounds" class="anchor_target"></span><span id="error_CPP_NoConstructsFoundCheckFiles" class="anchor_target"></span><p>If your compiled library contains data types or language features not supported by the
+            MATLAB<sup>&#x00AE;</sup> interface to C++ libraries, you might be able to include this functionality by
+        creating a wrapper header file. This topic and the <a href="https://www.mathworks.com/matlabcentral/answers/1640000-c-interface-workarounds-for-limitations">C++ Interface workarounds for limitations</a> article provide examples for some
+        limitations. For more information, see <a href="limitations-to-cpp-support-in-matlab-cpp-library-interface.html" class="a">Limitations to C/C++ Support</a>.</p><p>To run the workaround examples on Windows<sup>&#x00AE;</sup>:</p><div class="itemizedlist"><ul><li><p>Copy the C++ header file statements into <code class="literal">.hpp</code> files.</p></li><li><p>Copy the source code into <code class="literal">.cpp</code> files and build, using
+                instructions in <a href="limitation-workaround-examples.html#mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e" class="intrnllnk">Build Example Compiled Library Files on Windows</a>.</p></li><li><p>Execute the MATLAB code to generate the library definition.</p></li><li><p>If required, edit the library definition file.</p></li><li><p>Execute the MATLAB code to build the interface in the interface folder.</p></li><li><p>Copy the dependent library file, if any, to the interface folder.</p></li><li><p>Execute the MATLAB code to test the functionality.</p></li></ul></div><section><h3 class="title" id="mw_8ee0d71b-2b7f-4f3e-85a8-560326227385">Class Objects in <code class="literal">std</code> Namespace</h3><p>A MATLAB interface to a C++ library does not include functions that use objects
+            defined in the <code class="literal">std</code> namespace. For example, the functions in this
+                <code class="literal">Student.hpp</code> header file pass <code class="literal">std::stack</code>
+            objects. If you build the MATLAB interface, functions <code class="literal">readStudents</code> and
+                <code class="literal">getStudents</code> are not included.</p><div class="code_responsive"><pre class="programlisting">#ifndef STUDENT_HEADER
+#define STUDENT_HEADER
+
+#include &lt;stack&gt;
+
+#ifdef _WIN32
+#ifdef EXPORT
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT __declspec(dllimport)
+#endif
+#else
+#define DLL_EXPORT __attribute__((visibility ("default")))
+#endif
+
+class DLL_EXPORT Student {
+    int rollNumber;
+public:
+    Student();
+    Student(int rollNo);
+    int getRollNumber();
+};
+
+DLL_EXPORT void readStudents(const std::stack&lt;Student&gt;&amp; students);
+
+DLL_EXPORT std::stack&lt;Student&gt; getStudents(int size);
+
+#endif</pre></div><div class="procedure"><ol type="1"><li id="mw_4e541a8e-c36d-4c72-9438-d8aaeead6937"><p>To run this example on Windows, create the <code class="literal">Student.lib</code> and
+                        <code class="literal">Student.dll</code> files from this
+                        <code class="literal">Student.cpp</code> source file, using <a href="limitation-workaround-examples.html#mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e" class="intrnllnk">Build Example Compiled Library Files on Windows</a>.</p><div class="code_responsive"><pre class="programlisting">#define EXPORT
+
+#include "Student.hpp"
+
+
+Student::Student() : rollNumber(0) {}
+
+Student::Student(int rollNo) : rollNumber(rollNo) {}
+
+int Student::getRollNumber() {
+    return rollNumber;
+}
+
+DLL_EXPORT void readStudents(const std::stack&lt;Student&gt;&amp; students) {
+}
+
+DLL_EXPORT std::stack&lt;Student&gt; getStudents(int size) {
+    std::stack&lt;Student&gt; students;
+    for (int i = 0; i &lt; size; i++) {
+        students.push(Student(i+1));
+    }
+    return students;
+}</pre></div></li><li id="mw_c77cecbc-e0b8-4d72-8f82-ef729fdf2d5e"><p>Create the <code class="literal">Student.hpp</code> header file.</p></li><li id="mw_15495d85-934e-4936-94f5-561de7daf9eb"><p>Create a class <code class="literal">CStack</code> to represent an
+                        <code class="literal">std::stack</code> object. Put this definition in a header file
+                        <code class="literal">CStack.hpp</code>.</p><div class="code_responsive"><pre class="programlisting">//Wrapper header to access/pass std::stack objects from MATLAB
+#ifndef stack_header
+#define stack_header
+
+#include &lt;stack&gt;
+#include &lt;stdexcept&gt;
+
+template&lt;typename T&gt;
+class CStack {
+    std::stack&lt;T&gt; data;
+public:
+    CStack() {}
+    
+    // This parameterized constructor is required for the wrapper functions
+    // and is not included in the MATLAB interface
+    CStack(const std::stack&lt;T&gt;&amp; d):data(d) {} 
+
+    // Function to access the topmost element in stack
+    T* get() {
+        if (data.empty())
+            throw std::runtime_error("Retrieving element from Empty Stack");
+        return &amp;data.top();
+    }
+    
+    // Function to remove elements from stack
+    void remove() { 
+        if (data.empty())
+            throw std::runtime_error("Stack is empty");
+        data.pop();
+    }
+    
+    // Function to add elements to stack
+    void add(const T* element) { 
+        data.push(*element);
+    }
+    
+    // This method is required for the wrapper functions, and
+    // is not included in the MATLAB interface
+    const std::stack&lt;T&gt;&amp; getData() const{ 
+        return data;
+    }
+};
+#endif</pre></div></li><li id="mw_9e52b6bb-9f33-44d8-830a-7cb4f08c7108"><p>Define a function <code class="literal">readStudentsWrapper</code> to call the
+                        <code class="literal">readStudents</code> function using the <code class="literal">CStack</code>
+                    class and <code class="literal">getStudentsWrapper</code> to call the
+                        <code class="literal">getStudents</code> function. Include these functions in a
+                    wrapper header file named <code class="literal">StudentWrapper.hpp</code>.</p><div class="code_responsive"><pre class="programlisting">//Header to call readStudents and getStudents functions from MATLAB
+#include "Student.hpp"
+#include "CStack.hpp"
+
+//wrapper function to access the function that accepts std::stack input
+void readStudentsWrapper(const CStack&lt;Student&gt;&amp; students) { 
+    readStudents(students.getData());
+}
+
+//wrapper function to access the function that returns the std::stack
+CStack&lt;Student&gt; getStudentsWrapper(int size) { 
+    auto students = getStudents(size);
+    CStack&lt;Student&gt; cstackStudents(students);
+    return cstackStudents;
+}</pre></div></li><li id="mw_d0f1d697-b1a6-4da0-8320-b22b8c57bbbc"><p>Generate a library definition in an interface named
+                    <code class="literal">stack</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.generateLibraryDefinition( <span style="color:#0000FF">...</span>
+    [<span style="color:#A020F0">"Student.hpp"</span>,<span style="color:#A020F0">"StudentWrapper.hpp"</span>], <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"stack"</span>, <span style="color:#0000FF">...</span>
+    Libraries=<span style="color:#A020F0">"Student.lib"</span>, <span style="color:#0000FF">...</span>
+    TreatObjectPointerAsScalar=true, <span style="color:#0000FF">...</span>
+    Verbose=true);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Warning: File 'manifest.json' not found. 
+Warning: Some C++ language constructs in the header file are not supported and not imported.
+
+Did not add 'readStudents' at Student.hpp:24.
+&nbsp;&nbsp;Type 'stack' is from std namespace or system header and is not supported.
+
+Did not add 'getStudents' at Student.hpp:26.
+&nbsp;&nbsp;Type 'stack' is from std namespace or system header and is not supported.
+
+Did not add constructor to class 'CStack&lt;Student&gt;' at CStack.hpp:16.
+&nbsp;&nbsp;Type 'stack' is from std namespace or system header and is not supported.
+
+Did not add member 'getData' to class 'CStack&lt;Student&gt;' at CStack.hpp:39.
+&nbsp;&nbsp;Type 'stack' is from std namespace or system header and is not supported.
+ 
+Using MinGW64 Compiler (C++) compiler.
+Generated definition file definestack.m and data file 'stackData.xml' 
+contain definitions for 13 constructs supported by MATLAB.
+Build using build(definestack).</pre></div></div></div><p>Ignore the <code class="literal">Did not add</code> messages. In MATLAB, you call functions <code class="literal">readStudentsWrapper</code> and
+                        <code class="literal">getStudentsWrapper</code> instead of
+                        <code class="literal">readStudents</code> and <code class="literal">getStudents</code>. The
+                    constructor to class <code class="literal">CStack</code> and member
+                        <code class="literal">getData</code> are used internally and are not callable from the
+                    interface.</p></li><li id="mw_f952ced3-d088-4fae-b00a-3a0de454bcd2"><p>Build the interface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>build(definestack)
+addpath(<span style="color:#A020F0">'stack'</span>)</pre></div></div></div></li><li id="mw_dd6768bb-35a2-49f3-9ccd-9b3e749dd55b"><p>Copy the library file <code class="literal">Student.dll</code> to the
+                        <code class="literal">stack</code> folder.</p></li><li id="mw_1720a800-4daa-4f9c-a13f-239adb5c2e7a"><p>Call <code class="literal">readStudentsWrapper</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>studentsStack = clib.stack.CStack_Student_;
+studentsStack.add(clib.stack.Student(1))
+studentsStack.add(clib.stack.Student(2))
+studentsStack.add(clib.stack.Student(3))
+clib.stack.readStudentsWrapper(studentsStack)</pre></div></div></div></li><li id="mw_2e48827a-1c1d-4854-9a05-2b8e8a8ff8b8"><p>Call <code class="literal">getStudentsWrapper</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clear <span style="color:#A020F0">studentsStack</span>;
+studentsStack = clib.stack.getStudentsWrapper(3);
+student = studentsStack.get; <span style="color:#228B22">% returns topmost element from studentStack</span>
+studentsStack.remove <span style="color:#228B22">% removes topmost element of stack</span></pre></div></div></div></li></ol></div></section><section><h3 class="title" id="mw_5fd4d7df-7ad1-41ab-a7da-525dec4cee1e">Class Templates With Incomplete or Missing Instantiations</h3><p>A MATLAB interface to a C++ library does not support uninstantiated template
+            classes. For example, the class <code class="literal">Pairs</code> in this
+                <code class="literal">Templates.hpp</code> header file is not instantiated.</p><div class="code_responsive"><pre class="programlisting">// Header for Template class
+#ifndef templates_Header
+#define templates_Header
+
+template &lt;class T&gt;
+class Pairs { 
+public:
+    T val1;
+    T val2;
+    Pairs() : val1(0), val2(0) {}
+    Pairs(T first, T second) : val1(first), val2(second) {}
+    T getVal1() {
+        return val1;
+    }
+    T getVal2() {
+        return val2;
+    }
+};
+#endif</pre></div><div class="procedure"><ol type="1"><li id="mw_3c40ef4f-9749-41c0-a517-07baef1ef8cf"><p>To include the <code class="literal">Pairs</code> class, create this wrapper header file
+                        <code class="literal">TemplatesWrapper.hpp</code>. Assume that
+                        <code class="literal">Pairs</code> supports <code class="literal">int</code> and
+                        <code class="literal">double</code> data types.</p><div class="code_responsive"><pre class="programlisting">//Wrapper to instantiate template class Pairs
+#include "Templates.hpp"
+
+/* Data types that will be used for Pairs class. */
+template class Pairs&lt;int&gt;;
+template class Pairs&lt;double&gt;;</pre></div></li><li id="mw_b7c412bb-01f6-4e36-8d59-aee6fc093bff"><p>Generate the library definition.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.generateL ibraryDefinition( <span style="color:#0000FF">...</span>
+    [<span style="color:#A020F0">"TemplatesWrapper.hpp"</span>,<span style="color:#A020F0">"Templates.hpp"</span>], <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"Templates"</span>, <span style="color:#0000FF">...</span>
+    Verbose=true)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Generated definition file defineTemplates.m and data file 'TemplatesData.xml' 
+contain definitions for 16 constructs supported by MATLAB.
+Build using build(defineTemplates).</pre></div></div></div></li><li id="mw_3efb0153-caff-45c8-97d4-4dd766712304"><p>Build the interface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>build(defineTemplates)
+addpath(<span style="color:#A020F0">'Templates'</span>)</pre></div></div></div></li><li id="mw_bdc12ab4-f112-4f7f-92cc-0ba31bf720d3"><p>Create <code class="literal">Pairs</code> objects and call the
+                        <code class="literal">getVal1</code> and <code class="literal">getVal2</code> functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Pairs1 = clib.Templates.Pairs_int_(2,3);
+Val1 = Pairs1.getVal1;
+Pairs2 = clib.Templates.Pairs_double_(4.5,10.9);
+Val2 = Pairs2.getVal2;
+Pairs3 = clib.Templates.Pairs_int_(4.3,10.9);
+Val2 = Pairs3.getVal2;</pre></div></div></div></li></ol></div></section><section><h3 class="title" id="mw_57586c5b-014f-4a24-8b8c-debc339ec8da">Preprocessor Directives</h3><p>A MATLAB interface to a C++ library does not support preprocessor directives
+            (macros). For example, this <code class="literal">Area.hpp</code> header file defines the macro
+                <code class="literal">PI</code>. If you build a MATLAB interface, <code class="literal">PI</code> is not included.</p><div class="code_responsive"><pre class="programlisting">//Header with Macro preprocessor directive
+#ifndef area_header
+#define area_header
+
+#ifdef _WIN32
+#ifdef EXPORT
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT __declspec(dllimport)
+#endif
+#else
+#define DLL_EXPORT __attribute__((visibility ("default")))
+#endif
+
+#define PI 3.1415   
+
+DLL_EXPORT double getArea(int radius, double piVal);
+
+#endif</pre></div><div class="procedure"><ol type="1"><li id="mw_c10340c7-57d9-4b3c-9e07-30a6197cd1f5"><p>To run this example on Windows, create the <code class="literal">Area.lib</code> and
+                        <code class="literal">Area.dll</code> files from this <code class="literal">Area.cpp</code>
+                    source file, using <a href="limitation-workaround-examples.html#mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e" class="intrnllnk">Build Example Compiled Library Files on Windows</a>.</p><div class="code_responsive"><pre class="programlisting">#define EXPORT
+
+#include "Area.hpp"
+
+DLL_EXPORT double getArea(int radius, double piVal) {
+    return piVal*radius*radius;
+}</pre></div></li><li id="mw_f0babe0a-fba4-40bb-8539-53d0532ea583"><p>Create the <code class="literal">Area.hpp</code> header file.</p></li><li id="mw_16fdcfcf-d61b-49c8-93aa-00e430b9ecd5"><p>To include <code class="literal">PI</code>, create this wrapper header file
+                        <code class="literal">WrapperPI.hpp</code> which defines function
+                        <code class="literal">getPI</code> to get the value of the preprocessor
+                    directive.</p><div class="code_responsive"><pre class="programlisting">//Wrapper to access the preprocessor directive value
+#include "Area.hpp"
+
+double getPI(){ //Wrapper function retrieves the value of PI
+    return PI;
+}</pre></div></li><li id="mw_f97e13a4-8267-4c1c-9716-f6e585bb2cfd"><p>Generate the library definition in an interface named
+                    <code class="literal">Area</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.generateLibraryDefinition( <span style="color:#0000FF">...</span>
+    [<span style="color:#A020F0">"Area.hpp"</span>,<span style="color:#A020F0">"WrapperPI.hpp"</span>], <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"Area"</span>, <span style="color:#0000FF">...</span>
+    Libraries=<span style="color:#A020F0">"Area.lib"</span>, <span style="color:#0000FF">...</span>
+    TreatObjectPointerAsScalar=true, <span style="color:#0000FF">...</span>
+    Verbose=true)</pre></div></div></div></li><li id="mw_7e14cd3c-f91d-4a6a-96d9-a4056389d1b1"><p>Build the interface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>build(defineArea)
+addpath(<span style="color:#A020F0">'Area'</span>)</pre></div></div></div></li><li id="mw_5d1dadd2-0381-4490-b61e-cab848202de7"><p>Copy the library file <code class="literal">Area.dll</code> to the
+                        <code class="literal">Area</code> folder.</p></li><li id="mw_09930fcc-6ed6-400d-8eae-e67c56dce5eb"><p>Call <code class="literal">getArea</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pi = clib.Area.getPI;
+area = clib.Area.getArea(2,pi)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>area =
+
+   12.5660</pre></div></div></div></li></ol></div></section><section><h3 class="title" id="mw_d5e8f629-b614-4fde-9353-4ab3fb738ad1">String Arrays</h3><p>A MATLAB interface to a C++ library does not include functions with arguments
+                <code class="literal">std::string</code> for element type of vector. For example, the
+                <code class="literal">readStringVector</code> and <code class="literal">getStringVector</code> functions
+            in this <code class="literal">StringVector.hpp</code> header file are not included when you build
+            a MATLAB interface.</p><div class="code_responsive"><pre class="programlisting">//Header file which accepts and return the vector of std::string
+#ifndef stringVec_header
+#define stringVec_header
+#include &lt;vector&gt;
+#include &lt;string&gt;
+
+#ifdef _WIN32
+#ifdef EXPORT
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT __declspec(dllimport)
+#endif
+#else
+#define DLL_EXPORT __attribute__((visibility ("default")))
+#endif
+
+DLL_EXPORT void readStringVector(const std::vector&lt;std::string&gt;&amp; stringVector); //readStringVector function gets dropped as vector of std::string input is not supported in MATLAB C++ interface.
+
+DLL_EXPORT std::vector&lt;std::string&gt; getStringVector(int size); //getStringVector function gets dropped as return type of vector of std::string is not supported for MATLAB C++ Interface
+
+#endif</pre></div><div class="procedure"><ol type="1"><li id="mw_c9771dc0-36fc-47e9-bf29-830874557350"><p>To run this example on Windows, create the <code class="literal">StringVector.lib</code>
+                    and <code class="literal">StringVector.dll</code> files from this
+                        <code class="literal">StringVector.cpp</code> source file, using <a href="limitation-workaround-examples.html#mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e" class="intrnllnk">Build Example Compiled Library Files on Windows</a>.</p><div class="code_responsive"><pre class="programlisting">#define EXPORT
+
+#include "StringVector.hpp"
+
+DLL_EXPORT void readStringVector(const std::vector&lt;std::string&gt;&amp; stringVector) {
+}
+
+DLL_EXPORT std::vector&lt;std::string&gt; getStringVector(int size) {
+    std::vector&lt;std::string&gt; stringVector;
+    for (int i = 0; i &lt; size; i++) {
+       stringVector.push_back(("string"+ std::to_string(i+1)));
+    }
+    return stringVector;
+}</pre></div></li><li id="mw_18aa30dd-643a-4acc-a614-851962b47698"><p>Create the <code class="literal">StringVector.hpp</code> header file.</p></li><li id="mw_f6c7d4b2-5b83-455a-8f49-8ccce479e339"><p>To support <code class="literal">std::vector</code> of type
+                        <code class="literal">std::string</code>, create a <code class="literal">CVector</code> class,
+                    which defines these methods to pass the <code class="literal">std::vector</code> between
+                        MATLAB and the library. </p>
+<div class="itemizedlist"><ul><li><p>Parameterized constructor:</p><div class="code_responsive"><pre class="programlisting">CVector(const std::vector&lt;T&gt;&amp; d): data(d)</pre></div></li><li><p>Move constructor:</p><div class="code_responsive"><pre class="programlisting">CVector(std::vector&lt;T&gt;&amp;&amp; d) : data(std::move(d))</pre></div></li><li><p>Method to access the element at an index:</p><div class="code_responsive"><pre class="programlisting">T get(int index)</pre></div></li><li><p>Method to add elements to vectors:</p><div class="code_responsive"><pre class="programlisting">void add(const T&amp; element)</pre></div></li><li><p>Method to get data from vectors:</p><div class="code_responsive"><pre class="programlisting">const std::vector&lt;T&gt;&amp; getData() const</pre></div></li></ul></div><p>
+<code class="literal">CVector.hpp</code> defines this class.</p><div class="code_responsive"><pre class="programlisting">//Wrapper header to access/pass std::vector from MATLAB
+#ifndef cvector_header
+#define cvector_header
+
+#include &lt;vector&gt;
+
+template&lt;typename T&gt;
+class CVector {
+    std::vector&lt;T&gt; data;
+public:
+    CVector() {}
+    CVector(const std::vector&lt;T&gt;&amp; d): data(d) {}
+    CVector(std::vector&lt;T&gt;&amp;&amp; d) : data(std::move(d)) {}
+    T get(int index) { 
+        return data.at(index-1);
+    }
+    void add(const T&amp; element) { 
+        data.push_back(element);
+    }
+    const std::vector&lt;T&gt;&amp; getData() const {
+        return data;
+    }
+};
+
+#endif</pre></div></li><li id="mw_736741de-4e4d-49fd-8784-7677f56fd23d"><p>To include <code class="literal">readStringVector</code> and
+                        <code class="literal">getStringVector</code>, create a
+                        <code class="literal">WrapperStringVector.hpp</code> header file, which defines
+                    methods to pass <code class="literal">CVector</code> arguments to the C++ library
+                    methods.</p><div class="code_responsive"><pre class="programlisting">// Header that allows the readStringVector and getStringVector functions 
+// to be accessed from MATLAB interface
+#include "StringVector.hpp"
+#include "CVector.hpp"
+#include &lt;string&gt;
+
+void wrapperReadStringVector(const CVector&lt;std::string&gt;&amp; stringVec) { 
+    readStringVector(stringVec.getData());
+}
+
+CVector&lt;std::string&gt; wrapperGetStringVector(int size) { 
+    auto strVec = getStringVector(size);
+    CVector&lt;std::string&gt; cvecString(strVec);
+    return cvecString;
+}</pre></div></li><li id="mw_839db6d6-a845-4855-b895-d1246b4ff0c7"><p>Generate the library definition in a folder named
+                        <code class="literal">StringVector</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>clibgen.generateLibraryDefinition( <span style="color:#0000FF">...</span>
+    [<span style="color:#A020F0">"StringVector.hpp"</span>,<span style="color:#A020F0">"WrapperStringVector.hpp"</span>], <span style="color:#0000FF">...</span>
+    InterfaceName=<span style="color:#A020F0">"StringVector"</span>, <span style="color:#0000FF">...</span>
+    Libraries=<span style="color:#A020F0">"StringVector.lib"</span>, <span style="color:#0000FF">...</span>
+    TreatObjectPointerAsScalar=true, <span style="color:#0000FF">...</span>
+    Verbose=true)</pre></div></div></div></li><li id="mw_22bc5c45-daf3-446a-8daf-1251d593bf3f"><p>Build the interface.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>build(defineWrapperStringVector)
+addpath(<span style="color:#A020F0">'WrapperStringVector'</span>)</pre></div></div></div></li><li id="mw_7d7cbcda-5e0a-4a98-a81d-0640639701be"><p>Copy the library file <code class="literal">StringVector.dll</code> to the
+                        <code class="literal">StringVector</code> folder.</p></li><li id="mw_db73283e-dcf6-4a0a-9ef7-2f9e548210af"><p>Call the functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Instantiate the CVector class</span>
+stringVectorObj = clib.StringVector.CVector_std____cxx11__basic_string_char_Std__char_traits_c;
+
+<span style="color:#228B22">% Add elements to vector</span>
+stringVectorObj.add(<span style="color:#A020F0">"Jack"</span>);
+stringVectorObj.add(<span style="color:#A020F0">"John"</span>);
+stringVectorObj.add(<span style="color:#A020F0">"Joe"</span>);
+
+<span style="color:#228B22">% Call function with std::string vector input with CVector</span>
+clib.StringVector.wrapperReadStringVector(stringVectorObj);
+clear <span style="color:#A020F0">stringVectorObj</span>;</pre></div></div></div></li></ol></div></section><section><h3 class="title" id="mw_8af72f24-9568-4bf0-bbf5-90f3dedb221e">Build Example Compiled Library Files on Windows</h3><p>At the Windows command prompt, add the path to the MinGW-w64 compiler to the system
+            path. For example, if the compiler is at <code class="literal">mingwpathname</code>, then
+            type:</p><div class="code_responsive"><pre class="programlisting">set mingwpath = 'mingwpathname';
+set PATH=%mingwpath%;%PATH%</pre></div><p>Navigate to the location of C++ source files.</p><p>Run these commands to generate the library file from the source file
+                    <code class="literal"><em class="replaceable"><code>source</code></em>.cpp</code>:</p><div class="code_responsive"><pre class="programlisting">g++ -c source.cpp -o source.obj -std=c++11
+g++ -shared -o source.dll source.obj -Wl,--out-implib,source.lib</pre></div></section>
+        
+        <h2 id="seealsoref">See Also</h2><h3 id="d126e23978">Topics</h3><ul class="list-unstyled"><li><a href="https://www.mathworks.com/matlabcentral/answers/1640000-c-interface-workarounds-for-limitations">C++ Interface workarounds for limitations</a></li><li><a href="limitations-to-cpp-support-in-matlab-cpp-library-interface.html" class="a">Limitations to C/C++ Support</a></li></ul>
+        
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

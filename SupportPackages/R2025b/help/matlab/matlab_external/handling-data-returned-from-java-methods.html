@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Handle Data Returned from Java Methods</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../external-language-interfaces.html",
+          "name": "External Language Interfaces"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../java-language.html",
+          "name": "Java with MATLAB"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../using-java-libraries-in-matlab.html",
+          "name": "Call Java from MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "using-java-libraries-in-matlab"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="How to handle types returned by Java methods."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../external-language-interfaces.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">External Language Interfaces</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../java-language.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Java with MATLAB</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../using-java-libraries-in-matlab.html?s_tid=CRUX_lftnav" itemprop="url" id="btbzj26-1"><span itemprop="title">Call Java from MATLAB</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Handle Data Returned from Java Methods</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bvizhgf" class="nav-link intrnllnk">Primitive Return Types</a><ul class="nav"><li class="nav-item"><a href="#bvi2k1m" class="nav-link intrnllnk">Example</a></li></ul></li><li class="nav-item"><a href="#bvizhop" class="nav-link intrnllnk">java.lang.Object Return Types</a><ul class="nav"><li class="nav-item"><a href="#bvi2meu" class="nav-link intrnllnk">Example</a></li></ul></li><li class="nav-item"><a href="#bvi1br7-1" class="nav-link intrnllnk">Functions to Convert Java Objects to MATLAB Types</a><ul class="nav"><li class="nav-item"><a href="#bvi1br7-2" class="nav-link intrnllnk">Convert to MATLAB Numeric Types</a></li><li class="nav-item"><a href="#bvi1br7-3" class="nav-link intrnllnk">Convert to MATLAB Strings</a></li><li class="nav-item"><a href="#bvi1br7-4" class="nav-link intrnllnk">Convert to MATLAB Structure</a></li><li class="nav-item"><a href="#bvi1br7-5" class="nav-link intrnllnk">Convert to MATLAB Cell Array</a></li></ul></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=using-java-libraries-in-matlab&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="bvie0l6">Handle Data Returned from <span class="trademark entity">Java</span> Methods</h2><p>If a Java<sup>&#x00AE;</sup> method returns a primitive data type, then MATLAB<sup>&#x00AE;</sup> converts the data, as shown in the table in <a href="handling-data-returned-from-java-methods.html#bvizhgf" class="intrnllnk">Primitive Return Types</a>.</p><p>If a Java method signature specifies a return data of type
+        <code class="literal">java.lang.Object</code>, then MATLAB converts the actual type returned, as shown in the table in <a href="handling-data-returned-from-java-methods.html#bvizhop" class="intrnllnk">java.lang.Object Return Types</a>.</p><p>MATLAB does not convert other Java objects to MATLAB types. For information about handling this data, see <a href="handling-data-returned-from-java-methods.html#bvi1br7-1" class="intrnllnk">Functions to Convert Java Objects to MATLAB Types</a>.</p><section><h3 class="title" id="bvizhgf">Primitive Return Types</h3><span id="java_to_matlab_table" class="anchor_target"></span><p>MATLAB converts primitive data returned from a Java method into types that best represent the data to the MATLAB language. This table shows how MATLAB converts the data. For some Java types, MATLAB treats scalar and array returns differently.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="33%"><col class="tcol2" width="33%"><col class="tcol3" width="33%"></colgroup><thead><tr><th>Java Return Type</th><th>Resulting MATLAB Type &#8212; Scalar</th><th>Resulting MATLAB Type &#8212; Array</th></tr></thead><tbody><tr><td><p><code class="literal">boolean</code></p></td><td><p><code class="literal">logical</code></p></td><td><p><code class="literal">logical</code></p></td></tr><tr><td><p><code class="literal">byte</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">int8</code></p></td></tr><tr><td><p><code class="literal">short</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">int16</code></p></td></tr><tr><td><p><code class="literal">int</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">int32</code></p></td></tr><tr><td><p><code class="literal">long</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">int64</code></p></td></tr><tr><td><p><code class="literal">float</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">single</code></p></td></tr><tr><td><p><code class="literal">double</code></p></td><td><p><code class="literal">double</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">char</code></p></td><td><p><code class="literal">char</code></p></td><td><p><code class="literal">char</code></p></td></tr></tbody></table></div><section><h4 class="title" id="bvi2k1m">Example</h4><p>The signature for the <code class="literal">java.lang.String</code> method
+            <code class="literal">toCharArray</code> is:</p><div class="code_responsive"><pre class="programlisting">public char[] toCharArray()</pre></div><p>Call the method on a <code class="literal">String</code> object. MATLAB converts the output to a <code class="literal">char</code> array.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>str = java.lang.String(<span style="color:#A020F0">'hello'</span>);
+res = str.toCharArray'
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>res =
+
+  1×5 char array
+
+hello</pre></div></div></div></section></section><section><h3 class="title" id="bvizhop"><code class="literal">java.lang.Object</code> Return Types</h3><p>When a Java method is declared to return data of type <code class="literal">java.lang.Object</code>,
+          MATLAB converts its value depending on the actual type returned. This table shows how
+          MATLAB converts the data.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="50%"><col class="tcol2" width="50%"></colgroup><thead><tr><th>Actual Java Type</th><th>Resulting MATLAB Type &#8212; Scalar </th></tr></thead><tbody><tr><td><p><code class="literal">java.lang.Boolean</code></p></td><td><p><code class="literal">logical</code></p></td></tr><tr><td><p><code class="literal">java.lang.Byte</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Short</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Integer</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Long</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Float</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Double</code></p></td><td><p><code class="literal">double</code></p></td></tr><tr><td><p><code class="literal">java.lang.Character</code></p></td><td><p><code class="literal">char</code></p></td></tr><tr><td><p><code class="literal">java.lang.String</code></p></td><td><p><code class="literal">char</code></p></td></tr></tbody></table></div><p>There is no conversion if the return argument is a subclass of <code class="literal">Object</code>
+        or an array of <code class="literal">Object</code>. The object remains a Java object. However, if you index into a returned <code class="literal">Object</code> array,
+          MATLAB converts the value according to the table. For more information, see <a href="access-elements-of-java-array.html#bvjl61g-7" class="a">Converting Object Array Elements to MATLAB Types</a>.</p><section><h4 class="title" id="bvi2meu">Example</h4><p>Refer to the following signature for a <code class="literal">getData</code> method.</p><div class="code_responsive"><pre class="programlisting">java.lang.Object getData()</pre></div><p>If <code class="literal">getData</code> returns a <code class="literal">java.lang.Integer</code> object,
+          then MATLAB converts the value to <code class="literal">double</code>.</p></section></section><section><h3 class="title" id="bvi1br7-1">Functions to Convert <span class="trademark entity">Java</span> Objects to <span class="trademark entity">MATLAB</span> Types</h3><p>MATLAB only converts object data return values if the method signature specifies
+          <code class="literal">java.lang.Object</code>. If the signature specifies any other object type,
+        then MATLAB does not convert the value. For example, MATLAB does convert the return value for this method signature:</p><div class="code_responsive"><pre class="programlisting">java.lang.Object getData()</pre></div><p>But MATLAB does not convert the return value for this method:</p><div class="code_responsive"><pre class="programlisting">java.lang.String getData()</pre></div><p>To convert Java object data to MATLAB data, use MATLAB functions as described in these topics:</p><ul><li><p><a class="intrnllnk" href="#bvi1br7-2">Convert to <span class="trademark entity">MATLAB</span> Numeric Types</a></p></li><li><p><a class="intrnllnk" href="#bvi1br7-3">Convert to <span class="trademark entity">MATLAB</span> Strings</a></p></li><li><p><a class="intrnllnk" href="#bvi1br7-4">Convert to <span class="trademark entity">MATLAB</span> Structure</a></p></li><li><p><a class="intrnllnk" href="#bvi1br7-5">Convert to <span class="trademark entity">MATLAB</span> Cell Array</a></p></li></ul><section><h4 class="title" id="bvi1br7-2">Convert to <span class="trademark entity">MATLAB</span> Numeric Types</h4><p>To convert Java numeric types to MATLAB types, use a numeric MATLAB function like <code class="function">double</code>. The action taken by the
+            <code class="function">double</code> function depends on the class of the object you
+          specify.</p><div class="itemizedlist"><ul><li><p>If the object is an instance of a class derived from
+                <code class="literal">java.lang.Number</code>, then MATLAB converts the object to a MATLAB
+              <code class="literal">double</code>. </p></li><li><p>If the object is not an instance of a numeric class, then MATLAB checks the class definition for a <code class="literal">toDouble</code> method.
+                MATLAB calls this method to perform the conversion.</p></li><li><p>If you create your own class, then write a <code class="literal">toDouble</code> method to
+              specify your own type conversion.</p></li></ul></div><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If the class of the object is not derived from <code class="literal">java.lang.Number</code>
+            and it does not implement a <code class="literal">toDouble</code> method, then the
+              <code class="function">double</code> function displays an error message.</p></div></section><section><h4 class="title" id="bvi1br7-3">Convert to <span class="trademark entity">MATLAB</span> Strings</h4><p>To convert <code class="literal">java.lang.String</code> objects and arrays to MATLAB strings or character vectors, use the MATLAB
+          <code class="function">string</code> or <code class="function">char</code> function.</p><p>If the object specified in the MATLAB function is not an instance of the <code class="literal">java.lang.String</code>
+          class, then MATLAB checks its class definition for a <code class="literal">toString</code> or a
+            <code class="literal">toChar</code> method. If you create your own class, then write a
+            <code class="literal">toString</code> or <code class="literal">toChar</code> method to specify the string
+          conversion.</p><div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>If the class of the object is not <code class="literal">java.lang.String</code> and it does
+            not implement a <code class="literal">toChar</code> method, then the <code class="function">char</code>
+            function displays an error message.</p></div></section><section><h4 class="title" id="bvi1br7-4">Convert to <span class="trademark entity">MATLAB</span> Structure</h4><p>If a Java class defines field names, then use the <code class="function">struct</code> function
+          to convert the object data to a MATLAB structure.</p><p>Suppose that you call a Java method that returns a <code class="literal">java.awt.Polygon</code> object. The class
+          defines fields <code class="literal">xpoints</code> and <code class="literal">ypoints</code>. To run this
+          example, create a <code class="literal">polygon</code> variable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>polygon = java.awt.Polygon([14 42 98 124],[55 12 -2 62],4);</pre></div></div></div><p>Convert the object to a structure and display the x,y coordinates for the third
+          point.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>pstruct = struct(polygon)
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>pstruct = 
+
+  struct with fields:
+
+    npoints: 4
+    xpoints: [4×1 int32]
+    ypoints: [4×1 int32]</pre></div></div></div></section><section><h4 class="title" id="bvi1br7-5">Convert to <span class="trademark entity">MATLAB</span> Cell Array</h4><p>If your Java methods return different types of data, then use the
+            <code class="function">cell</code> function to convert the data to MATLAB types. Elements of the resulting cell array are converted according to the
+            <a href="handling-data-returned-from-java-methods.html#bvizhgf" class="intrnllnk">Primitive Return Types</a> and <a href="handling-data-returned-from-java-methods.html#bvizhop" class="intrnllnk">java.lang.Object Return Types</a> tables.</p><p>Suppose that you call Java methods that return arguments of type <code class="literal">java.lang.Double</code>,
+            <code class="literal">java.awt.Point</code>, and <code class="literal">java.lang.String</code>. To run this
+          example, create variables of these types.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>import <span style="color:#A020F0">java.lang.*</span> <span style="color:#A020F0">java.awt.*</span>
+
+<span style="color:#228B22">% Create a Java array of double</span>
+dblArray = javaArray(<span style="color:#A020F0">'java.lang.Double'</span>,1,10);
+<span style="color:#0000FF">for</span> m = 1:10
+   dblArray(1,m) = Double(m * 7);
+<span style="color:#0000FF">end</span>
+
+<span style="color:#228B22">% Create a Java array of points</span>
+ptArray = javaArray(<span style="color:#A020F0">'java.awt.Point'</span>,3);
+ptArray(1) = Point(7.1,22);
+ptArray(2) = Point(5.2,35);
+ptArray(3) = Point(3.1,49);
+
+<span style="color:#228B22">% Create a Java array of strings</span>
+strArray = javaArray(<span style="color:#A020F0">'java.lang.String'</span>,2,2);
+strArray(1,1) = String(<span style="color:#A020F0">'one'</span>);
+strArray(1,2) = String(<span style="color:#A020F0">'two'</span>);
+strArray(2,1) = String(<span style="color:#A020F0">'three'</span>);  
+strArray(2,2) = String(<span style="color:#A020F0">'four'</span>);
+</pre></div></div></div><p>Convert each array to a cell array. You can use <code class="literal">cellArray</code> in
+            MATLAB functions.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cellArray = {cell(dblArray),cell(ptArray),cell(strArray)}
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>cellArray =
+
+  1×3 cell array
+
+    {1×10 cell}    {3×1 cell}    {2×2 cell}</pre></div></div></div><p>Each cell holds an array of a different type. Display the contents.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cellArray{1,1}       <span style="color:#228B22">% Array of type double</span>
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  1×10 cell array
+
+    [7]    [14]    [21]    [28]    [35]    [42]    [49]    [56]    [63]    [70]
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cellArray{1,2}       <span style="color:#228B22">% Array of type Java.awt.Point</span>
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  3×1 cell array
+
+    [1×1 java.awt.Point]
+    [1×1 java.awt.Point]
+    [1×1 java.awt.Point]
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>cellArray{1,3}       <span style="color:#228B22">% Array of type char array</span>
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans =
+
+  2×2 cell array
+
+    'one'      'two' 
+    'three'    'four'
+</pre></div></div></div></section></section>
+      <h2 id="seealsoref">See Also</h2><h3 id="d126e7774">Topics</h3><ul class="list-unstyled"><li><a href="passing-data-to-java-methods.html" class="a">Pass Data to Java Methods</a></li><li><a href="how-matlab-represents-java-array.html" class="a">How MATLAB Represents Java Arrays</a></li><li><a href="access-elements-of-java-array.html#bvjl61g-7" class="a">Converting Object Array Elements to MATLAB Types</a></li></ul>
+    </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

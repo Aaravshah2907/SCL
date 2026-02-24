@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Triangulation Representations</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../computational-geometry.html",
+          "name": "Computational Geometry"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../triangulation-representation.html",
+          "name": "Triangulation Representation"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "triangulation-representation"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This topic contains background information on triangulation and introduces the triangulation class."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../computational-geometry.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Computational Geometry</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../triangulation-representation.html?s_tid=CRUX_lftnav" itemprop="url" id="triangulation-representation"><span itemprop="title">Triangulation Representation</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Triangulation Representations</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#bsp9aee" class="nav-link intrnllnk">2-D and 3-D Domains</a></li><li class="nav-item"><a href="#bspqjgt" class="nav-link intrnllnk">Triangulation Matrix Format</a></li><li class="nav-item"><a href="#bspqjhx-1" class="nav-link intrnllnk">Querying Triangulations Using the triangulation Class</a><ul class="nav"><li class="nav-item"><a href="#bspqjiv-1" class="nav-link intrnllnk">The triangulation Class</a></li></ul></li><li class="nav-item"><a href="#d126e20141" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=triangulation-representation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=triangulation-representation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=triangulation-representation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=triangulation-representation&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=triangulation-representation&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=triangulation-representation&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="br81y5b-2">Triangulation Representations</h2><section><h3 class="title" id="bsp9aee">2-D and 3-D Domains</h3><p>Triangulations are often used to represent 2-D and 3-D geometric
+domains in application areas such as computer graphics, physical modeling,
+geographic information systems, medical imaging, and more.  The map
+polygon shown here</p>
+<div class="informalfigure"><div id="d126e19602" class="mediaobject"><p><img src="australia_map.png" alt="Plot of land mass with a rough border." height="278" width="383"></p></div></div><p> can be represented
+by the triangulation on the map shown below.</p>
+<div class="informalfigure"><div id="d126e19608" class="mediaobject"><p><img src="australia_triangulation.png" alt="Plot of a land mass with a rough border that has triangles of various sizes superimposed." height="273" width="374"></p></div></div><p>The triangulation
+decomposes a complex polygon into a collection of simpler triangular
+polygons. You can use these polygons for developing geometric-based
+algorithms or graphics applications. </p><p>Similarly, you can represent the boundary of a 3-D geometric
+domain using a triangulation. The figure below shows the convex hull
+of a set of points in 3-D space. Each facet of the hull is a triangle.</p>
+<div class="informalfigure"><div id="d126e19616" class="mediaobject"><p><img src="convex_hull_3d.png" alt="Plot of 3-D shape boundary formed by triangles of various sizes." height="200" width="367"></p></div></div><p></p></section><section><h3 class="title" id="bspqjgt">Triangulation Matrix Format</h3><p>MATLAB<sup>&#x00AE;</sup> uses a matrix format to represent triangulations.
+This format has two parts:</p>
+<div class="itemizedlist"><ul><li><p>The vertices, represented as a matrix in which each
+row contains the coordinates of a point in the triangulation.</p></li><li><p>The triangulation connectivity, represented as a matrix in which each row defines
+              a triangle or tetrahedron.</p></li></ul></div><p>
+</p><p>This figure shows a simple 2-D triangulation.</p>
+<div class="informalfigure"><div id="d126e19634" class="mediaobject"><p><img src="triangulation_2d_face_vertex.png" alt="Plot of triangulation consisting of six vertices and four triangles, with each vertex and triangle labeled." height="390" width="495"></p></div></div><p></p><p>The following table shows the vertex information.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="28%"><col class="tcol2" width="36%"><col class="tcol3" width="36%"></colgroup><thead><tr><th colspan="3">Vertices</th></tr></thead><tbody><tr><td>Vertex ID</td><td><em class="varname">x</em>-coordinate</td><td><em class="varname">y</em>-coordinate</td></tr><tr><td>V1</td><td>2.5</td><td>8.0</td></tr><tr><td>V2</td><td>6.5</td><td>8.0</td></tr><tr><td>V3</td><td>2.5</td><td>5.0</td></tr><tr><td>V4</td><td>6.5</td><td>5.0</td></tr><tr><td>V5</td><td>1.0</td><td>6.5</td></tr><tr><td>V6</td><td>8.0</td><td>6.5</td></tr></tbody></table></div><p>
+The data in the previous table
+is stored as a matrix in the MATLAB environment. The vertex IDs
+are labels used for identifying specific vertices. They are shown
+to illustrate the concept of a vertex ID, but they are not stored
+explicitly. Instead, the row numbers of the matrix serve as the vertex
+IDs.</p><p>The triangulation connectivity data is shown in this table.</p>
+<div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="27%"><col class="tcol2" width="24%"><col class="tcol3" width="23%"><col class="tcol4" width="26%"></colgroup><thead><tr><th colspan="4">Connectivity</th></tr></thead><tbody><tr><td>Triangle ID</td><td colspan="3">IDs of Bounding Vertices</td></tr><tr><td>T1</td><td>5</td><td>3</td><td>1</td></tr><tr><td>T2</td><td>3</td><td>2</td><td>1</td></tr><tr><td>T3</td><td>3</td><td>4</td><td>2</td></tr><tr><td>T4</td><td>4</td><td>6</td><td>2</td></tr></tbody></table></div><p>
+The data in this table is stored
+as a matrix in the MATLAB environment. The triangle IDs are labels
+used for identifying specific triangles. They are shown to illustrate
+the concept of a triangle ID, but they  are not stored explicitly.
+Instead, the row numbers of the matrix serve as the triangle IDs.</p><p>You can see that triangle <code class="literal">T1</code> is defined by
+three vertices, <code class="literal">{V5, V3, V1}</code>. Similarly, <code class="literal">T4</code> is
+defined by the vertices, <code class="literal">{V4, V6, V2}</code>. This format
+extends naturally to higher dimensions, which require additional columns
+of data. For example, a tetrahedron in 3-D space is defined by four
+vertices, each of which have three coordinates, (<em class="varname">x</em>, <em class="varname">y</em>, <em class="varname">z</em>). </p><p>You can represent and query the following types of triangulations
+using MATLAB:</p>
+<div class="itemizedlist"><ul><li><p>2-D triangulations consisting of triangles bounded
+by vertices and edges</p></li><li><p>3-D surface triangulations consisting of triangles
+bounded by vertices and edges</p></li><li><p>3-D triangulations consisting of tetrahedra bounded
+by vertices, edges, and faces</p></li></ul></div><p>
+</p></section><section><h3 class="title" id="bspqjhx-1">Querying Triangulations Using the triangulation Class</h3><p>The matrix format provides a compact low-level, array-based
+representation for triangulations. When you use triangulations to
+develop algorithms, you might need more information about the geometric
+properties, topology, and adjacency information.</p><p>For example, you might compute the triangle incenters before
+plotting the annotated triangulation shown below. In this case, you
+use the incenters to display the triangle labels (T1, T2, etc.) within
+each triangle. If you want to plot the boundary in red, you need to
+determine the edges that are referenced by only one triangle.</p>
+<div class="informalfigure"><div id="d126e19805" class="mediaobject"><p><img src="triangulation_2d_face_vertex_red_outline.png" alt="Triangulation consisting of six vertices and four triangles, with the outer border outlined in red." height="294" width="388"></p></div></div><p></p><section><h4 class="title" id="bspqjiv-1">The triangulation Class</h4><p>You can use <a href="../ref/triangulation.html"><code class="object">triangulation</code></a> to
+create an in-memory representation of any 2-D or 3-D triangulation
+data that is in matrix format, such as the matrix output from the <a href="../ref/delaunay.html"><code class="function">delaunay</code></a> function or other software tools.
+When your data is represented using <code class="literal">triangulation</code>,
+you can perform topological and geometric queries, which you can use
+to develop geometric algorithms. For example, you can find the triangles
+or tetrahedra attached to a vertex, those that share an edge, their
+circumcenters, and other features.</p><p>You can create a <code class="literal">triangulation</code> in one of two
+ways:</p>
+<div class="itemizedlist"><ul><li><p>Pass existing data that you have in matrix format
+to <code class="object">triangulation</code>. This data
+can be the output from a MATLAB function, such as <code class="function">delaunay</code> or <a href="../ref/convhull.html"><code class="function">convhull</code></a>. You also can import triangulation
+data that was created by another software application. When you work
+with imported data, be sure the connectivity data references the vertex
+array using 1-based indexing instead of 0-based indexing.</p></li><li><p>Pass a set of points to <a href="../ref/delaunaytriangulation.html"><code class="object">delaunayTriangulation</code></a>.
+The resulting Delaunay triangulation is a special kind of <code class="object">triangulation</code>. This means you can perform
+any <code class="object">triangulation</code> query on
+your data, as well as any Delaunay-specific query. In more formal MATLAB language
+terms, <code class="object">delaunayTriangulation</code> is
+a subclass of <code class="object">triangulation</code>.</p></li></ul></div><p>
+</p><span id="CreatingATriangulationFromMatrixDataExample" class="anchor_target"></span><p><strong id="bspqi8a-5">Creating a triangulation from Matrix Data</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreatingATriangulationFromMatrixDataExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Creating a triangulation from Matrix Data",
+          "description": "Use the triangulation matrix data to create a triangulation, explore what it is, and explore what it can do.",
+          "thumbnailURL": "../../examples/matlab/win64/CreatingATriangulationFromMatrixDataExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "triangulation-representations.html"
+
+        },
+          "identifier": "matlab.CreatingATriangulationFromMatrixDataExample",
+          "name": "CreatingATriangulationFromMatrixDataExample",
+          "url": "triangulation-representations.html#bspqi8a-5"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreatingATriangulationFromMatrixDataExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreatingATriangulationFromMatrixDataExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to use the triangulation matrix data to create a triangulation, explore what it is, and explore what it can do.</p><p>Create a matrix, <code class="literal">P</code>, that contains the vertex data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>P = [ 2.5    8.0
+      6.5    8.0
+      2.5    5.0
+      6.5    5.0
+      1.0    6.5
+      8.0    6.5];</pre></div></div></div><p>Define the connectivity, <code class="literal">T</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>T = [5  3  1;
+     3  2  1;
+     3  4  2;
+     4  6  2];</pre></div></div></div><p>Create a <code class="literal">triangulation</code> from this data.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR = triangulation(T,P)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>TR = 
+  triangulation with properties:
+
+              Points: [6×2 double]
+    ConnectivityList: [4×3 double]
+
+</pre></div></div></div><p>Access the properties in a <code class="literal">triangulation</code> in the same way you access the fields of a <code class="literal">struct</code>. For example, examine the <code class="literal">Points</code> property, which contains the coordinates of the vertices.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR.Points</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>6×2</em></span>
+
+    2.5000    8.0000
+    6.5000    8.0000
+    2.5000    5.0000
+    6.5000    5.0000
+    1.0000    6.5000
+    8.0000    6.5000
+
+</pre></div></div></div><p>Next, examine the connectivity.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR.ConnectivityList</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>4×3</em></span>
+
+     5     3     1
+     3     2     1
+     3     4     2
+     4     6     2
+
+</pre></div></div></div><p>The <code class="literal">Points</code> and <code class="literal">ConnectivityList</code> properties define the matrix data for the triangulation.</p><p>The <code class="literal">triangulation</code> class is a wrapper around the matrix data. The real benefit is the usefulness of the <code class="literal">triangulation</code> class methods. The methods are like functions that accept a <code class="literal">triangulation</code> and other relevant input data.</p><p>The <code class="literal">triangulation</code> class provides an easy way to index into the <code class="literal">ConnectivityList</code> property matrix. Access the first triangle in the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR.ConnectivityList(1,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+     5     3     1
+
+</pre></div></div></div><p>Another way of getting the first triangle is <code class="literal">TR(1,:)</code>.</p><p>Examine the first vertex of the first triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR(1,1)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+5
+</pre></div></div></div><p>Examine the second vertex of the first triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR(1,2)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+3
+</pre></div></div></div><p>Now, examine all the triangles in the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>TR(:,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>4×3</em></span>
+
+     5     3     1
+     3     2     1
+     3     4     2
+     4     6     2
+
+</pre></div></div></div><p>Use <code class="literal">triplot</code> to plot the <code class="literal">triangulation</code>. The <code class="literal">triplot</code> function is not a <code class="literal">triangulation</code> method, but it accepts and can plot a <code class="literal">triangulation</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+triplot(TR)
+axis <span style="color:#A020F0">equal</span></pre></div></div></div><div class="informalfigure"><div id="d126e19983" class="mediaobject"><p><img src="../../examples/matlab/win64/CreatingATriangulationFromMatrixDataExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type line." width="560"></p></div></div><p>Use the <code class="literal">triangulation</code> method, <code class="literal">freeBoundary</code>, to query the free boundary and highlight it in a plot. This method returns the edges of the triangulation that are shared by only one triangle. The returned edges are expressed in terms of the vertex IDs.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>boundaryedges = freeBoundary(TR)';</pre></div></div></div><p>Now plot the boundary edges as a red line.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hold <span style="color:#A020F0">on</span> 
+plot(P(boundaryedges,1),P(boundaryedges,2),<span style="color:#A020F0">'-r'</span>,<span style="color:#A020F0">'LineWidth'</span>,2)
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20000" class="mediaobject"><p><img src="../../examples/matlab/win64/CreatingATriangulationFromMatrixDataExample_02.png" alt="Figure contains an axes object. The axes object contains 2 objects of type line." width="560"></p></div></div><p>You can use the <code class="literal">freeBoundary</code> method to validate a triangulation. For example, if you observed red edges in the interior of the triangulation, then it would indicate a problem in how the triangles are connected.</p><div class="procedure"></div><span id="CreatingATriangulationUsingDelaunayTriangulationExample" class="anchor_target"></span><p><strong id="bsp36n5-1">Creating a triangulation Using delaunayTriangulation</strong><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/CreatingATriangulationUsingDelaunayTriangulationExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Creating a triangulation Using delaunayTriangulation",
+          "description": "Create a Delaunay triangulation using delaunayTriangulation.",
+          "thumbnailURL": "../../examples/matlab/win64/CreatingATriangulationUsingDelaunayTriangulationExample_02.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "triangulation-representations.html"
+
+        },
+          "identifier": "matlab.CreatingATriangulationUsingDelaunayTriangulationExample",
+          "name": "CreatingATriangulationUsingDelaunayTriangulationExample",
+          "url": "triangulation-representations.html#bsp36n5-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/CreatingATriangulationUsingDelaunayTriangulationExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "CreatingATriangulationUsingDelaunayTriangulationExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script></p><p class="shortdesc">This example shows how to create a Delaunay triangulation using <code class="literal">delaunayTriangulation</code>.</p><p>When you create a Delaunay triangulation using the <code class="literal">delaunayTriangulation</code> class, you automatically get access to the <code class="literal">triangulation</code> methods because <code class="literal">delaunayTriangulation</code> is a subclass of <code class="literal">triangulation</code>.</p><p>Create a <code class="literal">delaunayTriangulation</code> from a set of points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>P = [ 2.5    8.0
+      6.5    8.0
+      2.5    5.0
+      6.5    5.0
+      1.0    6.5
+      8.0    6.5];
+
+DT = delaunayTriangulation(P)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>DT = 
+  delaunayTriangulation with properties:
+
+              Points: [6×2 double]
+    ConnectivityList: [4×3 double]
+         Constraints: []
+
+</pre></div></div></div><p>The resulting <code class="literal">delaunayTriangulation</code> object has the properties, <code class="literal">Points</code> and <code class="literal">ConnectivityList</code>, just like a <code class="literal">triangulation</code> object.</p><p>You can access the triangulation using direct indexing, just like <code class="literal">triangulation</code>. For example, examine the connectivity of the first triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT(1,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+     5     3     1
+
+</pre></div></div></div><p>Next, examine the connectivity of the entire triangulation. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>DT(:,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>4×3</em></span>
+
+     5     3     1
+     3     4     1
+     1     4     2
+     2     4     6
+
+</pre></div></div></div><p>Use the <code class="literal">triplot</code> function to plot the triangulation.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>triplot(DT)
+axis <span style="color:#A020F0">equal</span></pre></div></div></div><div class="informalfigure"><div id="d126e20084" class="mediaobject"><p><img src="../../examples/matlab/win64/CreatingATriangulationUsingDelaunayTriangulationExample_01.png" alt="Figure contains an axes object. The axes object contains an object of type line." width="560"></p></div></div><p>The parent class, <code class="literal">triangulation</code>, provides the <code class="literal">incenter</code> method to compute the incenters of each triangle.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>IC = incenter(DT)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>IC = <span class="emphasis"><em>4×2</em></span>
+
+    1.8787    6.5000
+    3.5000    6.0000
+    5.5000    7.0000
+    7.1213    6.5000
+
+</pre></div></div></div><p>The returned value, <code class="literal">IC</code>, is an array of coordinates representing the incenters of the triangles.</p><p>Now, use the incenters to find the positions for placing triangle labels on the plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hold <span style="color:#A020F0">on</span>
+numtri = size(DT,1);
+trilabels = arrayfun(@(P) {sprintf(<span style="color:#A020F0">'T%d'</span>, P)}, (1:numtri)');
+Htl = text(IC(:,1),IC(:,2),trilabels,<span style="color:#A020F0">'FontWeight'</span>,<span style="color:#A020F0">'bold'</span>, <span style="color:#0000FF">...</span>
+<span style="color:#A020F0">'HorizontalAlignment'</span>,<span style="color:#A020F0">'center'</span>,<span style="color:#A020F0">'Color'</span>,<span style="color:#A020F0">'blue'</span>);
+hold <span style="color:#A020F0">off</span></pre></div></div></div><div class="informalfigure"><div id="d126e20108" class="mediaobject"><p><img src="../../examples/matlab/win64/CreatingATriangulationUsingDelaunayTriangulationExample_02.png" alt="Figure contains an axes object. The axes object contains 5 objects of type line, text." width="560"></p></div></div><p>Instead of creating a Delaunay triangulation using <code class="literal">delaunayTriangulation</code>, you could use the <code class="literal">delaunay</code> function to create the triangulation connectivity data, and then pass the connectivity data to <code class="literal">triangulation</code>. For example,</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>P = [ 2.5    8.0
+      6.5    8.0
+      2.5    5.0
+      6.5    5.0
+      1.0    6.5
+      8.0    6.5];
+
+T = delaunay(P);
+TR = triangulation(T,P);
+IC = incenter(TR);</pre></div></div></div><p>Both approaches are valid in this example, but if you want to create a Delaunay triangulation and perform queries on it, then you should use <code class="literal">delaunayTriangulation</code> for these reasons:</p><div class="itemizedlist"><ul><li><p>The <code class="literal">delaunayTriangulation</code> class provides additional methods that are useful for working with triangulations. For example, you can to perform nearest-neighbor and point-in-triangle searches.</p></li><li><p>It allows you to edit the triangulation to add, move, or remove points.</p></li><li><p>It allows you to create constrained Delaunay triangulations. This allows you to create a triangulation for a 2-D domain.</p></li></ul></div><div class="procedure"></div></section></section>
+<h2 id="d126e20141">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/delaunay.html"><span itemprop="name"><code class="function">delaunay</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/delaunaytriangulation.html"><span itemprop="name"><code class="object">delaunayTriangulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/triangulation.freeboundary.html"><span itemprop="name"><code class="method">freeBoundary</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/triangulation.html"><span itemprop="name"><code class="object">triangulation</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/triplot.html"><span itemprop="name"><code class="function">triplot</code></span></a></span></p>
+
+<h3 id="d126e20158">Topics</h3><ul class="list-unstyled"><li><a href="delaunay-triangulation.html" class="a">Working with Delaunay Triangulations</a></li><li><a href="spatial-searching.html" class="a">Spatial Searching</a></li></ul>
+
+</section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Preprocess and Explore Time-Stamped Data Using timetable</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../language-fundamentals.html",
+          "name": "Language Fundamentals"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-types.html",
+          "name": "Data Types"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../timetables.html",
+          "name": "Timetables"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "timetables"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Preprocess and Explore Time-Stamped Data Using timetable",
+          "description": "Analyze traffic patterns from sensor data using a timetable to organize and preprocess timestamped data.",
+          "thumbnailURL": "../../examples/matlab/win64/TTFeatExampleV3_09.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.TTFeatExampleV3",
+          "name": "TTFeatExampleV3",
+          "url": "preprocess-and-explore-bicycle-count-data-using-timetable.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/TTFeatExampleV3')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "TTFeatExampleV3.mlx",
+        "BostonWeatherData.mat",
+        "BicycleCounts.csv"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Analyze traffic patterns from sensor data using a timetable to organize and preprocess timestamped data."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/matlab/win64/TTFeatExampleV3_09.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../language-fundamentals.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Language Fundamentals</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-types.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Types</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../timetables.html?s_tid=CRUX_lftnav" itemprop="url" id="bvdhhum-1"><span itemprop="title">Timetables</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Preprocess and Explore Time-Stamped Data Using timetable</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#TTFeatExampleV3-1" class="nav-link intrnllnk">Import Bicycle Traffic Data into Timetable</a></li><li class="nav-item"><a href="#TTFeatExampleV3-2" class="nav-link intrnllnk">Access Times and Data</a></li><li class="nav-item"><a href="#TTFeatExampleV3-3" class="nav-link intrnllnk">Select Data by Date and Time of Day</a></li><li class="nav-item"><a href="#TTFeatExampleV3-4" class="nav-link intrnllnk">Preprocess Times and Data Using timetable</a></li><li class="nav-item"><a href="#TTFeatExampleV3-5" class="nav-link intrnllnk">Sort in Time Order</a></li><li class="nav-item"><a href="#TTFeatExampleV3-6" class="nav-link intrnllnk">Identify and Remove Missing Times and Data</a></li><li class="nav-item"><a href="#TTFeatExampleV3-7" class="nav-link intrnllnk">Remove Duplicate Times and Data</a></li><li class="nav-item"><a href="#TTFeatExampleV3-8" class="nav-link intrnllnk">Examine Uniformity of Time Interval</a></li><li class="nav-item"><a href="#TTFeatExampleV3-9" class="nav-link intrnllnk">Determine Daily Bicycle Volume</a></li><li class="nav-item"><a href="#TTFeatExampleV3-10" class="nav-link intrnllnk">Synchronize Bicycle Count and Weather Data</a></li><li class="nav-item"><a href="#TTFeatExampleV3-11" class="nav-link intrnllnk">Analyze by Day of Week and Time of Day</a></li><li class="nav-item"><a href="#TTFeatExampleV3-12" class="nav-link intrnllnk">Analyze Traffic During Rush Hour</a></li><li class="nav-item"><a href="#d126e35015" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=timetables&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=timetables&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=timetables&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=timetables&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=timetables&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=timetables&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="bvg1wsa">Preprocess and Explore Time-Stamped Data Using <code class="literal">timetable</code></h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/TTFeatExampleV3')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-TTFeatExampleV3"><meta itemprop="exampletitle" content="Preprocess and Explore TimeStamped Data Using timetable"></div><span id="TTFeatExampleV3" class="anchor_target"></span><p class="shortdesc">This example shows how to analyze bicycle traffic patterns from sensor data using the <code class="literal">timetable</code> data container to organize and preprocess time-stamped data. The data come from sensors on Broadway Street in Cambridge, MA. The City of Cambridge provides public access to the full data set at the <a href="https://data.cambridgema.gov/dataset/Eco-Totem-Broadway-Bicycle-Count/q8v9-mcfg" target="_blank">Cambridge Open Data</a> site.</p><p>This example shows how to perform a variety of data cleaning, munging, and preprocessing tasks such as removing missing values and synchronizing time-stamped data with different timesteps. In addition, data exploration is highlighted including visualizations and grouped calculations using the <code class="literal">timetable</code> data container to:</p><div class="itemizedlist"><ul><li><p>Explore daily bicycle traffic</p></li><li><p>Compare bicycle traffic to local weather conditions</p></li><li><p>Analyze bicycle traffic on various days of the week and times of day</p></li></ul></div><div class="procedure"><h3 class="title" id="TTFeatExampleV3-1">Import Bicycle Traffic Data into Timetable</h3><p>Import a sample of the bicycle traffic data from a comma-separated text file. The <code class="literal">readtable</code> function returns the data in a table. Display the first eight rows using the <code class="literal">head</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeTbl = readtable(<span style="color:#A020F0">'BicycleCounts.csv'</span>);
+head(bikeTbl)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>         Timestamp              Day         Total    Westbound    Eastbound
+    ___________________    _____________    _____    _________    _________
+
+    2015-06-24 00:00:00    {'Wednesday'}      13         9             4   
+    2015-06-24 01:00:00    {'Wednesday'}       3         3             0   
+    2015-06-24 02:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 03:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 04:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 05:00:00    {'Wednesday'}       7         3             4   
+    2015-06-24 06:00:00    {'Wednesday'}      36         6            30   
+    2015-06-24 07:00:00    {'Wednesday'}     141        13           128   
+</pre></div></div></div><p>The data have timestamps, so it is convenient to use a timetable to store and analyze the data. A timetable is similar to a table, but includes timestamps that are associated with the rows of data. The timestamps, or row times, are represented by <code class="literal">datetime</code> or <code class="literal">duration</code> values. <code class="literal">datetime</code> and <code class="literal">duration</code> are the recommended data types for representing points in time or elapsed times, respectively.</p><p>Convert <code class="literal">bikeTbl</code> into a timetable using the <code class="literal">table2timetable</code> function. You must use a conversion function because <code class="literal">readtable</code> returns a table. <code class="literal">table2timetable</code> converts the first <code class="literal">datetime</code> or <code class="literal">duration</code> variable in the table into the row times of a timetable. The row times are metadata that label the rows. However, when you display a timetable, the row times and timetable variables are displayed in a similar fashion. Note that the table has five variables whereas the timetable has four.  </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData = table2timetable(bikeTbl);
+head(bikeData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>         Timestamp              Day         Total    Westbound    Eastbound
+    ___________________    _____________    _____    _________    _________
+
+    2015-06-24 00:00:00    {'Wednesday'}      13         9             4   
+    2015-06-24 01:00:00    {'Wednesday'}       3         3             0   
+    2015-06-24 02:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 03:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 04:00:00    {'Wednesday'}       1         1             0   
+    2015-06-24 05:00:00    {'Wednesday'}       7         3             4   
+    2015-06-24 06:00:00    {'Wednesday'}      36         6            30   
+    2015-06-24 07:00:00    {'Wednesday'}     141        13           128   
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>whos <span style="color:#A020F0">bikeTbl</span> <span style="color:#A020F0">bikeData</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>  Name             Size              Bytes  Class        Attributes
+
+  bikeData      9387x4             1562713  timetable              
+  bikeTbl       9387x5             1638055  table                  
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-2">Access Times and Data</h3><p>Convert the <code class="literal">Day</code> variable to categorical. The categorical data type is designed for data that consists of a finite set of discrete values, such as the names of the days of the week. List the categories so they display in day order. Use dot subscripting to access variables by name. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData.Day = categorical(bikeData.Day,{<span style="color:#A020F0">'Sunday'</span>,<span style="color:#A020F0">'Monday'</span>,<span style="color:#A020F0">'Tuesday'</span>,<span style="color:#0000FF">...</span>
+                       <span style="color:#A020F0">'Wednesday'</span>,<span style="color:#A020F0">'Thursday'</span>,<span style="color:#A020F0">'Friday'</span>,<span style="color:#A020F0">'Saturday'</span>});  </pre></div></div></div><p>In a timetable, the times are treated separately from the data variables. Access the <code class="literal">Properties</code> of the timetable to show that the row times are the first dimension of the timetable, and the variables are the second dimension. The <code class="literal">DimensionNames</code> property shows the names of the two dimensions, while the <code class="literal">VariableNames</code> property shows the names of the variables along the second dimension.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData.Properties</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+  TimetableProperties with properties:
+
+             Description: ''
+                UserData: []
+          DimensionNames: {'Timestamp'  'Variables'}
+           VariableNames: {'Day'  'Total'  'Westbound'  'Eastbound'}
+           VariableTypes: ["categorical"    "double"    "double"    "double"]
+    VariableDescriptions: {}
+           VariableUnits: {}
+      VariableContinuity: []
+                RowTimes: [9387×1 datetime]
+               StartTime: 2015-06-24 00:00:00
+              SampleRate: NaN
+                TimeStep: NaN
+                  Events: []
+        CustomProperties: No custom properties are set.
+      Use addprop and rmprop to modify CustomProperties.
+
+</pre></div></div></div><p>By default, <code class="literal">table2timetable</code> assigned <code class="literal">Timestamp</code> as the first dimension name when it converted the table to a timetable, since this was the variable name from the original table. You can change the names of the dimensions, and other timetable metadata, through the <code class="literal">Properties</code>.</p><p>Change the names of the dimensions to <code class="literal">Time</code> and <code class="literal">Data</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData.Properties.DimensionNames = {<span style="color:#A020F0">'Time'</span> <span style="color:#A020F0">'Data'</span>};
+bikeData.Properties</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+  TimetableProperties with properties:
+
+             Description: ''
+                UserData: []
+          DimensionNames: {'Time'  'Data'}
+           VariableNames: {'Day'  'Total'  'Westbound'  'Eastbound'}
+           VariableTypes: ["categorical"    "double"    "double"    "double"]
+    VariableDescriptions: {}
+           VariableUnits: {}
+      VariableContinuity: []
+                RowTimes: [9387×1 datetime]
+               StartTime: 2015-06-24 00:00:00
+              SampleRate: NaN
+                TimeStep: NaN
+                  Events: []
+        CustomProperties: No custom properties are set.
+      Use addprop and rmprop to modify CustomProperties.
+
+</pre></div></div></div><p>Display the first eight rows of the timetable.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>head(bikeData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time               Day       Total    Westbound    Eastbound
+    ___________________    _________    _____    _________    _________
+
+    2015-06-24 00:00:00    Wednesday      13         9             4   
+    2015-06-24 01:00:00    Wednesday       3         3             0   
+    2015-06-24 02:00:00    Wednesday       1         1             0   
+    2015-06-24 03:00:00    Wednesday       1         1             0   
+    2015-06-24 04:00:00    Wednesday       1         1             0   
+    2015-06-24 05:00:00    Wednesday       7         3             4   
+    2015-06-24 06:00:00    Wednesday      36         6            30   
+    2015-06-24 07:00:00    Wednesday     141        13           128   
+</pre></div></div></div><p>Determine the number of days that elapsed between the latest and earliest row times. The variables can be accessed by dot notation when referencing variables one at a time.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>elapsedTime = max(bikeData.Time) - min(bikeData.Time)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>elapsedTime = <span class="emphasis"><em>duration</em></span>
+   9383:30:00
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>elapsedTime.Format = <span style="color:#A020F0">'d'</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>elapsedTime = <span class="emphasis"><em>duration</em></span>
+   390.98 days
+
+</pre></div></div></div><p>To examine the typical bicycle counts on a given day, calculate the means for the total number of bikes, and the numbers travelling westbound and eastbound.</p><p>Return the numeric data as a matrix by indexing into the contents of <code class="literal">bikeData</code> using curly braces. Display the first eight rows. Use standard table subscripting to access multiple variables.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>counts = bikeData{:,2:end};
+counts(1:8,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>8×3</em></span>
+
+    13     9     4
+     3     3     0
+     1     1     0
+     1     1     0
+     1     1     0
+     7     3     4
+    36     6    30
+   141    13   128
+
+</pre></div></div></div><p>Since the mean is appropriate for only the numeric data, you can use the <code class="literal">vartype</code> function to select the numeric variables. <code class="literal">vartype</code> can be more convenient than manually indexing into a table or timetable to select variables. Calculate the means and omit <code class="literal">NaN</code> values.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>counts = bikeData{:,vartype(<span style="color:#A020F0">'numeric'</span>)};
+mean(counts,<span style="color:#A020F0">'omitnan'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+   49.8860   24.2002   25.6857
+
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-3">Select Data by Date and Time of Day</h3><p>To determine how many people bicycle during a holiday, examine the data on the 4th of July holiday. Index into the timetable by row times for July 4, 2015. When you index on row times, you must match times exactly. You can specify the time indices as <code class="literal">datetime</code> or <code class="literal">duration</code> values, or as character vectors that can be converted to dates and times. You can specify multiple times as an array.</p><p>Index into <code class="literal">bikeData</code> with specific dates and times to extract data for July 4, 2015. If you specify the date only, then the time is assumed to be midnight, or 00:00:00.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData(<span style="color:#A020F0">'2015-07-04'</span>,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>1×4 timetable</em></span>
+           Time              Day       Total    Westbound    Eastbound
+    ___________________    ________    _____    _________    _________
+
+    2015-07-04 00:00:00    Saturday      8          7            1    
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d = {<span style="color:#A020F0">'2015-07-04 08:00:00'</span>,<span style="color:#A020F0">'2015-07-04 09:00:00'</span>};
+bikeData(d,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>2×4 timetable</em></span>
+           Time              Day       Total    Westbound    Eastbound
+    ___________________    ________    _____    _________    _________
+
+    2015-07-04 08:00:00    Saturday     15          3           12    
+    2015-07-04 09:00:00    Saturday     21          4           17    
+
+</pre></div></div></div><p>It would be tedious to use this strategy to extract the entire day. You can also specify ranges of time without indexing on specific times. To create a time range subscript as a helper, use the <code class="literal">timerange</code> function.</p><p>Subscript into the timetable using a time range for the entire day of July 4, 2015. Specify the start time as midnight on July 4, and the end time as midnight on July 5. By default, <code class="literal">timerange</code> covers all times starting with the start time and up to, but not including, the end time. Plot the bicycle counts over the course of the day.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tr = timerange(<span style="color:#A020F0">'2015-07-04'</span>,<span style="color:#A020F0">'2015-07-05'</span>);
+jul4 = bikeData(tr,<span style="color:#A020F0">'Total'</span>);
+head(jul4)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time            Total
+    ___________________    _____
+
+    2015-07-04 00:00:00      8  
+    2015-07-04 01:00:00     13  
+    2015-07-04 02:00:00      4  
+    2015-07-04 03:00:00      1  
+    2015-07-04 04:00:00      0  
+    2015-07-04 05:00:00      1  
+    2015-07-04 06:00:00      8  
+    2015-07-04 07:00:00     16  
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bar(jul4.Time,jul4.Total)
+ylabel(<span style="color:#A020F0">'Bicycle Counts'</span>)
+title(<span style="color:#A020F0">'Bicycle Counts on July 4, 2015'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e34591" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_01.png" alt="Figure contains an axes object. The axes object with title Bicycle Counts on July 4, 2015, ylabel Bicycle Counts contains an object of type bar." width="560"></p></div></div><p>From the plot, there is more volume throughout the day, leveling off in the afternoon. Because many businesses are closed, the plot does not show typical traffic during commute hours. Spikes later in the evening can be attributed to celebrations with fireworks, which occur after dark. To examine these trends more closely, the data should be compared to data for typical days.</p><p>Compare the data for July 4 to data for the rest of the month of July.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>jul = bikeData(timerange(<span style="color:#A020F0">'2015-07-01'</span>,<span style="color:#A020F0">'2015-08-01'</span>),:);
+plot(jul.Time,jul.Total)
+hold <span style="color:#A020F0">on</span>
+plot(jul4.Time,jul4.Total)
+ylabel(<span style="color:#A020F0">'Total Count'</span>)
+title(<span style="color:#A020F0">'Bicycle Counts in July'</span>)
+hold <span style="color:#A020F0">off</span>
+legend(<span style="color:#A020F0">'Bicycle Count'</span>,<span style="color:#A020F0">'July 4 Bicycle Count'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e34600" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_02.png" alt="Figure contains an axes object. The axes object with title Bicycle Counts in July, ylabel Total Count contains 2 objects of type line. These objects represent Bicycle Count, July 4 Bicycle Count." width="560"></p></div></div><p>The plot shows variations that can be attributed to traffic differences between weekdays and weekends. The traffic patterns for July 4 and 5 are consistent with the pattern for weekend traffic. July 5 is a Monday but is often observed as a holiday. These trends can be examined more closely with further preprocessing and analysis.</p><h3 class="title" id="TTFeatExampleV3-4">Preprocess Times and Data Using <code class="literal">timetable</code></h3><p>Time-stamped data sets are often messy and may contain anomalies or errors. Timetables are well suited for resolving anomalies and errors. </p><p>A timetable does not have to have its row times in any particular order. It can contain rows that are not sorted by their row times. A timetable can also contain multiple rows with the same row time, though the rows can have different data values. Even when row times are sorted and unique, they can differ by time steps of different sizes. A timetable can even contain <code class="literal">NaT</code> or <code class="literal">NaN</code> values to indicate missing row times.</p><p>The <code class="literal">timetable</code> data type provides a number of different ways to resolve missing, duplicate, or nonuniform times. You can also resample or aggregate data to create a <span class="emphasis"><em>regular</em></span> timetable. When a timetable is regular, it has row times that are sorted and unique, and have a uniform or evenly spaced time step between them.</p><div class="itemizedlist"><ul><li><p>To find missing row times, use <strong class="emphasis bold"><code class="literal">ismissing</code></strong>.</p></li><li><p>To remove missing times and data, use <strong class="emphasis bold"><code class="literal">rmmissing</code></strong>.</p></li><li><p>To sort a timetable by its row times, use <strong class="emphasis bold"><code class="literal">sortrows</code></strong>.</p></li><li><p>To make a timetable with unique and sorted row times, use <strong class="emphasis bold"><code class="literal">unique</code></strong> and <strong class="emphasis bold"><code class="literal">retime</code></strong>.</p></li><li><p>To make a regular timetable, specify a uniformly spaced time vector and use <strong class="emphasis bold"><code class="literal">retime</code></strong>.</p></li></ul></div><div class="informalfigure"><div id="d126e34657" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_03.png" alt="Workflow for cleaning timetables with MATLAB functions." height="353" width="593"></p></div></div><h3 class="title" id="TTFeatExampleV3-5"><strong class="emphasis bold">Sort in Time Order</strong></h3><p>Determine if the timetable is sorted. A timetable is sorted if its row times are listed in ascending order.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>issorted(bikeData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre></div></div></div><p>Sort the timetable. The <code class="literal">sortrows</code> function sorts the rows by their row times, from earliest to latest time. If there are rows with duplicate row times, then <code class="literal">sortrows</code> copies all the duplicates to the output.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData = sortrows(bikeData);
+issorted(bikeData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>logical</em></span>
+   1
+
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-6">Identify and Remove Missing Times and Data</h3><p>A timetable can have missing data indicators in its variables or its row times. For example, you can indicate missing numeric values as <code class="literal">NaN</code>s, and missing datetime values as <code class="literal">NaT</code>s. You can assign, find, remove, and fill missing values with the <code class="literal">standardizeMissing</code>, <code class="literal">ismissing</code>, <code class="literal">rmmissing</code>, and <code class="literal">fillmissing</code> functions, respectively.</p><p>Find and count the missing values in the timetable variables. In this example, missing values indicate circumstances when no data were collected.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>missData = ismissing(bikeData);
+sum(missData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×4</em></span>
+
+     1     3     3     3
+
+</pre></div></div></div><p>The output from <code class="literal">ismissing</code> is a <code class="literal">logical</code> matrix, the same size as the table, identifying missing data values as true. Display any rows which have missing data indicators.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>idx = any(missData,2);
+bikeData(idx,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>3×4 timetable</em></span>
+           Time                Day        Total    Westbound    Eastbound
+    ___________________    ___________    _____    _________    _________
+
+    2015-08-03 00:00:00    Monday          NaN        NaN          NaN   
+    2015-08-03 01:00:00    Monday          NaN        NaN          NaN   
+    NaT                    &lt;undefined&gt;     NaN        NaN          NaN   
+
+</pre></div></div></div><p><code class="literal">ismissing(bikeData)</code> finds missing data in the timetable variables only, not the times. To find missing row times, call <code class="literal">ismissing</code> on the row times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>missTimes = ismissing(bikeData.Time);
+bikeData(missTimes,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>2×4 timetable</em></span>
+    Time        Day        Total    Westbound    Eastbound
+    ____    ___________    _____    _________    _________
+
+    NaT     &lt;undefined&gt;     NaN        NaN          NaN   
+    NaT     Friday            6          3            3   
+
+</pre></div></div></div><p>In this example, missing times or data values indicate measurement errors and can be excluded. Remove rows of the table containing missing data values and missing row times using <code class="literal">rmmissing</code>. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData = rmmissing(bikeData);
+sum(ismissing(bikeData))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×4</em></span>
+
+     0     0     0     0
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sum(ismissing(bikeData.Time))</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = 
+0
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-7">Remove Duplicate Times and Data</h3><p>Determine if there are duplicate times and/or duplicate rows of data. You might want to exclude exact duplicates, as these can also be considered measurement errors. Identify duplicate times by finding where the difference between the sorted times is exactly zero.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>idx = diff(bikeData.Time) == 0;
+dup = bikeData.Time(idx)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>dup = <span class="emphasis"><em>3×1 datetime</em></span>
+   2015-08-21 00:00:00
+   2015-11-19 23:00:00
+   2015-11-19 23:00:00
+
+</pre></div></div></div><p>Three times are repeated and November 19, 2015, is repeated twice. Examine the data associated with the repeated times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData(dup(1),:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>2×4 timetable</em></span>
+           Time             Day      Total    Westbound    Eastbound
+    ___________________    ______    _____    _________    _________
+
+    2015-08-21 00:00:00    Friday     14          9            5    
+    2015-08-21 00:00:00    Friday     11          7            4    
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData(dup(2),:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>3×4 timetable</em></span>
+           Time              Day       Total    Westbound    Eastbound
+    ___________________    ________    _____    _________    _________
+
+    2015-11-19 23:00:00    Thursday     17         15            2    
+    2015-11-19 23:00:00    Thursday     17         15            2    
+    2015-11-19 23:00:00    Thursday     17         15            2    
+
+</pre></div></div></div><p>The first has duplicated times but non-duplicate data, whereas the others are entirely duplicated. Timetable rows are considered duplicates when they contain identical row times and identical data values across the rows. You can use <code class="literal">unique</code> to remove duplicate rows in the timetable. The <code class="literal">unique</code> function also sorts the rows by their row times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData = unique(bikeData); </pre></div></div></div><p>The rows with duplicate times but non-duplicate data require some interpretation. Examine the data around those times.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>d = dup(1) + hours(-2:2);
+bikeData(d,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>5×4 timetable</em></span>
+           Time              Day       Total    Westbound    Eastbound
+    ___________________    ________    _____    _________    _________
+
+    2015-08-20 22:00:00    Thursday     40         30           10    
+    2015-08-20 23:00:00    Thursday     25         18            7    
+    2015-08-21 00:00:00    Friday       11          7            4    
+    2015-08-21 00:00:00    Friday       14          9            5    
+    2015-08-21 02:00:00    Friday        6          5            1    
+
+</pre></div></div></div><p>In this case, the duplicate time may have been mistaken since the data and surrounding times are consistent. Though it appears to represent 01:00:00, it is uncertain what time this should have been. The data can be accumulated to account for the data at both time points.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>sum(bikeData{dup(1),2:end})</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>1×3</em></span>
+
+    25    16     9
+
+</pre></div></div></div><p>This is only one case which can be done manually. However, for many rows, the <code class="literal">retime</code> function can perform this calculation. Accumulate the data for the unique times using the <code class="literal">sum</code> function to aggregate. The sum is appropriate for numeric data but not the categorical data in the timetable. Use <code class="literal">vartype</code> to identify the numeric variables. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vt = vartype(<span style="color:#A020F0">'numeric'</span>);
+t = unique(bikeData.Time);
+numData = retime(bikeData(:,vt),t,<span style="color:#A020F0">'sum'</span>);
+head(numData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time            Total    Westbound    Eastbound
+    ___________________    _____    _________    _________
+
+    2015-06-24 00:00:00      13         9             4   
+    2015-06-24 01:00:00       3         3             0   
+    2015-06-24 02:00:00       1         1             0   
+    2015-06-24 03:00:00       1         1             0   
+    2015-06-24 04:00:00       1         1             0   
+    2015-06-24 05:00:00       7         3             4   
+    2015-06-24 06:00:00      36         6            30   
+    2015-06-24 07:00:00     141        13           128   
+</pre></div></div></div><p>You cannot sum the categorical data, but since one label represents the whole day, take the first value on each day. You can perform the <code class="literal">retime</code> operation again with the same time vector and concatenate the timetables together. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>vc = vartype(<span style="color:#A020F0">'categorical'</span>);
+catData = retime(bikeData(:,vc),t,<span style="color:#A020F0">'firstvalue'</span>);
+bikeData = [catData,numData];
+bikeData(d,:)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans=<span class="emphasis"><em>4×4 timetable</em></span>
+           Time              Day       Total    Westbound    Eastbound
+    ___________________    ________    _____    _________    _________
+
+    2015-08-20 22:00:00    Thursday     40         30           10    
+    2015-08-20 23:00:00    Thursday     25         18            7    
+    2015-08-21 00:00:00    Friday       25         16            9    
+    2015-08-21 02:00:00    Friday        6          5            1    
+
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-8">Examine Uniformity of Time Interval</h3><p>The data appear to have a uniform time step of one hour. To determine if this is true for all the row times in the timetable, use the <code class="literal">isregular</code> function. <code class="literal">isregular</code> returns <code class="literal">true</code> for sorted, evenly-spaced times (monotonically increasing), with no duplicate or missing times (<code class="literal">NaT</code> or <code class="literal">NaN</code>).</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>isregular(bikeData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre></div></div></div><p>The output of <code class="literal">0</code>, or <code class="literal">false</code>, indicates that the times in the timetable are not evenly spaced. Explore the time interval in more detail.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dt = diff(bikeData.Time);
+[min(dt); max(dt)]</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>2×1 duration</em></span>
+   00:30:00
+   03:00:00
+
+</pre></div></div></div><p>To put the timetable on a regular time interval, use <code class="literal">retime</code> or <code class="literal">synchronize</code> and specify the time interval of interest.</p><h3 class="title" id="TTFeatExampleV3-9">Determine Daily Bicycle Volume</h3><p>Determine the counts per day using the <code class="literal">retime</code> function. Accumulate the count data for each day using the <code class="literal">sum</code> method. This is appropriate for numeric data but not the categorical data in the timetable. Use <code class="literal">vartype</code> to identify the variables by data type. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dayCountNum = retime(bikeData(:,vt),<span style="color:#A020F0">'daily'</span>,<span style="color:#A020F0">'sum'</span>);
+head(dayCountNum)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time            Total    Westbound    Eastbound
+    ___________________    _____    _________    _________
+
+    2015-06-24 00:00:00    2141       1141         1000   
+    2015-06-25 00:00:00    2106       1123          983   
+    2015-06-26 00:00:00    1748        970          778   
+    2015-06-27 00:00:00     695        346          349   
+    2015-06-28 00:00:00     153         83           70   
+    2015-06-29 00:00:00    1841        978          863   
+    2015-06-30 00:00:00    2170       1145         1025   
+    2015-07-01 00:00:00     997        544          453   
+</pre></div></div></div><p>As above, you can perform the <code class="literal">retime</code> operation again to represent the categorical data using an appropriate method and concatenate the timetables together. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>dayCountCat = retime(bikeData(:,vc),<span style="color:#A020F0">'daily'</span>,<span style="color:#A020F0">'firstvalue'</span>);
+dayCount = [dayCountCat,dayCountNum];
+head(dayCount)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time               Day       Total    Westbound    Eastbound
+    ___________________    _________    _____    _________    _________
+
+    2015-06-24 00:00:00    Wednesday    2141       1141         1000   
+    2015-06-25 00:00:00    Thursday     2106       1123          983   
+    2015-06-26 00:00:00    Friday       1748        970          778   
+    2015-06-27 00:00:00    Saturday      695        346          349   
+    2015-06-28 00:00:00    Sunday        153         83           70   
+    2015-06-29 00:00:00    Monday       1841        978          863   
+    2015-06-30 00:00:00    Tuesday      2170       1145         1025   
+    2015-07-01 00:00:00    Wednesday     997        544          453   
+</pre></div></div></div><h3 class="title" id="TTFeatExampleV3-10">Synchronize Bicycle Count and Weather Data</h3><p>Examine the effect of weather on cycling behavior by comparing the bicycle count with weather data. Load the weather timetable which includes historical weather data from Boston, MA, including storm events. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>load <span style="color:#A020F0">BostonWeatherData</span>
+head(weatherData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>       Time        TemperatureF    Humidity       Events   
+    ___________    ____________    ________    ____________
+
+    01-Jul-2015         72            78       Thunderstorm
+    02-Jul-2015         72            60       None        
+    03-Jul-2015         70            56       None        
+    04-Jul-2015         67            75       None        
+    05-Jul-2015         72            67       None        
+    06-Jul-2015         74            69       None        
+    07-Jul-2015         75            77       Rain        
+    08-Jul-2015         79            68       Rain        
+</pre></div></div></div><p>To summarize the times and variables in the timetable, use the <code class="literal">summary</code> function.  </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>summary(weatherData)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>weatherData: 383×3 timetable
+
+Row Times:
+
+    Time: datetime
+
+Variables:
+
+    TemperatureF: double
+    Humidity: double
+    Events: categorical (7 categories)
+
+Statistics for applicable variables and row times:
+
+                    NumMissing          Min              Median               Max               Mean               Std      
+
+    Time                0           01-Jul-2015        08-Jan-2016        17-Jul-2016        08-Jan-2016        2656:57:49  
+    TemperatureF        0                     2                 55                 85            55.2950           16.3505  
+    Humidity            0                    29                 64                 97            65.2193           14.0507  
+    Events              0                                                                                                   
+</pre></div></div></div><p>Combine the bicycle data with the weather data to a common time vector using <code class="literal">synchronize</code>. You can resample or aggregate timetable data using any of the methods documented on the reference page for the <code class="literal">synchronize</code> function.</p><p>Synchronize the data from both timetables to a common time vector, constructed from the intersection of their individual daily time vectors.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>data = synchronize(dayCount,weatherData,<span style="color:#A020F0">'intersection'</span>);
+head(data)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>           Time               Day       Total    Westbound    Eastbound    TemperatureF    Humidity       Events   
+    ___________________    _________    _____    _________    _________    ____________    ________    ____________
+
+    2015-07-01 00:00:00    Wednesday     997        544          453            72            78       Thunderstorm
+    2015-07-02 00:00:00    Thursday     1943       1033          910            72            60       None        
+    2015-07-03 00:00:00    Friday        870        454          416            70            56       None        
+    2015-07-04 00:00:00    Saturday      669        328          341            67            75       None        
+    2015-07-05 00:00:00    Sunday        702        407          295            72            67       None        
+    2015-07-06 00:00:00    Monday       1900       1029          871            74            69       None        
+    2015-07-07 00:00:00    Tuesday      2106       1140          966            75            77       Rain        
+    2015-07-08 00:00:00    Wednesday    1855        984          871            79            68       Rain        
+</pre></div></div></div><p>Compare bicycle traffic counts and outdoor temperature on separate y axes to examine the trends. Remove the weekends from the data for visualization.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>idx = ~isweekend(data.Time);  
+weekdayData = data(idx,{<span style="color:#A020F0">'TemperatureF'</span>,<span style="color:#A020F0">'Total'</span>});
+figure
+yyaxis <span style="color:#A020F0">left</span>
+plot(weekdayData.Time, weekdayData.Total) 
+ylabel(<span style="color:#A020F0">'Bicycle Count'</span>)
+yyaxis <span style="color:#A020F0">right</span>
+plot(weekdayData.Time,weekdayData.TemperatureF) 
+ylabel(<span style="color:#A020F0">'Temperature (\circ F)'</span>)
+title(<span style="color:#A020F0">'Bicycle Counts and Temperature Over Time'</span>)
+xlim([min(data.Time) max(data.Time)])</pre></div></div></div><div class="informalfigure"><div id="d126e34905" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_04.png" alt="Figure contains an axes object. The axes object with title Bicycle Counts and Temperature Over Time, ylabel Temperature ( degree blank F) contains 2 objects of type line." width="560"></p></div></div><p>The plot shows that the traffic and weather data might follow similar trends. Zoom in on the plot.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>xlim([datetime(<span style="color:#A020F0">'2015-11-01'</span>),datetime(<span style="color:#A020F0">'2016-05-01'</span>)])</pre></div></div></div><div class="informalfigure"><div id="d126e34913" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_05.png" alt="Figure contains an axes object. The axes object with title Bicycle Counts and Temperature Over Time, ylabel Temperature ( degree blank F) contains 2 objects of type line." width="560"></p></div></div><p>The trends are similar, indicating that fewer people cycle on colder days. </p><h3 class="title" id="TTFeatExampleV3-11">Analyze by Day of Week and Time of Day</h3><p>Examine the data based on different intervals such as day of the week and time of day. Determine the total counts per day using <code class="literal">varfun</code> to perform grouped calculations on variables. Specify the <code class="literal">sum</code> function with a function handle and the grouping variable and preferred output type using name-value pairs. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>byDay = varfun(@sum,bikeData,<span style="color:#A020F0">'GroupingVariables'</span>,<span style="color:#A020F0">'Day'</span>,<span style="color:#0000FF">...</span>
+             <span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'table'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>byDay=<span class="emphasis"><em>7×5 table</em></span>
+       Day       GroupCount    sum_Total    sum_Westbound    sum_Eastbound
+    _________    __________    _________    _____________    _____________
+
+    Sunday          1344         25315          12471            12844    
+    Monday          1343         79991          39219            40772    
+    Tuesday         1320         81480          39695            41785    
+    Wednesday       1344         86853          41726            45127    
+    Thursday        1344         87516          42682            44834    
+    Friday          1342         76643          36926            39717    
+    Saturday        1343         30292          14343            15949    
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>figure
+bar(byDay{:,{<span style="color:#A020F0">'sum_Westbound'</span>,<span style="color:#A020F0">'sum_Eastbound'</span>}})
+legend({<span style="color:#A020F0">'Westbound'</span>,<span style="color:#A020F0">'Eastbound'</span>},<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'eastoutside'</span>)
+xticklabels({<span style="color:#A020F0">'Sun'</span>,<span style="color:#A020F0">'Mon'</span>,<span style="color:#A020F0">'Tue'</span>,<span style="color:#A020F0">'Wed'</span>,<span style="color:#A020F0">'Thu'</span>,<span style="color:#A020F0">'Fri'</span>,<span style="color:#A020F0">'Sat'</span>})
+title(<span style="color:#A020F0">'Bicycle Count by Day of Week'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e34935" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_06.png" alt="Figure contains an axes object. The axes object with title Bicycle Count by Day of Week contains 2 objects of type bar. These objects represent Westbound, Eastbound." width="560"></p></div></div><p>The bar plot indicates that traffic is heavier on weekdays. Also, there is a difference in the Eastbound and Westbound directions. This might indicate that people tend to take different routes when entering and leaving the city. Another possibility is that some people enter on one day and return on another day.</p><p>Determine the hour of day and use <code class="literal">varfun</code> for calculations by group.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData.HrOfDay = hour(bikeData.Time);
+byHr = varfun(@mean,bikeData(:,{<span style="color:#A020F0">'Westbound'</span>,<span style="color:#A020F0">'Eastbound'</span>,<span style="color:#A020F0">'HrOfDay'</span>}),<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'GroupingVariables'</span>,<span style="color:#A020F0">'HrOfDay'</span>,<span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'table'</span>);
+head(byHr)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>    HrOfDay    GroupCount    mean_Westbound    mean_Eastbound
+    _______    __________    ______________    ______________
+
+       0          389            5.4396            1.7686    
+       1          389            2.7712           0.87147    
+       2          391            1.8696           0.58312    
+       3          391            0.7468             0.289    
+       4          391           0.52685            1.0026    
+       5          391           0.70588            4.7494    
+       6          391            3.1228            22.097    
+       7          391            9.1176             63.54    
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bar(byHr{:,{<span style="color:#A020F0">'mean_Westbound'</span>,<span style="color:#A020F0">'mean_Eastbound'</span>}})
+legend(<span style="color:#A020F0">'Westbound'</span>,<span style="color:#A020F0">'Eastbound'</span>,<span style="color:#A020F0">'Location'</span>,<span style="color:#A020F0">'eastoutside'</span>)
+xlabel(<span style="color:#A020F0">'Hour of Day'</span>)
+ylabel(<span style="color:#A020F0">'Bicycle Count'</span>)
+title(<span style="color:#A020F0">'Mean Bicycle Count by Hour of Day'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e34952" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_07.png" alt="Figure contains an axes object. The axes object with title Mean Bicycle Count by Hour of Day, xlabel Hour of Day, ylabel Bicycle Count contains 2 objects of type bar. These objects represent Westbound, Eastbound." width="560"></p></div></div><p>There are traffic spikes at the typical commute hours, around 9:00 a.m. and 5:00 p.m. Also, the trends between the Eastbound and Westbound directions are different. In general, the Westbound direction is toward residential areas surrounding the Cambridge area and toward the universities. The Eastbound direction is toward Boston.</p><p>The traffic is heavier later in the day in the Westbound direction compared to the Eastbound direction. This might indicate university schedules and traffic due to restaurants in the area. Examine the trend by day of week as well as hour of day.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>byHrDay = varfun(@sum,bikeData,<span style="color:#A020F0">'GroupingVariables'</span>,{<span style="color:#A020F0">'HrOfDay'</span>,<span style="color:#A020F0">'Day'</span>},<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'table'</span>);
+head(byHrDay)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>    HrOfDay       Day       GroupCount    sum_Total    sum_Westbound    sum_Eastbound
+    _______    _________    __________    _________    _____________    _____________
+
+       0       Sunday           56           473            345              128     
+       0       Monday           55           202            145               57     
+       0       Tuesday          55           297            213               84     
+       0       Wednesday        56           374            286               88     
+       0       Thursday         56           436            324              112     
+       0       Friday           55           442            348               94     
+       0       Saturday         56           580            455              125     
+       1       Sunday           56           333            259               74     
+</pre></div></div></div><p>To arrange the timetable so that the days of the week are the variables, use the <code class="literal">unstack</code> function. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>hrAndDayWeek = unstack(byHrDay(:,{<span style="color:#A020F0">'HrOfDay'</span>,<span style="color:#A020F0">'Day'</span>,<span style="color:#A020F0">'sum_Total'</span>}),<span style="color:#A020F0">'sum_Total'</span>,<span style="color:#A020F0">'Day'</span>); 
+head(hrAndDayWeek)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>    HrOfDay    Sunday    Monday    Tuesday    Wednesday    Thursday    Friday    Saturday
+    _______    ______    ______    _______    _________    ________    ______    ________
+
+       0        473        202       297         374          436        442       580   
+       1        333         81       147         168          173        183       332   
+       2        198         77        68          93          128        141       254   
+       3         86         41        43          44           50         61        80   
+       4         51         81       117         101          108         80        60   
+       5        105        353       407         419          381        340       128   
+       6        275       1750      1867        2066         1927       1625       351   
+       7        553       5355      5515        5818         5731       4733       704   
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ribbon(hrAndDayWeek.HrOfDay,hrAndDayWeek{:,2:end})
+ylim([0 24])
+xlim([0 8])
+xticks(1:7)
+xticklabels({<span style="color:#A020F0">'Sun'</span>,<span style="color:#A020F0">'Mon'</span>,<span style="color:#A020F0">'Tue'</span>,<span style="color:#A020F0">'Wed'</span>,<span style="color:#A020F0">'Thu'</span>,<span style="color:#A020F0">'Fri'</span>,<span style="color:#A020F0">'Sat'</span>})
+ylabel(<span style="color:#A020F0">'Hour'</span>)
+title(<span style="color:#A020F0">'Bicycle Count by Hour and Day of Week'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e34973" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_08.png" alt="Figure contains an axes object. The axes object with title Bicycle Count by Hour and Day of Week, ylabel Hour contains 7 objects of type surface." width="560"></p></div></div><p>There are similar trends for the regular work days of Monday through Friday, with peaks at rush hour and traffic tapering off in the evening. Friday has less volume, though the overall trend is similar to the other work days. The trends for Saturday and Sunday are similar to each other, without rush hour peaks and with more volume later in the day. The late evening trends are also similar for Monday through Friday, with less volume on Friday.</p><h3 class="title" id="TTFeatExampleV3-12">Analyze Traffic During Rush Hour</h3><p>To examine the overall time of day trends, split up the data by rush hour times. It is possible to use different times of day or units of time using the <code class="literal">discretize</code> function. For example, separate the data into groups for <code class="literal">AM</code>, <code class="literal">AMRush</code>, <code class="literal">Day</code>, <code class="literal">PMRush</code>, <code class="literal">PM</code>. Then use <code class="literal">varfun</code> to calculate the mean by group.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bikeData.HrLabel = discretize(bikeData.HrOfDay,[0,6,10,15,19,24],<span style="color:#A020F0">'categorical'</span>,<span style="color:#0000FF">...</span>
+    {<span style="color:#A020F0">'AM'</span>,<span style="color:#A020F0">'RushAM'</span>,<span style="color:#A020F0">'Day'</span>,<span style="color:#A020F0">'RushPM'</span>,<span style="color:#A020F0">'PM'</span>});
+byHrBin = varfun(@mean,bikeData(:,{<span style="color:#A020F0">'Total'</span>,<span style="color:#A020F0">'HrLabel'</span>}),<span style="color:#A020F0">'GroupingVariables'</span>,<span style="color:#A020F0">'HrLabel'</span>,<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'table'</span>)</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>byHrBin=<span class="emphasis"><em>5×3 table</em></span>
+    HrLabel    GroupCount    mean_Total
+    _______    __________    __________
+
+    AM            2342         3.5508  
+    RushAM        1564         94.893  
+    Day           1955         45.612  
+    RushPM        1564         98.066  
+    PM            1955         35.198  
+
+</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>bar(byHrBin.mean_Total)
+cats = categories(byHrBin.HrLabel);
+xticklabels(cats)
+title(<span style="color:#A020F0">'Mean Bicycle Count During Rush Hours'</span>)</pre></div></div></div><div class="informalfigure"><div id="d126e35007" class="mediaobject"><p><img src="../../examples/matlab/win64/TTFeatExampleV3_09.png" alt="Figure contains an axes object. The axes object with title Mean Bicycle Count During Rush Hours contains an object of type bar." width="560"></p></div></div><p>In general, there is about twice as much traffic in this area during the evening and morning rush hours compared to other times of the day. There is very little traffic in this area in the early morning, but there is still significant traffic in the evening and late evening, comparable to the day outside of the morning and evening rush hours.</p></div>
+        <h2 id="d126e35015">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/timetable.html"><span itemprop="name"><code class="function">timetable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/table2timetable.html"><span itemprop="name"><code class="function">table2timetable</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.head.html"><span itemprop="name"><code class="function">head</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.summary.html"><span itemprop="name"><code class="function">summary</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/table.varfun.html"><span itemprop="name"><code class="function">varfun</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/timerange.html"><span itemprop="name"><code class="function">timerange</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.sortrows.html"><span itemprop="name"><code class="function">sortrows</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/rmmissing.html"><span itemprop="name"><code class="function">rmmissing</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/timetable.retime.html"><span itemprop="name"><code class="function">retime</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/datetime.html"><span itemprop="name"><code class="object">datetime</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/table.unstack.html"><span itemprop="name"><code class="function">unstack</code></span></a></span></p>
+        <h3 id="d126e35052">Topics</h3><ul class="list-unstyled"><li><a href="represent-date-and-times-in-MATLAB.html" class="a">Represent Dates and Times in MATLAB</a></li><li><a href="resample-and-aggregate-data-in-timetable.html" class="a">Resample and Aggregate Data in Timetable</a></li><li><a href="clean-timetable-with-missing-duplicate-or-irregular-times.html" class="a">Clean Timetable with Missing, Duplicate, or Nonuniform Times</a></li><li><a href="computations-with-numeric-data-in-table-or-timetable.html" class="a">Data Cleaning and Calculations in Tables</a></li><li><a href="grouped-calculations-in-tables-and-timetables.html" class="a">Grouped Calculations in Tables and Timetables</a></li><li><a href="subscript-into-times-of-timetable.html" class="a">Select Times in Timetable</a></li><li><a href="add-event-table-from-external-data-to-timetable.html" class="a">Add Event Table from External Data to Timetable</a></li><li><a href="find-events-in-timetable-using-event-table.html" class="a">Find Events in Timetable Using Event Table</a></li></ul>
+        
+      </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

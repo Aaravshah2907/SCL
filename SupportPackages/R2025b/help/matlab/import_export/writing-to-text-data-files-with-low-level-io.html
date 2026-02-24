@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Export to Text Data Files with Low-Level I/O</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../low-level-file-i-o.html",
+          "name": "Low-Level File I/O"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "low-level-file-i-o"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Write text files at the character level, including combinations of numeric and character data and nonrectangular files, using the low-level fprintf function."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../low-level-file-i-o.html?s_tid=CRUX_lftnav" itemprop="url" id="lowlevel-file-io"><span itemprop="title">Low-Level File I/O</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Export to Text Data Files with Low-Level I/O</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#br4wl_s" class="nav-link intrnllnk">Write to Text Files Using fprintf</a><ul class="nav"><li class="nav-item"><a href="#WriteToTextFilesUsingFprintfExample-1" class="nav-link intrnllnk">Open the File</a></li><li class="nav-item"><a href="#WriteToTextFilesUsingFprintfExample-2" class="nav-link intrnllnk">Write to the File</a></li><li class="nav-item"><a href="#WriteToTextFilesUsingFprintfExample-3" class="nav-link intrnllnk">Additional Formatting Options</a></li></ul></li><li class="nav-item"><a href="#br5_kad-1" class="nav-link intrnllnk">Append to or Overwrite Existing Text Files</a><ul class="nav"><li class="nav-item"><a href="#AppendToOrOverwriteExistingFilesExample-1" class="nav-link intrnllnk">Append to Existing Text File</a></li><li class="nav-item"><a href="#AppendToOrOverwriteExistingFilesExample-2" class="nav-link intrnllnk">Overwrite Entire Text File</a></li><li class="nav-item"><a href="#AppendToOrOverwriteExistingFilesExample-3" class="nav-link intrnllnk">Overwrite Portion of Text File</a></li></ul></li><li class="nav-item"><a href="#bseuz8e" class="nav-link intrnllnk">Open Files with Different Character Encodings</a></li><li class="nav-item"><a href="#d126e7784" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=low-level-file-i-o&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="f5-6458">Export to Text Data Files with Low-Level I/O</h2><a class="indexterm" name="d126e7483"></a><a class="indexterm" name="d126e7487"></a><section><h3 class="title" id="br4wl_s">Write to Text Files Using <code class="literal">fprintf</code></h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/WriteToTextFilesUsingFprintfExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Write to Text Files Using fprintf",
+          "description": "Create text files, including combinations of numeric and character data and nonrectangular files, using the low-level fprintf function.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "writing-to-text-data-files-with-low-level-io.html"
+
+        },
+          "identifier": "matlab.WriteToTextFilesUsingFprintfExample",
+          "name": "WriteToTextFilesUsingFprintfExample",
+          "url": "writing-to-text-data-files-with-low-level-io.html#br4wl_s"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/WriteToTextFilesUsingFprintfExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "WriteToTextFilesUsingFprintfExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-WriteToTextFilesUsingFprintfExample"><meta itemprop="exampletitle" content="Write to Text Files Using fprintf"></div><span id="WriteToTextFilesUsingFprintfExample" class="anchor_target"></span><p class="shortdesc">This example shows how to create text files, including combinations of numeric and character data and nonrectangular files, using the low-level <code class="literal">fprintf</code> function.</p><p><code class="literal">fprintf</code> is based on its namesake in the ANSI&#174; Standard C Library. However, MATLAB&#174; uses a vectorized version of <code class="literal">fprintf</code> that writes data from an array with minimal control loops.</p><div class="procedure"><span id="WriteToTextFilesUsingFprintfExample-1" class="anchor_target"></span><p class="title" id="WriteToTextFilesUsingFprintfExample-1"><b>Open the File</b></p><p>Create a sample matrix <code class="literal">y</code> with two rows.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0:0.1:1;
+y = [x; exp(x)];</pre></div></div></div><p>Open a file for writing with <code class="literal">fopen</code> and obtain a file identifier, <code class="literal">fileID</code>. By default, <code class="literal">fopen</code> opens a file for read-only access, so you must specify the permission to write or append, such as <code class="literal">'w'</code> or <code class="literal">'a'</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">'exptable.txt'</span>,<span style="color:#A020F0">'w'</span>);</pre></div></div></div><span id="WriteToTextFilesUsingFprintfExample-2" class="anchor_target"></span><p class="title" id="WriteToTextFilesUsingFprintfExample-2"><b>Write to the File</b></p><p>Write a title, followed by a blank line using the <code class="literal">fprintf</code> function. To move to a new line in the file, use <code class="literal">'\n'</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fprintf(fileID, <span style="color:#A020F0">'Exponential Function\n\n'</span>);</pre></div></div></div><p>Note: Some Windows&#174; text editors, including Microsoft&#174; Notepad, require a newline character sequence of <code class="literal">'\r\n'</code> instead of <code class="literal">'\n'</code>. However, <code class="literal">'\n'</code> is sufficient for Microsoft Word or WordPad.</p><p>Write the values in <code class="literal">y</code> in column order so that two values appear in each row of the file. <code class="literal">fprintf</code> converts the numbers or characters in the array inputs to text according to your specifications. Specify <code class="literal">'%f'</code> to print floating-point numbers.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fprintf(fileID,<span style="color:#A020F0">'%f %f\n'</span>,y);</pre></div></div></div><p>Other common conversion specifiers include <code class="literal">'%d'</code> for integers or <code class="literal">'%s'</code> for characters. <code class="literal">fprintf</code> reapplies the conversion information to cycle through all values of the input arrays in column order.</p><p>Close the file using <code class="literal">fclose</code> when you finish writing. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fclose(fileID);</pre></div></div></div><p>View the contents of the file using the <code class="literal">type</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>type <span style="color:#A020F0">exptable.txt</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Exponential Function
+
+0.000000 1.000000
+0.100000 1.105171
+0.200000 1.221403
+0.300000 1.349859
+0.400000 1.491825
+0.500000 1.648721
+0.600000 1.822119
+0.700000 2.013753
+0.800000 2.225541
+0.900000 2.459603
+1.000000 2.718282
+</pre></div></div></div><span id="WriteToTextFilesUsingFprintfExample-3" class="anchor_target"></span><p class="title" id="WriteToTextFilesUsingFprintfExample-3"><b>Additional Formatting Options</b></p><p>Optionally, include additional information in the call to <code class="literal">fprintf</code> to describe field width, precision, or the order of the output values. For example, specify the field width and number of digits to the right of the decimal point in the exponential table.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">'exptable_new.txt'</span>, <span style="color:#A020F0">'w'</span>);
+
+fprintf(fileID,<span style="color:#A020F0">'Exponential Function\n\n'</span>);
+fprintf(fileID,<span style="color:#A020F0">'%6.2f %12.8f\n'</span>, y);
+
+fclose(fileID);</pre></div></div></div><p>View the contents of the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>type <span style="color:#A020F0">exptable_new.txt</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Exponential Function
+
+  0.00   1.00000000
+  0.10   1.10517092
+  0.20   1.22140276
+  0.30   1.34985881
+  0.40   1.49182470
+  0.50   1.64872127
+  0.60   1.82211880
+  0.70   2.01375271
+  0.80   2.22554093
+  0.90   2.45960311
+  1.00   2.71828183
+</pre></div></div></div></div></section><section><h3 class="title" id="br5_kad-1">Append to or Overwrite Existing Text Files</h3><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/AppendToOrOverwriteExistingFilesExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Append to or Overwrite Existing Text Files",
+          "description": "Append values to an existing text file, rewrite the entire file, and overwrite only a portion of the file.",
+          "thumbnailURL": "../../includes/product/images/doc_center/DefaultImage.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "isPartOf": {
+          "@type": "CreativeWork",
+          "url": "writing-to-text-data-files-with-low-level-io.html"
+
+        },
+          "identifier": "matlab.AppendToOrOverwriteExistingFilesExample",
+          "name": "AppendToOrOverwriteExistingFilesExample",
+          "url": "writing-to-text-data-files-with-low-level-io.html#br5_kad-1"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/AppendToOrOverwriteExistingFilesExample')"
+
+        }</script><script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "AppendToOrOverwriteExistingFilesExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-AppendToOrOverwriteExistingFilesExample"><meta itemprop="exampletitle" content="Append to or Overwrite Existing Text Files"></div><span id="AppendToOrOverwriteExistingFilesExample" class="anchor_target"></span><p class="shortdesc">This example shows how to append values to an existing text file, rewrite the entire file, and overwrite only a portion of the file.</p><p>By default, <code class="literal">fopen</code> opens files with read access. To change the type of file access, use the permission specifier in the call to <code class="literal">fopen</code>. Possible permission specifiers include:</p><div class="itemizedlist"><ul><li><p><code class="literal">'r'</code> for reading</p></li><li><p><code class="literal">'w'</code> for writing, discarding any existing contents of the file</p></li><li><p><code class="literal">'a'</code> for appending to the end of an existing file</p></li></ul></div><p>To open a file for both reading and writing or appending, attach a plus sign to the permission, such as <code class="literal">'w+'</code> or <code class="literal">'a+'</code>. If you open a file for both reading and writing, you must call <code class="literal">fseek</code> or <code class="literal">frewind</code> between read and write operations.</p><div class="procedure"><span id="AppendToOrOverwriteExistingFilesExample-1" class="anchor_target"></span><p class="title" id="AppendToOrOverwriteExistingFilesExample-1"><b>Append to Existing Text File</b></p><p>Create a file named <code class="literal">changing.txt</code>.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">'changing.txt'</span>,<span style="color:#A020F0">'w'</span>);
+fmt = <span style="color:#A020F0">'%5d %5d %5d %5d\n'</span>;
+fprintf(fileID,fmt, magic(4));
+fclose(fileID);</pre></div></div></div><p>The current contents of <code class="literal">changing.txt</code> are:</p><p><code class="literal">16     5     9     4</code></p><p><code class="literal"> 2    11     7    14</code></p><p><code class="literal"> 3    10     6    15</code></p><p><code class="literal">13     8    12     1</code></p><p>Open the file with permission to append.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">'changing.txt'</span>,<span style="color:#A020F0">'a'</span>);</pre></div></div></div><p>Write the values <code class="literal">[55 55 55 55]</code> at the end of file:</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fprintf(fileID,fmt,[55 55 55 55]);</pre></div></div></div><p>Close the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fclose(fileID);</pre></div></div></div><p>View the contents of the file using the <code class="literal">type</code> function.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>type <span style="color:#A020F0">changing.txt</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>   16     5     9     4
+    2    11     7    14
+    3    10     6    15
+   13     8    12     1
+   55    55    55    55
+</pre></div></div></div><span id="AppendToOrOverwriteExistingFilesExample-2" class="anchor_target"></span><p class="title" id="AppendToOrOverwriteExistingFilesExample-2"><b>Overwrite Entire Text File</b></p><p>A text file consists of a contiguous set of characters, including newline characters. To replace a line of the file with a different number of characters, you must rewrite the line that you want to change and all subsequent lines in the file.</p><p>Replace the first line of <code class="literal">changing.txt</code> with longer, descriptive text. Because the change applies to the first line, rewrite the entire file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>replaceLine = 1;
+numLines = 5;
+newText = <span style="color:#A020F0">'This file originally contained a magic square'</span>;
+
+fileID = fopen(<span style="color:#A020F0">'changing.txt'</span>,<span style="color:#A020F0">'r'</span>);
+mydata = cell(1, numLines);
+<span style="color:#0000FF">for</span> k = 1:numLines
+   mydata{k} = fgetl(fileID);
+<span style="color:#0000FF">end</span>
+fclose(fileID);
+
+mydata{replaceLine} = newText;
+
+fileID = fopen(<span style="color:#A020F0">'changing.txt'</span>,<span style="color:#A020F0">'w'</span>);
+fprintf(fileID,<span style="color:#A020F0">'%s\n'</span>,mydata{:});
+fclose(fileID);</pre></div></div></div><p>View the contents of the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>type <span style="color:#A020F0">changing.txt</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>This file originally contained a magic square
+    2    11     7    14
+    3    10     6    15
+   13     8    12     1
+   55    55    55    55
+</pre></div></div></div><span id="AppendToOrOverwriteExistingFilesExample-3" class="anchor_target"></span><p class="title" id="AppendToOrOverwriteExistingFilesExample-3"><b>Overwrite Portion of Text File</b></p><p>Replace the third line of changing.txt with <code class="literal">[33 33 33 33]</code>. If you want to replace a portion of a text file with exactly the same number of characters, you do not need to rewrite any other lines in the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>replaceLine = 3;
+myformat = <span style="color:#A020F0">'%5d %5d %5d %5d\n'</span>;
+newData = [33 33 33 33];</pre></div></div></div><p>Move the file position marker to the correct line.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fileID = fopen(<span style="color:#A020F0">'changing.txt'</span>,<span style="color:#A020F0">'r+'</span>);
+<span style="color:#0000FF">for</span> k=1:(replaceLine-1);
+   fgetl(fileID);
+<span style="color:#0000FF">end</span></pre></div></div></div><p>Call <code class="literal">fseek</code> between read and write operations.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fseek(fileID,0,<span style="color:#A020F0">'cof'</span>);
+
+fprintf(fileID, myformat, newData);
+fclose(fileID);</pre></div></div></div><p>View the contents of the file.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>type <span style="color:#A020F0">changing.txt</span></pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>This file originally contained a magic square
+    2    11     7    14
+   33    33    33    33
+   13     8    12     1
+   55    55    55    55
+</pre></div></div></div></div></section><section><h3 class="title" id="bseuz8e">Open Files with Different Character Encodings</h3><p><span class="emphasis"><em>Encoding schemes</em></span> support the characters
+required for particular alphabets, such as those for Japanese or European
+languages. Common encoding schemes include US-ASCII or UTF-8.</p><p>If you do not specify an encoding scheme when opening a file for reading,
+            <code class="literal">fopen</code> uses auto character-set detection to determine the encoding. If
+        you do not specify an encoding scheme when opening a file for writing,
+            <code class="literal">fopen</code> defaults to using UTF-8 in order to provide interoperability
+        between all platforms and locales without data loss or corruption.</p><p> To determine the default, open a file, and call <code class="function">fopen</code> again with the
+        syntax:</p><div class="code_responsive"><pre class="programlisting">[<em class="replaceable">filename</em>, <em class="replaceable">permission</em>, <em class="replaceable">machineformat</em>, <em class="replaceable">encoding</em>] = fopen(<em class="replaceable">fid</em>);</pre></div><p>If you specify an encoding scheme when you open a file, the
+following functions apply that scheme: <code class="function">fscanf</code>, <code class="function">fprintf</code>, <code class="function">fgetl</code>, <code class="function">fgets</code>, <code class="literal">fread</code>,
+and <code class="literal">fwrite</code>.</p><p>For a complete list of supported encoding schemes, and the syntax
+for specifying the encoding, see the <a href="../ref/fopen.html"><code class="function">fopen</code></a> reference
+page.</p></section>
+            <h2 id="d126e7784">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/fprintf.html"><span itemprop="name"><code class="function">fprintf</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/fopen.html"><span itemprop="name"><code class="function">fopen</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/fseek.html"><span itemprop="name"><code class="function">fseek</code></span></a></span></p>
+            <h3 id="d126e7796">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_prog/formatting-strings.html" class="a">Formatting Text</a></li><li><a href="write-to-delimited-data-files.html" class="a">Write Data to Text Files</a></li></ul>
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

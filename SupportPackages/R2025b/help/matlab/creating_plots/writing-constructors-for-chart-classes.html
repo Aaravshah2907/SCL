@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Write Constructors for Chart Classes</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../graphics.html",
+          "name": "Graphics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../graphics-objects.html",
+          "name": "Graphics Objects"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../developing-chart-classes.html",
+          "name": "Developing Chart Classes"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "developing-chart-classes"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="ex">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Customize the calling syntax for creating a chart object."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../graphics-objects.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Graphics Objects</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../developing-chart-classes.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_3030590a-11cb-455b-92cb-5856db5c8caf"><span itemprop="title">Developing Chart Classes</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Write Constructors for Chart Classes</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#mw_d4de4342-3fd7-4a7b-bf85-234816082b5f" class="nav-link intrnllnk">Example: Confidence Bounds Chart with Custom Constructor</a></li><li class="nav-item"><a href="#d126e31794" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=developing-chart-classes&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=developing-chart-classes&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="mw_e824b542-61fb-45fc-99a5-04d88de96d32">Write Constructors for Chart Classes</h2><p>When you develop a chart as a subclass of the <code class="literal">ChartContainer</code> base
+            class, the base class provides a default constructor that accepts optional name-value
+            pair arguments for setting chart properties. For example, this command creates an
+            instance of a class called
+            <code class="literal">ConfidenceChart</code>.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ConfidenceChart(<span style="color:#A020F0">'XData'</span>,x,<span style="color:#A020F0">'YData'</span>,y,<span style="color:#A020F0">'ConfidenceMargin'</span>,0.15,<span style="color:#A020F0">'Color'</span>,[1 0 0])</pre></div></div></div></p><p>By writing a custom constructor method, you can provide an interface that accepts
+            individual argument values and optional name-value pair arguments. For example, you can
+            design a custom constructor to change the calling syntax for
+                <code class="literal">ConfidenceChart</code> so that both of these commands are valid ways to
+            create the
+            chart:<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ConfidenceChart(x,y,0.15)
+ConfidenceChart(x,y,0.15,<span style="color:#A020F0">'Color'</span>,[1 0 0])</pre></div></div></div></p><p>When you write the constructor method:</p>
+<div class="itemizedlist"><ul><li><p>Specify the input arguments you want to support in the function
+                        declaration. Include <code class="function">varargin</code> as the last input
+                        argument to capture any property name-value pair arguments that the user
+                        specifies.</p></li><li><p>Call the <code class="literal">ChartContainer</code> constructor before all other
+                        references to the chart object.</p></li></ul></div><p>
+</p><p>For example, the following constructor method for the
+                <code class="literal">ConfidenceChart</code> class performs these tasks:</p>
+<div class="itemizedlist"><ul><li><p>Checks the number of input arguments and returns an error if the number is
+                        less than three.</p></li><li><p>Converts the <code class="literal">x</code>, <code class="literal">y</code>, and
+                            <code class="literal">margin</code> values to the name-value pair arguments that
+                        the <code class="literal">ChartContainer</code> constructor accepts, and stores the
+                        results in <code class="literal">args</code>.</p></li><li><p>Appends any user-specified name-value pair arguments to the end of
+                            <code class="literal">args</code>.</p></li><li><p>Passes <code class="literal">args</code> to the <code class="literal">ChartContainer</code>
+                        constructor method.</p></li></ul></div><p>
+<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>methods
+    <span style="color:#0000FF">function</span> obj = ConfidenceChart(x,y,margin,varargin)
+        <span style="color:#228B22">% Check for at least three inputs</span>
+        <span style="color:#0000FF">if</span> nargin &lt; 3
+            error(<span style="color:#A020F0">'Not enough inputs'</span>);
+        <span style="color:#0000FF">end</span>
+            
+        <span style="color:#228B22">% Convert x, y, and margin into name-value pairs</span>
+        args = {<span style="color:#A020F0">'XData'</span>, x, <span style="color:#A020F0">'YData'</span>, y, <span style="color:#A020F0">'ConfidenceMargin'</span>, margin};
+            
+        <span style="color:#228B22">% Combine args with user-provided name-value pairs</span>
+        args = [args varargin];
+            
+        <span style="color:#228B22">% Call superclass constructor method</span>
+        obj@matlab.graphics.chartcontainer.ChartContainer(args{:});
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div></p><section><h3 class="title" id="mw_d4de4342-3fd7-4a7b-bf85-234816082b5f">Example: Confidence Bounds Chart with Custom Constructor</h3><p>This example shows how to develop a chart that has a custom constructor that
+                accepts single-value input arguments and optional name-value pair arguments. The
+                chart plots a line with markers and a surrounding confidence margin.</p><p>Create a program file named <code class="literal">ConfidenceChart.m</code> in a folder that
+                is on the MATLAB<sup>&#x00AE;</sup> path. Define the class by following these steps.</p><div class="table-responsive"><table class="table table-condensed"><colgroup><col class="tcol1" width="25%"><col class="tcol2" width="75%"></colgroup><thead><tr><th>Step</th><th>Implementation</th></tr></thead><tbody><tr><td><p>Derive from the <code class="literal">ChartContainer</code> base
+                                    class.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#0000FF">classdef</span> ConfidenceChart &lt; matlab.graphics.chartcontainer.ChartContainer</pre></div></div></div>
+                                </p></td></tr><tr><td><p>Define public properties.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    properties
+        XData (1,:) double = NaN
+        YData (1,:) double = NaN
+        ConfidenceMargin (1,1) double = 0.15
+        MarkerSymbol (1,:) char = <span style="color:#A020F0">'o'</span>
+        Color (1,3) double <span style="color:#A020F0">{mustBeGreaterThanOrEqual(Color,0),</span><span style="color:#0000FF">...</span>
+            <span style="color:#A020F0">mustBeLessThanOrEqual(Color,1)} = [1</span> <span style="color:#A020F0">0</span> <span style="color:#A020F0">0]</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Define private properties.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    properties(Access = private,Transient,NonCopyable)
+        LineObject (1,1) matlab.graphics.chart.primitive.Line
+        PatchObject (1,1) matlab.graphics.primitive.Patch
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Implement the custom constructor method that accepts the
+                                        <code class="literal">x</code>, <code class="literal">y</code>, and
+                                        <code class="literal">margin</code> values and optional property
+                                    name-value pair arguments.</p></td><td>
+                                <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    methods
+        <span style="color:#0000FF">function</span> obj = ConfidenceChart(x,y,margin,varargin)
+            <span style="color:#228B22">% Check for at least three inputs</span>
+            <span style="color:#0000FF">if</span> nargin &lt; 3
+                error(<span style="color:#A020F0">'Not enough inputs'</span>);
+            <span style="color:#0000FF">end</span>
+            
+            <span style="color:#228B22">% Convert x, y, and margin into name-value pairs</span>
+            args = {<span style="color:#A020F0">'XData'</span>, x, <span style="color:#A020F0">'YData'</span>, y, <span style="color:#A020F0">'ConfidenceMargin'</span>, margin};
+            
+            <span style="color:#228B22">% Combine args with user-provided name-value pairs.</span>
+            args = [args varargin];
+            
+            <span style="color:#228B22">% Call superclass constructor method</span>
+            obj@matlab.graphics.chartcontainer.ChartContainer(args{:});
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span></pre></div></div></div>
+                            </td></tr><tr><td><p>Implement the <code class="literal">setup</code>
+                                method.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>    methods(Access = protected)
+        <span style="color:#0000FF">function</span> setup(obj)
+            <span style="color:#228B22">% get the axes</span>
+            ax = getAxes(obj);
+            
+            <span style="color:#228B22">% Create Patch and objects</span>
+            obj.PatchObject = patch(ax,NaN,NaN,<span style="color:#A020F0">'r'</span>,<span style="color:#A020F0">'FaceAlpha'</span>,0.2,<span style="color:#0000FF">...</span>
+                <span style="color:#A020F0">'EdgeColor'</span>,<span style="color:#A020F0">'none'</span>);
+            hold(ax,<span style="color:#A020F0">'on'</span>)
+            obj.LineObject = plot(ax,NaN,NaN);
+            hold(ax,<span style="color:#A020F0">'off'</span>)
+        <span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr><tr><td><p>Implement the <code class="literal">update</code>
+                                method.</p></td><td><p>
+                                    <div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>        <span style="color:#0000FF">function</span> update(obj)
+            <span style="color:#228B22">% Update XData and YData of Line</span>
+            obj.LineObject.XData = obj.XData;
+            obj.LineObject.YData = obj.YData;
+            
+            <span style="color:#228B22">% Update patch XData and YData</span>
+            x = obj.XData;
+            obj.PatchObject.XData = [x x(end:-1:1)];
+            y = obj.YData;
+            c = obj.ConfidenceMargin;
+            obj.PatchObject.YData = [y+c y(end:-1:1)-c];
+            
+            <span style="color:#228B22">% Update colors</span>
+            obj.LineObject.Color = obj.Color;
+            obj.PatchObject.FaceColor = obj.Color;
+            
+            <span style="color:#228B22">% Update markers</span>
+            obj.LineObject.Marker = obj.MarkerSymbol;
+        <span style="color:#0000FF">end</span>
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div>
+                                </p></td></tr></tbody></table></div><p>Next, create an instance of a <code class="literal">ConfidenceChart</code>. Specify the
+                    <em class="varname">x</em>- and <em class="varname">y</em>-coordinates, the margin value,
+                and a marker symbol.<div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>x = 0:0.2:10;
+y = besselj(0,x);
+ConfidenceChart(x,y,0.20,<span style="color:#A020F0">'MarkerSymbol'</span>,<span style="color:#A020F0">'&gt;'</span>);</pre></div></div></div></p>
+<div class="informalfigure"><div id="d126e31789" class="mediaobject"><p><img src="chart_authoring_constructor.png" height="307" width="390"></p></div></div><p></p></section>
+            <h2 id="d126e31794">See Also</h2><h3>Classes</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chartcontainer.chartcontainer-class.html"><span itemprop="name"><code class="class">matlab.graphics.chartcontainer.ChartContainer</code></span></a></span></li></ul><h3>Functions</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/plot.html"><span itemprop="name"><code class="function">plot</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/patch.html"><span itemprop="name"><code class="function">patch</code></span></a></span></li></ul><h3>Properties</h3><ul class="list-unstyled margined_10"><li><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.chart.primitive.line-properties.html"><span itemprop="name"><span class="property">Line Properties</span></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/matlab.graphics.primitive.patch-properties.html"><span itemprop="name"><span class="property">Patch Properties</span></span></a></span></li></ul>
+            <h3 id="d126e31821">Topics</h3><ul class="list-unstyled"><li><a href="../matlab_oop/class-constructor-methods.html" class="a">Class Constructor Methods</a></li><li><a href="../matlab_oop/calling-superclass-methods-on-subclass-objects.html" class="a">Call Superclass Methods on Subclass Objects</a></li><li><a href="chart-development-overview.html" class="a">Chart Development Overview</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

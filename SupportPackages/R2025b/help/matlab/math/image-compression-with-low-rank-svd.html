@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Image Compression with Low-Rank SVD</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../mathematics.html",
+          "name": "Mathematics"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../linear-algebra.html",
+          "name": "Linear Algebra"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "linear-algebra"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Image Compression with Low-Rank SVD",
+          "description": "Use svdsketch to compress an image while preserving important features of the image.",
+          "thumbnailURL": "../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_05.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "matlab.ImageCompressionWithLowRankSVDExample",
+          "name": "ImageCompressionWithLowRankSVDExample",
+          "url": "image-compression-with-low-rank-svd.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('matlab/ImageCompressionWithLowRankSVDExample')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "ImageCompressionWithLowRankSVDExample.mlx"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to use svdsketch to compress an image while preserving important features of the image."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_05.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../mathematics.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Mathematics</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../linear-algebra.html?s_tid=CRUX_lftnav" itemprop="url" id="linear-algebra"><span itemprop="title">Linear Algebra</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Image Compression with Low-Rank SVD</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#ImageCompressionWithLowRankSVDExample-1" class="nav-link intrnllnk">Load Image</a></li><li class="nav-item"><a href="#ImageCompressionWithLowRankSVDExample-2" class="nav-link intrnllnk">Compress Image</a></li><li class="nav-item"><a href="#ImageCompressionWithLowRankSVDExample-3" class="nav-link intrnllnk">Limit Subspace Size</a></li><li class="nav-item"><a href="#ImageCompressionWithLowRankSVDExample-4" class="nav-link intrnllnk">Compare Results</a></li><li class="nav-item"><a href="#d126e7041" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=linear-algebra&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=linear-algebra&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=linear-algebra&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_a245124c-c750-458b-a63f-18d66ecc1a0f">Image Compression with Low-Rank SVD</h1><div class="examples_short_list hidden_ios_android" data-products="ML"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('matlab/ImageCompressionWithLowRankSVDExample')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="matlab-ImageCompressionWithLowRankSVDExample"><meta itemprop="exampletitle" content="Image Compression with LowRank SVD"></div><span id="ImageCompressionWithLowRankSVDExample" class="anchor_target"></span><p class="shortdesc">This example shows how to use <code class="literal">svdsketch</code> to compress an image. <code class="literal">svdsketch</code> uses a low-rank matrix approximation to preserve important features of the image, while filtering out less important features. As the tolerance used with <code class="literal">svdsketch</code> increases in magnitude, more features are filtered out, changing the level of detail in the image.</p><div class="procedure"><h3 class="title" id="ImageCompressionWithLowRankSVDExample-1">Load Image</h3><p>Load the image <code class="literal">street1.jpg</code>, which is a picture of a city street. The 3-D matrix that forms this image is <code class="literal">uint8</code>, so convert the image to a grayscale matrix. View the image with an annotation of the original matrix rank.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>A = imread(<span style="color:#A020F0">'street1.jpg'</span>);
+A = rgb2gray(A);
+imshow(A)
+title([<span style="color:#A020F0">'Original ('</span>,sprintf(<span style="color:#A020F0">'Rank %d)'</span>,rank(double(A)))])</pre></div></div></div><div class="informalfigure"><div id="d126e6945" class="mediaobject"><p><img src="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_01.png" alt="Figure contains an axes object. The hidden axes object with title Original (Rank 480) contains an object of type image." width="818"></p></div></div><h3 class="title" id="ImageCompressionWithLowRankSVDExample-2">Compress Image</h3><p>Use <code class="literal">svdsketch</code> to calculate a low-rank matrix that approximates <code class="literal">A</code> within a tolerance of <code class="literal">1e-2</code>. Form the low-rank matrix by multiplying the SVD factors returned by <code class="literal">svdsketch</code>, convert the result to <code class="literal">uint8</code>, and view the resulting image. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U1,S1,V1] = svdsketch(double(A),1e-2);
+Anew1 = uint8(U1*S1*V1');
+imshow(uint8(Anew1))
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S1,1)))</pre></div></div></div><div class="informalfigure"><div id="d126e6966" class="mediaobject"><p><img src="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_02.png" alt="Figure contains an axes object. The hidden axes object with title Rank 288 approximation contains an object of type image." width="818"></p></div></div><p><code class="literal">svdsketch</code> produces a rank 288 approximation, which results in some minor graininess in some of the boundary lines of the image.</p><p>Now, compress the image a second time using a tolerance of <code class="literal">1e-1</code>. As the magnitude of the tolerance increases, the rank of the approximation produced by <code class="literal">svdsketch</code> generally decreases.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U2,S2,V2] = svdsketch(double(A),1e-1);
+Anew2 = uint8(U2*S2*V2');
+imshow(Anew2)
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S2,1)))</pre></div></div></div><div class="informalfigure"><div id="d126e6982" class="mediaobject"><p><img src="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_03.png" alt="Figure contains an axes object. The hidden axes object with title Rank 48 approximation contains an object of type image." width="818"></p></div></div><p>This time, <code class="literal">svdsketch</code> produces a rank 48 approximation. Most of the major aspects of the image are still visible, but the additional compression increases the blurriness.</p><h3 class="title" id="ImageCompressionWithLowRankSVDExample-3">Limit Subspace Size</h3><p><code class="literal">svdsketch</code> adaptively determines what rank to use for the matrix sketch based on the specified tolerance. However, you can use the <code class="literal">MaxSubspaceDimension</code> name-value pair to specify the maximum subspace size that should be used to form the matrix sketch. This option can produce matrices that do not satisfy the tolerance, since the subspace you specify might be too small. In these cases, <code class="literal">svdsketch</code> returns a matrix sketch with the maximum allowed subspace size.</p><p>Use <code class="literal">svdsketch</code> with a tolerance of <code class="literal">1e-1</code> and a maximum subspace size of 15. Specify a fourth output to return the relative approximation error.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>[U3,S3,V3,apxErr] = svdsketch(double(A),1e-1,<span style="color:#A020F0">'MaxSubspaceDimension'</span>,15);</pre></div></div></div><p>Compare the relative approximation error of the result with the specified tolerance. <code class="literal">apxErr</code> contains one element since <code class="literal">svdsketch</code> only needs one iteration to compute the answer.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>apxErr &lt;= 1e-1</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>ans = <span class="emphasis"><em>logical</em></span>
+   0
+
+</pre></div></div></div><p>The result indicates that the matrix sketch does not satisfy the specified tolerance.</p><p>View the heavily compressed rank 15 image.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>Anew3 = uint8(U3*S3*V3');
+imshow(Anew3)
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S3,1)))</pre></div></div></div><div class="informalfigure"><div id="d126e7024" class="mediaobject"><p><img src="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_04.png" alt="Figure contains an axes object. The hidden axes object with title Rank 15 approximation contains an object of type image." width="818"></p></div></div><h3 class="title" id="ImageCompressionWithLowRankSVDExample-4">Compare Results</h3><p>Finally, view all of the images side-by-side for comparison.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>tiledlayout(2,2,<span style="color:#A020F0">'TileSpacing'</span>,<span style="color:#A020F0">'Compact'</span>)
+nexttile
+imshow(A)
+title(<span style="color:#A020F0">'Original'</span>)
+nexttile
+imshow(Anew1)
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S1,1)))
+nexttile
+imshow(Anew2)
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S2,1)))
+nexttile
+imshow(Anew3)
+title(sprintf(<span style="color:#A020F0">'Rank %d approximation'</span>,size(S3,1)))</pre></div></div></div><div class="informalfigure"><div id="d126e7034" class="mediaobject"><p><img src="../../examples/matlab/win64/ImageCompressionWithLowRankSVDExample_05.png" alt="Figure contains 4 axes objects. Hidden axes object 1 with title Original contains an object of type image. Hidden axes object 2 with title Rank 288 approximation contains an object of type image. Hidden axes object 3 with title Rank 48 approximation contains an object of type image. Hidden axes object 4 with title Rank 15 approximation contains an object of type image." width="818"></p></div></div></div>
+            <h2 id="d126e7041">See Also</h2><p><span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/double.svd.html"><span itemprop="name"><code class="function">svd</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/svds.html"><span itemprop="name"><code class="function">svds</code></span></a></span> | <span itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/SeeAlso" itemprop="seealso"><a itemprop="url" href="../ref/svdsketch.html"><span itemprop="name"><code class="function">svdsketch</code></span></a></span></p>
+            <h3 id="d126e7053">Topics</h3><ul class="list-unstyled"><li><a href="singular-values.html" class="a">Singular Values</a></li><li><a href="resample-image-with-gridded-interpolation.html" class="a">Resample Image with Gridded Interpolation</a></li></ul>
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Estimating Orientation Using Inertial Sensor Fusion and MPU-9250</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../data-import-and-analysis.html",
+          "name": "Data Import and Analysis"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../data-import-and-export.html",
+          "name": "Data Import and Export"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../hardware-network-comm.html",
+          "name": "Hardware and Network Communication"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 5,
+
+          "item": {
+          "@id": "../hardware-boards-and-kits.html",
+          "name": "Hardware Boards and Kits"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 6,
+
+          "item": {
+          "@id": "../arduinoio.html",
+          "name": "Arduino Hardware"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 7,
+
+          "item": {
+          "@id": "../arduinoio-sensors.html",
+          "name": "Sensors"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "arduinoio-sensors"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "DigitalDocument",
+          "headline": "Estimating Orientation Using Inertial Sensor Fusion and MPU-9250",
+          "description": "Get data from an InvenSense MPU-9250 IMU sensor, and to use the 6-axis and 9-axis fusion algorithms in the sensor data to compute orientation of the device.",
+          "thumbnailURL": "../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_06.png",
+          "genre": "Live Script",
+          "isBasedOn": {
+          "@type": "Product",
+          "name": "MATLAB"
+
+        },
+          "identifier": "shared_fusion_arduinoio.EstimateOrientationUsingInertialSensorFusionAndMPU9250Example",
+          "name": "EstimateOrientationUsingInertialSensorFusionAndMPU9250Example",
+          "url": "estimating-orientation-using-inertial-sensor-fusion-and-mpu9250.html"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "PropertyValue",
+          "name": "open_command",
+          "value": "matlab:openExample('shared_fusion_arduinoio/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example')"
+
+        }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "ExampleSourceFiles",
+
+        "itemListElement":
+        [
+        "EstimateOrientationUsingInertialSensorFusionAndMPU9250Example.mlx",
+        "HelperBox.m",
+        "HelperOrientationViewer.m",
+        "displayMessage.m",
+        "ahrs_filter_initial_position.png",
+        "ahrs_z_upwards.png",
+        "imu_filter_z_down_x_north_y_east.png",
+        "imu_filter_z_south_x_up_y_west.png",
+        "mpu9250_axis.png",
+        "mpu9250_connection.png"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="ug">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="other">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="This example shows how to get data from an InvenSense MPU-9250 IMU sensor, and to use the 6-axis and 9-axis fusion algorithms in the sensor data to compute orientation of the device."><meta xmlns="http://www.w3.org/1999/xhtml" content="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_06.png" itemprop="thumbnailUrl">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-analysis.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Analysis</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../data-import-and-export.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Data Import and Export</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-network-comm.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware and Network Communication</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../hardware-boards-and-kits.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Hardware Boards and Kits</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Arduino Hardware</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../arduinoio-sensors.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_a50129d8-52cc-41a2-a650-07e612c999b7"><span itemprop="title">Sensors</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Estimating Orientation Using Inertial Sensor Fusion and MPU-9250</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-1" class="nav-link intrnllnk">Required MathWorks&#174; Products</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-2" class="nav-link intrnllnk">Required Hardware</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-3" class="nav-link intrnllnk">Hardware Connection</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-4" class="nav-link intrnllnk">Create Sensor Object</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-5" class="nav-link intrnllnk">Compensating Magnetometer Distortions</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-6" class="nav-link intrnllnk">Aligning the axis of MPU-9250 sensor with NED Coordinates</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-7" class="nav-link intrnllnk">Tuning Filter Parameters</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-8" class="nav-link intrnllnk">Accelerometer-Gyroscope-Magnetometer Fusion</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-9" class="nav-link intrnllnk">Accelerometer-Gyroscope Fusion</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-10" class="nav-link intrnllnk">Accelerometer-Magnetometer Fusion</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-11" class="nav-link intrnllnk">Clean Up</a></li><li class="nav-item"><a href="#EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-12" class="nav-link intrnllnk">Things to try</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=arduinoio-sensors&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h1 class="r2025b" itemprop="title content" id="mw_e978bf1e-c51e-4e82-a18d-4a3d9ceac081">Estimating Orientation Using Inertial Sensor Fusion and MPU-9250</h1><div class="examples_short_list hidden_ios_android" data-products="ML ML_ARDUINO TF NV"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a href="matlab:matlab.internal.addons.showAddon('ML_ARDUINO')">MATLAB Support Package for Arduino Hardware</a></li><li><a href="matlab:matlab.internal.addons.showAddon('TF')">Sensor Fusion and Tracking Toolbox</a></li><li><a href="matlab:matlab.internal.addons.showAddon('NV')">Navigation Toolbox</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" href="matlab:openExample('shared_fusion_arduinoio/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example')" data-ex-genre="Live Script">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="shared_fusion_arduinoio-EstimateOrientationUsingInertialSensorFusionAndMPU9250Example"><meta itemprop="exampletitle" content="Estimating Orientation Using Inertial Sensor Fusion and MPU9250"></div><span id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example" class="anchor_target"></span><p class="shortdesc">This example shows how to get data from an InvenSense MPU-9250 IMU sensor, and to use the 6-axis and 9-axis fusion algorithms in the sensor data to compute orientation of the device.</p><p>MPU-9250 is a 9-axis sensor with accelerometer, gyroscope, and magnetometer. The accelerometer measures acceleration, the gyroscope measures angular velocity, and the magnetometer measures magnetic field in x-, y- and z- axis. The axis of the sensor depends on the make of the sensor.</p><div class="procedure"><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-1">Required MathWorks&#174; Products</h3><div class="itemizedlist"><ul><li><p>MATLAB&#174;</p></li><li><p>MATLAB Support Package for Arduino&#174; Hardware</p></li><li><p>Navigation Toolbox&#8482; or Sensor Fusion and Tracking Toolbox&#8482; </p></li></ul></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-2">Required Hardware</h3><div class="itemizedlist"><ul><li><p>Arduino Uno</p></li><li><p>InvenSense MPU-9250</p></li></ul></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-3">Hardware Connection</h3><p>Connect the SDA, SCL, GND, and the VCC pins of the MPU-9250 sensor to the corresponding pins on the Arduino&#174; Hardware. This example uses the Arduino Uno board with the following connections:</p><div class="itemizedlist"><ul><li><p>SDA - A4</p></li><li><p>SCL - A5</p></li><li><p>VCC - +3.3V</p></li><li><p>GND - GND</p></li></ul></div><div class="informalfigure"><div id="d126e73421" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_01.png" height="580" width="564"></p></div></div><p>Ensure that the connections to the sensors are intact. It is recommended to use a prototype shield and solder the sensor to it to avoid loose connections while moving the sensor. Refer the <a href="troubleshoot-sensors.html" data-docid="mlsupportpkg#mw_08b9ee29-ce8a-4ab0-b4c8-b11655b01471" class="a">Troubleshooting Sensors</a> page for sensors to debug the sensor related issues.</p><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-4">Create Sensor Object</h3><p>Create an <code class="literal">arduino</code> object and include the I2C library.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>a = arduino(<span style="color:#A020F0">'COM9'</span>, <span style="color:#A020F0">'Uno'</span>, <span style="color:#A020F0">'Libraries'</span>, <span style="color:#A020F0">'I2C'</span>);</pre></div></div></div><div class="code_responsive"><div class="programlisting"><div class="codeoutput"><pre>Updating server code on board Uno (COM9). This may take a few minutes.
+</pre></div></div></div><p>Create the MPU-9250 sensor object. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>fs = 100; <span style="color:#228B22">% Sample Rate in Hz   </span>
+imu = mpu9250(a,<span style="color:#A020F0">'SampleRate'</span>,fs,<span style="color:#A020F0">'OutputFormat'</span>,<span style="color:#A020F0">'matrix'</span>); </pre></div></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-5">Compensating Magnetometer Distortions</h3><p>Fusion algorithms use magnetometer readings which need to be compensated for magnetic distortions.  In general, two effects exist:  Hard iron distortions and soft iron distortions. To learn more about this distortion, refer to <a href="../../nav/ref/magcal.html#mw_70d78470-2bdc-4ae2-af0d-e3b210e97132" data-docid="nav_ref#mw_70d78470-2bdc-4ae2-af0d-e3b210e97132" class="a">More About</a><span role="cross_prod"> (Navigation Toolbox)</span>. These distortions can be corrected by using the correction values that can be determined using these steps:</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Rotate the sensor from 0 to 360 degree along each axis. </p></li><li><p>Use the <a href="../../nav/ref/magcal.html" data-docid="nav_ref#function_magcal" class="a"><code class="olink">magcal</code></a><span role="cross_prod"> (Navigation Toolbox)</span> function, as shown below, to obtain the correction coefficients.  </p></li></ol></div><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>ts = tic; 
+stopTimer = 50; 
+magReadings=[]; 
+<span style="color:#0000FF">while</span>(toc(ts) &lt; stopTimer) 
+    <span style="color:#228B22">% Rotate the sensor along x axis from 0 to 360 degree. </span>
+    <span style="color:#228B22">% Take 2-3 rotations to improve accuracy. </span>
+    <span style="color:#228B22">% For other axes, rotate along that axes. </span>
+   [accel,gyro,mag] = read(imu); 
+   magReadings = [magReadings;mag]; 
+<span style="color:#0000FF">end</span> 
+
+[A, b] = magcal(magReadings); <span style="color:#228B22">% A = 3x3 matrix for soft iron correction </span>
+                              <span style="color:#228B22">% b = 3x1 vector for hard iron correction </span></pre></div></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-6">Aligning the axis of MPU-9250 sensor with NED Coordinates</h3><p>Sensor fusion algorithms used in this example use North-East-Down(NED) as a fixed, parent coordinate system. In the NED reference frame, the X-axis points north, the Y-axis points east, and the Z-axis points down. Depending on the algorithm, north may either be the magnetic north or true north. The algorithms in this example use the magnetic north. The algorithms used here expects all the sensors in the object to have their axis aligned and is in accordance with NED convention. </p><p>MPU-9250 has two devices, the magnetometer and the accelerometer-gyroscope, on the same board. The axes of these devices are different from each other. The magnetometer axis is aligned with the NED coordinates. The axis of the accelerometer-gyroscope is different from magnetometer in MPU-9250. The accelerometer and the gyroscope axis need to be swapped and/or inverted to match the magnetometer axis. For more information refer to the section “Orientation of Axes” section in <a href="https://invensense.tdk.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf" target="_blank">MPU-9250 datasheet</a>.</p><div class="informalfigure"><div id="d126e73466" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_02.png" height="304" width="764"></p></div></div><p>To align MPU-9250 accelerometer-gyroscope axes to NED coordinates, do the following: </p><p>1. Define device axes: Define the imaginary axis as the device axis on the sensor in accordance to NED coordinate system which may or may not be same as sensor axes. For MPU-9250, magnetometer axis can be considered as device axis. </p><p>2. Swap the x and y values of accelerometer and gyroscope readings, so that the accelerometer and gyroscope axis is aligned with magnetometer axis. </p><p>3. Determine polarity values for accelerometer, and gyroscope. </p><p>a. Accelerometer </p><div class="itemizedlist"><ul><li><p>Place the sensor such that device X axis is pointing downwards, perpendicular to the surface at which sensor is kept. Accelerometer readings should read approximately [9.8 0 0]. If not negate the x-values of accelerometer. </p></li><li><p>Place the sensor such that device Y axis is pointing downwards, perpendicular to the surface at which sensor is kept. Accelerometer readings should read approximately [0 9.8 0]. If not negate the y-values of accelerometer. </p></li><li><p>Place the sensor such that device Z axis is pointing downwards, perpendicular to the surface at which sensor is kept. Accelerometer readings should read approximately [0 0 9.8]. If not negate the z-values of accelerometer. </p></li></ul></div><p>b. Gyroscope</p><p>Rotate the sensor along each axis and capture the readings. Use the right hand screw rule to correct the polarity of rotation.</p><p>The above method is used to set the axis of the sensor in this example.</p><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-7">Tuning Filter Parameters</h3><p>The algorithms used in this example, when properly tuned, enable estimation of the orientation and are robust against environmental noise sources. You must consider the situations in which the sensors are used and tune the filters accordingly. See <a href="../../fusion/ug/custom-tuning-of-fusion-filters.html" data-docid="fusion_ug#mw_8c0a32b8-72c0-4e6b-a076-d0935536d87b" class="a">Custom Tuning of Fusion Filters</a><span role="cross_prod"> (Sensor Fusion and Tracking Toolbox)</span> for more details related to tuning filter parameters.</p><p>The example demonstrates three algorithms to determine orientation, namely <code class="literal">ahrsfilter</code>, <code class="literal">imufilter</code>, and <code class="literal">ecompass</code>. Refer to <a href="../../fusion/gs/determine-orientation-through-sensor-fusion.html" data-docid="fusion_gs#mw_86c431c2-c2d1-49f8-a6b5-0022bc210a97" class="a">Determine Orientation Using Inertial Sensors</a><span role="cross_prod"> (Sensor Fusion and Tracking Toolbox)</span> for more details related to inertial fusion algorithms. </p><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-8">Accelerometer-Gyroscope-Magnetometer Fusion</h3><p>An attitude and heading reference system (AHRS) consist of a 9-axis system that uses an accelerometer, gyroscope, and magnetometer to compute orientation of the device. The <code class="literal">ahrsfilter</code> produces a smoothly changing estimate of orientation of the device, while correctly estimating the north direction. The <code class="literal">ahrsfilter</code> has the ability to remove gyroscope bias and can also detect and reject mild magnetic jamming.</p><p>The following code snippets use <code class="literal">ahrsfilter</code> system object to determine orientation of the sensor and creates a figure which gets updated as you move the sensor. The sensor has to be stationary, before the start of this example. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% GyroscopeNoise and AccelerometerNoise is determined from datasheet.</span>
+GyroscopeNoiseMPU9250 = 3.0462e-06; <span style="color:#228B22">% GyroscopeNoise (variance value) in units of rad/s</span>
+AccelerometerNoiseMPU9250 = 0.0061; <span style="color:#228B22">% AccelerometerNoise(variance value)in units of m/s^2</span>
+viewer = HelperOrientationViewer(<span style="color:#A020F0">'Title'</span>,{<span style="color:#A020F0">'AHRS Filter'</span>});
+FUSE = ahrsfilter(<span style="color:#A020F0">'SampleRate'</span>,imu.SampleRate, <span style="color:#A020F0">'GyroscopeNoise'</span>,GyroscopeNoiseMPU9250,<span style="color:#A020F0">'AccelerometerNoise'</span>,AccelerometerNoiseMPU9250);
+stopTimer = 100;</pre></div></div></div><p>While the below code is getting executed, slowly move the sensor and check if the motion in the figure matches the motion of the sensor. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% The correction factors A and b are obtained using magcal function as explained in one of the</span>
+<span style="color:#228B22">% previous sections, 'Compensating Magnetometer Distortions'.</span>
+magx_correction = b(1);
+magy_correction = b(2);
+magz_correction = b(3);
+ts = tic;
+<span style="color:#0000FF">while</span>(toc(ts) &lt; stopTimer)
+    [accel,gyro,mag] = read(imu);
+    <span style="color:#228B22">% Align coordinates in accordance with NED convention</span>
+    accel = [-accel(:,2), -accel(:,1), accel(:,3)];
+    gyro = [gyro(:,2), gyro(:,1), -gyro(:,3)];
+    mag = [mag(:,1)-magx_correction, mag(:, 2)- magy_correction, mag(:,3)-magz_correction] * A;
+    rotators = FUSE(accel,gyro,mag);
+    <span style="color:#0000FF">for</span> j = numel(rotators)
+        viewer(rotators(j));
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span></pre></div></div></div><p>When the device <span class="emphasis"><em>X</em></span> axis of sensor is pointing to north, the device Y-axis is pointing to east and device Z-axis is pointing down. </p><div class="informalfigure"><div id="d126e73523" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_03.png" height="500" width="607"></p></div></div><p>When the device X axis of sensor is pointing to north, device Y-axis is pointing to west and device Z-axis is pointing upwards. </p><div class="informalfigure"><div id="d126e73528" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_04.png" height="500" width="601"></p></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-9">Accelerometer-Gyroscope Fusion</h3><p>The <code class="literal">imufilter</code> system object fuses accelerometer and gyroscope data using an internal error-state Kalman filter. The filter is capable of removing the gyroscope bias noise, which drifts over time. The filter does not process magnetometer data, so it does not correctly estimate the direction of north. The algorithm assumes the initial position of the sensor is in such a way that device X-axis of the sensor is pointing towards magnetic north, the device Y-axis of the sensor is pointing to east and the device Z-axis of the sensor is pointing downwards. The sensor must be stationary, before the start of this example.</p><p>The following code snippets use <code class="literal">imufilter</code> object to determine orientation of the sensor and creates a figure which gets updated as you move the sensor. </p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>displayMessage([<span style="color:#A020F0">'This section uses  IMU filter to determine orientation of the sensor by collecting live sensor data from the \slmpu9250 \rm'</span> <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'system object. Move the sensor to visualize orientation of the sensor in the figure window. Keep the sensor stationery before you'</span><span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'click OK'</span>],<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Estimate Orientation using IMU filter and MPU-9250.'</span>)
+<span style="color:#228B22">% GyroscopeNoise and AccelerometerNoise is determined from datasheet.</span>
+GyroscopeNoiseMPU9250 = 3.0462e-06; <span style="color:#228B22">% GyroscopeNoise (variance) in units of rad/s</span>
+AccelerometerNoiseMPU9250 = 0.0061; <span style="color:#228B22">% AccelerometerNoise (variance) in units of m/s^2</span>
+viewer = HelperOrientationViewer(<span style="color:#A020F0">'Title'</span>,{<span style="color:#A020F0">'IMU Filter'</span>});
+FUSE = imufilter(<span style="color:#A020F0">'SampleRate'</span>,imu.SampleRate, <span style="color:#A020F0">'GyroscopeNoise'</span>,GyroscopeNoiseMPU9250,<span style="color:#A020F0">'AccelerometerNoise'</span>, AccelerometerNoiseMPU9250);
+stopTimer=100;</pre></div></div></div><p>While the below code is getting executed, slowly move the sensor and check if the motion in the figure matches the motion of the sensor.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre><span style="color:#228B22">% Use imufilter to estimate orientation and update the viewer as the sensor moves for time specified by stopTimer </span>
+tic; 
+<span style="color:#0000FF">while</span>(toc &lt; stopTimer)
+    [accel,gyro] = read(imu);
+    accel = [-accel(:,2), -accel(:,1), accel(:,3)]; 
+    gyro = [gyro(:,2), gyro(:,1), -gyro(:,3)]; 
+    rotators = FUSE(accel,gyro); 
+    <span style="color:#0000FF">for</span> j = numel(rotators) 
+        viewer(rotators(j)); 
+    <span style="color:#0000FF">end</span> 
+<span style="color:#0000FF">end</span> 
+ </pre></div></div></div><p>The <code class="literal">imufilter</code> algorithm can also be used with MPU6050 as well, since it does not require magnetometer values. </p><p>When the device X axis of sensor is pointing to north, device Z-axis is pointing downwards and device Y-axis is pointing to east. </p><div class="informalfigure"><div id="d126e73552" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_05.png" height="500" width="530"></p></div></div><p>When the device X axis of sensor is pointing upwards, device Y-axis is points to west and device Z-axis points to south.</p><div class="informalfigure"><div id="d126e73557" class="mediaobject"><p><img src="../../examples/shared_fusion_arduinoio/win64/EstimateOrientationUsingInertialSensorFusionAndMPU9250Example_06.png" height="500" width="567"></p></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-10">Accelerometer-Magnetometer Fusion</h3><p>The <code class="literal">ecompass</code> system object fuses the accelerometer and magnetometer data. The Ecompass algorithm is a memoryless algorithm that requires no parameter tuning but is highly susceptible to sensor noise. You could use spherical linear interpolation (SLERP) to lowpass filter a noisy trajectory. Refer <a href="../../fusion/ug/lowpass-filter-orientation-using-quaternion-slerp.html" data-docid="fusion_ug#mw_412e41c5-3d9b-46f4-936c-9f384eea1f1e" class="a">Lowpass Filter Orientation Using Quaternion SLERP</a><span role="cross_prod"> (Sensor Fusion and Tracking Toolbox)</span>  example for more details.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>displayMessage([<span style="color:#A020F0">'This section uses \slecompass \rmfunction to determine orientation of the sensor by collecting live sensor data from the \slmpu9250 '</span> <span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'\rmsystem object. Move the sensor to visualize orientation of the sensor in the figure window. Keep the sensor stationery before you click OK'</span>],<span style="color:#0000FF">...</span>
+    <span style="color:#A020F0">'Estimate Orientation using Ecompass algorithm.'</span>)
+viewer = HelperOrientationViewer(<span style="color:#A020F0">'Title'</span>,{<span style="color:#A020F0">'Ecompass Algorithm'</span>});
+<span style="color:#228B22">% Use ecompass algorithm to estimate orientation and update the viewer as the sensor moves for time specified by stopTimer.</span>
+<span style="color:#228B22">% The correction factors A and b are obtained using magcal function as explained in one of the</span>
+<span style="color:#228B22">% previous sections, 'Compensating Magnetometer Distortions'.</span>
+magx_correction = b(1);
+magy_correction = b(2);
+magz_correction = b(3);
+stopTimer = 100;
+tic;
+<span style="color:#0000FF">while</span>(toc &lt; stopTimer)
+    [accel,~,mag] = read(imu);
+    accel = [-accel(:,2), -accel(:,1), accel(:,3)];
+    mag = [mag(:,1)-magx_correction, mag(:, 2)- magy_correction, mag(:,3)-magz_correction] * A;
+    rotators = ecompass(accel,mag);
+    <span style="color:#0000FF">for</span> j = numel(rotators)
+        viewer(rotators(j));
+    <span style="color:#0000FF">end</span>
+<span style="color:#0000FF">end</span> </pre></div></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-11">Clean Up</h3><p>When the connection is no longer needed, release and clear the objects.</p><div class="code_responsive"><div class="programlisting"><div class="codeinput"><pre>release(imu);
+clear;</pre></div></div></div><h3 class="title" id="EstimateOrientationUsingInertialSensorFusionAndMPU9250Example-12">Things to try</h3><p>You can try this example with other sensors such as InvenSense MPU-6050 and STMicroelectronics LSM9DS1. Note that the MPU-6050 sensor can be used only with the <code class="literal">imufilter</code> system object.</p></div></section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>

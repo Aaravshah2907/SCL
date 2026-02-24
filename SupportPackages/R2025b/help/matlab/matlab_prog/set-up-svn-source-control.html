@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<meta xmlns="http://www.w3.org/1999/xhtml" charset="utf-8">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Set Up SVN Source Control</title>
+<script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+      {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement":
+      [{
+          "@type": "ListItem",
+          "position": 1,
+
+          "item": {
+          "@id": "../index.html",
+          "name": "MATLAB"
+}
+
+          } 
+        ,
+        {
+          "@type": "ListItem",
+          "position": 2,
+
+          "item": {
+          "@id": "../software-development.html",
+          "name": "Software Development Tools"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 3,
+
+          "item": {
+          "@id": "../source-control.html",
+          "name": "Source Control"
+}
+
+          }
+        ,
+        {
+          "@type": "ListItem",
+          "position": 4,
+
+          "item": {
+          "@id": "../matlab-svn-source-control.html",
+          "name": "SVN in MATLAB"
+}
+
+          }]
+      }</script><script xmlns="http://www.w3.org/1999/xhtml" type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "ItemList",
+          "name": "VisibleBreadcrumbs",
+
+        "itemListElement":
+        [
+        "matlab-svn-source-control"
+        ],
+        "itemListOrder": "http://schema.org/ItemListOrderAscending"
+        }
+        </script><link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+  <meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="toctype" itemprop="pagetype" content="con">
+<meta xmlns="http://www.w3.org/1999/xhtml" name="infotype" itemprop="infotype" content="con">
+
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" itemprop="description" content="Set up SVN source control for use in MATLAB, including registering your binary files to avoid file corruption and enforcing files locking before editing."><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-3.6.0.min.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery-migrate.min.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_lg.css" rel="stylesheet" media="screen and (min-width: 1200px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_md.css" rel="stylesheet" media="screen and (min-width: 992px) and (max-width: 1199px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm+xs.css" rel="stylesheet" media="screen and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_sm.css" rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 991px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_xs.css" rel="stylesheet" media="screen and (max-width: 767px)">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/site6_offcanvas_v2.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css">
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/l10n.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/f1help.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/docscripts.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/mw.imageanimation.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/jquery.highlight.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/underscore-min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/use_platform_screenshots.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/suggest.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/overload.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/helpservices.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/productfilter.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/matlab_dialog_shared.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/highlight/highlight.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/localstorage.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/product_group.js"></script><script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/scripts/saxonjs/SaxonJS2.rt.js"></script><script xmlns="http://www.w3.org/1999/xhtml">
+            window.history.replaceState(window.location.href, null, ""); // Initialize
+            window.onload = function() {    
+            mystylesheetLocation = "../../includes/shared/scripts/product_group-sef.json";
+            mysourceLocation = "../../docset/docset.xml";
+            product_help_location = "matlab";
+            pagetype = "section";
+            doccentertype = "product";
+            langcode = "";
+            getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);  
+            }
+          </script>
+
+
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/jquery/jquery.mobile.custom.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/bootstrap.bundle.min.js"></script>
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/product/scripts/global.js"></script>
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_base.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_installed.css" rel="stylesheet" type="text/css">
+<link xmlns="http://www.w3.org/1999/xhtml" href="../../includes/product/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+<script xmlns="http://www.w3.org/1999/xhtml" src="../../includes/shared/equationrenderer/release/MathRenderer.js"></script>
+</head>
+<body id="responsive_offcanvas">
+<div xmlns="http://www.w3.org/1999/xhtml" id="doc_header_spacer" class="header"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" class="section_header level_3"><div class="container-fluid"><div class="row" id="mobile_search_row"><div class="col-sm-6 col-md-7 has_horizontal_local_nav" id="section_header_title"><div class="section_header_content"><div class="section_header_title"><h1><a href="../../documentation-center.html">Help Center</a></h1></div></div></div><div class="col-12 col-sm-6 col-md-5" id="mobile_search"><div class="search_nested_content_container"><form id="docsearch_form" name="docsearch_form" method="get" data-release="R2025b" data-language="en" action="../../templates/searchresults.html"><div class="input-group tokenized_search_field"><label class="visually-hidden form-label">Search Help</label><input type="text" class="form-control conjoined_search" autocomplete="off" name="qdoc" placeholder="Search Help" id="docsearch"> <div><button type="submit" name="submitsearch" id="submitsearch" class="btn icon-search btn_search_adjacent btn_search icon_16" tabindex="-1"></button></div></div></form></div><button class="btn icon-remove btn_search float-end icon_32 d-sm-none" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div><div class="d-sm-none" id="search_actuator"><button class="btn icon-search btn_search float-end icon_16" data-bs-toggle="collapse" href="#mobile_search" aria-expanded="false" aria-controls="mobile_search"></button></div></div></div></div><div class="row-offcanvas row-offcanvas-left">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sidebar-offcanvas" id="sidebar">
+<nav class="offcanvas_nav" role="navigation">
+<div class="offcanvas_actuator" data-bs-toggle="offcanvas" data-bs-target="#sidebar" id="nav_toggle"><button type="button" class="btn"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle
+                  Off-Canvas Navigation Menu Toggle</span><span class="icon-menu"></span></button><span class="offcanvas_actuator_label" id="translation_icon-menu" tabindex="-1" aria-hidden="true"></span></div><div class="nav_list_wrapper" id="nav_list_wrapper"><nav class="offcanvas_nav" role="navigation"><ul class="nav_breadcrumb" id="ul_left_nav_ancestors"><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../../documentation-center.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Documentation Home</span></a></li></ul>
+<ul class="nav_disambiguation"><li><a href="../index.html?s_tid=CRUX_lftnav" id="index">MATLAB</a>
+</li>
+<li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../software-development.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Software Development Tools</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../source-control.html?s_tid=CRUX_lftnav" itemprop="url"><span itemprop="title">Source Control</span></a></li><li itemscope="" itemtype="http://www.data-vocabulary.org/Breadcrumb" itemprop="breadcrumb"><a href="../matlab-svn-source-control.html?s_tid=CRUX_lftnav" itemprop="url" id="mw_1ff0db63-1eaa-4bc1-a9d1-4b6f2a3c8aae"><span itemprop="title">SVN in MATLAB</span></a></li></ul><div class="search_refine_v4"><div id="facets_area"><ul class="nav_scrollspy nav list-unstyled" id="pnav">
+<li class="nav_scrollspy_function nav-item"><a href="#responsive_offcanvas">Set Up SVN Source Control</a></li>
+<li class="nav_scrollspy_title nav-item" id="SSPY810-section">On this page</li>
+<!--ADD_REFENTRY_TITLE_HERE 11--><li class="nav-item"><a href="#buhkrff" class="nav-link intrnllnk">Use Standard SVN Repository Structure</a></li><li class="nav-item"><a href="#buhkp8b" class="nav-link intrnllnk">Register Binary Files with SVN</a><ul class="nav"><li class="nav-item"><a href="#buhkreo-1" class="nav-link intrnllnk">Create SVN Config File</a></li><li class="nav-item"><a href="#buhkreo-2" class="nav-link intrnllnk">Update Existing SVN Config File</a></li><li class="nav-item"><a href="#buhkreo-3" class="nav-link intrnllnk">Register Files Already in Repositories</a></li></ul></li><li class="nav-item"><a href="#buhkrfw-1" class="nav-link intrnllnk">Enforce Locking Files Before Editing</a></li><li class="nav-item"><a href="#buhkrfw-1_1" class="nav-link intrnllnk">Share a Subversion Repository</a></li><li class="nav-item"><a href="#seealsoref" class="nav-link intrnllnk">See Also</a></li></ul></div></div>
+</nav></div></nav>
+<script src="../../includes/product/scripts/offcanvas_v2.js"></script></div><!--END.CLASS sidebar-offcanvas-->
+<div class="offcanvas_content_container">
+<div xmlns="http://www.w3.org/1999/xhtml" class="sticky_header_container"><div class="horizontal_nav"><div class="horizontal_nav_container"><div class="offcanvas_horizontal_nav"><div class="container-fluid"><div class="row"><div class="col-sm-12 d-none d-sm-block"><nav class="navbar navbar-default" role="navigation" id="subnav"><div><ul class="nav navbar-nav crux_browse"><li id="crux_nav_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_example" class="crux_resource"><a href="../examples.html?category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></nav></div><div class="d-sm-none"><div class="container-fluid"><div class="row"><div class="col-9"><div class="mobile_crux_nav_trigger"><div class="btn-group"><button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</button><ul class="dropdown-menu"><li id="crux_nav_mobile_documentation" class="crux_resource active">Documentation</li><li id="crux_nav_mobile_example" class="crux_resource"><a href="../examples.html?category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Examples</a></li><li id="crux_nav_mobile_function" class="crux_resource"><a href="../referencelist.html?type=function&amp;category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Functions</a></li><li id="crux_nav_mobile_app" class="crux_resource"><a href="../referencelist.html?type=app&amp;category=matlab-svn-source-control&amp;s_tid=CRUX_topnav">Apps</a></li></ul></div></div></div><div class="col-3"><div class="translate_placeholder"></div></div></div></div></div></div></div></div></div></div></div><div class="content_container" id="content_container" itemprop="content">
+<div class="container-fluid">
+<div class="row">
+<div class="col-12">
+
+<main id="skip_link_anchor" tabindex="-1">
+<div xmlns="http://www.w3.org/1999/xhtml" id="product_info_alert"></div><section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" lang="en" data-language="en"><div id="pgtype-topic">
+<section><h2 class="title r2025b" itemprop="title content" id="buhfag1-1">Set Up SVN Source Control</h2><p>You can use Subversion<sup>&#x00AE;</sup> (SVN) source control
+            in MATLAB<sup>&#x00AE;</sup> to manage your files and collaborate with others. For more information,
+            see <a href="work-with-files-under-svn-in-matlab.html" class="a">Work with Files Under SVN in MATLAB</a>.</p><p>Before using SVN, follow these steps to set it up for MATLAB:</p><div class="itemizedlist"><ul><li><p>(Recommended) Use the standard SVN repository structure.</p></li><li><p>(Required for all systems) Register your binary files with SVN to avoid file
+                    corruption.</p></li><li><p>(Optional) Enforce locking files before editing.</p></li></ul></div><section><h3 class="title" id="buhkrff">Use Standard SVN Repository Structure</h3><p>Create your repository with the standard <code class="literal">tags</code>,
+                    <code class="literal">trunk</code>, and <code class="literal">branches</code> folders, and check out
+                files from <code class="literal">trunk</code>. The Subversion project recommends using this repository structure. For more
+                information, see <a href="https://svn.apache.org/repos/asf/subversion/trunk/doc/user/svn-best-practices.html" target="_blank">https://svn.apache.org/repos/asf/subversion/trunk/doc/user/svn-best-practices.html</a>.</p></section><section><h3 class="title" id="buhkp8b">Register Binary Files with SVN</h3><p>If you use third-party source control tools, you must register your MATLAB and Simulink<sup>&#x00AE;</sup> file extensions such as <code class="literal">.mlx</code>, <code class="literal">.mat</code>,
+            <code class="literal">.fig</code>, <code class="literal">.mlapp</code>, <code class="literal">.mdl</code>,
+            <code class="literal">.slx</code>, <code class="literal">.mdlp</code>, <code class="literal">.slxp</code>,
+            <code class="literal">.sldd</code>, and <code class="literal">.p</code> as binary formats. Also register
+        extensions for MEX files, such as <code class="literal">.mexa64</code>, <code class="literal">.mexmaci64</code>,
+            <code class="literal">.mexmaca64</code>, and <code class="literal">.mexw64</code>. If you do not register
+        the extensions, these tools can corrupt your files when you submit them by changing
+        end-of-line characters, expanding tokens, substituting keywords, or attempting to automerge.
+        Corruption can occur if you use the source control tools outside of MATLAB or if you try submitting files from MATLAB without first registering your file formats.</p><p>Also register other file extensions, such as <code class="literal">.xlsx</code>,
+        <code class="literal">.jpg</code>, <code class="literal">.pdf</code>, and <code class="literal">.docx</code>, as binary
+        formats to avoid corruption during the check-in operation.</p><p>You must register binary files if you use any version of SVN, including the
+                built-in SVN integration provided by MATLAB. If you do not register your extensions as binary, SVN might add
+                annotations to conflicted MATLAB files and attempt automerge. To avoid this problem when using SVN,
+                register file extensions.</p>
+<div class="orderedlist"><ol style="list-style: decimal;"><li><p>Locate your SVN <code class="literal">config</code> file. Look for the file in
+                            these locations:</p>
+<div class="itemizedlist"><ul><li><p>On Windows<sup>&#x00AE;</sup> &#8211;
+                                                <code class="literal">C:\Users\<em class="replaceable"><code>myusername</code></em>\AppData\Roaming\Subversion\config</code>
+                                        or <code class="literal">C:\Documents and
+                                                Settings\<em class="replaceable"><code>myusername</code></em>\Application
+                                            Data\Subversion\config</code>
+                                    </p></li><li><p>On Linux<sup>&#x00AE;</sup> or <span class="entity">macOS</span> &#8211; <code class="literal">~/.subversion </code>
+                                    </p></li></ul></div><p>
+</p></li><li><p>If you do not find an SVN <code class="literal">config</code> file, create a new
+                            one by following the steps in the <a href="set-up-svn-source-control.html#buhkreo-1" class="intrnllnk">Create SVN Config File</a>
+                            section.</p></li><li><p>If you find an existing SVN <code class="literal">config</code> file, you have
+                            previously installed SVN. Edit the <code class="literal">config</code> file by
+                            following the steps in the <a href="set-up-svn-source-control.html#buhkreo-2" class="intrnllnk">Update Existing SVN Config File</a>
+                            section.</p></li></ol></div><p>
+</p><section><h4 class="title" id="buhkreo-1">Create SVN Config File</h4><div class="orderedlist"><ol style="list-style: decimal;"><li><p>If you do not find an SVN <code class="literal">config</code> file, create a
+                            text file containing these lines:</p><div class="code_responsive"><pre class="programlisting">[miscellany]
+enable-auto-props = yes
+[auto-props]
+*.mlx = svn:mime-type=application/octet-stream
+*.mat = svn:mime-type=application/octet-stream
+*.fig = svn:mime-type=application/octet-stream
+*.mdl = svn:mime-type=application/octet-stream
+*.slx = svn:mime-type=application/octet-stream
+*.mlapp = svn:mime-type=application/octet-stream
+*.p = svn:mime-type=application/octet-stream
+*.mdlp = svn:mime-type=application/octet-stream
+*.slxp = svn:mime-type=application/octet-stream
+*.sldd = svn:mime-type=application/octet-stream
+*.slxc = svn:mime-type=application/octet-stream
+*.mlproj = svn:mime-type=application/octet-stream
+*.mldatx = svn:mime-type=application/octet-stream
+*.slreqx = svn:mime-type=application/octet-stream
+*.sfx = svn:mime-type=application/octet-stream
+*.sltx = svn:mime-type=application/octet-stream</pre></div></li><li><p>Check for other file types you use that you also need to register as
+                            binary to avoid corruption at check-in. Check for files such as
+                            MEX-files (<code class="literal">.mexa64</code>, <code class="literal">.mexmaci64</code>,
+                                <code class="literal">.mexw64</code>), <code class="literal">.xlsx</code>,
+                                <code class="literal">.jpg</code>, <code class="literal">.pdf</code>,
+                                <code class="literal">.docx</code>, etc. Add a line to the
+                                <code class="literal">config</code> file for each file type you need.
+                            Examples:</p><div class="code_responsive"><pre class="programlisting">*.mexa64 = svn:mime-type=application/octet-stream
+*.mexw64 = svn:mime-type=application/octet-stream
+*.mexmaci64 = svn:mime-type=application/octet-stream
+*.xlsx = svn:mime-type=application/octet-stream
+*.docx = svn:mime-type=application/octet-stream
+*.pdf = svn:mime-type=application/octet-stream
+*.jpg = svn:mime-type=application/octet-stream
+*.png = svn:mime-type=application/octet-stream</pre></div></li><li><p>Name the file <code class="literal">config</code> and save it in the appropriate location.</p>
+<div class="itemizedlist"><ul><li><p>On Windows &#8211;
+                                                <code class="literal">C:\Users\<em class="replaceable"><code>myusername</code></em>\AppData\Roaming\Subversion\config</code>
+                                        or <code class="literal">C:\Documents and
+                                                Settings\<em class="replaceable"><code>myusername</code></em>\Application
+                                            Data\Subversion\config</code>
+                                    </p></li><li><p>On Linux or <span class="entity">macOS</span> &#8211; <code class="literal">~/.subversion </code></p></li></ul></div><p>
+</p></li></ol></div><p>After you create the SVN <code class="literal">config</code> file, SVN treats new files
+                    with these extensions as binary. If you already have binary files in
+                    repositories, see <a href="set-up-svn-source-control.html#buhkreo-3" class="intrnllnk">Register Files Already in Repositories</a>.</p></section><section><h4 class="title" id="buhkreo-2">Update Existing SVN Config File</h4><p>If you find an existing SVN<code class="literal">config</code> file, you have previously
+                    installed SVN. Edit the <code class="literal">config</code> file to register files as
+                    binary.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>Edit the SVN <code class="literal">config</code> file in a text editor. </p></li><li><p>Locate the <code class="literal">[miscellany]</code> section, and verify that
+                            this line enables <code class="literal">auto-props</code> with
+                                <code class="literal">yes</code>.<div class="code_responsive"><pre class="programlisting">enable-auto-props = yes </pre></div>Ensure
+                            that this line does not begin with a <code class="literal">#</code> character,
+                            which indicates that the line is commented. If the line begins with a
+                                <code class="literal">#</code> character, delete the character. </p></li><li><p>Locate the <code class="literal">[auto-props]</code> section. Ensure that the
+                                <code class="literal">[auto-props]</code> section does not begin with a
+                                <code class="literal">#</code> character. If the section begins with a
+                                <code class="literal">#</code> character, delete the character.</p></li><li><p>Add these lines at the end of the <code class="literal">[auto-props]</code>
+                            section:<div class="code_responsive"><pre class="programlisting">*.mlx = svn:mime-type=application/octet-stream
+*.mat = svn:mime-type=application/octet-stream
+*.fig = svn:mime-type=application/octet-stream
+*.mdl = svn:mime-type=application/octet-stream
+*.slx = svn:mime-type= application/octet-stream
+*.mlapp = svn:mime-type= application/octet-stream
+*.p = svn:mime-type=application/octet-stream
+*.mdlp = svn:mime-type=application/octet-stream
+*.slxp = svn:mime-type=application/octet-stream
+*.sldd = svn:mime-type=application/octet-stream
+*.slxc = svn:mime-type=application/octet-stream
+*.mlproj = svn:mime-type=application/octet-stream
+*.mldatx = svn:mime-type=application/octet-stream
+*.slreqx = svn:mime-type=application/octet-stream
+*.sfx = svn:mime-type=application/octet-stream
+*.sltx = svn:mime-type=application/octet-stream
+</pre></div> These lines prevent SVN from adding annotations to
+                            conflicted MATLAB and Simulink files and from attempting automerge.</p></li><li><p>Check for other file types you use that you also need to register as
+                            binary to avoid corruption at check-in. Check for files such as
+                            MEX-files (<code class="literal">.mexa64</code>, <code class="literal">.mexmaci64</code>,
+                                <code class="literal">.mexw64</code>), <code class="literal">.xlsx</code>,
+                                <code class="literal">.jpg</code>, <code class="literal">.pdf</code>,
+                                <code class="literal">.docx</code>, etc. Add a line to the
+                                <code class="literal">config</code> file for each file type you use. For
+                            example, add these lines.</p><div class="code_responsive"><pre class="programlisting">*.mexa64 = svn:mime-type=application/octet-stream
+*.mexw64 = svn:mime-type=application/octet-stream
+*.mexmaci64 = svn:mime-type=application/octet-stream
+*.xlsx = svn:mime-type=application/octet-stream
+*.docx = svn:mime-type=application/octet-stream
+*.pdf = svn:mime-type=application/octet-stream
+*.jpg = svn:mime-type=application/octet-stream
+*.png = svn:mime-type=application/octet-stream</pre></div></li><li><p>Save the <code class="literal">config</code> file.</p></li></ol></div><p>After you create or update the SVN <code class="literal">config</code> file, SVN treats
+                    new files as binary. If you already have files in repositories, register them as
+                    described in <a href="set-up-svn-source-control.html#buhkreo-3" class="intrnllnk">Register Files Already in Repositories</a>.</p></section><section><h4 class="title" id="buhkreo-3">Register Files Already in Repositories</h4><p>Changing your SVN <code class="literal">config</code> file does not affect files already
+                    committed to an SVN repository. If an existing file is not registered as binary,
+                    use <code class="literal">svn propset</code> in command-line SVN to manually register the
+                    files as
+                    binary.<div class="code_responsive"><pre class="programlisting">svn propset svn:mime-type application/octet-stream <em class="replaceable">binaryfilename</em></pre></div></p></section></section><section><h3 class="title" id="buhkrfw-1">Enforce Locking Files Before Editing</h3><p>You can configure SVN to make files with specific extensions read-only. Users must
+                place a lock on read-only files before editing them. When a file has a lock, other
+                users know the file is being edited and you can avoid merge issues.</p><p>To enforce locking files, modify entries in the SVN <code class="literal">config</code>
+                file. To locate your SVN <code class="literal">config</code> file, see <a href="set-up-svn-source-control.html#buhkp8b" class="intrnllnk">Register Binary Files with SVN</a>.</p><div class="orderedlist"><ol style="list-style: decimal;"><li><p>To make files with an <code class="literal">.m</code> extension read-only, add a
+                        property to your SVN <code class="literal">config</code> file in the
+                            <code class="literal">[auto-props]</code> section. If there is no entry for files
+                        with an <code class="literal">.m</code> extension, add one with the
+                            <code class="literal">needs-lock</code> property.</p><div class="code_responsive"><pre class="programlisting">*.m = svn:needs-lock=yes</pre></div><p>If an entry exists, you can combine properties in any order, but multiple
+                        entries must be on a single line separated by semicolons.</p></li><li><p>To make files with an <code class="literal">.mlx</code> extension read-only, add a
+                        property to your SVN <code class="literal">config</code> file in the
+                            <code class="literal">[auto-props]</code> section. Because you must register files
+                        with an <code class="literal">.mlx</code> extension as binary, there is an entry for
+                        the file type. Add the <code class="literal">needs-lock</code> property to the entry
+                        in any order on a single line and separated by a semicolon.</p><div class="code_responsive"><pre class="programlisting">*.mlx = svn:mime-type=application/octet-stream;svn:needs-lock=yes </pre></div></li><li><p>Recreate the working folder for the configuration to take effect.</p></li></ol></div><p>After you enforce file locking, users must place a lock on a file before editing
+                the file. For more information, see <a href="work-with-files-under-svn-in-matlab.html#WorkWithFilesUnderSVNInMATLABExample-2" class="a">Get SVN File Locks</a>.</p></section><section><h3 class="title" id="buhkrfw-1_1">Share a Subversion Repository</h3><span id="ml_svn_file_protocol_warning" class="anchor_target"></span><p>To share a subversion repository, set up a server using the
+                    Apache&#x2122; SVN module. For more information, see <a href="https://svnbook.red-bean.com/en/1.7/svn-book.html#svn.serverconfig.httpd" target="_blank">https://svnbook.red-bean.com/en/1.7/svn-book.html#svn.serverconfig.httpd</a>.</p>
+<div class="alert alert-info d-inline-block"><span class="alert_icon icon-alert-info-reverse"></span><p class="alert_heading"><strong>Note</strong></p><p>
+                        </p>
+<div class="itemizedlist"><ul><li><p>In a production environment, do not rely on remote
+                                    repositories via the file system using the <code class="literal">file:///
+                                        protocol</code>. The file protocol is not safe.
+                                    Concurrent access might corrupt repositories.</p></li><li><p>MATLAB does not support interacting with remote
+                                    repositories using the <code class="literal">svn+ssh://
+                                    protocol</code>.</p></li></ul></div><p>
+
+                    </p></div><p>
+</p></section>
+            
+            <h2 id="seealsoref">See Also</h2><h3 id="d126e84437">Topics</h3><ul class="list-unstyled"><li><a href="about-mathworks-source-control-integration.html" class="a">Source Control Integration in MATLAB</a></li><li><a href="work-with-files-under-svn-in-matlab.html" class="a">Work with Files Under SVN in MATLAB</a></li><li><a href="resolve-source-control-conflicts.html" class="a">Resolve SVN Source Control Conflicts</a></li></ul>
+            
+            
+        </section>
+    </div></section><div xmlns="http://www.w3.org/1999/xhtml" class="clearfix"></div>
+<div xmlns="http://www.w3.org/1999/xhtml" align="center" class="feedbackblock" id="mw_docsurvey"><script src="https://www.mathworks.com/help/docsurvey/docfeedback.js"></script>
+<script>loadSurveyHidden();</script>
+<link rel="stylesheet" href="https://www.mathworks.com/help/docsurvey/release/index-css.css" type="text/css">
+<script src="https://www.mathworks.com/help/docsurvey/release/bundle.index.js"></script>
+
+<script>initDocSurvey();</script></div></main>
+
+
+</div>
+</div>
+</div>
+</div><!--close_0960-->
+<footer xmlns="http://www.w3.org/1999/xhtml" id="footer" class="bs-footer">
+<div class="container-fluid">
+<div class="footer">
+<div class="row">
+<div class="col-12">
+<p class="copyright">© 1994-2025 The MathWorks, Inc.</p>
+<ul class="footernav"><li class="footernav_help"><a href="matlab:web(matlab.internal.licenseAgreement)">Terms of Use</a></li><li class="footernav_patents"><a href="matlab:web([matlabroot '/patents.txt'])">Patents</a></li><li class="footernav_trademarks"><a href="matlab:web([matlabroot '/trademarks.txt'])">Trademarks</a></li><li class="footernav_piracy"><a href="matlab:web([docroot '/acknowledgments.html'])">Acknowledgments</a></li></ul></div>
+</div>
+</div>
+</div>
+</footer>
+</div><!--close row-offcanvas-->
+</div><!--close_0970-->
+</body>
+</html>
